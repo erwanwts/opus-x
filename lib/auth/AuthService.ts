@@ -95,7 +95,10 @@ export class AuthService {
         // Le magic link établit l'identité ET la vérifie en un geste.
         shouldCreateUser: true,
         data: metadata as unknown as Record<string, unknown>,
-        emailRedirectTo: `${this.appOrigin()}/emission`,
+        // Le lien revient sur /auth/callback : le code y est échangé contre une
+        // session (cookies posés) AVANT d'atteindre /emission. Sans ce relais,
+        // la cérémonie — route protégée — rejette l'onglet faute de session.
+        emailRedirectTo: `${this.appOrigin()}/auth/callback?next=/emission`,
       },
     });
 
@@ -117,7 +120,8 @@ export class AuthService {
         shouldCreateUser: true,
         // Les consentements re-voyagent : un renvoi ne doit pas les perdre (V2).
         data: metadata as unknown as Record<string, unknown> | undefined,
-        emailRedirectTo: `${this.appOrigin()}/emission`,
+        // Même relais d'échange de code que l'établissement (voir establishIdentity).
+        emailRedirectTo: `${this.appOrigin()}/auth/callback?next=/emission`,
       },
     });
 
