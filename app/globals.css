@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================================
+   Opus X — DESIGN TOKENS
+   Source d'autorité : PRODUCT-001 « Opus X Design System » — Annexe A.
+   Ces valeurs sont VERBATIM l'Annexe A. Elles ne sont ni « améliorées »
+   ni réinterprétées. Le mapping sémantique suit §5 (Colour), §6 (Typo),
+   §9 (Space/Radius/Elevation), §10 (Les deux registres), §16 (Motion).
+
+   LOI D'OBJET (§10) : le PASSPORT est un OBJET (fond navy profond, sceau or,
+   voix serif institutionnelle, ombre réelle) ; le DASHBOARD est un OUTIL
+   (fond paper, voix sans, plat, 1px de bordure). Les deux registres ne se
+   mélangent jamais dans un même élément.
+   ===================================================================== */
+
+:root {
+  /* ── Couleur — Opus Navy (§5.2) — l'objet, les surfaces institutionnelles ── */
+  --navy-950: #050b15; /* fond le plus profond du Passport ; fonds de cérémonie */
+  --navy-900: #0a1628; /* surfaces objet ; la matière du Passport */
+  --navy-800: #0f2038; /* surfaces objet surélevées */
+  --navy-700: #16304f; /* bordures objet ; lignes structurelles */
+  --navy-600: #1e4272; /* navy signature ; actions primaires (registre Outil) */
+  --navy-500: #2c5892; /* navy interactif ; focus ; information */
+  --navy-400: #5081bc; /* interactif secondaire */
+  --navy-300: #8fb0d8; /* éléments de support */
+  --navy-200: #c2d6ec; /* remplissages subtils ; Opus ID gravé sur fond sombre */
+  --navy-100: #e4edf7; /* fonds teintés */
+  --navy-50: #f4f8fc; /* le lavis institutionnel le plus clair */
+
+  /* ── Couleur — Opus Gold (§5.3) — la confiance MÉRITÉE, rareté absolue (<2%) ── */
+  --gold-700: #8a6d2f; /* or sur surfaces claires (contrast-safe) */
+  --gold-600: #a88a42; /* sceau atténué ; marques de confiance secondaires */
+  --gold-500: #c9a961; /* LE sceau. Certifications, vérification, la marque du Passport */
+  --gold-400: #ddc489; /* or sur surfaces sombres ; reflets gravés */
+  --gold-300: #ebdcb4; /* teinte de confiance subtile */
+  --gold-100: #f7f1e2; /* fond teinté confiance (rare) */
+
+  /* ── Neutres — Paper & Graphite (§5.4) — le registre Outil ── */
+  --paper: #ffffff; /* surfaces Outil ; cards */
+  --paper-warm: #fbfbfa; /* fond applicatif (une chaleur discrète, jamais clinique) */
+  --graphite-900: #14171c; /* texte primaire (registre Outil) */
+  --graphite-700: #3a4048; /* texte secondaire */
+  --graphite-500: #6b7280; /* texte atténué ; légendes */
+  --graphite-300: #c9ced6; /* bordures ; séparateurs */
+  --graphite-100: #eef0f3; /* remplissages subtils ; skeletons */
+
+  /* ── Couleurs fonctionnelles (§5.5) — sobres, institutionnelles, jamais alarmantes ── */
+  --verified: #1f7a5c; /* vérifié, corroboré, confirmé */
+  --attention: #b4791e; /* requiert attention ; compétence vieillissante (jamais « échec ») */
+  --critical: #a02b2b; /* révoqué, vérification échouée */
+  --information: #2c5892; /* information neutre (= navy-500) */
+
+  /* ── Typographie — les trois voix (§6.1) ──
+     Les familles réelles sont fournies par next/font (voir layout.tsx), qui
+     renseigne ces variables. Les replis suivent l'Annexe A verbatim. */
+  --font-institutional: var(--font-source-serif), 'Source Serif 4', Georgia, serif;
+  --font-interface: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-engraved: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* ── Espace — base 4 (§9.1, Annexe A) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Respiration (§9.1) — rythme vertical Outil : ≥48px entre blocs, ≥64px entre surfaces. */
+  --breathe-md: var(--space-12); /* 48px */
+  --breathe-lg: var(--space-16); /* 64px */
+  --breathe-xl: var(--space-24); /* 96px */
+
+  /* ── Rayons (§9.3, Annexe A) ── */
+  --radius-control: 6px; /* boutons & inputs */
+  --radius-surface: 8px; /* surfaces Outil (cards) */
+  --radius-object: 16px; /* surfaces objet (le Passport) — courbe plus physique */
+
+  /* ── Élévation (§9.4, Annexe A) — deux niveaux, extrême retenue ── */
+  --shadow-overlay: 0 4px 24px rgba(10, 22, 40, 0.08); /* overlays & modales (Outil) */
+  --shadow-object: 0 24px 64px rgba(5, 11, 21, 0.45); /* le Passport : masse réelle */
+
+  /* ── Motion (§16, Annexe A) — lent, délibéré, jamais de fanfare ── */
+  --motion-micro: 150ms; /* hover, focus */
+  --motion-surface: 300ms; /* transitions de page/modale */
+  --motion-object: 1600ms; /* révélation de l'objet (le Passport se matérialise) */
+  --ease-institutional: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Le registre OUTIL est le fond de l'application (§10) : paper-warm, sans, graphite. */
+body {
+  background: var(--paper-warm);
+  color: var(--graphite-900);
+  font-family: var(--font-interface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* L'Opus ID est GRAVÉ (§13.3) : mono, tracké +0.08em, chiffres tabulaires,
+   navy-200 sur fond sombre (ou graphite-300 sur fond clair). Jamais décoré. */
+.opus-id {
+  font-family: var(--font-engraved);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
