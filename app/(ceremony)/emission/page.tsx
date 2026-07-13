@@ -123,9 +123,15 @@ export default function EmissionPage() {
   }, []);
 
   // ── V3 — la ligne finale : seulement quand forge jouée ET serveur confirmé ─
+  // ⚠️ Ne dépend QUE des deux booléens de déclenchement — jamais de lineStatus.
+  // Cet effet mute lineStatus (ligne finale → 'active') ; si lineStatus était
+  // une dépendance, cette mutation relancerait l'effet, dont le cleanup
+  // annulerait aussitôt les timers de scellement (ligne figée en 'active',
+  // objet jamais scellé, Opus ID/CTA jamais révélés). firstThreeDone et
+  // emission?.complete ne basculent qu'une fois : l'effet s'exécute une fois,
+  // et ses timers vont au bout.
   useEffect(() => {
     if (!firstThreeDone || !emission?.complete) return;
-    if (lineStatus[EMISSION_FINAL_LINE_INDEX] !== 'idle') return;
 
     const timers: ReturnType<typeof setTimeout>[] = [];
     setLine(EMISSION_FINAL_LINE_INDEX, 'active');
@@ -138,7 +144,7 @@ export default function EmissionPage() {
     timers.push(setTimeout(() => setCtaShown(true), 2600));
 
     return () => timers.forEach(clearTimeout);
-  }, [firstThreeDone, emission?.complete, lineStatus]);
+  }, [firstThreeDone, emission?.complete]);
 
   // La forge « tient » élégamment tant que le serveur n'a pas confirmé.
   const holding = firstThreeDone && !emission?.complete;
