@@ -58,6 +58,25 @@ export const fr = {
     discover: 'Découvrir mon Passport',
     holding: 'Nous finalisons l’émission…',
   },
+  // Le SECOND moment émotionnel (Lot C0) : le professionnel comprend que son
+  // travail chez cet Issuer va nourrir son identité. Institutionnel, jamais
+  // festif. Lexique verrouillé (jamais « compte », jamais « créer »).
+  link: {
+    eyebrow: 'Autorisation d’émission',
+    title: 'Autoriser {issuer} à contribuer à votre Passport',
+    body: 'En autorisant {issuer}, vous permettez à cette plateforme de contribuer des preuves vérifiées à votre identité professionnelle. C’est vous, et vous seul, qui décidez de ce qui alimente votre Passport.',
+    revocable:
+      'Vous pourrez retirer cette autorisation à tout moment. Les preuves déjà reçues, elles, demeurent — on cesse d’alimenter un Passport, on ne réécrit pas son histoire.',
+    perPlatform: 'Cette autorisation ne concerne que {issuer}. Elle n’en autorise aucune autre.',
+    authorize: 'Autoriser {issuer}',
+    decline: 'Pas maintenant',
+    working: 'Enregistrement de votre autorisation…',
+    granted: 'Autorisation accordée. {issuer} peut désormais contribuer à votre Passport.',
+    error: 'Autorisation impossible pour le moment. Réessayez.',
+    unavailable: 'Cette liaison n’est pas disponible.',
+    revoke: 'Retirer l’autorisation',
+    revoked: 'Autorisation retirée. Les preuves déjà reçues demeurent.',
+  },
   landing: {
     // Institutionnel : le produit n'essaie pas de convaincre, il énonce (§3.4).
     headline: 'Votre identité professionnelle. Prouvée. À vous.',
