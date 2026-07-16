@@ -3,6 +3,32 @@
 **Records : OCR-111 · OCR-112 · OCR-113 · OCR-114 · Sources @`b3aec9e` · 3 couches · lecture seule · aucune connexion DB.**
 Récurrences des GAP du pilote **référencées, non recomptées**. **Aucun BLOCKER** (invariants durs d'immutabilité/sécurité tenus par le code).
 
+## Principe fondamental (rappel en tête de chaque rapport)
+
+> Le **World Skills Protocol** (les OCR / Canonical Registry) est la **CIBLE NORMATIVE** du système. Le code en est une implémentation **VERSIONNÉE**. Le grounding **MESURE** l'écart, il ne rabaisse **jamais** le protocole au niveau du code. Un concept peut être **Normative ET non encore implémenté**, à condition que ce soit explicitement indiqué et classé **Backlog Code**.
+
+## Grille de classification G0–G4 (décision d'architecte — rétro-appliquée)
+
+| Code | Signification | Action |
+|---|---|---|
+| **G0** | Conforme | aucune action |
+| **G1** | **Implémentation en retard** (protocole = cible, code incomplet) | **BACKLOG CODE** |
+| **G2** | Dette technique (code conforme au protocole mais à améliorer) | TECH DEBT |
+| **G3** | Dette documentaire (le protocole lui-même est ambigu/incohérent) | OCR-REV *(rare)* |
+| **G4** | Décision de gouvernance (le protocole ne tranche pas encore) | ARCH DECISION |
+
+**RÈGLE D'OR** : ne **jamais** transformer un G1 en OCR-REV. On ne corrige un OCR **que** si l'OCR a un défaut (G3).
+**CONTRAINTE DE PUBLICATION** : tout Record classé **G1** portera au rendu du site une **mention explicite** de statut d'implémentation (badge « planifié / non encore implémenté »).
+
+## Reclassement sous la grille G0–G4 (rétro-appliqué à F1)
+
+- **GAP-F1-01** (supersession absente ; seule la révocation existe) — **G1 BACKLOG CODE** (mécanisme de supersession à coder). 112/114 = Normative, non encore implémentés sur ce point → badge « planifié ».
+- **GAP-F1-02** (`ON DELETE RESTRICT` vers `mission_*` absent ; provenance = texte) — **G1 BACKLOG CODE** (couche mission / intégrité référentielle à coder ; jumeau de GAP-3 pilote).
+- **GAP-F1-03** (OCR-113 « keyed-HMAC over canonical bytes » vs code : SHA-256 **non-keyé** sur JCS + HMAC de **transport**) — **G3 CANDIDAT — À CONFIRMER au lot OCR-REV** : relire OCR-113 — s'il **conflate réellement** intégrité (contenu) et authentification (transport) → **G3** (défaut d'OCR → OCR-REV) ; si c'est une **cible implémentée autrement** par le code → **G1** (BACKLOG CODE). **Non tranché ici.**
+- Récurrences **GAP-1/3/4** → voir reclassement du pilote (GAP-1 mixte G1/G3 ; GAP-3 G1 ; GAP-4 hors grille).
+
+*(La répartition « BACKLOG CODE / OCR-REV » plus bas reste valide ; ce reclassement la formalise sous G0–G4. Règle d'or : un G1 ne devient jamais OCR-REV.)*
+
 ## Nouveaux écarts F1 (format §4)
 
 ```
