@@ -1,5 +1,18 @@
 {
-  "common": {
-    "localeProbe": "Locale activa: español"
+  "landing": {
+    "headline": "Tu identidad profesional. Probada. Tuya.",
+    "subhead": "Un lugar propio, donde tu valor profesional queda probado, centralizado y portable — durante toda tu carrera.",
+    "message": "No abres una cuenta. Estableces tu identidad profesional digital.",
+    "cta": "Establecer mi identidad profesional",
+    "passportCaption": "Un activo oficial, emitido por Opus X.",
+    "signals": {
+      "ownershipTitle": "Es tuya",
+      "ownershipBody": "Tu identidad te pertenece, no a la plataforma que la alimenta.",
+      "permanenceTitle": "Te acompaña de por vida",
+      "permanenceBody": "Tus pruebas siguen válidas y portables durante toda tu carrera.",
+      "securityTitle": "Verificada, no declarada",
+      "securityBody": "Cada prueba es verificada por Opus X, nunca solo afirmada."
+    },
+    "footer": "© 2026 Opus X — Infraestructura de identidad profesional."
   }
 }

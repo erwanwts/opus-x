@@ -1,5 +1,18 @@
 {
-  "common": {
-    "localeProbe": "Locale active: English"
+  "landing": {
+    "headline": "Your professional identity. Proven. Yours.",
+    "subhead": "A place of your own, where your professional worth is proven, centralized and portable — for your entire career.",
+    "message": "You don't open an account. You establish your digital professional identity.",
+    "cta": "Establish my professional identity",
+    "passportCaption": "An official asset, issued by Opus X.",
+    "signals": {
+      "ownershipTitle": "You own it",
+      "ownershipBody": "Your identity belongs to you, not to the platform that feeds it.",
+      "permanenceTitle": "It stays with you for life",
+      "permanenceBody": "Your evidence remains valid and portable throughout your career.",
+      "securityTitle": "Verified, not declared",
+      "securityBody": "Every piece of evidence is verified by Opus X, never merely claimed."
+    },
+    "footer": "© 2026 Opus X — Professional identity infrastructure."
   }
 }
