@@ -18,3 +18,6 @@ supabase/.temp/
 # publication) et les .zip (artefacts de transfert) restent hors historique.
 docs/web/registry-import/**/*.pdf
 docs/web/registry-import/**/*.zip
+
+# OCR-GROUND-001 — sorties de test du générateur (régénération vs golden), jamais committées.
+build/
