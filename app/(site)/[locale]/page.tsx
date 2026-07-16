@@ -17,6 +17,7 @@
  * via next/link NON localisé (route app hors [locale] ; jamais /fr/establish).
  * =====================================================================
  */
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
@@ -24,6 +25,34 @@ import { routing } from '@/i18n/routing';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+const BASE = 'https://opusx.world';
+
+/**
+ * Canonical + hreflang de la home (WEB-002 Lot D · WEB-D5).
+ * Fallback strict : n'émet QUE les 3 locales réellement traduites, plus
+ * x-default → /en (langue canonique). Aucun chemin fantôme.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  return {
+    alternates: {
+      canonical: `${BASE}/${locale}`,
+      languages: {
+        en: `${BASE}/en`,
+        fr: `${BASE}/fr`,
+        es: `${BASE}/es`,
+        'x-default': `${BASE}/en`,
+      },
+    },
+  };
 }
 
 type Props = { params: Promise<{ locale: string }> };
