@@ -3,6 +3,34 @@
 **Sources @`b3aec9e` · méthode 3 couches (§3) · lecture seule · aucune connexion DB (grounding contre migrations versionnées uniquement, addendum §B).**
 Décisions humaines **consignées** ; actions différées à `OCR-110-REV-01` (aucune modification d'OCR ni d'artefact dans ce mandat).
 
+## Principe fondamental (rappel en tête de chaque rapport)
+
+> Le **World Skills Protocol** (les OCR / Canonical Registry) est la **CIBLE NORMATIVE** du système. Le code en est une implémentation **VERSIONNÉE**. Le grounding **MESURE** l'écart, il ne rabaisse **jamais** le protocole au niveau du code. Un concept peut être **Normative ET non encore implémenté**, à condition que ce soit explicitement indiqué et classé **Backlog Code**.
+
+## Grille de classification G0–G4 (décision d'architecte — rétro-appliquée)
+
+| Code | Signification | Action |
+|---|---|---|
+| **G0** | Conforme | aucune action |
+| **G1** | **Implémentation en retard** (protocole = cible, code incomplet) | **BACKLOG CODE** |
+| **G2** | Dette technique (code conforme au protocole mais à améliorer) | TECH DEBT |
+| **G3** | Dette documentaire (le protocole lui-même est ambigu/incohérent) | OCR-REV *(rare)* |
+| **G4** | Décision de gouvernance (le protocole ne tranche pas encore) | ARCH DECISION |
+
+**RÈGLE D'OR** : ne **jamais** transformer un G1 en OCR-REV. On ne corrige un OCR **que** si l'OCR a un défaut (G3).
+**CONTRAINTE DE PUBLICATION** : tout Record classé **G1** portera au rendu du site une **mention explicite** de statut d'implémentation (badge « planifié / non encore implémenté »).
+
+## Reclassement sous la grille G0–G4 (rétro-appliqué au pilote)
+
+- **GAP-1** (exemple JSON Machine Interpretation) — **SCINDÉ** :
+  - la **structure canonique cible** (discriminateur, coordonnée, forme sur le fil) que le code implémente autrement → **G1 BACKLOG CODE** (le code s'aligne sur la cible) ;
+  - les **imprécisions propres à l'exemple** (`protocol_version` vs `schema_version`, version documentaire injectée dans un champ de version, champs mal placés) → **G3 OCR-REV** (défaut de l'exemple lui-même).
+- **GAP-2** (l'exemple montre 4 critères + « MAY reference multiple criteria », or le code impose **exactement 1**) — **G3 OCR-REV** : l'OCR **dit faux** (sur-promet). → corriger OCR-110 (« exactement 1 critère », retirer l'exemple à 4 et la FAQ #22).
+- **GAP-3** (lien Passport 1:1 non imposé) — **G1 BACKLOG CODE** (couche Passport-update à coder).
+- **GAP-4** (émetteur `evidence-payload.ts` absent) — **hors grille** : Ungroundable / INFO (émetteur côté Issuer).
+
+*(GAP-2 = seul G3 net du pilote ; GAP-1 = mixte G1/G3. Règle d'or respectée : les G1 ne deviennent pas OCR-REV. Les blocs « DÉCISION CONSIGNÉE » ci-dessous restent la trace initiale ; ce reclassement les formalise sous G0–G4.)*
+
 ## Verdict OCR-110
 
 **Écarts (0 BLOCKER · 3 MAJOR · 1 INFO) — toutes décisions PRISES.**
