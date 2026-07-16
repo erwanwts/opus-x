@@ -1,0 +1,1192 @@
+{
+  "schema": "opusx.registry.manifest/v1",
+  "generated_from": "docs/web/registry-import/OCR-100",
+  "expected_ranges": "OCR-000..005,OCR-100..125",
+  "excluded_files": [
+    "REG-TERMINOLOGY-registry-record-ocr.md"
+  ],
+  "file_count": 32,
+  "anomaly_count": 63,
+  "records": [
+    {
+      "source_filename": "OCR-000_Canonical_Knowledge_Governance.md",
+      "document_id": "OCR-000",
+      "title": "OCR-000 — Canonical Knowledge Governance",
+      "canonical_id": "canonical-knowledge-governance",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Governance Rules, Authority, Status Model) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "fb71c2623c96318832d3cc4740745aae455f21e4b1d0af18f1c8fe67b09f0724",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-001_Canonical_Registry_Structure.md",
+      "document_id": "OCR-001",
+      "title": "OCR-001 — Canonical Registry Structure",
+      "canonical_id": "canonical-registry-structure",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Structure Rules, Numbering, Output Formats) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "51a0e9751550dc8d623c57dac593cdb67cfe2cff516f0f458020f6bf0ad252bf",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-002_Editorial_Rules.md",
+      "document_id": "OCR-002",
+      "title": "OCR-002 — Editorial Rules",
+      "canonical_id": "editorial-rules",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Editorial Rules, Register, Keyword Usage) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "d4defddee36efeb76da222c6479ee18119d799a3804786813ef596b2969dae18",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-003_Terminology_Governance.md",
+      "document_id": "OCR-003",
+      "title": "OCR-003 — Terminology Governance",
+      "canonical_id": "terminology-governance",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Terminology Rules, Canonical Vocabulary) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "ff2d4943d333399cc66d8b1c41ac8b365a0af146a2e02f2d54885b29ca390246",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-004_Entity_Relationships.md",
+      "document_id": "OCR-004",
+      "title": "OCR-004 — Entity Relationships",
+      "canonical_id": "entity-relationships",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Relationship Vocabulary, Graph Rules) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "908cc18a2fe8fdeea268a46457e8efd7fa2f051b04cc84aca46f41c3e08177ff",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-005_Versioning_Rules.md",
+      "document_id": "OCR-005",
+      "title": "OCR-005 — Versioning Rules",
+      "canonical_id": "versioning-rules",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Versioning Scheme, Change Rules) · Informative (Rationale, FAQ)",
+      "checksum_sha256": "7ea4283491fafc723c3c881696d82a88d06bbf2d5d5298e30006c05d6adccaaa",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-100_World_Skills_Protocol.md",
+      "document_id": "OCR-100",
+      "title": "OCR-100 — World Skills Protocol",
+      "canonical_id": "world-skills-protocol",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Core Principles, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "a2cc7581e0433b5e2b317826872519082c49982051378a91268f93bab68feb04",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-101_Professional_Passport.md",
+      "document_id": "OCR-101",
+      "title": "OCR-101 — Professional Passport",
+      "canonical_id": "professional-passport",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "47041a3ed6c427c6bc5da928f6d032448d641ca3b469cf6a27b55ff084627b06",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-102_Professional_Identity.md",
+      "document_id": "OCR-102",
+      "title": "OCR-102 — Professional Identity",
+      "canonical_id": "professional-identity",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "056397f478dfba51335a9ec195eca46fa809f7d288fea85387a31adc5bc7ee9e",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-103_Professional.md",
+      "document_id": "OCR-103",
+      "title": "OCR-103 — Professional",
+      "canonical_id": "professional",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "df4dc91d5bc8d11dbfd893975c00610e960a2abb49d4faa7d22fbf21a0a68965",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-104_Opus_ID.md",
+      "document_id": "OCR-104",
+      "title": "OCR-104 — Opus ID",
+      "canonical_id": "opus-id",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "d2dd6672f2f08743b007e2b9e22d92310b3b3f427507ad379a26b76e349af9a5",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-105_Trust.md",
+      "document_id": "OCR-105",
+      "title": "OCR-105 — Trust",
+      "canonical_id": "trust",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Core Principles) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "ec2633fea698a08cab79788f612f6000a119caeec3681d66652398c30137d3e1",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-106_Trust_Status.md",
+      "document_id": "OCR-106",
+      "title": "OCR-106 — Trust Status",
+      "canonical_id": "trust-status",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "99d0c822c52e6f89f42c0dca06dd9188d4ab12cb545f02a42742a8493af59681",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-107_Verification.md",
+      "document_id": "OCR-107",
+      "title": "OCR-107 — Verification",
+      "canonical_id": "verification",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Procedure) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "c1eae659edd71594fc52648106628e267442396e9f2d89a9c6d2252efeb4e159",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-108_Verification_Request.md",
+      "document_id": "OCR-108",
+      "title": "OCR-108 — Verification Request",
+      "canonical_id": "verification-request",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "2d42e0b50b8cebde1b3fa15a031c0c22a2ff96937908c6922ac1f96dba7cae12",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-109_Verification_Response.md",
+      "document_id": "OCR-109",
+      "title": "OCR-109 — Verification Response",
+      "canonical_id": "verification-response",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "0bc9ec008f10986dd72ccb57c0d0cbda7a2318a94181cd5ba9fe7d9352ff02c0",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-110_Evidence.md",
+      "document_id": "OCR-110",
+      "title": "OCR-110 — Evidence",
+      "canonical_id": "evidence",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Sections: Canonical Definition, Protocol Rules, State Machine, Validation) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "384b6dec3c01d4177354424eb4bfc8ed5540e3b48a3bd90dd2ab6d9aedab0276",
+      "pdf_homonym": false,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-111_Evidence_Source.md",
+      "document_id": "OCR-111",
+      "title": "OCR-111 — Evidence Source",
+      "canonical_id": "evidence-source",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "237ca952c07ecc60bce5853479ea4cd0b9b288db3910f9d3478cfbac9096c0bd",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-112_Evidence_Lifecycle.md",
+      "document_id": "OCR-112",
+      "title": "OCR-112 — Evidence Lifecycle",
+      "canonical_id": "evidence-lifecycle",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, State Machine, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "c4c9acffbdf14cab2f76decf5d2c0acfa1a1162d5e94d120ab9ef23cecccb2b1",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-113_Evidence_Integrity.md",
+      "document_id": "OCR-113",
+      "title": "OCR-113 — Evidence Integrity",
+      "canonical_id": "evidence-integrity",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Verification Procedure) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "ce748df1b75bee7ec0d9a519577a94b9dff93bc22c952ff6c91ab18772d8c1f1",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-114_Immutable_Fact.md",
+      "document_id": "OCR-114",
+      "title": "OCR-114 — Immutable Fact",
+      "canonical_id": "immutable-fact",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, State Machine) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "799f5b8f8fb36007e989075fbefb75a266f833dfd2311ff8664c3ac467ab8da6",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-115_Framework.md",
+      "document_id": "OCR-115",
+      "title": "OCR-115 — Framework",
+      "canonical_id": "framework",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "79bf172c98e5b5eacf0915305b7052b3461d49582a73f6862a214b47013d05b0",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-116_Skill.md",
+      "document_id": "OCR-116",
+      "title": "OCR-116 — Skill",
+      "canonical_id": "skill",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "5ece273deabe428e7feb0e512e0a86e16433b7f3519529b469e36b32ca18cbc9",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-117_Competency.md",
+      "document_id": "OCR-117",
+      "title": "OCR-117 — Competency",
+      "canonical_id": "competency",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "0a3d7a1de2870fb66bbf16b9c9f4aa1dc0446a5c5ba3756a94de04b2f94da7ac",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-118_Capability.md",
+      "document_id": "OCR-118",
+      "title": "OCR-118 — Capability",
+      "canonical_id": "capability",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "228a0e25a98694af2412f4ab06f487b981d7a0dcf6370621a6753fdd3fc5056f",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-119_Framework_Registry.md",
+      "document_id": "OCR-119",
+      "title": "OCR-119 — Framework Registry",
+      "canonical_id": "framework-registry",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "4a0c3c1383aae9e195571d7b21c074ab5e790f66251f873b7c700d23195b921c",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-120_Issuer.md",
+      "document_id": "OCR-120",
+      "title": "OCR-120 — Issuer",
+      "canonical_id": "issuer",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "7f5cb6fcfda902cd1e86fe909bde312b8554ff416e09f991fb9fb8d571e02c4c",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-121_Certified_Issuer.md",
+      "document_id": "OCR-121",
+      "title": "OCR-121 — Certified Issuer",
+      "canonical_id": "certified-issuer",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "ecc9575b6396abca83f8887e6109308375f1f622341011702bb798d57e6d7b90",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-122_Organization.md",
+      "document_id": "OCR-122",
+      "title": "OCR-122 — Organization",
+      "canonical_id": "organization",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "0169193696aedce9bfc5332c09f34b71d7c08ec0b6b0a5b72c74c52e71ed14e7",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-123_Professional_Profile.md",
+      "document_id": "OCR-123",
+      "title": "OCR-123 — Professional Profile",
+      "canonical_id": "professional-profile",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "86dd103202226879f4828e224fdcf8b85da50e0978555d5f2f01f42e0bf2cc98",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-124_Canonical_Registry.md",
+      "document_id": "OCR-124",
+      "title": "OCR-124 — Canonical Registry",
+      "canonical_id": "canonical-registry",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "bdade3c66fafeb4983a3b0070b16b92d0183c421655a5b7a7914835cd7411e2e",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-125_Identity.md",
+      "document_id": "OCR-125",
+      "title": "OCR-125 — Identity",
+      "canonical_id": "identity",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
+      "checksum_sha256": "97e39ff2bc5b783bf15aa7bf6b5dc2b7a8fab4639341f54d8ade7329188b4742",
+      "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    }
+  ],
+  "anomalies": [
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-000_Canonical_Knowledge_Governance.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-000_Canonical_Knowledge_Governance.md",
+      "pdf": "OCR-000_Canonical_Knowledge_Governance.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-001_Canonical_Registry_Structure.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-001_Canonical_Registry_Structure.md",
+      "pdf": "OCR-001_Canonical_Registry_Structure.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-002_Editorial_Rules.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-002_Editorial_Rules.md",
+      "pdf": "OCR-002_Editorial_Rules.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-003_Terminology_Governance.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-003_Terminology_Governance.md",
+      "pdf": "OCR-003_Terminology_Governance.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-004_Entity_Relationships.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-004_Entity_Relationships.md",
+      "pdf": "OCR-004_Entity_Relationships.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-005_Versioning_Rules.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-005_Versioning_Rules.md",
+      "pdf": "OCR-005_Versioning_Rules.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-100_World_Skills_Protocol.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-100_World_Skills_Protocol.md",
+      "pdf": "OCR-100_World_Skills_Protocol.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-101_Professional_Passport.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-101_Professional_Passport.md",
+      "pdf": "OCR-101_Professional_Passport.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-102_Professional_Identity.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-102_Professional_Identity.md",
+      "pdf": "OCR-102_Professional_Identity.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-103_Professional.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-103_Professional.md",
+      "pdf": "OCR-103_Professional.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-104_Opus_ID.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-104_Opus_ID.md",
+      "pdf": "OCR-104_Opus_ID.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-105_Trust.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-105_Trust.md",
+      "pdf": "OCR-105_Trust.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-106_Trust_Status.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-106_Trust_Status.md",
+      "pdf": "OCR-106_Trust_Status.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-107_Verification.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-107_Verification.md",
+      "pdf": "OCR-107_Verification.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-108_Verification_Request.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-108_Verification_Request.md",
+      "pdf": "OCR-108_Verification_Request.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-109_Verification_Response.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-109_Verification_Response.md",
+      "pdf": "OCR-109_Verification_Response.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-110_Evidence.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-111_Evidence_Source.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-111_Evidence_Source.md",
+      "pdf": "OCR-111_Evidence_Source.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-112_Evidence_Lifecycle.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-112_Evidence_Lifecycle.md",
+      "pdf": "OCR-112_Evidence_Lifecycle.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-113_Evidence_Integrity.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-113_Evidence_Integrity.md",
+      "pdf": "OCR-113_Evidence_Integrity.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-114_Immutable_Fact.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-114_Immutable_Fact.md",
+      "pdf": "OCR-114_Immutable_Fact.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-115_Framework.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-115_Framework.md",
+      "pdf": "OCR-115_Framework.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-116_Skill.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-116_Skill.md",
+      "pdf": "OCR-116_Skill.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-117_Competency.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-117_Competency.md",
+      "pdf": "OCR-117_Competency.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-118_Capability.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-118_Capability.md",
+      "pdf": "OCR-118_Capability.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-119_Framework_Registry.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-119_Framework_Registry.md",
+      "pdf": "OCR-119_Framework_Registry.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-120_Issuer.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-120_Issuer.md",
+      "pdf": "OCR-120_Issuer.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-121_Certified_Issuer.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-121_Certified_Issuer.md",
+      "pdf": "OCR-121_Certified_Issuer.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-122_Organization.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-122_Organization.md",
+      "pdf": "OCR-122_Organization.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-123_Professional_Profile.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-123_Professional_Profile.md",
+      "pdf": "OCR-123_Professional_Profile.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-124_Canonical_Registry.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-124_Canonical_Registry.md",
+      "pdf": "OCR-124_Canonical_Registry.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-125_Identity.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "pdf_homonym_present",
+      "file": "OCR-125_Identity.md",
+      "pdf": "OCR-125_Identity.pdf",
+      "note": "présence signalée seulement — aucun parsing PDF"
+    }
+  ]
+}

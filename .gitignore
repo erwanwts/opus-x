@@ -13,3 +13,7 @@ supabase/.temp/
 
 .env.local.backup-prod
 .env*.backup*
+
+# WEB-003 Registry — les .md sont la source versionnée ; les .pdf sont des
+# artefacts de publication (hors historique).
+docs/web/registry-import/**/*.pdf
