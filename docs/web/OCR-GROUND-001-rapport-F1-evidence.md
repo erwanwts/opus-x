@@ -15,7 +15,8 @@ GAP-F1-01   (OCR-112 State Machine · OCR-114 State Machine/Status)
   classification:    Écart (nature NON tranchée — voir décision_humaine)
   criticité:         MAJOR
   recommandation:    Constater : révocation implémentée, supersession NON. NE PAS trancher la nature (Écart d'implémentation « à coder » vs Ungroundable « couche absente ») — remontée comme QUESTION. Ne rien modifier.
-  décision_humaine:  requise
+  décision_humaine:  PRISE
+  → DÉCISION CONSIGNÉE: Écart d'implémentation. La supersession est À CODER (chantier code séparé, hors WEB-003). OCR-112/114 INCHANGÉS. Contrainte gravée : tant que non codée, 112/114 NON-promouvables en Normative. → BACKLOG CODE (pas OCR-REV).
 ```
 ```
 GAP-F1-02   (OCR-111 Protocol Rules · OCR-114 Protocol Rules/Machine Interpretation)
@@ -27,7 +28,8 @@ GAP-F1-02   (OCR-111 Protocol Rules · OCR-114 Protocol Rules/Machine Interpreta
   classification:    Écart documentaire (Ungroundable — tables/FK source manquantes)
   criticité:         MAJOR
   recommandation:    L'attribution EST obligatoire (provenance NOT NULL, Issuer FK) → cette partie est Conforme ; mais l'intégrité référentielle « source non supprimable » (ON DELETE RESTRICT vers mission_*) N'EXISTE PAS. Jumeau source de GAP-3. Décider : implémenter, ou reformuler l'OCR. Ne rien modifier.
-  décision_humaine:  requise
+  décision_humaine:  PRISE
+  → DÉCISION CONSIGNÉE: Écart d'implémentation. ON DELETE RESTRICT vers mission_* est À CODER (même couche mission que GAP-3 pilote). OCR-111/114 INCHANGÉS. → BACKLOG CODE.
 ```
 ```
 GAP-F1-03   (OCR-113 Machine Interpretation / Protocol Rules / Governance)
@@ -39,7 +41,8 @@ GAP-F1-03   (OCR-113 Machine Interpretation / Protocol Rules / Governance)
   classification:    Écart documentaire
   criticité:         MAJOR
   recommandation:    Corriger la caractérisation : l'INTÉGRITÉ de contenu = SHA-256 (non keyé) sur JCS, recalculé + comparé temps-constant ; le HMAC authentifie le TRANSPORT (timestamp.body), il ne « keye » pas le digest canonique. Ne rien modifier (action différée à une REV d'OCR-113).
-  décision_humaine:  requise
+  décision_humaine:  PRISE
+  → DÉCISION CONSIGNÉE: Écart documentaire. Reformuler OCR-113 pour distinguer INTÉGRITÉ (SHA-256 sur JCS, recompute+constant-time) et AUTHENTIFICATION TRANSPORT (HMAC sur timestamp.body). Action différée → OCR-REV. OCR-113 non modifié ici. → BACKLOG OCR-REV.
 ```
 
 ## Récurrences des GAP du pilote (référencées, NON recomptées)
@@ -68,13 +71,18 @@ GAP-F1-03   (OCR-113 Machine Interpretation / Protocol Rules / Governance)
 
 **Aucun nouveau CONFLIT couche-vs-couche.** (Le CONFLIT-1 du pilote — cardinalité criterion_levels — n'est pas re-déclenché par 111-114.) GAP-F1-01/02/03 sont des écarts OCR↔code (documentaire / nature à trancher), pas des contradictions entre décision gelée et OCR.
 
-## Liste consolidée `décision_humaine: requise` (F1)
+## Décisions F1 — PRISES (consignées) et réparties en backlogs
 
-1. **GAP-F1-01** — Supersession **absente** (112, 114). MAJOR. **NATURE À TRANCHER** : Écart d'implémentation « à coder » **vs** Ungroundable « couche Passport-update/supersession non construite ». *(Remontée comme question, non tranchée.)*
-2. **GAP-F1-02** — Intégrité référentielle source **ON DELETE RESTRICT / mission_*** absente (111, 114). MAJOR. Jumeau source de GAP-3 (hypothèse mémoire §2 S5 réfutée). Implémenter vs reformuler l'OCR ?
-3. **GAP-F1-03** — OCR-113 décrit l'intégrité comme **HMAC-over-canonical** ; réel = **SHA-256 non-keyé sur JCS** + HMAC **transport**. MAJOR. Reformuler OCR-113 (REV) ?
+Les 3 GAP MAJOR de F1 sont **arbitrés** (décisions humaines prises). Répartition :
 
-*(Rappel — déjà décidés au pilote, seulement référencés ici : GAP-1 exemples JSON → OCR-110-REV-01 ; GAP-3 lien Passport 1:1 « prévu, non imposé » ; GAP-4 émetteur Ungroundable/INFO.)*
+### → BACKLOG CODE (chantiers de code séparés, hors WEB-003 ; OCR INCHANGÉS)
+- **GAP-F1-01 — Supersession** (112, 114) : Écart d'**implémentation**. La supersession est **à coder**. Contrainte gravée : tant que non codée, **OCR-112/114 non-promouvables en Normative** (décrivent un mécanisme non encore réel).
+- **GAP-F1-02 — `ON DELETE RESTRICT` vers `mission_*`** (111, 114) : Écart d'**implémentation**. La contrainte référentielle source est **à coder** (même **couche mission** que le **GAP-3** du pilote).
+
+### → BACKLOG OCR-REV (reformulation d'OCR ; différé, aucune modif ici)
+- **GAP-F1-03 — keyed-HMAC** (113) : Écart **documentaire**. Reformuler OCR-113 pour distinguer **INTÉGRITÉ** (SHA-256 sur JCS, recompute + constant-time) et **AUTHENTIFICATION TRANSPORT** (HMAC sur `timestamp.body`).
+
+*(Rappel — GAP du pilote, seulement référencés ici, déjà décidés : GAP-1 exemples JSON → **OCR-110-REV-01** [BACKLOG OCR-REV] ; GAP-3 lien Passport 1:1 « prévu, non imposé » → **BACKLOG CODE** [couche mission, jumeau de GAP-F1-02] ; GAP-4 émetteur Ungroundable/INFO.)*
 
 ## Posture
 
