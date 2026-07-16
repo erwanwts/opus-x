@@ -1,0 +1,2948 @@
+{
+  "schema": "opusx.registry.migration-manifest/v1",
+  "purpose": "PLAN de migration Drive — NON APPLIQUÉ. Objet DISTINCT de content/registry/_manifest.json (inventaire d'import).",
+  "applied": false,
+  "generated_from": "content/registry/_manifest.json",
+  "classification_policy": {
+    "scheme": "P0..P4",
+    "decision": "P0 Public Canonical par FAMILLE (arbitrage architecte)",
+    "OCR-000..005": "P0 Public Canonical",
+    "OCR-100..125": "P0 Public Canonical"
+  },
+  "duplicate_resolution": {
+    "rule": "OCR-00x existe en deux versions dans le Drive",
+    "authoritative": "versions LONGUES (dossier Drive OCR-100, ~8-9 Ko) — FONT FOI",
+    "obsolete_to_remove": "versions COURTES (dossier Drive OCR, ~2 Ko) = squelettes OCR-000..005 — À RETIRER",
+    "note": "les versions courtes sont HORS périmètre d'import (jamais dans le dépôt) ; le générateur ne DOIT JAMAIS tourner sur une version courte (addendum §C).",
+    "short_versions_to_remove": [
+      {
+        "document_id": "OCR-000",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      },
+      {
+        "document_id": "OCR-001",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      },
+      {
+        "document_id": "OCR-002",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      },
+      {
+        "document_id": "OCR-003",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      },
+      {
+        "document_id": "OCR-004",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      },
+      {
+        "document_id": "OCR-005",
+        "drive_folder": "OCR",
+        "action": "remove",
+        "reason": "obsolète (squelette ~2 Ko)"
+      }
+    ]
+  },
+  "artifact_spec": {
+    "per_record_count": 8,
+    "kinds": [
+      "md (source)",
+      "pdf (différé)",
+      "jsonld",
+      "faq",
+      "seo",
+      "geo",
+      "llm",
+      "keywords"
+    ],
+    "note": "RÉFÉRENCE les artefacts ; n'exige pas qu'ils soient tous générés maintenant."
+  },
+  "generator_validation": {
+    "OCR-110": "golden 6/6 octet + échec-sur-divergence (docs/web/OCR-110-golden/)",
+    "OCR-101": "idempotence 6/6 (run A==run B) + contrat d'extraction + échec-sur-divergence vs snapshot interne ; artefacts NON persistés",
+    "autres": "à générer par le pipeline officiel"
+  },
+  "record_count": 32,
+  "excluded_files": [
+    "REG-TERMINOLOGY-registry-record-ocr.md"
+  ],
+  "records": [
+    {
+      "document_id": "OCR-000",
+      "canonical_id": "canonical-knowledge-governance",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:fb71c2623c96318832d3cc4740745aae455f21e4b1d0af18f1c8fe67b09f0724",
+      "source_md": "OCR-000_Canonical_Knowledge_Governance.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-000_Canonical_Knowledge_Governance.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-000_Canonical_Knowledge_Governance.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-000.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-000-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-000-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-000-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-000-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-000-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-000_Canonical_Knowledge_Governance.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-000.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-000-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-000-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-000-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-000-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-000-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-000_Canonical_Knowledge_Governance.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-001",
+      "canonical_id": "canonical-registry-structure",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:51a0e9751550dc8d623c57dac593cdb67cfe2cff516f0f458020f6bf0ad252bf",
+      "source_md": "OCR-001_Canonical_Registry_Structure.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-001_Canonical_Registry_Structure.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-001_Canonical_Registry_Structure.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-001.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-001-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-001-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-001-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-001-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-001-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-001_Canonical_Registry_Structure.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-001.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-001-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-001-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-001-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-001-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-001-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-001_Canonical_Registry_Structure.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-002",
+      "canonical_id": "editorial-rules",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:d4defddee36efeb76da222c6479ee18119d799a3804786813ef596b2969dae18",
+      "source_md": "OCR-002_Editorial_Rules.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-002_Editorial_Rules.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-002_Editorial_Rules.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-002.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-002-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-002-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-002-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-002-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-002-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-002_Editorial_Rules.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-002.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-002-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-002-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-002-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-002-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-002-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-002_Editorial_Rules.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-003",
+      "canonical_id": "terminology-governance",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:ff2d4943d333399cc66d8b1c41ac8b365a0af146a2e02f2d54885b29ca390246",
+      "source_md": "OCR-003_Terminology_Governance.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-003_Terminology_Governance.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-003_Terminology_Governance.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-003.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-003-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-003-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-003-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-003-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-003-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-003_Terminology_Governance.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-003.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-003-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-003-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-003-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-003-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-003-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-003_Terminology_Governance.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-004",
+      "canonical_id": "entity-relationships",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:908cc18a2fe8fdeea268a46457e8efd7fa2f051b04cc84aca46f41c3e08177ff",
+      "source_md": "OCR-004_Entity_Relationships.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-004_Entity_Relationships.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-004_Entity_Relationships.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-004.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-004-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-004-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-004-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-004-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-004-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-004_Entity_Relationships.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-004.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-004-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-004-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-004-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-004-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-004-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-004_Entity_Relationships.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-005",
+      "canonical_id": "versioning-rules",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:7ea4283491fafc723c3c881696d82a88d06bbf2d5d5298e30006c05d6adccaaa",
+      "source_md": "OCR-005_Versioning_Rules.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-005_Versioning_Rules.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-005_Versioning_Rules.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-005.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-005-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-005-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-005-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-005-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-005-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-005_Versioning_Rules.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-005.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-005-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-005-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-005-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-005-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-005-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-005_Versioning_Rules.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-100",
+      "canonical_id": "world-skills-protocol",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:a2cc7581e0433b5e2b317826872519082c49982051378a91268f93bab68feb04",
+      "source_md": "OCR-100_World_Skills_Protocol.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-100_World_Skills_Protocol.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-100_World_Skills_Protocol.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-100.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-100-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-100-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-100-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-100-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-100-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-100_World_Skills_Protocol.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-100.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-100-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-100-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-100-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-100-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-100-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-100_World_Skills_Protocol.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-101",
+      "canonical_id": "professional-passport",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:47041a3ed6c427c6bc5da928f6d032448d641ca3b469cf6a27b55ff084627b06",
+      "source_md": "OCR-101_Professional_Passport.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-101_Professional_Passport.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-101_Professional_Passport.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-101.json",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-101-faq.md",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-101-seo.json",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-101-geo.md",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-101-llm.md",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-101-keywords.json",
+          "status": "mécanique vérifiée par idempotence ; artefacts NON persistés (build/ gitignoré)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-101_Professional_Passport.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-101.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-101-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-101-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-101-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-101-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-101-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-101_Professional_Passport.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-102",
+      "canonical_id": "professional-identity",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:056397f478dfba51335a9ec195eca46fa809f7d288fea85387a31adc5bc7ee9e",
+      "source_md": "OCR-102_Professional_Identity.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-102_Professional_Identity.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-102_Professional_Identity.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-102.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-102-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-102-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-102-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-102-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-102-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-102_Professional_Identity.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-102.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-102-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-102-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-102-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-102-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-102-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-102_Professional_Identity.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-103",
+      "canonical_id": "professional",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:df4dc91d5bc8d11dbfd893975c00610e960a2abb49d4faa7d22fbf21a0a68965",
+      "source_md": "OCR-103_Professional.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-103_Professional.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-103_Professional.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-103.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-103-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-103-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-103-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-103-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-103-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-103_Professional.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-103.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-103-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-103-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-103-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-103-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-103-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-103_Professional.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-104",
+      "canonical_id": "opus-id",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:d2dd6672f2f08743b007e2b9e22d92310b3b3f427507ad379a26b76e349af9a5",
+      "source_md": "OCR-104_Opus_ID.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-104_Opus_ID.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-104_Opus_ID.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-104.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-104-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-104-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-104-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-104-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-104-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-104_Opus_ID.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-104.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-104-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-104-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-104-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-104-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-104-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-104_Opus_ID.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-105",
+      "canonical_id": "trust",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:ec2633fea698a08cab79788f612f6000a119caeec3681d66652398c30137d3e1",
+      "source_md": "OCR-105_Trust.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-105_Trust.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-105_Trust.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-105.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-105-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-105-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-105-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-105-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-105-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-105_Trust.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-105.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-105-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-105-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-105-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-105-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-105-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-105_Trust.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-106",
+      "canonical_id": "trust-status",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:99d0c822c52e6f89f42c0dca06dd9188d4ab12cb545f02a42742a8493af59681",
+      "source_md": "OCR-106_Trust_Status.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-106_Trust_Status.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-106_Trust_Status.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-106.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-106-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-106-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-106-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-106-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-106-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-106_Trust_Status.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-106.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-106-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-106-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-106-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-106-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-106-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-106_Trust_Status.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-107",
+      "canonical_id": "verification",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:c1eae659edd71594fc52648106628e267442396e9f2d89a9c6d2252efeb4e159",
+      "source_md": "OCR-107_Verification.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-107_Verification.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-107_Verification.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-107.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-107-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-107-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-107-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-107-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-107-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-107_Verification.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-107.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-107-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-107-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-107-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-107-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-107-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-107_Verification.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-108",
+      "canonical_id": "verification-request",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:2d42e0b50b8cebde1b3fa15a031c0c22a2ff96937908c6922ac1f96dba7cae12",
+      "source_md": "OCR-108_Verification_Request.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-108_Verification_Request.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-108_Verification_Request.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-108.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-108-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-108-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-108-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-108-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-108-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-108_Verification_Request.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-108.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-108-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-108-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-108-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-108-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-108-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-108_Verification_Request.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-109",
+      "canonical_id": "verification-response",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:0bc9ec008f10986dd72ccb57c0d0cbda7a2318a94181cd5ba9fe7d9352ff02c0",
+      "source_md": "OCR-109_Verification_Response.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-109_Verification_Response.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-109_Verification_Response.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-109.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-109-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-109-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-109-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-109-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-109-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-109_Verification_Response.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-109.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-109-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-109-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-109-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-109-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-109-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-109_Verification_Response.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-110",
+      "canonical_id": "evidence",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:384b6dec3c01d4177354424eb4bfc8ed5540e3b48a3bd90dd2ab6d9aedab0276",
+      "source_md": "OCR-110_Evidence.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-110_Evidence.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-110_Evidence.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-110.json",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-110-faq.md",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-110-seo.json",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-110-geo.md",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-110-llm.md",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-110-keywords.json",
+          "status": "généré et vérifié contre golden (docs/web/OCR-110-golden/)"
+        }
+      ],
+      "drive_old": [
+        {
+          "note": "aucun PDF Drive actuel pour ce Record (pdf_homonym=false)"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-110.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-110-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-110-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-110-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-110-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-110-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-110_Evidence.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-111",
+      "canonical_id": "evidence-source",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:237ca952c07ecc60bce5853479ea4cd0b9b288db3910f9d3478cfbac9096c0bd",
+      "source_md": "OCR-111_Evidence_Source.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-111_Evidence_Source.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-111_Evidence_Source.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-111.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-111-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-111-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-111-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-111-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-111-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-111_Evidence_Source.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-111.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-111-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-111-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-111-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-111-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-111-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-111_Evidence_Source.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-112",
+      "canonical_id": "evidence-lifecycle",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:c4c9acffbdf14cab2f76decf5d2c0acfa1a1162d5e94d120ab9ef23cecccb2b1",
+      "source_md": "OCR-112_Evidence_Lifecycle.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-112_Evidence_Lifecycle.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-112_Evidence_Lifecycle.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-112.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-112-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-112-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-112-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-112-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-112-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-112_Evidence_Lifecycle.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-112.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-112-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-112-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-112-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-112-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-112-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-112_Evidence_Lifecycle.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-113",
+      "canonical_id": "evidence-integrity",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:ce748df1b75bee7ec0d9a519577a94b9dff93bc22c952ff6c91ab18772d8c1f1",
+      "source_md": "OCR-113_Evidence_Integrity.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-113_Evidence_Integrity.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-113_Evidence_Integrity.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-113.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-113-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-113-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-113-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-113-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-113-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-113_Evidence_Integrity.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-113.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-113-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-113-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-113-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-113-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-113-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-113_Evidence_Integrity.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-114",
+      "canonical_id": "immutable-fact",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:799f5b8f8fb36007e989075fbefb75a266f833dfd2311ff8664c3ac467ab8da6",
+      "source_md": "OCR-114_Immutable_Fact.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-114_Immutable_Fact.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-114_Immutable_Fact.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-114.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-114-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-114-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-114-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-114-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-114-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-114_Immutable_Fact.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-114.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-114-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-114-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-114-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-114-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-114-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-114_Immutable_Fact.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-115",
+      "canonical_id": "framework",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:79bf172c98e5b5eacf0915305b7052b3461d49582a73f6862a214b47013d05b0",
+      "source_md": "OCR-115_Framework.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-115_Framework.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-115_Framework.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-115.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-115-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-115-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-115-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-115-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-115-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-115_Framework.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-115.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-115-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-115-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-115-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-115-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-115-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-115_Framework.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-116",
+      "canonical_id": "skill",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:5ece273deabe428e7feb0e512e0a86e16433b7f3519529b469e36b32ca18cbc9",
+      "source_md": "OCR-116_Skill.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-116_Skill.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-116_Skill.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-116.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-116-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-116-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-116-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-116-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-116-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-116_Skill.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-116.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-116-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-116-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-116-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-116-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-116-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-116_Skill.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-117",
+      "canonical_id": "competency",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:0a3d7a1de2870fb66bbf16b9c9f4aa1dc0446a5c5ba3756a94de04b2f94da7ac",
+      "source_md": "OCR-117_Competency.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-117_Competency.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-117_Competency.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-117.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-117-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-117-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-117-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-117-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-117-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-117_Competency.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-117.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-117-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-117-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-117-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-117-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-117-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-117_Competency.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-118",
+      "canonical_id": "capability",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:228a0e25a98694af2412f4ab06f487b981d7a0dcf6370621a6753fdd3fc5056f",
+      "source_md": "OCR-118_Capability.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-118_Capability.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-118_Capability.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-118.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-118-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-118-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-118-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-118-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-118-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-118_Capability.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-118.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-118-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-118-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-118-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-118-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-118-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-118_Capability.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-119",
+      "canonical_id": "framework-registry",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:4a0c3c1383aae9e195571d7b21c074ab5e790f66251f873b7c700d23195b921c",
+      "source_md": "OCR-119_Framework_Registry.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-119_Framework_Registry.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-119_Framework_Registry.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-119.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-119-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-119-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-119-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-119-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-119-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-119_Framework_Registry.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-119.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-119-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-119-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-119-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-119-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-119-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-119_Framework_Registry.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-120",
+      "canonical_id": "issuer",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:7f5cb6fcfda902cd1e86fe909bde312b8554ff416e09f991fb9fb8d571e02c4c",
+      "source_md": "OCR-120_Issuer.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-120_Issuer.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-120_Issuer.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-120.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-120-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-120-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-120-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-120-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-120-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-120_Issuer.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-120.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-120-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-120-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-120-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-120-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-120-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-120_Issuer.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-121",
+      "canonical_id": "certified-issuer",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:ecc9575b6396abca83f8887e6109308375f1f622341011702bb798d57e6d7b90",
+      "source_md": "OCR-121_Certified_Issuer.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-121_Certified_Issuer.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-121_Certified_Issuer.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-121.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-121-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-121-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-121-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-121-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-121-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-121_Certified_Issuer.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-121.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-121-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-121-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-121-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-121-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-121-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-121_Certified_Issuer.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-122",
+      "canonical_id": "organization",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:0169193696aedce9bfc5332c09f34b71d7c08ec0b6b0a5b72c74c52e71ed14e7",
+      "source_md": "OCR-122_Organization.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-122_Organization.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-122_Organization.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-122.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-122-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-122-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-122-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-122-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-122-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-122_Organization.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-122.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-122-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-122-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-122-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-122-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-122-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-122_Organization.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-123",
+      "canonical_id": "professional-profile",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:86dd103202226879f4828e224fdcf8b85da50e0978555d5f2f01f42e0bf2cc98",
+      "source_md": "OCR-123_Professional_Profile.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-123_Professional_Profile.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-123_Professional_Profile.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-123.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-123-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-123-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-123-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-123-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-123-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-123_Professional_Profile.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-123.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-123-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-123-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-123-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-123-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-123-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-123_Professional_Profile.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-124",
+      "canonical_id": "canonical-registry",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:bdade3c66fafeb4983a3b0070b16b92d0183c421655a5b7a7914835cd7411e2e",
+      "source_md": "OCR-124_Canonical_Registry.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-124_Canonical_Registry.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-124_Canonical_Registry.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-124.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-124-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-124-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-124-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-124-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-124-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-124_Canonical_Registry.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-124.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-124-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-124-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-124-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-124-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-124-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-124_Canonical_Registry.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
+      "document_id": "OCR-125",
+      "canonical_id": "identity",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:97e39ff2bc5b783bf15aa7bf6b5dc2b7a8fab4639341f54d8ade7329188b4742",
+      "source_md": "OCR-125_Identity.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-125_Identity.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-125_Identity.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-125.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-125-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-125-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-125-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-125-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-125-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "file": "OCR-125_Identity.pdf",
+          "action": "replace",
+          "note": "PDF actuel du dossier Drive OCR-100"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-125.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-125-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-125-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-125-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-125-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-125-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-125_Identity.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    }
+  ],
+  "migration_plan": {
+    "applied": false,
+    "order": [
+      "1. Méta/gouvernance : OCR-000 → OCR-005 (déposer les nouveaux dérivés).",
+      "2. Foundational : OCR-100 → OCR-125 (déposer les nouveaux dérivés).",
+      "3. Remplacer les PDF actuels (OCR-100 folder) par les PDF régénérés (quand le renderer existera).",
+      "4. Retirer les versions COURTES obsolètes (dossier Drive OCR : OCR-000..005)."
+    ],
+    "mapping_old_to_new": "par document_id : les drive_old d'un Record sont remplacés par ses drive_new.",
+    "guard": "ne jamais faire tourner le générateur sur une version courte (addendum §C)."
+  },
+  "rollback_plan": {
+    "applied": false,
+    "steps": [
+      "1. En cas d'échec de dépôt : ne pas retirer les anciens tant que les nouveaux ne sont pas vérifiés.",
+      "2. Restaurer les PDF OCR-100 d'origine (drive_old) par correspondance inverse (document_id).",
+      "3. Restaurer les versions COURTES du dossier OCR si elles avaient été retirées.",
+      "4. Point de restauration = cet inventaire + les sourceChecksum (content/registry/_manifest.json)."
+    ],
+    "integrity_anchor": "sourceChecksum (sha256 du .md) par Record — permet de vérifier qu'un artefact restauré correspond à sa source."
+  }
+}
