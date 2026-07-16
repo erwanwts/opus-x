@@ -8,3 +8,8 @@ build/
 *.pem
 coverage/
 next-env.d.ts
+
+supabase/.temp/
+
+.env.local.backup-prod
+.env*.backup*
