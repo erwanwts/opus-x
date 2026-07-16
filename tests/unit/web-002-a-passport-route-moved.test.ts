@@ -10,11 +10,15 @@
  * `[locale]` au Lot C, SANS jamais laisser le Passport public à la racine.
  *
  * On affirme trois faits durables :
- *   a) app/(public-passport)/p/[handle]/page.tsx EXISTE (nouvelle route).
+ *   a) La route /p/[handle] EXISTE (page.tsx). Chemin réel depuis le Lot B :
+ *      app/(application)/(public-passport)/p/[handle]/page.tsx — les route
+ *      groups « (application) » et « (public-passport) » sont invisibles dans
+ *      l'URL, qui reste /p/{handle}.
  *   b) app/(public-passport)/[handle]/ N'EXISTE PLUS (ancienne route racine).
- *   c) Aucun segment nommé EXACTEMENT "[handle]" n'est enfant direct de app/
- *      ni d'un route group "(...)" enfant direct de app/ → le Passport public
- *      n'occupe jamais la position racine de l'URL.
+ *   c) Aucun segment nommé EXACTEMENT "[handle]" n'occupe la position racine de
+ *      l'URL — c.-à-d. n'est atteignable depuis app/ en ne traversant que des
+ *      route groups « (...) » (invisibles dans l'URL). Le Passport public n'est
+ *      jamais à la racine.
  *
  * NB — On n'affirme PAS « aucun [x] à la racine » : ce serait faux dès le
  * Lot C, qui introduit légitimement app/(site)/[locale]. La garde porte
@@ -39,7 +43,10 @@ const isRouteGroup = (name: string) => name.startsWith('(') && name.endsWith(')'
 
 describe('WEB-002 Lot A — migration de la route publique du Passport', () => {
   it('a) la nouvelle route /p/[handle] existe', () => {
-    const moved = path.join(APP, '(public-passport)', 'p', '[handle]', 'page.tsx');
+    // Depuis le Lot B, (public-passport) vit sous le route group (application).
+    const moved = path.join(
+      APP, '(application)', '(public-passport)', 'p', '[handle]', 'page.tsx'
+    );
     expect(existsSync(moved)).toBe(true);
   });
 
@@ -49,20 +56,21 @@ describe('WEB-002 Lot A — migration de la route publique du Passport', () => {
   });
 
   it('c) aucun segment "[handle]" n’occupe la position racine de l’URL', () => {
-    // Positions « racine d'URL » = enfants directs de app/, plus les enfants
-    // directs d'un route group « (...) » (les route groups sont invisibles
-    // dans l'URL : leurs enfants sont donc à la racine effective de l'URL).
-    const rootLevelSegments: string[] = [];
+    // Position « racine d'URL » = tout segment atteignable depuis app/ en ne
+    // traversant QUE des route groups « (...) » (invisibles dans l'URL). On
+    // descend donc RÉCURSIVEMENT à travers les route groups imbriqués — depuis
+    // le Lot B, la hiérarchie est app/(application)/(public-passport)/… — et on
+    // collecte chaque segment ainsi exposé à la racine.
+    const urlRootSegments: string[] = [];
 
-    for (const child of childDirs(APP)) {
-      rootLevelSegments.push(child);
-      if (isRouteGroup(child)) {
-        for (const grandChild of childDirs(path.join(APP, child))) {
-          rootLevelSegments.push(grandChild);
-        }
+    function walk(dir: string) {
+      for (const child of childDirs(dir)) {
+        urlRootSegments.push(child);
+        if (isRouteGroup(child)) walk(path.join(dir, child));
       }
     }
+    walk(APP);
 
-    expect(rootLevelSegments).not.toContain('[handle]');
+    expect(urlRootSegments).not.toContain('[handle]');
   });
 });
