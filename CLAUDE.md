@@ -15,8 +15,10 @@ dépôt**, via des **route groups** (décision verrouillée). Le Professional Pa
   mandats `WEB-00x` ; ce dépôt les **exécute lot par lot**.
 - **Preuve brute obligatoire** avant de déclarer un lot fini : sortie de `npm run build`,
   run des tests concernés, `git status` / `git diff`. Jamais « c'est fait » sur un récap.
-- **Ne jamais déployer** (Vercel / staging) tant que **SEC-02** (rotation des secrets
-  staging) n'est pas confirmée. Travail **100 % local** d'ici là.
+- **SEC-02 = SATISFAIT** (rotation staging **prouvée le 2026-07-17** — legacy JWT keys
+  révoquées ; réf. `docs/security/SEC-02-rotation.md`). Le travail **staging** est désormais
+  **autorisé** (staging `bnzahwzuwoxjrxpqsjhp` uniquement). **La production reste interdite**
+  (aucun credential prod local) ; **ne jamais déployer en prod** sans mandat dédié.
 - **Ne jamais travailler sur `main`.** Une branche par sprint (`web/web-00x-...`),
   commits par lot = filet de rollback.
 - Un document gelé (`docs/`) **ne se modifie pas** pour résoudre un besoin technique.
@@ -46,7 +48,8 @@ Opus ID · Identity Established. **Aucun synonyme marketing.**
 - **D3** — Juridique : routes/composants/versioning préparés ; **textes humains requis** ;
   sinon `noindex`, non publié. Constantes `v1.0.0` / `2026-07-11` inchangées.
 - **D4** — **SEC-02** = condition d'entrée avant tout câblage partagé / service externe /
-  formulaire / analytics / déploiement.
+  formulaire / analytics / déploiement. **✅ SATISFAIT le 2026-07-17** (rotation staging
+  prouvée, réf. `docs/security/SEC-02-rotation.md`) — le verrou est levé pour le staging.
 - **D5** — Racine `/` → **307** (cookie → Accept-Language → `en`) ; `x-default → /en` ;
   aucun contenu indexable concurrent à la racine.
 - **i18n** — `en` / `fr` / `es`, canonique **en**, **fallback strict** : jamais d'anglais
