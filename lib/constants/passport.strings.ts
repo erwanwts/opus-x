@@ -91,6 +91,36 @@ export const TRUST_STATE_LABELS = {
 } as const;
 
 // ---------------------------------------------------------------------
+// LE PASSPORT PUBLIC — libellés de la page publique /p/{handle}
+//
+// Registre OBJET (EN institutionnel, jamais localisé — Décision 1) : la voix
+// du Passport public vit ICI, en UN SEUL endroit. Aucun de ces libellés n'est
+// codé en dur dans le composant de rendu (règle transverse WEB-003 Lot 1).
+//
+// ⚠️ trust : le moteur Trust n'existe pas encore (capacité protocolaire
+//    PLANIFIÉE — doctrine G1). On ne montre JAMAIS de valeur simulée ni de
+//    statut calculé ; on énonce sobrement que la vérification Trust est
+//    planifiée. Jamais une faiblesse du professionnel, jamais un score.
+// ---------------------------------------------------------------------
+export const PUBLIC_PASSPORT_STRINGS = {
+  /** L'objet lui-même (vocabulaire canonique verrouillé). */
+  object: 'Professional Passport',
+  /** Bloc 3 — vérification (sobre ; l'OR n'apparaît QUE si verified===true). */
+  verified: 'Verified',
+  notVerified: 'Not yet verified',
+  /** Bloc 4 — Skills Status vide : sobre, « yet », jamais un échec. */
+  skillsEmpty: 'No skills recorded yet',
+  /** Bloc 5 — Evidence publique vide. */
+  evidenceEmpty: 'No public evidence recorded yet',
+  /** Bloc 6 — Trust Status : moteur absent → capacité planifiée, NON calculée. */
+  trustNotComputed: 'Not yet computed',
+  trustPlannedNote: 'Trust verification is a planned protocol capability.',
+  /** Bloc 8 — propriété & garde (le professionnel possède ; Opus X garde & vérifie). */
+  ownershipCustody:
+    'This Professional Passport belongs to the professional. Opus X holds it in custody and verifies it according to the rules of the World Skills Protocol.',
+} as const;
+
+// ---------------------------------------------------------------------
 // LE CYCLE DE VIE DU PASSPORT — les 7 étapes canoniques (Décision 3)
 //
 // Le Passport n'est jamais statique : il porte une timeline de progression
