@@ -28,11 +28,17 @@ describe('fetchPublicPassport — source publique unique', () => {
     expect(await fetchPublicPassport('marie-dubois-k3n7')).toBeNull();
   });
 
-  it('ligne publique → vue whitelistée (QUE les clés autorisées, AUCUN champ interne)', async () => {
+  it('ligne publique (vue) → whitelist stricte + nom servi PAR LA VUE, aucun champ interne', async () => {
+    // La vue public_passport_view sert handle/lifecycle_stage/display_name/headline.
     mockedPublicClient.mockReturnValue(
       makeSupabaseMock({
         single: () => ({
-          data: { handle: 'marie-k3n7', lifecycle_stage: 'identity_established', visibility: 'public' },
+          data: {
+            handle: 'marie-k3n7',
+            lifecycle_stage: 'identity_established',
+            display_name: 'Marie Dubois',
+            headline: 'Consultante indépendante',
+          },
           error: null,
         }),
       })
@@ -44,15 +50,37 @@ describe('fetchPublicPassport — source publique unique', () => {
     // N'expose QUE les clés whitelistées.
     expect(Object.keys(view!).sort()).toEqual([...PUBLIC_PASSPORT_WHITELIST].sort());
 
-    // JAMAIS un champ interne (email, opus_id, payload…).
+    // JAMAIS un champ interne (email, opus_id, profile_id, payload…).
     for (const forbidden of NEVER_PUBLIC) {
       expect(view as unknown as Record<string, unknown>).not.toHaveProperty(forbidden);
     }
 
-    // Seul lifecycle_stage vient de la ligne ; le reste est null/empty (Sprint 1).
+    // Le nom (display_name/headline) est désormais SERVI (via la vue).
+    expect(view!.display_name).toBe('Marie Dubois');
+    expect(view!.headline).toBe('Consultante indépendante');
     expect(view!.lifecycle_stage).toBe('identity_established');
-    expect(view!.display_name).toBeNull();
-    expect(view!.headline).toBeNull();
+    // Non portés par la vue en Sprint 1 → défauts sûrs.
+    expect(view!.verified).toBe(false);
     expect(view!.evidence).toEqual([]);
+  });
+
+  it('ligne publique sans headline → headline null (gracieux, jamais inventé)', async () => {
+    mockedPublicClient.mockReturnValue(
+      makeSupabaseMock({
+        single: () => ({
+          data: {
+            handle: 'sans-headline',
+            lifecycle_stage: 'identity_established',
+            display_name: 'Nom Seul',
+            headline: null,
+          },
+          error: null,
+        }),
+      })
+    );
+
+    const view = await fetchPublicPassport('sans-headline');
+    expect(view!.display_name).toBe('Nom Seul');
+    expect(view!.headline).toBeNull();
   });
 });
