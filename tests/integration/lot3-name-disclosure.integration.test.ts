@@ -107,6 +107,7 @@ describe('LOT 3 — nom public rendu réel + Point B fermé (staging)', () => {
     const view = (await fetchPublicPassport(demoHandle!)) as PublicPassport;
     expect(view).not.toBeNull();
     expect(view.display_name).toBe(DEMO_NAME);
+    expect(view.issued_at).toBeTruthy(); // date d'émission désormais publique (Lot 4)
     const leaked = NEVER_PUBLIC.filter((k) => k in (view as unknown as Record<string, unknown>));
     expect(leaked).toEqual([]);
 
@@ -134,7 +135,7 @@ describe('LOT 3 — nom public rendu réel + Point B fermé (staging)', () => {
     expect(rawPass.error).not.toBeNull(); // passports brut inaccessible.
     expect(rawProfiles.error).not.toBeNull(); // profiles brut inaccessible.
     expect(viewRow).toBeTruthy();
-    expect(Object.keys(viewRow).sort()).toEqual(['display_name', 'handle', 'headline', 'lifecycle_stage']);
+    expect(Object.keys(viewRow).sort()).toEqual(['display_name', 'handle', 'headline', 'issued_at', 'lifecycle_stage']);
     expect(viewRow).not.toHaveProperty('profile_id');
 
     // 6. 404 non-énumérant intact après ouverture.

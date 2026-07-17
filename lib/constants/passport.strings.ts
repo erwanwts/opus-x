@@ -108,6 +108,10 @@ export const PUBLIC_PASSPORT_STRINGS = {
   /** Bloc 3 — vérification (sobre ; l'OR n'apparaît QUE si verified===true). */
   verified: 'Verified',
   notVerified: 'Not yet verified',
+  /** Bloc 3 — date d'émission publique (divulgation Lot 4). Jamais l'Opus ID. */
+  issuedOn: 'Issued',
+  /** Timeline 7 étapes (Lot 4) — progression, depuis lifecycle_stage public. */
+  stageProgress: 'Step {current} of {total}',
   /** Bloc 4 — Skills Status vide : sobre, « yet », jamais un échec. */
   skillsEmpty: 'No skills recorded yet',
   /** Bloc 5 — Evidence publique vide. */

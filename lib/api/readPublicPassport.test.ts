@@ -38,6 +38,7 @@ describe('fetchPublicPassport — source publique unique', () => {
             lifecycle_stage: 'identity_established',
             display_name: 'Marie Dubois',
             headline: 'Consultante indépendante',
+            issued_at: '2026-07-11T09:00:00Z',
           },
           error: null,
         }),
@@ -55,9 +56,10 @@ describe('fetchPublicPassport — source publique unique', () => {
       expect(view as unknown as Record<string, unknown>).not.toHaveProperty(forbidden);
     }
 
-    // Le nom (display_name/headline) est désormais SERVI (via la vue).
+    // Le nom (display_name/headline) et la date d'émission sont SERVIS (via la vue).
     expect(view!.display_name).toBe('Marie Dubois');
     expect(view!.headline).toBe('Consultante indépendante');
+    expect(view!.issued_at).toBe('2026-07-11T09:00:00Z');
     expect(view!.lifecycle_stage).toBe('identity_established');
     // Non portés par la vue en Sprint 1 → défauts sûrs.
     expect(view!.verified).toBe(false);

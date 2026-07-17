@@ -41,11 +41,12 @@ describe('Page publique du Passport /p/{handle}', () => {
     expect(notFound).toHaveBeenCalledOnce();
   });
 
-  it('ligne publique SIMULÉE (vérifiée) → champs autorisés rendus, aucun interne, Trust non calculé', async () => {
+  it('ligne publique SIMULÉE (vérifiée) → champs autorisés + timeline + date, Opus ID ABSENT, Trust non calculé', async () => {
     fetchPublicPassport.mockResolvedValue({
       display_name: 'Marie Dubois',
       headline: 'Consultante indépendante',
       lifecycle_stage: 'identity_established',
+      issued_at: '2026-07-01T00:00:00Z',
       verified: true,
       trust_status: 'establishing', // stub interne : NE DOIT JAMAIS être rendu.
       skills_status: 'empty',
@@ -58,22 +59,39 @@ describe('Page publique du Passport /p/{handle}', () => {
           issuer: 'Partenaire Y',
         },
       ],
+      // Pollution volontaire : champs internes que le composant NE DOIT JAMAIS rendre.
+      opus_id: 'opx_01KXTESTOPUSID0000000000AB',
+      profile_id: 'uuid-secret-1234',
+      email: 'marie@example.com',
     });
 
     render(await PublicPassportPage(paramsFor('marie-k3n7')));
+    const html = document.body.innerHTML;
 
     // Champs AUTORISÉS rendus.
     expect(screen.getByText('Marie Dubois')).toBeTruthy();
     expect(screen.getByText('Consultante indépendante')).toBeTruthy();
     expect(screen.getByText('Certification X')).toBeTruthy();
     expect(screen.getByText('Partenaire Y')).toBeTruthy();
-    expect(screen.getByText('Identity Established')).toBeTruthy();
     expect(screen.getByText(S.object)).toBeTruthy();
+
+    // Timeline 7 étapes : étape courante + progression rendues.
+    expect(screen.getByText('Identity Established')).toBeTruthy();
+    expect(screen.getByText('Step 1 of 7')).toBeTruthy();
+
+    // Date d'émission publique (Lot 4) — libellé + date formatée (en-US, UTC).
+    expect(html).toContain(S.issuedOn);
+    expect(html).toContain('July 1, 2026');
 
     // Trust : capacité PLANIFIÉE, jamais le stub 'establishing'.
     expect(screen.getByText(S.trustNotComputed)).toBeTruthy();
     expect(screen.getByText(S.trustPlannedNote)).toBeTruthy();
-    expect(document.body.innerHTML).not.toMatch(/establishing/i);
+    expect(html).not.toMatch(/establishing/i);
+
+    // OPUS ID + champs internes ABSENTS du DOM (whitelist stricte au rendu).
+    expect(html).not.toMatch(/opx_/i);
+    expect(html).not.toContain('uuid-secret-1234');
+    expect(html).not.toContain('marie@example.com');
   });
 
   it('non vérifié + vide → mention sobre, PAS de sceau OR, états vides sans jugement', async () => {
@@ -81,6 +99,7 @@ describe('Page publique du Passport /p/{handle}', () => {
       display_name: null,
       headline: null,
       lifecycle_stage: 'identity_established',
+      issued_at: null,
       verified: false,
       trust_status: 'establishing',
       skills_status: 'empty',

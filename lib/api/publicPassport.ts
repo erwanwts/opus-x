@@ -24,6 +24,7 @@ export const PUBLIC_PASSPORT_WHITELIST = [
   'display_name',
   'headline',
   'lifecycle_stage',
+  'issued_at',
   'verified',
   'trust_status',
   'skills_status',
@@ -67,6 +68,7 @@ export interface PublicPassportInput {
   display_name: string | null;
   headline: string | null;
   lifecycle_stage: string;
+  issued_at: string | null; // date d'ÉMISSION (divulguée publiquement — Lot 4)
   verified: boolean;
   trust_status: string; // niveau qualitatif (jamais un score)
   skills_status: string; // niveau qualitatif
@@ -85,6 +87,7 @@ export interface PublicPassport {
   display_name: string | null;
   headline: string | null;
   lifecycle_stage: string;
+  issued_at: string | null;
   verified: boolean;
   trust_status: string;
   skills_status: string;
@@ -108,6 +111,7 @@ export function buildPublicPassport(input: PublicPassportInput): PublicPassport 
     display_name: input.display_name,
     headline: input.headline,
     lifecycle_stage: input.lifecycle_stage,
+    issued_at: input.issued_at ?? null,
     verified: input.verified,
     trust_status: input.trust_status,
     skills_status: input.skills_status,

@@ -38,20 +38,21 @@ export async function fetchPublicPassport(handle: string): Promise<PublicPasspor
   // même résultat (aucune ligne). display_name/headline viennent du join profiles.
   const { data } = await supabase
     .from('public_passport_view')
-    .select('handle, lifecycle_stage, display_name, headline')
+    .select('handle, lifecycle_stage, display_name, headline, issued_at')
     .eq('handle', handle)
     .maybeSingle();
 
   if (!data) return null; // ← chemin unique : inexistant == non public.
 
-  // Projection whitelistée. `display_name`/`headline` proviennent de la vue
-  // (join profiles) ; `verified`/`trust_status`/`skills_status`/`evidence` ne
-  // sont pas portés par la vue en Sprint 1 → valeurs sûres par défaut. Aucune
-  // donnée n'est inventée.
+  // Projection whitelistée. `display_name`/`headline`/`issued_at` proviennent de
+  // la vue ; `verified`/`trust_status`/`skills_status`/`evidence` ne sont pas
+  // portés par la vue en Sprint 1 → valeurs sûres par défaut. Aucune donnée
+  // n'est inventée.
   return buildPublicPassport({
     display_name: data.display_name ?? null,
     headline: data.headline ?? null,
     lifecycle_stage: data.lifecycle_stage,
+    issued_at: data.issued_at ?? null,
     verified: false,
     trust_status: 'establishing',
     skills_status: 'empty',

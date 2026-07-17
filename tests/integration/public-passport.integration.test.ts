@@ -25,7 +25,7 @@ import {
   type TestUser,
 } from './_harness';
 
-const PUBLIC_VIEW_COLUMNS = ['handle', 'lifecycle_stage', 'display_name', 'headline'];
+const PUBLIC_VIEW_COLUMNS = ['handle', 'lifecycle_stage', 'display_name', 'headline', 'issued_at'];
 
 let user: TestUser;
 let realHandle: string;
@@ -59,7 +59,7 @@ describe('Passport public — posture renforcée (Point B fermé + vue)', () => 
     expect(real.data ?? []).toEqual(fake.data ?? []);
   });
 
-  it('C) ligne publique : la vue ne renvoie QUE les 4 colonnes publiques, nom servi, aucun champ interne', async () => {
+  it('C) ligne publique : la vue ne renvoie QUE les 5 colonnes publiques, nom + date servis, aucun champ interne', async () => {
     // Ouverture ciblée (service_role) de CE handle uniquement.
     const up = await admin.from('passports').update({ visibility: 'public' }).eq('handle', realHandle);
     expect(up.error).toBeNull();
@@ -70,15 +70,16 @@ describe('Passport public — posture renforcée (Point B fermé + vue)', () => 
       const row = (res.data ?? [])[0];
       expect(row).toBeTruthy();
 
-      // EXACTEMENT les 4 colonnes publiques — jamais profile_id / id / status.
+      // EXACTEMENT les 5 colonnes publiques — jamais profile_id / id / status.
       expect(Object.keys(row).sort()).toEqual([...PUBLIC_VIEW_COLUMNS].sort());
       expect(row).not.toHaveProperty('profile_id');
       expect(row).not.toHaveProperty('id');
       expect(row).not.toHaveProperty('status');
 
-      // Le nom est bien servi par la vue (join profiles).
+      // Le nom et la date d'émission sont bien servis par la vue (join profiles).
       expect(row.display_name).toBe('QA Public Name');
       expect(row.lifecycle_stage).toBe('identity_established');
+      expect(row.issued_at).toBeTruthy();
     } finally {
       // Défensif : on referme immédiatement (afterAll supprime aussi le compte).
       await admin.from('passports').update({ visibility: 'private' }).eq('handle', realHandle);
