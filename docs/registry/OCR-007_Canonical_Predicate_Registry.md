@@ -9,9 +9,10 @@
 |---|---|
 | Document ID | OCR-007 |
 | Canonical Name | Canonical Predicate Registry |
-| Version | 1.0.0 |
+| Version | 1.1.0 |
 | Status | Approved / Normative |
 | Approved by | Architecte / Protocol Authority — 2026-07-17 |
+| Changelog | v1.1.0 (2026-07-17) : Lifecycle formalisée (5 PRD+contrats), `protects` créé (Governance), `interpreted_against`/`separates` Evolving confirmés, doublons d'id PRD-103/certifies corrigés — décision architecte. |
 | Owner | Architecte / Protocol Authority |
 | Normative / Informative | Normative |
 | Layer | Meta — Ontology |
@@ -157,10 +158,10 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `inspected_by` (2×) | INV de `inspects` (PRD-303) | Verification | Trust→Verification ⇒ Verification `inspects` Trust |
 | `surfaced_by` (2×) | INV de `surfaces` (PRD-401) | Projection | Identity→Passport ⇒ Passport `surfaces` Identity |
 | `named_by` (2×) | INV de `identifies` (PRD-302) | Resolution | Identity→Opus ID ⇒ Opus ID `identifies` Identity |
-| `revoked_by` (2×) | INV de `revokes` (Lifecycle, Evolving) | Lifecycle | ⟨dépend de la famille Lifecycle — voir §7⟩ |
+| `revoked_by` (2×) | INV de `revokes` (PRD-704) | Lifecycle | Revocation fact → Evidence |
 | `identified_by` (1×) | INV de `identifies` (PRD-302) | Resolution | Professional→Opus ID |
-| `initiated_by` (1×) | INV de `initiates` (Lifecycle) | Lifecycle | Verification→Request ⇒ Request `initiates` Verification |
-| `certified_by` (1×) | INV de `certifies` (PRD-305) | Governance | Certified Issuer→Opus X |
+| `initiated_by` (1×) | INV de `initiates` (PRD-701) | Lifecycle | Verification→Request ⇒ Request `initiates` Verification |
+| `certified_by` (1×) | INV de `certifies` (PRD-206) | Governance | Certified Issuer→Opus X |
 | `output_of` (1×) | INV de `produces` (PRD-004) | Production | Trust Status→Trust ⇒ Trust `produces` Status |
 | `exposed_by` (1×) | INV de `exposed_as`→`exposes` (PRD-402) | Projection | Trust Status→Verification |
 | `property_of` (1×) | INV de `has_property` (→`part_of`, voir §6) | Structural | Evidence Integrity→Immutable Fact |
@@ -173,7 +174,6 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `bound_to` (2×) | INV de `binds` (Evolving→identifies?) | Resolution | ⟨dépend de `binds` — voir §7⟩ |
 | `subject_of` (1×) | INV de `references` (PRD-006) | Reference | Professional→Evidence |
 | `instantiated_by` (1×) | INV de `is_a` (PRD-001) | Structural | Identity→Professional Identity |
-| `answers` (1×) | INV de `initiates`/paire Request (Lifecycle) | Lifecycle | Response→Request |
 
 ---
 
@@ -189,7 +189,7 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 |---|---|---|---|
 | PRD-101 | `attests` | "The source formally testifies to the existence or validity of the target." | (via attested_by 2×) |
 | PRD-102 | `attributed_to` (`attributes_to`) | "The source's origin is assigned to the target as its author." | 1× |
-| PRD-103 | `originated_from` (`provenance_of` inv.) | "The target is the documented origin of the source." | 1× |
+| PRD-103 | `preserves` (formes dérivées : `originated_from`, `provenance_of`) | "The target is the documented origin of the source." | 1× |
 
 ### Ownership / Custody / Governance
 | PRD | name | semantic_contract | occ |
@@ -201,6 +201,7 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | PRD-205 | `gates` | "The source authorizes or blocks the target's admission." | 1× (Certified Issuer→acceptance) |
 | PRD-206 | `certifies` (`certified_as`/`certified_by`) | "The source grants certified status to the target." | 1× |
 | PRD-207 | `publishes` (`published_by` inv.) | "The source issues the target as an authoritative publication." | 1× (Framework→Opus X) |
+| PRD-208 | `protects` | "The source preserves the integrity, availability or validity of the target." | 1× (Evidence Integrity→Evidence) |
 
 ### Resolution / Identity
 | PRD | name | semantic_contract | occ |
@@ -233,6 +234,19 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 > **Décision architecte (2026-07-17) — `distinct_from` est Canonical.** Reclassé ici (Conceptual, PRD-602),
 > retiré des Alias (§6). C'est une **relation positive de différenciation** — les deux extrémités existent
 > et ne sont pas identiques — **jamais une négation** : il ne relève donc PAS d'OCR-009 (Constraints).
+
+### Lifecycle
+> **Formalisée en v1.1 (décision architecte, 2026-07-17).** Famille **Lifecycle** = transition d'état d'un
+> objet protocolaire (distincte de Temporal = relation chronologique, cf. §7). Les 5 prédicats reçoivent
+> un PRD-id (bloc 7xx) et un `semantic_contract` propre — ils ne sont plus Evolving.
+
+| PRD | name | semantic_contract | occ |
+|---|---|---|---|
+| PRD-701 | `initiates` (`initiated_by` inv.) | "The source starts the lifecycle of the target." | 1× |
+| PRD-702 | `precedes` | "The source occurs before the target within the same lifecycle." | 2× |
+| PRD-703 | `orders` | "The source defines the execution order of the target." | 1× |
+| PRD-704 | `revokes` (`revoked_by` inv.) | "The source invalidates the target while preserving its historical existence." | 2× |
+| PRD-705 | `answers` | "The source is the formal response to the target request." | 1× |
 
 ---
 
@@ -281,8 +295,6 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `basis_for` (2×) | → `computed_from` (PRD-501, inv.) | ⟨Evolving : Computation vs Dependency⟩ |
 | `interpreted_against` (1×) | → `interprets`/`references` | ⟨Evolving : Conceptual vs Reference⟩ |
 | `bounded_by` (2×) | → `governed_by` (PRD-203, consent) | Request→consent |
-| `precedes` (2×) | → Lifecycle (`precedes`) | ⟨Evolving : famille Lifecycle⟩ |
-| `orders` (1×) | → Lifecycle (`orders`) | ⟨Evolving⟩ Lifecycle→Evidence |
 | `separates` (1×) | → Governance/Conceptual | ⟨Evolving⟩ WSP separates production/verification |
 | `produces_accepted` (1×) | → `produces` (PRD-004) | spécialisation conditionnelle |
 | `produces_at_acceptance` (1×) | → `produces` (PRD-004) | spécialisation conditionnelle |
@@ -310,15 +322,15 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `has_property` | `part_of` ou attribut (→OCR-008) ? | property vs part : relation ou attribut ? |
 | `about` | `references` ou `describes` (Conceptual) ? | Response→Opus ID : pointer ou décrire ? |
 | `derived_from` | `computed_from` ou Projection ? | Profile→Passport : calcul ou projection ? |
-| `precedes` / `orders` | famille **Lifecycle** — **décidée** ; sens fin **Evolving** | quelle transition d'état exacte ? (ouvert jusqu'au graphe) |
 | `separates` | Governance ou Conceptual ? | WSP separates production/verification : structurel ou normatif ? |
 | `supports` / `enables` | `depends_on` (inv.) ou Dependency propre ? | soutien vs dépendance stricte ? |
 | `binds` | `identifies` ou liaison propre ? | Identity→Fact : désignation ou attachement ? |
 | `reads` / `applies` | `consumes` / `references` ? | actes de Verification : quelle primitive porte l'acte ? |
 
-**Famille Lifecycle — TRANCHÉE (décision architecte, 2026-07-17).** La famille **Lifecycle** est **créée**,
-distincte de **Temporal**. `precedes`, `initiates`, `revokes`, `orders`, `answers` sont reclassés en
-**Lifecycle** (transition d'état d'un objet protocolaire) ; `supersedes` (PRD-007) **reste Temporal**
+**Famille Lifecycle — FORMALISÉE en v1.1 (décision architecte, 2026-07-17).** La famille **Lifecycle** est
+**créée et dotée de contrats** : `initiates` (PRD-701), `precedes` (PRD-702), `orders` (PRD-703),
+`revokes` (PRD-704), `answers` (PRD-705) — voir §5 sous-section Lifecycle. Chacun porte un
+`semantic_contract` propre et n'est **plus Evolving**. `supersedes` (PRD-007) **reste Temporal**
 (relation chronologique).
 
 > **Note pour les moteurs d'inférence.** **Temporal = relation chronologique** (ordre dans le temps,
@@ -345,21 +357,22 @@ distincte de **Temporal**. `precedes`, `initiates`, `revokes`, `orders`, `answer
 
 ## 9. Definition of Done (critère de validation — doctrine décision 7)
 
-OCR-007 est **Approved / Normative**. Critères de validation (doctrine décision 7), **tous satisfaits** :
-1. chaque relation du Lot 0 (101) a une résolution normative — **fait** (100% classés) ;
-2. aucun prédicat ambigu ne subsiste sans statut explicite — **fait** (Canonical/Derived/Alias/Reserved/Rejected/Evolving) ;
-3. chaque entrée Canonical/Domain possède un `semantic_contract` — **fait** ;
-4. les familles sont stabilisées — **fait** (famille **Lifecycle** créée, distincte de Temporal — §7) ;
+OCR-007 est **Approved / Normative** (v1.1). Critères de validation (doctrine décision 7), **tous satisfaits SANS réserve** :
+1. chaque relation du Lot 0 (101) a une résolution normative — **fait** (100% classés ; **plus aucun UNRESOLVED** — `protects` formalisé PRD-208) ;
+2. aucun prédicat ambigu ne subsiste sans statut explicite — **fait** ;
+3. chaque entrée Canonical/Domain possède un `semantic_contract` — **fait** (Lifecycle PRD-701→705 dotée de contrats en v1.1) ;
+4. les familles sont stabilisées — **fait** (famille **Lifecycle** formalisée, distincte de Temporal — §5, §7) ;
 5. les inverses sont entièrement normalisés — **fait** (§4) ;
 6. les dépendances vers OCR-008/012 sont référencées — **fait** (§8, §7) ;
-7. le registre peut servir de source unique par WSP-001 — **fait** (les Evolving restent référencés sans bloquer l'extraction).
+7. le registre peut servir de source unique par WSP-001 — **fait**.
 
 **Décisions de l'architecte — tranchées le 2026-07-17 :**
-- **(A) 16 champs** — écart de décompte clos ; les 3 métadonnées (`introduced_in`/`governed_by`/`used_by`) font partie du modèle normatif. Doctrine décision 5 corrigée « 14 » → « 16 ».
-- **(B) famille Lifecycle créée** — distincte de Temporal (`precedes`, `initiates`, `revokes`, `orders`, `answers` = Lifecycle ; `supersedes` reste Temporal).
-- **(D) `distinct_from`** — reclassé Canonical Domain Predicate, famille Conceptual (PRD-602) : relation positive de différenciation, jamais une négation.
+- **(A) 16 champs** — les 3 métadonnées (`introduced_in`/`governed_by`/`used_by`) font partie du modèle normatif. Doctrine décision 5 corrigée « 14 » → « 16 ».
+- **(B) famille Lifecycle** — **formalisée en v1.1** : `initiates`/`precedes`/`orders`/`revokes`/`answers` = Domain Predicates Lifecycle (PRD-701→705, contrats propres) ; `supersedes` reste Temporal.
+- **(D) `distinct_from`** — Canonical Domain Predicate, famille Conceptual (PRD-602) : différenciation positive, jamais une négation.
+- **v1.1 — `protects`** créé (Domain Governance, PRD-208) ; **PRD-103 = `preserves`** (nom unique, `originated_from`/`provenance_of` dérivés) ; **`certifies` = PRD-206** (référence à PRD-305 supprimée, PRD-305 réservé à `maps`).
 
-**Reste ouvert par décision explicite de l'architecte :**
-- **(C)** les ~11 résolutions **Evolving** (§7) restent ouvertes jusqu'à validation par le graphe (WSP-001). *« OCR-007 ne doit pas inventer une sémantique que le graphe pourra démontrer objectivement. »* Elles se confirmeront après construction du graphe, **sans rouvrir le registre**.
+**Reste ouvert par décision explicite de l'architecte (n'affecte pas le DoD) :**
+- **(C)** les résolutions **Evolving** résiduelles (§7 — dont `interpreted_against`, `separates`) restent ouvertes jusqu'à validation par le graphe (WSP-001). *« OCR-007 ne doit pas inventer une sémantique que le graphe pourra démontrer objectivement. »* Elles se confirmeront après construction du graphe, **sans rouvrir le registre**.
 
-OCR-007 est **gravé** : il sert de source unique et **débloque WSP-001** (l'extracteur d'arêtes).
+OCR-007 v1.1 est **gravé** : il sert de source unique et **débloque WSP-001** (l'extracteur d'arêtes).
