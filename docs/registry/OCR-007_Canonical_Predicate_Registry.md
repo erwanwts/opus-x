@@ -2,16 +2,16 @@
 
 > **Document produit en application de la doctrine de l'architecte** (`docs/registry/OCR-007-doctrine-architecte.md`,
 > 7 décisions, Approved/Normative). Ce document **applique** cette doctrine aux 101 prédicats de l'inventaire
-> Lot 0 ; il ne la modifie pas. **Status : Draft** — en attente de validation/gravure par l'architecte.
-> **PARTIE 1/6 : en-tête + primitives.** Les blocs suivants (inverses dérivés, domain predicates, alias,
-> reserved/rejected, arbitrages Evolving) complètent le registre.
+> Lot 0 ; il ne la modifie pas. **Status : Approved / Normative** — validé et gravé par l'architecte le
+> 2026-07-17 (16 champs, famille Lifecycle, `distinct_from` Conceptual ; Evolving maintenus par décision explicite).
 
 | Field | Value |
 |---|---|
 | Document ID | OCR-007 |
 | Canonical Name | Canonical Predicate Registry |
-| Version | 0.1.0 (draft) |
-| Status | Draft → Approved (à la gravure architecte) |
+| Version | 1.0.0 |
+| Status | Approved / Normative |
+| Approved by | Architecte / Protocol Authority — 2026-07-17 |
 | Owner | Architecte / Protocol Authority |
 | Normative / Informative | Normative |
 | Layer | Meta — Ontology |
@@ -20,17 +20,6 @@
 | Governed by | doctrine architecte (7 décisions) |
 | Source material | docs/wsp001-lot0/ (inventaire 101 prédicats) |
 | Related | OCR-004 · OCR-008..012 (registres d'ontologie à venir) |
-
----
-
-## ⚠ Note à l'architecte (à trancher à la validation)
-
-**Écart 14/16 champs (décision 5 de la doctrine).** La doctrine annonce « 14 champs » et en liste **16**.
-Hypothèse de résolution proposée (non appliquée sans ton feu vert) : distinguer **13-14 champs de
-définition** (de `predicate_id` à `semantic_stability`) des **3 métadonnées de traçabilité**
-(`introduced_in`, `governed_by`, `used_by`), souvent comptées à part. Le présent document **utilise
-les 16 champs** listés ; seul le *décompte* est à clarifier. Dis-nous : soit corriger « 14 » → « 16 »,
-soit marquer explicitement les 3 métadonnées comme hors-compte.
 
 ---
 
@@ -43,11 +32,15 @@ OCR-008, contraintes/négations → OCR-009, types → OCR-010, inférence → O
 non figés. Principe de réduction : chaque prédicat classé **Canonical / Alias / Derived / Reserved /
 Deprecated / Rejected**, vers le plus petit vocabulaire suffisant.
 
-## 1. Modèle de prédicat (16 champs — cf. note ci-dessus)
+## 1. Modèle de prédicat (16 champs)
 
 `predicate_id` · `name` · `semantic_contract` · `family` · `relationship_type` · `ontology_domain` ·
 `signature` (réf OCR-010) · `obligation` · `canonical_inverse` · `symmetry` · `constraints_ref` (réf
 OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `governed_by` · `used_by`.
+
+> **Décision architecte (2026-07-17) — 16 champs.** Le décompte est arrêté à **16** : les 3 métadonnées
+> de traçabilité (`introduced_in`, `governed_by`, `used_by`) **font partie du modèle normatif**, au même
+> titre que les champs de définition. La doctrine (décision 5) est corrigée en conséquence (« 14 » → « 16 »).
 
 ---
 
@@ -144,13 +137,6 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 
 ---
 
-> **Fin du Bloc 1.** Prochains blocs : (2) inverses **Derived** — `produced_by`, `owned_by`… avec direction
-> canonique ; (3) **Domain Predicates** Canonical par famille ; (4) **Alias** (longue traîne → canonical) ;
-> (5) **Reserved/Rejected** (négations→OCR-009, `state`→OCR-008…) ; (6) arbitrages **Evolving** (Conceptual,
-> Computation, composition — non figés, signalés à l'architecte).
-
----
-
 ## 4. Inverses dérivés (statut : Derived)
 
 > Doctrine décision 2 : le graphe ne stocke **qu'une seule direction canonique**. Ces prédicats
@@ -242,6 +228,11 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | PRD | name | semantic_contract | occ |
 |---|---|---|---|
 | PRD-601 | `defines` (`defined_by`) | "The source establishes the normative meaning of the target." | 2× |
+| PRD-602 | `distinct_from` | "The source and target both exist and are not identical; a positive relation of differentiation (not a negation)." | 2× |
+
+> **Décision architecte (2026-07-17) — `distinct_from` est Canonical.** Reclassé ici (Conceptual, PRD-602),
+> retiré des Alias (§6). C'est une **relation positive de différenciation** — les deux extrémités existent
+> et ne sont pas identiques — **jamais une négation** : il ne relève donc PAS d'OCR-009 (Constraints).
 
 ---
 
@@ -277,7 +268,6 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `used_by` (1×) | → `consumes` (PRD-005, inv.) | Framework→Trust |
 | `applies` (1×) | → `references` (PRD-006) | ⟨Evolving⟩ Verification→Framework |
 | `works_with` (1×) | → `related_to` (PRD-008) | Source→Integrity |
-| `distinct_from` (2×) | → `related_to` (PRD-008, qualifié) | ⟨Evolving : garder ou →OCR-009⟩ |
 | `beneficiary_of` (1×) | → `related_to` (PRD-008) | ⟨Evolving⟩ Professional→Trust |
 | `derived_from` (1×) | → `computed_from` (PRD-501) | ⟨Evolving : Computation vs Projection⟩ |
 | `presents` (1×) | → `reports` (PRD-403) | Profile→Facts |
@@ -306,6 +296,11 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 > **pas figés artificiellement**. Ils portent `semantic_stability : Evolving` — stables en cycle de vie,
 > interprétation ouverte jusqu'à validation par le graphe. **Contrats provisoires ci-dessous, à
 > confirmer par l'architecte après construction du graphe.** Concerne Conceptual, Computation, composition.
+>
+> **Décision architecte (2026-07-17) — Evolving maintenus.** Ces arbitrages restent **ouverts par choix
+> explicite** : *« OCR-007 ne doit pas inventer une sémantique que le graphe pourra démontrer
+> objectivement. »* Leur validation intervient **après WSP-001** (construction du graphe), sans rouvrir
+> le registre.
 
 | prédicat | résolution provisoire | question ouverte (pour l'architecte / le graphe) |
 |---|---|---|
@@ -315,15 +310,22 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `has_property` | `part_of` ou attribut (→OCR-008) ? | property vs part : relation ou attribut ? |
 | `about` | `references` ou `describes` (Conceptual) ? | Response→Opus ID : pointer ou décrire ? |
 | `derived_from` | `computed_from` ou Projection ? | Profile→Passport : calcul ou projection ? |
-| `precedes` / `orders` | famille **Lifecycle** (nouvelle ?) | évolution temporelle d'un concept ≠ supersession documentaire |
+| `precedes` / `orders` | famille **Lifecycle** — **décidée** ; sens fin **Evolving** | quelle transition d'état exacte ? (ouvert jusqu'au graphe) |
 | `separates` | Governance ou Conceptual ? | WSP separates production/verification : structurel ou normatif ? |
 | `supports` / `enables` | `depends_on` (inv.) ou Dependency propre ? | soutien vs dépendance stricte ? |
 | `binds` | `identifies` ou liaison propre ? | Identity→Fact : désignation ou attachement ? |
 | `reads` / `applies` | `consumes` / `references` ? | actes de Verification : quelle primitive porte l'acte ? |
 
-**Famille Lifecycle — question transverse.** `precedes`, `orders`, `initiates`, `revokes`, `answers`
-suggèrent une famille **Lifecycle** (évolution temporelle d'un concept) distincte de **Temporal**
-(supersession documentaire). Décision à l'architecte : créer la famille Lifecycle, ou rattacher à Temporal ?
+**Famille Lifecycle — TRANCHÉE (décision architecte, 2026-07-17).** La famille **Lifecycle** est **créée**,
+distincte de **Temporal**. `precedes`, `initiates`, `revokes`, `orders`, `answers` sont reclassés en
+**Lifecycle** (transition d'état d'un objet protocolaire) ; `supersedes` (PRD-007) **reste Temporal**
+(relation chronologique).
+
+> **Note pour les moteurs d'inférence.** **Temporal = relation chronologique** (ordre dans le temps,
+> supersession documentaire) ; **Lifecycle = transition d'état** d'un objet protocolaire. La distinction
+> est normative : un moteur ne doit pas confondre « B remplace A » (Temporal) avec « l'objet passe de
+> l'état X à l'état Y » (Lifecycle). La **famille** est arrêtée ; la **résolution sémantique fine** de
+> `precedes`/`orders` reste `semantic_stability : Evolving` jusqu'à validation par le graphe.
 
 ---
 
@@ -343,19 +345,21 @@ suggèrent une famille **Lifecycle** (évolution temporelle d'un concept) distin
 
 ## 9. Definition of Done (critère de validation — doctrine décision 7)
 
-OCR-007 passera **Draft → Approved / Normative** quand :
+OCR-007 est **Approved / Normative**. Critères de validation (doctrine décision 7), **tous satisfaits** :
 1. chaque relation du Lot 0 (101) a une résolution normative — **fait** (100% classés) ;
 2. aucun prédicat ambigu ne subsiste sans statut explicite — **fait** (Canonical/Derived/Alias/Reserved/Rejected/Evolving) ;
 3. chaque entrée Canonical/Domain possède un `semantic_contract` — **fait** ;
-4. les familles sont stabilisées — **fait**, sauf la question Lifecycle vs Temporal (§7, à trancher) ;
+4. les familles sont stabilisées — **fait** (famille **Lifecycle** créée, distincte de Temporal — §7) ;
 5. les inverses sont entièrement normalisés — **fait** (§4) ;
 6. les dépendances vers OCR-008/012 sont référencées — **fait** (§8, §7) ;
-7. le registre peut servir de source unique par WSP-001 — **atteignable** une fois §7 tranché.
+7. le registre peut servir de source unique par WSP-001 — **fait** (les Evolving restent référencés sans bloquer l'extraction).
 
-**Décisions restant à l'architecte avant gravure :**
-- **(A)** l'écart de décompte 14/16 champs (note en tête) ;
-- **(B)** la famille **Lifecycle** (créer, ou rattacher à Temporal) — §7 ;
-- **(C)** confirmer/ajuster les ~11 résolutions **Evolving** (§7), ou les laisser ouvertes jusqu'au graphe ;
-- **(D)** `distinct_from` : `related_to` qualifié (garder ici) ou contrainte (→OCR-009) ?
+**Décisions de l'architecte — tranchées le 2026-07-17 :**
+- **(A) 16 champs** — écart de décompte clos ; les 3 métadonnées (`introduced_in`/`governed_by`/`used_by`) font partie du modèle normatif. Doctrine décision 5 corrigée « 14 » → « 16 ».
+- **(B) famille Lifecycle créée** — distincte de Temporal (`precedes`, `initiates`, `revokes`, `orders`, `answers` = Lifecycle ; `supersedes` reste Temporal).
+- **(D) `distinct_from`** — reclassé Canonical Domain Predicate, famille Conceptual (PRD-602) : relation positive de différenciation, jamais une négation.
 
-Une fois (A)-(D) tranchés, OCR-007 est gravable et WSP-001 (l'extracteur d'arêtes) peut démarrer.
+**Reste ouvert par décision explicite de l'architecte :**
+- **(C)** les ~11 résolutions **Evolving** (§7) restent ouvertes jusqu'à validation par le graphe (WSP-001). *« OCR-007 ne doit pas inventer une sémantique que le graphe pourra démontrer objectivement. »* Elles se confirmeront après construction du graphe, **sans rouvrir le registre**.
+
+OCR-007 est **gravé** : il sert de source unique et **débloque WSP-001** (l'extracteur d'arêtes).

@@ -48,7 +48,12 @@ Concerne : `Conceptual`, `Computation`, `composition`.
 
 **NE PAS figer artificiellement.**
 
-## Décision 5 — Modèle de prédicat (14 champs)
+## Décision 5 — Modèle de prédicat (16 champs)
+
+> **Correction officielle de l'architecte (2026-07-17)** : le décompte est **16**, non 14. Les 3
+> métadonnées de traçabilité (`introduced_in`, `governed_by`, `used_by`) **font partie du modèle
+> normatif** au même titre que les champs de définition. (Le texte initial indiquait « 14 champs » pour
+> 16 entrées listées ; l'écart est tranché en faveur de 16.)
 
 `predicate_id`, `name`, `semantic_contract`, `family`, `relationship_type`,
 `ontology_domain`, `signature` (réf **OCR-010**), `obligation`, `canonical_inverse`,
