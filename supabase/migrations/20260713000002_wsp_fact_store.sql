@@ -220,14 +220,24 @@ create trigger wsp_eds_version_coherence
 --   issuer_id la rattache à un Issuer enregistré ; revoked_by reste l'acteur
 --   HUMAIN redevable (les deux ne se recouvrent pas).
 --
---   VOIE 1 (recréation) : légitime ici car O1 est corrigée AVANT toute
---   Evidence reçue. `drop ... if exists cascade` ne touche QUE cette table
---   (rien ne la référence) ; O0 seedée et les autres tables de faits sont
---   intactes. Cette voie sera INTERDITE dès le premier fait journalisé.
+--   VOIE 1 (recréation) — RETIRÉE le 2026-07-17 (R4, palier 0 du déploiement
+--   prod). Ce fichier portait `drop table if exists ... cascade` avant le
+--   create, pour être rejouable pendant la correction d'O1. Le fichier posait
+--   lui-même la date de péremption de cette voie : « INTERDITE dès le premier
+--   fait journalisé ». Un rejeu aurait DÉTRUIT des faits de révocation dans un
+--   magasin append-only — en contournant précisément l'immuabilité que ce
+--   fichier installe.
+--
+--   Le `drop` était aussi ce qui rendait le `create` rejouable : les deux ont
+--   donc été fusionnés en `create table if not exists`. Idempotent SANS être
+--   destructif, comme les autres tables du dépôt.
+--
+--   ⚠️ Contrepartie assumée : `if not exists` ne CORRIGE pas une table dont la
+--      forme aurait divergé — il la laisse telle quelle, en silence. Une
+--      évolution de structure passera par une migration dédiée, jamais par un
+--      rejeu de ce fichier.
 -- =====================================================================
-drop table if exists public.wsp_fact_revocations cascade;
-
-create table public.wsp_fact_revocations (
+create table if not exists public.wsp_fact_revocations (
   id                   text        primary key
                        default ('rev_' || public.generate_ulid()),
   revokes_evidence_id  text        not null references public.wsp_evidence(id),
