@@ -113,9 +113,9 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
 {
   "verification_response": {
     "subject": "<opus_id>",
-    "verified": { "coordinate": "wtf:212", "facts": ["ev_01KXM07GFE2GX8ZA4NJC42JDF5"] },
+    "verified": { "coordinate": "wtr:212", "facts": ["ev_01KXM07GFE2GX8ZA4NJC42JDF5"] },
     "integrity": "confirmed_by_recomputation",
-    "trust": { "status": "<computed>", "framework_version": "wtf@1.0.0" },
+    "trust": { "status": "<computed>", "framework_version": "wtr@1.0.0" },
     "reflected": ["supersession", "revocation"],
     "point_in_time": "2026-07-16T00:00:00Z",
     "disclosure_limited": true,
@@ -134,7 +134,7 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
   "answers": "urn:opusx:concept:verification-request",
   "aboutSubject": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
   "integrity": "confirmed",
-  "reportsTrustUnder": "wtf@1.0.0",
+  "reportsTrustUnder": "wtr@1.0.0",
   "pointInTime": true,
   "isCredential": false
 }
@@ -152,7 +152,7 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
 
 ## Examples
 
-- A Response confirms integrity and reports computed Trust for `wtf:212` under `wtf` v1.0.0, limited to disclosed facts, timestamped now.
+- A Response confirms integrity and reports computed Trust for `wtr:212` under `wtr` v1.0.0, limited to disclosed facts, timestamped now.
 - A verifier stores a Response and re-uses it months later; the correct practice is to re-verify, yielding a current Response.
 - A fact is revoked after a Response; a fresh Verification returns a Response reflecting the revocation.
 
@@ -212,7 +212,7 @@ A **Verification Response** is the World Skills Protocol's answer to a verifier:
 
 ## Search Keywords
 
-verification response, world skills protocol, wsp, response, answer, verification, verification request, subject, opus id, disclosure-limited, consent, point-in-time, reproducible, re-verification, not a credential, credential, stored proof, replay, staleness, stale, current, integrity confirmed, recomputed integrity, jcs, hmac, trust, computed trust, trust status, framework version, wtf, wtf:212, supersession, revocation, reflected status, real-world truth, attribution, minimization, privacy, withheld facts, leakage, verifier, employer, background check, opus x, passport, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-109, ocr, docs opusx world, bounded answer, verification endpoint, response shape, protocol invariant, answer to request, re-verify on demand, timestamp, verified facts, disclosed facts, trustworthy answer, verification path
+verification response, world skills protocol, wsp, response, answer, verification, verification request, subject, opus id, disclosure-limited, consent, point-in-time, reproducible, re-verification, not a credential, credential, stored proof, replay, staleness, stale, current, integrity confirmed, recomputed integrity, jcs, hmac, trust, computed trust, trust status, framework version, wtr, wtr:212, supersession, revocation, reflected status, real-world truth, attribution, minimization, privacy, withheld facts, leakage, verifier, employer, background check, opus x, passport, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-109, ocr, docs opusx world, bounded answer, verification endpoint, response shape, protocol invariant, answer to request, re-verify on demand, timestamp, verified facts, disclosed facts, trustworthy answer, verification path
 
 ## Synonyms
 

@@ -237,10 +237,10 @@ The hash MUST be computed after excluding every derived or transport field:
   "canonicalization_algorithm": "RFC8785",
   "demonstrates": {
     "claimed_level": "applied",
-    "skill_id": "wtf:212"
+    "skill_id": "wtr:212"
   },
   "framework": {
-    "id": "framework:wtf",
+    "id": "framework:wtr",
     "version": "0.1"
   },
   "hash_algorithm": "SHA-256",

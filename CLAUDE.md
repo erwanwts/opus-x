@@ -44,7 +44,7 @@ Opus ID · Identity Established. **Aucun synonyme marketing.**
 ## Décisions Web verrouillées (WEB-D1 → D5)
 - **D1** — Passport HTML public → `/p/{handle}` ; API JSON `/passports/{handle}` inchangée ;
   racine libérée pour `[locale]`.
-- **D2** — World Trader Framework · slug `world-trader` · ID WSP `wtf` inchangé.
+- **D2** — World Trader Framework (**nom inchangé**) · framework_id canonique **`framework:wtr`** · coordonnées préfixées **`wtr:`** · slug public **`world-trader`**. L'ancien `wtf` est obsolète, conservé à titre historique dans les notes de migration jusqu'à retrait.
 - **D3** — Juridique : routes/composants/versioning préparés ; **textes humains requis** ;
   sinon `noindex`, non publié. Constantes `v1.0.0` / `2026-07-11` inchangées.
 - **D4** — **SEC-02** = condition d'entrée avant tout câblage partagé / service externe /

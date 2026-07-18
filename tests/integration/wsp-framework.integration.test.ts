@@ -6,7 +6,7 @@
  * base principale — la garde du harnais l'impose au chargement.
  *
  * Prouve les conditions de sortie du Lot O0 :
- *   • WTF-212 existe avec un identifiant canonique stable et versionné.
+ *   • WTR-212 existe avec un identifiant canonique stable et versionné.
  *   • Un Issuer le découvre en ANON, sans configuration spécifique (D9).
  *   • Une version de Framework ne peut être ni modifiée ni supprimée —
  *     ÉCHEC AU NIVEAU SGBD, même pour le service_role (contrainte base,
@@ -20,17 +20,17 @@ import { describe, it, expect } from 'vitest';
 import { admin, anonClient } from './_harness';
 
 describe('Lot O0 — semantics zone : seed & découverte', () => {
-  it('WTF-212 existe avec un identifiant canonique stable + version', async () => {
+  it('WTR-212 existe avec un identifiant canonique stable + version', async () => {
     const { data: skill } = await admin
       .from('wsp_skills')
       .select('id, code, name, framework_id, framework_version')
-      .eq('id', 'wtf:212')
+      .eq('id', 'wtr:212')
       .maybeSingle();
 
     expect(skill).not.toBeNull();
-    expect(skill!.id).toBe('wtf:212');
-    expect(skill!.code).toBe('WTF-212');
-    expect(skill!.framework_id).toBe('framework:wtf');
+    expect(skill!.id).toBe('wtr:212');
+    expect(skill!.code).toBe('WTR-212');
+    expect(skill!.framework_id).toBe('framework:wtr');
     expect(skill!.framework_version).toBe('0.1');
   });
 
@@ -38,7 +38,7 @@ describe('Lot O0 — semantics zone : seed & découverte', () => {
     const { data: version } = await admin
       .from('wsp_framework_versions')
       .select('id, version, status')
-      .eq('id', 'framework:wtf@0.1')
+      .eq('id', 'framework:wtr@0.1')
       .maybeSingle();
     expect(version?.version).toBe('0.1');
     expect(version?.status).toBe('published');
@@ -46,7 +46,7 @@ describe('Lot O0 — semantics zone : seed & découverte', () => {
     const { data: levels } = await admin
       .from('wsp_skill_levels')
       .select('slug, rank, observation_min, observation_max')
-      .eq('skill_id', 'wtf:212')
+      .eq('skill_id', 'wtr:212')
       .order('rank');
     expect((levels ?? []).map((l) => l.slug)).toEqual([
       'aware',
@@ -64,10 +64,10 @@ describe('Lot O0 — semantics zone : seed & découverte', () => {
     const { data: skill, error } = await anon
       .from('wsp_skills')
       .select('id, code, framework_version')
-      .eq('id', 'wtf:212')
+      .eq('id', 'wtr:212')
       .maybeSingle();
     expect(error).toBeNull();
-    expect(skill?.id).toBe('wtf:212');
+    expect(skill?.id).toBe('wtr:212');
   });
 });
 
@@ -76,7 +76,7 @@ describe('Lot O0-EXT — correspondance PUBLIÉE & date d’effet (ENG-002 v0.2 
     const { data: version, error } = await admin
       .from('wsp_framework_versions')
       .select('version, effective_date')
-      .eq('id', 'framework:wtf@0.1')
+      .eq('id', 'framework:wtr@0.1')
       .maybeSingle();
     expect(error).toBeNull();
     expect(version?.effective_date).toBe('2026-07-13');
@@ -86,7 +86,7 @@ describe('Lot O0-EXT — correspondance PUBLIÉE & date d’effet (ENG-002 v0.2 
     const { data: levels } = await admin
       .from('wsp_skill_levels')
       .select('slug, observation_min, observation_max')
-      .eq('skill_id', 'wtf:212')
+      .eq('skill_id', 'wtr:212')
       .order('rank');
     expect((levels ?? []).length).toBe(4);
     // Chaque niveau a une bande, et AUCUNE ne descend à 0 ou 1 (§9.2.3).
@@ -102,14 +102,14 @@ describe('Lot O0-EXT — correspondance PUBLIÉE & date d’effet (ENG-002 v0.2 
     const bands = await anon
       .from('wsp_skill_levels')
       .select('slug, observation_min, observation_max')
-      .eq('skill_id', 'wtf:212');
+      .eq('skill_id', 'wtr:212');
     expect(bands.error).toBeNull();
     expect((bands.data ?? []).length).toBe(4);
 
     const ver = await anon
       .from('wsp_framework_versions')
       .select('effective_date')
-      .eq('id', 'framework:wtf@0.1')
+      .eq('id', 'framework:wtr@0.1')
       .maybeSingle();
     expect(ver.error).toBeNull();
     expect(ver.data?.effective_date).toBe('2026-07-13');
@@ -121,7 +121,7 @@ describe('Lot O0 — immuabilité : une version publiée ne change jamais (contr
     const { error } = await admin
       .from('wsp_framework_versions')
       .update({ status: 'deprecated' })
-      .eq('id', 'framework:wtf@0.1');
+      .eq('id', 'framework:wtr@0.1');
     expect(error).not.toBeNull();
     expect(error!.message).toMatch(/WSP_APPEND_ONLY|append|immuable|forbidden/i);
   });
@@ -130,7 +130,7 @@ describe('Lot O0 — immuabilité : une version publiée ne change jamais (contr
     const { error } = await admin
       .from('wsp_framework_versions')
       .delete()
-      .eq('id', 'framework:wtf@0.1');
+      .eq('id', 'framework:wtr@0.1');
     expect(error).not.toBeNull();
   });
 
@@ -138,7 +138,7 @@ describe('Lot O0 — immuabilité : une version publiée ne change jamais (contr
     const { error } = await admin
       .from('wsp_skills')
       .update({ name: 'altéré' })
-      .eq('id', 'wtf:212');
+      .eq('id', 'wtr:212');
     expect(error).not.toBeNull();
   });
 
@@ -146,7 +146,7 @@ describe('Lot O0 — immuabilité : une version publiée ne change jamais (contr
     const { error } = await admin
       .from('wsp_skill_levels')
       .delete()
-      .eq('id', 'wtf:212#applied');
+      .eq('id', 'wtr:212#applied');
     expect(error).not.toBeNull();
   });
 
@@ -154,7 +154,7 @@ describe('Lot O0 — immuabilité : une version publiée ne change jamais (contr
     const { data: skill } = await admin
       .from('wsp_skills')
       .select('name')
-      .eq('id', 'wtf:212')
+      .eq('id', 'wtr:212')
       .maybeSingle();
     expect(skill?.name).toBe('Intention vs Engagement');
   });

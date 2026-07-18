@@ -17,7 +17,7 @@
 
 ## Abstract
 
-A Skill is the atomic unit of the World Skills Protocol's competence taxonomy — a single, nameable ability that a Framework defines and that Evidence can attest a professional demonstrated. Skills are the leaves of the taxonomy: a Competency (OCR-117) is a cluster of applied Skills, and a Capability (OCR-118) is a broader capacity that Competencies and Skills compose. Crucially, a Skill is *defined by the Framework* (OCR-115), including its level semantics; it is never defined locally by an Issuer, and its levels never live inside Evidence. This keeps a Skill's meaning shared across every Issuer, which is what makes attestations about the same Skill comparable. In the project's Framework, Skills appear as criteria such as `S03.C08`, mapped through the Framework Registry to coordinates like `wtf:212`. This document defines the Skill: what it is, how it sits in the taxonomy, who defines it, and its relationships to Competency, Capability, Framework, and Evidence. It is the smallest thing the protocol can attest.
+A Skill is the atomic unit of the World Skills Protocol's competence taxonomy — a single, nameable ability that a Framework defines and that Evidence can attest a professional demonstrated. Skills are the leaves of the taxonomy: a Competency (OCR-117) is a cluster of applied Skills, and a Capability (OCR-118) is a broader capacity that Competencies and Skills compose. Crucially, a Skill is *defined by the Framework* (OCR-115), including its level semantics; it is never defined locally by an Issuer, and its levels never live inside Evidence. This keeps a Skill's meaning shared across every Issuer, which is what makes attestations about the same Skill comparable. In the project's Framework, Skills appear as criteria such as `S03.C08`, mapped through the Framework Registry to coordinates like `wtr:212`. This document defines the Skill: what it is, how it sits in the taxonomy, who defines it, and its relationships to Competency, Capability, Framework, and Evidence. It is the smallest thing the protocol can attest.
 
 ## Executive Summary
 
@@ -123,7 +123,7 @@ A Skill is a Framework-defined criterion; Evidence references it; the Framework 
   "@context": "https://docs.opusx.world/context/v1",
   "@type": "Skill",
   "@id": "urn:opusx:skill:S03.C08",
-  "definedBy": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
+  "definedBy": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
   "attestedBy": "urn:opusx:concept:evidence",
   "partOfCompetency": "urn:opusx:concept:competency"
 }
@@ -141,7 +141,7 @@ A Skill is a Framework-defined criterion; Evidence references it; the Framework 
 ## Examples
 
 - The Framework defines the Skill `S03.C08` with its levels; Evidence references it to attest a demonstration.
-- Several Skills cluster into a risk-management Competency addressed by `wtf:212`.
+- Several Skills cluster into a risk-management Competency addressed by `wtr:212`.
 - A Framework version refines a Skill's level semantics; past Evidence is unchanged, and trust is recomputed.
 
 ## Counter Examples
@@ -200,7 +200,7 @@ A **Skill** is the smallest thing the World Skills Protocol can attest: a single
 
 ## Search Keywords
 
-skill, world skills protocol, wsp, competence, competency, capability, taxonomy, atomic unit, framework, framework-defined, criterion, S03.C08, wtf:212, framework registry, levels, level semantics, levels in framework, not in evidence, issuer, does not define, attestation, evidence, comparable, shared meaning, composition, cluster, leaf, deprecation, versioning, published skill, opus x, trust, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-116, ocr, docs opusx world, ability, nameable ability, skill definition, skill meaning, resolved skill, competence taxonomy, skills graph, ontology, comparable attestations, protocol invariant, framework publication, skill reference, assessable element
+skill, world skills protocol, wsp, competence, competency, capability, taxonomy, atomic unit, framework, framework-defined, criterion, S03.C08, wtr:212, framework registry, levels, level semantics, levels in framework, not in evidence, issuer, does not define, attestation, evidence, comparable, shared meaning, composition, cluster, leaf, deprecation, versioning, published skill, opus x, trust, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-116, ocr, docs opusx world, ability, nameable ability, skill definition, skill meaning, resolved skill, competence taxonomy, skills graph, ontology, comparable attestations, protocol invariant, framework publication, skill reference, assessable element
 
 ## Synonyms
 

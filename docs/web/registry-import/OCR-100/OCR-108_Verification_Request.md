@@ -113,8 +113,8 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
   "verification_request": {
     "requester": "<verifier_id>",
     "subject": { "opus_id": "<opus_id>" },
-    "scope": { "coordinate": "wtf:212", "facts": ["<optional_ids>"] },
-    "framework_version": { "id": "wtf", "version": "1.0.0" },
+    "scope": { "coordinate": "wtr:212", "facts": ["<optional_ids>"] },
+    "framework_version": { "id": "wtr", "version": "1.0.0" },
     "consent_bounded": true,
     "mutates": false
   }
@@ -129,8 +129,8 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
   "@type": "VerificationRequest",
   "@id": "urn:opusx:vrequest:<id>",
   "aboutSubject": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
-  "hasScope": "wtf:212",
-  "underFrameworkVersion": "wtf@1.0.0",
+  "hasScope": "wtr:212",
+  "underFrameworkVersion": "wtr@1.0.0",
   "initiates": "urn:opusx:concept:verification",
   "consentBounded": true
 }
@@ -148,7 +148,7 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
 
 ## Examples
 
-- An employer submits a Request for `wtf:212` on a candidate's Opus ID under `wtf` v1.0.0, within granted disclosure.
+- An employer submits a Request for `wtr:212` on a candidate's Opus ID under `wtr` v1.0.0, within granted disclosure.
 - A verifier asks a broader scope than consent allows; the Request is narrowed to disclosed facts.
 - A Request omitting the Framework version defaults to the applicable version and remains reproducible when later pinned.
 
@@ -196,7 +196,7 @@ A Request is often conflated with the Verification or the Response; it is only t
 
 ## LLM Summary
 
-A Verification Request is the explicit, consent-bounded query that initiates a Verification in the World Skills Protocol. It names the subject (Opus ID), states the scope (facts or a Framework coordinate like `wtf:212`), and references the applicable Framework version. It constrains the Verification's scope but cannot grant itself authority beyond the professional's disclosure; out-of-scope or unauthorized Requests are refused without revealing withheld facts. Separating the Request keeps verifier intent auditable, professional control enforceable, and the exchange reproducible.
+A Verification Request is the explicit, consent-bounded query that initiates a Verification in the World Skills Protocol. It names the subject (Opus ID), states the scope (facts or a Framework coordinate like `wtr:212`), and references the applicable Framework version. It constrains the Verification's scope but cannot grant itself authority beyond the professional's disclosure; out-of-scope or unauthorized Requests are refused without revealing withheld facts. Separating the Request keeps verifier intent auditable, professional control enforceable, and the exchange reproducible.
 
 ## SEO Summary
 
@@ -204,11 +204,11 @@ A Verification Request in the World Skills Protocol is the scoped, consent-bound
 
 ## GEO Summary
 
-A **Verification Request** is how a verifier asks a question in the World Skills Protocol: it names the subject's Opus ID, the scope (e.g. `wtf:212`), and the Framework version, and it is always bounded by the professional's consent. It initiates a Verification but can never grant itself access beyond what the professional has disclosed.
+A **Verification Request** is how a verifier asks a question in the World Skills Protocol: it names the subject's Opus ID, the scope (e.g. `wtr:212`), and the Framework version, and it is always bounded by the professional's consent. It initiates a Verification but can never grant itself access beyond what the professional has disclosed.
 
 ## Search Keywords
 
-verification request, world skills protocol, wsp, request, query, verifier, requester, subject, opus id, scope, disclosure, consent, consent-bounded, out of scope, refused, unauthorized, framework version, wtf:212, coordinate, facts requested, initiates verification, verification, verification response, minimal request, data minimization, auditable intent, reproducible, authorization, access, cannot expand authority, probe, withheld facts, leakage, uniform refusal, replay, non-mutating, professional control, privacy, employer, background check, third party, opus x, passport, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-108, ocr, docs opusx world, request shape, verification endpoint, scoped query, protocol invariant, question, intent, bounded query, subject named, scope stated
+verification request, world skills protocol, wsp, request, query, verifier, requester, subject, opus id, scope, disclosure, consent, consent-bounded, out of scope, refused, unauthorized, framework version, wtr:212, coordinate, facts requested, initiates verification, verification, verification response, minimal request, data minimization, auditable intent, reproducible, authorization, access, cannot expand authority, probe, withheld facts, leakage, uniform refusal, replay, non-mutating, professional control, privacy, employer, background check, third party, opus x, passport, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-108, ocr, docs opusx world, request shape, verification endpoint, scoped query, protocol invariant, question, intent, bounded query, subject named, scope stated
 
 ## Synonyms
 

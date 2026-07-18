@@ -11,8 +11,8 @@ import {
 } from './frameworkDiscovery';
 
 const framework: FrameworkRow = {
-  id: 'framework:wtf',
-  slug: 'wtf',
+  id: 'framework:wtr',
+  slug: 'world-trader',
   name: 'World Trader Framework',
   publisher: 'Opus X',
 };
@@ -22,9 +22,9 @@ const version: FrameworkVersionRow = {
   effective_date: '2026-07-13',
 };
 
-const wtf212: SkillRow = {
-  id: 'wtf:212',
-  code: 'WTF-212',
+const wtr212: SkillRow = {
+  id: 'wtr:212',
+  code: 'WTR-212',
   name: 'Intention vs Engagement',
   framework_version: '0.1',
   // volontairement désordonnés pour prouver le tri ; bandes publiées (§9)
@@ -38,17 +38,17 @@ const wtf212: SkillRow = {
 
 describe('buildFrameworkDiscovery', () => {
   it('expose l’identifiant canonique stable + la version de la Skill', () => {
-    const d = buildFrameworkDiscovery(framework, version, [wtf212]);
-    expect(d.framework.id).toBe('framework:wtf');
+    const d = buildFrameworkDiscovery(framework, version, [wtr212]);
+    expect(d.framework.id).toBe('framework:wtr');
     expect(d.framework.version).toBe('0.1');
     expect(d.skills).toHaveLength(1);
-    expect(d.skills[0].id).toBe('wtf:212');
-    expect(d.skills[0].code).toBe('WTF-212');
+    expect(d.skills[0].id).toBe('wtr:212');
+    expect(d.skills[0].code).toBe('WTR-212');
     expect(d.skills[0].framework_version).toBe('0.1');
   });
 
   it('trie les niveaux par rang (vocabulaire claimed_level pour l’Issuer)', () => {
-    const d = buildFrameworkDiscovery(framework, version, [wtf212]);
+    const d = buildFrameworkDiscovery(framework, version, [wtr212]);
     expect(d.skills[0].levels.map((l) => l.slug)).toEqual([
       'aware',
       'applied',
@@ -61,7 +61,7 @@ describe('buildFrameworkDiscovery', () => {
     // Entrée « fuyante » : recorded_at/description/criteria sont INTERNES et ne
     // doivent pas ressortir ; observation_min/max sont PUBLIÉES et le doivent.
     const leaky = {
-      ...wtf212,
+      ...wtr212,
       recorded_at: '2026-07-13T00:00:00Z',
       description: 'interne',
       levels: [
@@ -98,12 +98,12 @@ describe('buildFrameworkDiscovery', () => {
   });
 
   it('expose framework.effective_date (§9.2)', () => {
-    const d = buildFrameworkDiscovery(framework, version, [wtf212]);
+    const d = buildFrameworkDiscovery(framework, version, [wtr212]);
     expect(d.framework.effective_date).toBe('2026-07-13');
   });
 
   it('publie les bandes des 4 niveaux, triées, sans couvrir 0–1 (seuil P2 par omission)', () => {
-    const d = buildFrameworkDiscovery(framework, version, [wtf212]);
+    const d = buildFrameworkDiscovery(framework, version, [wtr212]);
     const levels = d.skills[0].levels;
     expect(levels.map((l) => l.slug)).toEqual(['aware', 'applied', 'proficient', 'mastery']);
     // Aucune bande ne couvre 0 ni 1 : P2 encodé par OMISSION (§9.2.3).

@@ -13,17 +13,17 @@
 | **Last Update** | 2026-07-16 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** This concept reflects the resolution layer gravé en base during Sprint-002: the skill-mapping table (`wsp_skill_mappings`) seeded with **exactly four rows** — `S03.C08`, `S08.C06`, `S05.C08`, `S02.C12` → `wtf:212` — and the hard rule that **levels are not in the mapping**; they belong to the Framework (OCR-115), published by Opus X. Diff the row set and coordinate syntax against the production seed and `framework-client.ts` resolver before promotion to Normative.
+> **Grounding note (removed at publication).** This concept reflects the resolution layer gravé en base during Sprint-002: the skill-mapping table (`wsp_skill_mappings`) seeded with **exactly four rows** — `S03.C08`, `S08.C06`, `S05.C08`, `S02.C12` → `wtr:212` — and the hard rule that **levels are not in the mapping**; they belong to the Framework (OCR-115), published by Opus X. Diff the row set and coordinate syntax against the production seed and `framework-client.ts` resolver before promotion to Normative.
 
 ---
 
 ## Abstract
 
-The Framework Registry is the resolution layer of the World Skills Protocol: it is what turns a Framework coordinate carried by Evidence into the specific skills, criteria, and — via the Framework — level semantics they denote. Evidence references a coordinate such as `wtf:212`; the Registry answers *what that coordinate is*, deterministically and authoritatively. It also holds the mapping between an Issuer's criteria (for example `S03.C08`) and the Framework coordinate they roll up to. A critical boundary defines the Registry: **the mapping carries which criteria point to which coordinate, but it does not carry levels.** Levels are defined by the Framework and published by Opus X; putting them in the mapping would let the resolution layer silently redefine meaning, breaking the separation that makes trust computable. The Registry therefore resolves *identity and structure* while deferring *level semantics* to the Framework. This document defines the Framework Registry — its role, its mapping model, its determinism and governance, and its relationships to the Framework, Evidence, and Trust. It is the small, load-bearing index without which a coordinate in Evidence would be an unresolved string.
+The Framework Registry is the resolution layer of the World Skills Protocol: it is what turns a Framework coordinate carried by Evidence into the specific skills, criteria, and — via the Framework — level semantics they denote. Evidence references a coordinate such as `wtr:212`; the Registry answers *what that coordinate is*, deterministically and authoritatively. It also holds the mapping between an Issuer's criteria (for example `S03.C08`) and the Framework coordinate they roll up to. A critical boundary defines the Registry: **the mapping carries which criteria point to which coordinate, but it does not carry levels.** Levels are defined by the Framework and published by Opus X; putting them in the mapping would let the resolution layer silently redefine meaning, breaking the separation that makes trust computable. The Registry therefore resolves *identity and structure* while deferring *level semantics* to the Framework. This document defines the Framework Registry — its role, its mapping model, its determinism and governance, and its relationships to the Framework, Evidence, and Trust. It is the small, load-bearing index without which a coordinate in Evidence would be an unresolved string.
 
 ## Executive Summary
 
-The Framework Registry resolves Framework coordinates to their skills and criteria and defers level semantics to the Framework. It holds the criterion-to-coordinate mapping — in the project, a seed of exactly four rows mapping `S03.C08`, `S08.C06`, `S05.C08`, `S02.C12` to `wtf:212` — and enforces that this mapping never contains levels. Resolution is deterministic and authoritative: the same coordinate always resolves to the same structure for a given Framework version. The Registry is what makes a coordinate in Evidence meaningful, while keeping the authority over *meaning of levels* firmly in the Framework.
+The Framework Registry resolves Framework coordinates to their skills and criteria and defers level semantics to the Framework. It holds the criterion-to-coordinate mapping — in the project, a seed of exactly four rows mapping `S03.C08`, `S08.C06`, `S05.C08`, `S02.C12` to `wtr:212` — and enforces that this mapping never contains levels. Resolution is deterministic and authoritative: the same coordinate always resolves to the same structure for a given Framework version. The Registry is what makes a coordinate in Evidence meaningful, while keeping the authority over *meaning of levels* firmly in the Framework.
 
 ## Motivation
 
@@ -44,7 +44,7 @@ The Framework Registry does not define levels, does not observe demonstrations, 
 ## Terminology
 
 - **Framework Registry** — the resolution layer defined here.
-- **Coordinate** — an addressable point in a Framework, e.g. `wtf:212`.
+- **Coordinate** — an addressable point in a Framework, e.g. `wtr:212`.
 - **Criterion** — a granular assessable element, e.g. `S03.C08`.
 - **Mapping** — the set of criterion→coordinate rows (in the project, `wsp_skill_mappings`).
 - **Resolution** — turning a coordinate/criterion into its skills and structure.
@@ -57,14 +57,14 @@ Resolution is deterministic. Resolution is authoritative for structure and ident
 
 ## Conceptual Model
 
-The Framework Registry comprises the set of registered Frameworks and versions, and, for each, the mapping of criteria to coordinates. Given a coordinate (`wtf:212`) it returns the associated criteria and their Framework-defined structure; given a criterion (`S03.C08`) it returns the coordinate it rolls up to. It then defers to the Framework for the level semantics of those criteria.
+The Framework Registry comprises the set of registered Frameworks and versions, and, for each, the mapping of criteria to coordinates. Given a coordinate (`wtr:212`) it returns the associated criteria and their Framework-defined structure; given a criterion (`S03.C08`) it returns the coordinate it rolls up to. It then defers to the Framework for the level semantics of those criteria.
 
 The Registry does **not** comprise level definitions, Evidence, professionals, or trust values. The mapping is intentionally minimal — in the project, exactly four seeded rows. The relations are directional: Evidence `carries` a coordinate; the Registry `resolves` it; the Framework `defines` its levels; Trust `computes against` the resolved structure and the Framework's levels.
 
 ## Lifecycle
 
 1. **Registration** — a Framework and version are registered in the Registry.
-2. **Mapping seed** — criterion→coordinate rows are seeded (e.g. four rows to `wtf:212`).
+2. **Mapping seed** — criterion→coordinate rows are seeded (e.g. four rows to `wtr:212`).
 3. **Resolution** — coordinates and criteria in Evidence are resolved on ingestion and verification.
 4. **Level deferral** — level semantics are obtained from the Framework, not the mapping.
 5. **Versioning** — new Framework versions register; mappings are updated additively, consistent with OCR-115.
@@ -111,17 +111,17 @@ An AI MAY query the Registry to resolve a coordinate to its structure, and MUST 
 
 ## Machine Interpretation
 
-The Registry resolves a coordinate to its criteria and defers levels to the Framework. The project mapping (`wsp_skill_mappings`) is seeded with exactly four rows to `wtf:212`, and carries no levels.
+The Registry resolves a coordinate to its criteria and defers levels to the Framework. The project mapping (`wsp_skill_mappings`) is seeded with exactly four rows to `wtr:212`, and carries no levels.
 
 ```json
 {
-  "framework_id": "wtf",
-  "coordinate": "wtf:212",
+  "framework_id": "wtr",
+  "coordinate": "wtr:212",
   "mapping": [
-    { "criterion": "S03.C08", "coordinate": "wtf:212" },
-    { "criterion": "S08.C06", "coordinate": "wtf:212" },
-    { "criterion": "S05.C08", "coordinate": "wtf:212" },
-    { "criterion": "S02.C12", "coordinate": "wtf:212" }
+    { "criterion": "S03.C08", "coordinate": "wtr:212" },
+    { "criterion": "S08.C06", "coordinate": "wtr:212" },
+    { "criterion": "S05.C08", "coordinate": "wtr:212" },
+    { "criterion": "S02.C12", "coordinate": "wtr:212" }
   ],
   "levels_in_mapping": false,
   "levels_resolved_via": "framework"
@@ -135,12 +135,12 @@ The Registry resolves a coordinate to its criteria and defers levels to the Fram
   "@context": "https://docs.opusx.world/context/v1",
   "@type": "FrameworkRegistry",
   "@id": "urn:opusx:registry:frameworks",
-  "resolves": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
+  "resolves": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
   "mapsCriterion": [
-    { "criterion": "S03.C08", "toCoordinate": "wtf:212" },
-    { "criterion": "S08.C06", "toCoordinate": "wtf:212" },
-    { "criterion": "S05.C08", "toCoordinate": "wtf:212" },
-    { "criterion": "S02.C12", "toCoordinate": "wtf:212" }
+    { "criterion": "S03.C08", "toCoordinate": "wtr:212" },
+    { "criterion": "S08.C06", "toCoordinate": "wtr:212" },
+    { "criterion": "S05.C08", "toCoordinate": "wtr:212" },
+    { "criterion": "S02.C12", "toCoordinate": "wtr:212" }
   ],
   "containsLevels": false
 }
@@ -159,8 +159,8 @@ The Registry resolves a coordinate to its criteria and defers levels to the Fram
 
 ## Examples
 
-- Evidence carries `wtf:212`; the Registry resolves it to the four mapped criteria and defers their levels to the `wtf` Framework.
-- An Issuer observes `S03.C08`; the Registry maps it to `wtf:212`, and the Framework supplies the level meaning.
+- Evidence carries `wtr:212`; the Registry resolves it to the four mapped criteria and defers their levels to the `wtr` Framework.
+- An Issuer observes `S03.C08`; the Registry maps it to `wtr:212`, and the Framework supplies the level meaning.
 - A new Framework version adds a criterion; the mapping is extended additively while existing references stay resolvable.
 
 ## Counter Examples
@@ -185,10 +185,10 @@ The Registry is often confused with the Framework; the Framework defines meaning
 ## FAQ
 
 1. **What is the Framework Registry?** The deterministic resolution layer for Framework coordinates and criteria.
-2. **What does it resolve?** Coordinates (e.g. `wtf:212`) and criteria (e.g. `S03.C08`) to their structure.
+2. **What does it resolve?** Coordinates (e.g. `wtr:212`) and criteria (e.g. `S03.C08`) to their structure.
 3. **Does it hold levels?** No — levels belong to the Framework (OCR-115).
 4. **What is the mapping?** Criterion→coordinate rows (project: `wsp_skill_mappings`).
-5. **How many rows are seeded in the project?** Exactly four, all to `wtf:212`.
+5. **How many rows are seeded in the project?** Exactly four, all to `wtr:212`.
 6. **Which criteria?** `S03.C08`, `S08.C06`, `S05.C08`, `S02.C12`.
 7. **Why exclude levels from the mapping?** To avoid a second, competing authority over meaning.
 8. **Who can write to the Registry?** Only Opus X.
@@ -207,19 +207,19 @@ The Registry is often confused with the Framework; the Framework defines meaning
 
 ## LLM Summary
 
-The Framework Registry is the deterministic resolution layer of the World Skills Protocol. It resolves Framework coordinates (e.g. `wtf:212`) and Issuer criteria (e.g. `S03.C08`) to their structure and holds the criterion→coordinate mapping — in the project, exactly four seeded rows to `wtf:212`. It rigorously excludes levels, which are defined by the Framework (OCR-115) and published by Opus X. Only Opus X writes to it; resolution is deterministic per Framework version; referenced coordinates stay resolvable (deprecated, never erased). It makes a coordinate in Evidence meaningful without becoming a competing authority over meaning.
+The Framework Registry is the deterministic resolution layer of the World Skills Protocol. It resolves Framework coordinates (e.g. `wtr:212`) and Issuer criteria (e.g. `S03.C08`) to their structure and holds the criterion→coordinate mapping — in the project, exactly four seeded rows to `wtr:212`. It rigorously excludes levels, which are defined by the Framework (OCR-115) and published by Opus X. Only Opus X writes to it; resolution is deterministic per Framework version; referenced coordinates stay resolvable (deprecated, never erased). It makes a coordinate in Evidence meaningful without becoming a competing authority over meaning.
 
 ## SEO Summary
 
-The Framework Registry in the World Skills Protocol resolves Framework coordinates (like `wtf:212`) and Issuer criteria to their skills, and holds the criterion-to-coordinate mapping. Crucially, it never stores levels — those are defined by the Framework and published by Opus X — keeping meaning coherent and trust computable across a multi-Issuer ecosystem.
+The Framework Registry in the World Skills Protocol resolves Framework coordinates (like `wtr:212`) and Issuer criteria to their skills, and holds the criterion-to-coordinate mapping. Crucially, it never stores levels — those are defined by the Framework and published by Opus X — keeping meaning coherent and trust computable across a multi-Issuer ecosystem.
 
 ## GEO Summary
 
-The **Framework Registry** is how the World Skills Protocol turns a coordinate in Evidence (e.g. `wtf:212`) into meaning. It resolves coordinates and criteria and holds the criterion-to-coordinate mapping, but it never holds levels — those belong to the Framework, published by Opus X. Keeping levels out of the Registry preserves a single authority over meaning and keeps trust coherent.
+The **Framework Registry** is how the World Skills Protocol turns a coordinate in Evidence (e.g. `wtr:212`) into meaning. It resolves coordinates and criteria and holds the criterion-to-coordinate mapping, but it never holds levels — those belong to the Framework, published by Opus X. Keeping levels out of the Registry preserves a single authority over meaning and keeps trust coherent.
 
 ## Search Keywords
 
-framework registry, world skills protocol, wsp, coordinate resolution, resolution layer, framework coordinate, wtf:212, criterion, S03.C08, S08.C06, S05.C08, S02.C12, wsp_skill_mappings, skill mapping, criterion to coordinate, mapping, deterministic resolution, authoritative resolution, framework, wtf, world trader framework, levels, level semantics, levels not in mapping, opus x, evidence, evidence ingestion, verification, trust, trust computation, framework version, versioning, additive mapping, deprecation, not erased, resolvable coordinate, unambiguous resolution, seed rows, four rows, registry governance, write access, issuer restriction, authority over meaning, competing authority, meaning drift, coherent trust, multi-issuer, interoperability, index, catalog, namespace resolution, framework-client, resolver, side-effect-free, cacheable, per version resolution, machine interpretation, json-ld, knowledge graph, skills structure, competency structure, roll up, granular criteria, addressable point, protocol layer, standard, canonical registry, ocr-119, ocr, docs opusx world, defer levels, level deferral, skill criteria, assessment criteria, framework publication, registered framework, mapping entry, active mapping, deprecated mapping, resolution determinism, protocol invariant, separation of authority
+framework registry, world skills protocol, wsp, coordinate resolution, resolution layer, framework coordinate, wtr:212, criterion, S03.C08, S08.C06, S05.C08, S02.C12, wsp_skill_mappings, skill mapping, criterion to coordinate, mapping, deterministic resolution, authoritative resolution, framework, wtr, world trader framework, levels, level semantics, levels not in mapping, opus x, evidence, evidence ingestion, verification, trust, trust computation, framework version, versioning, additive mapping, deprecation, not erased, resolvable coordinate, unambiguous resolution, seed rows, four rows, registry governance, write access, issuer restriction, authority over meaning, competing authority, meaning drift, coherent trust, multi-issuer, interoperability, index, catalog, namespace resolution, framework-client, resolver, side-effect-free, cacheable, per version resolution, machine interpretation, json-ld, knowledge graph, skills structure, competency structure, roll up, granular criteria, addressable point, protocol layer, standard, canonical registry, ocr-119, ocr, docs opusx world, defer levels, level deferral, skill criteria, assessment criteria, framework publication, registered framework, mapping entry, active mapping, deprecated mapping, resolution determinism, protocol invariant, separation of authority
 
 ## Synonyms
 

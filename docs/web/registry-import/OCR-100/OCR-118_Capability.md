@@ -108,7 +108,7 @@ A Capability composes Competencies/Skills; its standing is computed, not atteste
 {
   "capability": {
     "id": "<capability_id>",
-    "composes_competencies": ["wtf:212"],
+    "composes_competencies": ["wtr:212"],
     "defined_by": "framework",
     "standing": "computed_from_underlying_facts",
     "attested_wholesale": false,
@@ -124,8 +124,8 @@ A Capability composes Competencies/Skills; its standing is computed, not atteste
   "@context": "https://docs.opusx.world/context/v1",
   "@type": "Capability",
   "@id": "urn:opusx:capability:<id>",
-  "definedBy": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
-  "composesCompetency": ["urn:opusx:competency:wtf:212"],
+  "definedBy": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
+  "composesCompetency": ["urn:opusx:competency:wtr:212"],
   "standingComputedFrom": "urn:opusx:concept:immutable-fact"
 }
 ```
@@ -141,7 +141,7 @@ A Capability composes Competencies/Skills; its standing is computed, not atteste
 
 ## Examples
 
-- A trading Capability composes several Competencies (including `wtf:212`); its standing for a professional is computed from the attested underlying facts.
+- A trading Capability composes several Competencies (including `wtr:212`); its standing for a professional is computed from the attested underlying facts.
 - Evidence attests the constituent Competencies/Skills; the Capability's standing follows without wholesale attestation.
 - A Framework version refines a Capability's composition; past Evidence is unchanged; standing recomputes.
 
@@ -201,7 +201,7 @@ A **Capability** is the broadest unit of the World Skills Protocol's taxonomy: a
 
 ## Search Keywords
 
-capability, world skills protocol, wsp, competence, competency, skill, taxonomy, top tier, broad capacity, role capacity, domain capacity, framework, framework-defined, composes competencies, composes skills, wtf:212, framework registry, levels, level semantics, levels in framework, not in evidence, issuer, does not define, not attested wholesale, constituted, standing, computed standing, computed from facts, trust, immutable fact, comparable, shared meaning, deprecation, versioning, published capability, opus x, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-118, ocr, docs opusx world, capacity, professional capacity, capability definition, resolved capability, competence taxonomy, ontology, grounded capability, protocol invariant, framework publication, capability standing, composition
+capability, world skills protocol, wsp, competence, competency, skill, taxonomy, top tier, broad capacity, role capacity, domain capacity, framework, framework-defined, composes competencies, composes skills, wtr:212, framework registry, levels, level semantics, levels in framework, not in evidence, issuer, does not define, not attested wholesale, constituted, standing, computed standing, computed from facts, trust, immutable fact, comparable, shared meaning, deprecation, versioning, published capability, opus x, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-118, ocr, docs opusx world, capacity, professional capacity, capability definition, resolved capability, competence taxonomy, ontology, grounded capability, protocol invariant, framework publication, capability standing, composition
 
 ## Synonyms
 

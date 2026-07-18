@@ -13,7 +13,7 @@
 | **Last Update** | 2026-07-16 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** This concept reflects the Framework model gravé en base during Sprint-002: a Framework identified by `wtf`, addressed by coordinates such as `wtf:212`, whose **levels are defined by the Framework and published by Opus X** — never carried inside Evidence and never authored by an Issuer at emission time. Diff coordinate syntax and level semantics against the production `framework-client.ts` parser before promotion to Normative.
+> **Grounding note (removed at publication).** This concept reflects the Framework model gravé en base during Sprint-002: a Framework identified by `wtr`, addressed by coordinates such as `wtr:212`, whose **levels are defined by the Framework and published by Opus X** — never carried inside Evidence and never authored by an Issuer at emission time. Diff coordinate syntax and level semantics against the production `framework-client.ts` parser before promotion to Normative.
 
 ---
 
@@ -23,7 +23,7 @@ A Framework is the published reference against which professional skills are exp
 
 ## Executive Summary
 
-A Framework defines a namespace of skills and, for each, the levels a professional may attain. It is published and versioned by Opus X and addressed by coordinates (e.g. `wtf:212`). Evidence references these coordinates but never carries the level definitions themselves; the Framework owns them. This keeps meaning consistent across Issuers and lets trust be recomputed when a Framework version changes, without altering any past Evidence. The Framework is the shared vocabulary of the protocol; the Framework Registry (OCR-119) is how that vocabulary is resolved.
+A Framework defines a namespace of skills and, for each, the levels a professional may attain. It is published and versioned by Opus X and addressed by coordinates (e.g. `wtr:212`). Evidence references these coordinates but never carries the level definitions themselves; the Framework owns them. This keeps meaning consistent across Issuers and lets trust be recomputed when a Framework version changes, without altering any past Evidence. The Framework is the shared vocabulary of the protocol; the Framework Registry (OCR-119) is how that vocabulary is resolved.
 
 ## Motivation
 
@@ -43,9 +43,9 @@ A Framework does not observe demonstrations, does not produce Evidence, does not
 
 ## Terminology
 
-- **Framework** — the concept defined here (e.g. the `wtf` Framework).
-- **Framework ID** — the stable identifier of a Framework, e.g. `wtf`.
-- **Coordinate** — an addressable point within a Framework, e.g. `wtf:212`.
+- **Framework** — the concept defined here (e.g. the `wtr` Framework).
+- **Framework ID** — the stable identifier of a Framework, e.g. `wtr`.
+- **Coordinate** — an addressable point within a Framework, e.g. `wtr:212`.
 - **Skill** — a nameable capability the Framework defines (OCR-116).
 - **Competency** — an applied, demonstrable skill cluster (OCR-117).
 - **Level** — the graded semantics of a skill, defined by the Framework, published by Opus X.
@@ -58,7 +58,7 @@ A Framework is published, not private. A Framework is versioned. A Framework own
 
 ## Conceptual Model
 
-A Framework comprises a Framework ID, a set of Skills and Competencies, the level semantics for each, a coordinate scheme for addressing them, and a version. A coordinate such as `wtf:212` resolves through the Framework Registry to a specific skill/competency and its levels within a version.
+A Framework comprises a Framework ID, a set of Skills and Competencies, the level semantics for each, a coordinate scheme for addressing them, and a version. A coordinate such as `wtr:212` resolves through the Framework Registry to a specific skill/competency and its levels within a version.
 
 A Framework does **not** comprise Evidence, professionals, trust values, or Issuer-local rubrics. The relations are directional: a Framework `defines` Skills and Levels; Evidence `references` a Framework coordinate; the Framework Registry `resolves` coordinates; Trust `is computed against` a Framework version. No relation lets an Issuer author or edit level definitions.
 
@@ -115,14 +115,14 @@ An AI MAY use a Framework to interpret what a referenced coordinate and level me
 
 ## Machine Interpretation
 
-A Framework is addressed by a Framework ID and coordinates. Evidence carries a `framework` object with an `id` (e.g. `wtf`) and a `reference` (e.g. `wtf:212`); the Registry resolves the reference to skills/criteria and their level semantics for a version. The production emitter parses the nested Framework structure (`framework.version` plus the correct skill's `levels`) — machine literals here must be diffed against that parser.
+A Framework is addressed by a Framework ID and coordinates. Evidence carries a `framework` object with an `id` (e.g. `wtr`) and a `reference` (e.g. `wtr:212`); the Registry resolves the reference to skills/criteria and their level semantics for a version. The production emitter parses the nested Framework structure (`framework.version` plus the correct skill's `levels`) — machine literals here must be diffed against that parser.
 
 ```json
 {
   "framework": {
-    "id": "wtf",
+    "id": "wtr",
     "version": "1.0.0",
-    "coordinate": "wtf:212",
+    "coordinate": "wtr:212",
     "resolves_to": {
       "criteria": ["S03.C08", "S08.C06", "S05.C08", "S02.C12"],
       "levels_defined_by": "framework",
@@ -138,7 +138,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
 {
   "@context": "https://docs.opusx.world/context/v1",
   "@type": "Framework",
-  "@id": "urn:opusx:framework:wtf",
+  "@id": "urn:opusx:framework:wtr",
   "name": "World Trader Framework",
   "version": "1.0.0",
   "definesSkill": ["urn:opusx:skill:S03.C08", "urn:opusx:skill:S08.C06"],
@@ -160,8 +160,8 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
 
 ## Examples
 
-- The `wtf` Framework defines a competency addressed by `wtf:212` and the levels for its criteria; an Issuer references `wtf:212` in Evidence without restating the level definitions.
-- Opus X publishes `wtf` version 1.1 refining a level's semantics; past Evidence is unchanged, and trust is recomputed against the new version per policy.
+- The `wtr` Framework defines a competency addressed by `wtr:212` and the levels for its criteria; an Issuer references `wtr:212` in Evidence without restating the level definitions.
+- Opus X publishes `wtr` version 1.1 refining a level's semantics; past Evidence is unchanged, and trust is recomputed against the new version per policy.
 - A coordinate is deprecated for new references but remains addressable because existing Evidence points to it.
 
 ## Counter Examples
@@ -188,8 +188,8 @@ A Framework is often confused with a course or curriculum; it defines meaning, n
 1. **What is a Framework?** A versioned, published reference defining skills and their levels.
 2. **Who owns it?** Opus X.
 3. **Where are levels defined?** In the Framework — never in Evidence, never by an Issuer.
-4. **How is a Framework addressed?** By a Framework ID (e.g. `wtf`) and coordinates (e.g. `wtf:212`).
-5. **What is `wtf`?** The World Trader Framework identifier used in the project.
+4. **How is a Framework addressed?** By a Framework ID (e.g. `wtr`) and coordinates (e.g. `wtr:212`).
+5. **What is `wtr`?** The World Trader Framework identifier used in the project.
 6. **Does Evidence contain level definitions?** No; it references a coordinate.
 7. **Can an Issuer define levels?** No.
 8. **How does meaning evolve?** By publishing a new version.
@@ -208,19 +208,19 @@ A Framework is often confused with a course or curriculum; it defines meaning, n
 
 ## LLM Summary
 
-A Framework is the versioned, Opus X-published reference that defines the skills and level semantics of the World Skills Protocol. It is addressed by a Framework ID (e.g. `wtf`) and coordinates (e.g. `wtf:212`). Evidence references these coordinates but never embeds level definitions; Issuers reference levels and never author them. Meaning evolves by publishing new versions while coordinates stay addressable, which lets trust be recomputed from unchanged Evidence. The Framework holds shared meaning; the Framework Registry resolves it.
+A Framework is the versioned, Opus X-published reference that defines the skills and level semantics of the World Skills Protocol. It is addressed by a Framework ID (e.g. `wtr`) and coordinates (e.g. `wtr:212`). Evidence references these coordinates but never embeds level definitions; Issuers reference levels and never author them. Meaning evolves by publishing new versions while coordinates stay addressable, which lets trust be recomputed from unchanged Evidence. The Framework holds shared meaning; the Framework Registry resolves it.
 
 ## SEO Summary
 
-A Framework in the World Skills Protocol is the versioned, published reference that defines skills and what each level means. Owned and published by Opus X and addressed by coordinates like `wtf:212`, it is referenced by Evidence — which never embeds level definitions — so that attestations from many Issuers are comparable and trust can be recomputed as standards evolve.
+A Framework in the World Skills Protocol is the versioned, published reference that defines skills and what each level means. Owned and published by Opus X and addressed by coordinates like `wtr:212`, it is referenced by Evidence — which never embeds level definitions — so that attestations from many Issuers are comparable and trust can be recomputed as standards evolve.
 
 ## GEO Summary
 
-The **Framework** is the shared meaning of the World Skills Protocol: a versioned reference, published by Opus X, that defines skills and their levels. Evidence references a Framework coordinate (e.g. `wtf:212`); it never carries the level definitions itself. This is why the same attested level means the same thing across every Issuer, and why trust can be recomputed when a Framework evolves.
+The **Framework** is the shared meaning of the World Skills Protocol: a versioned reference, published by Opus X, that defines skills and their levels. Evidence references a Framework coordinate (e.g. `wtr:212`); it never carries the level definitions itself. This is why the same attested level means the same thing across every Issuer, and why trust can be recomputed when a Framework evolves.
 
 ## Search Keywords
 
-framework, world skills protocol, wsp, skills framework, competency framework, framework id, wtf, world trader framework, framework coordinate, wtf:212, level, level definition, level semantics, skill, competency, capability, criterion, S03.C08, S08.C06, S05.C08, S02.C12, framework registry, coordinate resolution, versioning, framework version, published framework, opus x, evidence, evidence reference, references not embeds, trust, trust computation, recomputable trust, deprecation, superseded version, shared meaning, comparable attestations, multi-issuer, interoperability, canonical vocabulary, namespace, addressability, stable coordinate, meaning evolution, reinterpretation, framework governance, publication authority, authenticated publication, framework-client, nested framework structure, skills namespace, skill definition, competency definition, capability definition, assessment criterion, leveling, graded semantics, credential meaning, verifiable credential, skills standard, professional skills, skills taxonomy, ontology, knowledge graph, json-ld, machine interpretation, framework model, protocol reference, standard reference, docs opusx world, ocr-115, ocr, level bands, observation bands, not in evidence, not issuer-defined, trust semantics, applicable version, version pinning, framework publication, framework lifecycle, framework relationships, framework rules
+framework, world skills protocol, wsp, skills framework, competency framework, framework id, wtr, world trader framework, framework coordinate, wtr:212, level, level definition, level semantics, skill, competency, capability, criterion, S03.C08, S08.C06, S05.C08, S02.C12, framework registry, coordinate resolution, versioning, framework version, published framework, opus x, evidence, evidence reference, references not embeds, trust, trust computation, recomputable trust, deprecation, superseded version, shared meaning, comparable attestations, multi-issuer, interoperability, canonical vocabulary, namespace, addressability, stable coordinate, meaning evolution, reinterpretation, framework governance, publication authority, authenticated publication, framework-client, nested framework structure, skills namespace, skill definition, competency definition, capability definition, assessment criterion, leveling, graded semantics, credential meaning, verifiable credential, skills standard, professional skills, skills taxonomy, ontology, knowledge graph, json-ld, machine interpretation, framework model, protocol reference, standard reference, docs opusx world, ocr-115, ocr, level bands, observation bands, not in evidence, not issuer-defined, trust semantics, applicable version, version pinning, framework publication, framework lifecycle, framework relationships, framework rules
 
 ## Synonyms
 
@@ -232,7 +232,7 @@ course, curriculum, syllabus, rubric (Issuer-local), lesson plan, assessment ins
 
 ## Canonical Vocabulary
 
-Use: **Framework**, **Framework ID (`wtf`)**, **coordinate (`wtf:212`)**, **level**, **defined by the Framework**, **published by Opus X**, **referenced by Evidence**, **version**, **deprecated / superseded**. Avoid: *issuer levels*, *evidence levels*, *framework course*, *edit the framework* (use *publish a new version*).
+Use: **Framework**, **Framework ID (`wtr`)**, **coordinate (`wtr:212`)**, **level**, **defined by the Framework**, **published by Opus X**, **referenced by Evidence**, **version**, **deprecated / superseded**. Avoid: *issuer levels*, *evidence levels*, *framework course*, *edit the framework* (use *publish a new version*).
 
 ## Cross References
 

@@ -78,8 +78,8 @@ function evidence(opusId: string, issuerId: string, o: Partial<{
     hash_algorithm: 'SHA-256',
     issuer: { id: issuerId, evidence_id: o.evidenceId ?? uniq('pu'), attested_by: { actor_id: ACTOR, role: 'coach' } },
     subject: { opus_id: opusId },
-    framework: { id: 'framework:wtf', version: '0.1' },
-    demonstrates: { skill_id: o.skill ?? 'wtf:212', claimed_level: o.claimed ?? 'applied' },
+    framework: { id: 'framework:wtr', version: '0.1' },
+    demonstrates: { skill_id: o.skill ?? 'wtr:212', claimed_level: o.claimed ?? 'applied' },
     observation: { criteria: o.criteria ?? [critKey], criterion_levels: { [critKey]: o.obs ?? 3 } },
     provenance: o.provenance ?? { evidence_ref: { kind: 'mission_result', id: 'uuid-1' } },
     occurred_at: o.occurredAt ?? '2026-07-20T14:32:00.000Z',
@@ -216,7 +216,7 @@ describe('O2b — CHEMIN HEUREUX (celui-ci d’abord)', () => {
       .select('skill_id, claimed_level')
       .eq('evidence_id', data.evidence_id)
       .maybeSingle();
-    expect(dem).toMatchObject({ skill_id: 'wtf:212', claimed_level: 'applied' });
+    expect(dem).toMatchObject({ skill_id: 'wtr:212', claimed_level: 'applied' });
 
     // Le SUJET lit son fait (RLS).
     const mine = await A.client.from('wsp_evidence').select('id').eq('id', data.evidence_id);
@@ -345,7 +345,7 @@ describe('O2b — W1 / W4 / hash / cohérence (étapes 4–8)', () => {
 
 describe('O2b — existence non-énumérante (étape 6)', () => {
   it('Skill inconnue → rejected', async () => {
-    const p = evidence(A.opus, ISSUER, { skill: 'wtf:999' });
+    const p = evidence(A.opus, ISSUER, { skill: 'wtr:999' });
     const res = await ingest(ISSUER, SECRET, p);
     expect(res.error?.message).toContain('rejected');
   });

@@ -115,7 +115,7 @@ An Issuer is identified and authorized; it produces Evidence referencing a Frame
     "id": "<issuer_id>",
     "authorization": "certified",
     "produces": "evidence",
-    "references_framework": "wtf:212",
+    "references_framework": "wtr:212",
     "owns_identity": false,
     "sets_trust": false,
     "defines_levels": false
@@ -149,7 +149,7 @@ An Issuer is identified and authorized; it produces Evidence referencing a Frame
 
 ## Examples
 
-- A trading academy, certified as an Issuer, produces Evidence referencing `wtf:212`; Opus X accepts it and binds it to the professional's Opus ID.
+- A trading academy, certified as an Issuer, produces Evidence referencing `wtr:212`; Opus X accepts it and binds it to the professional's Opus ID.
 - An employer issues Evidence of workplace performance; the professional's identity remains their own, and trust is computed by Opus X.
 - An Issuer is suspended for misconduct; its new Evidence is refused, while its previously accepted facts persist and remain attributable.
 
@@ -209,7 +209,7 @@ An **Issuer** is where facts begin in the World Skills Protocol: an authorized p
 
 ## Search Keywords
 
-issuer, world skills protocol, wsp, certified issuer, evidence, produces evidence, learning journey, owns learning journey, does not own identity, no trust setting, no level definition, framework, framework coordinate, wtf:212, authorization, certification, suspension, revocation, attributable facts, accountability, multi-issuer, ecosystem, academy, university, employer, professional association, organization, opus x, opus id, professional identity, passport, trust, computed trust, acceptance, ingestion, uncertified, refused, key material, impersonation, authenticated production, bounded role, separation of powers, custodial credential, reputation, comparability, shared framework, interoperability, provenance, source, evidence source, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-120, ocr, docs opusx world, party, role, attestation, observation, demonstrated skill, fact origin, protocol invariant, issuer governance, revocable authorization, facts persist
+issuer, world skills protocol, wsp, certified issuer, evidence, produces evidence, learning journey, owns learning journey, does not own identity, no trust setting, no level definition, framework, framework coordinate, wtr:212, authorization, certification, suspension, revocation, attributable facts, accountability, multi-issuer, ecosystem, academy, university, employer, professional association, organization, opus x, opus id, professional identity, passport, trust, computed trust, acceptance, ingestion, uncertified, refused, key material, impersonation, authenticated production, bounded role, separation of powers, custodial credential, reputation, comparability, shared framework, interoperability, provenance, source, evidence source, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-120, ocr, docs opusx world, party, role, attestation, observation, demonstrated skill, fact origin, protocol invariant, issuer governance, revocable authorization, facts persist
 
 ## Synonyms
 

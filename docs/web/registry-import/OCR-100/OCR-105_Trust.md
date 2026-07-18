@@ -113,7 +113,7 @@ Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_versio
   "trust": {
     "subject": "<opus_id>",
     "inputs": "immutable_facts_bound_to_subject",
-    "interpretation": { "framework": "wtf", "version": "1.0.0" },
+    "interpretation": { "framework": "wtr", "version": "1.0.0" },
     "deterministic": true,
     "asserted": false,
     "result": "trust_status"
@@ -130,7 +130,7 @@ Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_versio
   "@id": "urn:opusx:trust:<opus_id>",
   "computedFor": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
   "consumes": "urn:opusx:concept:immutable-fact",
-  "interpretedAgainst": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
+  "interpretedAgainst": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
   "isAsserted": false,
   "isDeterministic": true
 }
@@ -149,8 +149,8 @@ Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_versio
 
 ## Examples
 
-- Trust for an Opus ID is computed from three bound facts under `wtf` v1.0.0; a verifier reproduces the computation and obtains the same result.
-- `wtf` publishes v1.1 refining a level's meaning; Trust is recomputed from the same facts and updates deterministically.
+- Trust for an Opus ID is computed from three bound facts under `wtr` v1.0.0; a verifier reproduces the computation and obtains the same result.
+- `wtr` publishes v1.1 refining a level's meaning; Trust is recomputed from the same facts and updates deterministically.
 - A fact is revoked; Trust recomputes without it, and the change is reproducible.
 
 ## Counter Examples
@@ -209,7 +209,7 @@ Trust in the World Skills Protocol is not a reputation or a score someone assign
 
 ## Search Keywords
 
-trust, world skills protocol, wsp, trust computation, computed trust, deterministic trust, reproducible trust, recomputable trust, trust status, evidence, immutable fact, framework, framework version, interpretation, opus id, verification, verification request, verification response, opus x, not asserted, not reputation, reputation vs trust, social score, leaderboard, ranking, verifiable state, trust engine, trust function, inputs, immutable inputs, supersession, revocation, reflected deterministically, framework registry, wtf, level semantics, professional passport, disclosure, privacy, integrity, evidence integrity, jcs, determinism, reproducibility, recomputation, version pinning, stale version, non-fact signals, verifiable facts, trust value, authored value, issuer opinion, star rating, endorsement, credential, trust layer, fact layer, separation of powers, professional identity, professional, computed for opus id, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-105, ocr, docs opusx world, verifiable trust, trust semantics, protocol invariant, derived state, trust exposure, trust inspection
+trust, world skills protocol, wsp, trust computation, computed trust, deterministic trust, reproducible trust, recomputable trust, trust status, evidence, immutable fact, framework, framework version, interpretation, opus id, verification, verification request, verification response, opus x, not asserted, not reputation, reputation vs trust, social score, leaderboard, ranking, verifiable state, trust engine, trust function, inputs, immutable inputs, supersession, revocation, reflected deterministically, framework registry, wtr, level semantics, professional passport, disclosure, privacy, integrity, evidence integrity, jcs, determinism, reproducibility, recomputation, version pinning, stale version, non-fact signals, verifiable facts, trust value, authored value, issuer opinion, star rating, endorsement, credential, trust layer, fact layer, separation of powers, professional identity, professional, computed for opus id, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-105, ocr, docs opusx world, verifiable trust, trust semantics, protocol invariant, derived state, trust exposure, trust inspection
 
 ## Synonyms
 

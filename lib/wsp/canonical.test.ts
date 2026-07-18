@@ -49,8 +49,8 @@ describe('canonical — RFC 8785 (JCS)', () => {
   });
 
   it('hash indépendant de l’ordre d’insertion des clés (même objet → même hash)', () => {
-    const a = canonicalHash({ ...ALGO, skill_id: 'wtf:212', occurred_at: '2026-07-20T14:32:00.000Z' });
-    const b = canonicalHash({ occurred_at: '2026-07-20T14:32:00.000Z', skill_id: 'wtf:212', ...ALGO });
+    const a = canonicalHash({ ...ALGO, skill_id: 'wtr:212', occurred_at: '2026-07-20T14:32:00.000Z' });
+    const b = canonicalHash({ occurred_at: '2026-07-20T14:32:00.000Z', skill_id: 'wtr:212', ...ALGO });
     expect(a.hash).toBe(b.hash);
     expect(a.hash).toMatch(/^[0-9a-f]{64}$/);
     expect(a.canonicalization_algorithm).toBe(CANONICALIZATION_ALGORITHM);
@@ -58,7 +58,7 @@ describe('canonical — RFC 8785 (JCS)', () => {
   });
 
   it('§5.1.4 — sans les champs d’algo DANS l’objet → rejet', () => {
-    expect(() => canonicalHash({ skill_id: 'wtf:212' })).toThrow(/5\.1\.4/);
+    expect(() => canonicalHash({ skill_id: 'wtr:212' })).toThrow(/5\.1\.4/);
   });
 
   it('§5.4.2 — null interdit dans le payload haché', () => {
