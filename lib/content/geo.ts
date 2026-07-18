@@ -187,6 +187,33 @@ function prose(section: string | undefined, ctx: ProseCtx): Block[] {
     .flatMap((para) => paragraphToBlocks(para, ctx));
 }
 
+/**
+ * Key Facts = projection SANS PERTE de Design Goals (prose) en faits (phrases).
+ * Règle DÉTERMINISTE (arbitrage architecte) : segmentation aux frontières de phrase
+ * (`.!?` + espace + majuscule/guillemet/parenthèse ; garde décimales et points
+ * internes). AUCUNE sélection, AUCUNE reformulation : toute la prose est projetée, dans
+ * l'ordre. Le split à groupe capturant conserve les délimiteurs (lossless par construction).
+ * ASSERTION : si la concaténation des faits diffère de la source, on JETTE — le build
+ * casse plutôt que rendre un fait tronqué (jamais de projection avec perte).
+ */
+export function keyFactsFromProse(section?: string): Span[][] {
+  if (!section) return [];
+  const src = section.trim();
+  if (!src) return [];
+  const parts = src.split(/([.!?]+["')\]]?\s+)(?=[A-Z"(\[])/);
+  const facts: string[] = [];
+  for (let i = 0; i < parts.length; i += 2) {
+    const seg = parts[i] + (parts[i + 1] ?? '');
+    if (seg.trim()) facts.push(seg);
+  }
+  if (facts.join('') !== src) {
+    throw new Error(
+      `[geo:keyfacts] projection avec perte sur Design Goals (source ${src.length} car. != concat ${facts.join('').length} car.)`,
+    );
+  }
+  return facts.map((f) => inline(f.trim()));
+}
+
 // ─── Parsers de listes / FAQ (emphase inline projetée) ──────────────────────
 const quoted = (s: string): Span[] => inline(s.replace(/^>\s?/gm, '').trim());
 function bullets(section?: string): Span[][] {
@@ -256,7 +283,7 @@ export function buildGeoContent(
     examples: bullets(S['Examples']),
     nonExamples: bullets(S['Counter Examples']),
     distinctions: prose(S['Common Misunderstandings'], ctx('Distinctions')),
-    keyFacts: bullets(S['Design Goals']),
+    keyFacts: keyFactsFromProse(S['Design Goals']),
     faq: faqPairs(S['FAQ']),
     sources: (S['Cross References'] || '').split(/\s*·\s*/).map((s) => s.trim()).filter(Boolean),
     meta: {
@@ -281,6 +308,8 @@ export function buildGeoContent(
     ['sources', 'Normative Sources'],
   ];
   const _gaps = SECTION_OF.filter(([k]) => (content[k] as unknown[]).length === 0).map(([, title]) => title);
+  // CTA éditorial : absent si son libellé n'est pas gravé (pillars.ctaLabel). Tracé.
+  if (!content.cta.label) _gaps.push('CTA');
   // eslint-disable-next-line no-console
   console.log(`[geo:gaps] ${slug} (${recordId}): ${_gaps.length ? _gaps.join(', ') : 'none'}`);
 

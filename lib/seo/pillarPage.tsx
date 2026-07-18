@@ -35,7 +35,8 @@ export function pillarRoute(slug: string) {
 
     generateMetadata: async ({ params }: Params): Promise<Metadata> => {
       const { locale } = await params;
-      const c = buildGeoContent(slug, recordId, { label: '', href: '' }, locale);
+      const ctaLabel = pillar.ctaLabel ?? '';
+      const c = buildGeoContent(slug, recordId, { label: ctaLabel, href: ctaLabel ? `/api/registry/${recordId}` : '' }, locale);
       return pageMetadata({
         locale,
         slug,
@@ -49,12 +50,16 @@ export function pillarRoute(slug: string) {
       const { locale } = await params;
       setRequestLocale(locale);
 
-      const content = buildGeoContent(slug, recordId, { label: '', href: '' }, locale);
+      // CTA éditorial : libellé GRAVÉ par pilier (pillars.ctaLabel), jamais templaté.
+      // Absent → CTA non rendu, tracé dans _gaps par buildGeoContent.
+      const ctaLabel = pillar.ctaLabel ?? '';
+      const content = buildGeoContent(
+        slug,
+        recordId,
+        { label: ctaLabel, href: ctaLabel ? `/api/registry/${recordId}` : '' },
+        locale,
+      );
       if (!content) notFound();
-
-      // CTA éditorial templaté (le flag lib/seo/flags décide de l'état, déjà appliqué).
-      content.cta.label = `Explore ${content.title} in the canonical registry`;
-      content.cta.href = `/api/registry/${recordId}`;
 
       const url = `${BASE}/${locale}/${slug}`;
       const description = spansToText(content.directAnswer);

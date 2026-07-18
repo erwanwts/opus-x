@@ -189,20 +189,22 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
           </Section>
         ) : null}
 
-        {/* CTA (éditorial/UI) — deux états déterministes (WEB GEO 1b, exigence
-             architecte : ne JAMAIS pointer vers une ressource inexistante).
-             `enabled` (flag côté page) bascule entre lien actif et libellé inerte. */}
-        <div className="mt-12 border-t border-navy-800 pt-8">
-          {c.cta.enabled ? (
-            <a href={c.cta.href} className="inline-flex items-center gap-2 rounded-control border border-navy-600 bg-navy-800 px-4 py-2 font-interface text-body text-navy-100 hover:border-navy-400">
-              {c.cta.label} →
-            </a>
-          ) : (
-            <span aria-disabled="true" className="inline-flex cursor-default items-center gap-2 rounded-control border border-navy-800 bg-navy-900/40 px-4 py-2 font-interface text-body text-navy-500">
-              {c.cta.label}
-            </span>
-          )}
-        </div>
+        {/* CTA (éditorial/UI) — libellé GRAVÉ par pilier (pillars.ctaLabel). Absent →
+             bloc NON rendu (aucun libellé inventé), trou tracé dans _gaps.
+             `enabled` (flag lib/seo/flags) bascule lien actif / libellé inerte. */}
+        {c.cta.label ? (
+          <div className="mt-12 border-t border-navy-800 pt-8">
+            {c.cta.enabled ? (
+              <a href={c.cta.href} className="inline-flex items-center gap-2 rounded-control border border-navy-600 bg-navy-800 px-4 py-2 font-interface text-body text-navy-100 hover:border-navy-400">
+                {c.cta.label} →
+              </a>
+            ) : (
+              <span aria-disabled="true" className="inline-flex cursor-default items-center gap-2 rounded-control border border-navy-800 bg-navy-900/40 px-4 py-2 font-interface text-body text-navy-500">
+                {c.cta.label}
+              </span>
+            )}
+          </div>
+        ) : null}
 
         {/* Date / Auteur / Version (Source of Truth, bloc LLM) */}
         <footer className="mt-10 font-engraved text-body-sm text-navy-500">
