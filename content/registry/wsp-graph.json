@@ -6,11 +6,18 @@
     "generated_from": "docs/web/registry-import/OCR-100",
     "records_with_kg": 26,
     "counts": {
-      "nodes_total": 92,
-      "nodes_internal": 26,
-      "nodes_external": 66,
-      "edges_total": 231,
-      "edges_predicate": 227,
+      "nodes_total": 84,
+      "nodes_internal": 56,
+      "nodes_external": 28,
+      "nodes_by_type": {
+        "concept": 24,
+        "unclassified": 25,
+        "prior_art": 3,
+        "entity": 6,
+        "record": 26
+      },
+      "edges_total": 223,
+      "edges_predicate": 220,
       "edges_cascade_hop": 3,
       "edges_unresolved_canonical": 1,
       "reflexives": 3,
@@ -18,470 +25,708 @@
       "rejected_dropped": 13,
       "name_flagged": 4,
       "compound_target": 1,
+      "unclassified_externals": 25,
+      "excluded_prose_nodes": 8,
+      "excluded_prose_edges": 8,
+      "prior_art_guard_violations": 0,
       "errors": 0
     },
     "note": "Projection dérivée d'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null)."
   },
   "nodes": [
     {
-      "id": "ext:100s",
-      "type": "external",
-      "label": "100s"
-    },
-    {
-      "id": "ext:200s",
-      "type": "external",
-      "label": "200s"
-    },
-    {
-      "id": "ext:300s",
-      "type": "external",
-      "label": "300s"
-    },
-    {
       "id": "ext:abstract-identity-concept",
       "type": "external",
-      "label": "Abstract Identity Concept"
+      "label": "Abstract Identity Concept",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:answer",
       "type": "external",
-      "label": "Answer"
+      "label": "Answer",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:append-only-fact-store",
       "type": "external",
-      "label": "append-only fact store"
+      "label": "append-only fact store",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:applied-competence-cluster",
       "type": "external",
-      "label": "Applied Competence Cluster"
+      "label": "Applied Competence Cluster",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:atomic-competence-unit",
       "type": "external",
-      "label": "Atomic Competence Unit"
+      "label": "Atomic Competence Unit",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:broad-competence-capacity",
       "type": "external",
-      "label": "Broad Competence Capacity"
+      "label": "Broad Competence Capacity",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:computation",
       "type": "external",
-      "label": "Computation"
+      "label": "Computation",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:consent",
       "type": "external",
-      "label": "consent"
+      "label": "consent",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:consent-facts",
       "type": "external",
-      "label": "consent facts"
+      "label": "consent facts",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:constant-time-comparison",
       "type": "external",
-      "label": "constant-time comparison"
+      "label": "constant-time comparison",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:coordinate",
       "type": "external",
-      "label": "Coordinate"
+      "label": "Coordinate",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:criterion",
       "type": "external",
-      "label": "Criterion"
+      "label": "Criterion",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:cryptographic-property",
       "type": "external",
-      "label": "Cryptographic Property"
+      "label": "Cryptographic Property",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:derived-state",
       "type": "external",
-      "label": "Derived State"
+      "label": "Derived State",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:derived-state-value",
       "type": "external",
-      "label": "Derived State Value"
+      "label": "Derived State Value",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:did-core",
       "type": "external",
-      "label": "DID Core"
+      "label": "DID Core",
+      "node_type": "prior_art",
+      "node_scope": "external",
+      "canonical": false,
+      "registry_entry": false
     },
     {
       "id": "ext:disclosure",
       "type": "external",
-      "label": "disclosure"
+      "label": "disclosure",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:entity",
       "type": "external",
-      "label": "Entity"
+      "label": "Entity",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:evidence-link",
       "type": "external",
-      "label": "Evidence Link"
+      "label": "Evidence Link",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:fact",
       "type": "external",
-      "label": "Fact"
+      "label": "Fact",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:framework-publication",
       "type": "external",
-      "label": "Framework publication"
+      "label": "Framework publication",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:framework-publication-of-levels",
       "type": "external",
-      "label": "Framework publication of levels"
+      "label": "Framework publication of levels",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:framework-version",
       "type": "external",
-      "label": "Framework version"
+      "label": "Framework version",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:hmac",
       "type": "external",
-      "label": "HMAC"
+      "label": "HMAC",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:human",
       "type": "external",
-      "label": "Human"
+      "label": "Human",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:identifier",
       "type": "external",
-      "label": "Identifier"
+      "label": "Identifier",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:identity",
       "type": "external",
-      "label": "Identity"
+      "label": "Identity",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:identity-surface",
       "type": "external",
-      "label": "Identity Surface"
+      "label": "Identity Surface",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:index",
       "type": "external",
-      "label": "Index"
+      "label": "Index",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:inspection-act",
       "type": "external",
-      "label": "Inspection Act"
+      "label": "Inspection Act",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:issuer-revocation",
       "type": "external",
-      "label": "Issuer revocation"
-    },
-    {
-      "id": "ext:its-facts-and-actions",
-      "type": "external",
-      "label": "its facts and actions"
+      "label": "Issuer revocation",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:jcs",
       "type": "external",
-      "label": "JCS"
+      "label": "JCS",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:learning-journey",
       "type": "external",
-      "label": "learning journey"
+      "label": "learning journey",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:level",
       "type": "external",
-      "label": "Level"
+      "label": "Level",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:non-ascii-conformance-test",
       "type": "external",
-      "label": "non-ASCII conformance test"
+      "label": "non-ASCII conformance test",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:ocr",
       "type": "external",
-      "label": "OCR"
+      "label": "OCR",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:open-badges",
       "type": "external",
-      "label": "Open Badges"
+      "label": "Open Badges",
+      "node_type": "prior_art",
+      "node_scope": "external",
+      "canonical": false,
+      "registry_entry": false
     },
     {
       "id": "ext:opus-x",
       "type": "external",
-      "label": "Opus X"
+      "label": "Opus X",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:organization-role",
       "type": "external",
-      "label": "Organization role"
+      "label": "Organization role",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:party",
       "type": "external",
-      "label": "Party"
+      "label": "Party",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:passport",
       "type": "external",
-      "label": "Passport"
+      "label": "Passport",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:passport-update",
       "type": "external",
-      "label": "Passport update"
+      "label": "Passport update",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:presentation-view",
       "type": "external",
-      "label": "Presentation View"
+      "label": "Presentation View",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:process",
       "type": "external",
-      "label": "Process"
-    },
-    {
-      "id": "ext:production-issuer-from-verification",
-      "type": "external",
-      "label": "production (Issuer) from verification"
+      "label": "Process",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:projection",
       "type": "external",
-      "label": "Projection"
+      "label": "Projection",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:protocol",
       "type": "external",
-      "label": "Protocol"
+      "label": "Protocol",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:provenance",
       "type": "external",
-      "label": "Provenance"
+      "label": "Provenance",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:query",
       "type": "external",
-      "label": "Query"
+      "label": "Query",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:record",
       "type": "external",
-      "label": "Record"
+      "label": "Record",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:reference-model",
       "type": "external",
-      "label": "Reference Model"
+      "label": "Reference Model",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:resolution-layer",
       "type": "external",
-      "label": "Resolution Layer"
+      "label": "Resolution Layer",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:revocation-fact",
       "type": "external",
-      "label": "Revocation fact"
-    },
-    {
-      "id": "ext:source-records",
-      "type": "external",
-      "label": "source records"
+      "label": "Revocation fact",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:specification-body",
       "type": "external",
-      "label": "Specification Body"
+      "label": "Specification Body",
+      "node_type": "entity",
+      "node_scope": "internal"
     },
     {
       "id": "ext:standard",
       "type": "external",
-      "label": "Standard"
+      "label": "Standard",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:state-sequence",
       "type": "external",
-      "label": "State Sequence"
+      "label": "State Sequence",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "ext:subject-owner",
       "type": "external",
-      "label": "Subject-Owner"
-    },
-    {
-      "id": "ext:the-protocol-s-concepts",
-      "type": "external",
-      "label": "the protocol's concepts"
+      "label": "Subject-Owner",
+      "node_type": "concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:verifiable-credentials",
       "type": "external",
-      "label": "Verifiable Credentials"
+      "label": "Verifiable Credentials",
+      "node_type": "prior_art",
+      "node_scope": "external",
+      "canonical": false,
+      "registry_entry": false
     },
     {
       "id": "ext:verifiable-professional-truth",
       "type": "external",
-      "label": "verifiable professional truth"
-    },
-    {
-      "id": "ext:verifier-roles",
-      "type": "external",
-      "label": "verifier roles"
+      "label": "verifiable professional truth",
+      "node_type": "unclassified",
+      "node_scope": "external"
     },
     {
       "id": "OCR-100",
       "type": "internal",
-      "label": "World Skills Protocol"
+      "label": "World Skills Protocol",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-101",
       "type": "internal",
-      "label": "Professional Passport"
+      "label": "Professional Passport",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-102",
       "type": "internal",
-      "label": "Professional Identity"
+      "label": "Professional Identity",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-103",
       "type": "internal",
-      "label": "Professional"
+      "label": "Professional",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-104",
       "type": "internal",
-      "label": "Opus ID"
+      "label": "Opus ID",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-105",
       "type": "internal",
-      "label": "Trust"
+      "label": "Trust",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-106",
       "type": "internal",
-      "label": "Trust Status"
+      "label": "Trust Status",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-107",
       "type": "internal",
-      "label": "Verification"
+      "label": "Verification",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-108",
       "type": "internal",
-      "label": "Verification Request"
+      "label": "Verification Request",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-109",
       "type": "internal",
-      "label": "Verification Response"
+      "label": "Verification Response",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-110",
       "type": "internal",
-      "label": "Evidence"
+      "label": "Evidence",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-111",
       "type": "internal",
-      "label": "Evidence Source"
+      "label": "Evidence Source",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-112",
       "type": "internal",
-      "label": "Evidence Lifecycle"
+      "label": "Evidence Lifecycle",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-113",
       "type": "internal",
-      "label": "Evidence Integrity"
+      "label": "Evidence Integrity",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-114",
       "type": "internal",
-      "label": "Immutable Fact"
+      "label": "Immutable Fact",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-115",
       "type": "internal",
-      "label": "Framework"
+      "label": "Framework",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-116",
       "type": "internal",
-      "label": "Skill"
+      "label": "Skill",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-117",
       "type": "internal",
-      "label": "Competency"
+      "label": "Competency",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-118",
       "type": "internal",
-      "label": "Capability"
+      "label": "Capability",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-119",
       "type": "internal",
-      "label": "Framework Reference"
+      "label": "Framework Reference",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-120",
       "type": "internal",
-      "label": "Issuer"
+      "label": "Issuer",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-121",
       "type": "internal",
-      "label": "Certified Issuer"
+      "label": "Certified Issuer",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-122",
       "type": "internal",
-      "label": "Organization"
+      "label": "Organization",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-123",
       "type": "internal",
-      "label": "Professional Profile"
+      "label": "Professional Profile",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-124",
       "type": "internal",
-      "label": "Canonical Registry"
+      "label": "Canonical Registry",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     },
     {
       "id": "OCR-125",
       "type": "internal",
-      "label": "Identity"
+      "label": "Identity",
+      "node_type": "record",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": true
     }
   ],
   "edges": [
@@ -688,25 +933,6 @@
         "raw": "`produces` → verifiable professional truth",
         "source_predicate": "produces"
       }
-    },
-    {
-      "source": "OCR-100",
-      "predicate": null,
-      "target": "ext:production-issuer-from-verification",
-      "edge_type": "unresolved_predicate",
-      "semantic_stability": "Evolving",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": "Opus X",
-      "provenance": {
-        "record": "OCR-100",
-        "line": 149,
-        "raw": "`separates` → production (Issuer) from verification (Opus X)",
-        "source_predicate": "separates"
-      },
-      "unresolved_canonical": true,
-      "indexed_as_predicate": false
     },
     {
       "source": "OCR-100",
@@ -2893,23 +3119,6 @@
       }
     },
     {
-      "source": "OCR-114",
-      "predicate": "depends_on",
-      "target": "ext:source-records",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": "via `ON DELETE RESTRICT`",
-      "provenance": {
-        "record": "OCR-114",
-        "line": 157,
-        "raw": "`depends_on` → source records (via `ON DELETE RESTRICT`)",
-        "source_predicate": "depends_on"
-      }
-    },
-    {
       "source": "OCR-115",
       "predicate": "is_a",
       "target": "ext:reference-model",
@@ -3868,23 +4077,6 @@
     {
       "source": "OCR-122",
       "predicate": "holds",
-      "target": "ext:verifier-roles",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-122",
-        "line": 136,
-        "raw": "`holds` → Issuer (OCR-120) / Certified Issuer (OCR-121) / verifier roles",
-        "source_predicate": "holds"
-      }
-    },
-    {
-      "source": "OCR-122",
-      "predicate": "holds",
       "target": "OCR-120",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
@@ -3931,23 +4123,6 @@
         "line": 137,
         "raw": "`produces_when_issuer` → Evidence (OCR-110)",
         "source_predicate": "produces_when_issuer"
-      }
-    },
-    {
-      "source": "ext:its-facts-and-actions",
-      "predicate": "governed_by",
-      "target": "OCR-122",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-122",
-        "line": 138,
-        "raw": "`accountable_for` → its facts and actions",
-        "source_predicate": "accountable_for"
       }
     },
     {
@@ -4207,23 +4382,6 @@
     },
     {
       "source": "OCR-124",
-      "predicate": "defines",
-      "target": "ext:the-protocol-s-concepts",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-124",
-        "line": 143,
-        "raw": "`defines` → the protocol's concepts",
-        "source_predicate": "defines"
-      }
-    },
-    {
-      "source": "OCR-124",
       "predicate": "governed_by",
       "target": "ext:opus-x",
       "edge_type": "predicate",
@@ -4237,57 +4395,6 @@
         "line": 144,
         "raw": "`governed_by` → Opus X",
         "source_predicate": "governed_by"
-      }
-    },
-    {
-      "source": "OCR-124",
-      "predicate": "part_of",
-      "target": "ext:100s",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-124",
-        "line": 146,
-        "raw": "`layered_into` → 100s / 200s / 300s",
-        "source_predicate": "layered_into"
-      }
-    },
-    {
-      "source": "OCR-124",
-      "predicate": "part_of",
-      "target": "ext:200s",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-124",
-        "line": 146,
-        "raw": "`layered_into` → 100s / 200s / 300s",
-        "source_predicate": "layered_into"
-      }
-    },
-    {
-      "source": "OCR-124",
-      "predicate": "part_of",
-      "target": "ext:300s",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-124",
-        "line": 146,
-        "raw": "`layered_into` → 100s / 200s / 300s",
-        "source_predicate": "layered_into"
       }
     },
     {

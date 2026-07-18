@@ -27,6 +27,7 @@ import path from 'node:path';
 
 const RECORDS_DIR = 'docs/web/registry-import/OCR-100';
 const RESOLUTION = 'content/registry/ocr-007-resolution.json';
+const CLASSIFICATION = 'content/registry/external-classification.json';
 const OUT_GRAPH = 'content/registry/wsp-graph.json';
 const OUT_REPORT = 'content/registry/wsp-graph.report.json';
 
@@ -42,6 +43,22 @@ const TITLE_TO_ID = new Map();
 // résolution contexte-dépendante impossible mécaniquement → jamais auto-résolus.
 const FLAGGED_NAMES = new Set(['identity']);
 const norm = (s) => s.toLowerCase().trim();
+
+// ─── Classification des nœuds externes (décision architecte figée) ────────────
+// label normalisé → catégorie. Ce qui n'y figure pas → unclassified (jamais deviné).
+const classificationDoc = JSON.parse(readFileSync(CLASSIFICATION, 'utf8'));
+const LABEL_TO_CATEGORY = new Map();
+for (const cat of ['concept', 'entity', 'prior_art', 'prose_artifact']) {
+  for (const label of classificationDoc[cat] || []) LABEL_TO_CATEGORY.set(norm(label), cat);
+}
+// Attributs posés selon la catégorie (les prose_artifact sont exclus du modèle).
+const CATEGORY_ATTRS = {
+  concept: { node_type: 'concept', node_scope: 'internal', canonical: true, registry_entry: false },
+  entity: { node_type: 'entity', node_scope: 'internal' },
+  prior_art: { node_type: 'prior_art', node_scope: 'external', canonical: false, registry_entry: false },
+};
+// Prédicats admis vers un nœud prior_art (jamais présenté comme partie du WSP).
+const PRIOR_ART_OK = new Set(['related_to', 'references']);
 
 // ─── Utilitaires ────────────────────────────────────────────────────────────
 function slug(s) {
@@ -169,6 +186,9 @@ const report = {
   name_flagged: [], // label ~ un titre mais AMBIGU/raccourci (Identity, Passport, Protocol) — architecte
   compound_target: [], // cible externe cachant 2 cibles (« … from … », separates) — architecte
   verbose_externals: [], // labels externes multi-mots (prose) — revue architecte
+  excluded: { nodes: [], edges: [] }, // prose_artifact retirés du modèle (traçabilité conservée)
+  unclassified_externals: [], // externes hors classification architecte — SIGNALÉS, non devinés
+  prior_art_guard: [], // arêtes vers prior_art avec un prédicat non related_to/references — anomalie
   errors: [], // prédicat absent du JSON, ligne non parsable — À CORRIGER
 };
 
@@ -386,9 +406,52 @@ for (const ext of report.externals) {
   }
 }
 
+// ── Classification des nœuds (décision architecte) + exclusion des prose_artifact ──
+const proseNodeIds = new Set();
+for (const node of nodes.values()) {
+  if (node.type === 'internal') {
+    Object.assign(node, { node_type: 'record', node_scope: 'internal', canonical: true, registry_entry: true });
+    continue;
+  }
+  const cat = LABEL_TO_CATEGORY.get(norm(node.label));
+  if (cat === 'prose_artifact') { proseNodeIds.add(node.id); continue; }
+  if (cat && CATEGORY_ATTRS[cat]) {
+    Object.assign(node, CATEGORY_ATTRS[cat]);
+  } else {
+    // Hors classification architecte → SIGNALÉ, jamais deviné.
+    Object.assign(node, { node_type: 'unclassified', node_scope: 'external' });
+    report.unclassified_externals.push({
+      id: node.id, label: node.label,
+      records: externalRefs.has(node.id) ? [...externalRefs.get(node.id)].sort() : [],
+    });
+  }
+}
+report.unclassified_externals.sort((a, b) => a.label.localeCompare(b.label));
+
+// Exclusion prose_artifact : hors modèle, mais CONSERVÉS dans report.excluded (traçabilité).
+report.excluded.nodes = [...proseNodeIds].map((id) => nodes.get(id)).filter(Boolean).map((n) => ({ id: n.id, label: n.label }));
+for (const id of proseNodeIds) nodes.delete(id);
+const keptEdges = [];
+for (const e of edges) {
+  if (proseNodeIds.has(e.source) || proseNodeIds.has(e.target)) report.excluded.edges.push(e);
+  else keptEdges.push(e);
+}
+edges.length = 0;
+edges.push(...keptEdges);
+
+// Garde prior_art : une arête touchant un prior_art n'est admise QUE via related_to/references.
+const priorArtIds = new Set([...nodes.values()].filter((n) => n.node_type === 'prior_art').map((n) => n.id));
+for (const e of edges) {
+  if ((priorArtIds.has(e.source) || priorArtIds.has(e.target)) && !PRIOR_ART_OK.has(e.predicate)) {
+    report.prior_art_guard.push({ source: e.source, predicate: e.predicate, target: e.target, raw: e.provenance.raw });
+  }
+}
+
 const nodeList = [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id));
-const internalCount = nodeList.filter((n) => n.type === 'internal').length;
-const externalCount = nodeList.filter((n) => n.type === 'external').length;
+const internalCount = nodeList.filter((n) => n.node_scope === 'internal').length;
+const externalCount = nodeList.filter((n) => n.node_scope === 'external').length;
+const byType = {};
+for (const n of nodeList) byType[n.node_type] = (byType[n.node_type] || 0) + 1;
 const predicateEdges = edges.filter((e) => e.edge_type === 'predicate');
 
 // Tri stable des arêtes : par record, ligne, puis triplet.
@@ -409,6 +472,7 @@ const graph = {
       nodes_total: nodeList.length,
       nodes_internal: internalCount,
       nodes_external: externalCount,
+      nodes_by_type: byType,
       edges_total: edges.length,
       edges_predicate: predicateEdges.length,
       edges_cascade_hop: report.cascade_hops.length,
@@ -418,6 +482,10 @@ const graph = {
       rejected_dropped: report.rejected.length,
       name_flagged: report.name_flagged.length,
       compound_target: report.compound_target.length,
+      unclassified_externals: report.unclassified_externals.length,
+      excluded_prose_nodes: report.excluded.nodes.length,
+      excluded_prose_edges: report.excluded.edges.length,
+      prior_art_guard_violations: report.prior_art_guard.length,
       errors: report.errors.length,
     },
     note: 'Projection dérivée d\'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null).',
@@ -433,6 +501,8 @@ writeFileSync(OUT_REPORT, JSON.stringify(report, null, 2) + '\n', 'utf8');
 const c = graph._meta.counts;
 console.log('WSP-001 build-graph —', recordsWithKG, 'Records avec section KG');
 console.log('  nodes:', c.nodes_total, '(internes', c.nodes_internal + ', externes', c.nodes_external + ')');
+console.log('  par type:', JSON.stringify(c.nodes_by_type));
 console.log('  edges:', c.edges_total, '(predicate', c.edges_predicate + ', cascade_hop', c.edges_cascade_hop + ')');
-console.log('  reflexives:', c.reflexives, '| Rejected écartées:', c.rejected_dropped, '| erreurs:', c.errors);
+console.log('  prose exclus:', c.excluded_prose_nodes, 'nœuds /', c.excluded_prose_edges, 'arêtes | unclassified:', c.unclassified_externals);
+console.log('  reflexives:', c.reflexives, '| Rejected écartées:', c.rejected_dropped, '| prior_art guard:', c.prior_art_guard_violations, '| erreurs:', c.errors);
 console.log('  →', OUT_GRAPH, '+', OUT_REPORT);

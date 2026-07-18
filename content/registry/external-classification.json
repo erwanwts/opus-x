@@ -1,0 +1,58 @@
+{
+  "_meta": {
+    "authority": "Décision architecte figée — classification des nœuds externes du Knowledge Graph WSP-001.",
+    "note": "Données de décision (comme ocr-007-resolution.json), appliquées par scripts/registry/build-graph.mjs. Clé = label normalisé (minuscule + trim). Le graphe reste régénérable : source Records + résolution OCR-007 + cette classification.",
+    "covers": 41,
+    "of_externals": 66,
+    "unclassified_note": "Les 25 externes hors de ces listes sont marqués node_type:unclassified et signalés (report.unclassified_externals) — JAMAIS devinés. À classer par l'architecte ultérieurement."
+  },
+  "concept": [
+    "Consent",
+    "Abstract Identity Concept",
+    "Identity Surface",
+    "Identifier",
+    "Coordinate",
+    "Criterion",
+    "Projection",
+    "Provenance",
+    "Process",
+    "Presentation View",
+    "Evidence Link",
+    "Passport Update",
+    "Framework Version",
+    "Framework Publication",
+    "Derived State",
+    "Derived State Value",
+    "Atomic Competence Unit",
+    "Applied Competence Cluster",
+    "Broad Competence Capacity",
+    "Resolution Layer",
+    "Reference Model",
+    "Inspection Act",
+    "Subject-Owner",
+    "Record"
+  ],
+  "entity": [
+    "Opus X",
+    "Human",
+    "Organization Role",
+    "Party",
+    "Specification Body",
+    "Issuer Revocation"
+  ],
+  "prior_art": [
+    "DID Core",
+    "Open Badges",
+    "Verifiable Credentials"
+  ],
+  "prose_artifact": [
+    "its facts and actions",
+    "source records",
+    "the protocol's concepts",
+    "verifier roles",
+    "production (Issuer) from verification",
+    "100s",
+    "200s",
+    "300s"
+  ]
+}
