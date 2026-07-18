@@ -57,9 +57,36 @@ function VerifiedSeal({ label }: { label: string }) {
   );
 }
 
+/**
+ * Le bandeau DÉMO — rendu DANS la carte, en tête, quand `is_demo === true`.
+ *
+ * DANS la carte à dessein : un bandeau posé au-dessus de l'objet se perdrait au
+ * recadrage d'une capture d'écran. Ici il fait partie de l'objet.
+ *
+ * Navy/neutre — JAMAIS or : l'or est la confiance MÉRITÉE, or cette carte n'en
+ * a mérité aucune. `role="note"` : le message est annoncé, pas décoratif (le
+ * sceau, lui, est aria-hidden). `pr-20` dégage le sceau (positionné sur la
+ * carte, non modifié — le rendu d'un VRAI Passport reste identique au Lot 4).
+ */
+function DemoBanner({ label }: { label: string }) {
+  return (
+    <div role="note" className="relative border-b border-navy-600 bg-navy-800 px-8 py-4 pr-20 md:px-12 md:pr-24">
+      <p className="font-interface text-body-sm leading-relaxed text-navy-100">{label}</p>
+    </div>
+  );
+}
+
 export function PassportView({ passport }: { passport: PublicPassport }) {
-  const { display_name, headline, lifecycle_stage, issued_at, verified, skills_status, evidence } =
-    passport;
+  const {
+    display_name,
+    headline,
+    lifecycle_stage,
+    issued_at,
+    verified,
+    is_demo,
+    skills,
+    evidence,
+  } = passport;
   const stageLabel = lifecycleLabelSafe(lifecycle_stage);
   const currentIndex = Math.max(0, LIFECYCLE_STAGES.findIndex((s) => s.key === lifecycle_stage));
 
@@ -90,6 +117,9 @@ export function PassportView({ passport }: { passport: PublicPassport }) {
             <circle cx="18" cy="18" r="3.5" fill="var(--gold-500)" />
           </svg>
         </div>
+
+        {/* ── Bloc 0 — VITRINE : annule le sceau avant même que l'œil l'atteigne ── */}
+        {is_demo ? <DemoBanner label={S.demoBanner} /> : null}
 
         <div className="relative p-8 md:p-12">
           {/* ── Bloc 1 — En-tête institutionnel + Bloc 2 — l'objet ── */}
@@ -152,15 +182,30 @@ export function PassportView({ passport }: { passport: PublicPassport }) {
             </p>
           </div>
 
-          {/* ── Bloc 4 — Skills Status ── */}
+          {/* ── Bloc 4 — Skills publiques (Lot 5) ──
+               `skills_status` n'est PLUS rendu : c'était la valeur BRUTE de la
+               base, affichée telle quelle, sans libellé. La liste la remplace.
+               Le scalaire reste au contrat (whitelist / API JSON).
+               NOM SEUL — jamais de `level` : le niveau interprété du Passport
+               relève d'une couche protocolaire qui n'existe pas (D6, O3/O4).
+               Aucun compteur, aucun score, aucun classement (PRODUCT-001). */}
           <section className="mt-10 border-t border-navy-700 pt-8">
             <h2 className="font-interface text-micro uppercase tracking-[0.12em] text-navy-400">
               {STATUS_LABELS.skills}
             </h2>
-            {skills_status && skills_status !== 'empty' ? (
-              <p className="mt-3 font-institutional text-body-lg text-navy-100">{skills_status}</p>
-            ) : (
+            {skills.length === 0 ? (
               <p className="mt-3 font-interface text-body text-navy-300">{S.skillsEmpty}</p>
+            ) : (
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {skills.map((s, i) => (
+                  <li
+                    key={`${s.name}-${i}`}
+                    className="rounded-control border border-navy-700 bg-navy-900/60 px-3 py-1 font-institutional text-body-sm text-navy-100"
+                  >
+                    {s.name}
+                  </li>
+                ))}
+              </ul>
             )}
           </section>
 
