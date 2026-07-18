@@ -7,11 +7,48 @@
  * sont matérialisés par ces sections + le JSON-LD Schema.org émis par la page.
  *
  * Composant présentiel pur : reçoit un GeoPageContent déjà projeté (lib/content),
- * n'invente rien. Registre OBJET : navy dominant, l'or réservé (aucun ici).
+ * n'invente rien. La MISE EN FORME (emphase inline, listes composed-of, état du
+ * CTA) est une propriété du COMPOSANT, appliquée par règle déterministe — jamais
+ * une décision manuelle page par page. Registre OBJET : navy dominant, or réservé.
  * =====================================================================
  */
+import { Fragment } from 'react';
 import Link from 'next/link';
-import type { GeoPageContent } from '@/lib/content/geo';
+import type { GeoPageContent, Span, Block } from '@/lib/content/geo';
+
+/** Rend des segments inline : texte échappé, italique de la source → <em>. */
+function Inline({ spans }: { spans: Span[] }) {
+  return (
+    <>
+      {spans.map((s, i) => (s.em ? <em key={i}>{s.text}</em> : <Fragment key={i}>{s.text}</Fragment>))}
+    </>
+  );
+}
+
+/** Rend de la prose : paragraphes + éventuelles listes (règle composed-of). */
+function Prose({ blocks }: { blocks: Block[] }) {
+  return (
+    <>
+      {blocks.map((b, i) =>
+        b.kind === 'ul' ? (
+          <div key={i} className={i ? 'mt-4' : undefined}>
+            <p className="leading-relaxed"><Inline spans={b.lead} /></p>
+            <ul className="mt-3 space-y-2">
+              {b.items.map((it, j) => (
+                <li key={j} className="flex gap-2">
+                  <span className="text-navy-500">—</span>
+                  <span><Inline spans={it} /></span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p key={i} className={`leading-relaxed${i ? ' mt-4' : ''}`}><Inline spans={b.spans} /></p>
+        ),
+      )}
+    </>
+  );
+}
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -40,14 +77,14 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
         </h1>
 
         {/* Réponse directe (40-80 mots) */}
-        {c.directAnswer ? (
-          <p className="mt-6 font-institutional text-body-lg leading-relaxed text-navy-100">{c.directAnswer}</p>
+        {c.directAnswer.length ? (
+          <p className="mt-6 font-institutional text-body-lg leading-relaxed text-navy-100"><Inline spans={c.directAnswer} /></p>
         ) : null}
 
         {/* Définition canonique */}
-        {c.definition ? (
+        {c.definition.length ? (
           <Section title="Canonical Definition">
-            <p className="font-institutional text-body-lg text-navy-100">{c.definition}</p>
+            <p className="font-institutional text-body-lg text-navy-100"><Inline spans={c.definition} /></p>
           </Section>
         ) : null}
 
@@ -56,25 +93,25 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
           <Section title="Key Facts">
             <ul className="space-y-2">
               {c.keyFacts.map((f, i) => (
-                <li key={i} className="flex gap-2"><span className="text-navy-500">—</span><span>{f}</span></li>
+                <li key={i} className="flex gap-2"><span className="text-navy-500">—</span><span><Inline spans={f} /></span></li>
               ))}
             </ul>
           </Section>
         ) : null}
 
         {/* Pourquoi cela existe */}
-        {c.whyExists ? (
-          <Section title="Why It Exists"><p className="leading-relaxed">{c.whyExists}</p></Section>
+        {c.whyExists.length ? (
+          <Section title="Why It Exists"><Prose blocks={c.whyExists} /></Section>
         ) : null}
 
         {/* Comment cela fonctionne */}
-        {c.howItWorks ? (
-          <Section title="How It Works"><p className="leading-relaxed">{c.howItWorks}</p></Section>
+        {c.howItWorks.length ? (
+          <Section title="How It Works"><Prose blocks={c.howItWorks} /></Section>
         ) : null}
 
         {/* Acteurs */}
-        {c.actors ? (
-          <Section title="Actors"><p className="leading-relaxed">{c.actors}</p></Section>
+        {c.actors.length ? (
+          <Section title="Actors"><Prose blocks={c.actors} /></Section>
         ) : null}
 
         {/* Cycle de vie */}
@@ -84,7 +121,7 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
               {c.lifecycle.map((step, i) => (
                 <li key={i} className="flex gap-3">
                   <span className="font-engraved text-body-sm text-navy-500">{String(i + 1).padStart(2, '0')}</span>
-                  <span>{step}</span>
+                  <span><Inline spans={step} /></span>
                 </li>
               ))}
             </ol>
@@ -94,20 +131,20 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
         {/* Exemple */}
         {c.examples.length ? (
           <Section title="Examples">
-            <ul className="space-y-2">{c.examples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">·</span><span>{e}</span></li>)}</ul>
+            <ul className="space-y-2">{c.examples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">·</span><span><Inline spans={e} /></span></li>)}</ul>
           </Section>
         ) : null}
 
         {/* Non-exemple */}
         {c.nonExamples.length ? (
           <Section title="Counter Examples">
-            <ul className="space-y-2">{c.nonExamples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">×</span><span>{e}</span></li>)}</ul>
+            <ul className="space-y-2">{c.nonExamples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">×</span><span><Inline spans={e} /></span></li>)}</ul>
           </Section>
         ) : null}
 
         {/* Distinctions */}
-        {c.distinctions ? (
-          <Section title="Distinctions"><p className="leading-relaxed">{c.distinctions}</p></Section>
+        {c.distinctions.length ? (
+          <Section title="Distinctions"><Prose blocks={c.distinctions} /></Section>
         ) : null}
 
         {/* FAQ (le JSON-LD FAQPage est émis par la page) */}
@@ -116,8 +153,8 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
             <dl className="space-y-4">
               {c.faq.map((qa, i) => (
                 <div key={i}>
-                  <dt className="font-institutional text-body font-semibold text-navy-100">{qa.q}</dt>
-                  <dd className="mt-1 text-navy-300">{qa.a}</dd>
+                  <dt className="font-institutional text-body font-semibold text-navy-100"><Inline spans={qa.q} /></dt>
+                  <dd className="mt-1 text-navy-300"><Inline spans={qa.a} /></dd>
                 </div>
               ))}
             </dl>
@@ -152,11 +189,19 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
           </Section>
         ) : null}
 
-        {/* CTA (éditorial/UI) */}
+        {/* CTA (éditorial/UI) — deux états déterministes (WEB GEO 1b, exigence
+             architecte : ne JAMAIS pointer vers une ressource inexistante).
+             `enabled` (flag côté page) bascule entre lien actif et libellé inerte. */}
         <div className="mt-12 border-t border-navy-800 pt-8">
-          <a href={c.cta.href} className="inline-flex items-center gap-2 rounded-control border border-navy-600 bg-navy-800 px-4 py-2 font-interface text-body text-navy-100 hover:border-navy-400">
-            {c.cta.label} →
-          </a>
+          {c.cta.enabled ? (
+            <a href={c.cta.href} className="inline-flex items-center gap-2 rounded-control border border-navy-600 bg-navy-800 px-4 py-2 font-interface text-body text-navy-100 hover:border-navy-400">
+              {c.cta.label} →
+            </a>
+          ) : (
+            <span aria-disabled="true" className="inline-flex cursor-default items-center gap-2 rounded-control border border-navy-800 bg-navy-900/40 px-4 py-2 font-interface text-body text-navy-500">
+              {c.cta.label}
+            </span>
+          )}
         </div>
 
         {/* Date / Auteur / Version (Source of Truth, bloc LLM) */}

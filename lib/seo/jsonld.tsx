@@ -63,6 +63,20 @@ export function definedTermLd(input: { name: string; description?: string | null
   return ld;
 }
 
+/**
+ * Sérialise un bloc pour insertion dans un <script type="application/ld+json">.
+ * Échappe `< > &` en \uXXXX : un parseur JSON-LD les décode à l'identique (contenu
+ * PRÉSERVÉ), mais aucun texte issu d'un Record ne peut fermer le <script> (`</script>`)
+ * ni injecter du HTML. Le contexte est du DATA JSON (non exécuté) : `<`/`>` suffisent —
+ * défense en profondeur même si le contenu est « le nôtre ».
+ */
+function serializeLd(b: Ld): string {
+  return JSON.stringify(b)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e')
+    .replace(/&/g, '\\u0026');
+}
+
 /** Rend un ou plusieurs blocs JSON-LD dans le DOM (script visible). */
 export function JsonLd({ blocks }: { blocks: Ld[] }) {
   return (
@@ -71,8 +85,8 @@ export function JsonLd({ blocks }: { blocks: Ld[] }) {
         <script
           key={i}
           type="application/ld+json"
-          // JSON contrôlé (nos builders) — pas d'entrée utilisateur.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(b) }}
+          // Sérialisation durcie : jamais de sortie de <script> depuis un Record.
+          dangerouslySetInnerHTML={{ __html: serializeLd(b) }}
         />
       ))}
     </>

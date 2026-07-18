@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { GeoPage } from '@/components/geo/GeoPage';
-import { buildGeoContent } from '@/lib/content/geo';
+import { buildGeoContent, spansToText } from '@/lib/content/geo';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { pillarBySlug } from '@/lib/seo/pillars';
 import { JsonLd, organizationLd, breadcrumbLd, webPageLd, faqPageLd } from '@/lib/seo/jsonld';
@@ -15,6 +15,8 @@ import { JsonLd, organizationLd, breadcrumbLd, webPageLd, faqPageLd } from '@/li
 const SLUG = 'evidence';
 const BASE = 'https://opusx.world';
 const pillar = pillarBySlug(SLUG)!;
+// L'état du CTA (actif/inerte) est décidé par le flag UNIQUE lib/seo/flags, appliqué
+// dans buildGeoContent. La page ne fournit que label + href ; elle ne peut pas le forcer.
 
 export const dynamic = 'force-static';
 export const dynamicParams = false; // locale non générée → 404 (fallback strict)
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale,
     slug: SLUG,
     title: c?.title ?? 'Evidence',
-    description: c?.directAnswer ?? '',
+    description: c ? spansToText(c.directAnswer) : '',
     translatedLocales: pillar.translatedLocales,
   });
 }
@@ -46,14 +48,15 @@ export default async function EvidencePage({ params }: { params: Promise<{ local
   if (!content) notFound();
 
   const url = `${BASE}/${locale}/${SLUG}`;
+  const description = spansToText(content.directAnswer);
   const ld = [
     organizationLd(),
     breadcrumbLd([
       { name: 'Opus X', url: `${BASE}/${locale}` },
       { name: content.title, url },
     ]),
-    webPageLd({ name: content.title, description: content.directAnswer, url, datePublished: content.meta.date, version: content.meta.version }),
-    ...(content.faq.length ? [faqPageLd(content.faq)] : []),
+    webPageLd({ name: content.title, description, url, datePublished: content.meta.date, version: content.meta.version }),
+    ...(content.faq.length ? [faqPageLd(content.faq.map((qa) => ({ q: spansToText(qa.q), a: spansToText(qa.a) })))] : []),
   ];
 
   return (
