@@ -6,29 +6,32 @@
     "generated_from": "docs/web/registry-import/OCR-100",
     "records_with_kg": 26,
     "counts": {
-      "nodes_total": 84,
-      "nodes_internal": 56,
-      "nodes_external": 28,
+      "nodes_total": 79,
+      "nodes_internal": 73,
+      "nodes_external": 6,
       "nodes_by_type": {
-        "concept": 24,
-        "unclassified": 25,
-        "prior_art": 3,
+        "protocol_concept": 41,
+        "external_prior_art": 3,
+        "technical_dependency": 2,
         "entity": 6,
+        "ambiguous_alias": 1,
         "record": 26
       },
-      "edges_total": 223,
-      "edges_predicate": 220,
-      "edges_cascade_hop": 3,
+      "edges_total": 221,
+      "edges_predicate": 221,
+      "edges_cascade_hop": 0,
       "edges_unresolved_canonical": 1,
-      "reflexives": 3,
-      "reflexive_noted": 2,
+      "reflexives": 6,
+      "reflexive_noted": 0,
       "rejected_dropped": 13,
-      "name_flagged": 4,
+      "name_flagged": 1,
       "compound_target": 1,
-      "unclassified_externals": 25,
-      "excluded_prose_nodes": 8,
-      "excluded_prose_edges": 8,
-      "prior_art_guard_violations": 0,
+      "unclassified_externals": 0,
+      "excluded_nodes": 10,
+      "excluded_edges": 10,
+      "alias_self_loop": 2,
+      "cascade_hops_remaining": 0,
+      "category_guard_violations": 0,
       "errors": 0
     },
     "note": "Projection dérivée d'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null)."
@@ -38,7 +41,7 @@
       "id": "ext:abstract-identity-concept",
       "type": "external",
       "label": "Abstract Identity Concept",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -47,21 +50,25 @@
       "id": "ext:answer",
       "type": "external",
       "label": "Answer",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:append-only-fact-store",
       "type": "external",
       "label": "append-only fact store",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:applied-competence-cluster",
       "type": "external",
       "label": "Applied Competence Cluster",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -70,7 +77,7 @@
       "id": "ext:atomic-competence-unit",
       "type": "external",
       "label": "Atomic Competence Unit",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -79,7 +86,7 @@
       "id": "ext:broad-competence-capacity",
       "type": "external",
       "label": "Broad Competence Capacity",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -88,14 +95,16 @@
       "id": "ext:computation",
       "type": "external",
       "label": "Computation",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:consent",
       "type": "external",
       "label": "consent",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -104,21 +113,17 @@
       "id": "ext:consent-facts",
       "type": "external",
       "label": "consent facts",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
-      "id": "ext:constant-time-comparison",
-      "type": "external",
-      "label": "constant-time comparison",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false,
+      "specialization_of": "OCR-114"
     },
     {
       "id": "ext:coordinate",
       "type": "external",
       "label": "Coordinate",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -127,7 +132,7 @@
       "id": "ext:criterion",
       "type": "external",
       "label": "Criterion",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -136,14 +141,16 @@
       "id": "ext:cryptographic-property",
       "type": "external",
       "label": "Cryptographic Property",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:derived-state",
       "type": "external",
       "label": "Derived State",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -152,7 +159,7 @@
       "id": "ext:derived-state-value",
       "type": "external",
       "label": "Derived State Value",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -161,7 +168,7 @@
       "id": "ext:did-core",
       "type": "external",
       "label": "DID Core",
-      "node_type": "prior_art",
+      "node_type": "external_prior_art",
       "node_scope": "external",
       "canonical": false,
       "registry_entry": false
@@ -170,37 +177,34 @@
       "id": "ext:disclosure",
       "type": "external",
       "label": "disclosure",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
-      "id": "ext:entity",
-      "type": "external",
-      "label": "Entity",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
-      "id": "ext:evidence-link",
-      "type": "external",
-      "label": "Evidence Link",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
     },
     {
-      "id": "ext:fact",
+      "id": "ext:entity",
       "type": "external",
-      "label": "Fact",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "label": "Entity",
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
+    },
+    {
+      "id": "ext:evidence-link",
+      "type": "external",
+      "label": "Evidence Link",
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:framework-publication",
       "type": "external",
       "label": "Framework publication",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -209,14 +213,17 @@
       "id": "ext:framework-publication-of-levels",
       "type": "external",
       "label": "Framework publication of levels",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false,
+      "specialization_of": "Framework Publication"
     },
     {
       "id": "ext:framework-version",
       "type": "external",
       "label": "Framework version",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -225,8 +232,11 @@
       "id": "ext:hmac",
       "type": "external",
       "label": "HMAC",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "technical_dependency",
+      "node_scope": "external",
+      "canonical": false,
+      "registry_entry": false,
+      "geo_page": false
     },
     {
       "id": "ext:human",
@@ -239,7 +249,7 @@
       "id": "ext:identifier",
       "type": "external",
       "label": "Identifier",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -248,14 +258,19 @@
       "id": "ext:identity",
       "type": "external",
       "label": "Identity",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "ambiguous_alias",
+      "node_scope": "external",
+      "requires_manual_resolution": true,
+      "candidates": [
+        "OCR-102",
+        "OCR-125"
+      ]
     },
     {
       "id": "ext:identity-surface",
       "type": "external",
       "label": "Identity Surface",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -264,14 +279,16 @@
       "id": "ext:index",
       "type": "external",
       "label": "Index",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:inspection-act",
       "type": "external",
       "label": "Inspection Act",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -287,42 +304,45 @@
       "id": "ext:jcs",
       "type": "external",
       "label": "JCS",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "technical_dependency",
+      "node_scope": "external",
+      "canonical": false,
+      "registry_entry": false,
+      "geo_page": false,
+      "standard_ref": "RFC 8785"
     },
     {
       "id": "ext:learning-journey",
       "type": "external",
       "label": "learning journey",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:level",
       "type": "external",
       "label": "Level",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
-      "id": "ext:non-ascii-conformance-test",
-      "type": "external",
-      "label": "non-ASCII conformance test",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:ocr",
       "type": "external",
       "label": "OCR",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:open-badges",
       "type": "external",
       "label": "Open Badges",
-      "node_type": "prior_art",
+      "node_type": "external_prior_art",
       "node_scope": "external",
       "canonical": false,
       "registry_entry": false
@@ -349,17 +369,10 @@
       "node_scope": "internal"
     },
     {
-      "id": "ext:passport",
-      "type": "external",
-      "label": "Passport",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
       "id": "ext:passport-update",
       "type": "external",
       "label": "Passport update",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -368,7 +381,7 @@
       "id": "ext:presentation-view",
       "type": "external",
       "label": "Presentation View",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -377,7 +390,7 @@
       "id": "ext:process",
       "type": "external",
       "label": "Process",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -386,23 +399,16 @@
       "id": "ext:projection",
       "type": "external",
       "label": "Projection",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
     },
     {
-      "id": "ext:protocol",
-      "type": "external",
-      "label": "Protocol",
-      "node_type": "unclassified",
-      "node_scope": "external"
-    },
-    {
       "id": "ext:provenance",
       "type": "external",
       "label": "Provenance",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -411,14 +417,16 @@
       "id": "ext:query",
       "type": "external",
       "label": "Query",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:record",
       "type": "external",
       "label": "Record",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -427,7 +435,7 @@
       "id": "ext:reference-model",
       "type": "external",
       "label": "Reference Model",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -436,7 +444,7 @@
       "id": "ext:resolution-layer",
       "type": "external",
       "label": "Resolution Layer",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -445,8 +453,11 @@
       "id": "ext:revocation-fact",
       "type": "external",
       "label": "Revocation fact",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false,
+      "specialization_of": "OCR-114"
     },
     {
       "id": "ext:specification-body",
@@ -459,21 +470,25 @@
       "id": "ext:standard",
       "type": "external",
       "label": "Standard",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:state-sequence",
       "type": "external",
       "label": "State Sequence",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "ext:subject-owner",
       "type": "external",
       "label": "Subject-Owner",
-      "node_type": "concept",
+      "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
       "registry_entry": false
@@ -482,7 +497,7 @@
       "id": "ext:verifiable-credentials",
       "type": "external",
       "label": "Verifiable Credentials",
-      "node_type": "prior_art",
+      "node_type": "external_prior_art",
       "node_scope": "external",
       "canonical": false,
       "registry_entry": false
@@ -491,8 +506,10 @@
       "id": "ext:verifiable-professional-truth",
       "type": "external",
       "label": "verifiable professional truth",
-      "node_type": "unclassified",
-      "node_scope": "external"
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
     },
     {
       "id": "OCR-100",
@@ -506,7 +523,7 @@
     {
       "id": "OCR-101",
       "type": "internal",
-      "label": "Professional Passport",
+      "label": "Passport",
       "node_type": "record",
       "node_scope": "internal",
       "canonical": true,
@@ -733,11 +750,11 @@
     {
       "source": "OCR-100",
       "predicate": "is_a",
-      "target": "ext:protocol",
+      "target": "OCR-100",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
-      "reflexive": false,
+      "reflexive": true,
       "via": null,
       "note": null,
       "provenance": {
@@ -765,7 +782,7 @@
       }
     },
     {
-      "source": "ext:passport",
+      "source": "OCR-101",
       "predicate": "part_of",
       "target": "OCR-100",
       "edge_type": "predicate",
@@ -1055,23 +1072,21 @@
     },
     {
       "source": "ext:passport-update",
-      "predicate": null,
+      "predicate": "produces",
       "target": "OCR-114",
-      "edge_type": "cascade_hop",
-      "edge_origin": "implicit_cascade",
-      "non_inferente": true,
-      "indexed_as_predicate": false,
-      "excluded_from_predicate_stats": true,
-      "semantic_stability": null,
+      "edge_type": "predicate",
+      "edge_origin": "cascade_resolved",
+      "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "predicate fixed at WSP-001 V1 review",
       "provenance": {
         "record": "OCR-101",
         "line": 145,
         "raw": "`accumulates` → Passport update → Immutable Fact (OCR-114)",
-        "source_predicate": null
+        "source_predicate": null,
+        "cascade_resolved": true
       }
     },
     {
@@ -2419,23 +2434,21 @@
     },
     {
       "source": "OCR-105",
-      "predicate": null,
+      "predicate": "produces",
       "target": "OCR-106",
-      "edge_type": "cascade_hop",
-      "edge_origin": "implicit_cascade",
-      "non_inferente": true,
-      "indexed_as_predicate": false,
-      "excluded_from_predicate_stats": true,
-      "semantic_stability": null,
+      "edge_type": "predicate",
+      "edge_origin": "cascade_resolved",
+      "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "predicate fixed at WSP-001 V1 review",
       "provenance": {
         "record": "OCR-110",
         "line": 190,
         "raw": "`consumed_by` → Trust (OCR-105) → Trust Status (OCR-106)",
-        "source_predicate": null
+        "source_predicate": null,
+        "cascade_resolved": true
       }
     },
     {
@@ -2883,23 +2896,6 @@
     {
       "source": "OCR-113",
       "predicate": "depends_on",
-      "target": "ext:constant-time-comparison",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": false,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-113",
-        "line": 152,
-        "raw": "`depends_on` → JCS (RFC 8785), HMAC, constant-time comparison",
-        "source_predicate": "depends_on"
-      }
-    },
-    {
-      "source": "OCR-113",
-      "predicate": "depends_on",
       "target": "ext:hmac",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
@@ -2932,26 +2928,9 @@
       }
     },
     {
-      "source": "ext:non-ascii-conformance-test",
-      "predicate": "inspects",
-      "target": "OCR-113",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-113",
-        "line": 153,
-        "raw": "`validated_by` → non-ASCII conformance test",
-        "source_predicate": "validated_by"
-      }
-    },
-    {
       "source": "OCR-114",
       "predicate": "is_a",
-      "target": "ext:fact",
+      "target": "ext:record",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
@@ -2968,11 +2947,11 @@
     {
       "source": "OCR-114",
       "predicate": "is_a",
-      "target": "ext:record",
+      "target": "OCR-114",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
-      "reflexive": false,
+      "reflexive": true,
       "via": null,
       "note": null,
       "provenance": {
@@ -3116,6 +3095,24 @@
         "line": 156,
         "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)",
         "source_predicate": "superseded_by"
+      }
+    },
+    {
+      "source": "ext:framework-version",
+      "predicate": "part_of",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "edge_origin": "architect V1 structure",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "concept linked to record (WSP-001 V1 review)",
+      "provenance": {
+        "record": "OCR-115",
+        "line": null,
+        "raw": "Framework version part_of OCR-115 (architect V1)",
+        "source_predicate": null
       }
     },
     {
@@ -3291,36 +3288,20 @@
     {
       "source": "ext:framework-version",
       "predicate": "supersedes",
-      "target": "OCR-115",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": "reflexive",
-      "provenance": {
-        "record": "OCR-115",
-        "line": 159,
-        "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)",
-        "source_predicate": "superseded_by"
-      }
-    },
-    {
-      "source": "OCR-115",
-      "predicate": "supersedes",
       "target": "ext:framework-version",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
-      "reflexive": false,
+      "reflexive": true,
       "via": null,
-      "note": "reflexive",
+      "note": "schema edge between instances (WSP-001 V1)",
       "provenance": {
         "record": "OCR-115",
         "line": 159,
         "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)",
         "source_predicate": "supersedes"
-      }
+      },
+      "schema_edge": true
     },
     {
       "source": "OCR-116",
@@ -3715,23 +3696,21 @@
     },
     {
       "source": "ext:criterion",
-      "predicate": null,
+      "predicate": "references",
       "target": "ext:coordinate",
-      "edge_type": "cascade_hop",
-      "edge_origin": "implicit_cascade",
-      "non_inferente": true,
-      "indexed_as_predicate": false,
-      "excluded_from_predicate_stats": true,
-      "semantic_stability": null,
+      "edge_type": "predicate",
+      "edge_origin": "cascade_resolved",
+      "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "predicate fixed at WSP-001 V1 review",
       "provenance": {
         "record": "OCR-119",
         "line": 154,
         "raw": "`maps` → Criterion → Coordinate",
-        "source_predicate": null
+        "source_predicate": null,
+        "cascade_resolved": true
       }
     },
     {

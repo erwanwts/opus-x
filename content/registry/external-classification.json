@@ -1,12 +1,30 @@
 {
   "_meta": {
-    "authority": "Décision architecte figée — classification des nœuds externes du Knowledge Graph WSP-001.",
-    "note": "Données de décision (comme ocr-007-resolution.json), appliquées par scripts/registry/build-graph.mjs. Clé = label normalisé (minuscule + trim). Le graphe reste régénérable : source Records + résolution OCR-007 + cette classification.",
-    "covers": 41,
+    "authority": "Décision architecte figée (WSP-001 V1) — taxonomie externe du Knowledge Graph.",
+    "note": "Données de décision appliquées par scripts/registry/build-graph.mjs. Clé = label normalisé (minuscule + trim). Graphe régénérable : Records + résolution OCR-007 + cette classification.",
+    "taxonomy": [
+      "protocol_concept",
+      "entity",
+      "external_prior_art",
+      "technical_dependency",
+      "prose_or_extraction_artifact"
+    ],
+    "covers": 66,
     "of_externals": 66,
-    "unclassified_note": "Les 25 externes hors de ces listes sont marqués node_type:unclassified et signalés (report.unclassified_externals) — JAMAIS devinés. À classer par l'architecte ultérieurement."
+    "version": "V1"
   },
-  "concept": [
+
+  "name_aliases": {
+    "Passport": "OCR-101",
+    "Protocol": "OCR-100",
+    "Fact": "OCR-114"
+  },
+
+  "ambiguous_aliases": {
+    "Identity": { "requires_manual_resolution": true, "candidates": ["OCR-102", "OCR-125"] }
+  },
+
+  "protocol_concept": [
     "Consent",
     "Abstract Identity Concept",
     "Identity Surface",
@@ -30,8 +48,33 @@
     "Reference Model",
     "Inspection Act",
     "Subject-Owner",
-    "Record"
+    "Record",
+    "Computation",
+    "Disclosure",
+    "Learning Journey",
+    "Level",
+    "Cryptographic Property",
+    "State Sequence",
+    "Verifiable Professional Truth",
+    "Append-Only Fact Store",
+    "Entity",
+    "Query",
+    "Index",
+    "Answer",
+    "OCR",
+    "Standard"
   ],
+
+  "concept_specialization": {
+    "Consent Facts": "OCR-114",
+    "Revocation Fact": "OCR-114",
+    "Framework Publication of Levels": "Framework Publication"
+  },
+
+  "concept_part_of": {
+    "Framework Version": "OCR-115"
+  },
+
   "entity": [
     "Opus X",
     "Human",
@@ -40,12 +83,19 @@
     "Specification Body",
     "Issuer Revocation"
   ],
-  "prior_art": [
+
+  "external_prior_art": [
     "DID Core",
     "Open Badges",
     "Verifiable Credentials"
   ],
-  "prose_artifact": [
+
+  "technical_dependency": {
+    "JCS": { "standard_ref": "RFC 8785" },
+    "HMAC": {}
+  },
+
+  "prose_or_extraction_artifact": [
     "its facts and actions",
     "source records",
     "the protocol's concepts",
@@ -53,6 +103,14 @@
     "production (Issuer) from verification",
     "100s",
     "200s",
-    "300s"
+    "300s",
+    "Constant-Time Comparison",
+    "Non-ASCII Conformance Test"
+  ],
+
+  "cascade_predicates": [
+    { "record": "OCR-101", "from": "Passport Update", "to": "Immutable Fact", "predicate": "produces" },
+    { "record": "OCR-110", "from": "Trust", "to": "Trust Status", "predicate": "produces" },
+    { "record": "OCR-119", "from": "Criterion", "to": "Coordinate", "predicate": "references" }
   ]
 }

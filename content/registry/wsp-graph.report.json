@@ -262,13 +262,6 @@
       ]
     },
     {
-      "id": "ext:fact",
-      "label": "Fact",
-      "records": [
-        "OCR-114"
-      ]
-    },
-    {
       "id": "ext:framework-publication",
       "label": "Framework publication",
       "records": [
@@ -422,13 +415,6 @@
       ]
     },
     {
-      "id": "ext:passport",
-      "label": "Passport",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
       "id": "ext:passport-update",
       "label": "Passport update",
       "records": [
@@ -461,13 +447,6 @@
       "label": "Projection",
       "records": [
         "OCR-123"
-      ]
-    },
-    {
-      "id": "ext:protocol",
-      "label": "Protocol",
-      "records": [
-        "OCR-100"
       ]
     },
     {
@@ -576,29 +555,7 @@
       ]
     }
   ],
-  "cascade_hops": [
-    {
-      "record": "OCR-101",
-      "line": 145,
-      "source": "ext:passport-update",
-      "target": "OCR-114",
-      "raw": "`accumulates` → Passport update → Immutable Fact (OCR-114)"
-    },
-    {
-      "record": "OCR-110",
-      "line": 190,
-      "source": "OCR-105",
-      "target": "OCR-106",
-      "raw": "`consumed_by` → Trust (OCR-105) → Trust Status (OCR-106)"
-    },
-    {
-      "record": "OCR-119",
-      "line": 154,
-      "source": "ext:criterion",
-      "target": "ext:coordinate",
-      "raw": "`maps` → Criterion → Coordinate"
-    }
-  ],
+  "cascade_hops": [],
   "unresolved_canonical": [
     {
       "record": "OCR-100",
@@ -611,17 +568,35 @@
   ],
   "reflexives": [
     {
+      "record": "OCR-100",
+      "line": 144,
+      "node": "OCR-100",
+      "predicate": "is_a",
+      "schema_edge": false,
+      "raw": "`is_a` → Protocol"
+    },
+    {
       "record": "OCR-110",
       "line": 193,
       "node": "OCR-110",
       "predicate": "supersedes",
+      "schema_edge": false,
       "raw": "`supersedes` / `superseded_by` → Evidence (OCR-110, reflexive)"
+    },
+    {
+      "record": "OCR-114",
+      "line": 150,
+      "node": "OCR-114",
+      "predicate": "is_a",
+      "schema_edge": false,
+      "raw": "`is_a` → Record / Fact"
     },
     {
       "record": "OCR-114",
       "line": 156,
       "node": "OCR-114",
       "predicate": "supersedes",
+      "schema_edge": false,
       "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
     },
     {
@@ -629,29 +604,19 @@
       "line": 156,
       "node": "OCR-114",
       "predicate": "revokes",
+      "schema_edge": false,
       "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
-    }
-  ],
-  "reflexive_noted": [
-    {
-      "record": "OCR-115",
-      "line": 159,
-      "source": "OCR-115",
-      "target": "ext:framework-version",
-      "predicate": "supersedes",
-      "note": "reflexive",
-      "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
     },
     {
       "record": "OCR-115",
       "line": 159,
-      "source": "ext:framework-version",
-      "target": "OCR-115",
+      "node": "ext:framework-version",
       "predicate": "supersedes",
-      "note": "reflexive",
+      "schema_edge": true,
       "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
     }
   ],
+  "reflexive_noted": [],
   "two_predicate_lines": [
     {
       "record": "OCR-110",
@@ -683,42 +648,12 @@
   ],
   "name_flagged": [
     {
-      "label": "Fact",
-      "candidates": [
-        "OCR-114"
-      ],
-      "reason": "raccourci probable (non résolu)",
-      "records": [
-        "OCR-114"
-      ]
-    },
-    {
       "label": "Identity",
       "exact_match": "OCR-125",
       "reason": "match exact mais AMBIGU (contexte-dépendant)",
       "records": [
         "OCR-100",
         "OCR-102"
-      ]
-    },
-    {
-      "label": "Passport",
-      "candidates": [
-        "OCR-101"
-      ],
-      "reason": "raccourci probable (non résolu)",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "label": "Protocol",
-      "candidates": [
-        "OCR-100"
-      ],
-      "reason": "raccourci probable (non résolu)",
-      "records": [
-        "OCR-100"
       ]
     }
   ],
@@ -809,35 +744,53 @@
     "nodes": [
       {
         "id": "ext:production-issuer-from-verification",
-        "label": "production (Issuer) from verification"
+        "label": "production (Issuer) from verification",
+        "category": "prose_or_extraction_artifact"
+      },
+      {
+        "id": "ext:constant-time-comparison",
+        "label": "constant-time comparison",
+        "category": "prose_or_extraction_artifact"
+      },
+      {
+        "id": "ext:non-ascii-conformance-test",
+        "label": "non-ASCII conformance test",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:source-records",
-        "label": "source records"
+        "label": "source records",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:verifier-roles",
-        "label": "verifier roles"
+        "label": "verifier roles",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:its-facts-and-actions",
-        "label": "its facts and actions"
+        "label": "its facts and actions",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:the-protocol-s-concepts",
-        "label": "the protocol's concepts"
+        "label": "the protocol's concepts",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:100s",
-        "label": "100s"
+        "label": "100s",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:200s",
-        "label": "200s"
+        "label": "200s",
+        "category": "prose_or_extraction_artifact"
       },
       {
         "id": "ext:300s",
-        "label": "300s"
+        "label": "300s",
+        "category": "prose_or_extraction_artifact"
       }
     ],
     "edges": [
@@ -859,6 +812,40 @@
         },
         "unresolved_canonical": true,
         "indexed_as_predicate": false
+      },
+      {
+        "source": "OCR-113",
+        "predicate": "depends_on",
+        "target": "ext:constant-time-comparison",
+        "edge_type": "predicate",
+        "semantic_stability": "Fixed",
+        "flipped": false,
+        "reflexive": false,
+        "via": null,
+        "note": null,
+        "provenance": {
+          "record": "OCR-113",
+          "line": 152,
+          "raw": "`depends_on` → JCS (RFC 8785), HMAC, constant-time comparison",
+          "source_predicate": "depends_on"
+        }
+      },
+      {
+        "source": "ext:non-ascii-conformance-test",
+        "predicate": "inspects",
+        "target": "OCR-113",
+        "edge_type": "predicate",
+        "semantic_stability": "Fixed",
+        "flipped": true,
+        "reflexive": false,
+        "via": null,
+        "note": null,
+        "provenance": {
+          "record": "OCR-113",
+          "line": 153,
+          "raw": "`validated_by` → non-ASCII conformance test",
+          "source_predicate": "validated_by"
+        }
       },
       {
         "source": "OCR-114",
@@ -981,184 +968,19 @@
       }
     ]
   },
-  "unclassified_externals": [
+  "unclassified_externals": [],
+  "alias_self_loop": [
     {
-      "id": "ext:answer",
-      "label": "Answer",
-      "records": [
-        "OCR-109"
-      ]
+      "node": "OCR-100",
+      "predicate": "is_a",
+      "raw": "`is_a` → Protocol"
     },
     {
-      "id": "ext:append-only-fact-store",
-      "label": "append-only fact store",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:computation",
-      "label": "Computation",
-      "records": [
-        "OCR-105"
-      ]
-    },
-    {
-      "id": "ext:consent-facts",
-      "label": "consent facts",
-      "records": [
-        "OCR-101"
-      ]
-    },
-    {
-      "id": "ext:constant-time-comparison",
-      "label": "constant-time comparison",
-      "records": [
-        "OCR-113"
-      ]
-    },
-    {
-      "id": "ext:cryptographic-property",
-      "label": "Cryptographic Property",
-      "records": [
-        "OCR-113"
-      ]
-    },
-    {
-      "id": "ext:disclosure",
-      "label": "disclosure",
-      "records": [
-        "OCR-123"
-      ]
-    },
-    {
-      "id": "ext:entity",
-      "label": "Entity",
-      "records": [
-        "OCR-122"
-      ]
-    },
-    {
-      "id": "ext:fact",
-      "label": "Fact",
-      "records": [
-        "OCR-114"
-      ]
-    },
-    {
-      "id": "ext:framework-publication-of-levels",
-      "label": "Framework publication of levels",
-      "records": [
-        "OCR-110"
-      ]
-    },
-    {
-      "id": "ext:hmac",
-      "label": "HMAC",
-      "records": [
-        "OCR-113"
-      ]
-    },
-    {
-      "id": "ext:identity",
-      "label": "Identity",
-      "records": [
-        "OCR-100",
-        "OCR-102"
-      ]
-    },
-    {
-      "id": "ext:index",
-      "label": "Index",
-      "records": [
-        "OCR-119"
-      ]
-    },
-    {
-      "id": "ext:jcs",
-      "label": "JCS",
-      "records": [
-        "OCR-113"
-      ]
-    },
-    {
-      "id": "ext:learning-journey",
-      "label": "learning journey",
-      "records": [
-        "OCR-120"
-      ]
-    },
-    {
-      "id": "ext:level",
-      "label": "Level",
-      "records": [
-        "OCR-115"
-      ]
-    },
-    {
-      "id": "ext:non-ascii-conformance-test",
-      "label": "non-ASCII conformance test",
-      "records": [
-        "OCR-113"
-      ]
-    },
-    {
-      "id": "ext:ocr",
-      "label": "OCR",
-      "records": [
-        "OCR-124"
-      ]
-    },
-    {
-      "id": "ext:passport",
-      "label": "Passport",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:protocol",
-      "label": "Protocol",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:query",
-      "label": "Query",
-      "records": [
-        "OCR-108"
-      ]
-    },
-    {
-      "id": "ext:revocation-fact",
-      "label": "Revocation fact",
-      "records": [
-        "OCR-110"
-      ]
-    },
-    {
-      "id": "ext:standard",
-      "label": "Standard",
-      "records": [
-        "OCR-124"
-      ]
-    },
-    {
-      "id": "ext:state-sequence",
-      "label": "State Sequence",
-      "records": [
-        "OCR-112"
-      ]
-    },
-    {
-      "id": "ext:verifiable-professional-truth",
-      "label": "verifiable professional truth",
-      "records": [
-        "OCR-100"
-      ]
+      "node": "OCR-114",
+      "predicate": "is_a",
+      "raw": "`is_a` → Record / Fact"
     }
   ],
-  "prior_art_guard": [],
+  "category_guard": [],
   "errors": []
 }
