@@ -180,6 +180,7 @@
       "id": "ext:consent",
       "label": "consent",
       "records": [
+        "OCR-108",
         "OCR-123"
       ]
     },
@@ -254,13 +255,6 @@
       ]
     },
     {
-      "id": "ext:evidence",
-      "label": "Evidence",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
       "id": "ext:evidence-link",
       "label": "Evidence Link",
       "records": [
@@ -272,20 +266,6 @@
       "label": "Fact",
       "records": [
         "OCR-114"
-      ]
-    },
-    {
-      "id": "ext:framework",
-      "label": "Framework",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:framework-ocr-115-coordinates-and-criteria",
-      "label": "Framework (OCR-115) coordinates and criteria",
-      "records": [
-        "OCR-119"
       ]
     },
     {
@@ -346,13 +326,6 @@
       ]
     },
     {
-      "id": "ext:immutable-fact",
-      "label": "Immutable Fact",
-      "records": [
-        "OCR-114"
-      ]
-    },
-    {
       "id": "ext:index",
       "label": "Index",
       "records": [
@@ -364,20 +337,6 @@
       "label": "Inspection Act",
       "records": [
         "OCR-107"
-      ]
-    },
-    {
-      "id": "ext:issuer",
-      "label": "Issuer",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:issuer-ocr-120-in-certified-state",
-      "label": "Issuer (OCR-120) in Certified state",
-      "records": [
-        "OCR-121"
       ]
     },
     {
@@ -498,13 +457,6 @@
       ]
     },
     {
-      "id": "ext:professional",
-      "label": "Professional",
-      "records": [
-        "OCR-104"
-      ]
-    },
-    {
       "id": "ext:projection",
       "label": "Projection",
       "records": [
@@ -603,13 +555,6 @@
       ]
     },
     {
-      "id": "ext:trust",
-      "label": "Trust",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
       "id": "ext:verifiable-credentials",
       "label": "Verifiable Credentials",
       "records": [
@@ -619,13 +564,6 @@
     {
       "id": "ext:verifiable-professional-truth",
       "label": "verifiable professional truth",
-      "records": [
-        "OCR-100"
-      ]
-    },
-    {
-      "id": "ext:verification",
-      "label": "Verification",
       "records": [
         "OCR-100"
       ]
@@ -678,27 +616,23 @@
       "node": "OCR-110",
       "predicate": "supersedes",
       "raw": "`supersedes` / `superseded_by` → Evidence (OCR-110, reflexive)"
+    },
+    {
+      "record": "OCR-114",
+      "line": 156,
+      "node": "OCR-114",
+      "predicate": "supersedes",
+      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
+    },
+    {
+      "record": "OCR-114",
+      "line": 156,
+      "node": "OCR-114",
+      "predicate": "revokes",
+      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
     }
   ],
   "reflexive_noted": [
-    {
-      "record": "OCR-114",
-      "line": 156,
-      "source": "ext:immutable-fact",
-      "target": "OCR-114",
-      "predicate": "supersedes",
-      "note": "reflexive",
-      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
-    },
-    {
-      "record": "OCR-114",
-      "line": 156,
-      "source": "ext:immutable-fact",
-      "target": "OCR-114",
-      "predicate": "revokes",
-      "note": "reflexive",
-      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
-    },
     {
       "record": "OCR-115",
       "line": 159,
@@ -745,6 +679,130 @@
         "superseded_by"
       ],
       "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    }
+  ],
+  "name_flagged": [
+    {
+      "label": "Fact",
+      "candidates": [
+        "OCR-114"
+      ],
+      "reason": "raccourci probable (non résolu)",
+      "records": [
+        "OCR-114"
+      ]
+    },
+    {
+      "label": "Identity",
+      "exact_match": "OCR-125",
+      "reason": "match exact mais AMBIGU (contexte-dépendant)",
+      "records": [
+        "OCR-100",
+        "OCR-102"
+      ]
+    },
+    {
+      "label": "Passport",
+      "candidates": [
+        "OCR-101"
+      ],
+      "reason": "raccourci probable (non résolu)",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "label": "Protocol",
+      "candidates": [
+        "OCR-100"
+      ],
+      "reason": "raccourci probable (non résolu)",
+      "records": [
+        "OCR-100"
+      ]
+    }
+  ],
+  "compound_target": [
+    {
+      "label": "production (Issuer) from verification",
+      "reason": "cache 2 cibles (séparateur « from »)",
+      "records": [
+        "OCR-100"
+      ]
+    }
+  ],
+  "verbose_externals": [
+    {
+      "label": "Abstract Identity Concept",
+      "records": [
+        "OCR-125"
+      ]
+    },
+    {
+      "label": "append-only fact store",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "label": "Applied Competence Cluster",
+      "records": [
+        "OCR-117"
+      ]
+    },
+    {
+      "label": "Atomic Competence Unit",
+      "records": [
+        "OCR-116"
+      ]
+    },
+    {
+      "label": "Broad Competence Capacity",
+      "records": [
+        "OCR-118"
+      ]
+    },
+    {
+      "label": "Derived State Value",
+      "records": [
+        "OCR-106"
+      ]
+    },
+    {
+      "label": "Framework publication of levels",
+      "records": [
+        "OCR-110"
+      ]
+    },
+    {
+      "label": "its facts and actions",
+      "records": [
+        "OCR-122"
+      ]
+    },
+    {
+      "label": "non-ASCII conformance test",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "label": "production (Issuer) from verification",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "label": "the protocol's concepts",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "label": "verifiable professional truth",
+      "records": [
+        "OCR-100"
+      ]
     }
   ],
   "errors": []

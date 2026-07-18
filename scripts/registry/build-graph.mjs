@@ -34,6 +34,15 @@ const OUT_REPORT = 'content/registry/wsp-graph.report.json';
 const resolutionDoc = JSON.parse(readFileSync(RESOLUTION, 'utf8'));
 const RESOLVE = resolutionDoc.predicates;
 
+// ─── Table nom→OCR-id (construite au runtime depuis les H1 des 26 Records) ────
+// Un label externe qui est EXACTEMENT le titre d'un Record résout vers ce Record
+// (Défaut 1). Contexte-libre, appariement exact — jamais un raccourci deviné.
+const TITLE_TO_ID = new Map();
+// Labels qui matchent un titre mais que l'architecte a signalés comme AMBIGUS :
+// résolution contexte-dépendante impossible mécaniquement → jamais auto-résolus.
+const FLAGGED_NAMES = new Set(['identity']);
+const norm = (s) => s.toLowerCase().trim();
+
 // ─── Utilitaires ────────────────────────────────────────────────────────────
 function slug(s) {
   return s
@@ -106,24 +115,42 @@ function parseAtom(atom) {
   return { ...node, via };
 }
 
-/** Résout un libellé (avec parenthèse éventuelle) en référence de nœud. */
+/** Résout un libellé en référence de nœud. Ordre : (a) OCR-id explicite n'importe
+ *  où → interne ; (b) titre de Record exact (hors set signalé) → interne ;
+ *  (c) sinon externe. */
 function parseNodeRef(text) {
-  let note = null;
-  let id = null;
-  let label = text.trim();
+  const t = text.trim();
 
-  const paren = text.match(/\(([^)]*)\)\s*$/);
+  // (a) Un `(OCR-\d+)` N'IMPORTE OÙ → nœud interne (Défaut 2a). Le texte avant la
+  //     parenthèse = label ; le reste de la parenthèse + le texte APRÈS (« in
+  //     Certified state », « coordinates and criteria ») = qualificatif → note.
+  const idAnywhere = t.match(/\((OCR-\d+)([^)]*)\)/);
+  if (idAnywhere) {
+    const id = idAnywhere[1];
+    const label = t.slice(0, idAnywhere.index).trim();
+    const parenRest = idAnywhere[2].replace(/^[\s,;]+|[\s,;]+$/g, '').trim();
+    const after = t.slice(idAnywhere.index + idAnywhere[0].length).trim();
+    const note = [parenRest, after].filter(Boolean).join(' ').trim() || null;
+    return { id, label: label || id, type: 'internal', note };
+  }
+
+  // (b) Parenthèse non-id en fin → note (« reflexive », « as prior art… »).
+  let note = null;
+  let label = t;
+  const paren = t.match(/\(([^)]*)\)\s*$/);
   if (paren) {
-    label = text.slice(0, paren.index).trim();
-    const inside = paren[1];
-    const idMatch = inside.match(/OCR-\d+/);
-    if (idMatch) id = idMatch[0];
-    // Reste de la parenthèse (hors id) → note (ex. « reflexive »).
-    const rest = inside.replace(/OCR-\d+/, '').replace(/^[\s,;]+|[\s,;]+$/g, '').trim();
+    label = t.slice(0, paren.index).trim();
+    const rest = paren[1].replace(/^[\s,;]+|[\s,;]+$/g, '').trim();
     if (rest) note = rest;
   }
 
-  if (id) return { id, label: label || id, type: 'internal', note };
+  // (c) Titre de Record EXACT (hors set signalé) → nœud interne (Défaut 1).
+  const nlabel = norm(label);
+  if (TITLE_TO_ID.has(nlabel) && !FLAGGED_NAMES.has(nlabel)) {
+    return { id: TITLE_TO_ID.get(nlabel), label, type: 'internal', note, resolved_by_name: true };
+  }
+
+  // (d) Sinon externe (décision A).
   return { id: 'ext:' + slug(label), label, type: 'external', note };
 }
 
@@ -139,6 +166,9 @@ const report = {
   reflexives: [], // auto-boucles STRUCTURELLES (source === target, id explicite)
   reflexive_noted: [], // « (reflexive) » déclaré en note SANS OCR-id (cible externe) — à revoir
   two_predicate_lines: [], // lignes portant 2 prédicats (canonical + inverse)
+  name_flagged: [], // label ~ un titre mais AMBIGU/raccourci (Identity, Passport, Protocol) — architecte
+  compound_target: [], // cible externe cachant 2 cibles (« … from … », separates) — architecte
+  verbose_externals: [], // labels externes multi-mots (prose) — revue architecte
   errors: [], // prédicat absent du JSON, ligne non parsable — À CORRIGER
 };
 
@@ -291,6 +321,14 @@ function processLine(sourceRef, rawLine, lineNo, record) {
 const files = readdirSync(RECORDS_DIR).filter((f) => /^OCR-1\d{2}_.*\.md$/i.test(f)).sort();
 let recordsWithKG = 0;
 
+// 1ʳᵉ passe : construire TITLE_TO_ID depuis les H1 (« # OCR-xxx — Label »).
+for (const f of files) {
+  for (const l of readFileSync(path.join(RECORDS_DIR, f), 'utf8').split(/\r?\n/)) {
+    const h1 = l.match(/^#\s+(OCR-\d+)\s*[—–-]\s*(.+?)\s*$/);
+    if (h1) { TITLE_TO_ID.set(norm(h1[2]), h1[1]); break; }
+  }
+}
+
 for (const f of files) {
   const full = path.join(RECORDS_DIR, f);
   const lines = readFileSync(full, 'utf8').split(/\r?\n/);
@@ -325,6 +363,29 @@ report.externals = [...externalRefs.entries()]
   .map(([id, recs]) => ({ id, label: nodes.get(id)?.label ?? id, records: [...recs].sort() }))
   .sort((a, b) => a.id.localeCompare(b.id));
 
+// Signalements NON tranchés par le parseur (→ architecte), calculés sur les
+// externes SUBSISTANTS (ceux que la résolution nom→id n'a pas absorbés).
+const titleIds = [...TITLE_TO_ID.entries()];
+for (const ext of report.externals) {
+  const nlabel = norm(ext.label);
+  // (a) matche EXACT un titre mais signalé (Identity) ; ou raccourci = dernier
+  //     mot d'un titre (Passport→Professional Passport, Protocol→World Skills Protocol).
+  if (TITLE_TO_ID.has(nlabel) && FLAGGED_NAMES.has(nlabel)) {
+    report.name_flagged.push({ label: ext.label, exact_match: TITLE_TO_ID.get(nlabel), reason: 'match exact mais AMBIGU (contexte-dépendant)', records: ext.records });
+  } else {
+    const cand = titleIds.filter(([t]) => t === nlabel || t.endsWith(' ' + nlabel)).map(([, id]) => id);
+    if (cand.length) report.name_flagged.push({ label: ext.label, candidates: cand, reason: cand.length > 1 ? 'raccourci ambigu (plusieurs titres)' : 'raccourci probable (non résolu)', records: ext.records });
+  }
+  // (b) cible composée « … from … » (separates) : deux cibles non séparées.
+  if (/\sfrom\s/i.test(ext.label)) {
+    report.compound_target.push({ label: ext.label, reason: 'cache 2 cibles (séparateur « from »)', records: ext.records });
+  }
+  // (c) label externe multi-mots (≥3) = prose à revoir.
+  if (ext.label.trim().split(/\s+/).length >= 3) {
+    report.verbose_externals.push({ label: ext.label, records: ext.records });
+  }
+}
+
 const nodeList = [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id));
 const internalCount = nodeList.filter((n) => n.type === 'internal').length;
 const externalCount = nodeList.filter((n) => n.type === 'external').length;
@@ -355,6 +416,8 @@ const graph = {
       reflexives: report.reflexives.length,
       reflexive_noted: report.reflexive_noted.length,
       rejected_dropped: report.rejected.length,
+      name_flagged: report.name_flagged.length,
+      compound_target: report.compound_target.length,
       errors: report.errors.length,
     },
     note: 'Projection dérivée d\'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null).',

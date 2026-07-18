@@ -6,16 +6,18 @@
     "generated_from": "docs/web/registry-import/OCR-100",
     "records_with_kg": 26,
     "counts": {
-      "nodes_total": 101,
+      "nodes_total": 92,
       "nodes_internal": 26,
-      "nodes_external": 75,
+      "nodes_external": 66,
       "edges_total": 231,
       "edges_predicate": 227,
       "edges_cascade_hop": 3,
       "edges_unresolved_canonical": 1,
-      "reflexives": 1,
-      "reflexive_noted": 4,
+      "reflexives": 3,
+      "reflexive_noted": 2,
       "rejected_dropped": 13,
+      "name_flagged": 4,
+      "compound_target": 1,
       "errors": 0
     },
     "note": "Projection dérivée d'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null)."
@@ -127,11 +129,6 @@
       "label": "Entity"
     },
     {
-      "id": "ext:evidence",
-      "type": "external",
-      "label": "Evidence"
-    },
-    {
       "id": "ext:evidence-link",
       "type": "external",
       "label": "Evidence Link"
@@ -140,16 +137,6 @@
       "id": "ext:fact",
       "type": "external",
       "label": "Fact"
-    },
-    {
-      "id": "ext:framework",
-      "type": "external",
-      "label": "Framework"
-    },
-    {
-      "id": "ext:framework-ocr-115-coordinates-and-criteria",
-      "type": "external",
-      "label": "Framework (OCR-115) coordinates and criteria"
     },
     {
       "id": "ext:framework-publication",
@@ -192,11 +179,6 @@
       "label": "Identity Surface"
     },
     {
-      "id": "ext:immutable-fact",
-      "type": "external",
-      "label": "Immutable Fact"
-    },
-    {
       "id": "ext:index",
       "type": "external",
       "label": "Index"
@@ -205,16 +187,6 @@
       "id": "ext:inspection-act",
       "type": "external",
       "label": "Inspection Act"
-    },
-    {
-      "id": "ext:issuer",
-      "type": "external",
-      "label": "Issuer"
-    },
-    {
-      "id": "ext:issuer-ocr-120-in-certified-state",
-      "type": "external",
-      "label": "Issuer (OCR-120) in Certified state"
     },
     {
       "id": "ext:issuer-revocation",
@@ -297,11 +269,6 @@
       "label": "production (Issuer) from verification"
     },
     {
-      "id": "ext:professional",
-      "type": "external",
-      "label": "Professional"
-    },
-    {
       "id": "ext:projection",
       "type": "external",
       "label": "Projection"
@@ -372,11 +339,6 @@
       "label": "the protocol's concepts"
     },
     {
-      "id": "ext:trust",
-      "type": "external",
-      "label": "Trust"
-    },
-    {
       "id": "ext:verifiable-credentials",
       "type": "external",
       "label": "Verifiable Credentials"
@@ -385,11 +347,6 @@
       "id": "ext:verifiable-professional-truth",
       "type": "external",
       "label": "verifiable professional truth"
-    },
-    {
-      "id": "ext:verification",
-      "type": "external",
-      "label": "Verification"
     },
     {
       "id": "ext:verifier-roles",
@@ -546,58 +503,7 @@
       }
     },
     {
-      "source": "ext:evidence",
-      "predicate": "part_of",
-      "target": "OCR-100",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-100",
-        "line": 145,
-        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
-        "source_predicate": "has_part"
-      }
-    },
-    {
-      "source": "ext:framework",
-      "predicate": "part_of",
-      "target": "OCR-100",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-100",
-        "line": 145,
-        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
-        "source_predicate": "has_part"
-      }
-    },
-    {
       "source": "ext:identity",
-      "predicate": "part_of",
-      "target": "OCR-100",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-100",
-        "line": 145,
-        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
-        "source_predicate": "has_part"
-      }
-    },
-    {
-      "source": "ext:issuer",
       "predicate": "part_of",
       "target": "OCR-100",
       "edge_type": "predicate",
@@ -631,7 +537,7 @@
       }
     },
     {
-      "source": "ext:trust",
+      "source": "OCR-105",
       "predicate": "part_of",
       "target": "OCR-100",
       "edge_type": "predicate",
@@ -648,7 +554,58 @@
       }
     },
     {
-      "source": "ext:verification",
+      "source": "OCR-107",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "OCR-120",
       "predicate": "part_of",
       "target": "OCR-100",
       "edge_type": "predicate",
@@ -1385,7 +1342,7 @@
       }
     },
     {
-      "source": "ext:professional",
+      "source": "OCR-103",
       "predicate": "owns",
       "target": "OCR-104",
       "edge_type": "predicate",
@@ -1897,13 +1854,13 @@
     {
       "source": "OCR-108",
       "predicate": "governed_by",
-      "target": "OCR-101",
+      "target": "ext:consent",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": "Passport",
+      "note": "Passport, OCR-101",
       "provenance": {
         "record": "OCR-108",
         "line": 146,
@@ -2902,13 +2859,13 @@
       }
     },
     {
-      "source": "ext:immutable-fact",
+      "source": "OCR-114",
       "predicate": "revokes",
       "target": "OCR-114",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": true,
-      "reflexive": false,
+      "reflexive": true,
       "via": null,
       "note": "reflexive",
       "provenance": {
@@ -2919,13 +2876,13 @@
       }
     },
     {
-      "source": "ext:immutable-fact",
+      "source": "OCR-114",
       "predicate": "supersedes",
       "target": "OCR-114",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": true,
-      "reflexive": false,
+      "reflexive": true,
       "via": null,
       "note": "reflexive",
       "provenance": {
@@ -3176,13 +3133,13 @@
     {
       "source": "OCR-116",
       "predicate": "part_of",
-      "target": "OCR-117",
+      "target": "OCR-100",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "; Competency (OCR-117)",
       "provenance": {
         "record": "OCR-116",
         "line": 135,
@@ -3278,13 +3235,13 @@
     {
       "source": "OCR-117",
       "predicate": "part_of",
-      "target": "OCR-118",
+      "target": "OCR-100",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "; Capability (OCR-118)",
       "provenance": {
         "record": "OCR-117",
         "line": 135,
@@ -3533,13 +3490,13 @@
     {
       "source": "OCR-119",
       "predicate": "resolves",
-      "target": "ext:framework-ocr-115-coordinates-and-criteria",
+      "target": "OCR-115",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "coordinates and criteria",
       "provenance": {
         "record": "OCR-119",
         "line": 153,
@@ -3792,13 +3749,13 @@
     {
       "source": "OCR-121",
       "predicate": "is_a",
-      "target": "ext:issuer-ocr-120-in-certified-state",
+      "target": "OCR-120",
       "edge_type": "predicate",
       "semantic_stability": "Fixed",
       "flipped": false,
       "reflexive": false,
       "via": null,
-      "note": null,
+      "note": "in Certified state",
       "provenance": {
         "record": "OCR-121",
         "line": 146,
