@@ -1,0 +1,4473 @@
+{
+  "_meta": {
+    "source_resolution": "ocr-007-resolution.json",
+    "resolution_commit": "cbbe2d0",
+    "resolution_version": "1.1.0",
+    "generated_from": "docs/web/registry-import/OCR-100",
+    "records_with_kg": 26,
+    "counts": {
+      "nodes_total": 101,
+      "nodes_internal": 26,
+      "nodes_external": 75,
+      "edges_total": 231,
+      "edges_predicate": 227,
+      "edges_cascade_hop": 3,
+      "edges_unresolved_canonical": 1,
+      "reflexives": 1,
+      "reflexive_noted": 4,
+      "rejected_dropped": 13,
+      "errors": 0
+    },
+    "note": "Projection dérivée d'OCR-007 (source unique). cascade_hop = continuité structurelle, jamais une assertion sémantique (predicate:null)."
+  },
+  "nodes": [
+    {
+      "id": "ext:100s",
+      "type": "external",
+      "label": "100s"
+    },
+    {
+      "id": "ext:200s",
+      "type": "external",
+      "label": "200s"
+    },
+    {
+      "id": "ext:300s",
+      "type": "external",
+      "label": "300s"
+    },
+    {
+      "id": "ext:abstract-identity-concept",
+      "type": "external",
+      "label": "Abstract Identity Concept"
+    },
+    {
+      "id": "ext:answer",
+      "type": "external",
+      "label": "Answer"
+    },
+    {
+      "id": "ext:append-only-fact-store",
+      "type": "external",
+      "label": "append-only fact store"
+    },
+    {
+      "id": "ext:applied-competence-cluster",
+      "type": "external",
+      "label": "Applied Competence Cluster"
+    },
+    {
+      "id": "ext:atomic-competence-unit",
+      "type": "external",
+      "label": "Atomic Competence Unit"
+    },
+    {
+      "id": "ext:broad-competence-capacity",
+      "type": "external",
+      "label": "Broad Competence Capacity"
+    },
+    {
+      "id": "ext:computation",
+      "type": "external",
+      "label": "Computation"
+    },
+    {
+      "id": "ext:consent",
+      "type": "external",
+      "label": "consent"
+    },
+    {
+      "id": "ext:consent-facts",
+      "type": "external",
+      "label": "consent facts"
+    },
+    {
+      "id": "ext:constant-time-comparison",
+      "type": "external",
+      "label": "constant-time comparison"
+    },
+    {
+      "id": "ext:coordinate",
+      "type": "external",
+      "label": "Coordinate"
+    },
+    {
+      "id": "ext:criterion",
+      "type": "external",
+      "label": "Criterion"
+    },
+    {
+      "id": "ext:cryptographic-property",
+      "type": "external",
+      "label": "Cryptographic Property"
+    },
+    {
+      "id": "ext:derived-state",
+      "type": "external",
+      "label": "Derived State"
+    },
+    {
+      "id": "ext:derived-state-value",
+      "type": "external",
+      "label": "Derived State Value"
+    },
+    {
+      "id": "ext:did-core",
+      "type": "external",
+      "label": "DID Core"
+    },
+    {
+      "id": "ext:disclosure",
+      "type": "external",
+      "label": "disclosure"
+    },
+    {
+      "id": "ext:entity",
+      "type": "external",
+      "label": "Entity"
+    },
+    {
+      "id": "ext:evidence",
+      "type": "external",
+      "label": "Evidence"
+    },
+    {
+      "id": "ext:evidence-link",
+      "type": "external",
+      "label": "Evidence Link"
+    },
+    {
+      "id": "ext:fact",
+      "type": "external",
+      "label": "Fact"
+    },
+    {
+      "id": "ext:framework",
+      "type": "external",
+      "label": "Framework"
+    },
+    {
+      "id": "ext:framework-ocr-115-coordinates-and-criteria",
+      "type": "external",
+      "label": "Framework (OCR-115) coordinates and criteria"
+    },
+    {
+      "id": "ext:framework-publication",
+      "type": "external",
+      "label": "Framework publication"
+    },
+    {
+      "id": "ext:framework-publication-of-levels",
+      "type": "external",
+      "label": "Framework publication of levels"
+    },
+    {
+      "id": "ext:framework-version",
+      "type": "external",
+      "label": "Framework version"
+    },
+    {
+      "id": "ext:hmac",
+      "type": "external",
+      "label": "HMAC"
+    },
+    {
+      "id": "ext:human",
+      "type": "external",
+      "label": "Human"
+    },
+    {
+      "id": "ext:identifier",
+      "type": "external",
+      "label": "Identifier"
+    },
+    {
+      "id": "ext:identity",
+      "type": "external",
+      "label": "Identity"
+    },
+    {
+      "id": "ext:identity-surface",
+      "type": "external",
+      "label": "Identity Surface"
+    },
+    {
+      "id": "ext:immutable-fact",
+      "type": "external",
+      "label": "Immutable Fact"
+    },
+    {
+      "id": "ext:index",
+      "type": "external",
+      "label": "Index"
+    },
+    {
+      "id": "ext:inspection-act",
+      "type": "external",
+      "label": "Inspection Act"
+    },
+    {
+      "id": "ext:issuer",
+      "type": "external",
+      "label": "Issuer"
+    },
+    {
+      "id": "ext:issuer-ocr-120-in-certified-state",
+      "type": "external",
+      "label": "Issuer (OCR-120) in Certified state"
+    },
+    {
+      "id": "ext:issuer-revocation",
+      "type": "external",
+      "label": "Issuer revocation"
+    },
+    {
+      "id": "ext:its-facts-and-actions",
+      "type": "external",
+      "label": "its facts and actions"
+    },
+    {
+      "id": "ext:jcs",
+      "type": "external",
+      "label": "JCS"
+    },
+    {
+      "id": "ext:learning-journey",
+      "type": "external",
+      "label": "learning journey"
+    },
+    {
+      "id": "ext:level",
+      "type": "external",
+      "label": "Level"
+    },
+    {
+      "id": "ext:non-ascii-conformance-test",
+      "type": "external",
+      "label": "non-ASCII conformance test"
+    },
+    {
+      "id": "ext:ocr",
+      "type": "external",
+      "label": "OCR"
+    },
+    {
+      "id": "ext:open-badges",
+      "type": "external",
+      "label": "Open Badges"
+    },
+    {
+      "id": "ext:opus-x",
+      "type": "external",
+      "label": "Opus X"
+    },
+    {
+      "id": "ext:organization-role",
+      "type": "external",
+      "label": "Organization role"
+    },
+    {
+      "id": "ext:party",
+      "type": "external",
+      "label": "Party"
+    },
+    {
+      "id": "ext:passport",
+      "type": "external",
+      "label": "Passport"
+    },
+    {
+      "id": "ext:passport-update",
+      "type": "external",
+      "label": "Passport update"
+    },
+    {
+      "id": "ext:presentation-view",
+      "type": "external",
+      "label": "Presentation View"
+    },
+    {
+      "id": "ext:process",
+      "type": "external",
+      "label": "Process"
+    },
+    {
+      "id": "ext:production-issuer-from-verification",
+      "type": "external",
+      "label": "production (Issuer) from verification"
+    },
+    {
+      "id": "ext:professional",
+      "type": "external",
+      "label": "Professional"
+    },
+    {
+      "id": "ext:projection",
+      "type": "external",
+      "label": "Projection"
+    },
+    {
+      "id": "ext:protocol",
+      "type": "external",
+      "label": "Protocol"
+    },
+    {
+      "id": "ext:provenance",
+      "type": "external",
+      "label": "Provenance"
+    },
+    {
+      "id": "ext:query",
+      "type": "external",
+      "label": "Query"
+    },
+    {
+      "id": "ext:record",
+      "type": "external",
+      "label": "Record"
+    },
+    {
+      "id": "ext:reference-model",
+      "type": "external",
+      "label": "Reference Model"
+    },
+    {
+      "id": "ext:resolution-layer",
+      "type": "external",
+      "label": "Resolution Layer"
+    },
+    {
+      "id": "ext:revocation-fact",
+      "type": "external",
+      "label": "Revocation fact"
+    },
+    {
+      "id": "ext:source-records",
+      "type": "external",
+      "label": "source records"
+    },
+    {
+      "id": "ext:specification-body",
+      "type": "external",
+      "label": "Specification Body"
+    },
+    {
+      "id": "ext:standard",
+      "type": "external",
+      "label": "Standard"
+    },
+    {
+      "id": "ext:state-sequence",
+      "type": "external",
+      "label": "State Sequence"
+    },
+    {
+      "id": "ext:subject-owner",
+      "type": "external",
+      "label": "Subject-Owner"
+    },
+    {
+      "id": "ext:the-protocol-s-concepts",
+      "type": "external",
+      "label": "the protocol's concepts"
+    },
+    {
+      "id": "ext:trust",
+      "type": "external",
+      "label": "Trust"
+    },
+    {
+      "id": "ext:verifiable-credentials",
+      "type": "external",
+      "label": "Verifiable Credentials"
+    },
+    {
+      "id": "ext:verifiable-professional-truth",
+      "type": "external",
+      "label": "verifiable professional truth"
+    },
+    {
+      "id": "ext:verification",
+      "type": "external",
+      "label": "Verification"
+    },
+    {
+      "id": "ext:verifier-roles",
+      "type": "external",
+      "label": "verifier roles"
+    },
+    {
+      "id": "OCR-100",
+      "type": "internal",
+      "label": "World Skills Protocol"
+    },
+    {
+      "id": "OCR-101",
+      "type": "internal",
+      "label": "Professional Passport"
+    },
+    {
+      "id": "OCR-102",
+      "type": "internal",
+      "label": "Professional Identity"
+    },
+    {
+      "id": "OCR-103",
+      "type": "internal",
+      "label": "Professional"
+    },
+    {
+      "id": "OCR-104",
+      "type": "internal",
+      "label": "Opus ID"
+    },
+    {
+      "id": "OCR-105",
+      "type": "internal",
+      "label": "Trust"
+    },
+    {
+      "id": "OCR-106",
+      "type": "internal",
+      "label": "Trust Status"
+    },
+    {
+      "id": "OCR-107",
+      "type": "internal",
+      "label": "Verification"
+    },
+    {
+      "id": "OCR-108",
+      "type": "internal",
+      "label": "Verification Request"
+    },
+    {
+      "id": "OCR-109",
+      "type": "internal",
+      "label": "Verification Response"
+    },
+    {
+      "id": "OCR-110",
+      "type": "internal",
+      "label": "Evidence"
+    },
+    {
+      "id": "OCR-111",
+      "type": "internal",
+      "label": "Evidence Source"
+    },
+    {
+      "id": "OCR-112",
+      "type": "internal",
+      "label": "Evidence Lifecycle"
+    },
+    {
+      "id": "OCR-113",
+      "type": "internal",
+      "label": "Evidence Integrity"
+    },
+    {
+      "id": "OCR-114",
+      "type": "internal",
+      "label": "Immutable Fact"
+    },
+    {
+      "id": "OCR-115",
+      "type": "internal",
+      "label": "Framework"
+    },
+    {
+      "id": "OCR-116",
+      "type": "internal",
+      "label": "Skill"
+    },
+    {
+      "id": "OCR-117",
+      "type": "internal",
+      "label": "Competency"
+    },
+    {
+      "id": "OCR-118",
+      "type": "internal",
+      "label": "Capability"
+    },
+    {
+      "id": "OCR-119",
+      "type": "internal",
+      "label": "Framework Reference"
+    },
+    {
+      "id": "OCR-120",
+      "type": "internal",
+      "label": "Issuer"
+    },
+    {
+      "id": "OCR-121",
+      "type": "internal",
+      "label": "Certified Issuer"
+    },
+    {
+      "id": "OCR-122",
+      "type": "internal",
+      "label": "Organization"
+    },
+    {
+      "id": "OCR-123",
+      "type": "internal",
+      "label": "Professional Profile"
+    },
+    {
+      "id": "OCR-124",
+      "type": "internal",
+      "label": "Canonical Registry"
+    },
+    {
+      "id": "OCR-125",
+      "type": "internal",
+      "label": "Identity"
+    }
+  ],
+  "edges": [
+    {
+      "source": "OCR-100",
+      "predicate": "is_a",
+      "target": "ext:protocol",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 144,
+        "raw": "`is_a` → Protocol",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "ext:evidence",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:framework",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:identity",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:issuer",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:passport",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:trust",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "ext:verification",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "governed_by",
+      "target": "ext:opus-x",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 146,
+        "raw": "`governed_by` → Opus X",
+        "source_predicate": "governed_by"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "depends_on",
+      "target": "ext:append-only-fact-store",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 147,
+        "raw": "`depends_on` → append-only fact store, Framework publication",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "depends_on",
+      "target": "ext:framework-publication",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 147,
+        "raw": "`depends_on` → append-only fact store, Framework publication",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "produces",
+      "target": "ext:verifiable-professional-truth",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 148,
+        "raw": "`produces` → verifiable professional truth",
+        "source_predicate": "produces"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": null,
+      "target": "ext:production-issuer-from-verification",
+      "edge_type": "unresolved_predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "Opus X",
+      "provenance": {
+        "record": "OCR-100",
+        "line": 149,
+        "raw": "`separates` → production (Issuer) from verification (Opus X)",
+        "source_predicate": "separates"
+      },
+      "unresolved_canonical": true,
+      "indexed_as_predicate": false
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "related_to",
+      "target": "ext:did-core",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 150,
+        "raw": "`related_to` → Verifiable Credentials, DID Core, Open Badges (as prior art, not equivalents)",
+        "source_predicate": "related_to"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "related_to",
+      "target": "ext:open-badges",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "as prior art, not equivalents",
+      "provenance": {
+        "record": "OCR-100",
+        "line": 150,
+        "raw": "`related_to` → Verifiable Credentials, DID Core, Open Badges (as prior art, not equivalents)",
+        "source_predicate": "related_to"
+      }
+    },
+    {
+      "source": "OCR-100",
+      "predicate": "related_to",
+      "target": "ext:verifiable-credentials",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 150,
+        "raw": "`related_to` → Verifiable Credentials, DID Core, Open Badges (as prior art, not equivalents)",
+        "source_predicate": "related_to"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "is_a",
+      "target": "ext:identity-surface",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 142,
+        "raw": "`is_a` → Identity Surface",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 143,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "surfaces",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 144,
+        "raw": "`surfaces` → Opus ID (OCR-104), Trust (OCR-105)",
+        "source_predicate": "surfaces"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "surfaces",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 144,
+        "raw": "`surfaces` → Opus ID (OCR-104), Trust (OCR-105)",
+        "source_predicate": "surfaces"
+      }
+    },
+    {
+      "source": "ext:passport-update",
+      "predicate": null,
+      "target": "OCR-114",
+      "edge_type": "cascade_hop",
+      "edge_origin": "implicit_cascade",
+      "non_inferente": true,
+      "indexed_as_predicate": false,
+      "excluded_from_predicate_stats": true,
+      "semantic_stability": null,
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 145,
+        "raw": "`accumulates` → Passport update → Immutable Fact (OCR-114)",
+        "source_predicate": null
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "produces",
+      "target": "ext:passport-update",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 145,
+        "raw": "`accumulates` → Passport update → Immutable Fact (OCR-114)",
+        "source_predicate": "accumulates"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "owns",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 146,
+        "raw": "`owned_by` → Professional (OCR-103)",
+        "source_predicate": "owned_by"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "inspects",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 147,
+        "raw": "`checked_by` → Verification (OCR-107)",
+        "source_predicate": "checked_by"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "governed_by",
+      "target": "ext:consent-facts",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-101",
+        "line": 148,
+        "raw": "`governed_for_disclosure_by` → consent facts",
+        "source_predicate": "governed_for_disclosure_by"
+      }
+    },
+    {
+      "source": "OCR-102",
+      "predicate": "is_a",
+      "target": "ext:identity",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 137,
+        "raw": "`is_a` → Identity",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-102",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 138,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 139,
+        "raw": "`named_by` → Opus ID (OCR-104)",
+        "source_predicate": "named_by"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "surfaces",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 140,
+        "raw": "`surfaced_by` → Professional Passport (OCR-101)",
+        "source_predicate": "surfaced_by"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "owns",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 141,
+        "raw": "`belongs_to` → Professional (OCR-103)",
+        "source_predicate": "belongs_to"
+      }
+    },
+    {
+      "source": "OCR-102",
+      "predicate": "identifies",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 142,
+        "raw": "`binds` → Immutable Fact (OCR-114)",
+        "source_predicate": "binds"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "computed_from",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 143,
+        "raw": "`basis_for` → Trust (OCR-105)",
+        "source_predicate": "basis_for"
+      }
+    },
+    {
+      "source": "ext:opus-x",
+      "predicate": "holds",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-102",
+        "line": 144,
+        "raw": "`held_by` → Opus X",
+        "source_predicate": "held_by"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "is_a",
+      "target": "ext:human",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 137,
+        "raw": "`is_a` → Human / Subject-Owner",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "is_a",
+      "target": "ext:subject-owner",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 137,
+        "raw": "`is_a` → Human / Subject-Owner",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 138,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "owns",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 139,
+        "raw": "`owns` → Professional Identity (OCR-102)",
+        "source_predicate": "owns"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "governed_by",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 140,
+        "raw": "`governs` → Professional Passport (OCR-101)",
+        "source_predicate": "governs"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 141,
+        "raw": "`subject_of` → Evidence (OCR-110)",
+        "source_predicate": "subject_of"
+      }
+    },
+    {
+      "source": "OCR-103",
+      "predicate": "related_to",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 142,
+        "raw": "`beneficiary_of` → Trust (OCR-105)",
+        "source_predicate": "beneficiary_of"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-103",
+        "line": 143,
+        "raw": "`identified_by` → Opus ID (OCR-104)",
+        "source_predicate": "identified_by"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "is_a",
+      "target": "ext:identifier",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 138,
+        "raw": "`is_a` → Identifier",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 139,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 140,
+        "raw": "`identifies` → Professional Identity (OCR-102), Professional (OCR-103)",
+        "source_predicate": "identifies"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 140,
+        "raw": "`identifies` → Professional Identity (OCR-102), Professional (OCR-103)",
+        "source_predicate": "identifies"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 141,
+        "raw": "`referenced_by` → Evidence (OCR-110)",
+        "source_predicate": "referenced_by"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 142,
+        "raw": "`anchors` → Immutable Fact (OCR-114), Professional Passport (OCR-101)",
+        "source_predicate": "anchors"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 142,
+        "raw": "`anchors` → Immutable Fact (OCR-114), Professional Passport (OCR-101)",
+        "source_predicate": "anchors"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "computed_from",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 143,
+        "raw": "`basis_for` → Trust (OCR-105), Trust Status (OCR-106)",
+        "source_predicate": "basis_for"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "computed_from",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 143,
+        "raw": "`basis_for` → Trust (OCR-105), Trust Status (OCR-106)",
+        "source_predicate": "basis_for"
+      }
+    },
+    {
+      "source": "ext:professional",
+      "predicate": "owns",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-104",
+        "line": 144,
+        "raw": "`owned_by` → Professional",
+        "source_predicate": "owned_by"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "is_a",
+      "target": "ext:computation",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 141,
+        "raw": "`is_a` → Computation / Derived State",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "is_a",
+      "target": "ext:derived-state",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 141,
+        "raw": "`is_a` → Computation / Derived State",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 142,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "consumes",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 143,
+        "raw": "`consumes` → Immutable Fact (OCR-114), Evidence (OCR-110)",
+        "source_predicate": "consumes"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "consumes",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 143,
+        "raw": "`consumes` → Immutable Fact (OCR-114), Evidence (OCR-110)",
+        "source_predicate": "consumes"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 144,
+        "raw": "`interpreted_against` → Framework (OCR-115)",
+        "source_predicate": "interpreted_against"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "exposes",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 145,
+        "raw": "`exposed_as` → Trust Status (OCR-106)",
+        "source_predicate": "exposed_as"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "inspects",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 146,
+        "raw": "`inspected_by` → Verification (OCR-107)",
+        "source_predicate": "inspected_by"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "computed_for",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-105",
+        "line": 147,
+        "raw": "`computed_for` → Opus ID (OCR-104)",
+        "source_predicate": "computed_for"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "is_a",
+      "target": "ext:derived-state-value",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 136,
+        "raw": "`is_a` → Derived State Value",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 137,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "produces",
+      "target": "OCR-106",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 138,
+        "raw": "`output_of` → Trust (OCR-105)",
+        "source_predicate": "output_of"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "computed_for",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 139,
+        "raw": "`holds_for` → Opus ID (OCR-104)",
+        "source_predicate": "holds_for"
+      }
+    },
+    {
+      "source": "OCR-106",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 140,
+        "raw": "`holds_under` → Framework version (OCR-115)",
+        "source_predicate": "holds_under"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "exposes",
+      "target": "OCR-106",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 141,
+        "raw": "`exposed_by` → Verification (OCR-107)",
+        "source_predicate": "exposed_by"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "surfaces",
+      "target": "OCR-106",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-106",
+        "line": 142,
+        "raw": "`surfaced_by` → Passport (OCR-101)",
+        "source_predicate": "surfaced_by"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "is_a",
+      "target": "ext:inspection-act",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 147,
+        "raw": "`is_a` → Inspection Act",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 148,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "initiates",
+      "target": "OCR-107",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 149,
+        "raw": "`initiated_by` → Verification Request (OCR-108)",
+        "source_predicate": "initiated_by"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "produces",
+      "target": "OCR-109",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 150,
+        "raw": "`produces` → Verification Response (OCR-109)",
+        "source_predicate": "produces"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "inspects",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 151,
+        "raw": "`inspects` → Immutable Fact (OCR-114)",
+        "source_predicate": "inspects"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "inspects",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 152,
+        "raw": "`recomputes` → Evidence Integrity (OCR-113)",
+        "source_predicate": "recomputes"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 153,
+        "raw": "`applies` → Framework (OCR-115)",
+        "source_predicate": "applies"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "consumes",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-107",
+        "line": 154,
+        "raw": "`reads` → Trust (OCR-105)",
+        "source_predicate": "reads"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "is_a",
+      "target": "ext:query",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 141,
+        "raw": "`is_a` → Query",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 142,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "initiates",
+      "target": "OCR-107",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 143,
+        "raw": "`initiates` → Verification (OCR-107)",
+        "source_predicate": "initiates"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "precedes",
+      "target": "OCR-109",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 144,
+        "raw": "`precedes` → Verification Response (OCR-109)",
+        "source_predicate": "precedes"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "identifies",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 145,
+        "raw": "`names` → Opus ID (OCR-104)",
+        "source_predicate": "names"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "governed_by",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "Passport",
+      "provenance": {
+        "record": "OCR-108",
+        "line": 146,
+        "raw": "`bounded_by` → consent (Passport, OCR-101)",
+        "source_predicate": "bounded_by"
+      }
+    },
+    {
+      "source": "OCR-108",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-108",
+        "line": 147,
+        "raw": "`references` → Framework version (OCR-115)",
+        "source_predicate": "references"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "is_a",
+      "target": "ext:answer",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 145,
+        "raw": "`is_a` → Answer",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 146,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "answers",
+      "target": "OCR-108",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 147,
+        "raw": "`answers` → Verification Request (OCR-108)",
+        "source_predicate": "answers"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "produces",
+      "target": "OCR-109",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 148,
+        "raw": "`produced_by` → Verification (OCR-107)",
+        "source_predicate": "produced_by"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "reports",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 149,
+        "raw": "`reports` → Trust (OCR-105), confirmed Evidence Integrity (OCR-113)",
+        "source_predicate": "reports"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "reports",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 149,
+        "raw": "`reports` → Trust (OCR-105), confirmed Evidence Integrity (OCR-113)",
+        "source_predicate": "reports"
+      }
+    },
+    {
+      "source": "OCR-109",
+      "predicate": "references",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-109",
+        "line": 150,
+        "raw": "`about` → Opus ID (OCR-104)",
+        "source_predicate": "about"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "is_a",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 183,
+        "raw": "`is_a` → Immutable Fact (OCR-114)",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 184,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "produces",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 185,
+        "raw": "`produced_by` → Issuer (OCR-120) / Certified Issuer (OCR-121)",
+        "source_predicate": "produced_by"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "produces",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 185,
+        "raw": "`produced_by` → Issuer (OCR-120) / Certified Issuer (OCR-121)",
+        "source_predicate": "produced_by"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": "OCR-104",
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 186,
+        "raw": "`about` → Professional (OCR-103) via Opus ID (OCR-104)",
+        "source_predicate": "about"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 187,
+        "raw": "`references` → Framework (OCR-115) / Framework Reference (OCR-119)",
+        "source_predicate": "references"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-119",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 187,
+        "raw": "`references` → Framework (OCR-115) / Framework Reference (OCR-119)",
+        "source_predicate": "references"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "identifies",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": "ext:evidence-link",
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 188,
+        "raw": "`bound_to` → Professional Passport (OCR-101) via Evidence Link",
+        "source_predicate": "bound_to"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "part_of",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 189,
+        "raw": "`has_property` → Evidence Integrity (OCR-113), Evidence Source (OCR-111)",
+        "source_predicate": "has_property"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "part_of",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 189,
+        "raw": "`has_property` → Evidence Integrity (OCR-113), Evidence Source (OCR-111)",
+        "source_predicate": "has_property"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "consumes",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 190,
+        "raw": "`consumed_by` → Trust (OCR-105) → Trust Status (OCR-106)",
+        "source_predicate": "consumed_by"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": null,
+      "target": "OCR-106",
+      "edge_type": "cascade_hop",
+      "edge_origin": "implicit_cascade",
+      "non_inferente": true,
+      "indexed_as_predicate": false,
+      "excluded_from_predicate_stats": true,
+      "semantic_stability": null,
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 190,
+        "raw": "`consumed_by` → Trust (OCR-105) → Trust Status (OCR-106)",
+        "source_predicate": null
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "inspects",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 191,
+        "raw": "`inspected_by` → Verification (OCR-107)",
+        "source_predicate": "inspected_by"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "depends_on",
+      "target": "ext:framework-publication-of-levels",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 192,
+        "raw": "`depends_on` → Framework publication of levels",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "supersedes",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": true,
+      "via": null,
+      "note": "reflexive",
+      "provenance": {
+        "record": "OCR-110",
+        "line": 193,
+        "raw": "`supersedes` / `superseded_by` → Evidence (OCR-110, reflexive)",
+        "source_predicate": "supersedes"
+      }
+    },
+    {
+      "source": "ext:revocation-fact",
+      "predicate": "revokes",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-110",
+        "line": 194,
+        "raw": "`revoked_by` → Revocation fact",
+        "source_predicate": "revoked_by"
+      }
+    },
+    {
+      "source": "OCR-111",
+      "predicate": "is_a",
+      "target": "ext:provenance",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 139,
+        "raw": "`is_a` → Provenance",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-111",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 140,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "preserves",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 141,
+        "raw": "`provenance_of` → Evidence (OCR-110)",
+        "source_predicate": "provenance_of"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "preserves",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 142,
+        "raw": "`preserved_by` → Immutable Fact (OCR-114)",
+        "source_predicate": "preserved_by"
+      }
+    },
+    {
+      "source": "OCR-111",
+      "predicate": "attributed_to",
+      "target": "OCR-121",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 143,
+        "raw": "`attributes_to` → Certified Issuer (OCR-121)",
+        "source_predicate": "attributes_to"
+      }
+    },
+    {
+      "source": "OCR-111",
+      "predicate": "related_to",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 144,
+        "raw": "`works_with` → Evidence Integrity (OCR-113)",
+        "source_predicate": "works_with"
+      }
+    },
+    {
+      "source": "ext:issuer-revocation",
+      "predicate": "depends_on",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 145,
+        "raw": "`supports` → Verification (OCR-107), Issuer revocation",
+        "source_predicate": "supports"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "depends_on",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-111",
+        "line": 145,
+        "raw": "`supports` → Verification (OCR-107), Issuer revocation",
+        "source_predicate": "supports"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "is_a",
+      "target": "ext:process",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 144,
+        "raw": "`is_a` → Process / State Sequence",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "is_a",
+      "target": "ext:state-sequence",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 144,
+        "raw": "`is_a` → Process / State Sequence",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 145,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "orders",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 146,
+        "raw": "`orders` → Evidence (OCR-110), Evidence Integrity (OCR-113)",
+        "source_predicate": "orders"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "orders",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 146,
+        "raw": "`orders` → Evidence (OCR-110), Evidence Integrity (OCR-113)",
+        "source_predicate": "orders"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "produces",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 147,
+        "raw": "`produces_at_acceptance` → Immutable Fact (OCR-114)",
+        "source_predicate": "produces_at_acceptance"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "references",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 148,
+        "raw": "`links_to` → Professional Passport (OCR-101)",
+        "source_predicate": "links_to"
+      }
+    },
+    {
+      "source": "OCR-112",
+      "predicate": "precedes",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-112",
+        "line": 149,
+        "raw": "`precedes` → Trust (OCR-105)",
+        "source_predicate": "precedes"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "is_a",
+      "target": "ext:cryptographic-property",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 147,
+        "raw": "`is_a` → Cryptographic Property",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 148,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "protects",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 149,
+        "raw": "`protects` → Evidence (OCR-110)",
+        "source_predicate": "protects"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "part_of",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 150,
+        "raw": "`property_of` → Immutable Fact (OCR-114)",
+        "source_predicate": "property_of"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "depends_on",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 151,
+        "raw": "`relied_on_by` → Verification (OCR-107), Trust (OCR-105)",
+        "source_predicate": "relied_on_by"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "depends_on",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 151,
+        "raw": "`relied_on_by` → Verification (OCR-107), Trust (OCR-105)",
+        "source_predicate": "relied_on_by"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "depends_on",
+      "target": "ext:constant-time-comparison",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 152,
+        "raw": "`depends_on` → JCS (RFC 8785), HMAC, constant-time comparison",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "depends_on",
+      "target": "ext:hmac",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 152,
+        "raw": "`depends_on` → JCS (RFC 8785), HMAC, constant-time comparison",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-113",
+      "predicate": "depends_on",
+      "target": "ext:jcs",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "RFC 8785",
+      "provenance": {
+        "record": "OCR-113",
+        "line": 152,
+        "raw": "`depends_on` → JCS (RFC 8785), HMAC, constant-time comparison",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "ext:non-ascii-conformance-test",
+      "predicate": "inspects",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-113",
+        "line": 153,
+        "raw": "`validated_by` → non-ASCII conformance test",
+        "source_predicate": "validated_by"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "is_a",
+      "target": "ext:fact",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 150,
+        "raw": "`is_a` → Record / Fact",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "is_a",
+      "target": "ext:record",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 150,
+        "raw": "`is_a` → Record / Fact",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "is_a",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 151,
+        "raw": "`accepted_form_of` → Evidence (OCR-110)",
+        "source_predicate": "accepted_form_of"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 152,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-101",
+      "predicate": "identifies",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 153,
+        "raw": "`bound_to` → Professional Passport (OCR-101)",
+        "source_predicate": "bound_to"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "part_of",
+      "target": "OCR-111",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 154,
+        "raw": "`has_property` → Evidence Integrity (OCR-113), Evidence Source (OCR-111)",
+        "source_predicate": "has_property"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "part_of",
+      "target": "OCR-113",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 154,
+        "raw": "`has_property` → Evidence Integrity (OCR-113), Evidence Source (OCR-111)",
+        "source_predicate": "has_property"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "consumes",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-114",
+        "line": 155,
+        "raw": "`consumed_by` → Trust (OCR-105)",
+        "source_predicate": "consumed_by"
+      }
+    },
+    {
+      "source": "ext:immutable-fact",
+      "predicate": "revokes",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": "reflexive",
+      "provenance": {
+        "record": "OCR-114",
+        "line": 156,
+        "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)",
+        "source_predicate": "revoked_by"
+      }
+    },
+    {
+      "source": "ext:immutable-fact",
+      "predicate": "supersedes",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": "reflexive",
+      "provenance": {
+        "record": "OCR-114",
+        "line": 156,
+        "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)",
+        "source_predicate": "superseded_by"
+      }
+    },
+    {
+      "source": "OCR-114",
+      "predicate": "depends_on",
+      "target": "ext:source-records",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "via `ON DELETE RESTRICT`",
+      "provenance": {
+        "record": "OCR-114",
+        "line": 157,
+        "raw": "`depends_on` → source records (via `ON DELETE RESTRICT`)",
+        "source_predicate": "depends_on"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "is_a",
+      "target": "ext:reference-model",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 152,
+        "raw": "`is_a` → Reference Model",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 153,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "ext:level",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 154,
+        "raw": "`defines` → Skill (OCR-116), Competency (OCR-117), Capability (OCR-118), Level",
+        "source_predicate": "defines"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-116",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 154,
+        "raw": "`defines` → Skill (OCR-116), Competency (OCR-117), Capability (OCR-118), Level",
+        "source_predicate": "defines"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 154,
+        "raw": "`defines` → Skill (OCR-116), Competency (OCR-117), Capability (OCR-118), Level",
+        "source_predicate": "defines"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 154,
+        "raw": "`defines` → Skill (OCR-116), Competency (OCR-117), Capability (OCR-118), Level",
+        "source_predicate": "defines"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "resolves",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 155,
+        "raw": "`resolved_by` → Framework Registry (OCR-119)",
+        "source_predicate": "resolved_by"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 156,
+        "raw": "`referenced_by` → Evidence (OCR-110)",
+        "source_predicate": "referenced_by"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "consumes",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 157,
+        "raw": "`used_by` → Trust (OCR-105)",
+        "source_predicate": "used_by"
+      }
+    },
+    {
+      "source": "ext:opus-x",
+      "predicate": "publishes",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-115",
+        "line": 158,
+        "raw": "`published_by` → Opus X",
+        "source_predicate": "published_by"
+      }
+    },
+    {
+      "source": "ext:framework-version",
+      "predicate": "supersedes",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": "reflexive",
+      "provenance": {
+        "record": "OCR-115",
+        "line": 159,
+        "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)",
+        "source_predicate": "superseded_by"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "supersedes",
+      "target": "ext:framework-version",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": "reflexive",
+      "provenance": {
+        "record": "OCR-115",
+        "line": 159,
+        "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)",
+        "source_predicate": "supersedes"
+      }
+    },
+    {
+      "source": "OCR-116",
+      "predicate": "is_a",
+      "target": "ext:atomic-competence-unit",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 134,
+        "raw": "`is_a` → Atomic Competence Unit",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-116",
+      "predicate": "part_of",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 135,
+        "raw": "`part_of` → World Skills Protocol (OCR-100); Competency (OCR-117)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-116",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 136,
+        "raw": "`defined_by` → Framework (OCR-115)",
+        "source_predicate": "defined_by"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "attests",
+      "target": "OCR-116",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 137,
+        "raw": "`attested_by` → Evidence (OCR-110)",
+        "source_predicate": "attested_by"
+      }
+    },
+    {
+      "source": "OCR-118",
+      "predicate": "part_of",
+      "target": "OCR-116",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 138,
+        "raw": "`composes` → Capability (OCR-118)",
+        "source_predicate": "composes"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "resolves",
+      "target": "OCR-116",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-116",
+        "line": 139,
+        "raw": "`resolved_by` → Framework Registry (OCR-119)",
+        "source_predicate": "resolved_by"
+      }
+    },
+    {
+      "source": "OCR-117",
+      "predicate": "is_a",
+      "target": "ext:applied-competence-cluster",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 134,
+        "raw": "`is_a` → Applied Competence Cluster",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-117",
+      "predicate": "part_of",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 135,
+        "raw": "`part_of` → World Skills Protocol (OCR-100); Capability (OCR-118)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 136,
+        "raw": "`defined_by` → Framework (OCR-115)",
+        "source_predicate": "defined_by"
+      }
+    },
+    {
+      "source": "OCR-116",
+      "predicate": "part_of",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 137,
+        "raw": "`clusters` → Skill (OCR-116)",
+        "source_predicate": "clusters"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "attests",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 138,
+        "raw": "`attested_by` → Evidence (OCR-110)",
+        "source_predicate": "attested_by"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "resolves",
+      "target": "OCR-117",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-117",
+        "line": 139,
+        "raw": "`resolved_by` → Framework Registry (OCR-119)",
+        "source_predicate": "resolved_by"
+      }
+    },
+    {
+      "source": "OCR-118",
+      "predicate": "is_a",
+      "target": "ext:broad-competence-capacity",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 135,
+        "raw": "`is_a` → Broad Competence Capacity",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-118",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 136,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-115",
+      "predicate": "defines",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 137,
+        "raw": "`defined_by` → Framework (OCR-115)",
+        "source_predicate": "defined_by"
+      }
+    },
+    {
+      "source": "OCR-116",
+      "predicate": "part_of",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 138,
+        "raw": "`composes` → Competency (OCR-117), Skill (OCR-116)",
+        "source_predicate": "composes"
+      }
+    },
+    {
+      "source": "OCR-117",
+      "predicate": "part_of",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 138,
+        "raw": "`composes` → Competency (OCR-117), Skill (OCR-116)",
+        "source_predicate": "composes"
+      }
+    },
+    {
+      "source": "OCR-118",
+      "predicate": "computed_from",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": "OCR-105",
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 139,
+        "raw": "`standing_computed_from` → Immutable Fact (OCR-114) via Trust (OCR-105)",
+        "source_predicate": "standing_computed_from"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "resolves",
+      "target": "OCR-118",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-118",
+        "line": 140,
+        "raw": "`resolved_by` → Framework Registry (OCR-119)",
+        "source_predicate": "resolved_by"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "is_a",
+      "target": "ext:index",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 151,
+        "raw": "`is_a` → Resolution Layer / Index",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "is_a",
+      "target": "ext:resolution-layer",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 151,
+        "raw": "`is_a` → Resolution Layer / Index",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 152,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "resolves",
+      "target": "ext:framework-ocr-115-coordinates-and-criteria",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 153,
+        "raw": "`resolves` → Framework (OCR-115) coordinates and criteria",
+        "source_predicate": "resolves"
+      }
+    },
+    {
+      "source": "ext:criterion",
+      "predicate": null,
+      "target": "ext:coordinate",
+      "edge_type": "cascade_hop",
+      "edge_origin": "implicit_cascade",
+      "non_inferente": true,
+      "indexed_as_predicate": false,
+      "excluded_from_predicate_stats": true,
+      "semantic_stability": null,
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 154,
+        "raw": "`maps` → Criterion → Coordinate",
+        "source_predicate": null
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "maps",
+      "target": "ext:criterion",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 154,
+        "raw": "`maps` → Criterion → Coordinate",
+        "source_predicate": "maps"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "depends_on",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 155,
+        "raw": "`defers_levels_to` → Framework (OCR-115)",
+        "source_predicate": "defers_levels_to"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "queries",
+      "target": "OCR-119",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 156,
+        "raw": "`queried_by` → Evidence ingestion (OCR-110), Verification (OCR-107)",
+        "source_predicate": "queried_by"
+      }
+    },
+    {
+      "source": "OCR-110",
+      "predicate": "queries",
+      "target": "OCR-119",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 156,
+        "raw": "`queried_by` → Evidence ingestion (OCR-110), Verification (OCR-107)",
+        "source_predicate": "queried_by"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "depends_on",
+      "target": "OCR-119",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 157,
+        "raw": "`supports` → Trust (OCR-105)",
+        "source_predicate": "supports"
+      }
+    },
+    {
+      "source": "OCR-119",
+      "predicate": "governed_by",
+      "target": "ext:opus-x",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-119",
+        "line": 158,
+        "raw": "`governed_by` → Opus X",
+        "source_predicate": "governed_by"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "is_a",
+      "target": "ext:organization-role",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 142,
+        "raw": "`is_a` → Party / Organization role",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "is_a",
+      "target": "ext:party",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 142,
+        "raw": "`is_a` → Party / Organization role",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 143,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "produces",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 144,
+        "raw": "`produces` → Evidence (OCR-110)",
+        "source_predicate": "produces"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "certifies",
+      "target": "OCR-120",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 145,
+        "raw": "`certified_as` → Certified Issuer (OCR-121)",
+        "source_predicate": "certified_as"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "references",
+      "target": "OCR-115",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 146,
+        "raw": "`references` → Framework (OCR-115)",
+        "source_predicate": "references"
+      }
+    },
+    {
+      "source": "OCR-120",
+      "predicate": "owns",
+      "target": "ext:learning-journey",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-120",
+        "line": 147,
+        "raw": "`owns` → learning journey",
+        "source_predicate": "owns"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "is_a",
+      "target": "ext:issuer-ocr-120-in-certified-state",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-121",
+        "line": 146,
+        "raw": "`is_a` → Issuer (OCR-120) in Certified state",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-121",
+        "line": 147,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "ext:opus-x",
+      "predicate": "certifies",
+      "target": "OCR-121",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-121",
+        "line": 148,
+        "raw": "`certified_by` → Opus X",
+        "source_predicate": "certified_by"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "gates",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-121",
+        "line": 149,
+        "raw": "`gates` → Evidence acceptance (OCR-110)",
+        "source_predicate": "gates"
+      }
+    },
+    {
+      "source": "OCR-121",
+      "predicate": "produces",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-121",
+        "line": 150,
+        "raw": "`produces_accepted` → Immutable Fact (OCR-114)",
+        "source_predicate": "produces_accepted"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "is_a",
+      "target": "ext:entity",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 134,
+        "raw": "`is_a` → Entity",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 135,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "holds",
+      "target": "ext:verifier-roles",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 136,
+        "raw": "`holds` → Issuer (OCR-120) / Certified Issuer (OCR-121) / verifier roles",
+        "source_predicate": "holds"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "holds",
+      "target": "OCR-120",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 136,
+        "raw": "`holds` → Issuer (OCR-120) / Certified Issuer (OCR-121) / verifier roles",
+        "source_predicate": "holds"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "holds",
+      "target": "OCR-121",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 136,
+        "raw": "`holds` → Issuer (OCR-120) / Certified Issuer (OCR-121) / verifier roles",
+        "source_predicate": "holds"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "produces",
+      "target": "OCR-110",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 137,
+        "raw": "`produces_when_issuer` → Evidence (OCR-110)",
+        "source_predicate": "produces_when_issuer"
+      }
+    },
+    {
+      "source": "ext:its-facts-and-actions",
+      "predicate": "governed_by",
+      "target": "OCR-122",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 138,
+        "raw": "`accountable_for` → its facts and actions",
+        "source_predicate": "accountable_for"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "distinct_from",
+      "target": "OCR-103",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-122",
+        "line": 139,
+        "raw": "`distinct_from` → Professional (OCR-103)",
+        "source_predicate": "distinct_from"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "is_a",
+      "target": "ext:presentation-view",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 138,
+        "raw": "`is_a` → Presentation View / Projection",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "is_a",
+      "target": "ext:projection",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 138,
+        "raw": "`is_a` → Presentation View / Projection",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 139,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "computed_from",
+      "target": "OCR-101",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 140,
+        "raw": "`derived_from` → Professional Passport (OCR-101)",
+        "source_predicate": "derived_from"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "reports",
+      "target": "OCR-105",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 141,
+        "raw": "`presents` → Immutable Fact (OCR-114), Trust (OCR-105)",
+        "source_predicate": "presents"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "reports",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 141,
+        "raw": "`presents` → Immutable Fact (OCR-114), Trust (OCR-105)",
+        "source_predicate": "presents"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "governed_by",
+      "target": "ext:consent",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 142,
+        "raw": "`bounded_by` → consent / disclosure",
+        "source_predicate": "bounded_by"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "governed_by",
+      "target": "ext:disclosure",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 142,
+        "raw": "`bounded_by` → consent / disclosure",
+        "source_predicate": "bounded_by"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "references",
+      "target": "OCR-104",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 143,
+        "raw": "`about` → Opus ID (OCR-104)",
+        "source_predicate": "about"
+      }
+    },
+    {
+      "source": "OCR-123",
+      "predicate": "distinct_from",
+      "target": "OCR-102",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-123",
+        "line": 144,
+        "raw": "`distinct_from` → Professional Identity (OCR-102)",
+        "source_predicate": "distinct_from"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "is_a",
+      "target": "ext:specification-body",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 140,
+        "raw": "`is_a` → Specification Body / Standard",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "is_a",
+      "target": "ext:standard",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 140,
+        "raw": "`is_a` → Specification Body / Standard",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 141,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "ext:ocr",
+      "predicate": "part_of",
+      "target": "OCR-124",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": "each defining one concept",
+      "provenance": {
+        "record": "OCR-124",
+        "line": 142,
+        "raw": "`contains` → OCR (each defining one concept)",
+        "source_predicate": "contains"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "defines",
+      "target": "ext:the-protocol-s-concepts",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 143,
+        "raw": "`defines` → the protocol's concepts",
+        "source_predicate": "defines"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "governed_by",
+      "target": "ext:opus-x",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 144,
+        "raw": "`governed_by` → Opus X",
+        "source_predicate": "governed_by"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "part_of",
+      "target": "ext:100s",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 146,
+        "raw": "`layered_into` → 100s / 200s / 300s",
+        "source_predicate": "layered_into"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "part_of",
+      "target": "ext:200s",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 146,
+        "raw": "`layered_into` → 100s / 200s / 300s",
+        "source_predicate": "layered_into"
+      }
+    },
+    {
+      "source": "OCR-124",
+      "predicate": "part_of",
+      "target": "ext:300s",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-124",
+        "line": 146,
+        "raw": "`layered_into` → 100s / 200s / 300s",
+        "source_predicate": "layered_into"
+      }
+    },
+    {
+      "source": "OCR-125",
+      "predicate": "is_a",
+      "target": "ext:abstract-identity-concept",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 133,
+        "raw": "`is_a` → Abstract Identity Concept",
+        "source_predicate": "is_a"
+      }
+    },
+    {
+      "source": "OCR-125",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 134,
+        "raw": "`part_of` → World Skills Protocol (OCR-100)",
+        "source_predicate": "part_of"
+      }
+    },
+    {
+      "source": "OCR-102",
+      "predicate": "is_a",
+      "target": "OCR-125",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 135,
+        "raw": "`instantiated_by` → Professional Identity (OCR-102), Organization (OCR-122)",
+        "source_predicate": "instantiated_by"
+      }
+    },
+    {
+      "source": "OCR-122",
+      "predicate": "is_a",
+      "target": "OCR-125",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 135,
+        "raw": "`instantiated_by` → Professional Identity (OCR-102), Organization (OCR-122)",
+        "source_predicate": "instantiated_by"
+      }
+    },
+    {
+      "source": "OCR-104",
+      "predicate": "identifies",
+      "target": "OCR-125",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 136,
+        "raw": "`named_by` → Opus ID (OCR-104)",
+        "source_predicate": "named_by"
+      }
+    },
+    {
+      "source": "OCR-125",
+      "predicate": "identifies",
+      "target": "OCR-114",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": false,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 137,
+        "raw": "`binds` → Immutable Fact (OCR-114)",
+        "source_predicate": "binds"
+      }
+    },
+    {
+      "source": "OCR-105",
+      "predicate": "depends_on",
+      "target": "OCR-125",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 138,
+        "raw": "`enables` → Verification (OCR-107), Trust (OCR-105)",
+        "source_predicate": "enables"
+      }
+    },
+    {
+      "source": "OCR-107",
+      "predicate": "depends_on",
+      "target": "OCR-125",
+      "edge_type": "predicate",
+      "semantic_stability": "Evolving",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-125",
+        "line": 138,
+        "raw": "`enables` → Verification (OCR-107), Trust (OCR-105)",
+        "source_predicate": "enables"
+      }
+    }
+  ]
+}

@@ -1,0 +1,751 @@
+{
+  "rejected": [
+    {
+      "record": "OCR-105",
+      "line": 148,
+      "predicate": "not_a",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`not_a` → reputation, social score"
+    },
+    {
+      "record": "OCR-105",
+      "line": 148,
+      "predicate": "not_a",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`not_a` → reputation, social score"
+    },
+    {
+      "record": "OCR-109",
+      "line": 151,
+      "predicate": "not_a",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`not_a` → credential"
+    },
+    {
+      "record": "OCR-120",
+      "line": 148,
+      "predicate": "does_not_own",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_own` → professional identity (OCR-104), Passport (OCR-101), Trust (OCR-105)"
+    },
+    {
+      "record": "OCR-120",
+      "line": 148,
+      "predicate": "does_not_own",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_own` → professional identity (OCR-104), Passport (OCR-101), Trust (OCR-105)"
+    },
+    {
+      "record": "OCR-120",
+      "line": 148,
+      "predicate": "does_not_own",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_own` → professional identity (OCR-104), Passport (OCR-101), Trust (OCR-105)"
+    },
+    {
+      "record": "OCR-121",
+      "line": 151,
+      "predicate": "state",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-008",
+      "raw": "`state` → Applicant | Certified | Suspended | Revoked"
+    },
+    {
+      "record": "OCR-121",
+      "line": 152,
+      "predicate": "does_not_grant",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_grant` → identity, trust-setting, level-definition, Passport control"
+    },
+    {
+      "record": "OCR-121",
+      "line": 152,
+      "predicate": "does_not_grant",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_grant` → identity, trust-setting, level-definition, Passport control"
+    },
+    {
+      "record": "OCR-121",
+      "line": 152,
+      "predicate": "does_not_grant",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_grant` → identity, trust-setting, level-definition, Passport control"
+    },
+    {
+      "record": "OCR-121",
+      "line": 152,
+      "predicate": "does_not_grant",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_grant` → identity, trust-setting, level-definition, Passport control"
+    },
+    {
+      "record": "OCR-122",
+      "line": 140,
+      "predicate": "does_not_own",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`does_not_own` → professional identity (OCR-102)"
+    },
+    {
+      "record": "OCR-124",
+      "line": 145,
+      "predicate": "must_agree_with",
+      "canonical_status": "Rejected",
+      "target_registry": "OCR-009",
+      "raw": "`must_agree_with` → implementation"
+    }
+  ],
+  "externals": [
+    {
+      "id": "ext:100s",
+      "label": "100s",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:200s",
+      "label": "200s",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:300s",
+      "label": "300s",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:abstract-identity-concept",
+      "label": "Abstract Identity Concept",
+      "records": [
+        "OCR-125"
+      ]
+    },
+    {
+      "id": "ext:answer",
+      "label": "Answer",
+      "records": [
+        "OCR-109"
+      ]
+    },
+    {
+      "id": "ext:append-only-fact-store",
+      "label": "append-only fact store",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:applied-competence-cluster",
+      "label": "Applied Competence Cluster",
+      "records": [
+        "OCR-117"
+      ]
+    },
+    {
+      "id": "ext:atomic-competence-unit",
+      "label": "Atomic Competence Unit",
+      "records": [
+        "OCR-116"
+      ]
+    },
+    {
+      "id": "ext:broad-competence-capacity",
+      "label": "Broad Competence Capacity",
+      "records": [
+        "OCR-118"
+      ]
+    },
+    {
+      "id": "ext:computation",
+      "label": "Computation",
+      "records": [
+        "OCR-105"
+      ]
+    },
+    {
+      "id": "ext:consent",
+      "label": "consent",
+      "records": [
+        "OCR-123"
+      ]
+    },
+    {
+      "id": "ext:consent-facts",
+      "label": "consent facts",
+      "records": [
+        "OCR-101"
+      ]
+    },
+    {
+      "id": "ext:constant-time-comparison",
+      "label": "constant-time comparison",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "id": "ext:coordinate",
+      "label": "Coordinate",
+      "records": [
+        "OCR-119"
+      ]
+    },
+    {
+      "id": "ext:criterion",
+      "label": "Criterion",
+      "records": [
+        "OCR-119"
+      ]
+    },
+    {
+      "id": "ext:cryptographic-property",
+      "label": "Cryptographic Property",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "id": "ext:derived-state",
+      "label": "Derived State",
+      "records": [
+        "OCR-105"
+      ]
+    },
+    {
+      "id": "ext:derived-state-value",
+      "label": "Derived State Value",
+      "records": [
+        "OCR-106"
+      ]
+    },
+    {
+      "id": "ext:did-core",
+      "label": "DID Core",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:disclosure",
+      "label": "disclosure",
+      "records": [
+        "OCR-123"
+      ]
+    },
+    {
+      "id": "ext:entity",
+      "label": "Entity",
+      "records": [
+        "OCR-122"
+      ]
+    },
+    {
+      "id": "ext:evidence",
+      "label": "Evidence",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:evidence-link",
+      "label": "Evidence Link",
+      "records": [
+        "OCR-110"
+      ]
+    },
+    {
+      "id": "ext:fact",
+      "label": "Fact",
+      "records": [
+        "OCR-114"
+      ]
+    },
+    {
+      "id": "ext:framework",
+      "label": "Framework",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:framework-ocr-115-coordinates-and-criteria",
+      "label": "Framework (OCR-115) coordinates and criteria",
+      "records": [
+        "OCR-119"
+      ]
+    },
+    {
+      "id": "ext:framework-publication",
+      "label": "Framework publication",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:framework-publication-of-levels",
+      "label": "Framework publication of levels",
+      "records": [
+        "OCR-110"
+      ]
+    },
+    {
+      "id": "ext:framework-version",
+      "label": "Framework version",
+      "records": [
+        "OCR-115"
+      ]
+    },
+    {
+      "id": "ext:hmac",
+      "label": "HMAC",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "id": "ext:human",
+      "label": "Human",
+      "records": [
+        "OCR-103"
+      ]
+    },
+    {
+      "id": "ext:identifier",
+      "label": "Identifier",
+      "records": [
+        "OCR-104"
+      ]
+    },
+    {
+      "id": "ext:identity",
+      "label": "Identity",
+      "records": [
+        "OCR-100",
+        "OCR-102"
+      ]
+    },
+    {
+      "id": "ext:identity-surface",
+      "label": "Identity Surface",
+      "records": [
+        "OCR-101"
+      ]
+    },
+    {
+      "id": "ext:immutable-fact",
+      "label": "Immutable Fact",
+      "records": [
+        "OCR-114"
+      ]
+    },
+    {
+      "id": "ext:index",
+      "label": "Index",
+      "records": [
+        "OCR-119"
+      ]
+    },
+    {
+      "id": "ext:inspection-act",
+      "label": "Inspection Act",
+      "records": [
+        "OCR-107"
+      ]
+    },
+    {
+      "id": "ext:issuer",
+      "label": "Issuer",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:issuer-ocr-120-in-certified-state",
+      "label": "Issuer (OCR-120) in Certified state",
+      "records": [
+        "OCR-121"
+      ]
+    },
+    {
+      "id": "ext:issuer-revocation",
+      "label": "Issuer revocation",
+      "records": [
+        "OCR-111"
+      ]
+    },
+    {
+      "id": "ext:its-facts-and-actions",
+      "label": "its facts and actions",
+      "records": [
+        "OCR-122"
+      ]
+    },
+    {
+      "id": "ext:jcs",
+      "label": "JCS",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "id": "ext:learning-journey",
+      "label": "learning journey",
+      "records": [
+        "OCR-120"
+      ]
+    },
+    {
+      "id": "ext:level",
+      "label": "Level",
+      "records": [
+        "OCR-115"
+      ]
+    },
+    {
+      "id": "ext:non-ascii-conformance-test",
+      "label": "non-ASCII conformance test",
+      "records": [
+        "OCR-113"
+      ]
+    },
+    {
+      "id": "ext:ocr",
+      "label": "OCR",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:open-badges",
+      "label": "Open Badges",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:opus-x",
+      "label": "Opus X",
+      "records": [
+        "OCR-100",
+        "OCR-102",
+        "OCR-115",
+        "OCR-119",
+        "OCR-121",
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:organization-role",
+      "label": "Organization role",
+      "records": [
+        "OCR-120"
+      ]
+    },
+    {
+      "id": "ext:party",
+      "label": "Party",
+      "records": [
+        "OCR-120"
+      ]
+    },
+    {
+      "id": "ext:passport",
+      "label": "Passport",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:passport-update",
+      "label": "Passport update",
+      "records": [
+        "OCR-101"
+      ]
+    },
+    {
+      "id": "ext:presentation-view",
+      "label": "Presentation View",
+      "records": [
+        "OCR-123"
+      ]
+    },
+    {
+      "id": "ext:process",
+      "label": "Process",
+      "records": [
+        "OCR-112"
+      ]
+    },
+    {
+      "id": "ext:production-issuer-from-verification",
+      "label": "production (Issuer) from verification",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:professional",
+      "label": "Professional",
+      "records": [
+        "OCR-104"
+      ]
+    },
+    {
+      "id": "ext:projection",
+      "label": "Projection",
+      "records": [
+        "OCR-123"
+      ]
+    },
+    {
+      "id": "ext:protocol",
+      "label": "Protocol",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:provenance",
+      "label": "Provenance",
+      "records": [
+        "OCR-111"
+      ]
+    },
+    {
+      "id": "ext:query",
+      "label": "Query",
+      "records": [
+        "OCR-108"
+      ]
+    },
+    {
+      "id": "ext:record",
+      "label": "Record",
+      "records": [
+        "OCR-114"
+      ]
+    },
+    {
+      "id": "ext:reference-model",
+      "label": "Reference Model",
+      "records": [
+        "OCR-115"
+      ]
+    },
+    {
+      "id": "ext:resolution-layer",
+      "label": "Resolution Layer",
+      "records": [
+        "OCR-119"
+      ]
+    },
+    {
+      "id": "ext:revocation-fact",
+      "label": "Revocation fact",
+      "records": [
+        "OCR-110"
+      ]
+    },
+    {
+      "id": "ext:source-records",
+      "label": "source records",
+      "records": [
+        "OCR-114"
+      ]
+    },
+    {
+      "id": "ext:specification-body",
+      "label": "Specification Body",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:standard",
+      "label": "Standard",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:state-sequence",
+      "label": "State Sequence",
+      "records": [
+        "OCR-112"
+      ]
+    },
+    {
+      "id": "ext:subject-owner",
+      "label": "Subject-Owner",
+      "records": [
+        "OCR-103"
+      ]
+    },
+    {
+      "id": "ext:the-protocol-s-concepts",
+      "label": "the protocol's concepts",
+      "records": [
+        "OCR-124"
+      ]
+    },
+    {
+      "id": "ext:trust",
+      "label": "Trust",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:verifiable-credentials",
+      "label": "Verifiable Credentials",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:verifiable-professional-truth",
+      "label": "verifiable professional truth",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:verification",
+      "label": "Verification",
+      "records": [
+        "OCR-100"
+      ]
+    },
+    {
+      "id": "ext:verifier-roles",
+      "label": "verifier roles",
+      "records": [
+        "OCR-122"
+      ]
+    }
+  ],
+  "cascade_hops": [
+    {
+      "record": "OCR-101",
+      "line": 145,
+      "source": "ext:passport-update",
+      "target": "OCR-114",
+      "raw": "`accumulates` → Passport update → Immutable Fact (OCR-114)"
+    },
+    {
+      "record": "OCR-110",
+      "line": 190,
+      "source": "OCR-105",
+      "target": "OCR-106",
+      "raw": "`consumed_by` → Trust (OCR-105) → Trust Status (OCR-106)"
+    },
+    {
+      "record": "OCR-119",
+      "line": 154,
+      "source": "ext:criterion",
+      "target": "ext:coordinate",
+      "raw": "`maps` → Criterion → Coordinate"
+    }
+  ],
+  "unresolved_canonical": [
+    {
+      "record": "OCR-100",
+      "line": 149,
+      "source_predicate": "separates",
+      "source": "OCR-100",
+      "target": "ext:production-issuer-from-verification",
+      "raw": "`separates` → production (Issuer) from verification (Opus X)"
+    }
+  ],
+  "reflexives": [
+    {
+      "record": "OCR-110",
+      "line": 193,
+      "node": "OCR-110",
+      "predicate": "supersedes",
+      "raw": "`supersedes` / `superseded_by` → Evidence (OCR-110, reflexive)"
+    }
+  ],
+  "reflexive_noted": [
+    {
+      "record": "OCR-114",
+      "line": 156,
+      "source": "ext:immutable-fact",
+      "target": "OCR-114",
+      "predicate": "supersedes",
+      "note": "reflexive",
+      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
+    },
+    {
+      "record": "OCR-114",
+      "line": 156,
+      "source": "ext:immutable-fact",
+      "target": "OCR-114",
+      "predicate": "revokes",
+      "note": "reflexive",
+      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
+    },
+    {
+      "record": "OCR-115",
+      "line": 159,
+      "source": "OCR-115",
+      "target": "ext:framework-version",
+      "predicate": "supersedes",
+      "note": "reflexive",
+      "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    },
+    {
+      "record": "OCR-115",
+      "line": 159,
+      "source": "ext:framework-version",
+      "target": "OCR-115",
+      "predicate": "supersedes",
+      "note": "reflexive",
+      "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    }
+  ],
+  "two_predicate_lines": [
+    {
+      "record": "OCR-110",
+      "line": 193,
+      "predicates": [
+        "supersedes",
+        "superseded_by"
+      ],
+      "raw": "`supersedes` / `superseded_by` → Evidence (OCR-110, reflexive)"
+    },
+    {
+      "record": "OCR-114",
+      "line": 156,
+      "predicates": [
+        "superseded_by",
+        "revoked_by"
+      ],
+      "raw": "`superseded_by` / `revoked_by` → Immutable Fact (reflexive)"
+    },
+    {
+      "record": "OCR-115",
+      "line": 159,
+      "predicates": [
+        "supersedes",
+        "superseded_by"
+      ],
+      "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    }
+  ],
+  "errors": []
+}
