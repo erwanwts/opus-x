@@ -1,11 +1,10 @@
 /**
- * Page pilier GEO — /[locale]/evidence (fiche concept, OCR-110).
- * Câblage factorisé (lib/seo/pillarPage) ; contenu projeté VERBATIM d'OCR-110.
- * Page pilote historique : migrée vers la fabrique commune (un seul chemin de code).
+ * Page pilier GEO — /[locale]/world-skills-protocol (fiche concept, OCR-100).
+ * Câblage factorisé (lib/seo/pillarPage) ; contenu projeté VERBATIM de OCR-100 (World Skills Protocol).
  */
 import { pillarRoute } from '@/lib/seo/pillarPage';
 
-const route = pillarRoute('evidence');
+const route = pillarRoute('world-skills-protocol');
 
 export const dynamic = 'force-static';
 export const dynamicParams = false; // locale non générée → 404 (fallback strict)

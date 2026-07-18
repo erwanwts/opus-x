@@ -19,6 +19,12 @@ export interface Pillar {
 /** Les piliers PUBLIÉS. On n'ajoute une entrée que quand la page existe vraiment. */
 export const PILLARS: Pillar[] = [
   { slug: 'evidence', recordId: 'OCR-110', translatedLocales: ['en'] },
+  { slug: 'professional-passport', recordId: 'OCR-101', translatedLocales: ['en'] },
+  { slug: 'world-skills-protocol', recordId: 'OCR-100', translatedLocales: ['en'] },
+  { slug: 'trust', recordId: 'OCR-105', translatedLocales: ['en'] },
+  { slug: 'frameworks', recordId: 'OCR-115', translatedLocales: ['en'] },
+  { slug: 'registry', recordId: 'OCR-124', translatedLocales: ['en'] },
+  { slug: 'verification', recordId: 'OCR-107', translatedLocales: ['en'] },
 ];
 
 export function pillarBySlug(slug: string): Pillar | undefined {

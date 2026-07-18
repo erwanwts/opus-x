@@ -66,6 +66,13 @@ export interface GeoPageContent {
   meta: { version: string; author: string; date: string; status: string };
   entityLinks: EntityLink[]; // liens entités (depuis le graphe)
   cta: { label: string; href: string; enabled: boolean }; // éditorial/UI (paramètre)
+  /**
+   * Sections canoniques SANS source dans le Record (une absence est une information).
+   * INSTRUMENT DE TRAÇABILITÉ INTERNE UNIQUEMENT : consommé par le journal de build,
+   * JAMAIS rendu dans le HTML ni dans le JSON-LD. Une section absente n'émet aucun
+   * titre orphelin (le composant omet la section entière).
+   */
+  _gaps: string[];
 }
 
 // ─── Projection de l'emphase inline ─────────────────────────────────────────
@@ -236,7 +243,7 @@ export function buildGeoContent(
     }
   }
 
-  return {
+  const content: Omit<GeoPageContent, '_gaps'> = {
     slug,
     recordId,
     title: plainText(doc.metadata['Canonical Name'] || doc.title.replace(/^OCR-\d+\s*[—–-]\s*/, '')),
@@ -263,4 +270,19 @@ export function buildGeoContent(
     // que label + href ; elle ne peut pas rendre le CTA actif localement.
     cta: { label: cta.label, href: cta.href, enabled: CTA_ENABLED },
   };
+
+  // Traçabilité des sections sans source (null → omises au rendu). Section canonique →
+  // champ projeté ; un champ vide = un trou. JOURNAL DE BUILD uniquement (jamais rendu).
+  const SECTION_OF: Array<[keyof typeof content, string]> = [
+    ['directAnswer', 'Direct Answer'], ['definition', 'Canonical Definition'],
+    ['whyExists', 'Why It Exists'], ['howItWorks', 'How It Works'], ['actors', 'Actors'],
+    ['lifecycle', 'Lifecycle'], ['examples', 'Examples'], ['nonExamples', 'Counter Examples'],
+    ['distinctions', 'Distinctions'], ['keyFacts', 'Key Facts'], ['faq', 'FAQ'],
+    ['sources', 'Normative Sources'],
+  ];
+  const _gaps = SECTION_OF.filter(([k]) => (content[k] as unknown[]).length === 0).map(([, title]) => title);
+  // eslint-disable-next-line no-console
+  console.log(`[geo:gaps] ${slug} (${recordId}): ${_gaps.length ? _gaps.join(', ') : 'none'}`);
+
+  return { ...content, _gaps };
 }
