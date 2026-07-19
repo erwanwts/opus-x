@@ -2,9 +2,7 @@
   "schema": "opusx.registry.manifest/v1",
   "generated_from": "docs/web/registry-import/OCR-100",
   "expected_ranges": "OCR-000..005,OCR-100..125",
-  "excluded_files": [
-    "REG-TERMINOLOGY-registry-record-ocr.md"
-  ],
+  "excluded_files": [],
   "file_count": 32,
   "anomaly_count": 63,
   "records": [
