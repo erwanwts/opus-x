@@ -9,10 +9,10 @@
 |---|---|
 | Document ID | OCR-007 |
 | Canonical Name | Canonical Predicate Registry |
-| Version | 1.1.0 |
+| Version | 1.2.0 |
 | Status | Approved / Normative |
 | Approved by | Architecte / Protocol Authority — 2026-07-17 |
-| Changelog | v1.1.0 (2026-07-17) : Lifecycle formalisée (5 PRD+contrats), `protects` créé (Governance), `interpreted_against`/`separates` Evolving confirmés, doublons d'id PRD-103/certifies corrigés — décision architecte. |
+| Changelog | v1.2.0 (2026-07-19) : famille **Identity Resolution** créée ; prédicat `reidentified_as` (PRD-801, Domain Canonical) + inverse dérivé `was_reidentified_from` — amendement architecte (Lot B). · v1.1.0 (2026-07-17) : Lifecycle formalisée (5 PRD+contrats), `protects` créé (Governance), `interpreted_against`/`separates` Evolving confirmés, doublons d'id PRD-103/certifies corrigés — décision architecte. |
 | Owner | Architecte / Protocol Authority |
 | Normative / Informative | Normative |
 | Layer | Meta — Ontology |
@@ -174,6 +174,7 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | `bound_to` (2×) | INV de `binds` (Evolving→identifies?) | Resolution | ⟨dépend de `binds` — voir §7⟩ |
 | `subject_of` (1×) | INV de `references` (PRD-006) | Reference | Professional→Evidence |
 | `instantiated_by` (1×) | INV de `is_a` (PRD-001) | Structural | Identity→Professional Identity |
+| `was_reidentified_from` (0×) | INV de `reidentified_as` (PRD-801) | Identity Resolution | réidentification canonique ; même définition logique ; relation directe uniquement |
 
 ---
 
@@ -247,6 +248,27 @@ OCR-009/012) · `stability` · `semantic_stability` · `introduced_in` · `gover
 | PRD-703 | `orders` | "The source defines the execution order of the target." | 1× |
 | PRD-704 | `revokes` (`revoked_by` inv.) | "The source invalidates the target while preserving its historical existence." | 2× |
 | PRD-705 | `answers` | "The source is the formal response to the target request." | 1× |
+
+### Identity Resolution
+> **Famille NOUVELLE — créée par amendement (2026-07-19, décision architecte, Lot B).**
+> Résolution d'identité canonique : réattribution d'un identifiant à une définition
+> **publiée**, SANS aucun changement de sens. Distincte de **Temporal** (`supersedes` =
+> remplacement *avec* évolution) et de **Resolution / Identity** (3xx = résolution de
+> coordonnées / désignation d'un objet). Le noyau primitif (≤ 10) est inchangé :
+> `reidentified_as` est un **Domain Predicate**, hors noyau.
+
+### PRD-801 · `reidentified_as` — Canonical (Domain) · Canonical Name : "Reidentified As"
+- **semantic_contract** : "Indicates that a published definition has been assigned a new canonical identifier without any change to its semantic meaning, normative behavior, structure, or constraints."
+- family : Identity Resolution · relationship_type : Identity · ontology_domain : domain
+- signature : `{source:[published definition], target:[published definition]}` — *pending type registry (OCR-010)*
+- obligation : Optional · canonical_inverse : `was_reidentified_from` · symmetry : **asymmetric (antisymmetric)**
+- algebraic properties : **transitive · non-reflexive · antisymmetric**
+- persistence : **direct relations only** — une relation déductible n'est jamais stockée ; la chaîne se reconstruit à la lecture
+- domain : toute définition publiée · scope : relations entre deux **représentations canoniques** d'une même **définition logique**
+- **exclusion normative** : **interdit** dès qu'une propriété sémantique évolue (sens, comportement normatif, structure ou contraintes) — dans ce cas le prédicat applicable est **`supersedes` (PRD-007)**, jamais `reidentified_as`.
+- constraints_ref : [OCR-009:inv-append-only] · stability : Core · semantic_stability : **Fixed**
+- introduced_in : OCR-007 v1.2 (amendement Lot B) · governed_by : [OCR-004, OCR-007] · used_by : **0 occurrence** (la projection du graphe l'intégrera APRÈS publication)
+- *ex. : `framework:wtf` → `framework:wtr` (réidentification canonique — même définition logique, nouvel identifiant)*
 
 ---
 
@@ -371,6 +393,7 @@ OCR-007 est **Approved / Normative** (v1.1). Critères de validation (doctrine d
 - **(B) famille Lifecycle** — **formalisée en v1.1** : `initiates`/`precedes`/`orders`/`revokes`/`answers` = Domain Predicates Lifecycle (PRD-701→705, contrats propres) ; `supersedes` reste Temporal.
 - **(D) `distinct_from`** — Canonical Domain Predicate, famille Conceptual (PRD-602) : différenciation positive, jamais une négation.
 - **v1.1 — `protects`** créé (Domain Governance, PRD-208) ; **PRD-103 = `preserves`** (nom unique, `originated_from`/`provenance_of` dérivés) ; **`certifies` = PRD-206** (référence à PRD-305 supprimée, PRD-305 réservé à `maps`).
+- **v1.2 (2026-07-19) — Identity Resolution** : famille créée ; **`reidentified_as` (PRD-801, Domain Canonical)** + inverse dérivé **`was_reidentified_from`** (§4). Réidentification canonique = nouvel identifiant **sans** changement de sens (définition logique inchangée) ; si une propriété sémantique évolue, c'est **`supersedes` (PRD-007)**. Transitif, non réflexif, antisymétrique ; relations directes uniquement. Amendement Lot B. *(Champs de format non dictés — `predicate_id` PRD-801, `signature`, `stability`, `introduced_in`, etc. — renseignés par convention, à confirmer.)*
 
 **Reste ouvert par décision explicite de l'architecte (n'affecte pas le DoD) :**
 - **(C)** les résolutions **Evolving** résiduelles (§7 — dont `interpreted_against`, `separates`) restent ouvertes jusqu'à validation par le graphe (WSP-001). *« OCR-007 ne doit pas inventer une sémantique que le graphe pourra démontrer objectivement. »* Elles se confirmeront après construction du graphe, **sans rouvrir le registre**.

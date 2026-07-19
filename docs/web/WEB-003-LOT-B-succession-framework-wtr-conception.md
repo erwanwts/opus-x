@@ -1,60 +1,55 @@
 # LOT B — Publication d'une seconde représentation canonique (`framework:wtr`) par réidentification
 
-> **Statut : CONCEPTION SEULE.** Aucun SQL, aucun code, aucune migration, aucune
-> exécution. Ce document est la **référence versionnée d'une opération irréversible**
-> (§8 : une publication append-only ne se retire pas). Il précède l'implémentation ;
-> il ne l'autorise pas. L'implémentation partira d'une branche neuve depuis `main`,
-> sur mandat dédié.
+> **Statut : CONCEPTION SEULE.** Aucun SQL, aucun code applicatif, aucune migration
+> exécutée. Référence versionnée d'une **opération irréversible** (§8). Précède
+> l'implémentation ; ne l'autorise pas.
 >
 > **Historique**
-> - **v1 (2026-07-19)** — conception fondée sur `supersedes` (PRD-007).
-> - **v2 (2026-07-19)** — `supersedes` **écarté** ; prédicat NOUVEAU de **réidentification
->   canonique** (nom en attente d'OCR-007). Ajout §10 (Trust) et §11 (artefacts OCR-007).
-> - **v3 (2026-07-19)** — précisions architecte : **(A)** vocabulaire à trois niveaux
->   (définition logique / représentation canonique / identifiant canonique) ; **(B)**
->   **transitivité** — seules les relations DIRECTES sont publiées ; **(C)** principe de
->   **projection du graphe** — `c172712` n'est PAS re-gravé, une nouvelle projection est
->   produite APRÈS publication. Ordre d'exécution corrigé (§8 : gravure du graphe en
->   dernier). Nom de travail du prédicat aligné sur `reidentified_as`.
+> - **v1** — fondée sur `supersedes` (PRD-007).
+> - **v2** — `supersedes` écarté ; prédicat de réidentification canonique.
+> - **v3** — vocabulaire à trois niveaux ; transitivité (relations directes) ; projection
+>   du graphe (c172712 non re-gravé).
+> - **v4 (2026-07-19)** — l'architecte **grave l'amendement OCR-007 en intégralité** et
+>   tranche : prédicat **`reidentified_as`** (PRD-801, famille **Identity Resolution**,
+>   inverse dérivé `was_reidentified_from`) ; **granularité tranchée** (3 relations
+>   directes) ; **statuts dérivés gravés** ; **version 0.1 confirmée** + distinction
+>   implémentation/normative ; **principe de couche de lecture** gravé. §6 élargi aux
+>   `1.0.0`. OCR-007 v1.2.0 et sa projection machine sont **amendés** (ce commit).
 >
-> **(A) Vocabulaire à trois niveaux — À EMPLOYER dans tout le dossier.**
-> 1. **Définition logique** — ce que *signifie* le Framework (la Skill « Intention vs
->    Engagement », ses 4 niveaux, ses bandes). **Unique.** Elle ne se duplique jamais.
+> **(A) Vocabulaire à trois niveaux — employé partout.**
+> 1. **Définition logique** — ce que *signifie* le Framework. **Unique**, jamais dupliquée.
 > 2. **Représentation canonique** — les **lignes publiées** sous un identifiant donné.
->    **Deux coexistent** : celle sous `wtf` et celle sous `wtr`. La seconde n'est **PAS une
->    seconde définition** — c'est une **seconde représentation canonique de la MÊME
->    définition logique**, **duplication de représentation imposée par l'append-only**
->    (on ne peut pas muter l'identifiant, donc on republie), **jamais duplication de sens**.
-> 3. **Identifiant canonique** — le nom protocolaire lui-même (`framework:wtf`,
->    `framework:wtr`, `wtf:212`, `wtr:212`). C'est **lui seul** qui change ; la
->    réidentification relie deux identifiants d'une même définition logique.
+>    **Deux coexistent** (`wtf`, `wtr`) : la seconde est une **seconde représentation de la
+>    MÊME définition logique**, duplication **de représentation** imposée par l'append-only,
+>    **jamais** de sens.
+> 3. **Identifiant canonique** — le nom protocolaire lui-même. C'est **lui seul** qui change.
 >
-> **(B) Transitivité.** Seules les relations **DIRECTES** (élémentaires) sont publiées. Une
-> relation **déductible** n'est **jamais** stockée. La base ne contient que les faits
-> élémentaires ; la chaîne se **reconstruit** à la lecture.
+> **(B) Transitivité.** Seules les relations **DIRECTES** sont publiées ; une relation
+> déductible n'est jamais stockée. La chaîne se reconstruit à la lecture.
 >
-> **Prédicat — NOM EN ATTENTE DE GRAVURE OCR-007.** Nom de travail employé ici :
-> **`reidentified_as`** (formulation provisoire de l'architecte), lu **antérieur →
-> courant** : « `framework:wtf` `reidentified_as` `framework:wtr` ». À remplacer par le
-> terme et la **famille** que gravera OCR-007 (`supersedes` était *Temporal* ; la
-> réidentification relève d'une famille **Identité/Équivalence** — rien de chronologique
-> n'est asserté — arbitrage architecte).
+> **(C) Projection du graphe.** *« Le graphe est toujours une projection fidèle du corpus
+> publié à un instant donné. Il n'anticipe jamais des faits futurs et ne réécrit jamais des
+> faits passés. Toute publication append-only produit une NOUVELLE projection, sans modifier
+> les projections antérieures. »* → `c172712` **n'est pas re-gravé** ; une nouvelle
+> projection vient **après** publication (§7, §8).
 >
-> **Décisions gravées par l'architecte** : table de réidentification append-only, mécanisme
-> canonique pour TOUS les objets immuables du protocole ; le statut n'est **jamais stocké**
-> sur la représentation, il se **DÉRIVE** de l'existence d'une relation ; plusieurs relations
-> possibles dans le temps, chaîne reconstructible (relations directes seulement — B) ;
-> `framework:wtr` prend le slug `world-trader`, `framework:wtf` conserve `wtf` ; aucune
-> redirection permanente, chaque identité a son adresse propre ; la découverte canonique
-> indique laquelle est courante ; les deux représentations portent la **même définition
-> logique**, le Trust ne fait qu'une **résolution d'identité** ; le graphe est une
-> **projection fidèle du corpus publié à un instant donné** (C, voir §7).
+> **(D) Résolution d'identité — couche de lecture (principe gravé).** *« La résolution
+> canonique d'identité appartient exclusivement à la couche de lecture. Aucun mécanisme du
+> WSP n'est autorisé à modifier un fait publié, directement ou indirectement, y compris lors
+> d'un changement d'identifiant canonique. »* (§10.)
 >
-> **Ancrage** : `supabase/migrations/20260713000001_wsp_framework.sql` &
-> `…0002_wsp_fact_store.sql` & `…0005_wsp_ingestion.sql` ; `lib/wsp/evidenceCovered.ts` ;
+> **Prédicat — GRAVÉ (OCR-007 v1.2.0).** `reidentified_as` (Canonical Name « Reidentified
+> As »), PRD-801, famille **Identity Resolution** (nouvelle) ; inverse dérivé
+> **`was_reidentified_from`** (vue dérivée §4 d'OCR-007, une seule direction stockée) ;
+> **asymétrique · antisymétrique · transitif · non réflexif** ; **relations directes
+> uniquement** ; **interdit dès qu'une propriété sémantique évolue** — auquel cas
+> `supersedes` (PRD-007). *(Le n° `PRD-801` et les champs de format non dictés sont
+> renseignés par convention, signalés dans OCR-007 §9, à confirmer.)*
+>
+> **Ancrage** : `20260713000001/2/5.sql` ; `lib/wsp/evidenceCovered.ts` ;
 > `lib/api/readPublicPassport.ts` ; `lib/dashboard/DashboardService.ts` ;
 > `app/frameworks/[id]/skills/route.ts` ; `lib/seo/transitional-redirects.ts` ;
-> `docs/registry/OCR-007_Canonical_Predicate_Registry.md` +
+> `docs/registry/OCR-007_Canonical_Predicate_Registry.md` (v1.2.0) +
 > `content/registry/ocr-007-resolution.json` ; KG `content/registry/wsp-graph.json`
 > (projection `c172712`) ; 14 Records de `docs/web/registry-import/OCR-100/`.
 
@@ -62,391 +57,316 @@
 
 ## 1. Schéma de la table de réidentification
 
-Mécanisme canonique pour **tous** les objets immuables. Elle relie deux **identifiants
-canoniques** (niveau 3 du vocabulaire A) d'une **même définition logique** (niveau 1). Forme
-proposée (décrite, non écrite en SQL) :
+Mécanisme canonique pour **tous** les objets immuables. Relie deux **identifiants
+canoniques** (niveau 3) d'une **même définition logique** (niveau 1).
 
 | Colonne | Type | Justification |
 |---|---|---|
-| `id` | text, PK | La relation **est elle-même un fait immuable** : identité propre, citable, jamais recalculée. |
-| `predicate` | text, `check in ('reidentified_as')` | Rend la table **self-describing** et extensible sans changer sa forme. **Valeur en attente d'OCR-007** (nom de travail `reidentified_as`). |
-| `prior_type` | text, `check in (…)` | Discrimine la table cible (`framework`, `framework_version`, `skill`, `skill_level`, …). Clé du polymorphisme. |
-| `prior_id` | text | Identifiant canonique **antérieur** (`framework:wtf`). |
+| `id` | text, PK | La relation **est elle-même un fait immuable**. |
+| `predicate` | text, `check in ('reidentified_as')` | Self-describing ; valeur **gravée** (PRD-801). |
+| `prior_type` | text, `check in (…)` | Discrimine la table cible (polymorphisme). |
+| `prior_id` | text | Identifiant **antérieur** (`framework:wtf`). Exposé en découverte comme `previous_identifier`. |
 | `canonical_type` | text, `check in (…)` | Idem côté identité courante. |
-| `canonical_id` | text | Identifiant canonique **courant** (`framework:wtr`). |
-| `recorded_at` | timestamptz, default now() | Enveloppe système immuable. |
-| `effective_at` | date, nullable | Date **domaine** de la réidentification, si souhaité. |
+| `canonical_id` | text | Identifiant **courant** (`framework:wtr`). Exposé en découverte comme `canonical_identifier`. |
+| `recorded_at` | timestamptz, default now() | Enveloppe immuable. |
+| `effective_at` | date, nullable | Date domaine, si souhaité. |
 
-### Le prédicat change-t-il la forme de la table ? — **Non**
-`predicate` est de type **`text`** : il accepte n'importe quelle chaîne ; seule la
-**contrainte `check in (…)`** restreint les valeurs. Graver un prédicat = **redéfinir le
-CHECK**, un **changement de définition de contrainte**, **pas** un changement de forme
-(aucune colonne ajoutée/retirée, aucun type modifié). C'est pourquoi `predicate` est une
-**colonne first-class self-describing** : la table absorbe un nouveau prédicat sans se
-déformer.
+**Le prédicat ne change pas la forme de la table** : `predicate` est `text` + `check in
+(…)` ; graver un prédicat = redéfinir le CHECK, pas la forme.
 
-### Référencer des objets de types différents sans FK unique
-Une FK pointe vers **une** table ; les cibles vivent dans `wsp_frameworks`,
-`wsp_framework_versions`, `wsp_skills`… — pas de FK unique possible.
-- **(a) paire `type` + `id` polymorphe** — seul point commun : **un id canonique textuel**.
-  **Recommandé.** Coût : intégrité non garantie par le SGBD, bornée par le chemin
-  d'écriture contrôlé (`service_role`) + **trigger de validation à l'INSERT**.
-- (b) colonnes FK par type / (c) une table par type — **rejetées** (explosion, contredit
-  « sert TOUS les objets »).
+**Référencement polymorphe** : paire `type` + `id` (seul point commun : un id canonique
+textuel) ; intégrité bornée par le chemin d'écriture `service_role` + trigger de validation
+à l'INSERT. (FK par type / table par type rejetées.)
 
-### Chaîne circulaire (A → B → A)
-Prédicat **asymétrique** (antérieur ≠ courant), imposé **structurellement à l'INSERT** :
-`check (prior_id <> canonical_id …)` (self-loop) ; trigger anti-2-cycle ; **traversée
-récursive** anti-n-cycle (refuse l'INSERT, jamais de mutation).
+**Anti-cycle** (prédicat asymétrique/antisymétrique) : `check (prior_id <> canonical_id …)`
++ trigger anti-2-cycle + traversée récursive anti-n-cycle, **à l'INSERT** (jamais mutation).
 
-### Deux identités courantes concurrentes pour une même antérieure
-**`unique (predicate, prior_type, prior_id)`** → réidentifiée **au plus une fois** → chaîne
-**linéaire**, identité courante calculable. Reco : **aussi** `unique (predicate,
-canonical_type, canonical_id)` (pas de fusion), sauf volonté contraire.
+**Unicité** : `unique (predicate, prior_type, prior_id)` → réidentifié au plus une fois →
+chaîne linéaire. Reco : aussi `unique (predicate, canonical_type, canonical_id)`.
 
-### « Identité courante » = l'objet qu'aucune ligne ne désigne comme antérieur
-La tête est l'objet dont l'`id` **n'apparaît jamais dans `prior_id`** ; unicité sur
-`prior_id` → pas de fourche → tête **unique**.
+**Identité courante** = l'objet dont l'`id` **n'apparaît jamais dans `prior_id`** (tête
+unique grâce à l'unicité).
 
-### Transitivité (B) — seules les relations directes sont stockées
-La table ne contient que des maillons **directs** (A→B, B→C). La relation **déductible**
-A→C **n'est jamais insérée** : elle se **reconstruit** en suivant les maillons. Corollaire
-pour §9 : la question de granularité porte sur **quels maillons directs publier**, pas sur
-un quelconque stockage de la clôture transitive.
+**Transitivité (B)** : seuls les maillons **directs** sont stockés ; la relation déductible
+A→C n'est jamais insérée. Détermine la granularité (§9).
 
-### Trigger d'immuabilité sur cette table
-**Oui, indispensable.** `BEFORE UPDATE OR DELETE … FOR EACH ROW` +
-`BEFORE TRUNCATE … FOR EACH STATEMENT` → `wsp_reject_mutation()` (générique, réutilisable).
-Sans elle, on pourrait **réécrire l'histoire** en éditant une ligne.
+**Trigger d'immuabilité** : `BEFORE UPDATE OR DELETE … FOR EACH ROW` +
+`BEFORE TRUNCATE … FOR EACH STATEMENT` → `wsp_reject_mutation()` (générique).
 
 ---
 
 ## 2. Ce qui est publié — une seconde REPRÉSENTATION, pas une seconde définition
 
 On **INSÈRE** une **seconde représentation canonique** (sous `wtr`) de la **même définition
-logique** déjà représentée sous `wtf` — miroir exact du seed déjà édité, appliqué au vivant
-qui n'a que `wtf` :
+logique** déjà représentée sous `wtf` :
 
 | # | Table | Ligne |
 |---|---|---|
-| 1 | `wsp_frameworks` | `framework:wtr` · slug `world-trader` · « World Trader Framework » · publisher Opus X |
+| 1 | `wsp_frameworks` | `framework:wtr` · slug `world-trader` · « World Trader Framework » · Opus X |
 | 2 | `wsp_framework_versions` | `framework:wtr@0.1` · version `0.1` · status `published` |
 | 3 | `wsp_skills` | `wtr:212` · code `WTR-212` · « Intention vs Engagement » |
-| 4–7 | `wsp_skill_levels` | `wtr:212#aware/applied/proficient/mastery` (rangs 1→4, bandes 2-2 / 3-3 / 4-4 / 5-5) |
-| 8 | **table de réidentification** | **`framework:wtf` `reidentified_as` `framework:wtr`** — `prior_id = framework:wtf`, `canonical_id = framework:wtr` |
+| 4–7 | `wsp_skill_levels` | `wtr:212#aware/applied/proficient/mastery` (rangs 1→4, bandes 2-2/3-3/4-4/5-5) |
+| 8 | **table de réidentification** | `framework:wtf` `reidentified_as` `framework:wtr` |
+| 9 | **table de réidentification** | `framework:wtf@0.1` `reidentified_as` `framework:wtr@0.1` |
+| 10 | **table de réidentification** | `wtf:212` `reidentified_as` `wtr:212` |
 
-**= 7 lignes de représentation + 1 ligne de réidentification = 8 INSERT** (granularité §9).
+**= 7 lignes de représentation + 3 lignes de réidentification = 10 INSERT** (granularité
+tranchée, §9). Les **4 niveaux ne reçoivent aucune relation** (règle §9).
 
-> **Cadrage (A)** : ces 7 lignes ne créent **aucune nouvelle définition logique**. Elles
-> sont la **représentation canonique** de la définition existante sous un **nouvel
-> identifiant**. La duplication est **de représentation** (contrainte append-only : on ne
-> mute pas un identifiant publié), **jamais de sens**.
+> **Cadrage (A)** : ces 7 lignes ne créent **aucune nouvelle définition logique** — c'est la
+> **représentation canonique** de la définition existante sous un **nouvel identifiant**.
+> Duplication **de représentation** (append-only), jamais de sens.
 
-> ⚠️ **Direction (définitive)** : identité **courante** = `framework:wtr` (`canonical_id`),
-> **antérieure** = `framework:wtf` (`prior_id`). L'inverse serait irréversible (§8).
+> ⚠️ **Direction (définitive)** : `prior_id = wtf`, `canonical_id = wtr`. L'inverse serait
+> irréversible (§8).
 
-- **Coordonnées `wtr:212` / `WTR-212`** : confirmées (corpus + seed).
-- **Version** : seed = **`0.1`** ; `wtr` démarre à `0.1`, miroir de `wtf@0.1`. ⚠️ le corpus
-  écrit `wtr@1.0.0` (§6, note version) — reco `0.1`, décision architecte.
+- **Coordonnées `wtr:212`/`WTR-212`** : confirmées.
+- **Version : `0.1` CONFIRMÉ.** Distinction gravée : **version d'implémentation** (`0.1`, le
+  jalon courant réel du WTR) vs **version normative** (`1.0.0`, **réservée** à la première
+  publication normative complète du protocole). `wtr` démarre à `0.1` ; **`1.0.0` ne doit
+  pas être employé** avant cette publication normative (⇒ §6, inventaire version).
 - **4 niveaux à l'identique** : oui.
-- **INSERT bloqué ?** **Non** — la garde ne couvre que UPDATE/DELETE/TRUNCATE, et aucune
-  unicité ne s'oppose (PK/slug/uniques distincts de la lignée `wtf`).
+- **INSERT bloqué ?** **Non** (garde = UPDATE/DELETE/TRUNCATE seulement ; aucune unicité ne
+  s'oppose).
 
 ---
 
-## 3. Découverte canonique
+## 3. Découverte canonique — statuts dérivés GRAVÉS
 
-**Statut DÉRIVÉ, jamais stocké.** Sous réidentification, `wtf` n'est **ni superseded ni
-deprecated** : c'est la **même définition logique** sous une **représentation antérieure**.
-**Valeurs proposées (NORMATIVES — jeton à graver par l'architecte)** :
+**Statut DÉRIVÉ, jamais persisté** (gravé) :
 
-| Côté | Champ dérivé proposé | Sens |
+| Côté | Champs dérivés (gravés) | Sens |
 |---|---|---|
-| `framework:wtf` (antérieur) | `identity_status: reidentified` + `canonical_id: framework:wtr` | Représentation antérieure d'une définition toujours vivante ; pointe vers l'identifiant courant. |
-| `framework:wtr` (courant) | `identity_status: canonical` + `prior_id: framework:wtf` | Représentation canonique courante ; expose son identifiant antérieur. |
+| `framework:wtf` (représentation historique) | `status: "reidentified"` + `canonical_identifier: framework:wtr` | Représentation antérieure d'une définition toujours vivante ; pointe vers l'identifiant courant. |
+| `framework:wtr` (représentation courante) | `status: "canonical"` + `previous_identifier: framework:wtf` | Représentation canonique courante ; expose son identifiant antérieur. |
 
-Les deux restent `published` au niveau version ; `identity_status` est une **surcouche
-dérivée**, pas un remplacement de statut. *(L'enum `wsp_framework_versions.status` ne connaît
-que `published`/`deprecated` — rien n'est stocké, tout se calcule.)*
+**Jamais persistés** : `status` reste `published` en base ; `reidentified`/`canonical` sont
+une **surcouche dérivée** calculée à la lecture. *(L'enum `wsp_framework_versions.status` ne
+connaît que `published`/`deprecated`.)*
 
-**Dérivation dans la requête :** `.or(id.eq.${id},slug.eq.${id})` résout le framework ;
-on **ajoute une lecture** de la table : `EXISTS(prior_id = framework.id)` → `canonical_id`
-+ `reidentified` ; `EXISTS(canonical_id = framework.id)` → `prior_id` + `canonical`.
+**Dérivation** : `.or(id.eq.${id},slug.eq.${id})` résout le framework ; + lecture de la
+table : `EXISTS(prior_id = framework.id)` → `canonical_identifier` + `reidentified` ;
+`EXISTS(canonical_id = framework.id)` → `previous_identifier` + `canonical`.
 
-**Comportement cible :**
-- `/frameworks/world-trader` → `framework:wtr`, `identity_status: canonical`,
-  `prior_id: framework:wtf`.
-- `/frameworks/wtf` → `framework:wtf`, `identity_status: reidentified`,
-  `canonical_id: framework:wtr` *(après retrait de la 301 — §4)*.
+**Comportement cible** : `/frameworks/world-trader` → `canonical` + `previous_identifier` ;
+`/frameworks/wtf` → `reidentified` + `canonical_identifier` *(après retrait 301, §4)*.
 
-⚠️ Aucune route `/frameworks/[id]` de *définition* n'existe (seulement `/skills`) → enrichir
-`/skills` **ou** ajouter une route. Décision d'implémentation. **`/frameworks/wtr` (id nu)**
-→ 404 aujourd'hui ; reco : ne pas l'ajouter (nuance : les Evidence portent `framework.id =
-"wtr"` — alias possible si symétrie voulue).
+⚠️ Aucune route `/frameworks/[id]` de définition n'existe (seulement `/skills`) → enrichir
+ou ajouter. **`/frameworks/wtr` (id nu)** → 404 ; reco : ne pas l'ajouter.
 
 ---
 
 ## 4. Retrait de la redirection
 
-**Supprimé :** `lib/seo/transitional-redirects.ts` (l'entrée `/frameworks/wtf/skills → 301`,
-fichier retirable) ; `lib/seo/transitional-redirects.test.ts` ; le branchement dans
-`next.config.ts` ; la **date gravée du 31 octobre 2026**.
-
-**Amendé (PAS supprimé — historiques) :** `docs/migration/MIG-wtf-to-wtr-2026-07-18.md`
-(section « Redirection transitoire » + date **caduques**) ; `PLAN-forward-wtf-to-wtr.md`.
-
-**Conséquence** : `/frameworks/wtf/skills` cesse de rediriger et **résout** vers la
-représentation sous l'identifiant antérieur — « chaque identité a son adresse propre »,
-« wtf reste consultable ».
+**Supprimé** : `lib/seo/transitional-redirects.ts` (entrée `/frameworks/wtf/skills → 301`) ;
+`…transitional-redirects.test.ts` ; branchement `next.config.ts` ; date du 31 octobre 2026.
+**Amendé (historiques, non supprimés)** : `MIG-wtf-to-wtr-2026-07-18.md`,
+`PLAN-forward-wtf-to-wtr.md` (redirection + date **caduques**).
+**Conséquence** : `/frameworks/wtf/skills` **résout** vers la représentation antérieure.
 
 ---
 
 ## 5. Le seed
 
-Le seed `20260713000001` ne déclare **que `wtr`** → base fraîche = `wtr` seul. Pour
-**reproduire l'état réel post-Lot B**, il doit contenir les **deux représentations
-canoniques + la relation** :
-1. **`framework:wtf` publié** — ses 7 lignes.
-2. **`framework:wtr` publié** — ses 7 lignes (même définition logique, identifiant `wtr`).
-3. **La ligne de réidentification** `framework:wtf` `reidentified_as` `framework:wtr`, à la
-   **granularité retenue en §9**.
+Le seed `20260713000001` ne déclare que `wtr` → base fraîche divergente. Pour reproduire
+l'état réel post-Lot B, il doit contenir **les deux représentations + les 3 relations** :
+1. `framework:wtf` publié (7 lignes).
+2. `framework:wtr` publié (7 lignes, même définition logique).
+3. Les **3 lignes de réidentification** (framework, version, skill), granularité §9.
 
-Tout en `on conflict do nothing`. ⚠️ Le seed reproduit la **couche définition** (les deux
-représentations + la relation), **pas la couche faits** : les **79 Evidence** `wtf:212` sont
-des données de production, jamais seedées.
+`on conflict do nothing`. ⚠️ Reproduit la **couche définition**, pas les **79 Evidence**
+`wtf:212` (données de production).
 
 ---
 
 ## 6. Passages de Records à réécrire *(livrable principal — je délimite, l'architecte rédige)*
 
-### La grille de tri
-- **Couche DÉFINITION** (Framework, Skill, Competency, Capability, résolution du Registry)
-  → la **représentation courante** est `wtr:212` → **JUSTE, garder `wtr`.**
-- **Couche FAIT** (Evidence émise/journalisée, Immutable Fact, Trust calculé, Vérification
-  d'un fait réel, mapping seedé) → les faits réels portent l'**identifiant antérieur
-  `wtf:212`** (hash-portant, §10) → **FAUX en `wtr`.**
+### 6a. Coordonnées (`wtr:212` vs `wtf:212`)
 
-> **Note (A)** : `wtf:212` et `wtr:212` désignent la **même définition logique** ; ce qui
-> diffère est l'**identifiant** stocké dans le fait. Un fait réel ne « devient » jamais
-> `wtr:212` — il est **résolu** vers l'identifiant courant à la lecture (§10).
+Grille : **DÉFINITION** (Framework, Skill, Competency, Capability, Registry) → `wtr:212`
+JUSTE ; **FAIT** (Evidence émise/journalisée, Immutable Fact, Trust calculé, Vérification
+d'un fait réel, mapping seedé) → identifiant antérieur `wtf:212` (hash-portant, §10) → FAUX
+en `wtr`.
 
-### Couche FAIT — passages proposés **FAUX** (→ `wtf:212`)
+**Couche FAIT — FAUX (→ `wtf:212`)** :
 
-| Record | Ligne | Passage (verbatim abrégé) | Pourquoi faux |
+| Record | Ligne | Passage | Motif |
 |---|---|---|---|
-| **OCR-121** Certified Issuer | 156 | « its Evidence referencing `wtr:212` is **accepted and journaled** » | Fait réalisé → journalisé en `wtf:212`. |
-| **OCR-120** Issuer | 118 | JSON `"references_framework": "wtr:212"` | Référence d'Evidence produite. |
-| **OCR-120** Issuer | 152 | « produces Evidence referencing `wtr:212`; Opus X **accepts it and binds it** » | Fait réalisé, lié au Passport. |
-| **OCR-110** Evidence | 144 | JSON `"framework": { "id": "wtr", "reference": "wtr:212" }` | Corps d'une **Evidence** (artefact-fait). |
-| **OCR-110** Evidence | 173–174 | JSON-LD `framework:wtr` + `"frameworkReference": "wtr:212"`, `isImmutable:true` | Modélise un **fait immuable**. |
-| **OCR-110** Evidence | 198 | « emits Evidence referencing `wtr:212` … **journals the fact** … » | **LE** fait démontré réel. |
-| **OCR-114** Immutable Fact | 161 | « An **accepted Evidence** for `wtr:212` is **written as an Immutable Fact** … » | Fait réalisé. |
-| **OCR-109** Verif. Response | 116 | JSON `"verified": { "coordinate": "wtr:212", "facts": ["ev_01KXM07…"] }` | Fait **vérifié précis**. |
-| **OCR-109** Verif. Response | 155 | « reports computed Trust for `wtr:212` … » | Trust sur faits réels. |
-| **OCR-106** Trust Status | 112, 129 | `"framework_version": "wtr@1.0.0"` (×2) | Trust sur faits réels (+ version). |
-| **OCR-105** Trust | 133 | JSON-LD `"interpretedAgainst": framework:wtr` | Trust interprété contre le framework des faits. *(borderline)* |
+| OCR-121 | 156 | « Evidence referencing `wtr:212` is **accepted and journaled** » | fait journalisé |
+| OCR-120 | 118 | `"references_framework": "wtr:212"` | référence d'Evidence |
+| OCR-120 | 152 | « produces Evidence referencing `wtr:212`; Opus X **accepts it and binds it** » | fait lié au Passport |
+| OCR-110 | 144 | `"framework": { "id": "wtr", "reference": "wtr:212" }` | corps d'Evidence |
+| OCR-110 | 173–174 | JSON-LD `framework:wtr` + `frameworkReference: "wtr:212"`, `isImmutable:true` | fait immuable |
+| OCR-110 | 198 | « emits Evidence referencing `wtr:212` … **journals the fact** » | fait démontré réel |
+| OCR-114 | 161 | « An **accepted Evidence** for `wtr:212` is **written as an Immutable Fact** » | fait réalisé |
+| OCR-109 | 116 | `"verified": { "coordinate": "wtr:212", "facts": ["ev_01KXM07…"] }` | fait vérifié précis |
+| OCR-109 | 155 | « computed Trust for `wtr:212` … » | trust sur faits réels |
+| OCR-106 | 112, 129 | `"framework_version": "wtr@1.0.0"` (×2) | trust sur faits réels |
+| OCR-105 | 133 | JSON-LD `"interpretedAgainst": framework:wtr` | trust contre le framework des faits *(borderline)* |
 
-### Couche DÉFINITION — passages proposés **JUSTES** (→ garder `wtr:212`)
+**Couche DÉFINITION — JUSTES (garder `wtr:212`)** : OCR-115 (16,48,61,118,125,141–142,163,
+191–192,215,219,235) ; OCR-116 (126,144) ; OCR-117 (24,47,63,110,125–126,143,172,178,195,
+199,215) ; OCR-118 (111,127–128,144) ; OCR-119 (47,60,67,187–192,214,218).
 
-| Record | Lignes | Nature |
-|---|---|---|
-| **OCR-115** Framework | 16, 48, 61, 118, 125, 141–142, 163, 191–192, 215, 219, 235 | Le Framework lui-même — `framework:wtr` **est** la représentation courante. |
-| **OCR-116** Skill | 126, 144 | Skill défini par `framework:wtr`. |
-| **OCR-117** Competency | 24, 47, 63, 110, 125–126, 143, 172, 178, 195, 199, 215 | Compétence **définie**, adressée par `wtr:212`. |
-| **OCR-118** Capability | 111, 127–128, 144 | Capability composant `wtr:212`. |
-| **OCR-119** Framework Registry | 47, 60, 67, 187–192, 214, 218 | Couche de **résolution** courante. |
+**Borderline** : OCR-100:117 ; OCR-119:114/118–124/138–143/162/191 (mapping seedé) ;
+OCR-108:116/132–133/151/207 (scope de requête).
 
-### Trois zones **BORDERLINE** — à trancher
-- **OCR-100:117** — « Facts reference a Framework coordinate (e.g. `wtr:212`) » : générale,
-  mais parle de faits.
-- **OCR-119:114, 118–124, 138–143, 162, 191** — **mapping projet seedé** « four rows to
-  `wtr:212` » : si `wsp_skill_mappings` réel → `wtf:212` (FAUX) ; si illustration → JUSTE.
-- **OCR-108** (116, 132–133, 151, 207) — **scope de requête** `wtr:212`/`wtr@1.0.0` :
-  forward ou rétro ?
+### 6b. Version (`wtr@1.0.0` / `version: "1.0.0"` du Framework → `0.1`) — NOUVEAU
 
-### Note transverse — **la version**
-Corpus `wtr@1.0.0` / `"1.0.0"` (OCR-106, 108, 109, 115) vs base + seed **`0.1`**. Seconde
-inexactitude, orthogonale à la coordonnée — à décider.
+Motif commun : le Framework WTR est en **version d'implémentation `0.1`** ; `1.0.0` est
+**réservé** à la première publication **normative** complète (distinction gravée, §2). Toute
+assertion de la **version du Framework** à `1.0.0` est donc inexacte.
 
-### Lignes longues non dépliées (blocs machine / résumés)
+| Record | Ligne | Passage | Motif |
+|---|---|---|---|
+| OCR-105 | 116 | `"interpretation": { "framework": "wtr", "version": "1.0.0" }` | version Framework ≠ 0.1 |
+| OCR-105 | 152 | « under `wtr` v1.0.0 » | idem |
+| OCR-106 | 112 | `"framework_version": "wtr@1.0.0"` | idem |
+| OCR-106 | 129 | `"underFrameworkVersion": "wtr@1.0.0"` | idem |
+| OCR-106 | 146 | « under `wtr` v1.0.0 » | idem |
+| OCR-107 | 122 | `"framework_version": { "id": "wtr", "version": "1.0.0" }` | idem *(Record nouveau à ce titre)* |
+| OCR-108 | 117 | `"framework_version": { "id": "wtr", "version": "1.0.0" }` | idem |
+| OCR-108 | 133 | `"underFrameworkVersion": "wtr@1.0.0"` | idem |
+| OCR-108 | 151 | « under `wtr` v1.0.0 » | idem |
+| OCR-109 | 118 | `"framework_version": "wtr@1.0.0"` | idem |
+| OCR-109 | 137 | `"reportsTrustUnder": "wtr@1.0.0"` | idem |
+| OCR-109 | 155 | « under `wtr` v1.0.0 » | idem |
+| OCR-115 | 124 | `"version": "1.0.0"` (objet framework, coord. `wtr:212`) | idem |
+| OCR-115 | 143 | `"version": "1.0.0"` (JSON-LD framework) | idem |
+
+**⚠️ À NE PAS TOUCHER — `1.0.0` légitime (version du DOCUMENT OCR, pas du Framework)** :
+- `| **Version** | 1.0.0 |` en tête de **chaque** Record (ligne 7/8) ;
+- les entrées de changelog « **1.0.0** (2026-07-16) — Initial … Supersedes the OCR-xxx v0.1
+  skeleton » de chaque Record.
+Ce sont les versions **des documents** (schéma de versioning OCR-005), sans rapport avec la
+version du Framework. Les confondre casserait le versioning documentaire.
+
+**Borderline version** : OCR-110:140 `"protocol_version": "1.0.0"` (enveloppe **protocole**
+WSP, seed défaut `1.0` — champ distinct de la version Framework) ; OCR-115:164 « publishes
+`wtr` version 1.1 » (exemple **hypothétique** de future montée de version) ; OCR-100:122
+`"version": "1.0.0"` (à confirmer : version protocole vs Framework).
+
+### Lignes longues (blocs machine/résumés)
 OCR-115:16/26/211/223, OCR-117:20/191/203, OCR-119:16/22/26/210/222, OCR-110:16/253,
 OCR-108:199/211, OCR-109:215, OCR-116:20/203, OCR-118:204, OCR-120:212, OCR-121:216 —
-même coordonnée, classification héritée. Extraction verbatim sur demande.
+coordonnée/version héritées ; extraction verbatim sur demande.
 
 ---
 
-## 7. Knowledge Graph — une projection, jamais réécrite
+## 7. Knowledge Graph — une projection, jamais réécrite (principe C)
 
-**Principe gravé (C)** : *« Le graphe est toujours une projection fidèle du corpus publié à
-un instant donné. Il n'anticipe jamais des faits futurs et ne réécrit jamais des faits
-passés. Toute publication append-only produit une NOUVELLE projection, sans modifier les
-projections antérieures. »*
-
-**Conséquences (rectifient v2) :**
-- **`c172712` n'est PAS re-gravé.** Il reste une **photographie valide** du corpus **tel
-  qu'il était** — sans `wtf`/`wtr` comme nœuds, avec `supersedes` réflexif seulement. On n'y
-  touche pas : le réécrire violerait le principe (« ne réécrit jamais des faits passés »).
-- **Une NOUVELLE projection est produite APRÈS la publication** (§2) et l'amendement
-  d'OCR-007 (§11). Elle intègre **naturellement** : les deux nœuds `framework:wtf` /
-  `framework:wtr` et l'arête `reidentified_as` entre eux — **parce qu'ils existent alors
-  dans le corpus publié**, pas par anticipation.
-- Ce n'est donc **ni une re-gravure ni une décision de risque** : c'est le **fonctionnement
-  normal** du graphe. La seule dépendance est l'**ordre** (§8) : la projection ne peut être
-  fidèle que si elle est régénérée **après** que la publication et le prédicat existent.
-- La première arête `reidentified_as` non-réflexive apparaîtra dans cette nouvelle
-  projection — précédent attendu, non un forçage du graphe gelé.
+`c172712` **n'est PAS re-gravé** : photographie valide du corpus tel qu'il était (sans
+`wtf`/`wtr` comme nœuds). Une **NOUVELLE projection** est produite **APRÈS** publication
+(§2) et amendement OCR-007 (fait) ; elle intègre **naturellement** les nœuds
+`framework:wtf`/`framework:wtr` et les arêtes `reidentified_as` — parce qu'ils existeront
+alors dans le corpus. Ni re-gravure ni décision de risque : **fonctionnement normal**. Seule
+dépendance : **l'ordre** (§8) — la projection vient en dernier.
 
 ---
 
 ## 8. Ordre d'exécution et réversibilité
 
-**Ordre proposé — la gravure du graphe vient en DERNIER (C) :**
-1. **Amender OCR-007** — graver le prédicat `reidentified_as` + régénérer sa projection
-   machine / classification (§11). Réversible (git).
-2. **Schéma** — table de réidentification + triggers d'immuabilité (DDL, non bloqué).
-   Réversible tant que **vide** (DROP).
-3. **Publication** — 7 lignes `wtr` + la ligne de réidentification, **staging d'abord**,
-   **puis** prod. **DÉFINITIF** (voir plus bas).
-4. **Code** — dérivation `identity_status`/`canonical_id` dans la découverte ; retrait
-   redirection + test + branchement (§4). Réversible (git).
-5. **Corpus** — réécriture §6 ; régénération manifest/golden/API. Réversible (git).
-6. **Seed** — mise à jour §5. Réversible (git).
-7. **Graphe — EN DERNIER** : régénérer une **nouvelle projection** du corpus désormais
-   publié (nœuds `wtf`/`wtr` + arête `reidentified_as`). **Jamais avant** la publication :
-   une projection n'anticipe pas. `c172712` **reste intact**.
+1. **OCR-007 amendé** — `reidentified_as` gravé + projection machine régénérée (**FAIT dans
+   ce commit** ; §11). Réversible (git).
+2. **Schéma** — table de réidentification + triggers (DDL, non bloqué). Réversible tant que
+   vide.
+3. **Publication** — 7 lignes `wtr` + **3 lignes** de réidentification, **staging d'abord**,
+   puis prod. **DÉFINITIF.**
+4. **Code** — dérivation `status`/`canonical_identifier` ; retrait redirection (§4).
+   Réversible (git).
+5. **Corpus** — réécriture §6 (coordonnées **et** version) ; régénération manifest/golden/API.
+   Réversible (git).
+6. **Seed** — §5. Réversible (git).
+7. **Graphe — EN DERNIER** : nouvelle projection du corpus publié. **Jamais avant.**
+   `c172712` intact.
 
-**Réversibilité — dit franchement :**
-- Les **7 lignes `wtr`** et la **ligne de réidentification**, une fois INSÉRÉES, **ne
-  peuvent PLUS être retirées** (UPDATE/DELETE/TRUNCATE bloqués, `service_role` inclus).
-  **Publier est DÉFINITIF.**
-- Un **INSERT erroné n'est PAS rattrapable par suppression** : la seule correction
-  append-only est d'**avancer** (réidentifier de nouveau vers un objet correct).
-- **Aucun rollback DB.** La sûreté vient de **l'append-only + validation AVANT insertion** :
-  **répétition exhaustive sur staging** + **relecture valeur par valeur** — direction (§2)
-  et granularité (§9), toutes deux définitives.
-- Réversibles (git) : table vide (étape 2), code/corpus/seed/OCR-007, et **la nouvelle
-  projection de graphe** (régénérable ; l'ancienne `c172712` demeure de toute façon).
+**Réversibilité** : les 7 lignes `wtr` + les 3 lignes de réidentification, une fois
+INSÉRÉES, **ne peuvent PLUS être retirées** (UPDATE/DELETE/TRUNCATE bloqués, `service_role`
+inclus). **Aucun rollback DB** : correction = **avancer** (réidentifier de nouveau). Sûreté =
+**append-only + validation AVANT insertion** (répétition staging + relecture valeur par
+valeur : direction §2, granularité §9). Réversibles (git) : table vide, code/corpus/seed,
+OCR-007, et la nouvelle projection de graphe.
 
 ---
 
-## 9. Granularité de la réidentification *(normatif — je ne tranche pas)*
+## 9. Granularité de la réidentification — TRANCHÉE
 
-**Sous réidentification + transitivité (B).** La question n'est plus « est-ce approprié de
-réidentifier un sous-objet ? » (la réidentification est exacte : même définition logique,
-identifiant nouveau) mais **« quels maillons DIRECTS publier »**, sachant que **la base ne
-stocke aucune relation déductible** (B) et que **les représentations, pas les définitions,
-sont dupliquées** (A).
+**Règle gravée** : *« une relation n'est publiée que pour un identifiant susceptible d'être
+référencé directement par un fait immuable. »*
 
-**Ce qu'un fait détient réellement** (`evidenceCovered.ts` / payload) : `framework.id`
-(`wtf`), `framework.version` (`0.1`), `demonstrates.skill_id` / `reference` (`wtf:212`) —
-**le niveau est un SLUG** (`claimed_level: "applied"`), **jamais** l'id `wtf:212#applied`
-(interne).
+**Décision** : **3 relations directes** — **framework** (`framework:wtf → framework:wtr`),
+**version** (`framework:wtf@0.1 → framework:wtr@0.1`), **skill** (`wtf:212 → wtr:212`). Ce
+sont exactement les identifiants qu'un fait porte (`framework.id`, `framework.version`,
+`demonstrates.skill_id`/`reference`, relevé sur `evidenceCovered.ts`).
 
-### Scénario A — 1 maillon direct (framework)
-`framework:wtf reidentified_as framework:wtr` seulement.
-- Interroger `framework:wtf` → `canonical_id` ✅. Interroger `wtf:212` → **aucune** ligne
-  directe ; la correspondance `wtf:212 → wtr:212` est **déduite** (framework parent + même
-  coordonnée). **Compatible B** *si* cette déduction est jugée fiable (règle de dérivation,
-  non stockée).
+**Les 4 niveaux ne reçoivent AUCUNE relation** : un fait stocke `claimed_level` en **SLUG**
+(`"applied"`), jamais l'id `wtf:212#applied` — l'identifiant de niveau n'est **jamais
+référencé directement** par un fait immuable, donc pas de relation (règle gravée + B :
+aucune relation morte). La correspondance de niveau, si besoin, se **déduit** (skill parent).
 
-### Scénario B — un maillon par identifiant changé (7)
-- Lookup direct partout, mais **4 maillons portent des ids que les faits ne citent jamais**
-  (les niveaux) → 4 relations **définitives sans valeur consommateur**. Tension avec (B) :
-  publier des maillons dont personne ne déréférence l'identifiant.
-
-### Scénario C — les identifiants réellement détenus (3 : framework, version, skill)
-`framework:wtf→wtr`, `framework:wtf@0.1→wtr@0.1`, `wtf:212→wtr:212`.
-- Chaque identifiant **qu'un fait ou une requête porte** se résout **directement**, sans
-  déduction fragile par nom, **sans** maillon mort. **Le plus cohérent avec (A)+(B)** : on
-  publie les maillons directs exactement là où un identifiant est déréférencé, et on laisse
-  la clôture transitive se déduire.
-
-### Ce que voit un consommateur qui interroge `wtf:212`
-
-| | Interroger `framework:wtf` | Interroger `wtf:212` | Résolution coordonnée |
-|---|---|---|---|
-| **A** (1) | `canonical_id` ✅ | **déduite** (parent + nom) | implicite |
-| **C** (3) | ✅ | `canonical_id: wtr:212` ✅ | **directe** |
-| **B** (7) | ✅ | ✅ partout | directe (+ 4 maillons morts) |
-
-**Décision normative réservée à l'architecte.** La granularité est **définitive** (§8).
-Lecture (non contraignante) : (A)+(B) orientent vers **C** — maillons directs pour les
-identifiants déréférencés, déduction pour le reste.
+Conforme à (A) — représentations, pas définitions — et à (B) — relations directes
+uniquement, déduction pour le reste. La granularité est **définitive** (§8).
 
 ---
 
-## 10. Résolution d'identité pour le Trust *(mesure, aucun code)*
+## 10. Résolution d'identité pour le Trust — couche de lecture (principe D)
 
-L'architecte pose : `wtf:212` et `wtr:212` portent **la même définition logique**, le Trust
-ne fait qu'une **résolution d'identité**. **Que fait le code AUJOURD'HUI ?**
+**Principe gravé** : *« La résolution canonique d'identité appartient exclusivement à la
+couche de lecture. Aucun mécanisme du WSP n'est autorisé à modifier un fait publié,
+directement ou indirectement, y compris lors d'un changement d'identifiant canonique. »*
 
-### 1. Le Trust sur les faits n'existe pas encore
-- **Passport public** (`readPublicPassport.ts`) : `trust_status` = **valeur par défaut**
-  (`'establishing'`), `evidence: []`, `skills_status: 'empty'` — **rien n'est calculé** depuis
-  les faits.
-- **Dashboard** (`DashboardService.ts`) : `readTrustStatus` lit une table **d'affichage
-  Sprint-1 `trust_index`** par `passport_id` — **découplée** du fact store, **jamais dérivée
-  d'une coordonnée**.
-- **Conclusion** : aucun calcul de Trust sur coordonnées. Le Trust ne se calcule ni sur la
-  coordonnée littérale, ni par résolution — **il ne se calcule pas encore du tout**.
+### Mesure de l'existant (aucun code)
+1. **Trust sur faits inexistant** : passport public → `trust_status:'establishing'` par
+   défaut, `evidence: []` ; dashboard → table d'affichage `trust_index` par `passport_id`,
+   **jamais dérivée d'une coordonnée**. Le Trust **ne se calcule pas encore**.
+2. **Usage littéral (aucune résolution)** : ingestion étape 8
+   (`wsp_skill_levels where skill_id = wtf:212 …`, match exact) ; **préimage du hash**
+   (`evidenceCovered.ts` copie `framework.id`/`skill_id` littéralement → **coordonnée
+   hash-portante**) ; FK des 79 faits → `wtf:212`.
+3. **Distance / contrainte** : résolution d'identité = **0 % construite**. La coordonnée
+   étant **hash-portante** et l'append-only interdisant toute mutation, la résolution **ne
+   peut PAS** réécrire les faits — **conforme au principe gravé D** : elle **doit** vivre
+   **en lecture**, un futur module traitant `wtf:212` **comme** `wtr:212` via la table de
+   réidentification, **sans jamais toucher le fait**. Cohérent avec (A) : même définition
+   logique → aucun sens changé, simple ré-étiquetage canonique à la lecture.
 
-### 2. Là où la coordonnée EST utilisée, c'est LITTÉRAL (aucune résolution)
-- **Ingestion, étape 8** (`20260713000005`) : `wsp_skill_levels where skill_id = v_skill and
-  framework_version = v_fwver` — **match exact** ; un fait `wtf:212` ne résout que contre
-  `wtf:212`.
-- **Préimage du hash** (`evidenceCovered.ts`) : `framework.id` et `demonstrates.skill_id`
-  **copiés littéralement** dans l'objet haché → **la coordonnée est PORTÉE PAR LE HASH** ;
-  la réécrire romprait `canonical_hash` et l'idempotence.
-- **FK des 79 faits** : `…demonstrates_skill.skill_id → wsp_skills(id)` pointe littéralement
-  vers `wtf:212`.
-
-### 3. Distance entre l'existant et le comportement gravé
-- **Résolution d'identité TOTALEMENT ABSENTE** ; la coordonnée agit **littéralement**
-  partout. L'écart n'est pas « faire résoudre le Trust » — c'est **« il n'existe ni Trust ni
-  résolution »**.
-- **Contrainte dure** : la coordonnée étant **hash-portante**, la résolution **ne peut PAS**
-  réécrire les faits (casse le hash + append-only l'interdit). Elle **doit** vivre **à la
-  lecture / interprétation** : un futur module rencontrant `wtf:212` consulte la table de
-  réidentification et le traite **comme** l'identifiant courant `wtr:212` — sans jamais
-  toucher le fait. C'est exactement une **résolution d'identité** au sens de l'architecte,
-  au-dessus d'un fait **immuable et hash-scellé**.
-- **Cohérent avec (A)** : puisque les deux identifiants portent la **même définition
-  logique**, résoudre `wtf:212 → wtr:212` ne change **aucun sens** — c'est un simple
-  changement d'étiquette canonique à la lecture.
-- **Mesure nette** : Trust-sur-faits = **0 % construit** ; résolution d'identité = **0 %
-  construite**. Le prédicat est l'**intrant d'une couche d'interprétation encore
-  inexistante**, à brancher **en lecture seule**. Le Lot B **publie la représentation et la
-  relation** ; il ne construit **pas** la résolution (lot ultérieur, dont §10 borne le
-  contrat).
+Le Lot B **publie la représentation et les relations** ; il ne construit **pas** la
+résolution (lot ultérieur, dont §10 borne le contrat).
 
 ---
 
-## 11. Artefacts touchés par l'amendement d'OCR-007 *(ajout d'un prédicat)*
+## 11. Amendement d'OCR-007 — artefacts (mesuré + FAIT dans ce commit)
 
-Graver `reidentified_as` dans OCR-007 touche, en cascade :
+**Réellement touchés (dans ce commit) :**
 
-| Artefact | Nature du toucher | Confiance |
+| Artefact | Action | Statut |
 |---|---|---|
-| `docs/registry/OCR-007_Canonical_Predicate_Registry.md` | **La gravure** (source) : entrée `PRD-xxx`, famille, inverse, symétrie. | certain |
-| `content/registry/ocr-007-resolution.json` | **Projection machine** régénérée : `build-graph.mjs` lit `resolutionDoc.predicates`. | certain |
-| `content/registry/external-classification.json` | Si le prédicat requiert une **famille/catégorie** ou un **alias** (famille Identité/Équivalence). | probable |
-| `content/registry/_manifest.json` + `MANIFEST-OCR.json` | **Checksums** des fichiers modifiés (source + projections). | certain |
-| `build/wsp001-lot0/predicate-inventory.mjs` → `.md` ; `predicate-examples.mjs` → `.md` ; `build-csv.mjs` | Outillage énumérant les prédicats, à rejouer. | probable |
-| Tests figeant l'**ensemble des prédicats** / un **golden OCR-007** | Égalité stricte sur la liste/le checksum casserait à l'ajout. | **à vérifier** |
+| `docs/registry/OCR-007_Canonical_Predicate_Registry.md` | Version 1.1.0→**1.2.0** ; famille **Identity Resolution** + **PRD-801 `reidentified_as`** (§5) ; inverse dérivé **`was_reidentified_from`** (§4) ; changelog + note décision. | **fait** |
+| `content/registry/ocr-007-resolution.json` | 2 entrées (`reidentified_as` Domain, `was_reidentified_from` Derived) ; `_meta` : version 1.2.0, `predicate_count` 101→**103**, famille ajoutée au schéma. | **fait** |
 
-**Le KG n'est PAS dans cette liste au titre d'une re-gravure (C).** `content/registry/
-wsp-graph.json` / `.report.json` **`c172712` restent intacts**. Une **nouvelle projection**
-sera générée en **dernier** (§8, étape 7), **après** la publication et l'amendement — elle
-intégrera les nœuds `wtf`/`wtr` et l'arête `reidentified_as` **parce qu'ils existeront alors
-dans le corpus**. Ce n'est pas un artefact « touché par l'amendement », c'est une projection
-**neuve** produite par le flux normal.
+**Mesurés NON nécessaires (correction des hypothèses v2 §11) :**
+- `content/registry/external-classification.json` — **classe des ENTITÉS, pas des
+  prédicats** (clés `name_aliases`/`entity`/`cascade_predicates`…) ; `cascade_predicates` ne
+  liste que des prédicats effectivement utilisés dans une cascade → `reidentified_as` n'y a
+  pas sa place tant qu'aucune arête n'existe. **Inchangé.**
+- `content/registry/_manifest.json` / `MANIFEST-OCR.json` — **ne suivent pas OCR-007** (plage
+  OCR-000..005/100..125). **Inchangés → aucun risque CRLF/empreinte ici.**
+- `build/wsp001-lot0/predicate-inventory*.mjs` / `predicate-examples*.mjs` — outillage
+  **Lot 0 historique** ; non rejoué (l'inventaire Lot 0 reste une photographie ; les 101
+  d'origine ne changent pas). *(À rejouer seulement si l'architecte veut un inventaire
+  incluant le prédicat d'amendement.)*
+- **KG** (`wsp-graph.json`/`.report.json`) — **NON régénéré** (principe C, §7) : nouvelle
+  projection **après** publication.
 
-**Chemin de l'amendement OCR-007 (avant toute projection de graphe)** : OCR-007 source →
-`ocr-007-resolution.json` → `external-classification.json` (si famille/alias) → manifest.
+**À vérifier avant implémentation** : un test figeant l'ensemble des prédicats ou un golden
+d'OCR-007 (aucun trouvé au niveau `content/registry`, mais à confirmer côté tests).
+
+> Note traçabilité : `ocr-007-resolution.json` porte `source_commit: "pending (amendement
+> Lot B v1.2.0)"` — à remplacer par le hash de ce commit une fois connu.
 
 ---
 
-*Fin du dossier v3. Conception seule — aucune ligne à exécuter ne découle de ce document
-sans un mandat d'implémentation dédié. Deux dénominations restent réservées à l'architecte :
-le **nom + la famille du prédicat** (OCR-007, nom de travail `reidentified_as`) et le
-**jeton d'`identity_status`** (§3).*
+*Fin du dossier v4. Conception seule — aucune ligne applicative n'en découle sans mandat
+dédié. L'amendement d'OCR-007 (registre + projection) est, lui, **appliqué** dans ce commit,
+au format des prédicats existants ; les champs de format non dictés (n° PRD, signature, etc.)
+sont signalés comme renseignés par convention, à confirmer par l'architecte.*
