@@ -28,7 +28,7 @@
 ## Décisions verrouillées (rappel — ce document est autoportant)
 
 - **WEB-D1** — Vue HTML publique du Passport sous préfixe statique **`/p/{handle}`** ; API JSON publique **`/passports/{handle}`** inchangée. La racine est libérée pour `[locale]`. Aucune redirection depuis l'ancien `/{handle}` (jamais mis en circulation).
-- **WEB-D2** — **World Trader Framework** ; slug public **`world-trader`** ; identifiant canonique WSP **`wtf`** inchangé, exposé dans les données structurées.
+- **WEB-D2** — **World Trader Framework** (**nom inchangé**) ; slug public **`world-trader`** ; identifiant canonique WSP **`framework:wtr`** (coordonnées **`wtr:NNN`**), exposé dans les données structurées. L'ancien `wtf` est obsolète, conservé à titre historique dans les notes de migration jusqu'à retrait.
 - **WEB-D3** — Infrastructure juridique préparée (routes, composants, versioning). Textes rédigés/validés **humainement** avant publication ; sinon page **`noindex`, non publiée**. Constantes gelées `v1.0.0` / `2026-07-11` inchangées.
 - **WEB-D4** — **SEC-02** (rotation des secrets staging) = **condition d'entrée** avant tout câblage partagé, service externe, formulaire, analytics ou déploiement. Ne bloque pas la rédaction ; bloque l'implémentation concernée.
 - **WEB-D5** — Racine `/` : **redirection 307 temporaire** selon (1) cookie de langue, (2) `Accept-Language`, (3) fallback anglais ; `x-default` → `/en` ; design de la landing porté vers les pages localisées ; **aucun contenu indexable concurrent** à la racine (§10.3).
@@ -227,7 +227,7 @@ Quinze blocs (brief §10), tous rendus dans le DOM, jamais cachés : **Definitio
 
 ## 15. Modèle de données structurées (JSON-LD)
 
-Schema.org appliqué **uniquement quand pertinent**, jamais fabriqué : `Organization` (Opus X, cohérent partout), `WebSite`, `WebPage`, `Article`/`TechArticle`/`ScholarlyArticle` (research — V1.1), `DefinedTerm` + `DefinedTermSet` (glossaire — cœur GEO V1), `FAQPage`, `HowTo` (pages réellement procédurales), `BreadcrumbList`, `Person` (auteurs research — V1.1), `Dataset` (si vrai dataset), `SoftwareApplication` (plateforme, si pertinent), `Course` (**seulement** vraies formations d'Issuers, **jamais** Opus X). La fiche framework expose **`framework_id: wtf`** et **`public_slug: world-trader`** (WEB-D2). **Entity Consistency Score** interne : un concept = **une** définition canonique réutilisée partout.
+Schema.org appliqué **uniquement quand pertinent**, jamais fabriqué : `Organization` (Opus X, cohérent partout), `WebSite`, `WebPage`, `Article`/`TechArticle`/`ScholarlyArticle` (research — V1.1), `DefinedTerm` + `DefinedTermSet` (glossaire — cœur GEO V1), `FAQPage`, `HowTo` (pages réellement procédurales), `BreadcrumbList`, `Person` (auteurs research — V1.1), `Dataset` (si vrai dataset), `SoftwareApplication` (plateforme, si pertinent), `Course` (**seulement** vraies formations d'Issuers, **jamais** Opus X). La fiche framework expose **`framework_id: framework:wtr`** et **`public_slug: world-trader`** (WEB-D2). **Entity Consistency Score** interne : un concept = **une** définition canonique réutilisée partout.
 
 ## 16. Stratégie de recherche
 

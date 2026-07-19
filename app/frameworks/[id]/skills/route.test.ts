@@ -31,18 +31,18 @@ function makeClient(results: Record<string, { single?: unknown; list?: unknown }
 }
 
 function req() {
-  return new NextRequest('https://app.opus-x.test/frameworks/wtf/skills');
+  return new NextRequest('https://app.opus-x.test/frameworks/world-trader/skills');
 }
 function params(id: string) {
   return { params: Promise.resolve({ id }) };
 }
 
-const FRAMEWORK = { id: 'framework:wtf', slug: 'wtf', name: 'World Trader Framework', publisher: 'Opus X' };
+const FRAMEWORK = { id: 'framework:wtr', slug: 'world-trader', name: 'World Trader Framework', publisher: 'Opus X' };
 const VERSION = { version: '0.1', status: 'published', effective_date: '2026-07-13' };
 const SKILLS = [
   {
-    id: 'wtf:212',
-    code: 'WTF-212',
+    id: 'wtr:212',
+    code: 'WTR-212',
     name: 'Intention vs Engagement',
     framework_version: '0.1',
     levels: [
@@ -55,7 +55,7 @@ const SKILLS = [
 beforeEach(() => vi.clearAllMocks());
 
 describe('GET /frameworks/{id}/skills', () => {
-  it('Framework + version publiée → 200, expose WTF-212 canonique + version', async () => {
+  it('Framework + version publiée → 200, expose WTR-212 canonique + version', async () => {
     mocked.mockReturnValue(
       makeClient({
         wsp_frameworks: { single: FRAMEWORK },
@@ -63,13 +63,13 @@ describe('GET /frameworks/{id}/skills', () => {
         wsp_skills: { list: SKILLS },
       })
     );
-    const res = await GET(req(), params('wtf'));
+    const res = await GET(req(), params('world-trader'));
     expect(res.status).toBe(200);
     const body = await res.json();
-    expect(body.framework.id).toBe('framework:wtf');
+    expect(body.framework.id).toBe('framework:wtr');
     expect(body.framework.version).toBe('0.1');
     expect(body.framework.effective_date).toBe('2026-07-13'); // §9.2
-    expect(body.skills[0].id).toBe('wtf:212');
+    expect(body.skills[0].id).toBe('wtr:212');
     expect(body.skills[0].levels.map((l: { slug: string }) => l.slug)).toEqual(['aware', 'applied']);
     // La correspondance PUBLIÉE sort par niveau (§9).
     const applied = body.skills[0].levels.find((l: { slug: string }) => l.slug === 'applied');
@@ -77,7 +77,7 @@ describe('GET /frameworks/{id}/skills', () => {
     expect(applied.observation_max).toBe(3);
   });
 
-  it('résout aussi par identifiant canonique (framework:wtf)', async () => {
+  it('résout aussi par identifiant canonique (framework:wtr)', async () => {
     mocked.mockReturnValue(
       makeClient({
         wsp_frameworks: { single: FRAMEWORK },
@@ -85,7 +85,7 @@ describe('GET /frameworks/{id}/skills', () => {
         wsp_skills: { list: SKILLS },
       })
     );
-    const res = await GET(req(), params('framework:wtf'));
+    const res = await GET(req(), params('framework:wtr'));
     expect(res.status).toBe(200);
   });
 
@@ -102,7 +102,7 @@ describe('GET /frameworks/{id}/skills', () => {
         wsp_framework_versions: { single: null },
       })
     );
-    const res = await GET(req(), params('wtf'));
+    const res = await GET(req(), params('world-trader'));
     expect(res.status).toBe(404);
   });
 });

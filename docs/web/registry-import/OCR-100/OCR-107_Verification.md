@@ -119,7 +119,7 @@ Verification consumes a Request, reads disclosed facts, recomputes integrity, ap
     "disclosure_scope": "from_consent",
     "reads": "disclosed_immutable_facts",
     "recomputes_integrity": true,
-    "framework_version": { "id": "wtf", "version": "1.0.0" },
+    "framework_version": { "id": "wtr", "version": "1.0.0" },
     "reflects": ["supersession", "revocation"],
     "mutates": false,
     "produces": "verification_response"
@@ -215,7 +215,7 @@ Verification in the World Skills Protocol lets any third party confirm a profess
 
 ## Search Keywords
 
-verification, world skills protocol, wsp, verify, verifier, verification request, verification response, subject, opus id, immutable fact, evidence, evidence integrity, recompute integrity, jcs, hmac, constant-time, issuer-independent, no issuer online, reproducible, non-mutating, read-only, disclosure, consent, disclosure scope, withheld facts, supersession, revocation, reflected status, framework version, framework registry, wtf, trust, trust status, computed trust, point-in-time, credential, not a credential, real-world truth, attribution, integrity confirmation, refusal, unauthorized request, out of scope, privacy, minimization, verification log, third party, employer verification, background check, professional passport, opus x, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-107, ocr, docs opusx world, inspection act, verification procedure, verification path, ingestion verifier, protocol invariant, reproducible answer, trustworthy answer, verify without trust, independent verification
+verification, world skills protocol, wsp, verify, verifier, verification request, verification response, subject, opus id, immutable fact, evidence, evidence integrity, recompute integrity, jcs, hmac, constant-time, issuer-independent, no issuer online, reproducible, non-mutating, read-only, disclosure, consent, disclosure scope, withheld facts, supersession, revocation, reflected status, framework version, framework registry, wtr, trust, trust status, computed trust, point-in-time, credential, not a credential, real-world truth, attribution, integrity confirmation, refusal, unauthorized request, out of scope, privacy, minimization, verification log, third party, employer verification, background check, professional passport, opus x, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-107, ocr, docs opusx world, inspection act, verification procedure, verification path, ingestion verifier, protocol invariant, reproducible answer, trustworthy answer, verify without trust, independent verification
 
 ## Synonyms
 

@@ -5,7 +5,7 @@
  * Endpoint de DÉCOUVERTE. Un Issuer découvre les Skills d'un Framework et
  * leurs identifiants canoniques — SANS configuration spécifique (D9).
  *
- * `{id}` accepte l'identifiant canonique ('framework:wtf') OU le slug ('wtf').
+ * `{id}` accepte l'identifiant canonique ('framework:wtr') OU le slug ('world-trader').
  *
  * Appelé en ANON (savoir public) : les définitions publiées sont lisibles par
  * tous (RLS `using (true)`). Aucune écriture n'est exposée — la zone

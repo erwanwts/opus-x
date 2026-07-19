@@ -2,9 +2,7 @@
   "schema": "opusx.registry.manifest/v1",
   "generated_from": "docs/web/registry-import/OCR-100",
   "expected_ranges": "OCR-000..005,OCR-100..125",
-  "excluded_files": [
-    "REG-TERMINOLOGY-registry-record-ocr.md"
-  ],
+  "excluded_files": [],
   "file_count": 32,
   "anomaly_count": 63,
   "records": [
@@ -161,7 +159,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Core Principles, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "a2cc7581e0433b5e2b317826872519082c49982051378a91268f93bab68feb04",
+      "checksum_sha256": "cb63ebc787ff46206146aa1f64aaa2fe8d3ff05fcf8cab2d9b56efd4ef63382a",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -281,7 +279,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Core Principles) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "ec2633fea698a08cab79788f612f6000a119caeec3681d66652398c30137d3e1",
+      "checksum_sha256": "51e26e18a64dcea6d63454c936685d0797ddd9791280a3aae8204eec6dfb687f",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -305,7 +303,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "99d0c822c52e6f89f42c0dca06dd9188d4ab12cb545f02a42742a8493af59681",
+      "checksum_sha256": "6fcdd99df7f14a3d94d269d8389fb79c49eaff3d48fb98647e7fc7888dbb29dd",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -329,7 +327,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Procedure) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "c1eae659edd71594fc52648106628e267442396e9f2d89a9c6d2252efeb4e159",
+      "checksum_sha256": "a856a9cc101e10bb1f30c5fcf22ffc1494749ffa050e2f0ca44fe79fb6e3e1ae",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -353,7 +351,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "2d42e0b50b8cebde1b3fa15a031c0c22a2ff96937908c6922ac1f96dba7cae12",
+      "checksum_sha256": "0fb960b112c6503d8da8718c8b44bcc01ffd360d3fa85dbd9cd1d5935512f1df",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -377,7 +375,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "0bc9ec008f10986dd72ccb57c0d0cbda7a2318a94181cd5ba9fe7d9352ff02c0",
+      "checksum_sha256": "33c6bfd833c276d766c7da4d932ac8b98c755f7193672e1a70ea722e56e6898d",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -401,7 +399,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Sections: Canonical Definition, Protocol Rules, State Machine, Validation) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "384b6dec3c01d4177354424eb4bfc8ed5540e3b48a3bd90dd2ab6d9aedab0276",
+      "checksum_sha256": "dbad0407f26655ffeaa1203f9ca030f5b2e6220d74ca8c8024743f2d0c3c1f98",
       "pdf_homonym": false,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -497,7 +495,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, State Machine) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "799f5b8f8fb36007e989075fbefb75a266f833dfd2311ff8664c3ac467ab8da6",
+      "checksum_sha256": "d999e828c552f51224097492dc8d29bc1bbbc7bdeda758344419ed7bf392de95",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -521,7 +519,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "79bf172c98e5b5eacf0915305b7052b3461d49582a73f6862a214b47013d05b0",
+      "checksum_sha256": "3deae7a0be9b563c1ae51c3d0ecbcb0453b274508537b6c796b84631f6d11fab",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -545,7 +543,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "5ece273deabe428e7feb0e512e0a86e16433b7f3519529b469e36b32ca18cbc9",
+      "checksum_sha256": "3f994e9f0af6c544121f5ae02c38d34293c3c4acdf2f6650669ca90084242ad1",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -569,7 +567,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "0a3d7a1de2870fb66bbf16b9c9f4aa1dc0446a5c5ba3756a94de04b2f94da7ac",
+      "checksum_sha256": "74543cf17bd89c78563edb84f3a45abf1dd921cd4c33e92d50d44fdbf7df7648",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -593,7 +591,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "228a0e25a98694af2412f4ab06f487b981d7a0dcf6370621a6753fdd3fc5056f",
+      "checksum_sha256": "709ec7e6708f87f318208f7351d4afd536ceddc5e3a6968cf9d5b236bc9afebd",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -617,7 +615,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "4a0c3c1383aae9e195571d7b21c074ab5e790f66251f873b7c700d23195b921c",
+      "checksum_sha256": "8982b25323fd56fabac84622058df893eb871fe1c62d34a2b8025e9f3d3325c0",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -641,7 +639,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "7f5cb6fcfda902cd1e86fe909bde312b8554ff416e09f991fb9fb8d571e02c4c",
+      "checksum_sha256": "2af42017293515f18c6a28f5216d87f94ef503c7cee5a1d428bbb549c33859b5",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -665,7 +663,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "ecc9575b6396abca83f8887e6109308375f1f622341011702bb798d57e6d7b90",
+      "checksum_sha256": "0d1c29452ce21599813f2152c694279d7d3a19810e23688918b13fb7c4cbb8b3",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [

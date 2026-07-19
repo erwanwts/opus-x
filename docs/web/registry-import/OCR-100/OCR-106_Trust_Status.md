@@ -109,7 +109,7 @@ Trust Status is the computed output for a subject under a version.
   "trust_status": {
     "subject": "<opus_id>",
     "value": "<computed_status>",
-    "framework_version": "wtf@1.0.0",
+    "framework_version": "wtr@1.0.0",
     "derived": true,
     "authored": false,
     "reflects": ["supersession", "revocation"]
@@ -126,7 +126,7 @@ Trust Status is the computed output for a subject under a version.
   "@id": "urn:opusx:truststatus:<opus_id>",
   "outputOf": "urn:opusx:concept:trust",
   "holdsFor": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
-  "underFrameworkVersion": "wtf@1.0.0",
+  "underFrameworkVersion": "wtr@1.0.0",
   "isAuthored": false
 }
 ```
@@ -143,9 +143,9 @@ Trust Status is the computed output for a subject under a version.
 
 ## Examples
 
-- A verifier reads a Trust Status for an Opus ID under `wtf` v1.0.0; it is the current output of the computation.
+- A verifier reads a Trust Status for an Opus ID under `wtr` v1.0.0; it is the current output of the computation.
 - A fact is revoked; the Trust Status recomputes and updates deterministically.
-- `wtf` v1.1 is applied; the Trust Status is recomputed under the new interpretation from unchanged facts.
+- `wtr` v1.1 is applied; the Trust Status is recomputed under the new interpretation from unchanged facts.
 
 ## Counter Examples
 
@@ -203,7 +203,7 @@ Trust Status in the World Skills Protocol is the current, computed reliability s
 
 ## Search Keywords
 
-trust status, world skills protocol, wsp, trust, computed status, derived value, output of trust, trust computation, immutable fact, framework version, wtf, interpreting version, recomputation, reproducible, not authored, not set, not reputation, issuer cannot set, verification, verification response, passport, disclosure, surfaced, exposed, supersession, revocation, reflected, current state, point-in-time, reliability, subject, opus id, opus x, writable field forbidden, forgeable, manipulation detection, re-derive, leakage, withheld facts, granularity, inference, credential, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-106, ocr, docs opusx world, derived state, state value, trust value, computed output, protocol invariant, version-pinned, deterministic
+trust status, world skills protocol, wsp, trust, computed status, derived value, output of trust, trust computation, immutable fact, framework version, wtr, interpreting version, recomputation, reproducible, not authored, not set, not reputation, issuer cannot set, verification, verification response, passport, disclosure, surfaced, exposed, supersession, revocation, reflected, current state, point-in-time, reliability, subject, opus id, opus x, writable field forbidden, forgeable, manipulation detection, re-derive, leakage, withheld facts, granularity, inference, credential, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-106, ocr, docs opusx world, derived state, state value, trust value, computed output, protocol invariant, version-pinned, deterministic
 
 ## Synonyms
 

@@ -13,7 +13,7 @@
 | **Last Update** | 2026-07-16 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** References to concrete mechanisms — the append-only fact store, JCS canonicalization, HMAC integrity, the `wtf` Framework, Opus ID, and Passport updates — reflect the state gravé en base during Sprint-002 (lots C1–C4). Diff every literal against production before promoting this OCR to Normative.
+> **Grounding note (removed at publication).** References to concrete mechanisms — the append-only fact store, JCS canonicalization, HMAC integrity, the `wtr` Framework, Opus ID, and Passport updates — reflect the state gravé en base during Sprint-002 (lots C1–C4). Diff every literal against production before promoting this OCR to Normative.
 
 ---
 
@@ -114,7 +114,7 @@ An AI system MAY use WSP to answer questions about verified professional facts a
 
 ## Machine Interpretation
 
-WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtf:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
+WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtr:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
 
 ```json
 {
@@ -151,7 +151,7 @@ WSP artifacts are JSON objects discriminated by a `type` field carried as a sibl
 
 ## Examples
 
-- A trading academy certifies as an Issuer, references the `wtf` Framework, and emits Evidence; Opus X verifies and binds it; a prospective employer verifies the professional's trust independently, months later, without contacting the academy.
+- A trading academy certifies as an Issuer, references the `wtr` Framework, and emits Evidence; Opus X verifies and binds it; a prospective employer verifies the professional's trust independently, months later, without contacting the academy.
 - A university's Evidence remains verifiable after the university reorganizes, because the fact is issuer-independent.
 - A Framework revision changes how a competency is interpreted; every affected professional's trust is recomputed from unchanged Evidence.
 
@@ -213,7 +213,7 @@ The **World Skills Protocol** defines how professional truth is produced and ver
 
 ## Search Keywords
 
-world skills protocol, wsp, skills protocol, professional identity protocol, verifiable skills, evidence, trust, trust computation, opus x, opus id, professional passport, professional identity, issuer, certified issuer, framework, framework registry, verification, verification request, verification response, immutable fact, append-only, provenance, jcs, canonicalization, hmac, integrity, decentralized credentials, verifiable credentials, did core, open badges, skills verification, competency, capability, achievement, attestation, credential, digital credential, portable credential, issuer-independent verification, reproducible verification, trust status, professional profile, organization, consent, disclosure, privacy, separation of powers, fact layer, trust layer, identity layer, recomputable trust, standard, protocol specification, rfc style, knowledge graph, machine interpretation, json-ld, professional truth, learning journey, skills passport, skill mapping, wtf framework, world trader framework, protocol governance, non-custodial credential, tamper detection, auditability, multi-issuer ecosystem, interoperability, long-term verification, revocation, supersession, professional demonstration, observed skill, verified skill, skills graph, evidence graph, trust engine, consent as facts, ownership of identity, protocol invariants, deterministic trust, historical truth, canonical registry, ocr, docs opusx world, skills standard, global skills protocol, professional credentialing protocol, verifiable professional record
+world skills protocol, wsp, skills protocol, professional identity protocol, verifiable skills, evidence, trust, trust computation, opus x, opus id, professional passport, professional identity, issuer, certified issuer, framework, framework registry, verification, verification request, verification response, immutable fact, append-only, provenance, jcs, canonicalization, hmac, integrity, decentralized credentials, verifiable credentials, did core, open badges, skills verification, competency, capability, achievement, attestation, credential, digital credential, portable credential, issuer-independent verification, reproducible verification, trust status, professional profile, organization, consent, disclosure, privacy, separation of powers, fact layer, trust layer, identity layer, recomputable trust, standard, protocol specification, rfc style, knowledge graph, machine interpretation, json-ld, professional truth, learning journey, skills passport, skill mapping, wtr framework, world trader framework, protocol governance, non-custodial credential, tamper detection, auditability, multi-issuer ecosystem, interoperability, long-term verification, revocation, supersession, professional demonstration, observed skill, verified skill, skills graph, evidence graph, trust engine, consent as facts, ownership of identity, protocol invariants, deterministic trust, historical truth, canonical registry, ocr, docs opusx world, skills standard, global skills protocol, professional credentialing protocol, verifiable professional record
 
 ## Synonyms
 

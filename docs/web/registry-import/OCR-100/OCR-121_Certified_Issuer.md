@@ -153,7 +153,7 @@ Acceptance is gated on Certified state at ingestion; certification changes are f
 
 ## Examples
 
-- A trading academy is certified; its Evidence referencing `wtf:212` is accepted and journaled.
+- A trading academy is certified; its Evidence referencing `wtr:212` is accepted and journaled.
 - An academy is suspended pending review; its new Evidence is refused, while its prior facts remain and stay attributable.
 - A revoked Issuer's historical facts continue to support trust computation, attributed to it, even though it can no longer produce new accepted Evidence.
 
@@ -213,7 +213,7 @@ A **Certified Issuer** is the gate every accepted fact passes through in the Wor
 
 ## Search Keywords
 
-certified issuer, world skills protocol, wsp, issuer, certification, authorization, authorization state, applicant, certified, suspended, revoked, revocable, trust boundary, fact layer, acceptance gate, ingestion check, only certified accepted, evidence, accepted evidence, immutable fact, attributable, forward-only, facts persist, no deletion, opus x, governance, self-granted, bypass, misconduct, containment, key compromise, suspension, reinstatement, revocation, terminal, bounded issuer, no identity ownership, no trust setting, no level definition, passport, opus id, trust, framework, wtf:212, accountability, assurance, ecosystem, academy, university, employer, association, provenance, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-121, ocr, docs opusx world, gate, certification model, protocol invariant, authorized issuer, accepted fact, historical facts, forensic accountability
+certified issuer, world skills protocol, wsp, issuer, certification, authorization, authorization state, applicant, certified, suspended, revoked, revocable, trust boundary, fact layer, acceptance gate, ingestion check, only certified accepted, evidence, accepted evidence, immutable fact, attributable, forward-only, facts persist, no deletion, opus x, governance, self-granted, bypass, misconduct, containment, key compromise, suspension, reinstatement, revocation, terminal, bounded issuer, no identity ownership, no trust setting, no level definition, passport, opus id, trust, framework, wtr:212, accountability, assurance, ecosystem, academy, university, employer, association, provenance, machine interpretation, json-ld, knowledge graph, canonical registry, ocr-121, ocr, docs opusx world, gate, certification model, protocol invariant, authorized issuer, accepted fact, historical facts, forensic accountability
 
 ## Synonyms
 

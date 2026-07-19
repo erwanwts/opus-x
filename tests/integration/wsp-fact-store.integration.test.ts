@@ -39,7 +39,7 @@ function evidenceRow(opusId: string, issuerEvidenceId: string) {
     issuer_id: QA_ISSUER,
     issuer_evidence_id: issuerEvidenceId,
     subject_id: opusId,
-    framework_id: 'framework:wtf',
+    framework_id: 'framework:wtr',
     framework_version: '0.1',
     attested_by_actor_id: '8f2b1c44-0e91-4a7d-9c33-1b6f0d5a77e2',
     attested_by_role: 'coach',
@@ -111,7 +111,7 @@ beforeAll(async () => {
     .from('wsp_evidence_demonstrates_skill')
     .insert({
       evidence_id: evidenceIdA,
-      skill_id: 'wtf:212',
+      skill_id: 'wtr:212',
       framework_version: '0.1',
       claimed_level: 'applied',
     });
@@ -196,7 +196,7 @@ describe('Lot O1 — claimed_level contraint aux niveaux publiés (W2, par const
     const ev = await freshEvidence();
     const { error } = await admin.from('wsp_evidence_demonstrates_skill').insert({
       evidence_id: ev,
-      skill_id: 'wtf:212',
+      skill_id: 'wtr:212',
       framework_version: '0.1',
       claimed_level: 'grandmaster',
     });
@@ -208,7 +208,7 @@ describe('Lot O1 — claimed_level contraint aux niveaux publiés (W2, par const
     const ev = await freshEvidence(); // parent en version 0.1
     const { error } = await admin.from('wsp_evidence_demonstrates_skill').insert({
       evidence_id: ev,
-      skill_id: 'wtf:212',
+      skill_id: 'wtr:212',
       framework_version: '0.2', // ≠ parent → trigger de cohérence rejette
       claimed_level: 'applied',
     });
@@ -220,7 +220,7 @@ describe('Lot O1 — claimed_level contraint aux niveaux publiés (W2, par const
     const ev = await freshEvidence();
     const { error } = await admin.from('wsp_evidence_demonstrates_skill').insert({
       evidence_id: ev,
-      skill_id: 'wtf:212',
+      skill_id: 'wtr:212',
       framework_version: '0.1',
       claimed_level: 'applied',
     });

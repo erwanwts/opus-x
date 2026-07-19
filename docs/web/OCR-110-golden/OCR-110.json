@@ -2,7 +2,7 @@
   "_documentId": "OCR-110",
   "_canonicalId": "evidence",
   "_version": "1.0.0",
-  "_sourceChecksum": "sha256:384b6dec3c01d4177354424eb4bfc8ed5540e3b48a3bd90dd2ab6d9aedab0276",
+  "_sourceChecksum": "sha256:dbad0407f26655ffeaa1203f9ca030f5b2e6220d74ca8c8024743f2d0c3c1f98",
   "@context": "https://docs.opusx.world/context/v1",
   "@type": "Evidence",
   "@id": "urn:opusx:evidence:ev_01KXM07GFE2GX8ZA4NJC42JDF5",
@@ -16,9 +16,9 @@
   },
   "referencesFramework": {
     "@type": "Framework",
-    "@id": "urn:opusx:framework:wtf"
+    "@id": "urn:opusx:framework:wtr"
   },
-  "frameworkReference": "wtf:212",
+  "frameworkReference": "wtr:212",
   "isImmutable": true,
   "supersedes": null,
   "revoked": false

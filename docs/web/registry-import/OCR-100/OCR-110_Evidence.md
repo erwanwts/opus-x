@@ -13,7 +13,7 @@
 | **Last Update** | 2026-07-16 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** The machine-facing sections of this document — Machine Interpretation, JSON-LD Mapping, and the wire examples — are written from the structures gravees en base during Sprint-002 (lots C1–C4): `criterion_levels` as an object, `type:"evidence"` as sibling of the body, framework id `wtf`, the four-line skill mapping to `wtf:212`, JCS canonicalization, HMAC integrity, ULID identifiers, and the append-only fact store. Before this OCR moves from **Draft** to **Normative**, every literal in those sections MUST be diffed against the current `evidence-payload.ts` emitter and the Opus X ingestion path. Do not publish a wire format the code contradicts.
+> **Grounding note (removed at publication).** The machine-facing sections of this document — Machine Interpretation, JSON-LD Mapping, and the wire examples — are written from the structures gravees en base during Sprint-002 (lots C1–C4): `criterion_levels` as an object, `type:"evidence"` as sibling of the body, framework id `wtr`, the four-line skill mapping to `wtr:212`, JCS canonicalization, HMAC integrity, ULID identifiers, and the append-only fact store. Before this OCR moves from **Draft** to **Normative**, every literal in those sections MUST be diffed against the current `evidence-payload.ts` emitter and the Opus X ingestion path. Do not publish a wire format the code contradicts.
 
 ---
 
@@ -48,7 +48,7 @@ Evidence does not compute trust, does not rank professionals, does not store lev
 - **Certified Issuer** — an Issuer whose authorization has been established under governance (see OCR-121).
 - **Professional** — the human subject of the Evidence, identified by an Opus ID (see OCR-103, OCR-104).
 - **Framework** — the published reference of skills and levels against which Evidence is expressed (see OCR-115).
-- **Framework Reference** — the specific coordinate within a Framework that Evidence points to, e.g. `wtf:212`.
+- **Framework Reference** — the specific coordinate within a Framework that Evidence points to, e.g. `wtr:212`.
 - **Criterion Levels** — the object mapping each referenced criterion to the level attested, e.g. `{ "S03.C08": <level> }`. Levels are defined by the Framework, not by the Issuer.
 - **Evidence Link** — the append-only binding between an accepted Evidence and the Passport update it produced.
 - **Immutable Fact** — the append-only, non-mutable database record of an accepted Evidence (see OCR-114).
@@ -141,7 +141,7 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "issued_at": "2026-07-16T00:00:00Z",
   "issuer": { "id": "<issuer_id>" },
   "subject": { "opus_id": "<opus_id>" },
-  "framework": { "id": "wtf", "reference": "wtf:212" },
+  "framework": { "id": "wtr", "reference": "wtr:212" },
   "body": {
     "observation": "<what was demonstrated>",
     "criterion_levels": {
@@ -170,8 +170,8 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "@id": "urn:opusx:evidence:ev_01KXM07GFE2GX8ZA4NJC42JDF5",
   "producedBy": { "@type": "Issuer", "@id": "urn:opusx:issuer:<issuer_id>" },
   "about": { "@type": "Professional", "@id": "urn:opusx:opusid:<opus_id>" },
-  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
-  "frameworkReference": "wtf:212",
+  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
+  "frameworkReference": "wtr:212",
   "isImmutable": true,
   "supersedes": null,
   "revoked": false
@@ -195,7 +195,7 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
 
 ## Examples
 
-- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtf:212` with `criterion_levels` for `S03.C08`, `S08.C06`, `S05.C08`, and `S02.C12`; Opus X verifies, journals the fact, and links it to the Passport.
+- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtr:212` with `criterion_levels` for `S03.C08`, `S08.C06`, `S05.C08`, and `S02.C12`; Opus X verifies, journals the fact, and links it to the Passport.
 - A university emits Evidence attesting a completed degree; the fact is later reinterpreted under a new Framework version, and Trust is recomputed without altering the original Evidence.
 - An employer emits Evidence of workplace performance; a correction is required, so a new superseding Evidence is emitted and the original is preserved.
 - A professional association revokes a lapsed certification by journaling a revocation fact; the original Evidence remains, marked revoked.
@@ -250,7 +250,7 @@ Evidence is often mistaken for a credential or a badge; it is neither — it is 
 
 ## LLM Summary
 
-Evidence is the immutable, independently verifiable professional fact of the World Skills Protocol. It is produced by an authorized Issuer, references a Framework coordinate (e.g. `wtf:212`) with a `criterion_levels` object, carries a `type: "evidence"` discriminator as a sibling of its body, is authenticated over its JCS-canonicalized form, and is journaled append-only and linked one-to-one to a Professional Passport. It carries no trust score; Trust is computed from it. It is never mutated or deleted — corrections supersede, withdrawals revoke, and history is always preserved. An AI reads Evidence as a verification input and never fabricates it.
+Evidence is the immutable, independently verifiable professional fact of the World Skills Protocol. It is produced by an authorized Issuer, references a Framework coordinate (e.g. `wtr:212`) with a `criterion_levels` object, carries a `type: "evidence"` discriminator as a sibling of its body, is authenticated over its JCS-canonicalized form, and is journaled append-only and linked one-to-one to a Professional Passport. It carries no trust score; Trust is computed from it. It is never mutated or deleted — corrections supersede, withdrawals revoke, and history is always preserved. An AI reads Evidence as a verification input and never fabricates it.
 
 ## SEO Summary
 

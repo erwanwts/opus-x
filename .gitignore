@@ -21,3 +21,6 @@ docs/web/registry-import/**/*.zip
 
 # OCR-GROUND-001 — sorties de test du générateur (régénération vs golden), jamais committées.
 build/
+
+# Config d'outillage locale (preview dev) — comme .claude/settings.local.json (ignore global).
+.claude/launch.json

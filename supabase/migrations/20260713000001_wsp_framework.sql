@@ -57,8 +57,8 @@ comment on function public.wsp_reject_mutation() is
 -- wsp_frameworks — identité d'un Framework professionnel publié (ENG-001 §6)
 -- =====================================================================
 create table if not exists public.wsp_frameworks (
-  id               text        primary key,            -- identifiant canonique : 'framework:wtf'
-  slug             text        not null unique,         -- clé de découverte URL : 'wtf'
+  id               text        primary key,            -- identifiant canonique : 'framework:wtr'
+  slug             text        not null unique,         -- clé de découverte URL : 'world-trader'
   name             text        not null,                -- 'World Trader Framework'
   description      text,
   publisher        text        not null,                -- PUBLIÉ PAR OPUS X (§5.3), jamais par l'Issuer
@@ -75,7 +75,7 @@ comment on column public.wsp_frameworks.publisher is
 -- wsp_framework_versions — chaque version, PRÉSERVÉE À PERPÉTUITÉ
 -- =====================================================================
 create table if not exists public.wsp_framework_versions (
-  id           text        primary key,                 -- 'framework:wtf@0.1'
+  id           text        primary key,                 -- 'framework:wtr@0.1'
   framework_id text        not null references public.wsp_frameworks(id),
   version      text        not null,                     -- '0.1'
   status       text        not null default 'published'
@@ -107,10 +107,10 @@ comment on column public.wsp_framework_versions.effective_date is
 -- wsp_skills — une capacité nommable définie DANS une version de Framework
 -- =====================================================================
 create table if not exists public.wsp_skills (
-  id                text        primary key,             -- identifiant canonique : 'wtf:212'
+  id                text        primary key,             -- identifiant canonique : 'wtr:212'
   framework_id      text        not null references public.wsp_frameworks(id),
   framework_version text        not null,                 -- la version qui lui donne son sens
-  code              text        not null,                 -- 'WTF-212' (étiquette humaine)
+  code              text        not null,                 -- 'WTR-212' (étiquette humaine)
   name              text        not null,                 -- 'Intention vs Engagement'
   description       text,
   recorded_at       timestamptz not null default now(),
@@ -132,7 +132,7 @@ comment on column public.wsp_skills.framework_version is
 --   JAMAIS décidée par l'Issuer. 0–1 = aucun niveau (rien n'est démontré).
 -- =====================================================================
 create table if not exists public.wsp_skill_levels (
-  id                text        primary key,             -- 'wtf:212#applied'
+  id                text        primary key,             -- 'wtr:212#applied'
   skill_id          text        not null references public.wsp_skills(id),
   framework_version text        not null,
   slug              text        not null,                 -- 'applied' (= claimed_level du payload)
@@ -224,14 +224,14 @@ grant select on public.wsp_skills             to anon, authenticated;
 grant select on public.wsp_skill_levels       to anon, authenticated;
 
 -- =====================================================================
--- SEED — World Trader Framework v0.1 · WTF-212 · 4 niveaux
--- Discipline (Lot O0) : UNE SEULE Skill. Le WTF complet viendra plus tard.
+-- SEED — World Trader Framework v0.1 · WTR-212 · 4 niveaux
+-- Discipline (Lot O0) : UNE SEULE Skill. Le WTR complet viendra plus tard.
 -- Idempotent (on conflict do nothing) — re-jouable sans doublon.
 -- =====================================================================
 insert into public.wsp_frameworks (id, slug, name, description, publisher)
 values (
-  'framework:wtf',
-  'wtf',
+  'framework:wtr',
+  'world-trader',
   'World Trader Framework',
   'Le Framework de référence du World Skills Protocol pour la compétence de trading professionnel. Publié par Opus X.',
   'Opus X'
@@ -239,15 +239,15 @@ values (
 on conflict (id) do nothing;
 
 insert into public.wsp_framework_versions (id, framework_id, version, status)
-values ('framework:wtf@0.1', 'framework:wtf', '0.1', 'published')
+values ('framework:wtr@0.1', 'framework:wtr', '0.1', 'published')
 on conflict (id) do nothing;
 
 insert into public.wsp_skills (id, framework_id, framework_version, code, name, description)
 values (
-  'wtf:212',
-  'framework:wtf',
+  'wtr:212',
+  'framework:wtr',
   '0.1',
-  'WTF-212',
+  'WTR-212',
   'Intention vs Engagement',
   'La capacité conceptuelle et durable à distinguer une intention planifiée d''un engagement effectif — attestable par le jugement d''un coach sur une capacité observée (D5).'
 )
@@ -259,12 +259,12 @@ on conflict (id) do nothing;
 insert into public.wsp_skill_levels
   (id, skill_id, framework_version, slug, label, rank, criteria, observation_min, observation_max)
 values
-  ('wtf:212#aware',      'wtf:212', '0.1', 'aware',      'Aware',      1,
+  ('wtr:212#aware',      'wtr:212', '0.1', 'aware',      'Aware',      1,
    'Conscience de la distinction entre intention et engagement.', 2, 2),
-  ('wtf:212#applied',    'wtf:212', '0.1', 'applied',    'Applied',    2,
+  ('wtr:212#applied',    'wtr:212', '0.1', 'applied',    'Applied',    2,
    'Application observable de la distinction dans l''exécution.',  3, 3),
-  ('wtf:212#proficient', 'wtf:212', '0.1', 'proficient', 'Proficient', 3,
+  ('wtr:212#proficient', 'wtr:212', '0.1', 'proficient', 'Proficient', 3,
    'Maîtrise régulière et fiable de la distinction.',             4, 4),
-  ('wtf:212#mastery',    'wtf:212', '0.1', 'mastery',    'Mastery',    4,
+  ('wtr:212#mastery',    'wtr:212', '0.1', 'mastery',    'Mastery',    4,
    'Maîtrise experte, transmissible.',                            5, 5)
 on conflict (id) do nothing;
