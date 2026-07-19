@@ -26,6 +26,30 @@
 
 ---
 
+## Confirmation de conception — le chaînage transitif reste possible
+
+Question : dans une chaîne `A → B → C`, `B` est **à la fois** `prior` (dans `B→C`) et
+`canonical` (dans `A→B`). Les deux contraintes le permettent-elles ? **Oui.**
+
+- `wsp_reid_one_successor  = unique (predicate, prior_type, prior_id)` — interdit **deux
+  successeurs pour un même prédécesseur** (fork côté successeur). Dans la chaîne : `prior_id`
+  vaut `A` (ligne A→B) puis `B` (ligne B→C) — **deux prédécesseurs distincts**, aucune
+  violation.
+- `wsp_reid_one_predecessor = unique (predicate, canonical_type, canonical_id)` — interdit
+  **deux prédécesseurs pour un même successeur** (fork côté prédécesseur). Dans la chaîne :
+  `canonical_id` vaut `B` (ligne A→B) puis `C` (ligne B→C) — **deux successeurs distincts**,
+  aucune violation.
+
+`B` apparaît **une seule fois comme `prior_id`** et **une seule fois comme `canonical_id`** :
+chacune des deux contraintes (portant sur une colonne différente) est satisfaite. Les
+contraintes **imposent la linéarité** (aucune fourche) tout en **autorisant le chaînage
+transitif** — exactement le comportement gravé (chaîne reconstructible, §1 du dossier). Le
+`check` anti-auto-boucle (`prior_id <> canonical_id`) ne gêne pas non plus : chaque maillon a
+un `prior` et un `canonical` distincts. *(Seul un cycle `A→B→C→A` serait à empêcher — rôle du
+trigger anti-cycle récursif, différé, hors de cette publication acyclique.)*
+
+---
+
 ## Séquence PROD-REHEARSAL (staging)
 
 Réversibilité : **aucune**. Les seules sauvegardes sont la photographie JSON (bloc 0) et le
@@ -68,6 +92,51 @@ select jsonb_build_object(
 - **Attendu** : un objet JSON non vide. **Copier la sortie dans un fichier hors dépôt**
   (comme STAGING-0), horodaté.
 - **Écart → STOP** : sortie vide ou table manquante.
+
+---
+
+### PROD-REHEARSAL-0c — Vérification des valeurs copiées telles quelles (point architecte)
+
+> `framework_version` est copié **sans transformation** (blocs 2/3). **Preuve schéma** :
+> `wsp_skills.framework_version` référence `wsp_framework_versions(framework_id, version)`
+> — donc la **version NUE `'0.1'`**, jamais l'id `framework:wtf@0.1` ; le seed confirme
+> `'0.1'`. La copie est correcte (le rattachement à `wtr` vient du `framework_id` littéral).
+> Ce bloc **le confirme en live** et **scanne toute colonne copiée** pour un `wtf` résiduel.
+
+```sql
+-- (a) framework_version EXACT (attendu '0.1', jamais 'framework:wtf@0.1')
+select 'wsp_skills' as tbl, id, framework_version from public.wsp_skills where id = 'wtf:212'
+union all
+select 'wsp_skill_levels', id, framework_version from public.wsp_skill_levels where skill_id = 'wtf:212'
+order by 1, 2;
+
+-- (b) toute colonne COPIÉE telle quelle contenant 'wtf' — RÉSULTAT VIDE attendu
+select * from (
+  select 'wsp_frameworks.name'                as col, (name ilike '%wtf%')                   as has_wtf from public.wsp_frameworks where id = 'framework:wtf'
+  union all select 'wsp_frameworks.description',      (coalesce(description,'') ilike '%wtf%')          from public.wsp_frameworks where id = 'framework:wtf'
+  union all select 'wsp_frameworks.publisher',        (publisher ilike '%wtf%')                         from public.wsp_frameworks where id = 'framework:wtf'
+  union all select 'wsp_frameworks.protocol_version', (protocol_version ilike '%wtf%')                  from public.wsp_frameworks where id = 'framework:wtf'
+  union all select 'wsp_framework_versions.version',  (version ilike '%wtf%')                           from public.wsp_framework_versions where id = 'framework:wtf@0.1'
+  union all select 'wsp_framework_versions.status',   (status ilike '%wtf%')                            from public.wsp_framework_versions where id = 'framework:wtf@0.1'
+  union all select 'wsp_skills.framework_version',    (framework_version ilike '%wtf%')                 from public.wsp_skills where id = 'wtf:212'
+  union all select 'wsp_skills.name',                 (coalesce(name,'') ilike '%wtf%')                 from public.wsp_skills where id = 'wtf:212'
+  union all select 'wsp_skills.description',          (coalesce(description,'') ilike '%wtf%')          from public.wsp_skills where id = 'wtf:212'
+  union all select 'wsp_skill_levels.framework_version', (framework_version ilike '%wtf%')              from public.wsp_skill_levels where skill_id = 'wtf:212'
+  union all select 'wsp_skill_levels.slug',           (slug ilike '%wtf%')                              from public.wsp_skill_levels where skill_id = 'wtf:212'
+  union all select 'wsp_skill_levels.label',          (label ilike '%wtf%')                             from public.wsp_skill_levels where skill_id = 'wtf:212'
+  union all select 'wsp_skill_levels.criteria',       (coalesce(criteria,'') ilike '%wtf%')             from public.wsp_skill_levels where skill_id = 'wtf:212'
+) t where has_wtf;
+```
+- **Attendu** : (a) `framework_version = '0.1'` pour la skill **et** les 4 niveaux (5 lignes) ;
+  (b) **résultat VIDE** — aucune colonne copiée ne contient `wtf`.
+- **Écart → STOP + corriger le plan** :
+  - (a) si `framework_version = 'framework:wtf@0.1'` (ou tout suffixe `wtf`) → ajouter
+    `replace(framework_version,'wtf','wtr')` aux blocs 2 et 3 ;
+  - (b) toute ligne renvoyée = une colonne copiée incorpore `wtf` → la transformer aussi.
+  - **Ne rien insérer tant qu'un écart subsiste.**
+- *(Colonnes non textuelles — `rank`, `observation_min/max`, `effective_date`, `recorded_at`
+  — exclues du scan : elles ne peuvent pas contenir `wtf`. Colonnes transformées — `id`,
+  `skill_id`, `code` — hors scan, déjà en `wtr`.)*
 
 ---
 
