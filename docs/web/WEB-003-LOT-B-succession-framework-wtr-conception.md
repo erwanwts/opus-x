@@ -367,8 +367,8 @@ résolution (lot ultérieur, dont §10 borne le contrat).
 **À vérifier avant implémentation** : un test figeant l'ensemble des prédicats ou un golden
 d'OCR-007 (aucun trouvé au niveau `content/registry`, mais à confirmer côté tests).
 
-> Note traçabilité : `ocr-007-resolution.json` porte `source_commit: "dfd43d6"` — le commit
-> qui a amendé la source OCR-007 (markdown v1.2.0).
+> Note traçabilité : `ocr-007-resolution.json` porte `source_commit: "6b53a2c"` — le commit
+> qui a amendé la source OCR-007 (markdown v1.2.0, `reidentified_as` = PRD-306).
 
 ---
 
