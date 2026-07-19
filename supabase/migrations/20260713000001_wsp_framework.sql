@@ -13,7 +13,7 @@
 -- ZONE SÉMANTIQUE (ENG-001 §3, §6) : définitions AUTORÉES et VERSIONNÉES.
 -- Ni des faits, ni des interprétations : les définitions référencées.
 --
--- PRÉSERVATION PERMANENTE (WSP-001 §6.3, §3.6 ; FRAMEWORK-003 §9) :
+-- PRÉSERVATION PERMANENTE (WSP-001 ; FRAMEWORK-003) :
 --   une version de Framework n'est JAMAIS supprimée ni altérée — garanti
 --   PAR LA BASE (trigger de rejet), pas par convention. Un fait enregistré
 --   sous une version reste interprétable à perpétuité.
@@ -44,7 +44,7 @@ set search_path = ''
 as $$
 begin
   raise exception
-    'WSP_APPEND_ONLY: % interdit sur %. Les définitions publiées et les faits sont immuables (WSP-001 §14.3 ; FRAMEWORK-003 §9). Une correction est un NOUVEAU fait/une nouvelle version.',
+    'WSP_APPEND_ONLY: % interdit sur %. Les définitions publiées et les faits sont immuables (WSP-001 ; FRAMEWORK-003). Une correction est un NOUVEAU fait/une nouvelle version.',
     tg_op, tg_table_name
     using errcode = 'restrict_violation';
 end;
@@ -86,7 +86,7 @@ create table if not exists public.wsp_framework_versions (
 );
 
 comment on table public.wsp_framework_versions is
-  'Chaque version d''un Framework, préservée en permanence (WSP-001 §6.3 ; FRAMEWORK-003 §9). Jamais supprimée ni altérée — un fait sous une version reste interprétable à perpétuité.';
+  'Chaque version d''un Framework, préservée en permanence (WSP-001 ; FRAMEWORK-003). Jamais supprimée ni altérée — un fait sous une version reste interprétable à perpétuité.';
 
 -- effective_date (ENG-002 v0.2 §9.2) — la date d'ENTRÉE EN VIGUEUR des règles de
 -- cette version. Concept DOMAINE, distinct de published_at (horodatage système,
@@ -120,9 +120,9 @@ create table if not exists public.wsp_skills (
 );
 
 comment on table public.wsp_skills is
-  'Une Skill : capacité nommable définie dans une version de Framework (WSP-001 §7). id = identifiant canonique stable, référencé par les Evidence.';
+  'Une Skill : capacité nommable définie dans une version de Framework (WSP-001). id = identifiant canonique stable, référencé par les Evidence.';
 comment on column public.wsp_skills.framework_version is
-  'La version exacte qui donne son sens à la Skill. Un fait référence toujours (framework, version), jamais un framework « flottant » (WSP-001 §3.6).';
+  'La version exacte qui donne son sens à la Skill. Un fait référence toujours (framework, version), jamais un framework « flottant » (WSP-001).';
 
 -- =====================================================================
 -- wsp_skill_levels — niveaux de compétence (CONTENU DU FRAMEWORK, §5.3, P1)
@@ -147,7 +147,7 @@ create table if not exists public.wsp_skill_levels (
 );
 
 comment on table public.wsp_skill_levels is
-  'Niveaux de compétence d''une Skill — CONTENU DU FRAMEWORK (WSP-001 §7.3), versionné avec lui. Inclut la correspondance observation(0–5) → niveau (§5.3, P1), publiée par Opus X. Le protocole ne définit pas lui-même ce qu''un niveau signifie.';
+  'Niveaux de compétence d''une Skill — CONTENU DU FRAMEWORK (WSP-001), versionné avec lui. Inclut la correspondance observation(0–5) → niveau (§5.3, P1), publiée par Opus X. Le protocole ne définit pas lui-même ce qu''un niveau signifie.';
 comment on column public.wsp_skill_levels.observation_min is
   'Correspondance des niveaux (§5.3 / P1) : bande d''observation Issuer (0–5) que ce niveau interprète. 0–1 n''a aucun niveau (rien n''est démontré).';
 
