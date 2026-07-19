@@ -134,28 +134,92 @@ curl -s -o /dev/null -w "%{http_code}\n" https://opusx.world/frameworks/world-tr
 
 ---
 
-## 6 · Séquence de test du rollback sur STAGING (obligatoire avant prod)
+## 6 · Séquence de test STAGING — procédure d'exploitation (STAGING-0 → 6)
 
-*« Un rollback jamais exécuté n'est pas un rollback. »* À exécuter d'un bloc sur staging :
+*« Un rollback jamais exécuté n'est pas un rollback. »* Obligatoire AVANT toute prod.
+Le DDL passe par le **SQL Editor** (l'opérateur humain le lance ; Claude ne peut pas exécuter
+de DDL). On lance un bloc, on renvoie la sortie, on décide **continuer** ou **STOP**. Ordre strict.
 
-1. **Backup** staging (§1).
-2. **Forward** : `20260718000001_wtf_to_wtr.sql` → Run.
-3. **Contrôles** §3 → attendu : wtr/world-trader partout, 6 FK convalidated, résidus_wtf=0.
-4. **Rollback** : `20260718000002_wtr_to_wtf_rollback.sql` → Run.
-5. **Contrôles de retour à l'état initial** :
-   ```sql
-   select id, slug from public.wsp_frameworks;                 -- framework:wtf | wtf
-   select id, framework_id, code from public.wsp_skills;       -- wtf:212 | framework:wtf | WTF-212
-   select count(*) from public.wsp_frameworks where id like '%wtr%' or slug='world-trader';  -- 0
-   select count(*) from pg_constraint where contype='f' and convalidated
+### Préalables (avant STAGING-0)
+- Vérifier que `pg_dump` est installé : `pg_dump --version` → doit afficher une version (≥ 14 recommandé).
+- Lancer les commandes `pg_dump`/`pg_restore` **HORS du dépôt** (ex. `cd ~` ou un dossier dédié)
+  pour que le `.dump` **n'atterrisse jamais dans le repo**.
+- **Ne pas laisser le mot de passe dans l'historique shell** : soit préfixer la commande d'un
+  espace (si `HISTCONTROL=ignorespace`), soit exporter la chaîne dans une variable non loggée
+  (`read -rs PGURI` puis `pg_dump "$PGURI" …`), soit utiliser `~/.pgpass`. Ne jamais coller
+  l'URI en clair dans un script committé.
+
+### STAGING-0 — Backup (terminal, hors dépôt)
+```bash
+pg_dump "postgresql://postgres:[PWD]@db.bnzahwzuwoxjrxpqsjhp.supabase.co:5432/postgres" -Fc \
+  -t public.wsp_frameworks -t public.wsp_framework_versions -t public.wsp_skills \
+  -t public.wsp_skill_levels -t public.wsp_evidence_demonstrates_skill \
+  -f wtf-backup-staging-$(date +%Y%m%d-%H%M).dump
+pg_restore --list wtf-backup-staging-*.dump | grep -c "TABLE DATA"
+```
+- **Attendu** : dump créé sans erreur ; le `grep -c` renvoie **5** (les 5 tables).
+- **Si différent** (erreur ou < 5) : **STOP** — ne pas lancer STAGING-1 (backup non exploitable = pas de filet).
+
+### STAGING-1 — Migration forward (SQL Editor)
+Ouvrir `supabase/migrations/20260718000001_wtf_to_wtr.sql`, copier **l'intégralité**, coller → **Run**.
+- **Attendu** : `Success. No rows returned.`
+- **Si erreur** : la transaction s'est annulée seule (rien de partiel). **STOP** — transmettre l'erreur.
+
+### STAGING-2 — Contrôles après forward (SQL Editor)
+```sql
+select
+  (select id   from public.wsp_frameworks)               as framework_id,
+  (select slug from public.wsp_frameworks)               as framework_slug,
+  (select code from public.wsp_skills)                   as skill_code,
+  (select count(*) from public.wsp_frameworks               where id like '%wtf%' or slug='wtf')
+ +(select count(*) from public.wsp_framework_versions       where framework_id like '%wtf%')
+ +(select count(*) from public.wsp_skills                   where framework_id like '%wtf%' or id like 'wtf:%' or code like 'WTF-%')
+ +(select count(*) from public.wsp_skill_levels             where skill_id like 'wtf:%')
+ +(select count(*) from public.wsp_evidence_demonstrates_skill where skill_id like 'wtf:%')  as residus_wtf,
+  (select count(*) from pg_constraint where contype='f' and convalidated
      and conrelid::regclass::text in ('public.wsp_framework_versions','public.wsp_skills',
-         'public.wsp_skill_levels','public.wsp_evidence_demonstrates_skill');                -- 6
-   ```
-   → **retour exact à wtf/wtf, 6 FK convalidated, 0 résidu wtr**.
-6. **Forward à nouveau** : `20260718000001` → Run.
-7. **Contrôles** §3 → re-attendu : wtr/world-trader, 6 FK, 0 résidu wtf.
+         'public.wsp_skill_levels','public.wsp_evidence_demonstrates_skill'))                as fk_valides;
+```
+- **Attendu** (1 ligne) : `framework:wtr` · `world-trader` · `WTR-212` · `residus_wtf = 0` · `fk_valides = 6`.
+- **Si différent** : **STOP** — transmettre la ligne, enchaîner sur le rollback (STAGING-3), ne pas toucher la prod.
 
-Si l'une des étapes 3/5/7 dévie → **STOP**, ne pas toucher la prod, rapporter l'écart.
+### STAGING-3 — Rollback (SQL Editor)
+Ouvrir `supabase/migrations/20260718000002_wtr_to_wtf_rollback.sql`, copier **l'intégralité**, coller → **Run**.
+- **Attendu** : `Success. No rows returned.`
+- **Si erreur** : **STOP** — transmettre l'erreur (le rollback lui-même est en défaut, à corriger avant tout).
+
+### STAGING-4 — Contrôles de retour à l'état wtf (SQL Editor)
+```sql
+select
+  (select id   from public.wsp_frameworks)               as framework_id,
+  (select slug from public.wsp_frameworks)               as framework_slug,
+  (select code from public.wsp_skills)                   as skill_code,
+  (select count(*) from public.wsp_frameworks               where id like '%wtr%' or slug='world-trader')
+ +(select count(*) from public.wsp_framework_versions       where framework_id like '%wtr%')
+ +(select count(*) from public.wsp_skills                   where framework_id like '%wtr%' or id like 'wtr:%' or code like 'WTR-%')
+ +(select count(*) from public.wsp_skill_levels             where skill_id like 'wtr:%')
+ +(select count(*) from public.wsp_evidence_demonstrates_skill where skill_id like 'wtr:%')  as residus_wtr,
+  (select count(*) from pg_constraint where contype='f' and convalidated
+     and conrelid::regclass::text in ('public.wsp_framework_versions','public.wsp_skills',
+         'public.wsp_skill_levels','public.wsp_evidence_demonstrates_skill'))                as fk_valides;
+```
+- **Attendu** (1 ligne) : `framework:wtf` · `wtf` · `WTF-212` · `residus_wtr = 0` · `fk_valides = 6`.
+- **Si différent** : rollback n'a pas ramené l'état initial → **STOP**. Restaurer le backup STAGING-0
+  (`pg_restore --clean --if-exists --no-owner -d "postgresql://…staging…" wtf-backup-staging-*.dump`).
+  Ne pas aller en prod tant que le rollback n'est pas prouvé.
+
+### STAGING-5 — Migration forward à nouveau (SQL Editor)
+Recoller **l'intégralité** de `supabase/migrations/20260718000001_wtf_to_wtr.sql` → **Run**.
+- **Attendu** : `Success. No rows returned.`
+- **Si erreur** : **STOP** — transmettre l'erreur.
+
+### STAGING-6 — Contrôles finaux (SQL Editor)
+Recoller **exactement le SQL de STAGING-2**.
+- **Attendu** : identique à STAGING-2 → `framework:wtr` · `world-trader` · `WTR-212` · `residus_wtf = 0` · `fk_valides = 6`.
+- **Si différent** : **STOP** — transmettre la ligne.
+
+**Verdict** : STAGING-2, 4 et 6 tous conformes → cycle forward/rollback/re-forward **prouvé** sur staging.
+On peut alors planifier la prod (§7, mandat dédié). Toute déviation en 0/1/2/3/4/5/6 → **STOP** + diagnostic.
 
 ---
 
