@@ -47,3 +47,15 @@ export function entityHref(ocrId: string, locale: string): string | null {
   const p = PILLARS.find((x) => x.recordId === ocrId && x.translatedLocales.includes(locale));
   return p ? `/${locale}/${p.slug}` : null;
 }
+
+/**
+ * MÊME mécanisme qu'entityHref, mais résolu par SLUG (les archétypes — API &
+ * Developers, etc. — n'ont pas de recordId). Consommé par les liens des Reading
+ * Paths et de « Explore the Resources » : une page devient un lien DÈS qu'elle
+ * entre dans PILLARS (activation automatique, aucune exception codée). Sinon → null
+ * (texte brut, jamais de lien mort).
+ */
+export function pillarHrefBySlug(slug: string, locale: string): string | null {
+  const p = PILLARS.find((x) => x.slug === slug && x.translatedLocales.includes(locale));
+  return p ? `/${locale}/${p.slug}` : null;
+}

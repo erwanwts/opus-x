@@ -1,5 +1,4 @@
 import type { MetadataRoute } from 'next';
-import { routing } from '@/i18n/routing';
 import { PILLARS } from '@/lib/seo/pillars';
 
 /**
@@ -20,11 +19,10 @@ function cluster(locales: string[], pathFor: (l: string) => string): Record<stri
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  // Home : les 3 locales réelles.
-  const homeLangs = cluster([...routing.locales], (l) => `${BASE}/${l}`);
-  for (const locale of routing.locales) {
-    entries.push({ url: `${BASE}/${locale}`, alternates: { languages: homeLangs } });
-  }
+  // Home : EN uniquement (prose EN livrée, fallback strict). La racine / redirige
+  // vers /en, seul chemin d'accueil indexable ; /fr /es non générées.
+  const homeLangs = cluster(['en'], (l) => `${BASE}/${l}`);
+  entries.push({ url: `${BASE}/en`, alternates: { languages: homeLangs } });
 
   // Pages piliers : par route, hreflang limité aux locales traduites de CETTE page.
   for (const p of PILLARS) {

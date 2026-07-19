@@ -21,6 +21,11 @@ export function organizationLd(): Ld {
   return { '@context': SCHEMA, '@type': 'Organization', name: 'Opus X', url: BASE };
 }
 
+/** WebSite — le site dans son ensemble (émis sur la Homepage). */
+export function webSiteLd(): Ld {
+  return { '@context': SCHEMA, '@type': 'WebSite', name: 'Opus X', url: BASE, inLanguage: 'en' };
+}
+
 /** BreadcrumbList — fil d'ariane, sur toutes les pages (§12). */
 export function breadcrumbLd(trail: { name: string; url: string }[]): Ld {
   return {
