@@ -119,7 +119,7 @@ The consequence for this document is exact: **everything below is a choice among
 - **4.2** No `wsp_subjects` table is created in Sprint 2. A second representation of the professional MUST NOT be introduced while `profiles` already carries that role.
 - **4.3** `profiles.opus_id` MUST be `UNIQUE` and `NOT NULL`. This is a precondition of 4.1 and MUST be verified before the migration, not assumed.
 
-**Why identity and not the Passport.** ENG-001 §8 establishes that **the Passport is a generated view, never a stored authored document.** Anchoring facts on `passports` would make the existence of a fact depend on an object that is, by architecture, not a table of truth — and would quietly make the Passport the owner of the facts, when the entire corpus says the reverse. Facts anchor on **identity**, which is permanent and never reused (WSP-001 §3.1). The Passport is what is *computed* above them. This is precisely why the Passport survives the applications that feed it (ARCH-001 §7): it is derived, not stored.
+**Why identity and not the Passport.** ENG-001 §8 establishes that **the Passport is a generated view, never a stored authored document.** Anchoring facts on `passports` would make the existence of a fact depend on an object that is, by architecture, not a table of truth — and would quietly make the Passport the owner of the facts, when the entire corpus says the reverse. Facts anchor on **identity**, which is permanent and never reused (WSP-001). The Passport is what is *computed* above them. This is precisely why the Passport survives the applications that feed it (ARCH-001 §7): it is derived, not stored.
 
 **Why no abstraction.** A generic `subjects` table would today be an abstraction with exactly one case. The corpus discipline is that **an abstraction is revealed by a second real case, not anticipated by an elegant one.** When subjects other than professionals genuinely exist — organizations, AI agents, devices — the second case will show what the abstraction must be, and the model will evolve on evidence rather than on foresight.
 
@@ -322,7 +322,7 @@ SPRINT-002 Lot O2 states seven verifications. This profile consolidates them wit
 **8.1** Opus X MUST NOT trust the `canonical_hash` sent by an Issuer. It **recomputes** it.
 **8.2** Deduplication MUST use the **recomputed** value, never the received one.
 **8.3** Verification (7) MUST precede idempotency (9). A fact must be proven intact before it is compared to anything.
-**8.4** The Registry records; it never computes (WSP-001 §13.3). Step 10 writes a fact and performs no interpretation.
+**8.4** The Registry records; it never computes (WSP-001). Step 10 writes a fact and performs no interpretation.
 
 ---
 
@@ -370,7 +370,7 @@ The distinction the whole chapter rests on:
 ### 9.4 Versioning and Effective Date
 
 - **9.4.1** Every Evidence pins `framework.id` + `framework.version` (already enforced structurally by a composite foreign key on the fact store).
-- **9.4.2** Framework versions are **immutable and permanently preserved** — never updated, never deleted, never truncated (WSP-001 §3.6; FRAMEWORK-003 §9; enforced by `wsp_reject_mutation` on all four semantic tables, across UPDATE, DELETE, and TRUNCATE, including in `service_role` and `postgres`).
+- **9.4.2** Framework versions are **immutable and permanently preserved** — never updated, never deleted, never truncated (WSP-001; FRAMEWORK-003; enforced by `wsp_reject_mutation` on all four semantic tables, across UPDATE, DELETE, and TRUNCATE, including in `service_role` and `postgres`).
 - **9.4.3** Therefore **an Evidence emitted today can always be re-interpreted under the exact version of the Framework in force at the moment of its emission.** A correspondence published in 2026 still means, in 2046, what it meant when the fact was admitted.
 
 This is not a database precaution. **It is the condition under which a proof retains meaning across a career** — and therefore the condition under which the Professional Passport is traceable at all.
@@ -434,7 +434,7 @@ It is **not** the Passport level. Opus X's Skills Engine (Lot O3) derives the le
 
 - **11.1** `wsp_evidence.is_declaration` MUST be present, **`NOT NULL`**, with an explicit `true` or `false`.
 - **11.2** It MUST NOT be nullable. A professional's own declaration MUST NEVER become indistinguishable from a third party's attestation, and a nullable flag is exactly how that distinction is lost — silently, and irreversibly, in an append-only store.
-- **11.3** This implements WSP-001 §8.5 and ENG-001 §5, which require declarations to remain distinguishable from evidence.
+- **11.3** This implements WSP-001 and ENG-001 §5, which require declarations to remain distinguishable from evidence.
 - **11.4** For Sprint 2 the value is always `false` — every Evidence originates in a coach's attestation. The column exists nonetheless, because adding a column to an append-only fact table costs nothing today and cannot be done cleanly later.
 
 ---

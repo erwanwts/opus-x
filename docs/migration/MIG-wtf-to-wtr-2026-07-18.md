@@ -1,7 +1,23 @@
 # MIG — Migration `wtf` → `wtr` (framework_id + slug) · 2026-07-18
 
-**Statut** : appliquée au dépôt (un commit atomique). Application aux bases vivantes =
-acte de déploiement séparé (voir migration forward).
+> ## ⚠️ APPROCHE DB ANNULÉE (2026-07-19) — voir mise à jour
+> La partie **CODE** de cette migration (corpus, seed, tests, redirection) a bien été
+> appliquée au dépôt le 2026-07-18 (commit ddfda6f). En revanche, **l'application DB par
+> mutation a été ANNULÉE par l'architecte** : muter `framework:wtf` (id/slug publiés) est
+> **structurellement interdit** par la garde d'immuabilité (`wsp_reject_mutation`, WSP-001,
+> FRAMEWORK-003) — l'essai staging a été rejeté, transaction annulée, aucune donnée touchée.
+>
+> **Nouvelle direction** : succession de versions **append-only** — `framework:wtf` reste
+> publié (**superseded**), `framework:wtr` est une **nouvelle publication** reliée par
+> `supersedes` ; les 79 Evidence gardent `wtf:212` à jamais. La migration de mutation et son
+> rollback sont **archivés** (`docs/migration/archive/`), **jamais exécutés**. La
+> **redirection 301** `/frameworks/wtf → world-trader` devient contraire à la décision
+> (wtf doit rester consultable) : à retirer dans le chantier de succession. Plusieurs
+> dispositions ci-dessous (« aucune coexistence permanente », date de retrait 301) sont
+> **caduques** — à amender par l'architecte.
+
+**Statut** : partie CODE appliquée au dépôt (2026-07-18) ; **partie DB par mutation ANNULÉE
+(2026-07-19)** — remplacée par une succession de versions append-only.
 
 ## Décision (amendement architecte, 2026-07-18)
 

@@ -4,7 +4,7 @@
 -- Autorités : SPRINT-002 v1.2 §7 (Lot O1), W2/W3/W4/W5/W7 ·
 --             ENG-001 §5, §10 · ENG-002 §3, §4, §6.1, §6.2, §7, §10, §11.
 --
--- « Le Registre enregistre ; il ne calcule jamais » (WSP-001 §13.3).
+-- « Le Registre enregistre ; il ne calcule jamais » (WSP-001).
 -- Une correction est un NOUVEAU fait. Une révocation est un NOUVEAU fait.
 -- Jamais une mutation, jamais un DELETE (W2).
 --
@@ -286,7 +286,7 @@ create trigger wsp_fact_revocations_no_mutation
 -- GARDE TRUNCATE (STATEMENT-level) — l'append-only fermait UPDATE/DELETE mais
 -- laissait TRUNCATE OUVERT : un TRUNCATE effacerait des faits (ou une version
 -- de Framework, rendant ININTERPRÉTABLES tous les faits qui la citent —
--- WSP-001 §3.6). On ferme la faille sur les 8 tables wsp_ (sémantique O0 +
+-- WSP-001). On ferme la faille sur les 8 tables wsp_ (sémantique O0 +
 -- faits O1). Les 3 tables d'interprétation (O3/O4) recevront la garde à leur
 -- création — elles n'existent pas encore.
 --

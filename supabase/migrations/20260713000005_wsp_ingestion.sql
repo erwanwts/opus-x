@@ -7,7 +7,7 @@
 -- Le recalcul du hash (étape 7) se fait EN JS (RFC 8785, lib/wsp/canonical) ;
 -- ce RPC reçoit le hash RECALCULÉ par Opus X et le COMPARE au reçu (§8.1/§8.2).
 --
--- « Le Registry enregistre ; il ne calcule JAMAIS. » (WSP-001 §13.3)
+-- « Le Registry enregistre ; il ne calcule JAMAIS. » (WSP-001)
 -- =====================================================================
 
 -- ---------------------------------------------------------------------
