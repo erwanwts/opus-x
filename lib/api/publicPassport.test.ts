@@ -11,10 +11,8 @@ import { describe, it, expect } from 'vitest';
 import {
   buildPublicPassport,
   buildPublicEvidence,
-  buildPublicSkill,
   PUBLIC_PASSPORT_WHITELIST,
   PUBLIC_EVIDENCE_WHITELIST,
-  PUBLIC_SKILL_WHITELIST,
   NEVER_PUBLIC,
   type PublicPassportInput,
 } from './publicPassport';
@@ -27,20 +25,8 @@ describe('Whitelist du Passport public (§5.3)', () => {
     headline: 'Consultante indépendante',
     lifecycle_stage: 'identity_established',
     verified: false,
-    is_demo: false,
     trust_status: 'Establishing',
     skills_status: 'empty',
-    skills: [
-      {
-        name: 'Intention vs Engagement',
-        // Champs internes interdits (Lot 5) : le niveau interprété du Passport
-        // n'existe pas (D6, zone O3/O4) et `verified` n'a aucun équivalent WSP.
-        level: 'proficient',
-        verified: true,
-        evidence_count: 12,
-        framework_id: 'uuid-framework',
-      },
-    ],
     evidence: [
       {
         type: 'certification',
@@ -85,25 +71,11 @@ describe('Whitelist du Passport public (§5.3)', () => {
     expect(out).not.toHaveProperty('description');
   });
 
-  it('n’expose que `name` d’une Skill — jamais level / verified / evidence_count', () => {
-    const out = buildPublicSkill(dirtyInput.skills[0]) as unknown as Record<string, unknown>;
-    expect(Object.keys(out).sort()).toEqual([...PUBLIC_SKILL_WHITELIST].sort());
-    // `level` publierait un niveau autoritaire que le fact store ne fournira
-    // jamais (WSP n'a que claimed_level — le claim de l'Issuer, D6).
-    expect(out).not.toHaveProperty('level');
-    expect(out).not.toHaveProperty('verified');
-    expect(out).not.toHaveProperty('evidence_count');
-    expect(out).not.toHaveProperty('framework_id');
-  });
-
   it('la sérialisation JSON complète ne contient aucune trace des interdits', () => {
     const json = JSON.stringify(buildPublicPassport(dirtyInput));
     expect(json).not.toMatch(/marie@example\.com/);
     expect(json).not.toMatch(/données brutes/);
     expect(json).not.toMatch(/opx_/);
     expect(json).not.toMatch(/note interne/);
-    // Les champs internes d'une Skill ne fuient pas non plus.
-    expect(json).not.toMatch(/proficient/);
-    expect(json).not.toMatch(/uuid-framework/);
   });
 });

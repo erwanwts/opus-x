@@ -119,20 +119,6 @@ export const PUBLIC_PASSPORT_STRINGS = {
   /** Bloc 6 — Trust Status : moteur absent → capacité planifiée, NON calculée. */
   trustNotComputed: 'Not yet computed',
   trustPlannedNote: 'Trust verification is a planned protocol capability.',
-  /**
-   * BANDEAU DÉMO (Lot 5) — rendu en tête de carte quand `is_demo === true`.
-   *
-   * Son travail est d'ANNULER le sceau : la carte affiche « Verified » et des
-   * Evidence vérifiées, or rien de tout cela n'a été vérifié. Le bandeau doit
-   * donc contredire explicitement ce que le visiteur voit, y compris un tiers
-   * arrivant hors contexte. Il nomme le protocole pour que la portée soit sans
-   * ambiguïté — et la page porte en plus un `robots: noindex`.
-   *
-   * ⚠️ Navy/neutre au rendu — JAMAIS or : l'or est réservé à la confiance
-   *    MÉRITÉE (PRODUCT-001), et cette carte n'en a mérité aucune.
-   */
-  demoBanner:
-    'Demonstration — example data. The Skills and Evidence shown here are fictional and were not verified under the World Skills Protocol.',
   /** Bloc 8 — propriété & garde (le professionnel possède ; Opus X garde & vérifie). */
   ownershipCustody:
     'This Professional Passport belongs to the professional. Opus X holds it in custody and verifies it according to the rules of the World Skills Protocol.',
