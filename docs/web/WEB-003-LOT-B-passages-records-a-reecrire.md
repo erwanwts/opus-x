@@ -5,28 +5,41 @@
 > fichier + section, numéro de ligne, **texte actuel verbatim et complet**, catégorie,
 > et en une phrase ce qui le rend inexact.
 >
-> Racine des Records : `docs/web/registry-import/OCR-100/`. Numéros de ligne à jour au
-> commit de ce document (Records non modifiés).
+> Racine des Records : `docs/web/registry-import/OCR-100/`. Numéros de ligne à jour
+> (Records non modifiés).
+>
+> **v2 (2026-07-19)** — reclassements gravés par l'architecte : A10 (OCR-105:133) déclassé
+> (schéma de structure → annexe) ; C(a) (OCR-100:117) promu en A ; C(b) (OCR-119 mapping)
+> vérifié conforme → annexe ; C(c) (OCR-108) adjugé (annexe, avec réserve). Règle et
+> principe gravés portés en tête.
 
 ---
 
-## Règle de classification proposée — À CONFIRMER par l'architecte
+## RÈGLE GRAVÉE (verbatim — autorité)
 
-- Un passage décrivant un **FAIT RÉALISÉ** (Evidence émise / acceptée / journalisée /
-  vérifiée · Immutable Fact écrit · Trust calculé sur des faits réels) porte la
-  **coordonnée historique `wtf:212`** — car les **79 faits réels la portent à jamais**
-  (elle est **hash-portante** : la réécrire romprait leur intégrité).
-- Un passage décrivant la **DÉFINITION** (le Framework, la Skill, la Competency, la
-  Capability, ou la **résolution** du Registry) porte la **coordonnée courante `wtr:212`**.
-- La **version normative** (`1.0.0` vs réel `0.1`) est un défaut **distinct**, traité au
-  sous-inventaire **B** — indépendamment de la coordonnée.
+> « Tout passage décrivant un fait publié ou une donnée immuable emploie les coordonnées
+> réellement portées par ce fait. Tout passage décrivant une définition, une règle, une
+> capacité, un mécanisme ou un comportement du protocole emploie les coordonnées
+> canoniques en vigueur au moment de la lecture. »
 
-Les passages où la lecture « fait réalisé » vs « définition » n'est pas tranchable sont
-regroupés en **section AMBIGUË**, avec les deux lectures.
+## PRINCIPE GÉNÉRAL (verbatim)
+
+> « Le protocole ne choisit jamais une coordonnée en fonction de la date du document ou
+> de la version du corpus. Il choisit toujours la coordonnée de l'objet dont il parle. »
+
+**Corollaire d'application (gravé)** : *exemple réel → coordonnée historique ; schéma de
+structure → coordonnée canonique.*
+
+**Portée des deux défauts :**
+- **A. Coordonnées** : un passage décrivant un **fait réalisé** porte `wtr:212` alors que
+  le fait réel porte `wtf:212` (coordonnée hash-portante).
+- **B. Versions normatives** : un passage donne la **version du Framework** à `1.0.0` alors
+  que le réel est `0.1` (version d'implémentation) — `1.0.0` réservé à la première
+  publication normative complète. Défaut **distinct** de la coordonnée.
 
 ---
 
-## A. COORDONNÉES — fait réalisé portant `wtr:212` (réel : `wtf:212`)
+## A. COORDONNÉES — fait réalisé portant `wtr:212` (réel : `wtf:212`) — **10 entrées**
 
 ### A1 · OCR-121 (Certified Issuer) · section **Examples** · ligne 156
 ```
@@ -89,103 +102,103 @@ regroupés en **section AMBIGUË**, avec les deux lectures.
 ```
 - A Response confirms integrity and reports computed Trust for `wtr:212` under `wtr` v1.0.0, limited to disclosed facts, timestamped now.
 ```
-- **Catégorie** : fait réalisé (Trust rapporté sur des faits divulgués). **Double défaut** : contient aussi la version `v1.0.0` → voir **B10**.
+- **Catégorie** : fait réalisé (Trust rapporté sur des faits divulgués). **Double défaut** : contient aussi la version `v1.0.0` → voir **B12**.
 - **Inexact** : rapporte un Trust calculé sur des faits réels divulgués — la coordonnée réelle est `wtf:212`.
 
-### A10 · OCR-105 (Trust) · section **JSON-LD Mapping** · ligne 133 — *cas limite*
+### A10 · OCR-100 (World Skills Protocol) · section **Machine Interpretation** (prose) · ligne 117 — *reclassé depuis C(a)*
 ```
-  "interpretedAgainst": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
+WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtr:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
 ```
-- **Catégorie** : fait réalisé (Trust interprété contre le framework des faits) — **cas le moins net** : c'est l'identifiant de framework (`framework:wtr`), pas la coordonnée `:212`.
-- **Inexact** : le Trust s'interprète contre le framework que **citent les faits réels** (`wtf`) ; mais une lecture « framework courant » pourrait le justifier — à trancher.
+- **Catégorie** : fait réalisé — **le sujet grammatical est « Facts »** (« *Facts* reference a Framework coordinate (e.g. `wtr:212`) »).
+- **Inexact** : décrit **ce que les faits portent réellement** ; les faits réels portent la coordonnée historique `wtf:212`.
 
 ---
 
-## B. VERSIONS NORMATIVES — version du Framework à `1.0.0` (réel : `0.1`)
+## B. VERSIONS NORMATIVES — version du Framework à `1.0.0` (réel : `0.1`) — **14 entrées**
 
 > Distinction gravée : **version d'implémentation** = `0.1` (jalon courant réel du WTR) ;
 > **version normative** = `1.0.0`, **réservée** à la première publication normative complète
-> du protocole. Toute assertion de la **version du Framework** à `1.0.0` est donc inexacte.
+> du protocole.
 
-### B1 · OCR-105 (Trust) · section **Machine Interpretation** (JSON) · ligne 116
+### B1 · OCR-105 (Trust) · **Machine Interpretation** (JSON) · ligne 116
 ```
     "interpretation": { "framework": "wtr", "version": "1.0.0" },
 ```
-- **Inexact** : la version du Framework WTR est donnée à `1.0.0`, or le réel est `0.1`.
+- **Inexact** : version du Framework WTR donnée à `1.0.0`, or le réel est `0.1`.
 
-### B2 · OCR-105 (Trust) · section **Examples** · ligne 152
+### B2 · OCR-105 (Trust) · **Examples** · ligne 152
 ```
 - Trust for an Opus ID is computed from three bound facts under `wtr` v1.0.0; a verifier reproduces the computation and obtains the same result.
 ```
 - **Inexact** : version du Framework `1.0.0` ≠ `0.1`.
 
-### B3 · OCR-106 (Trust Status) · section **Machine Interpretation** (JSON) · ligne 112
+### B3 · OCR-106 (Trust Status) · **Machine Interpretation** (JSON) · ligne 112
 ```
     "framework_version": "wtr@1.0.0",
 ```
 - **Inexact** : version du Framework `wtr@1.0.0` ≠ `wtr@0.1`.
 
-### B4 · OCR-106 (Trust Status) · section **JSON-LD Mapping** · ligne 129
+### B4 · OCR-106 (Trust Status) · **JSON-LD Mapping** · ligne 129
 ```
   "underFrameworkVersion": "wtr@1.0.0",
 ```
 - **Inexact** : version du Framework `wtr@1.0.0` ≠ `wtr@0.1`.
 
-### B5 · OCR-106 (Trust Status) · section **Examples** · ligne 146
+### B5 · OCR-106 (Trust Status) · **Examples** · ligne 146
 ```
 - A verifier reads a Trust Status for an Opus ID under `wtr` v1.0.0; it is the current output of the computation.
 ```
 - **Inexact** : version du Framework `1.0.0` ≠ `0.1`.
 
-### B6 · OCR-107 (Verification) · section **Machine Interpretation** (JSON) · ligne 122
+### B6 · OCR-107 (Verification) · **Machine Interpretation** (JSON) · ligne 122
 ```
     "framework_version": { "id": "wtr", "version": "1.0.0" },
 ```
 - **Inexact** : version du Framework `1.0.0` ≠ `0.1`. *(Record concerné uniquement par la version — aucune coordonnée `wtr:212`.)*
 
-### B7 · OCR-108 (Verification Request) · section **Machine Interpretation** (JSON) · ligne 117
+### B7 · OCR-108 (Verification Request) · **Machine Interpretation** (JSON) · ligne 117
 ```
     "framework_version": { "id": "wtr", "version": "1.0.0" },
 ```
-- **Inexact** : version du Framework `1.0.0` ≠ `0.1`. *(La coordonnée/scope `wtr:212` de ce Record est traitée en section ambiguë.)*
+- **Inexact** : version du Framework `1.0.0` ≠ `0.1`. *(La coordonnée/scope `wtr:212` de ce Record est traitée en annexe — adjugée conforme.)*
 
-### B8 · OCR-108 (Verification Request) · section **JSON-LD Mapping** · ligne 133
+### B8 · OCR-108 (Verification Request) · **JSON-LD Mapping** · ligne 133
 ```
   "underFrameworkVersion": "wtr@1.0.0",
 ```
 - **Inexact** : version du Framework `wtr@1.0.0` ≠ `wtr@0.1`.
 
-### B9 · OCR-108 (Verification Request) · section **Examples** · ligne 151
+### B9 · OCR-108 (Verification Request) · **Examples** · ligne 151
 ```
 - An employer submits a Request for `wtr:212` on a candidate's Opus ID under `wtr` v1.0.0, within granted disclosure.
 ```
-- **Inexact** : version du Framework `1.0.0` ≠ `0.1` *(le `wtr:212` de scope est en section ambiguë)*.
+- **Inexact** : version du Framework `1.0.0` ≠ `0.1` *(le `wtr:212` de scope est en annexe, adjugé conforme)*.
 
-### B10 · OCR-109 (Verification Response) · section **Machine Interpretation** (JSON) · ligne 118
+### B10 · OCR-109 (Verification Response) · **Machine Interpretation** (JSON) · ligne 118
 ```
     "trust": { "status": "<computed>", "framework_version": "wtr@1.0.0" },
 ```
 - **Inexact** : version du Framework `wtr@1.0.0` ≠ `wtr@0.1`.
 
-### B11 · OCR-109 (Verification Response) · section **JSON-LD Mapping** · ligne 137
+### B11 · OCR-109 (Verification Response) · **JSON-LD Mapping** · ligne 137
 ```
   "reportsTrustUnder": "wtr@1.0.0",
 ```
 - **Inexact** : version du Framework `wtr@1.0.0` ≠ `wtr@0.1`.
 
-### B12 · OCR-109 (Verification Response) · section **Examples** · ligne 155
+### B12 · OCR-109 (Verification Response) · **Examples** · ligne 155
 ```
 - A Response confirms integrity and reports computed Trust for `wtr:212` under `wtr` v1.0.0, limited to disclosed facts, timestamped now.
 ```
 - **Inexact** : version du Framework `1.0.0` ≠ `0.1`. **Même ligne que A9** (double défaut : coordonnée **et** version).
 
-### B13 · OCR-115 (Framework) · section **Machine Interpretation** (JSON, objet `framework`) · ligne 124
+### B13 · OCR-115 (Framework) · **Machine Interpretation** (JSON, objet `framework`) · ligne 124
 ```
     "version": "1.0.0",
 ```
 - **Inexact** : version du Framework WTR à `1.0.0` (objet `{ "id": "wtr", "version": "1.0.0", "coordinate": "wtr:212" }`) ≠ `0.1`.
 
-### B14 · OCR-115 (Framework) · section **JSON-LD Mapping** · ligne 143
+### B14 · OCR-115 (Framework) · **JSON-LD Mapping** · ligne 143
 ```
   "version": "1.0.0",
 ```
@@ -193,29 +206,26 @@ regroupés en **section AMBIGUË**, avec les deux lectures.
 
 ### ⚠️ EXCLUS de B — vérifié deux fois : versions DOCUMENTAIRES (à NE PAS toucher)
 
-Les `1.0.0` suivants sont la **version du document OCR lui-même** (schéma de versioning
-OCR-005), **sans rapport** avec la version du Framework. Ils sont **corrects** ; les
-confondre casserait le versioning documentaire :
+Les `1.0.0` suivants sont la **version du document OCR lui-même** (versioning OCR-005),
+**sans rapport** avec la version du Framework — **corrects** :
 - l'en-tête `| **Version** | 1.0.0 |` (ligne 7 ou 8) de **chaque** Record ;
 - l'entrée de changelog de **chaque** Record, forme `- **1.0.0** (2026-07-16) — Initial …
   Supersedes the OCR-xxx v0.1 skeleton …`.
 
-Chaque entrée de B ci-dessus a été vérifiée comme étant **dans un bloc machine (JSON /
-JSON-LD) ou un Example décrivant la version du FRAMEWORK**, jamais l'en-tête ni le
-changelog du document.
+Chaque entrée B ci-dessus a été confirmée dans un bloc machine (JSON/JSON-LD) ou un Example
+décrivant la version du **Framework**, jamais l'en-tête ni le changelog du document.
 
 ---
 
-## C. AMBIGUS — deux lectures possibles (à trancher par l'architecte)
+## Annexe — passages VÉRIFIÉS CONFORMES (rien à corriger)
 
-### C1 · OCR-100 (World Skills Protocol) · section **Conceptual Model / Machine Interpretation** (prose) · ligne 117
+### An1 · OCR-105 (Trust) · **JSON-LD Mapping** · ligne 133 — *déclassé de A10*
 ```
-WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtr:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
+  "interpretedAgainst": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
 ```
-- **Lecture (a) — JUSTE (garder `wtr:212`)** : énoncé général ; « e.g. `wtr:212` » illustre la coordonnée **courante** qu'un nouveau fait citerait.
-- **Lecture (b) — FAUX (→ `wtf:212`)** : « Facts reference … `wtr:212` » décrit ce que portent les **faits existants**, or les faits réels portent `wtf:212`.
+- **Verdict** : **conforme, rien à corriger.** C'est un **schéma de structure** (la forme JSON-LD d'un Trust), pas un exemple d'occurrence réelle. Par le corollaire gravé (« schéma de structure → coordonnée canonique »), il porte **déjà** la coordonnée canonique `framework:wtr`. Conservé ici avec sa justification, hors inventaire A.
 
-### C2 · OCR-119 (Framework Registry) · section **Machine Interpretation** · ligne 114 puis lignes 118–124
+### An2 · OCR-119 (Framework Registry) · **Machine Interpretation** · ligne 114 puis lignes 118–124 — *ex-C(b)*
 ```
 The Registry resolves a coordinate to its criteria and defers levels to the Framework. The project mapping (`wsp_skill_mappings`) is seeded with exactly four rows to `wtr:212`, and carries no levels.
 ```
@@ -229,10 +239,9 @@ The Registry resolves a coordinate to its criteria and defers levels to the Fram
     { "criterion": "S05.C08", "coordinate": "wtr:212" },
     { "criterion": "S02.C12", "coordinate": "wtr:212" }
 ```
-- **Lecture (a) — JUSTE (garder `wtr:212`)** : illustration de la couche **résolution/définition courante** du Registry.
-- **Lecture (b) — FAUX (→ `wtf:212`)** : décrit le **mapping réel seedé** (`wsp_skill_mappings`) ; s'il pointe vers le skill réel, c'est `wtf:212`.
+- **Verdict** : **conforme, rien à corriger.** Décrit un **mécanisme de résolution** (le Registry résolvant une coordonnée) — donc, par la règle gravée (« un mécanisme … du protocole emploie les coordonnées canoniques »), coordonnée **canonique** `wtr:212`. Retiré des ambigus.
 
-### C3 · OCR-108 (Verification Request) · sections **Machine Interpretation** (l. 116), **JSON-LD Mapping** (l. 132), **Summary** (l. 207) — le *scope* de requête
+### An3 · OCR-108 (Verification Request) · **Machine Interpretation** (l. 116), **JSON-LD Mapping** (l. 132), **Summary** (l. 207) — *ex-C(c), adjugé*
 ```
     "scope": { "coordinate": "wtr:212", "facts": ["<optional_ids>"] },
 ```
@@ -242,18 +251,48 @@ The Registry resolves a coordinate to its criteria and defers levels to the Fram
 ```
 A **Verification Request** is how a verifier asks a question in the World Skills Protocol: it names the subject's Opus ID, the scope (e.g. `wtr:212`), and the Framework version, and it is always bounded by the professional's consent. It initiates a Verification but can never grant itself access beyond what the professional has disclosed.
 ```
-- **Lecture (a) — JUSTE (garder `wtr:212`)** : lecture *forward* — la requête interroge la **coordonnée courante** `wtr:212`.
-- **Lecture (b) — FAUX (→ `wtf:212`)** : lecture *rétro* — la requête porte sur des **faits existants**, qui portent `wtf:212`.
-- *(Rappel : la **version** `1.0.0` de ce Record — l. 117, 133, 151 — est un défaut distinct et non ambigu, listé en B7/B8/B9.)*
+
+**Critère gravé appliqué** : *« Si la requête vérifie une définition → coordonnée canonique.
+Si elle vérifie un fait publié → coordonnée réellement portée par ce fait. »*
+
+**Que vérifie ce passage exactement ?** La **Verification Request** est l'objet qu'un
+vérificateur **soumet pour poser une question** — ce n'est pas encore une vérification, c'est
+la **requête** (l'acte du lecteur). Son `scope.coordinate` **nomme la Skill/compétence
+interrogée** (adressage définitionnel) ; le champ `facts` est **optionnel**
+(`"<optional_ids>"`), donc le cas de base est « interroger la définition `wtr:212` », pas
+« affirmer la coordonnée d'un fait précis ».
+
+**Adjudication** : **conforme, coordonnée canonique `wtr:212`.** La Request est un
+**mécanisme de lecture** (la question du vérificateur) qui **désigne une définition** ; la
+règle gravée (« mécanisme/comportement → canonique ») **et** le principe de couche de lecture
+(la résolution d'identité vit à la lecture, le vérificateur interroge avec la coordonnée
+courante) convergent vers la **coordonnée canonique**.
+
+**⚠️ Réserve pour l'architecte (le critère est tendu, non insuffisant)** : la **Response**
+appariée (OCR-109 ligne 116, = **A8**) reporte la **même** coordonnée contre un **fait réel
+nommé** (`ev_01KXM07…`) — ce qui est, lui, le cas « fait publié » → historique `wtf:212`.
+La Request (canonique) et la Response (historique) emploient donc le **même jeton** pour deux
+rôles distincts. Si l'architecte veut que la Request **échoie la coordonnée du fait ciblé**
+(quand `facts` est renseigné), alors ce passage devrait basculer en `wtf:212` — ce serait une
+**reformulation** de la sémantique du champ, pas une simple correction. En l'état (scope par
+définition, `facts` optionnel), **je le tiens conforme**.
 
 ---
 
-## Récapitulatif
+## Récapitulatif et vérification du décompte
 
-- **A — coordonnées (fait réalisé → `wtf:212`)** : 10 entrées (dont A10 *cas limite*, A9 en double défaut avec B12).
-- **B — versions normatives (`1.0.0` → `0.1`)** : 14 entrées, sur **8 Records** (OCR-105, 106, 107, 108, 109, 115). Exclusions documentaires vérifiées deux fois.
-- **C — ambigus** : 3 (OCR-100 l.117 · OCR-119 l.114/118–124 · OCR-108 scope l.116/132/207).
+| Inventaire | Compte | Composition |
+|---|---|---|
+| **A — coordonnées** (fait réalisé → `wtf:212`) | **10** | A1–A9 (9) **+** A10 = OCR-100:117 (ex-C(a)) |
+| **B — versions normatives** (`1.0.0` → `0.1`) | **14** | inchangé (sur 6 Records : OCR-105/106/107/108/109/115) |
+| **Annexe — conformes (rien à corriger)** | 3 | OCR-105:133 (ex-A10) · OCR-119 mapping (ex-C(b)) · OCR-108 scope (ex-C(c), adjugé, avec réserve) |
 
-Aucun texte de remplacement n'est proposé : délimitation seule. La **règle de
-classification** (en tête) et les **cas limites/ambigus** attendent l'arbitrage de
-l'architecte avant rédaction.
+**Vérification de votre calcul.** Résultat **10 : correct**. Précision arithmétique : la base
+de A était **10** (A1–A10), **pas 11**. L'opération est donc **10 − A10 (déclassé) + C(a)
+(promu) = 10**. (Le « 11 » de la formule proposée est à corriger en « 10 ».)
+
+**C(c)** : traité (annexe An3) — adjugé **conforme (canonique)**, avec une réserve signalée
+qui relèverait d'une **reformulation** par l'architecte si la sémantique du scope doit échoir
+la coordonnée du fait ciblé.
+
+Aucun texte de remplacement n'est proposé : délimitation seule.
