@@ -3,7 +3,7 @@
     "id": "ocr-007-resolution",
     "title": "Projection machine d'OCR-007 pour l'extracteur WSP-001",
     "source": "docs/registry/OCR-007_Canonical_Predicate_Registry.md",
-    "source_commit": "pending (amendement Lot B v1.2.0)",
+    "source_commit": "dfd43d6",
     "source_version": "1.2.0",
     "authority": "OCR-007 markdown (Approved / Normative) reste la SEULE source de vérité. Ce fichier en est une PROJECTION dérivée, jamais une seconde autorité. En cas de divergence, OCR-007 prime.",
     "generated_for": "WSP-001 (extracteur de Knowledge Graph)",
