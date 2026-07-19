@@ -153,7 +153,7 @@ Acceptance is gated on Certified state at ingestion; certification changes are f
 
 ## Examples
 
-- A trading academy is certified; its Evidence referencing `wtr:212` is accepted and journaled.
+- A trading academy is certified; its Evidence referencing `wtf:212` is accepted and journaled.
 - An academy is suspended pending review; its new Evidence is refused, while its prior facts remain and stay attributable.
 - A revoked Issuer's historical facts continue to support trust computation, attributed to it, even though it can no longer produce new accepted Evidence.
 

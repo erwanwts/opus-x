@@ -114,7 +114,7 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
     "requester": "<verifier_id>",
     "subject": { "opus_id": "<opus_id>" },
     "scope": { "coordinate": "wtr:212", "facts": ["<optional_ids>"] },
-    "framework_version": { "id": "wtr", "version": "1.0.0" },
+    "framework_version": { "id": "wtr", "version": "0.1" },
     "consent_bounded": true,
     "mutates": false
   }
@@ -130,7 +130,7 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
   "@id": "urn:opusx:vrequest:<id>",
   "aboutSubject": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
   "hasScope": "wtr:212",
-  "underFrameworkVersion": "wtr@1.0.0",
+  "underFrameworkVersion": "wtr@0.1",
   "initiates": "urn:opusx:concept:verification",
   "consentBounded": true
 }
@@ -148,7 +148,7 @@ A Request names a subject, a scope, and an applicable version, bounded by consen
 
 ## Examples
 
-- An employer submits a Request for `wtr:212` on a candidate's Opus ID under `wtr` v1.0.0, within granted disclosure.
+- An employer submits a Request for `wtr:212` on a candidate's Opus ID under `wtr` v0.1, within granted disclosure.
 - A verifier asks a broader scope than consent allows; the Request is narrowed to disclosed facts.
 - A Request omitting the Framework version defaults to the applicable version and remains reproducible when later pinned.
 

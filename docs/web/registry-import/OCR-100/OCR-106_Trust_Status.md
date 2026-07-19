@@ -109,7 +109,7 @@ Trust Status is the computed output for a subject under a version.
   "trust_status": {
     "subject": "<opus_id>",
     "value": "<computed_status>",
-    "framework_version": "wtr@1.0.0",
+    "framework_version": "wtr@0.1",
     "derived": true,
     "authored": false,
     "reflects": ["supersession", "revocation"]
@@ -126,7 +126,7 @@ Trust Status is the computed output for a subject under a version.
   "@id": "urn:opusx:truststatus:<opus_id>",
   "outputOf": "urn:opusx:concept:trust",
   "holdsFor": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
-  "underFrameworkVersion": "wtr@1.0.0",
+  "underFrameworkVersion": "wtr@0.1",
   "isAuthored": false
 }
 ```
@@ -143,7 +143,7 @@ Trust Status is the computed output for a subject under a version.
 
 ## Examples
 
-- A verifier reads a Trust Status for an Opus ID under `wtr` v1.0.0; it is the current output of the computation.
+- A verifier reads a Trust Status for an Opus ID under `wtr` v0.1; it is the current output of the computation.
 - A fact is revoked; the Trust Status recomputes and updates deterministically.
 - `wtr` v1.1 is applied; the Trust Status is recomputed under the new interpretation from unchanged facts.
 

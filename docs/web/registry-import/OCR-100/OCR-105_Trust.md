@@ -113,7 +113,7 @@ Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_versio
   "trust": {
     "subject": "<opus_id>",
     "inputs": "immutable_facts_bound_to_subject",
-    "interpretation": { "framework": "wtr", "version": "1.0.0" },
+    "interpretation": { "framework": "wtr", "version": "0.1" },
     "deterministic": true,
     "asserted": false,
     "result": "trust_status"
@@ -149,7 +149,7 @@ Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_versio
 
 ## Examples
 
-- Trust for an Opus ID is computed from three bound facts under `wtr` v1.0.0; a verifier reproduces the computation and obtains the same result.
+- Trust for an Opus ID is computed from three bound facts under `wtr` v0.1; a verifier reproduces the computation and obtains the same result.
 - `wtr` publishes v1.1 refining a level's meaning; Trust is recomputed from the same facts and updates deterministically.
 - A fact is revoked; Trust recomputes without it, and the change is reproducible.
 

@@ -113,9 +113,9 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
 {
   "verification_response": {
     "subject": "<opus_id>",
-    "verified": { "coordinate": "wtr:212", "facts": ["ev_01KXM07GFE2GX8ZA4NJC42JDF5"] },
+    "verified": { "coordinate": "wtf:212", "facts": ["ev_01KXM07GFE2GX8ZA4NJC42JDF5"] },
     "integrity": "confirmed_by_recomputation",
-    "trust": { "status": "<computed>", "framework_version": "wtr@1.0.0" },
+    "trust": { "status": "<computed>", "framework_version": "wtr@0.1" },
     "reflected": ["supersession", "revocation"],
     "point_in_time": "2026-07-16T00:00:00Z",
     "disclosure_limited": true,
@@ -134,7 +134,7 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
   "answers": "urn:opusx:concept:verification-request",
   "aboutSubject": { "@type": "OpusID", "@id": "urn:opusx:opusid:<opus_id>" },
   "integrity": "confirmed",
-  "reportsTrustUnder": "wtr@1.0.0",
+  "reportsTrustUnder": "wtr@0.1",
   "pointInTime": true,
   "isCredential": false
 }
@@ -152,7 +152,7 @@ A Response reports verified, disclosed facts, confirmed integrity, and computed 
 
 ## Examples
 
-- A Response confirms integrity and reports computed Trust for `wtr:212` under `wtr` v1.0.0, limited to disclosed facts, timestamped now.
+- A Response confirms integrity and reports computed Trust for `wtf:212` under `wtr` v0.1, limited to disclosed facts, timestamped now.
 - A verifier stores a Response and re-uses it months later; the correct practice is to re-verify, yielding a current Response.
 - A fact is revoked after a Response; a fresh Verification returns a Response reflecting the revocation.
 

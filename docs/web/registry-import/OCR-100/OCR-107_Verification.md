@@ -119,7 +119,7 @@ Verification consumes a Request, reads disclosed facts, recomputes integrity, ap
     "disclosure_scope": "from_consent",
     "reads": "disclosed_immutable_facts",
     "recomputes_integrity": true,
-    "framework_version": { "id": "wtr", "version": "1.0.0" },
+    "framework_version": { "id": "wtr", "version": "0.1" },
     "reflects": ["supersession", "revocation"],
     "mutates": false,
     "produces": "verification_response"
