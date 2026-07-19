@@ -10,11 +10,15 @@
 > - **v3** — vocabulaire à trois niveaux ; transitivité (relations directes) ; projection
 >   du graphe (c172712 non re-gravé).
 > - **v4 (2026-07-19)** — l'architecte **grave l'amendement OCR-007 en intégralité** et
->   tranche : prédicat **`reidentified_as`** (PRD-801, famille **Identity Resolution**,
->   inverse dérivé `was_reidentified_from`) ; **granularité tranchée** (3 relations
->   directes) ; **statuts dérivés gravés** ; **version 0.1 confirmée** + distinction
->   implémentation/normative ; **principe de couche de lecture** gravé. §6 élargi aux
->   `1.0.0`. OCR-007 v1.2.0 et sa projection machine sont **amendés** (ce commit).
+>   tranche : prédicat **`reidentified_as`** (inverse dérivé `was_reidentified_from`) ;
+>   **granularité tranchée** (3 relations directes) ; **statuts dérivés gravés** ; **version
+>   0.1 confirmée** + distinction implémentation/normative ; **principe de couche de lecture**
+>   gravé. §6 élargi aux `1.0.0`. OCR-007 v1.2.0 et sa projection machine **amendés**.
+> - **v5 (2026-07-19)** — l'architecte tranche **voie (b)** : `reidentified_as` **rejoint la
+>   famille Resolution / Identity existante** en **PRD-306** (rang suivant du bloc 3xx) ; la
+>   famille « Identity Resolution » n'est **pas** créée. **Principe de gouvernance des
+>   familles** gravé (OCR-007 §9). Numéro répercuté partout (registre, inverse §4, projection
+>   machine). `source_commit` de la projection mis à jour vers ce commit.
 >
 > **(A) Vocabulaire à trois niveaux — employé partout.**
 > 1. **Définition logique** — ce que *signifie* le Framework. **Unique**, jamais dupliquée.
@@ -39,12 +43,14 @@
 > d'un changement d'identifiant canonique. »* (§10.)
 >
 > **Prédicat — GRAVÉ (OCR-007 v1.2.0).** `reidentified_as` (Canonical Name « Reidentified
-> As »), PRD-801, famille **Identity Resolution** (nouvelle) ; inverse dérivé
-> **`was_reidentified_from`** (vue dérivée §4 d'OCR-007, une seule direction stockée) ;
-> **asymétrique · antisymétrique · transitif · non réflexif** ; **relations directes
-> uniquement** ; **interdit dès qu'une propriété sémantique évolue** — auquel cas
-> `supersedes` (PRD-007). *(Le n° `PRD-801` et les champs de format non dictés sont
-> renseignés par convention, signalés dans OCR-007 §9, à confirmer.)*
+> As »), **PRD-306**, qui **rejoint la famille Resolution / Identity existante** (rang
+> suivant du bloc 3xx — *pas* de famille nouvelle, principe de gouvernance des familles
+> gravé en OCR-007 §9) ; inverse dérivé **`was_reidentified_from`** (vue dérivée §4
+> d'OCR-007, une seule direction stockée, partage PRD-306) ; **asymétrique · antisymétrique
+> · transitif · non réflexif** ; **relations directes uniquement** ; **interdit dès qu'une
+> propriété sémantique évolue** — auquel cas `supersedes` (PRD-007). *(Le n° `PRD-306` et
+> les champs de format non dictés sont renseignés par convention, signalés dans OCR-007 §9,
+> à confirmer.)*
 >
 > **Ancrage** : `20260713000001/2/5.sql` ; `lib/wsp/evidenceCovered.ts` ;
 > `lib/api/readPublicPassport.ts` ; `lib/dashboard/DashboardService.ts` ;
@@ -63,7 +69,7 @@ canoniques** (niveau 3) d'une **même définition logique** (niveau 1).
 | Colonne | Type | Justification |
 |---|---|---|
 | `id` | text, PK | La relation **est elle-même un fait immuable**. |
-| `predicate` | text, `check in ('reidentified_as')` | Self-describing ; valeur **gravée** (PRD-801). |
+| `predicate` | text, `check in ('reidentified_as')` | Self-describing ; valeur **gravée** (PRD-306). |
 | `prior_type` | text, `check in (…)` | Discrimine la table cible (polymorphisme). |
 | `prior_id` | text | Identifiant **antérieur** (`framework:wtf`). Exposé en découverte comme `previous_identifier`. |
 | `canonical_type` | text, `check in (…)` | Idem côté identité courante. |
@@ -341,7 +347,7 @@ résolution (lot ultérieur, dont §10 borne le contrat).
 
 | Artefact | Action | Statut |
 |---|---|---|
-| `docs/registry/OCR-007_Canonical_Predicate_Registry.md` | Version 1.1.0→**1.2.0** ; famille **Identity Resolution** + **PRD-801 `reidentified_as`** (§5) ; inverse dérivé **`was_reidentified_from`** (§4) ; changelog + note décision. | **fait** |
+| `docs/registry/OCR-007_Canonical_Predicate_Registry.md` | Version 1.1.0→**1.2.0** ; **PRD-306 `reidentified_as`** rejoint la famille **Resolution / Identity** existante (§5) ; inverse dérivé **`was_reidentified_from`** (§4) ; **principe de gouvernance des familles** gravé (§9) ; changelog + note décision. | **fait** |
 | `content/registry/ocr-007-resolution.json` | 2 entrées (`reidentified_as` Domain, `was_reidentified_from` Derived) ; `_meta` : version 1.2.0, `predicate_count` 101→**103**, famille ajoutée au schéma. | **fait** |
 
 **Mesurés NON nécessaires (correction des hypothèses v2 §11) :**
