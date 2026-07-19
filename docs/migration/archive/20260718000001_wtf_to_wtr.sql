@@ -1,4 +1,13 @@
 -- =====================================================================
+-- ⛔ NE JAMAIS EXÉCUTER — artefact historique.
+-- Cette migration mute des définitions publiées, ce que la garde d'immuabilité du
+-- protocole interdit structurellement (wsp_reject_mutation, WSP-001, FRAMEWORK-003).
+-- L'architecte a annulé cette approche le 2026-07-19 : le renommage procède par
+-- succession de versions (append-only), jamais par mutation.
+-- Conservée pour la traçabilité de la décision. Retirée de supabase/migrations/.
+-- =====================================================================
+
+-- =====================================================================
 -- Migration forward : wtf -> wtr  (framework_id + slug + coordonnées)
 -- =====================================================================
 -- Pour les bases DÉJÀ seedées (staging/prod). Le seed 20260713000001 a été

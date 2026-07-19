@@ -1,4 +1,14 @@
 -- =====================================================================
+-- ⛔ NE JAMAIS EXÉCUTER — artefact historique.
+-- Cette migration mute des définitions publiées, ce que la garde d'immuabilité du
+-- protocole interdit structurellement (wsp_reject_mutation, WSP-001, FRAMEWORK-003).
+-- L'architecte a annulé cette approche le 2026-07-19 : le renommage procède par
+-- succession de versions (append-only), jamais par mutation.
+-- Rollback de la migration forward (elle-même annulée) — conservé pour la traçabilité.
+-- Retiré de supabase/migrations/.
+-- =====================================================================
+
+-- =====================================================================
 -- ROLLBACK de la migration forward : wtr -> wtf  (INVERSE EXACT)
 -- =====================================================================
 -- Annule 20260718000001_wtf_to_wtr.sql : remet framework:wtr -> framework:wtf,

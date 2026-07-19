@@ -1,10 +1,26 @@
 # PLAN — Application de la migration forward `wtf → wtr`
 
-**Migration** : `supabase/migrations/20260718000001_wtf_to_wtr.sql` (forward)
-**Rollback** : `supabase/migrations/20260718000002_wtr_to_wtf_rollback.sql` (inverse — annexe)
-**Canal gravé** : **SQL Editor du dashboard Supabase** (chemin manuel éprouvé le 2026-07-17 ;
-pas de CLI, pas de `supabase db push` — la prod n'a pas de `schema_migrations`).
-**Statut** : PRÉPARATION. Rien n'est appliqué. Backup + application = mandat distinct.
+> ## ⛔ PLAN CADUC — NE PLUS SUIVRE (2026-07-19)
+> **La migration de mutation a été ANNULÉE par l'architecte.** Son application sur staging
+> a été rejetée par la garde d'immuabilité (`wsp_reject_mutation`) : muter une définition
+> publiée est **structurellement interdit** par le protocole (WSP-001, FRAMEWORK-003).
+>
+> **La procédure STAGING-0 → 6 ci-dessous NE DOIT PLUS ÊTRE SUIVIE** — aucune de ces
+> commandes ne doit être exécutée, ni sur staging ni sur prod.
+>
+> **Ce qui remplace cette approche** : renommage par **succession de versions, append-only**.
+> `framework:wtf` reste publié (**superseded**), `framework:wtr` est une **nouvelle
+> publication**, les deux reliés par le prédicat `supersedes` ; les 79 Evidence conservent
+> `wtf:212` pour toujours. **Aucune ligne publiée n'est jamais mutée.**
+>
+> Les migrations sont **archivées** dans `docs/migration/archive/` (hors chemin de
+> déploiement), en-tête « NE JAMAIS EXÉCUTER ». Ce document est **conservé pour la
+> traçabilité de la décision** ; il ne décrit plus une action à mener.
+
+**Migration (ARCHIVÉE)** : `docs/migration/archive/20260718000001_wtf_to_wtr.sql` (forward)
+**Rollback (ARCHIVÉ)** : `docs/migration/archive/20260718000002_wtr_to_wtf_rollback.sql`
+**Canal (historique)** : SQL Editor du dashboard Supabase.
+**Statut** : ⛔ **CADUC** — conservé pour traçabilité, ne plus suivre.
 
 ---
 
