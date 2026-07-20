@@ -47,7 +47,30 @@ décisions D2 (CLAUDE.md) & WEB-D2 (WEB-001B) réécrites.
 - `docs/web/OCR-GROUND-001-*` — rapports d'analyse datés (F2–F5, SYNTHESE, Mandate, pilote-110).
 - Cette note de migration — conserve `wtf` à titre **historique**.
 
-## Redirection transitoire
+## Redirection transitoire — RETIRÉE le 2026-07-20, avant l'échéance du 31 octobre
+
+> **AMENDEMENT (2026-07-20) — pourquoi la redirection disparaît AVANT sa date de retrait gravée.**
+>
+> La **publication de la représentation canonique `wtr` par réidentification**
+> (`reidentified_as`, OCR-007 PRD-306 — appliquée en **production** le 2026-07-20) rend cette
+> redirection **doctrinalement fausse**. L'architecte a gravé que **chaque représentation a son
+> adresse propre** et qu'**aucune redirection permanente ne subsiste** : `framework:wtf` n'est
+> pas un slug périmé à éteindre, c'est une **représentation canonique antérieure, toujours
+> publiée et immuable**, qui doit rester **consultable** à `/frameworks/wtf` avec son **statut
+> dérivé** `reidentified` (+ `canonical_identifier: framework:wtr`). Un 301 vers
+> `world-trader` la rendrait **inatteignable** — précisément ce que la réidentification
+> interdit.
+>
+> La date du **31 octobre 2026 devient sans objet**. Elle supposait que `wtf` était une
+> survivance de compatibilité, à éteindre à terme. La réidentification établit l'inverse :
+> **`wtf` demeure**. Le retrait n'attend donc pas l'échéance — il ne s'agit plus d'un délai de
+> compatibilité, mais d'une **correction de doctrine** : la redirection contredisait le
+> principe le jour où la réidentification a été publiée.
+>
+> **Supprimés** : `lib/seo/transitional-redirects.ts`, son test, et le branchement dans
+> `next.config.ts`. Le texte d'origine ci-dessous est **conservé comme trace historique**.
+
+### Texte d'origine (historique — conservé, caduc)
 
 `GET /frameworks/wtf/skills` → **301** → `/frameworks/world-trader/skills`
 (`lib/seo/transitional-redirects.ts`, branchée dans `next.config.ts`).
@@ -59,6 +82,7 @@ décisions D2 (CLAUDE.md) & WEB-D2 (WEB-001B) réécrites.
 - **Date de retrait GRAVÉE** : la redirection est **active jusqu'au 31 octobre 2026 inclus**
   et doit être **supprimée au plus tard le 1er novembre 2026**. Au retrait : supprimer
   l'entrée de `transitional-redirects.ts` (et le test associé).
+  *(Caduque — retrait effectué le 2026-07-20, voir l'amendement ci-dessus.)*
 
 ## Base de données — deux artefacts
 

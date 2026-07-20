@@ -7,6 +7,14 @@
  *
  * `{id}` accepte l'identifiant canonique ('framework:wtr') OU le slug ('world-trader').
  *
+ * ADRESSAGE — deux portes, pas trois. Chaque représentation canonique a SON adresse :
+ * `framework:wtf` / slug `wtf`, et `framework:wtr` / slug `world-trader`. L'id NU `wtr`
+ * n'est ni l'un ni l'autre : il ne résout pas (404). C'est délibéré — `wtr` est le
+ * short-id porté par les FAITS (`framework.id` d'une Evidence), pas une adresse de
+ * découverte. Lui ouvrir une troisième porte recréerait l'ambiguïté que la
+ * réidentification supprime. La représentation antérieure reste consultable à
+ * `/frameworks/wtf`, avec son statut dérivé `reidentified` — aucune redirection.
+ *
  * Appelé en ANON (savoir public) : les définitions publiées sont lisibles par
  * tous (RLS `using (true)`). Aucune écriture n'est exposée — la zone
  * sémantique est append-only, publiée par migration.
@@ -20,7 +28,11 @@
  */
 import type { NextRequest } from 'next/server';
 import { createPublicClient } from '@/lib/supabase/public';
-import { buildFrameworkDiscovery, type SkillRow } from '@/lib/api/frameworkDiscovery';
+import {
+  buildFrameworkDiscovery,
+  type SkillRow,
+  type ReidentificationRow,
+} from '@/lib/api/frameworkDiscovery';
 import { apiJson, notFound } from '@/lib/api/http';
 
 export async function GET(
@@ -60,10 +72,21 @@ export async function GET(
     .eq('framework_version', version.version)
     .order('code');
 
+  // Statut d'identité DÉRIVÉ : les relations `reidentified_as` (OCR-007) qui
+  // touchent CE Framework, dans un sens ou dans l'autre. Le statut n'est jamais
+  // stocké — il n'existe que par l'existence d'une ligne. Une définition
+  // réidentifiée reste publiée et consultable à son adresse propre.
+  const { data: reidentifications } = await supabase
+    .from('wsp_reidentifications')
+    .select('prior_id, canonical_id')
+    .eq('prior_type', 'framework')
+    .or(`prior_id.eq.${framework.id},canonical_id.eq.${framework.id}`);
+
   const discovery = buildFrameworkDiscovery(
     framework,
     version,
-    (skills ?? []) as SkillRow[]
+    (skills ?? []) as SkillRow[],
+    (reidentifications ?? []) as ReidentificationRow[]
   );
 
   return apiJson(discovery);
