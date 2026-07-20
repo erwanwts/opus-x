@@ -225,16 +225,41 @@ ou ajouter. **`/frameworks/wtr` (id nu)** → 404 ; reco : ne pas l'ajouter.
 
 ---
 
-## 5. Le seed
+## 5. Le seed — ⚠️ DETTE OUVERTE
 
-Le seed `20260713000001` ne déclare que `wtr` → base fraîche divergente. Pour reproduire
-l'état réel post-Lot B, il doit contenir **les deux représentations + les 3 relations** :
+Pour reproduire l'état réel post-publication, le seed doit contenir **les deux
+représentations + les 3 relations** :
 1. `framework:wtf` publié (7 lignes).
 2. `framework:wtr` publié (7 lignes, même définition logique).
 3. Les **3 lignes de réidentification** (framework, version, skill), granularité §9.
 
-`on conflict do nothing`. ⚠️ Reproduit la **couche définition**, pas les **79 Evidence**
-`wtf:212` (données de production).
+`on conflict do nothing`.
+
+> ### DETTE OUVERTE — le dépôt ne reproduit AUCUN des deux états (constat 2026-07-20)
+>
+> **Périmètre exact :**
+> - Le **seed `20260713000001`** déclare **`framework:wtr` SEUL** (édité lors de la migration
+>   code du 2026-07-18).
+> - Les **bases vivantes** (staging **et** production) portent, depuis la publication du
+>   2026-07-20, **les DEUX représentations** (`framework:wtf` + `framework:wtr`, 7 lignes
+>   chacune) **plus** la table `wsp_reidentifications` **et ses 3 relations**.
+> - **Aucune migration committée** ne décrit la table de réidentification : elle a été créée
+>   **à la main** (SQL Editor, blocs REHEARSAL-1 / PROD-1), comme la publication elle-même.
+>
+> **Conséquence** : une **installation fraîche ne reproduirait ni l'état antérieur** (`wtf`
+> seul) **ni l'état actuel** (`wtf` + `wtr` + table + 3 relations). Elle obtiendrait `wtr`
+> seul, sans table de réidentification et sans aucune relation. **Le dépôt et les bases
+> vivantes ont divergé.**
+>
+> **À traiter dans un lot dédié** (acté par l'architecte, non ouvert à ce jour) : migration de
+> création de `wsp_reidentifications` (DDL + contraintes + triggers d'immuabilité + RLS) **et**
+> seed reproduisant les deux représentations et les 3 relations, en `on conflict do nothing`.
+
+⚠️ Le seed reproduit la **couche définition** ; il n'invente **jamais de faits**.
+*(Correction factuelle 2026-07-20 : la **production porte 0 Evidence** — magasin de faits
+vide, état conforme §2·ter. Les **79 Evidence `wtf:212`** observées en **staging** sont des
+faits **ingérés au runtime** pendant les tests, issus d'**aucun seed ni migration** — le seul
+chemin d'écriture est la RPC `wsp_ingest_evidence`.)*
 
 ---
 
