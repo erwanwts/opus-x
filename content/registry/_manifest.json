@@ -158,8 +158,8 @@
       "version": "1.0.0",
       "lifecycle_status": "Draft",
       "classification": null,
-      "normative_informative": "Normative (Canonical Statements, Normative Consequences) · Informative (Introduction, Motivations, Notes)",
-      "checksum_sha256": "c1eab0f6eb923d249814f5634c25c5970e184d5e6ed3fd4387d6bdb53e887c77",
+      "normative_informative": "Normative (Canonical Statement, Normative Consequences) · Informative (Introduction, Motivation, Notes, Conclusion) · Normative sections alone create, modify or remove normative obligations; informative sections create no independent obligation and shall never be interpreted as extending, restricting or redefining their meaning; in the event of an apparent discrepancy, the normative sections take precedence.",
+      "checksum_sha256": "e331d3332528080828b8b1c3e781b768be633191fcbef7f29ecde903d940650c",
       "pdf_homonym": false,
       "header_format": "md-table",
       "metadata_fields_found": [

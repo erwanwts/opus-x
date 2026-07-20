@@ -10,7 +10,7 @@
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending editorial review |
-| **Normative / Informative** | Normative (Canonical Statements, Normative Consequences) · Informative (Introduction, Motivations, Notes) |
+| **Normative / Informative** | Normative (Canonical Statement, Normative Consequences) · Informative (Introduction, Motivation, Notes, Conclusion) · Normative sections alone create, modify or remove normative obligations; informative sections create no independent obligation and shall never be interpreted as extending, restricting or redefining their meaning; in the event of an apparent discrepancy, the normative sections take precedence. |
 | **Last Update** | 2026-07-20 |
 | **Kind** | Meta — Governance |
 
