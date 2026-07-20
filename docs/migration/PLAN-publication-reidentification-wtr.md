@@ -383,3 +383,61 @@ est identique **sauf** le contrôle Evidence : attendu `evidence_wtf = N` (captu
 la **découverte canonique** doit exposer le statut dérivé (§3) ; la **redirection transitoire**
 `/frameworks/wtf/skills → 301` doit être retirée pour que `/frameworks/wtf` redevienne
 consultable avec son statut `reidentified` (§4). Sur mandat dédié.
+
+### État PROD vérifié (2026-07-20) — publication AUTORISÉE par l'architecte
+
+- 7 lignes de définition présentes, **valeurs identiques à staging** (vérifié champ par champ).
+- **`recorded_at = 2026-07-17T14:31:52.586396+00:00`** sur les 7 → **point de contrôle
+  d'intégrité : cette valeur ne doit pas bouger.**
+- `effective_date = 2026-07-13` (identique à staging, gravé §2·bis).
+- Magasin de faits **vide** : 0 evidence / 0 demonstrates / 0 issuers / 0 revocations
+  (état CONFORME — patrimoine normatif présent, patrimoine factuel pas encore ; §2·ter).
+- `framework:wtr` absent, table de réidentification absente, garde présente.
+
+### PROD-6 — contrôle final adapté (4 points gravés)
+
+Remplace le contrôle « 79 Evidence intactes » (sans objet en prod). Couvre explicitement :
+
+**6.1 — coexistence (points 3 & 4 : additions seules, rien de supprimé)**
+```sql
+select 'frameworks' as niveau, count(*) filter (where id='framework:wtf') as wtf, count(*) filter (where id='framework:wtr') as wtr from public.wsp_frameworks
+union all select 'versions', count(*) filter (where id='framework:wtf@0.1'), count(*) filter (where id='framework:wtr@0.1') from public.wsp_framework_versions
+union all select 'skills',   count(*) filter (where id='wtf:212'),           count(*) filter (where id='wtr:212') from public.wsp_skills
+union all select 'levels',   count(*) filter (where skill_id='wtf:212'),     count(*) filter (where skill_id='wtr:212') from public.wsp_skill_levels;
+```
+Attendu `1/1 · 1/1 · 1/1 · 4/4` : `wtf` toujours présent (point 4), `wtr` ajouté (point 3).
+
+**6.2 — 3 relations, direction** (identique répétition) ; **6.3 — statut dérivé** (identique).
+
+**6.4 — magasin de faits INCHANGÉ**
+```sql
+select
+  (select count(*) from public.wsp_evidence)                    as wsp_evidence,
+  (select count(*) from public.wsp_evidence_demonstrates_skill) as wsp_demonstrates_skill,
+  (select count(*) from public.wsp_issuers)                     as wsp_issuers,
+  (select count(*) from public.wsp_fact_revocations)            as wsp_fact_revocations;
+```
+Attendu `0/0/0/0` (identique à PROD-0).
+
+**6.5 — point 1 : valeurs des 7 définitions `wtf` inchangées** (dump à comparer au backup PROD-0b)
+```sql
+select 'framework' as t, to_jsonb(f) as row from public.wsp_frameworks f where f.id='framework:wtf'
+union all select 'version', to_jsonb(v) from public.wsp_framework_versions v where v.id='framework:wtf@0.1'
+union all select 'skill',   to_jsonb(s) from public.wsp_skills s where s.id='wtf:212'
+union all select 'level',   to_jsonb(l) from public.wsp_skill_levels l where l.skill_id='wtf:212'
+order by t;
+```
+Attendu : identique au backup PROD-0b, champ par champ.
+
+**6.6 — point 2 : `recorded_at` STRICTEMENT inchangé sur les 7 lignes `wtf`**
+```sql
+select count(*) as lignes_wtf_recorded_at_altere
+from (
+  select recorded_at from public.wsp_frameworks         where id='framework:wtf'
+  union all select recorded_at from public.wsp_framework_versions where id='framework:wtf@0.1'
+  union all select recorded_at from public.wsp_skills   where id='wtf:212'
+  union all select recorded_at from public.wsp_skill_levels where skill_id='wtf:212'
+) t
+where recorded_at <> timestamptz '2026-07-17 14:31:52.586396+00';
+```
+Attendu : **0** (aucune ligne `wtf` dont `recorded_at` a bougé → aucune réécriture, point 4).

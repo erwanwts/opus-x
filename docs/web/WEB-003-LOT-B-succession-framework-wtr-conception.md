@@ -167,6 +167,29 @@ nouvelle version en vigueur — contraire à « aucun changement sémantique ».
 
 ---
 
+## 2·ter. Principe gravé — la règle est fondée par l'architecture, pas par les données (NORMATIF WSP)
+
+> **Gravé par l'architecte (2026-07-20). Normatif pour tout le World Skills Protocol.**
+>
+> « La validité d'une évolution normative ne dépend jamais de la quantité de données déjà
+> produites sous cette norme. Les données peuvent révéler un problème, démontrer qu'une
+> propriété est nécessaire, mais elles ne fondent pas la règle. La règle est fondée par
+> l'architecture du protocole. »
+
+**Raison normative de la publication `wtr`** (gravée) : *« Une définition publiée est
+immuable. Si son identité canonique doit évoluer sans modification de sa définition, la seule
+opération autorisée est une réidentification. »* — vraie avec **0 fait** comme avec des
+millions.
+
+**Application à la production** (état vérifié 2026-07-20) : la prod possède le **patrimoine
+normatif** (définitions, relations, règles) mais **pas encore** le **patrimoine factuel**
+(Evidence, faits, Trust — magasin de faits vide : 0 evidence / 0 demonstrates / 0 issuers /
+0 revocations). C'est un protocole **prêt à recevoir ses premiers faits**, ni incomplet ni
+incohérent. La réidentification y est **pleinement valide** — l'immuabilité des définitions
+publiées la rend nécessaire, indépendamment du nombre de faits.
+
+---
+
 ## 3. Découverte canonique — statuts dérivés GRAVÉS
 
 **Statut DÉRIVÉ, jamais persisté** (gravé) :
