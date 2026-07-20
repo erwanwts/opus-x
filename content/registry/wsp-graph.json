@@ -1,30 +1,30 @@
 {
   "_meta": {
     "source_resolution": "ocr-007-resolution.json",
-    "resolution_commit": "cbbe2d0",
-    "resolution_version": "1.1.0",
+    "resolution_commit": "6b53a2c",
+    "resolution_version": "1.2.0",
     "generated_from": "docs/web/registry-import/OCR-100",
     "records_with_kg": 26,
     "counts": {
-      "nodes_total": 79,
-      "nodes_internal": 73,
+      "nodes_total": 80,
+      "nodes_internal": 74,
       "nodes_external": 6,
       "nodes_by_type": {
-        "protocol_concept": 41,
+        "protocol_concept": 42,
         "external_prior_art": 3,
         "technical_dependency": 2,
         "entity": 6,
         "ambiguous_alias": 1,
         "record": 26
       },
-      "edges_total": 221,
-      "edges_predicate": 221,
+      "edges_total": 222,
+      "edges_predicate": 222,
       "edges_cascade_hop": 0,
       "edges_unresolved_canonical": 1,
-      "reflexives": 6,
+      "reflexives": 7,
       "reflexive_noted": 0,
       "rejected_dropped": 13,
-      "name_flagged": 1,
+      "name_flagged": 2,
       "compound_target": 1,
       "unclassified_externals": 0,
       "excluded_nodes": 10,
@@ -195,6 +195,15 @@
       "id": "ext:evidence-link",
       "type": "external",
       "label": "Evidence Link",
+      "node_type": "protocol_concept",
+      "node_scope": "internal",
+      "canonical": true,
+      "registry_entry": false
+    },
+    {
+      "id": "ext:framework",
+      "type": "external",
+      "label": "Framework",
       "node_type": "protocol_concept",
       "node_scope": "internal",
       "canonical": true,
@@ -765,6 +774,23 @@
       }
     },
     {
+      "source": "ext:framework",
+      "predicate": "part_of",
+      "target": "OCR-100",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": true,
+      "reflexive": false,
+      "via": null,
+      "note": null,
+      "provenance": {
+        "record": "OCR-100",
+        "line": 145,
+        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
+        "source_predicate": "has_part"
+      }
+    },
+    {
       "source": "ext:identity",
       "predicate": "part_of",
       "target": "OCR-100",
@@ -834,23 +860,6 @@
     },
     {
       "source": "OCR-110",
-      "predicate": "part_of",
-      "target": "OCR-100",
-      "edge_type": "predicate",
-      "semantic_stability": "Fixed",
-      "flipped": true,
-      "reflexive": false,
-      "via": null,
-      "note": null,
-      "provenance": {
-        "record": "OCR-100",
-        "line": 145,
-        "raw": "`has_part` → Evidence, Trust, Framework, Identity, Verification, Issuer, Passport",
-        "source_predicate": "has_part"
-      }
-    },
-    {
-      "source": "OCR-115",
       "predicate": "part_of",
       "target": "OCR-100",
       "edge_type": "predicate",
@@ -3300,6 +3309,24 @@
         "line": 159,
         "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)",
         "source_predicate": "supersedes"
+      },
+      "schema_edge": true
+    },
+    {
+      "source": "ext:framework",
+      "predicate": "reidentified_as",
+      "target": "ext:framework",
+      "edge_type": "predicate",
+      "semantic_stability": "Fixed",
+      "flipped": false,
+      "reflexive": true,
+      "via": null,
+      "note": "schema edge between instances (WSP-001 V1)",
+      "provenance": {
+        "record": "OCR-115",
+        "line": 160,
+        "raw": "`reidentified_as` / `was_reidentified_from` → Framework (reflexive)",
+        "source_predicate": "reidentified_as"
       },
       "schema_edge": true
     },

@@ -5,12 +5,12 @@
 | **Document ID** | OCR-115 |
 | **Canonical ID** | `framework` |
 | **Canonical Name** | Framework |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending machine-section diff against production code |
 | **Normative / Informative** | Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-07-21 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
 > **Grounding note (removed at publication).** This concept reflects the Framework model gravé en base during Sprint-002: a Framework identified by `wtr`, addressed by coordinates such as `wtr:212`, whose **levels are defined by the Framework and published by Opus X** — never carried inside Evidence and never authored by an Issuer at emission time. Diff coordinate syntax and level semantics against the production `framework-client.ts` parser before promotion to Normative.
@@ -157,6 +157,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
 - `used_by` → Trust (OCR-105)
 - `published_by` → Opus X
 - `supersedes` / `superseded_by` → Framework version (reflexive)
+- `reidentified_as` / `was_reidentified_from` → Framework (reflexive)
 
 ## Examples
 
@@ -240,4 +241,5 @@ OCR-100 World Skills Protocol · OCR-105 Trust · OCR-110 Evidence · OCR-116 Sk
 
 ## Version History
 
+- **1.1.0** (2026-07-21) — Added `reidentified_as` / `was_reidentified_from` (OCR-007 PRD-306, Resolution family) to Knowledge Graph Relationships, alongside `supersedes`: the two modes of evolution of the same concept. Backward-compatible addition; no existing statement modified or removed. The entry publishes the rule — a Framework may be reidentified — never an instance.
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-115 v0.1 skeleton. Machine sections pending diff against `framework-client.ts` before promotion to Normative.
