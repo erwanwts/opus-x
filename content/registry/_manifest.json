@@ -1,9 +1,9 @@
 {
   "schema": "opusx.registry.manifest/v1",
   "generated_from": "docs/web/registry-import/OCR-100",
-  "expected_ranges": "OCR-000..005,OCR-100..125",
+  "expected_ranges": "OCR-000..006,OCR-100..125",
   "excluded_files": [],
-  "file_count": 32,
+  "file_count": 33,
   "anomaly_count": 63,
   "records": [
     {
@@ -137,6 +137,30 @@
       "normative_informative": "Normative (Versioning Scheme, Change Rules) · Informative (Rationale, FAQ)",
       "checksum_sha256": "7ea4283491fafc723c3c881696d82a88d06bbf2d5d5298e30006c05d6adccaaa",
       "pdf_homonym": true,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-006_Architectural_Principles_of_the_World_Skills_Protocol.md",
+      "document_id": "OCR-006",
+      "title": "OCR-006 — Architectural Principles of the World Skills Protocol",
+      "canonical_id": "architectural-principles-of-the-world-skills-protocol",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Statement, Normative Consequences) · Informative (Introduction, Motivation, Notes, Conclusion) · Normative sections alone create, modify or remove normative obligations; informative sections create no independent obligation and shall never be interpreted as extending, restricting or redefining their meaning; in the event of an apparent discrepancy, the normative sections take precedence.",
+      "checksum_sha256": "e331d3332528080828b8b1c3e781b768be633191fcbef7f29ecde903d940650c",
+      "pdf_homonym": false,
       "header_format": "md-table",
       "metadata_fields_found": [
         "document_id",
