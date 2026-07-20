@@ -262,6 +262,14 @@
       ]
     },
     {
+      "id": "ext:framework",
+      "label": "Framework",
+      "records": [
+        "OCR-100",
+        "OCR-115"
+      ]
+    },
+    {
       "id": "ext:framework-publication",
       "label": "Framework publication",
       "records": [
@@ -614,6 +622,14 @@
       "predicate": "supersedes",
       "schema_edge": true,
       "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    },
+    {
+      "record": "OCR-115",
+      "line": 160,
+      "node": "ext:framework",
+      "predicate": "reidentified_as",
+      "schema_edge": true,
+      "raw": "`reidentified_as` / `was_reidentified_from` → Framework (reflexive)"
     }
   ],
   "reflexive_noted": [],
@@ -644,9 +660,29 @@
         "superseded_by"
       ],
       "raw": "`supersedes` / `superseded_by` → Framework version (reflexive)"
+    },
+    {
+      "record": "OCR-115",
+      "line": 160,
+      "predicates": [
+        "reidentified_as",
+        "was_reidentified_from"
+      ],
+      "raw": "`reidentified_as` / `was_reidentified_from` → Framework (reflexive)"
     }
   ],
   "name_flagged": [
+    {
+      "label": "Framework",
+      "candidates": [
+        "OCR-115"
+      ],
+      "reason": "raccourci probable (non résolu)",
+      "records": [
+        "OCR-100",
+        "OCR-115"
+      ]
+    },
     {
       "label": "Identity",
       "exact_match": "OCR-125",

@@ -2032,10 +2032,10 @@
     {
       "document_id": "OCR-115",
       "canonical_id": "framework",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:950f75da8f91b70f8eba750587e8e8f9d8093d1493e0bc68dad747ab9f6e51b8",
+      "sourceChecksum": "sha256:9ce1206e41c9debd3750b7c34223ef68dada0fcd0a1c1cf77d0a38e6c7f6d89e",
       "source_md": "OCR-115_Framework.md",
       "artifacts": [
         {

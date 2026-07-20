@@ -24,6 +24,7 @@
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { norm, slug, makeParseNodeRef } from './node-ref.mjs';
 
 const RECORDS_DIR = 'docs/web/registry-import/OCR-100';
 const RESOLUTION = 'content/registry/ocr-007-resolution.json';
@@ -35,7 +36,7 @@ const OUT_REPORT = 'content/registry/wsp-graph.report.json';
 const resolutionDoc = JSON.parse(readFileSync(RESOLUTION, 'utf8'));
 const RESOLVE = resolutionDoc.predicates;
 
-const norm = (s) => s.toLowerCase().trim();
+// `norm` et `slug` sont importés de ./node-ref.mjs (résolution testable unitairement).
 
 // ─── Table nom→OCR-id (construite au runtime depuis les H1 des 26 Records) ────
 // Un label externe qui est EXACTEMENT le titre d'un Record résout vers ce Record
@@ -84,14 +85,6 @@ const GUARD_RULES = {
 };
 
 // ─── Utilitaires ────────────────────────────────────────────────────────────
-function slug(s) {
-  return s
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
 
 /** Le premier séparateur de flèche (→ ou ->) et sa longueur, ou -1. */
 function firstArrow(s) {
@@ -155,49 +148,10 @@ function parseAtom(atom) {
   return { ...node, via };
 }
 
-/** Résout un libellé en référence de nœud. Ordre : (a) OCR-id explicite n'importe
- *  où → interne ; (b) titre de Record exact (hors set signalé) → interne ;
- *  (c) sinon externe. */
-function parseNodeRef(text) {
-  const t = text.trim();
-
-  // (a) Un `(OCR-\d+)` N'IMPORTE OÙ → nœud interne (Défaut 2a). Le texte avant la
-  //     parenthèse = label ; le reste de la parenthèse + le texte APRÈS (« in
-  //     Certified state », « coordinates and criteria ») = qualificatif → note.
-  const idAnywhere = t.match(/\((OCR-\d+)([^)]*)\)/);
-  if (idAnywhere) {
-    const id = idAnywhere[1];
-    const label = t.slice(0, idAnywhere.index).trim();
-    const parenRest = idAnywhere[2].replace(/^[\s,;]+|[\s,;]+$/g, '').trim();
-    const after = t.slice(idAnywhere.index + idAnywhere[0].length).trim();
-    const note = [parenRest, after].filter(Boolean).join(' ').trim() || null;
-    return { id, label: label || id, type: 'internal', note };
-  }
-
-  // (b) Parenthèse non-id en fin → note (« reflexive », « as prior art… »).
-  let note = null;
-  let label = t;
-  const paren = t.match(/\(([^)]*)\)\s*$/);
-  if (paren) {
-    label = t.slice(0, paren.index).trim();
-    const rest = paren[1].replace(/^[\s,;]+|[\s,;]+$/g, '').trim();
-    if (rest) note = rest;
-  }
-
-  // (c) Raccourci de nom (Passport→OCR-101…) → fusion avec le Record (décision V1).
-  const nlabel = norm(label);
-  if (NAME_ALIASES.has(nlabel)) {
-    return { id: NAME_ALIASES.get(nlabel), label, type: 'internal', note, resolved_by_alias: true };
-  }
-
-  // (d) Titre de Record EXACT (hors set signalé/ambigu) → nœud interne (Défaut 1).
-  if (TITLE_TO_ID.has(nlabel) && !FLAGGED_NAMES.has(nlabel)) {
-    return { id: TITLE_TO_ID.get(nlabel), label, type: 'internal', note, resolved_by_name: true };
-  }
-
-  // (e) Sinon externe (décision A).
-  return { id: 'ext:' + slug(label), label, type: 'external', note };
-}
+// Résolution d'un libellé en référence de nœud — EXTRAITE dans ./node-ref.mjs
+// pour être couverte par un test unitaire. La fabrique se ferme sur les tables
+// ci-dessus par RÉFÉRENCE : TITLE_TO_ID est peuplée plus bas, au scan des Records.
+const parseNodeRef = makeParseNodeRef({ NAME_ALIASES, TITLE_TO_ID, FLAGGED_NAMES, LABEL_TO_CATEGORY });
 
 // ─── Registres ──────────────────────────────────────────────────────────────
 const nodes = new Map(); // id -> {id, type, label}
