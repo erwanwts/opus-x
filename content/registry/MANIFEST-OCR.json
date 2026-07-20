@@ -72,10 +72,8 @@
     "OCR-101": "idempotence 6/6 (run A==run B) + contrat d'extraction + échec-sur-divergence vs snapshot interne ; artefacts NON persistés",
     "autres": "à générer par le pipeline officiel"
   },
-  "record_count": 32,
-  "excluded_files": [
-    "REG-TERMINOLOGY-registry-record-ocr.md"
-  ],
+  "record_count": 33,
+  "excluded_files": [],
   "records": [
     {
       "document_id": "OCR-000",
@@ -612,12 +610,99 @@
       ]
     },
     {
+      "document_id": "OCR-006",
+      "canonical_id": "architectural-principles-of-the-world-skills-protocol",
+      "version": "1.0.0",
+      "status": "Draft",
+      "classification": "P0 Public Canonical",
+      "sourceChecksum": "sha256:e331d3332528080828b8b1c3e781b768be633191fcbef7f29ecde903d940650c",
+      "source_md": "OCR-006_Architectural_Principles_of_the_World_Skills_Protocol.md",
+      "artifacts": [
+        {
+          "kind": "md",
+          "file": "OCR-006_Architectural_Principles_of_the_World_Skills_Protocol.md",
+          "status": "source (committé au dépôt)"
+        },
+        {
+          "kind": "pdf",
+          "file": "OCR-006_Architectural_Principles_of_the_World_Skills_Protocol.pdf",
+          "status": "différé (renderer non construit)"
+        },
+        {
+          "kind": "jsonld",
+          "file": "OCR-006.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "faq",
+          "file": "OCR-006-faq.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "seo",
+          "file": "OCR-006-seo.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "geo",
+          "file": "OCR-006-geo.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "llm",
+          "file": "OCR-006-llm.md",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        },
+        {
+          "kind": "keywords",
+          "file": "OCR-006-keywords.json",
+          "status": "à générer (pipeline officiel, depuis le graphe)"
+        }
+      ],
+      "drive_old": [
+        {
+          "note": "aucun PDF Drive actuel pour ce Record (pdf_homonym=false)"
+        }
+      ],
+      "drive_new": [
+        {
+          "file": "OCR-006.json",
+          "kind": "jsonld"
+        },
+        {
+          "file": "OCR-006-faq.md",
+          "kind": "faq"
+        },
+        {
+          "file": "OCR-006-seo.json",
+          "kind": "seo"
+        },
+        {
+          "file": "OCR-006-geo.md",
+          "kind": "geo"
+        },
+        {
+          "file": "OCR-006-llm.md",
+          "kind": "llm"
+        },
+        {
+          "file": "OCR-006-keywords.json",
+          "kind": "keywords"
+        },
+        {
+          "file": "OCR-006_Architectural_Principles_of_the_World_Skills_Protocol.pdf",
+          "kind": "pdf",
+          "note": "régénéré (différé)"
+        }
+      ]
+    },
+    {
       "document_id": "OCR-100",
       "canonical_id": "world-skills-protocol",
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:a2cc7581e0433b5e2b317826872519082c49982051378a91268f93bab68feb04",
+      "sourceChecksum": "sha256:74d4758e80f2540caf60901bb2d0e0a82e398c155be766828605cec9160b668e",
       "source_md": "OCR-100_World_Skills_Protocol.md",
       "artifacts": [
         {
@@ -1062,7 +1147,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:ec2633fea698a08cab79788f612f6000a119caeec3681d66652398c30137d3e1",
+      "sourceChecksum": "sha256:6f37274619fa7c5ed07fb2b6c968e6e696b6e5eed9c2f71e4bd161215166760e",
       "source_md": "OCR-105_Trust.md",
       "artifacts": [
         {
@@ -1151,7 +1236,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:99d0c822c52e6f89f42c0dca06dd9188d4ab12cb545f02a42742a8493af59681",
+      "sourceChecksum": "sha256:86c5a356ba5d8ed6788b5fa68c85784cf134c87638908ea23dde548470ce0025",
       "source_md": "OCR-106_Trust_Status.md",
       "artifacts": [
         {
@@ -1240,7 +1325,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:c1eae659edd71594fc52648106628e267442396e9f2d89a9c6d2252efeb4e159",
+      "sourceChecksum": "sha256:1199095446ff7d31f182911f9b536fd70d7b3e17118a124f7b4a4066daf670b3",
       "source_md": "OCR-107_Verification.md",
       "artifacts": [
         {
@@ -1329,7 +1414,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:2d42e0b50b8cebde1b3fa15a031c0c22a2ff96937908c6922ac1f96dba7cae12",
+      "sourceChecksum": "sha256:eaf0113faeeab6d240a2d834abb585f3094bfa2387ed855ec75563bce330f940",
       "source_md": "OCR-108_Verification_Request.md",
       "artifacts": [
         {
@@ -1418,7 +1503,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:0bc9ec008f10986dd72ccb57c0d0cbda7a2318a94181cd5ba9fe7d9352ff02c0",
+      "sourceChecksum": "sha256:94fbc81081baf23dd7daebede06c73f6ed8da242cb5a3ff2900ff733d087dd44",
       "source_md": "OCR-109_Verification_Response.md",
       "artifacts": [
         {
@@ -1507,7 +1592,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:384b6dec3c01d4177354424eb4bfc8ed5540e3b48a3bd90dd2ab6d9aedab0276",
+      "sourceChecksum": "sha256:86b0a82bdbd3bf530131f08963bd72646fbfc30f9c094af4bdb2f67ffb779b59",
       "source_md": "OCR-110_Evidence.md",
       "artifacts": [
         {
@@ -1861,7 +1946,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:799f5b8f8fb36007e989075fbefb75a266f833dfd2311ff8664c3ac467ab8da6",
+      "sourceChecksum": "sha256:b7532c21f388da1527efa8dab2943c1be2e37f6db2f7df963bbcf52237574d28",
       "source_md": "OCR-114_Immutable_Fact.md",
       "artifacts": [
         {
@@ -1950,7 +2035,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:79bf172c98e5b5eacf0915305b7052b3461d49582a73f6862a214b47013d05b0",
+      "sourceChecksum": "sha256:950f75da8f91b70f8eba750587e8e8f9d8093d1493e0bc68dad747ab9f6e51b8",
       "source_md": "OCR-115_Framework.md",
       "artifacts": [
         {
@@ -2039,7 +2124,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:5ece273deabe428e7feb0e512e0a86e16433b7f3519529b469e36b32ca18cbc9",
+      "sourceChecksum": "sha256:3f994e9f0af6c544121f5ae02c38d34293c3c4acdf2f6650669ca90084242ad1",
       "source_md": "OCR-116_Skill.md",
       "artifacts": [
         {
@@ -2128,7 +2213,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:0a3d7a1de2870fb66bbf16b9c9f4aa1dc0446a5c5ba3756a94de04b2f94da7ac",
+      "sourceChecksum": "sha256:74543cf17bd89c78563edb84f3a45abf1dd921cd4c33e92d50d44fdbf7df7648",
       "source_md": "OCR-117_Competency.md",
       "artifacts": [
         {
@@ -2217,7 +2302,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:228a0e25a98694af2412f4ab06f487b981d7a0dcf6370621a6753fdd3fc5056f",
+      "sourceChecksum": "sha256:709ec7e6708f87f318208f7351d4afd536ceddc5e3a6968cf9d5b236bc9afebd",
       "source_md": "OCR-118_Capability.md",
       "artifacts": [
         {
@@ -2306,7 +2391,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:4a0c3c1383aae9e195571d7b21c074ab5e790f66251f873b7c700d23195b921c",
+      "sourceChecksum": "sha256:8982b25323fd56fabac84622058df893eb871fe1c62d34a2b8025e9f3d3325c0",
       "source_md": "OCR-119_Framework_Registry.md",
       "artifacts": [
         {
@@ -2395,7 +2480,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:7f5cb6fcfda902cd1e86fe909bde312b8554ff416e09f991fb9fb8d571e02c4c",
+      "sourceChecksum": "sha256:40ef1f2297aa0dc065f14940e0dd331633f36f570f92333551c69f2b367f61a8",
       "source_md": "OCR-120_Issuer.md",
       "artifacts": [
         {
@@ -2484,7 +2569,7 @@
       "version": "1.0.0",
       "status": "Draft",
       "classification": "P0 Public Canonical",
-      "sourceChecksum": "sha256:ecc9575b6396abca83f8887e6109308375f1f622341011702bb798d57e6d7b90",
+      "sourceChecksum": "sha256:74161cd42445d882e289f32aba270876dd3a62f6f673d8496310629c297a4408",
       "source_md": "OCR-121_Certified_Issuer.md",
       "artifacts": [
         {
