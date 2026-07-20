@@ -13,8 +13,14 @@
 > non plus. Aucun contournement nécessaire.
 >
 > **Design de référence** : `docs/web/WEB-003-LOT-B-succession-framework-wtr-conception.md`
-> (v4). Prédicat `reidentified_as` (OCR-007 PRD-306). Granularité gravée : **3 relations
-> directes** (framework, version, skill) — **les niveaux n'en reçoivent aucune**.
+> (v4, §2·bis). Prédicat `reidentified_as` (OCR-007 PRD-306). Granularité gravée : **3
+> relations directes** (framework, version, skill) — **les niveaux n'en reçoivent aucune**.
+>
+> **Principe gravé conservé/renouvelé (§2·bis du dossier)** : le contenu normatif est
+> **conservé** (copié de `wtf`), l'identité et les métadonnées de publication sont
+> **renouvelées**. En particulier **`effective_date = 2026-07-13` est GRAVÉE** (conservée de
+> l'origine) ; `published_at`/`recorded_at` sont renouvelées à `now()`. Revue des 7 lignes
+> du bloc 3 : **conforme** au critère (aucune valeur mal classée).
 >
 > **Note de gouvernance (architecte) — 2 occurrences `1.0.0` hors périmètre.**
 > `OCR-100:122` (`{"protocol":"wsp","version":"1.0.0"}`) et `OCR-110:140`

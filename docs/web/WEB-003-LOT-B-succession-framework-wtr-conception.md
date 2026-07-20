@@ -137,6 +137,36 @@ tranchée, §9). Les **4 niveaux ne reçoivent aucune relation** (règle §9).
 
 ---
 
+## 2·bis. Principe gravé — conservé vs renouvelé lors d'une réidentification (NORMATIF WSP)
+
+> **Gravé par l'architecte (2026-07-20). Normatif pour TOUTE réidentification du World
+> Skills Protocol, pas seulement ce chantier.**
+>
+> - **CONSERVÉ à l'identique** : tout ce qui exprime le contenu normatif, le comportement,
+>   la portée ou la validité — date d'entrée en vigueur, définition, comportements,
+>   contraintes, garanties, effets, exigences de conformité. *« Que dit cette définition ? »*
+> - **RENOUVELÉ** : ce qui est propre à l'acte de réidentification — identifiant canonique,
+>   métadonnées de publication de la nouvelle représentation, liens `reidentified_as`,
+>   informations de continuité. *« Sous quelle identité est-elle publiée ? »*
+> - **CRITÈRE** : si modifier une valeur change le sens, les effets ou les obligations de
+>   la définition, elle ne peut pas être modifiée lors d'une réidentification.
+
+**Application aux 7 lignes publiées (§2)** — chaque colonne classée :
+
+| Catégorie | Colonnes | Traitement |
+|---|---|---|
+| **RENOUVELÉ** (identité + métadonnées de publication) | `id`, `framework_id`, `slug` (framework), `code` (skill), `recorded_at`, `published_at` | nouvel identifiant / littéral / `now()` |
+| **CONSERVÉ** (contenu normatif) | `name`, `description`, `publisher`, `protocol_version`, `version`, `status`, **`effective_date` = 2026-07-13**, `framework_version`, `slug`+`label`+`rank`+`criteria`+`observation_min/max` (niveaux) | copié depuis `wtf` à l'identique |
+
+**`effective_date = 2026-07-13` est GRAVÉE** : la représentation réidentifiée conserve la
+date d'entrée en vigueur de l'origine. Exemple le plus net du principe — la date **domaine**
+(`effective_date`, quand les règles s'appliquent) est **conservée**, tandis que les
+métadonnées **système** (`published_at`/`recorded_at`, quand *cette* représentation a été
+publiée) sont **renouvelées** à `now()`. Mettre `now()` sur `effective_date` signifierait une
+nouvelle version en vigueur — contraire à « aucun changement sémantique ».
+
+---
+
 ## 3. Découverte canonique — statuts dérivés GRAVÉS
 
 **Statut DÉRIVÉ, jamais persisté** (gravé) :
