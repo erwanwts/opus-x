@@ -345,3 +345,41 @@ select
   après validation explicite de la sortie de chaque bloc staging.
 - Le staging, lui, porte désormais `wtr` en permanence : pour re-répéter, restaurer un
   snapshot antérieur au bloc 3.
+
+---
+
+## Séquence PRODUCTION (PROD-0 à PROD-6)
+
+Structurellement **identique** à PROD-REHEARSAL, sur la base **production**, mêmes relectures
+avant chaque insertion. À exécuter **uniquement sur mandat dédié**, après la répétition
+staging validée (2026-07-20). **Rehearsal staging : OK** (7 lignes + 3 relations, garde
+prouvée par `recorded_at` figé au `2026-07-13T15:00:56.264…`).
+
+**Divergences staging ↔ prod — à vérifier au bloc PROD-0, ne rien supposer :**
+1. **Valeurs des 7 lignes de départ** : elles existent sur prod, mais leurs valeurs
+   (`name`/`description`/`criteria`/`effective_date`) viennent de la **prod** — la publication
+   les copie (`insert … select … from wtf`). ⇒ **re-relire PROD-2 à neuf**, ne pas se fier aux
+   valeurs staging.
+2. **Compte d'Evidence** : **peut NE PAS être 79.** Prod est le système vivant — d'autres faits
+   ont pu être journalisés depuis le snapshot staging. ⇒ PROD-0 **capture** le compte prod `N` ;
+   **PROD-6 vérifie qu'il est INCHANGÉ** (toujours `N`, et `wtr:212 = 0`). **Ne jamais hardcoder
+   79 en prod.**
+3. **`framework:wtr` absent** : si présent → publication déjà faite / seed frais appliqué → STOP.
+4. **Fonction garde `wsp_reject_mutation` présente** (PROD-1 en dépend) ; **table
+   `wsp_reidentifications` absente** (PROD-1 la crée).
+5. **`framework_version = '0.1'` nue** : re-vérifier via PROD-0c (scan `wtf`).
+6. **`effective_date` de prod's wtf = 2026-07-13** (gravé §2·bis) : le confirmer à PROD-2 ; si
+   prod diffère → STOP + arbitrage.
+7. **`recorded_at` de wtf** aura une valeur **différente** de staging (prod seedé à un autre
+   instant) : la preuve d'intactness PROD-6 utilise la valeur **capturée à PROD-0**.
+
+**Correspondance des blocs** : **PROD-0b/0c, PROD-1, PROD-2 (2a–2d), PROD-3, PROD-4, PROD-5**
+sont **mot pour mot** les blocs PROD-REHEARSAL correspondants. **PROD-0a** est étendu (compte
+version + `wtr` skill + `evidence_wtr` + présence de la fonction garde ; capture `N`). **PROD-6**
+est identique **sauf** le contrôle Evidence : attendu `evidence_wtf = N` (capturé au PROD-0, pas
+79) et `evidence_wtr = 0`.
+
+**Deux chantiers de CODE en attente APRÈS publication (dossier §3 et §4, non oubliés) :**
+la **découverte canonique** doit exposer le statut dérivé (§3) ; la **redirection transitoire**
+`/frameworks/wtf/skills → 301` doit être retirée pour que `/frameworks/wtf` redevienne
+consultable avec son statut `reidentified` (§4). Sur mandat dédié.
