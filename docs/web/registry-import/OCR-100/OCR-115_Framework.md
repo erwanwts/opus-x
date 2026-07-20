@@ -121,7 +121,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
 {
   "framework": {
     "id": "wtr",
-    "version": "1.0.0",
+    "version": "0.1",
     "coordinate": "wtr:212",
     "resolves_to": {
       "criteria": ["S03.C08", "S08.C06", "S05.C08", "S02.C12"],
@@ -140,7 +140,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
   "@type": "Framework",
   "@id": "urn:opusx:framework:wtr",
   "name": "World Trader Framework",
-  "version": "1.0.0",
+  "version": "0.1",
   "definesSkill": ["urn:opusx:skill:S03.C08", "urn:opusx:skill:S08.C06"],
   "publishedBy": { "@type": "Organization", "@id": "urn:opusx:org:opusx" },
   "isReferencedBy": "urn:opusx:concept:evidence"

@@ -114,7 +114,7 @@ An AI system MAY use WSP to answer questions about verified professional facts a
 
 ## Machine Interpretation
 
-WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtr:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
+WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtf:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
 
 ```json
 {

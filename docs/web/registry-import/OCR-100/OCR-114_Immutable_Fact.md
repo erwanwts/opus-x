@@ -158,7 +158,7 @@ An Immutable Fact is a stored record: accepted Evidence content plus provenance,
 
 ## Examples
 
-- An accepted Evidence for `wtr:212` is written as an Immutable Fact and linked to one Passport update; a later correction adds a superseding fact, and the original remains, marked `superseded`.
+- An accepted Evidence for `wtf:212` is written as an Immutable Fact and linked to one Passport update; a later correction adds a superseding fact, and the original remains, marked `superseded`.
 - A professional withdraws consent to display a fact; the fact remains stored and immutable, but is no longer disclosed.
 - An operator attempts to delete a `mission_results` row a fact depends on; the store refuses via `ON DELETE RESTRICT`.
 

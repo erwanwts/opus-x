@@ -141,7 +141,7 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "issued_at": "2026-07-16T00:00:00Z",
   "issuer": { "id": "<issuer_id>" },
   "subject": { "opus_id": "<opus_id>" },
-  "framework": { "id": "wtr", "reference": "wtr:212" },
+  "framework": { "id": "wtf", "reference": "wtf:212" },
   "body": {
     "observation": "<what was demonstrated>",
     "criterion_levels": {
@@ -170,8 +170,8 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "@id": "urn:opusx:evidence:ev_01KXM07GFE2GX8ZA4NJC42JDF5",
   "producedBy": { "@type": "Issuer", "@id": "urn:opusx:issuer:<issuer_id>" },
   "about": { "@type": "Professional", "@id": "urn:opusx:opusid:<opus_id>" },
-  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
-  "frameworkReference": "wtr:212",
+  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
+  "frameworkReference": "wtf:212",
   "isImmutable": true,
   "supersedes": null,
   "revoked": false
@@ -195,7 +195,7 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
 
 ## Examples
 
-- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtr:212` with `criterion_levels` for `S03.C08`, `S08.C06`, `S05.C08`, and `S02.C12`; Opus X verifies, journals the fact, and links it to the Passport.
+- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtf:212` with `criterion_levels` for `S03.C08`, `S08.C06`, `S05.C08`, and `S02.C12`; Opus X verifies, journals the fact, and links it to the Passport.
 - A university emits Evidence attesting a completed degree; the fact is later reinterpreted under a new Framework version, and Trust is recomputed without altering the original Evidence.
 - An employer emits Evidence of workplace performance; a correction is required, so a new superseding Evidence is emitted and the original is preserved.
 - A professional association revokes a lapsed certification by journaling a revocation fact; the original Evidence remains, marked revoked.

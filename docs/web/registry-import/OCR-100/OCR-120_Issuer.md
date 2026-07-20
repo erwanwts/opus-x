@@ -115,7 +115,7 @@ An Issuer is identified and authorized; it produces Evidence referencing a Frame
     "id": "<issuer_id>",
     "authorization": "certified",
     "produces": "evidence",
-    "references_framework": "wtr:212",
+    "references_framework": "wtf:212",
     "owns_identity": false,
     "sets_trust": false,
     "defines_levels": false
@@ -149,7 +149,7 @@ An Issuer is identified and authorized; it produces Evidence referencing a Frame
 
 ## Examples
 
-- A trading academy, certified as an Issuer, produces Evidence referencing `wtr:212`; Opus X accepts it and binds it to the professional's Opus ID.
+- A trading academy, certified as an Issuer, produces Evidence referencing `wtf:212`; Opus X accepts it and binds it to the professional's Opus ID.
 - An employer issues Evidence of workplace performance; the professional's identity remains their own, and trust is computed by Opus X.
 - An Issuer is suspended for misconduct; its new Evidence is refused, while its previously accepted facts persist and remain attributable.
 
