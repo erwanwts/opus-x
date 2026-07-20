@@ -1,13 +1,11 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
-import { transitionalRedirects } from './lib/seo/transitional-redirects';
 
+// Aucune redirection transitoire : chaque représentation canonique a son adresse
+// propre (`/frameworks/wtf` et `/frameworks/world-trader` répondent chacune avec
+// leur statut d'identité dérivé). Voir docs/migration/MIG-wtf-to-wtr-2026-07-18.md.
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // Redirections transitoires (compat wtf → world-trader, À RETIRER — voir module).
-  async redirects() {
-    return transitionalRedirects;
-  },
 };
 
 // Plugin next-intl (charge i18n/request.ts par défaut). Aucune autre option modifiée.

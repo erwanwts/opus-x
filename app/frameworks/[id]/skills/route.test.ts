@@ -52,6 +52,10 @@ const SKILLS = [
   },
 ];
 
+/** Relation `reidentified_as` : framework:wtf (antérieur) → framework:wtr (courant). */
+const REID = [{ prior_id: 'framework:wtf', canonical_id: 'framework:wtr' }];
+const WTF = { id: 'framework:wtf', slug: 'wtf', name: 'World Trader Framework', publisher: 'Opus X' };
+
 beforeEach(() => vi.clearAllMocks());
 
 describe('GET /frameworks/{id}/skills', () => {
@@ -61,6 +65,7 @@ describe('GET /frameworks/{id}/skills', () => {
         wsp_frameworks: { single: FRAMEWORK },
         wsp_framework_versions: { single: VERSION },
         wsp_skills: { list: SKILLS },
+        wsp_reidentifications: { list: REID },
       })
     );
     const res = await GET(req(), params('world-trader'));
@@ -87,6 +92,56 @@ describe('GET /frameworks/{id}/skills', () => {
     );
     const res = await GET(req(), params('framework:wtr'));
     expect(res.status).toBe(200);
+  });
+
+  it('représentation COURANTE → statut dérivé canonical + identifiant antérieur', async () => {
+    mocked.mockReturnValue(
+      makeClient({
+        wsp_frameworks: { single: FRAMEWORK },
+        wsp_framework_versions: { single: VERSION },
+        wsp_skills: { list: SKILLS },
+        wsp_reidentifications: { list: REID },
+      })
+    );
+    const res = await GET(req(), params('world-trader'));
+    const body = await res.json();
+    expect(body.framework.identity_status).toBe('canonical');
+    expect(body.framework.previous_identifier).toBe('framework:wtf');
+    expect(body.framework.canonical_identifier).toBeNull();
+  });
+
+  it('représentation ANTÉRIEURE (/frameworks/wtf) → reidentified + identifiant canonique', async () => {
+    mocked.mockReturnValue(
+      makeClient({
+        wsp_frameworks: { single: WTF },
+        wsp_framework_versions: { single: VERSION },
+        wsp_skills: { list: [] },
+        wsp_reidentifications: { list: REID },
+      })
+    );
+    const res = await GET(req(), params('wtf'));
+    expect(res.status).toBe(200); // reste CONSULTABLE : plus aucune redirection
+    const body = await res.json();
+    expect(body.framework.id).toBe('framework:wtf');
+    expect(body.framework.identity_status).toBe('reidentified');
+    expect(body.framework.canonical_identifier).toBe('framework:wtr');
+    expect(body.framework.previous_identifier).toBeNull();
+  });
+
+  it('sans relation de réidentification → published, identifiants liés à null', async () => {
+    mocked.mockReturnValue(
+      makeClient({
+        wsp_frameworks: { single: FRAMEWORK },
+        wsp_framework_versions: { single: VERSION },
+        wsp_skills: { list: SKILLS },
+        wsp_reidentifications: { list: [] },
+      })
+    );
+    const res = await GET(req(), params('world-trader'));
+    const body = await res.json();
+    expect(body.framework.identity_status).toBe('published');
+    expect(body.framework.canonical_identifier).toBeNull();
+    expect(body.framework.previous_identifier).toBeNull();
   });
 
   it('Framework inexistant → 404 neutre', async () => {

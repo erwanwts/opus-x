@@ -5,8 +5,10 @@
 import { describe, it, expect } from 'vitest';
 import {
   buildFrameworkDiscovery,
+  deriveIdentity,
   type FrameworkRow,
   type FrameworkVersionRow,
+  type ReidentificationRow,
   type SkillRow,
 } from './frameworkDiscovery';
 
@@ -114,5 +116,72 @@ describe('buildFrameworkDiscovery', () => {
     const d = buildFrameworkDiscovery(framework, version, []);
     expect(d.skills).toEqual([]);
     expect(d.framework.name).toBe('World Trader Framework');
+  });
+});
+
+/**
+ * Statut d'identité — DÉRIVÉ des relations `reidentified_as` (OCR-007 PRD-306),
+ * JAMAIS stocké. Aucune colonne de la base ne le porte : il n'existe que par
+ * l'existence d'une ligne de réidentification.
+ */
+const REID: ReidentificationRow[] = [
+  { prior_id: 'framework:wtf', canonical_id: 'framework:wtr' },
+];
+
+describe('deriveIdentity (statut dérivé, jamais stocké)', () => {
+  it('PRÉDÉCESSEUR d’une relation → reidentified + identifiant canonique courant', () => {
+    const i = deriveIdentity('framework:wtf', REID);
+    expect(i.identity_status).toBe('reidentified');
+    expect(i.canonical_identifier).toBe('framework:wtr');
+    expect(i.previous_identifier).toBeNull();
+  });
+
+  it('SUCCESSEUR d’une relation → canonical + identifiant antérieur', () => {
+    const i = deriveIdentity('framework:wtr', REID);
+    expect(i.identity_status).toBe('canonical');
+    expect(i.previous_identifier).toBe('framework:wtf');
+    expect(i.canonical_identifier).toBeNull();
+  });
+
+  it('aucune relation → published, sans identifiant lié', () => {
+    const i = deriveIdentity('framework:autre', REID);
+    expect(i.identity_status).toBe('published');
+    expect(i.canonical_identifier).toBeNull();
+    expect(i.previous_identifier).toBeNull();
+  });
+
+  it('aucune relation connue (liste vide) → published', () => {
+    expect(deriveIdentity('framework:wtr', []).identity_status).toBe('published');
+  });
+});
+
+describe('buildFrameworkDiscovery — statut d’identité exposé', () => {
+  it('la représentation COURANTE expose canonical + previous_identifier', () => {
+    const d = buildFrameworkDiscovery(framework, version, [wtr212], REID);
+    expect(d.framework.identity_status).toBe('canonical');
+    expect(d.framework.previous_identifier).toBe('framework:wtf');
+    expect(d.framework.canonical_identifier).toBeNull();
+  });
+
+  it('la représentation ANTÉRIEURE expose reidentified + canonical_identifier', () => {
+    const wtf: FrameworkRow = {
+      id: 'framework:wtf',
+      slug: 'wtf',
+      name: 'World Trader Framework',
+      publisher: 'Opus X',
+    };
+    const d = buildFrameworkDiscovery(wtf, version, [], REID);
+    expect(d.framework.identity_status).toBe('reidentified');
+    expect(d.framework.canonical_identifier).toBe('framework:wtr');
+    expect(d.framework.previous_identifier).toBeNull();
+    // La représentation antérieure reste PUBLIÉE et consultable à son adresse.
+    expect(d.framework.slug).toBe('wtf');
+  });
+
+  it('sans relation, le contrat reste inchangé (published, champs à null)', () => {
+    const d = buildFrameworkDiscovery(framework, version, [wtr212]);
+    expect(d.framework.identity_status).toBe('published');
+    expect(d.framework.canonical_identifier).toBeNull();
+    expect(d.framework.previous_identifier).toBeNull();
   });
 });
