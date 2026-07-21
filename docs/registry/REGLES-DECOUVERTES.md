@@ -5,8 +5,14 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Trois entrées à ce jour** : RD-001 (résolveur canonique) · RD-002 (la distinction
-> découverte / normalisée) · RD-003 (la locale d'une référence, lacune de RD-001).
+> **Six entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
+> RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
+> dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
+> plausible n'est pas une source vérifiée).
+>
+> Ce registre tient lieu d'**Architectural Decisions Backlog** — voir la section
+> « Correspondance » pour la réconciliation des deux décomptes.
 
 **Pourquoi ce registre existe.** Une règle identifiée en cours de chantier ne peut pas
 être glissée dans un Record en attente de relecture :
@@ -116,6 +122,120 @@ anglais.
 
 **Non corrigé, délibérément** : corriger toucherait au **comportement de navigation**, pas
 à la résolution de références. L'arbitrage revient à l'architecte au prochain cycle.
+
+---
+
+## RD-004 — La coordonnée est scellée dans le condensat
+
+**Formulation verbatim (architecte)**
+
+> « La coordonnée est scellée dans le condensat. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-18 |
+| **Chantier d'origine** | WEB-003 LOT B — réidentification canonique de `framework:wtr` |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Circonstance.** La migration `wtf → wtr` devait renommer la coordonnée portée par les
+Evidence. La mesure a établi qu'elle en était **structurellement incapable** :
+`lib/wsp/evidenceCovered.ts` copie `framework.id` et `demonstrates.skill_id` **littéralement
+dans le préimage** soumis à la canonicalisation JCS puis au sha256. Réécrire une coordonnée
+invaliderait le condensat de chaque fait qui la porte.
+
+**Conséquence tirée à l'époque** : la coordonnée d'un fait publié **ne peut jamais être
+réécrite** ; la résolution doit donc avoir lieu **à la lecture**, jamais dans la donnée.
+C'est ce constat qui a fondé la réidentification par pure addition (`reidentified_as`,
+OCR-007 PRD-306) et le statut d'identité **dérivé, jamais stocké**.
+
+**Appliquée dans le code** : `lib/api/frameworkDiscovery.ts` (`deriveIdentity`) — les
+79 Evidence conservent `wtf:212` à jamais, et la représentation antérieure reste publiée.
+
+---
+
+## RD-005 — Précédence du Concept sur le Record lors de la résolution
+
+**Formulation verbatim (architecte)**
+
+> « Within a Relations section, if a target identifier matches both a Record title and a
+> declared Concept, concept resolution SHALL take precedence. Record resolution SHALL only
+> occur when no declared Concept matches the identifier. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | WEB-003 — amendement OCR-115 v1.1.0 (`reidentified_as`) |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+L'architecte a explicitement refusé de la présenter comme une capacité nouvelle du
+générateur : *« Je la présenterais comme la formalisation d'une règle de résolution qui
+était implicitement attendue par l'architecture. »*
+
+**Impact mesuré avant application** : à liste de concepts inchangée, **aucune arête ne
+bascule** — titres de Record et concepts déclarés étaient disjoints. La règle et la
+déclaration du concept sont **conjointes** : ni l'une ni l'autre ne produit d'effet seule.
+
+**Appliquée dans le code** : `scripts/registry/node-ref.mjs`, étape `(c·bis)` ; couverte par
+`tests/unit/registry-concept-precedence.test.ts` (8 tests).
+
+**Portée expressément bornée** : la règle ne vise que la résolution **par titre**. Les
+raccourcis de `name_aliases` relèvent d'un autre mécanisme — les 2 `alias_self_loop` connus
+ne sont **pas** corrigés par elle, ce qui a été vérifié par la mesure.
+
+---
+
+## RD-006 — Une source plausible n'est pas une source vérifiée
+
+**Formulation verbatim (architecte)**
+
+> « Une source plausible n'est pas une source vérifiée. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | WEB-003 — audit terminologique ; blocage du dictionnaire |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Circonstance.** Les 46 définitions rédigées avant l'audit renseignaient toutes le champ
+*Established By* — par des familles inventées (*Foundation Records*, *Architecture
+Records*, *Governance Records*…) sans aucun identifiant réel du corpus. Là où le constat
+établissait que **12 termes sur 47** ont une source citable, ces 46 en citaient 46.
+
+`OCR-006` était le **seul identifiant réel** cité, six fois — et il n'établit aucun de ces
+termes : il n'a pas de section `## Terminology`, et il est en `Draft`.
+
+**Conséquence** : le dictionnaire a été retiré. Le champ *Established By* n'accepte que des
+identifiants réels ; **une case vide est une information**, un identifiant approximatif est
+une régression. Trace conservée intacte dans
+[TERMINOLOGY-BACKLOG.md](TERMINOLOGY-BACKLOG.md) — 20 mentions `⚠️ NON VÉRIFIÉ`, aucune
+corrigée ni supprimée.
+
+---
+
+## Correspondance avec le décompte de l'architecte
+
+Sa liste en compte 4, ce registre en portait 3 ; après réconciliation : **6**.
+
+| Sa numérotation | Entrée de ce registre | État avant réconciliation |
+|---|---|---|
+| 1 — la coordonnée est scellée dans le condensat | **RD-004** | non inscrite |
+| 2 — précédence du Concept sur le Record | **RD-005** | non inscrite |
+| 3 — toute référence interne passe par le résolveur canonique | **RD-001** | déjà inscrite |
+| 4 — une source plausible n'est pas une source vérifiée | **RD-006** | non inscrite |
+| *(absente de sa liste)* | **RD-002** — distinction découverte / normalisée | déjà inscrite |
+| *(absente de sa liste)* | **RD-003** — la locale d'une référence | déjà inscrite |
+
+**Total après réconciliation : 6 règles découvertes, 0 normalisée.**
+Aucune entrée n'a été renumérotée : RD-001 à RD-003 sont déjà référencées dans le code
+(`lib/content/homepage.ts`, `components/geo/HomePage.tsx`).
+
+**Sur l'« Architectural Decisions Backlog » proposé** : ce registre remplit déjà ce rôle —
+il conserve les décisions d'architecture reconnues valides et non encore normalisées, avec
+leur formulation, leur date, leur chantier d'origine et leur statut. **Aucun document
+concurrent n'a été créé**, pour ne pas dupliquer la source.
 
 ---
 
