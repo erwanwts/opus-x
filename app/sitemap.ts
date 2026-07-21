@@ -1,36 +1,27 @@
 import type { MetadataRoute } from 'next';
-import { PILLARS } from '@/lib/seo/pillars';
+import { indexPlan } from '@/lib/seo/sitemapPlans';
 
 /**
- * Sitemap (WEB-002 Lot D · WEB-001B §12 · fallback strict §10.2).
+ * PLAN D'INDEXATION (WEB-002 Lot D · WEB-001B §12 · fallback strict §10.2).
  *
- * PRINCIPE : le sitemap ne décrit QUE le réel. Émet la home /[locale] (3 langues)
- * + les pages piliers PUBLIÉES, chacune UNIQUEMENT dans ses locales réellement
- * traduites (registre PILLARS, source unique aussi des generateStaticParams).
- * Jamais un chemin fantôme, jamais une locale absente.
+ * PRINCIPE : le plan ne décrit QUE le réel, et seulement ce qui est **indexable**.
+ * Il dérive de `robots`, qui dérive lui-même du statut documentaire du Record —
+ * un seul maillon décisionnel (RD-011). Une page en `noindex` n'y figure pas :
+ * la déclarer enverrait deux signaux contradictoires au même moteur.
+ *
+ * Les 33 Records étant en `Draft`, aucune page de registre n'y figure aujourd'hui.
+ * Le plan REMONTE de lui-même à mesure des promotions, sans intervention.
+ *
+ * Home + piliers : hreflang limité aux locales RÉELLEMENT traduites (registre
+ * PILLARS, source unique aussi des generateStaticParams). Jamais un chemin
+ * fantôme, jamais une locale absente.
+ *
+ * Le plan de DÉCOUVERTE, lui, expose tout le corpus publié quel que soit son
+ * statut : `app/sitemap-discovery.xml/route.ts`.
  */
-const BASE = 'https://opusx.world';
-
-/** Cluster hreflang pour un ensemble de locales (chemins réels seulement). */
-function cluster(locales: string[], pathFor: (l: string) => string): Record<string, string> {
-  return Object.fromEntries(locales.map((l) => [l, pathFor(l)]));
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
-
-  // Home : EN uniquement (prose EN livrée, fallback strict). La racine / redirige
-  // vers /en, seul chemin d'accueil indexable ; /fr /es non générées.
-  const homeLangs = cluster(['en'], (l) => `${BASE}/${l}`);
-  entries.push({ url: `${BASE}/en`, alternates: { languages: homeLangs } });
-
-  // Pages piliers : par route, hreflang limité aux locales traduites de CETTE page.
-  for (const p of PILLARS) {
-    const langs = cluster(p.translatedLocales, (l) => `${BASE}/${l}/${p.slug}`);
-    for (const locale of p.translatedLocales) {
-      entries.push({ url: `${BASE}/${locale}/${p.slug}`, alternates: { languages: langs } });
-    }
-  }
-
-  return entries;
+  return indexPlan().map((e) => ({
+    url: e.url,
+    ...(e.languages ? { alternates: { languages: e.languages } } : {}),
+  }));
 }

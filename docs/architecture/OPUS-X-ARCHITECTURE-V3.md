@@ -935,10 +935,10 @@ Gouvernance terminologique ──► Lot 3 (Concepts) ──► Lot 5 (Applicati
 
 **[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
-| Plan | Contenu | Volume actuel |
-|---|---|---:|
-| Indexation | uniquement les pages indexables | 11 |
-| Découverte | tous les Records publiés, quel que soit leur statut | 102 |
+| Plan | Contenu | Volume |
+|---|---|---|
+| Indexation | uniquement les pages indexables | 11 aujourd'hui, remonte avec les promotions |
+| Découverte | tous les Records publiés, quel que soit leur statut | 45 aujourd'hui, 102 à l'issue du Lot D |
 
 Le premier remonte vers 102 à mesure des promotions, sans intervention.
 
