@@ -22,7 +22,32 @@ se substituent pas.
 
 **Documents liés** : [TERMINOLOGY-AUDIT.md](TERMINOLOGY-AUDIT.md) (les concepts que le
 protocole possède aujourd'hui — **seule** source du futur dictionnaire) ·
+[TERMINOLOGY-QUALIFICATION-REVIEW.md](TERMINOLOGY-QUALIFICATION-REVIEW.md) ·
 [CONSTAT-established-by.md](CONSTAT-established-by.md) · [REGLES-DECOUVERTES.md](REGLES-DECOUVERTES.md).
+
+---
+
+## ⚠️ STATUT DE CE DOCUMENT DANS LE CHANTIER TERMINOLOGY GOVERNANCE — à trancher
+
+Le chantier autonome **Terminology Governance** nomme **trois** livrables :
+
+1. Terminology Qualification Review
+2. Terminology Audit
+3. Canonical Dictionary
+
+**Ce document n'y figure pas.** Il existe pourtant, il est committé, et il porte les
+20 définitions écartées ainsi que la trace des 20 `Established By` non vérifiés.
+
+Deux lectures possibles, **non tranchées ici** :
+
+- **quatrième livrable du chantier** — il alimenterait l'amont du cycle : quels concepts
+  le protocole *pourrait* acquérir, en amont même de la QUALIFICATION ;
+- **hors chantier** — matière d'archive conservée pour mémoire, sans rôle dans le cycle de
+  gouvernance terminologique.
+
+**Il n'est ni supprimé ni déplacé.** La décision revient à l'architecte. Dans les deux cas
+la règle gravée reste entière : « Le dictionnaire sera généré à partir du premier
+[l'audit], jamais du second [le backlog]. »
 
 ---
 
