@@ -14,7 +14,7 @@
  * main, on compare deux implémentations sur un espace de chemins exhaustif.
  */
 import { describe, it, expect } from 'vitest';
-import { routeKind, firstSegment, RESERVED, type RouteKind } from './routeKind';
+import { routeKind, firstSegment, RESERVED, PUBLIC_NO_LOCALE, type RouteKind } from './routeKind';
 import { routing } from '@/i18n/routing';
 
 // ─── Réimplémentation LITTÉRALE de l'état d'origine ─────────────────────────
@@ -77,16 +77,43 @@ describe('les chemins d’application restent en régime app', () => {
 });
 
 describe('un segment inconnu part en intl (la locale lui est ajoutée)', () => {
-  it.each(['/about', '/records', '/records/OCR-110', '/registry/OCR-110', '/xyz'])(
-    '%s',
+  it.each(['/about', '/registry/OCR-110', '/xyz'])('%s', (p) => {
+    // `/registry/...` reste en intl : l'index du corpus s'adresse `/records`, et
+    // `/registry` demeure la page pilier localisée du concept (OCR-124).
+    expect(routeKind(p)).toBe('intl');
+  });
+});
+
+describe('AMENDEMENT EXPLICITE DU GARDE-FOU — /records passe de intl à public', () => {
+  /**
+   * Ce bloc REMPLACE l'assertion qui figeait `/records` en `intl`. Elle avait été
+   * posée au Lot A précisément pour qu'un tel changement soit impossible par
+   * inadvertance : le garde-fou devait céder AU GRAND JOUR, pas être contourné.
+   * Il cède ici, et l'écart est énuméré chemin par chemin.
+   *
+   * AVANT (Lot A)  : /records → intl  → 307 vers /en/records
+   * APRÈS (Lot D)  : /records → public → servi tel quel, sans locale
+   */
+  it.each(['/records', '/records/', '/records/OCR-110', '/records/ocr-110', '/records/a/b'])(
+    '%s → public',
     (p) => {
-      // ⚠️ ÉTAT ACTUEL, délibérément figé : /records et /registry/... sont AUJOURD'HUI
-      // redirigés vers /en/... Le Lot GEO 2 changera ce verdict — ce test devra alors
-      // être amendé EXPLICITEMENT, ce qui rend le changement impossible à faire par
-      // inadvertance.
-      expect(routeKind(p)).toBe('intl');
+      expect(routeKind(p)).toBe('public');
+      expect(routeKindBefore(p)).toBe('intl'); // ce que faisait le middleware d'origine
     },
   );
+
+  it('le régime public ne recouvre AUCUN segment réservé ni aucune locale', () => {
+    for (const seg of PUBLIC_NO_LOCALE) {
+      expect(RESERVED.has(seg), `${seg} ne doit pas être réservé`).toBe(false);
+      expect(routing.locales as readonly string[]).not.toContain(seg);
+    }
+  });
+
+  it('un segment qui RESSEMBLE à /records reste inchangé', () => {
+    for (const p of ['/record', '/records2', '/recordsx/y', '/Records', '/en/records']) {
+      expect(routeKind(p), p).toBe(routeKindBefore(p));
+    }
+  });
 });
 
 describe('PREUVE DE NEUTRALITÉ — l’extraction ne change aucun verdict', () => {
@@ -95,6 +122,8 @@ describe('PREUVE DE NEUTRALITÉ — l’extraction ne change aucun verdict', () 
   });
 
   it('routeKind == logique d’origine, sur tous les chemins réels', () => {
+    // Aucun chemin RÉEL du site ou de l'application n'est touché par l'ajout du
+    // régime `public` : il n'intercepte qu'un segment que personne ne servait.
     const all = [
       '/', ...routing.locales.map((l) => `/${l}`),
       ...routing.locales.flatMap((l) => [...PILLARS, ...ARCHETYPES].map((s) => `/${l}/${s}`)),
@@ -115,7 +144,13 @@ describe('PREUVE DE NEUTRALITÉ — l’extraction ne change aucun verdict', () 
     for (const h of heads) {
       for (const t of tails) {
         const p = `/${h}${t}`;
-        expect(routeKind(p), p).toBe(routeKindBefore(p));
+        // Divergence ATTENDUE et ÉNUMÉRÉE : uniquement les segments publics.
+        if (PUBLIC_NO_LOCALE.has(h)) {
+          expect(routeKind(p), p).toBe('public');
+          expect(routeKindBefore(p), p).toBe('intl');
+        } else {
+          expect(routeKind(p), p).toBe(routeKindBefore(p));
+        }
         n++;
       }
     }

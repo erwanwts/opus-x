@@ -77,13 +77,22 @@ async function appSession(request: NextRequest) {
 
 export async function middleware(request: NextRequest) {
   // La DÉCISION est extraite (lib/routing/routeKind) ; le middleware n'exécute plus
-  // que le régime choisi. Comportement inchangé — cf. routeKind.test.ts, qui compare
-  // la fonction extraite à une réimplémentation littérale de la logique d'origine.
-  //   • `app`  → garde de session (refresh toujours), JAMAIS de locale ;
-  //   • `intl` → next-intl (rendu localisé, ou ajout de la locale : 307, WEB-D5).
-  return routeKind(request.nextUrl.pathname) === 'app'
-    ? appSession(request)
-    : intlMiddleware(request);
+  // que le régime choisi. Chaque bascule est couverte par routeKind.test.ts, qui
+  // compare la fonction à une réimplémentation littérale de la logique d'origine.
+  //   • `app`    → garde de session (refresh toujours), JAMAIS de locale ;
+  //   • `public` → chemin de site public NON localisé (projections du corpus) :
+  //                servi tel quel. PAS de garde de session — une page publique n'a
+  //                aucun besoin d'un getUser() sur chaque requête, et le corpus n'a
+  //                pas à être couplé à la couche d'authentification ;
+  //   • `intl`   → next-intl (rendu localisé, ou ajout de la locale : 307, WEB-D5).
+  switch (routeKind(request.nextUrl.pathname)) {
+    case 'app':
+      return appSession(request);
+    case 'public':
+      return NextResponse.next();
+    default:
+      return intlMiddleware(request);
+  }
 }
 
 export const config = {
