@@ -5,11 +5,14 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Six entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> **Onze entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
-> plausible n'est pas une source vérifiée).
+> plausible n'est pas une source vérifiée) · RD-007 (cycle de publication normative) ·
+> RD-008 (le code révèle, la gouvernance décide) · RD-009 (une projection n'établit rien) ·
+> RD-010 (découplage constat / décision / projection) · RD-011 (plusieurs
+> projections spécialisées, une seule décision).
 >
 > Ce registre tient lieu d'**Architectural Decisions Backlog** — voir la section
 > « Correspondance » pour la réconciliation des deux décomptes.
@@ -212,6 +215,154 @@ identifiants réels ; **une case vide est une information**, un identifiant appr
 une régression. Trace conservée intacte dans
 [TERMINOLOGY-BACKLOG.md](TERMINOLOGY-BACKLOG.md) — 20 mentions `⚠️ NON VÉRIFIÉ`, aucune
 corrigée ni supprimée.
+
+---
+
+## RD-007 — Cycle de publication normative
+
+**Formulation verbatim (architecte)**
+
+> `Authoring → Review → Validation → Promotion → Publication → Indexation`
+>
+> « Publication décrit l'existence du Record. Promotion décrit sa qualification
+> documentaire. Indexation décrit son exposition aux moteurs. »
+>
+> « Un Record existe déjà avant sa promotion : il est servi par l'API, il est connu du
+> corpus, il est accessible. La promotion ne le crée pas, elle modifie son statut
+> documentaire. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | LOT GEO 2 — Registry public ; ouverture du Cycle 1 de promotion |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Ce que la règle sépare.** Trois notions étaient jusqu'ici confondues sous le mot
+« publier ». La distinction les rend indépendantes : un Record peut être **publié** (il
+existe, l'API le sert) sans être **promu** (son statut documentaire reste `Draft`), et
+promu sans être **indexé** (son exposition aux moteurs est une décision distincte).
+
+**Conséquence directe dans le code.** La valeur `robots` d'une page de projection est
+**dérivée du statut du Record**, jamais codée en dur : `Draft` → `noindex,follow` ;
+à la promotion → `index,follow`. Le jour où un Record est promu, sa page devient
+indexable **sans intervention**. L'indexation suit la promotion, elle ne la précède pas
+et ne s'y substitue pas.
+
+**Ce que la règle interdit implicitement.** Faire évoluer le seuil d'indexation pour
+compenser un état de gouvernance — « faire évoluer la règle pour compenser un problème de
+gouvernance affaiblirait la signification du statut `Draft` ». Le fait que **33 Records
+sur 33** soient aujourd'hui en `Draft`, et donc que 91 pages soient en `noindex`, est un
+**résultat attendu et déterministe**, pas un défaut à contourner.
+
+Voir [DOSSIER-promotion-cycle-1.md](DOSSIER-promotion-cycle-1.md) — la mesure qui ouvre
+le Cycle 1.
+
+---
+
+## RD-008 — Le code révèle, la gouvernance décide
+
+**Formulation verbatim (architecte)**
+
+> « Le code sert à révéler les conséquences d'une implémentation ; la gouvernance décide
+> ensuite si cette implémentation exprime correctement les principes. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Cycle 1 de promotion — décision sur la signification de l'empreinte |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Séquence** : constater le comportement réel · le comparer aux principes · décider ensuite.
+
+*Note de traçabilité* : cette entrée avait été demandée dans un mandat sans être formulée,
+d'où le saut de numérotation entre RD-007 et RD-009 relevé lors de la réconciliation. Le
+numéro est rétabli à sa place chronologique.
+
+---
+
+## RD-009 — Une projection n'établit rien
+
+**Formulation verbatim (architecte)**
+
+> « Une projection peut organiser, relier, présenter et agréger des informations ; elle ne
+> peut jamais établir un fait, prendre une décision de gouvernance ou produire une nouvelle
+> norme. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Terminology Governance — décision sur le statut du Canonical Dictionary |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+Elle borne ce qu'une page de Registry, le Knowledge Graph et le futur dictionnaire ont le
+droit de faire : présenter, jamais établir.
+
+---
+
+## RD-010 — Découplage constat / décision / projection
+
+**Formulation verbatim (architecte)**
+
+> « Les fonctions de constat, de décision et de projection doivent rester découplées. Une
+> mesure ne décide pas, une décision ne se projette pas elle-même, et une projection
+> n'établit jamais ce qu'elle représente. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Terminology Governance — décision sur le porteur de la Translation Policy |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+Elle généralise RD-009 en y ajoutant le **constat** : c'est la règle qui sépare l'audit
+terminologique (mesure), la qualification (décision) et le dictionnaire (projection) — et
+qui interdit qu'un même document remplisse deux de ces fonctions.
+
+---
+
+## RD-011 — Plusieurs projections spécialisées, une seule décision
+
+**Formulation verbatim (architecte)**
+
+> « Une même décision de gouvernance peut produire plusieurs projections spécialisées
+> répondant à des usages différents, à condition qu'aucune de ces projections ne porte sa
+> propre logique décisionnelle. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Registry public — décision sur les sitemaps |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**La règle qu'elle sert** : *« Il n'existe qu'une seule décision de gouvernance : le statut
+documentaire du Record. Toutes les représentations techniques qui en découlent sont des
+projections dérivées. »*
+
+**Application mesurée.** Le statut d'un Record produit **quatre** projections, sans qu'aucune
+ne décide quoi que ce soit :
+
+| Projection | Dérivation |
+|---|---|
+| `robots` de la page | `Draft` → `noindex,follow` · sinon `index,follow` |
+| Bandeau de statut | rendu si et seulement si `Draft` |
+| Plan d'**indexation** | inclut la page si `robots === 'index,follow'` |
+| Plan de **découverte** | inclut tout Record publié, quel que soit son statut |
+
+Le plan d'indexation **ne relit pas le statut** : il dérive de `robots`, qui en dérive déjà.
+La chaîne reste à un seul maillon décisionnel. C'est la condition posée par la règle — une
+projection qui consulterait le statut pour son propre compte porterait une seconde logique
+décisionnelle, et deux sources finiraient par diverger.
+
+**Pas de contradiction entre les deux plans** : ils ont des finalités différentes. Le premier
+recommande à l'indexation, le second expose à la découverte ; les pages `Draft` continuent
+de porter `noindex`, et rien dans le second ne le contredit.
+
+Complète [[RD-009]] et [[RD-010]] : une projection n'établit rien, et le constat, la
+décision et la projection restent découplés — ici, **jusque dans le nombre de projections**.
 
 ---
 
