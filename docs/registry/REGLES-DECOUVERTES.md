@@ -6,7 +6,8 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> UNE PROPOSITION sans numéro, en attente d'attribution** :
+> DEUX PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> ne mesure rien · (2) un artefact jamais exercé ne prouve rien** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -367,7 +368,7 @@ décision et la projection restent découplés — ici, **jusque dans le nombre 
 
 ---
 
-## PROPOSITION — sans numéro, en attente d'attribution par l'architecte
+## PROPOSITION (1) — sans numéro, en attente d'attribution par l'architecte
 
 **Formulation proposée**
 
@@ -401,6 +402,47 @@ mêmes sources que les routes, et son test assère son propre compte — 92 = 1 
 
 **Portée** : elle vise tout harnais de vérification, pas seulement celui-ci. Un compte
 produit sans test du compte n'est pas opposable.
+
+---
+
+## PROPOSITION (2) — sans numéro, en attente d'attribution par l'architecte
+
+> **Distincte de la première.** L'instrument qui mesure faux et l'artefact jamais exercé
+> sont **deux défauts différents** : le premier annonce un résultat qu'il n'a pas obtenu,
+> le second obtient un résultat qui ne prouve rien. Elles ne doivent pas être fusionnées.
+
+**Formulation proposée**
+
+> « Un artefact dont les conditions d'exercice ne surviennent jamais ne prouve rien, quelle
+> que soit sa justesse. Une contrainte sur un champ toujours nul, un test qui ne peut pas
+> échouer, un chemin de code jamais atteint : même défaut. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | LOT GEO 2 — rétractation sur le chemin `entityHref(id, 'fr')` |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — trois occurrences documentées, dans trois chantiers différents :**
+
+| # | Artefact | Condition d'exercice | Ce qu'il prouvait réellement |
+|---|---|---|---|
+| 1 | FK `ON DELETE RESTRICT` (C1) | colonne **jamais peuplée** | rien — la contrainte ne pouvait pas se déclencher |
+| 2 | Matrice QA (Phase 1) | **chemin heureux non vérifié** | rien sur le cas nominal |
+| 3 | `entityHref(id, 'fr')` (Lot GEO 2) | **aucune page `fr`/`es` ne rend de lien d'entité** | rien — le chemin n'est jamais atteint |
+
+Le troisième cas est celui qui a fait formuler la règle. Le repli vers la page Record avait
+été étendu à toutes les locales, et l'extension présentée comme un gain : *« depuis `/fr` et
+`/es`, aucune pastille n'était liée, elles pointent désormais vers la page Record »*. La
+mesure a établi que **seul `GeoPage` émet des liens d'entités**, que les pages piliers ne
+sont générées qu'en `en`, et que les 4 routes `fr`/`es` existantes sont des redirections.
+Le comportement était **correct et inobservable**. L'affirmation a été retirée, et l'étape 2
+de la chaîne bornée à la locale canonique — un garde-fou vérifiable valant mieux qu'un
+comportement qui ne peut ni être constaté ni échouer.
+
+**Conséquence pratique** : avant de compter un artefact comme une garantie, établir que ses
+conditions d'exercice surviennent. À défaut, il rejoint le registre des dettes, pas celui
+des preuves.
 
 ---
 

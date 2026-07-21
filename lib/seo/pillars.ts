@@ -53,8 +53,8 @@ export function pillarBySlug(slug: string): Pillar | undefined {
  * CHAÎNE DE RÉSOLUTION STRICTE, dans cet ordre :
  *   1. **page pilier** si elle existe dans la locale courante (registre PILLARS) —
  *      c'est la fiche éditoriale du concept, la plus riche pour un lecteur ;
- *   2. sinon **page Record** si `/records/{id}` est réellement générée — la
- *      projection documentaire, non localisée ;
+ *   2. sinon **page Record**, si `/records/{id}` est réellement générée ET si la
+ *      demande vient de la locale canonique ;
  *   3. sinon **`null`** : texte brut, et la lacune est déclarée par l'appelant.
  *
  * AUCUNE DESTINATION FABRIQUÉE. L'existence de la page Record est lue au même
@@ -64,11 +64,22 @@ export function pillarBySlug(slug: string): Pillar | undefined {
  * Pourquoi le pilier d'abord : les deux surfaces coexistent pour les 7 Records qui
  * ont une fiche. Le pilier interprète, la page Record restitue — l'ordre de la
  * chaîne dit lequel sert le lecteur en premier, sans jamais masquer l'autre.
+ *
+ * POURQUOI L'ÉTAPE 2 EST BORNÉE À LA LOCALE CANONIQUE. Le repli a été introduit
+ * pour un besoin MESURÉ : les 64 pastilles mortes des pages piliers, toutes en
+ * `en`. Aucune page rendue en `fr` ou `es` n'affiche de lien d'entité — seul
+ * `GeoPage` en émet, et les pages piliers ne sont générées qu'en `en`. Étendre le
+ * repli à ces locales élargirait la règle à un régime qui n'existe pas, et
+ * remplacerait un garde-fou vérifiable par un comportement inobservable.
+ * Le jour où une locale publie des pages piliers, la question se rouvrira
+ * explicitement — par l'échec de l'assertion ci-dessous, pas en silence.
  */
+const CANONICAL_LOCALE = 'en';
+
 export function entityHref(ocrId: string, locale: string): string | null {
   const p = PILLARS.find((x) => x.recordId === ocrId && x.translatedLocales.includes(locale));
   if (p) return `/${locale}/${p.slug}`;
-  if (hasRecordPage(ocrId)) return recordPagePath(ocrId);
+  if (locale === CANONICAL_LOCALE && hasRecordPage(ocrId)) return recordPagePath(ocrId);
   return null;
 }
 

@@ -98,10 +98,15 @@ Le dépôt stocke les Records en **LF** (blob git), mais `core.autocrlf=true` le
 **checke out en CRLF** sur Windows. Le `_manifest.json` et les golden utilisent des
 **checksums calculés sur le contenu LF** (le blob), pas sur le disque.
 
-**Règle** : tout outillage touchant à un checksum de Record (manifest, golden,
+> **CADUQUE depuis le 2026-07-21.** Un `.gitattributes` (`* text=auto eol=lf`) normalise
+> désormais l'arbre de travail : disque et blob portent les mêmes octets. Le générateur
+> lit le dossier réel du corpus et produit les checksums attendus — vérifié, zéro écart.
+> Le contournement par miroir LF hors dépôt **n'existe plus**. La règle ci-dessous est
+> conservée comme trace de l'incident ; elle ne s'applique plus.
+
+~~**Règle** : tout outillage touchant à un checksum de Record (manifest, golden,
 sourceChecksum) doit hasher les **octets du blob LF** — soit `git show HEAD:<file>`,
-soit le disque avec `\r\n → \n` — **jamais le disque brut**. Lire le disque CRLF produit
-des checksums qui divergent silencieusement de la convention du dépôt.
+soit le disque avec `\r\n → \n` — **jamais le disque brut**.~~
 
 Trois incidents CRLF ont émaillé cette migration, tous corrigés :
 1. régénération manifest lisant le disque CRLF → 17 checksums parasites (faux positifs) ;
@@ -110,7 +115,8 @@ Trois incidents CRLF ont émaillé cette migration, tous corrigés :
 3. normalisation LF de tous les Records sur disque → 18 diffs EOL parasites ; annulée
    (seuls les Records au contenu réellement migré doivent différer).
 
-Que le prochain lecteur ne les redécouvre pas : **octets du blob, jamais le disque.**
+Que le prochain lecteur ne les redécouvre pas — et qu'il n'ait plus à s'en prémunir :
+le `.gitattributes` a supprimé la cause.
 
 ## Note de gouvernance
 

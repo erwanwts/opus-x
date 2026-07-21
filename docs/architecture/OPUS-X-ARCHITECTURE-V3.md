@@ -223,7 +223,10 @@ Un seul Record porte du texte entre son titre et son tableau : celui d'architect
 
 Le dépôt est en CRLF sur poste Windows. Hacher les octets bruts du disque produirait 33 empreintes fausses. Normaliser le dépôt marquerait 33 fichiers comme modifiés sans changement de contenu.
 
-**Méthode retenue :** miroir LF hors dépôt. Ce piège a coûté quatre incidents avant d'être documenté.
+**Méthode retenue :** aucune — la cause a été supprimée. Un `.gitattributes`
+(`* text=auto eol=lf`) normalise l'arbre de travail : disque et blob portent les mêmes
+octets, et le générateur lit le dossier réel du corpus. Ce piège avait coûté **cinq**
+incidents avant d'être traité ; le contournement par miroir LF hors dépôt n'existe plus.
 
 ### 6.3 Absence de contrôle
 

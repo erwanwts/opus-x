@@ -9,9 +9,12 @@
  * sans pilier restait du texte brut, alors même que sa page `/records/{id}` existe
  * et répond 200 — c'est l'écart de maillage mesuré en production.
  *
- * AMENDÉ (Lot D) : la chaîne devient pilier → page Record → texte brut. Les
- * assertions de l'état d'origine sont conservées quand elles tiennent, et
- * REMPLACÉES au grand jour quand elles cèdent, avec l'avant et l'après côte à côte.
+ * AMENDÉ (Lot D) : la chaîne devient pilier → page Record → texte brut, l'étape 2
+ * étant BORNÉE À LA LOCALE CANONIQUE. L'amendement initial étendait le repli à
+ * toutes les locales ; la mesure a établi qu'il ne servait alors QUE le chemin
+ * fr/es, qu'aucune page n'emprunte — les 64 liens gagnés sont tous en `en`. Le
+ * garde-fou d'origine est donc RÉTABLI, et il rouvrira la question de lui-même le
+ * jour où une locale publiera des pages piliers.
  */
 import { describe, it, expect } from 'vitest';
 import { readdirSync } from 'node:fs';
@@ -41,13 +44,19 @@ describe('ÉTAT D’ORIGINE — inchangé par l’amendement', () => {
     );
   });
 
-  it('AMENDÉ — une locale non traduite tombe désormais sur la page Record', () => {
-    // AVANT : null — aucune page d'entité n'était liée depuis /fr ou /es.
-    // APRÈS : /records/ocr-110 — la projection documentaire n'est pas localisée,
-    // elle est donc la bonne cible depuis n'importe quelle locale. C'est un gain,
-    // pas un contournement : la page existe et répond 200.
-    expect(entityHref('OCR-110', 'fr')).toBe('/records/ocr-110');
-    expect(entityHref('OCR-110', 'es')).toBe('/records/ocr-110');
+  it('une locale non traduite ne résout jamais — GARDE-FOU RÉTABLI', () => {
+    // Cette assertion avait été amendée lors de l'extension d'entityHref. La mesure
+    // a établi que l'amendement ne servait QUE le chemin fr/es, qu'aucune page
+    // n'emprunte : les 64 liens gagnés sont tous en `en`. Le garde-fou est donc
+    // rétabli, et l'étape 2 de la chaîne bornée à la locale canonique.
+    expect(entityHref('OCR-110', 'fr')).toBeNull();
+    expect(entityHref('OCR-110', 'es')).toBeNull();
+  });
+
+  it('un Record SANS pilier ne résout pas davantage hors locale canonique', () => {
+    expect(entityHref('OCR-114', 'en')).toBe('/records/ocr-114');
+    expect(entityHref('OCR-114', 'fr')).toBeNull();
+    expect(entityHref('OCR-114', 'es')).toBeNull();
   });
 
   it('un identifiant inconnu ne résout jamais', () => {
@@ -70,6 +79,7 @@ describe('AMENDEMENT — la chaîne de résolution, dans l’ordre strict', () =
     for (const id of RECORD_IDS.filter((x) => !WITH_PILLAR.includes(x))) {
       expect(entityHref(id, 'en'), id).toBe(recordPagePath(id));
       expect(entityHref(id, 'en'), id).not.toContain('/en/');
+      expect(entityHref(id, 'fr'), id).toBeNull(); // borné à la locale canonique
     }
   });
 
@@ -79,7 +89,7 @@ describe('AMENDEMENT — la chaîne de résolution, dans l’ordre strict', () =
     expect(entityHref('OCR-999', 'fr')).toBeNull();
   });
 
-  it('les 33 Records résolvent tous, aucun ne reste muet', () => {
+  it('les 33 Records résolvent tous EN LOCALE CANONIQUE, aucun ne reste muet', () => {
     for (const id of RECORD_IDS) expect(entityHref(id, 'en'), id).not.toBeNull();
   });
 
