@@ -6,6 +6,40 @@ Document pilier · Version définitive · 21 juillet 2026
 
 ---
 
+## RÉGIME DE CE DOCUMENT
+
+**[GRAVÉ]**
+
+> Le document d'architecture est une projection documentaire de référence. Il ne fait pas
+> autorité sur le protocole ; il rassemble, organise et explique les décisions gravées dans
+> le Canonical Corpus et les règles découvertes en attente de normalisation. Il est réédité
+> lorsque l'évolution de l'architecture dépasse un seuil de divergence défini, et non selon
+> une périodicité fixe.
+
+### Deux natures dans ce document
+
+| Nature | Contenu | Traitement à la réédition |
+|---|---|---|
+| **[DÉRIVABLE]** — état réel | nombre de Records, de règles découvertes, de nœuds, état des lots, volumes, métriques | **recalculé** depuis le dépôt |
+| **Synthèse architecturale** | progression logique, explications, justifications, narration | **réécrit** éditorialement |
+
+Les tableaux de chiffres portent la marque **[DÉRIVABLE]**. Le jour d'une réédition, on sait
+sans hésiter ce qui se recalcule et ce qui se réécrit.
+
+### Seuil de réédition
+
+**[GRAVÉ]** Une nouvelle édition est produite si **au moins une** condition est remplie :
+
+- un principe architectural est normalisé ;
+- une partie est restructurée ;
+- une nouvelle surface majeure apparaît ;
+- les métriques structurantes changent significativement (ex. : 33 → 60 Records) ;
+- le document ne reflète plus fidèlement l'architecture courante.
+
+> Ce n'est pas une fréquence. C'est un seuil de divergence.
+
+---
+
 ## STATUT DE CE DOCUMENT
 
 Ce document décrit l'architecture d'Opus X. Il est **définitif** au sens où il ne sera plus restructuré : les architectures futures l'amenderont, elles ne le remplaceront pas.
@@ -129,6 +163,8 @@ Aussi important que ce qu'elle prévoit.
 
 ### 5.1 Contenu
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Objet | Volume | Localisation |
 |---|---:|---|
 | OCR Records | 33 | `docs/web/registry-import/` |
@@ -138,6 +174,8 @@ Aussi important que ce qu'elle prévoit.
 | Manifeste d'intégrité | 33 entrées | `content/registry/_manifest.json` |
 
 ### 5.2 Séries d'identifiants
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Série | Rangs | Objet |
 |---|---|---|
@@ -269,6 +307,8 @@ Le champ de nom canonique n'a pas été retenu : il n'existe que dans 26 Records
 
 **[V3 — décision 2]** Mesurées sur les 33 Records, prouvées exhaustives.
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Construction | Occurrences | Retiré | Préservé |
 |---|---:|---|---|
 | gras | 2 228 | 4 astérisques | le texte |
@@ -326,6 +366,8 @@ Il a aussi révélé un défaut que personne n'avait anticipé : sur cinq Record
 **[GRAVÉ]** *Le graphe est toujours une projection fidèle du corpus publié à un instant donné. Il n'anticipe jamais des faits futurs et ne réécrit jamais des faits passés. Toute publication produit une nouvelle projection, sans modifier les projections antérieures.*
 
 ### 10.2 État
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Métrique | Valeur |
 |---|---|
@@ -393,6 +435,8 @@ Pied de page déclarant la nature de la page
 Il est dérivé du statut. Le jour d'une promotion, il disparaît sans intervention — aucune liste à tenir, aucun drapeau à basculer.
 
 ### 11.4 Périmètre
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Objet | Volume |
 |---|---:|
@@ -563,6 +607,8 @@ Elle couvre les liens du corps, les appels à l'action, les cartes de navigation
 
 ### 17.2 État mesuré
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Page | Liens d'entités | Actifs | Inertes |
 |---|---:|---:|---:|
 | world-skills-protocol | 25 | 6 | 19 |
@@ -667,6 +713,8 @@ Une traduction n'ajoute aucune information normative. Elle ne requiert donc pas 
 
 ### 20.2 État réel mesuré
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Table | Lignes en production |
 |---|---:|
 | Evidence | 0 |
@@ -730,6 +778,8 @@ Translation Pipeline       → application
 
 Sur 47 termes du périmètre :
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Verdict | Volume |
 |---|---:|
 | Établi — entrée de terminologie ou titre de Record | 12 |
@@ -775,6 +825,8 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 
 ### Registre — 11 entrées, toutes au statut découvert
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | # | Règle |
 |---|---|
 | RD-001 | Toute référence interne passe par le résolveur canonique |
@@ -815,6 +867,8 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 
 ### 24.1 En production
 
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
+
 | Surface | État |
 |---|---|
 | Pages publiques | 11, vérifiées |
@@ -824,6 +878,8 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 | Magasin de faits | vide, conforme |
 
 ### 24.2 Lots GEO
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Lot | Objet | État |
 |---|---|---|
@@ -837,6 +893,8 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 | 8 | Automatisation | non commencé |
 
 ### 24.3 Chantiers de gouvernance
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Chantier | État | Bloqueur |
 |---|---|---|
@@ -874,6 +932,8 @@ Gouvernance terminologique ──► Lot 3 (Concepts) ──► Lot 5 (Applicati
 ### Plans du site
 
 **[GRAVÉ]** Une seule décision de gouvernance, deux projections spécialisées.
+
+**[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
 | Plan | Contenu | Volume actuel |
 |---|---|---:|
@@ -932,6 +992,14 @@ Ce délimiteur est présent et constant sur les 33 Records. Rien n'est à défin
 **Retenues :** les onze constructions mesurées, plus les deux règles de frontière, plus la grandeur non blanche.
 
 La liste n'est pas supposée : son application aux 33 Records préserve les 73 séquences sensibles. Toute transformation non listée ferait baisser le compte.
+
+**Réserve de l'architecte.** Cette liste vaut pour le corpus **actuel**. Elle devra évoluer
+si le corpus introduit une construction au-delà des onze.
+
+**Le mécanisme d'alerte existe déjà** : le test d'exhaustivité parcourt les 33 Records et
+**échoue** si une construction non couverte apparaît — avant que le rendu ne la traite au
+jugé. Une douzième construction ne passera donc pas inaperçue ; elle cassera le build.
+
 
 ---
 
