@@ -938,7 +938,11 @@ Gouvernance terminologique ──► Lot 3 (Concepts) ──► Lot 5 (Applicati
 | Plan | Contenu | Volume |
 |---|---|---|
 | Indexation | uniquement les pages indexables | 11 aujourd'hui, remonte avec les promotions |
-| Découverte | tous les Records publiés, quel que soit leur statut | 45 aujourd'hui, 102 à l'issue du Lot D |
+| Découverte | tous les Records publiés, quel que soit leur statut | **103** — 11 éditoriales + l'index `/records` + les 91 pages du registre |
+
+Le décompte de la découverte est **103 et non 102** : l'index `/records` est une URL
+publiée et découvrable, mais il n'est aucune des 91 pages du registre. Mesuré, non
+arrondi.
 
 Le premier remonte vers 102 à mesure des promotions, sans intervention.
 

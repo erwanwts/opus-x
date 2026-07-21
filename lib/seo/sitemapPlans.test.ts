@@ -9,7 +9,7 @@
 import { describe, it, expect } from 'vitest';
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import { indexPlan, discoveryPlan, recordPlanEntries, BASE } from './sitemapPlans';
+import { indexPlan, discoveryPlan, recordPlanEntries, registryPaths, BASE } from './sitemapPlans';
 import { buildRecordPage } from '@/lib/registry/recordPage';
 import { PILLARS } from './pillars';
 
@@ -90,5 +90,31 @@ describe('CHAÎNE DE DÉRIVATION — un seul maillon décisionnel (RD-011)', () 
     const byUrl = new Map(recordPlanEntries().map((r) => [r.url, r.indexable]));
     const inIndex = new Set(indexPlan().map((e) => e.url));
     for (const [url, indexable] of byUrl) expect(inIndex.has(url), url).toBe(indexable);
+  });
+});
+
+describe('L’INSTRUMENT DE VÉRIFICATION — un harnais non testé ne mesure rien', () => {
+  it('énumère EXACTEMENT 92 chemins : l’index + les 91 pages', () => {
+    // Le harnais de contrôle a menti deux fois sur ce lot : CRLF parasites, puis
+    // 92ᵉ ligne non lue faute de saut de ligne final. Le compte est désormais
+    // ASSERTÉ, pas supposé.
+    const paths = registryPaths();
+    expect(paths).toHaveLength(92);
+    expect(paths).toHaveLength(1 + 33 + 37 + 15 + 6);
+  });
+
+  it('aucun chemin vide, aucun doublon, aucun caractère de contrôle', () => {
+    const paths = registryPaths();
+    expect(new Set(paths).size).toBe(paths.length);
+    for (const p of paths) {
+      expect(p.startsWith('/records'), p).toBe(true);
+      expect(p.trim(), p).toBe(p); // ni \r ni espace parasite
+      expect(/[\r\n\t]/.test(p), p).toBe(false);
+    }
+  });
+
+  it('chaque chemin énuméré figure au plan de découverte — les deux dérivent des mêmes sources', () => {
+    const disc = new Set(discoveryPlan().map((e) => e.url.replace(BASE, '')));
+    for (const p of registryPaths()) expect(disc.has(p), p).toBe(true);
   });
 });

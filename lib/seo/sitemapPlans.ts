@@ -106,3 +106,27 @@ export function discoveryPlan(): PlanEntry[] {
     ...allTypes().map((t) => ({ url: `${BASE}${RECORDS_ROOT}/types/${t.id.toLowerCase()}` })),
   ];
 }
+
+/**
+ * ─── L'INSTRUMENT DE VÉRIFICATION ───────────────────────────────────────────
+ * Énumère les chemins du registre à contrôler en production.
+ *
+ * Il existe parce que le harnais a menti une fois : la liste d'URLs était écrite
+ * sur disque en CRLF, chaque chemin traînait un ``, et la boucle de contrôle a
+ * rapporté « 0 / 92 » avant de rapporter « 91 / 92 » — la 92ᵉ ligne n'étant pas
+ * lue faute de saut de ligne final. Les deux fois, l'instrument mesurait autre
+ * chose que ce qu'il annonçait.
+ *
+ * **Un instrument non testé ne mesure rien.** Cette fonction est donc dérivée des
+ * MÊMES sources que les routes, et son test vérifie que le nombre de chemins
+ * ÉNUMÉRÉS égale le nombre attendu — sinon il échoue.
+ */
+export function registryPaths(): string[] {
+  return [
+    RECORDS_ROOT,
+    ...recordPlanEntries().map((r) => r.url.replace(BASE, '')),
+    ...allPredicates().map((p) => `${RECORDS_ROOT}/predicates/${p.id.toLowerCase()}`),
+    ...allFamilies().map((f) => `${RECORDS_ROOT}/families/${f.id}`),
+    ...allTypes().map((t) => `${RECORDS_ROOT}/types/${t.id.toLowerCase()}`),
+  ];
+}

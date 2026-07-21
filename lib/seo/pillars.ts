@@ -10,6 +10,8 @@
  * sitemap et des hreflang.
  * =====================================================================
  */
+import { hasRecordPage, recordPagePath } from '@/lib/registry/publishedRecords';
+
 export interface Pillar {
   slug: string;
   recordId: string | null; // Record OCR source (null = page sans Record dédié)
@@ -46,14 +48,28 @@ export function pillarBySlug(slug: string): Pillar | undefined {
 }
 
 /**
- * SOURCE UNIQUE de vérité pour les liens d'entités (les 12 pages en héritent).
- * Un OCR-id ne devient un lien QUE s'il a une page pilier PUBLIÉE dans la locale
- * courante (registre PILLARS). Sinon → null (texte brut, JAMAIS de lien /api/).
- * Les pages non encore publiées se lieront automatiquement dès leur ajout à PILLARS.
+ * SOURCE UNIQUE de vérité pour les liens d'entités.
+ *
+ * CHAÎNE DE RÉSOLUTION STRICTE, dans cet ordre :
+ *   1. **page pilier** si elle existe dans la locale courante (registre PILLARS) —
+ *      c'est la fiche éditoriale du concept, la plus riche pour un lecteur ;
+ *   2. sinon **page Record** si `/records/{id}` est réellement générée — la
+ *      projection documentaire, non localisée ;
+ *   3. sinon **`null`** : texte brut, et la lacune est déclarée par l'appelant.
+ *
+ * AUCUNE DESTINATION FABRIQUÉE. L'existence de la page Record est lue au même
+ * endroit que `generateStaticParams` de la route : jamais un `href` vers une page
+ * non générée.
+ *
+ * Pourquoi le pilier d'abord : les deux surfaces coexistent pour les 7 Records qui
+ * ont une fiche. Le pilier interprète, la page Record restitue — l'ordre de la
+ * chaîne dit lequel sert le lecteur en premier, sans jamais masquer l'autre.
  */
 export function entityHref(ocrId: string, locale: string): string | null {
   const p = PILLARS.find((x) => x.recordId === ocrId && x.translatedLocales.includes(locale));
-  return p ? `/${locale}/${p.slug}` : null;
+  if (p) return `/${locale}/${p.slug}`;
+  if (hasRecordPage(ocrId)) return recordPagePath(ocrId);
+  return null;
 }
 
 /**
