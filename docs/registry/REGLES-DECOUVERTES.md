@@ -5,11 +5,13 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Sept entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> **Dix entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
-> plausible n'est pas une source vérifiée) · RD-007 (cycle de publication normative).
+> plausible n'est pas une source vérifiée) · RD-007 (cycle de publication normative) ·
+> RD-008 (le code révèle, la gouvernance décide) · RD-009 (une projection n'établit rien) ·
+> RD-010 (découplage constat / décision / projection).
 >
 > Ce registre tient lieu d'**Architectural Decisions Backlog** — voir la section
 > « Correspondance » pour la réconciliation des deux décomptes.
@@ -254,6 +256,69 @@ sur 33** soient aujourd'hui en `Draft`, et donc que 91 pages soient en `noindex`
 
 Voir [DOSSIER-promotion-cycle-1.md](DOSSIER-promotion-cycle-1.md) — la mesure qui ouvre
 le Cycle 1.
+
+---
+
+## RD-008 — Le code révèle, la gouvernance décide
+
+**Formulation verbatim (architecte)**
+
+> « Le code sert à révéler les conséquences d'une implémentation ; la gouvernance décide
+> ensuite si cette implémentation exprime correctement les principes. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Cycle 1 de promotion — décision sur la signification de l'empreinte |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Séquence** : constater le comportement réel · le comparer aux principes · décider ensuite.
+
+*Note de traçabilité* : cette entrée avait été demandée dans un mandat sans être formulée,
+d'où le saut de numérotation entre RD-007 et RD-009 relevé lors de la réconciliation. Le
+numéro est rétabli à sa place chronologique.
+
+---
+
+## RD-009 — Une projection n'établit rien
+
+**Formulation verbatim (architecte)**
+
+> « Une projection peut organiser, relier, présenter et agréger des informations ; elle ne
+> peut jamais établir un fait, prendre une décision de gouvernance ou produire une nouvelle
+> norme. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Terminology Governance — décision sur le statut du Canonical Dictionary |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+Elle borne ce qu'une page de Registry, le Knowledge Graph et le futur dictionnaire ont le
+droit de faire : présenter, jamais établir.
+
+---
+
+## RD-010 — Découplage constat / décision / projection
+
+**Formulation verbatim (architecte)**
+
+> « Les fonctions de constat, de décision et de projection doivent rester découplées. Une
+> mesure ne décide pas, une décision ne se projette pas elle-même, et une projection
+> n'établit jamais ce qu'elle représente. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Terminology Governance — décision sur le porteur de la Translation Policy |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+Elle généralise RD-009 en y ajoutant le **constat** : c'est la règle qui sépare l'audit
+terminologique (mesure), la qualification (décision) et le dictionnaire (projection) — et
+qui interdit qu'un même document remplisse deux de ces fonctions.
 
 ---
 
