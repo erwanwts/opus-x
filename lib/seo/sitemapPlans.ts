@@ -31,6 +31,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { PILLARS } from './pillars';
 import { buildRecordPage, RECORDS_ROOT } from '@/lib/registry/recordPage';
+import { allPredicates, allFamilies, allTypes } from '@/lib/registry/registryEntities';
 
 export const BASE = 'https://opusx.world';
 
@@ -100,5 +101,8 @@ export function discoveryPlan(): PlanEntry[] {
     ...editorialEntries(),
     { url: `${BASE}${RECORDS_ROOT}` },
     ...recordPlanEntries().map((r) => ({ url: r.url })),
+    ...allPredicates().map((p) => ({ url: `${BASE}${RECORDS_ROOT}/predicates/${p.id.toLowerCase()}` })),
+    ...allFamilies().map((f) => ({ url: `${BASE}${RECORDS_ROOT}/families/${f.id}` })),
+    ...allTypes().map((t) => ({ url: `${BASE}${RECORDS_ROOT}/types/${t.id.toLowerCase()}` })),
   ];
 }

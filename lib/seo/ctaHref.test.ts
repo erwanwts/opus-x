@@ -7,14 +7,23 @@
  * CTA_ENABLED est false, elle deviendrait un 404 vivant le jour où le flag bascule.
  */
 import { describe, it, expect } from 'vitest';
-import { ctaHref, PILLARS } from './pillars';
+import { ctaHref, PILLARS, PUBLISHED_PUBLIC_PATHS } from './pillars';
 
 describe('ctaHref — le cas null', () => {
   it('destination dont la page N’EXISTE PAS → null (jamais un lien mort)', () => {
     // Destinations citées par les archétypes, sans page publiée à ce jour.
     expect(ctaHref('/graph', 'en')).toBeNull();
-    expect(ctaHref('/records', 'en')).toBeNull();
     expect(ctaHref('/dictionary', 'en')).toBeNull();
+  });
+
+  it('AMENDEMENT EXPLICITE — /records résout depuis la publication de l’index', () => {
+    // Cette assertion figeait `/records` en null tant que la page n'existait pas.
+    // L'index du corpus étant publié (Lot D), elle est amendée AU GRAND JOUR :
+    // la destination résout désormais SANS préfixe de locale, car un Record est en
+    // anglais et le restera. Les 4 CTA gravés par l'architecte s'activent d'eux-mêmes.
+    expect(ctaHref('/records', 'en')).toBe('/records');
+    expect(ctaHref('/records', 'fr')).toBe('/records'); // aucune locale : c'est le point
+    expect(PUBLISHED_PUBLIC_PATHS.has('/records')).toBe(true);
   });
 
   it('destination vide → null (aucun href fabriqué)', () => {

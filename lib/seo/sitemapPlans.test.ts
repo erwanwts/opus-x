@@ -51,15 +51,21 @@ describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
 });
 
 describe('PLAN DE DÉCOUVERTE — tout le corpus publié', () => {
-  it('compte 45 URLs : 11 éditoriales + l’index + les 33 Records', () => {
+  it('compte 103 URLs : 11 éditoriales + l’index + les 91 pages du registre', () => {
+    // ⚠️ ÉCART SIGNALÉ : l'architecture annonce 102 (11 + 91). Le 103ᵉ est l'INDEX
+    // /records lui-même, qui n'est aucune des 91 pages mais est bien une URL
+    // publiée et découvrable. Mesuré, non arrondi.
     const plan = discoveryPlan();
-    expect(plan).toHaveLength(11 + 1 + 33);
-    expect(plan).toHaveLength(45);
+    expect(plan).toHaveLength(11 + 1 + 91);
+    expect(plan).toHaveLength(103);
   });
 
-  it('expose les 33 Records, y compris ceux en noindex', () => {
+  it('expose les 91 pages du registre, y compris les 33 en noindex', () => {
     const urls = discoveryPlan().map((e) => e.url);
     expect(urls.filter((u) => /\/records\/ocr-\d+$/.test(u))).toHaveLength(33);
+    expect(urls.filter((u) => u.includes('/records/predicates/'))).toHaveLength(37);
+    expect(urls.filter((u) => u.includes('/records/families/'))).toHaveLength(15);
+    expect(urls.filter((u) => u.includes('/records/types/'))).toHaveLength(6);
     expect(urls).toContain(`${BASE}/records`);
   });
 
