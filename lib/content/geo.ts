@@ -24,7 +24,7 @@
  */
 import { loadRecord } from '@/lib/registry/source';
 import { graphNeighborhood } from '@/lib/registry/api';
-import { entityHref } from '@/lib/seo/pillars';
+import { entityHref, ctaHref } from '@/lib/seo/pillars';
 import { CTA_ENABLED } from '@/lib/seo/flags';
 
 // ─── Modèle de texte riche ─────────────────────────────────────────────────
@@ -65,7 +65,8 @@ export interface GeoPageContent {
   sources: string[]; // sources normatives (références — plain)
   meta: { version: string; author: string; date: string; status: string };
   entityLinks: EntityLink[]; // liens entités (depuis le graphe)
-  cta: { label: string; href: string; enabled: boolean }; // éditorial/UI (paramètre)
+  /** CTA éditorial/UI. `href` RÉSOLU : null = destination inexistante → libellé inerte. */
+  cta: { label: string; href: string | null; enabled: boolean };
   /**
    * Sections canoniques SANS source dans le Record (une absence est une information).
    * INSTRUMENT DE TRAÇABILITÉ INTERNE UNIQUEMENT : consommé par le journal de build,
@@ -294,8 +295,10 @@ export function buildGeoContent(
     },
     entityLinks,
     // `enabled` vient EXCLUSIVEMENT du flag unique lib/seo/flags — la page ne fournit
-    // que label + href ; elle ne peut pas rendre le CTA actif localement.
-    cta: { label: cta.label, href: cta.href, enabled: CTA_ENABLED },
+    // que label + destination ; elle ne peut pas rendre le CTA actif localement.
+    // La DESTINATION est RÉSOLUE (ctaHref) : elle ne devient un href que si la cible
+    // existe. Absente → null → libellé inerte, jamais un lien mort.
+    cta: { label: cta.label, href: ctaHref(cta.href, locale), enabled: CTA_ENABLED },
   };
 
   // Traçabilité des sections sans source (null → omises au rendu). Section canonique →
@@ -310,6 +313,9 @@ export function buildGeoContent(
   const _gaps = SECTION_OF.filter(([k]) => (content[k] as unknown[]).length === 0).map(([, title]) => title);
   // CTA éditorial : absent si son libellé n'est pas gravé (pillars.ctaLabel). Tracé.
   if (!content.cta.label) _gaps.push('CTA');
+  // Destination citée mais non résolue (page absente de PILLARS) : le libellé restera
+  // INERTE. Trou tracé — jamais comblé par une destination de substitution.
+  else if (!content.cta.href) _gaps.push(`CTA-destination:${cta.href}`);
   // eslint-disable-next-line no-console
   console.log(`[geo:gaps] ${slug} (${recordId}): ${_gaps.length ? _gaps.join(', ') : 'none'}`);
 

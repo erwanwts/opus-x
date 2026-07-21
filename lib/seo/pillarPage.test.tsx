@@ -38,7 +38,10 @@ const EXPECTED_H1: Record<string, string> = {
 
 const strip = (s: string) => s.replace(/<[^>]+>/g, '').trim();
 
-describe.each(PILLARS.map((p) => p.slug))('page pilier /%s', (slug) => {
+// Fiches concept UNIQUEMENT : une entrée de PILLARS sans `recordId` est un ARCHÉTYPE
+// éditorial (Knowledge Graph, Developers, Questions). Il ne se projette d'aucun Record,
+// n'a ni sections canoniques ni FAQ dérivée — il est couvert par archetypePage.test.
+describe.each(PILLARS.filter((p) => p.recordId).map((p) => p.slug))('page pilier /%s', (slug) => {
   it('rend correctement (H1, ordre gravé, 0 fuite _gaps, 4 blocs JSON-LD)', async () => {
     const el = await pillarRoute(slug).Page({ params: Promise.resolve({ locale: 'en' }) });
     const html = renderToStaticMarkup(el);

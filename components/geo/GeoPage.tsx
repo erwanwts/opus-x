@@ -194,7 +194,7 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
              `enabled` (flag lib/seo/flags) bascule lien actif / libellé inerte. */}
         {c.cta.label ? (
           <div className="mt-12 border-t border-navy-800 pt-8">
-            {c.cta.enabled ? (
+            {c.cta.enabled && c.cta.href ? (
               <a href={c.cta.href} className="inline-flex items-center gap-2 rounded-control border border-navy-600 bg-navy-800 px-4 py-2 font-interface text-body text-navy-100 hover:border-navy-400">
                 {c.cta.label} →
               </a>

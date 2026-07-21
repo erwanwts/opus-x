@@ -31,6 +31,14 @@ export const PILLARS: Pillar[] = [
   { slug: 'frameworks', recordId: 'OCR-115', translatedLocales: ['en'], ctaLabel: 'View the Framework Registry Entry' },
   { slug: 'registry', recordId: 'OCR-124', translatedLocales: ['en'], ctaLabel: 'Explore the Canonical Registry' },
   { slug: 'verification', recordId: 'OCR-107', translatedLocales: ['en'], ctaLabel: 'View the Verification Registry Entry' },
+  // ARCHÉTYPES ÉDITORIAUX — pas de Record source (`recordId: null`) : leur prose est
+  // livrée par l'architecte, elle ne se projette pas d'un OCR. Ils entrent au registre
+  // pour la MÊME raison que les piliers : sitemap, generateStaticParams et résolution
+  // des liens (pillarHrefBySlug / ctaHref) restent synchrones PAR CONSTRUCTION.
+  // `ctaLabel` absent : leur CTA est porté par leur propre contenu, pas par le registre.
+  { slug: 'knowledge-graph', recordId: null, translatedLocales: ['en'] },
+  { slug: 'developers', recordId: null, translatedLocales: ['en'] },
+  { slug: 'questions', recordId: null, translatedLocales: ['en'] },
 ];
 
 export function pillarBySlug(slug: string): Pillar | undefined {
@@ -58,4 +66,31 @@ export function entityHref(ocrId: string, locale: string): string | null {
 export function pillarHrefBySlug(slug: string, locale: string): string | null {
   const p = PILLARS.find((x) => x.slug === slug && x.translatedLocales.includes(locale));
   return p ? `/${locale}/${p.slug}` : null;
+}
+
+/**
+ * Résout la DESTINATION d'un CTA — même discipline que `entityHref` et
+ * `pillarHrefBySlug` : on ne lie que ce qui existe, on n'invente jamais.
+ *
+ * Un CTA qui recopie sa destination sans la résoudre est un LIEN MORT EN PUISSANCE :
+ * inoffensif tant que `CTA_ENABLED` est false (libellé inerte, aucun href émis), il
+ * devient un 404 vivant le jour où le flag bascule. La résolution supprime ce risque
+ * à la source.
+ *
+ *   • `/api/...` → route générée par le dépôt, elle EXISTE → destination conservée ;
+ *   • `#ancre`   → cible interne à la page → conservée ;
+ *   • sinon      → traitée comme un SLUG de page de site, résolu par PILLARS.
+ *                  Absent du registre → `null` : le libellé s'affiche INERTE, jamais
+ *                  un lien. Le jour où la page entre dans PILLARS, le lien s'active
+ *                  de lui-même — aucune retouche éditoriale, aucune dette à retirer.
+ *
+ * AUCUNE SUBSTITUTION. Une destination absente n'est jamais remplacée par une
+ * destination voisine : « ne jamais combler une absence documentaire par une
+ * hypothèse ». Elle est tracée dans `_gaps` et attend que la page existe.
+ */
+export function ctaHref(destination: string, locale: string): string | null {
+  if (!destination) return null;
+  if (destination.startsWith('/api/')) return destination;
+  if (destination.startsWith('#')) return destination;
+  return pillarHrefBySlug(destination.replace(/^\/+/, ''), locale);
 }

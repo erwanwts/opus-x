@@ -13,7 +13,7 @@
  * =====================================================================
  */
 import { loadRecord } from '@/lib/registry/source';
-import { PILLARS, pillarHrefBySlug } from '@/lib/seo/pillars';
+import { PILLARS, pillarHrefBySlug, ctaHref } from '@/lib/seo/pillars';
 
 export interface ReadingPathLink {
   name: string;
@@ -32,8 +32,9 @@ export interface HomepageContent {
   hero: {
     h1: string;
     valueProp: string;
-    ctaPrimary: { label: string; href: string };
-    ctaSecondary: { label: string; href: string };
+    /** `href` RÉSOLU : null = la page n'existe pas → libellé inerte (RD-001). */
+    ctaPrimary: { label: string; href: string | null };
+    ctaSecondary: { label: string; href: string | null };
   };
   whyExists: string[];
   foundationsIntro: string;
@@ -42,7 +43,7 @@ export interface HomepageContent {
   readingPaths: ReadingPath[];
   resourcesIntro: string;
   resources: ResourceLink[];
-  finalCta: { label: string; href: string };
+  finalCta: { label: string; href: string | null };
   signature: { contentVersion: string; editorialStatus: string; publisher: string; language: string };
   _gaps: string[];
 }
@@ -156,6 +157,13 @@ function pillarTitle(recordId: string | null): string {
 export function buildHomepage(locale: string): HomepageContent {
   const gaps: string[] = [];
 
+  /** Résout une destination de CTA et trace l'absence — jamais de substitution. */
+  const cta = (destination: string): string | null => {
+    const href = ctaHref(destination, locale);
+    if (!href) gaps.push(`cta:${destination}`);
+    return href;
+  };
+
   const readingPaths: ReadingPath[] = READING_PATHS.map((p) => ({
     audience: p.audience,
     text: p.text,
@@ -167,7 +175,12 @@ export function buildHomepage(locale: string): HomepageContent {
     }),
   }));
 
-  const resources: ResourceLink[] = PILLARS.map((p) => ({
+  // « Explore the Resources » liste les COMPOSANTS de l'écosystème — des fiches
+  // concept, dont le libellé EST le Canonical Name de leur Record. Les archétypes
+  // éditoriaux (Knowledge Graph, Developers, Questions) n'ont pas de Record : les
+  // inclure produirait des libellés vides. Ils restent joignables par les Reading
+  // Paths, qui les nomment explicitement.
+  const resources: ResourceLink[] = PILLARS.filter((p) => p.recordId).map((p) => ({
     title: pillarTitle(p.recordId),
     href: pillarHrefBySlug(p.slug, locale),
   }));
@@ -179,8 +192,11 @@ export function buildHomepage(locale: string): HomepageContent {
     hero: {
       h1: HERO_H1,
       valueProp: HERO_VALUE,
-      ctaPrimary: { label: 'Start with the Professional Passport', href: `/${locale}/professional-passport` },
-      ctaSecondary: { label: 'Explore the Foundations', href: '#platform' },
+      // RD-001 — l'adresse n'est plus FABRIQUÉE par concaténation : elle est résolue
+      // par le registre. Une page absente de PILLARS (ou non traduite dans la locale)
+      // rend le CTA inerte au lieu de produire un lien mort silencieux.
+      ctaPrimary: { label: 'Start with the Professional Passport', href: cta('/professional-passport') },
+      ctaSecondary: { label: 'Explore the Foundations', href: cta('#platform') },
     },
     whyExists: WHY_EXISTS,
     foundationsIntro: FOUNDATIONS_INTRO,
@@ -189,7 +205,7 @@ export function buildHomepage(locale: string): HomepageContent {
     readingPaths,
     resourcesIntro: RESOURCES_INTRO,
     resources,
-    finalCta: { label: 'Explore the World Skills Protocol', href: `/${locale}/world-skills-protocol` },
+    finalCta: { label: 'Explore the World Skills Protocol', href: cta('/world-skills-protocol') },
     signature: { contentVersion: '1.0.0', editorialStatus: 'Draft', publisher: 'Opus X', language: 'English' },
     _gaps: gaps,
   };
