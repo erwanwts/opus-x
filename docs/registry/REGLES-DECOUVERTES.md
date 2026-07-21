@@ -5,11 +5,11 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Six entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> **Sept entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
-> plausible n'est pas une source vérifiée).
+> plausible n'est pas une source vérifiée) · RD-007 (cycle de publication normative).
 >
 > Ce registre tient lieu d'**Architectural Decisions Backlog** — voir la section
 > « Correspondance » pour la réconciliation des deux décomptes.
@@ -212,6 +212,48 @@ identifiants réels ; **une case vide est une information**, un identifiant appr
 une régression. Trace conservée intacte dans
 [TERMINOLOGY-BACKLOG.md](TERMINOLOGY-BACKLOG.md) — 20 mentions `⚠️ NON VÉRIFIÉ`, aucune
 corrigée ni supprimée.
+
+---
+
+## RD-007 — Cycle de publication normative
+
+**Formulation verbatim (architecte)**
+
+> `Authoring → Review → Validation → Promotion → Publication → Indexation`
+>
+> « Publication décrit l'existence du Record. Promotion décrit sa qualification
+> documentaire. Indexation décrit son exposition aux moteurs. »
+>
+> « Un Record existe déjà avant sa promotion : il est servi par l'API, il est connu du
+> corpus, il est accessible. La promotion ne le crée pas, elle modifie son statut
+> documentaire. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | LOT GEO 2 — Registry public ; ouverture du Cycle 1 de promotion |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**Ce que la règle sépare.** Trois notions étaient jusqu'ici confondues sous le mot
+« publier ». La distinction les rend indépendantes : un Record peut être **publié** (il
+existe, l'API le sert) sans être **promu** (son statut documentaire reste `Draft`), et
+promu sans être **indexé** (son exposition aux moteurs est une décision distincte).
+
+**Conséquence directe dans le code.** La valeur `robots` d'une page de projection est
+**dérivée du statut du Record**, jamais codée en dur : `Draft` → `noindex,follow` ;
+à la promotion → `index,follow`. Le jour où un Record est promu, sa page devient
+indexable **sans intervention**. L'indexation suit la promotion, elle ne la précède pas
+et ne s'y substitue pas.
+
+**Ce que la règle interdit implicitement.** Faire évoluer le seuil d'indexation pour
+compenser un état de gouvernance — « faire évoluer la règle pour compenser un problème de
+gouvernance affaiblirait la signification du statut `Draft` ». Le fait que **33 Records
+sur 33** soient aujourd'hui en `Draft`, et donc que 91 pages soient en `noindex`, est un
+**résultat attendu et déterministe**, pas un défaut à contourner.
+
+Voir [DOSSIER-promotion-cycle-1.md](DOSSIER-promotion-cycle-1.md) — la mesure qui ouvre
+le Cycle 1.
 
 ---
 
