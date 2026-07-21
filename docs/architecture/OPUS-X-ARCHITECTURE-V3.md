@@ -461,7 +461,7 @@ Il est dérivé du statut. Le jour d'une promotion, il disparaît sans intervent
 | `/api/graph` | graphe | 80 nœuds, 222 arêtes |
 | `/api/graph/{id}` | nœud | nœud et voisinage |
 | `/api/concepts` | index | concepts déclarés |
-| `/api/concepts/{slug}` | concept | définition, alias, statut sémantique |
+| `/api/concepts/{slug}` | concept | définition, alias, statut sémantique — tous nuls aujourd'hui et tracés comme lacunes, conformément à la règle de dérivation |
 
 **[GRAVÉ]** Les trois familles en lecture sont explorables. Les routes d'écriture et l'espace privé demeurent interdits.
 
@@ -571,7 +571,7 @@ Avant de créer une page, il faut pouvoir répondre :
 /                              → 307 vers /en
 /{locale}                      → homepage
 /{locale}/{pilier}             → 7 piliers + 3 archétypes
-/{locale}/concepts/{slug}      → bibliothèque de concepts
+/concepts/{slug}               → bibliothèque de concepts
 
 /records                       → index du Canonical Corpus
 /records/{id}                  → page Record
@@ -668,7 +668,7 @@ L'anglais fait seul autorité. Une divergence signifie que la projection est pé
 
 Le point critique est le **verrouillage du vocabulaire canonique** : les termes canoniques ne sont jamais traduits, en aucune langue.
 
-**Dépendance mesurée.** La liste des termes à verrouiller est dérivable de trois sources déjà publiées — 33 titres, 42 concepts du graphe, 111 termes de sections terminologiques — soit 152 termes après union. Mais 64 d'entre eux sont aussi des mots anglais courants employés en minuscules dans le corpus. Un verrouillage par correspondance littérale est irréalisable : il buterait sur la casse.
+**Dépendance mesurée.** La liste des termes à verrouiller est dérivable de trois sources déjà publiées — 33 titres, 42 concepts du graphe, 111 termes de sections terminologiques — soit 152 termes après union. Mais 60 d'entre eux sont aussi des mots anglais courants employés en minuscules dans le corpus. Un verrouillage par correspondance littérale est irréalisable : il buterait sur la casse.
 
 **La faisabilité est acquise pour 92 termes sur 152.** Les 60 autres exigent une règle de désambiguïsation qui relève du chantier terminologique.
 
@@ -900,7 +900,7 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 |---|---|---|
 | Relecture du Record d'architecture | ouverte | architecte |
 | Cycle 1 de promotion | 33 Records répartis en 3 phases | architecte |
-| Gouvernance terminologique | 3 documents produits | 94 arbitrages |
+| Gouvernance terminologique | 3 documents produits | 54 termes, deux décisions chacun |
 | Normalisation | 11 règles découvertes | relecture du Record |
 
 ---
