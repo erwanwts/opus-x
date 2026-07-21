@@ -1,0 +1,25 @@
+# =====================================================================
+# Opus X — Convention de fins de ligne
+# =====================================================================
+# Les blobs du dépôt sont en LF ; sans cette règle, le checkout Windows les
+# écrit en CRLF sur le disque. Or les checksums d'intégrité du corpus
+# (_manifest.json, MANIFEST-OCR.json, golden) sont des sha256 du contenu LF :
+# tout outil lisant le disque brut produisait des checksums divergents.
+#
+# Ce piège a coûté QUATRE incidents avant d'être documenté, puis un cinquième
+# (URLs de vérification écrites en CRLF, boucle de contrôle rapportant 0/92).
+# La règle le supprime à la source : disque et blob portent désormais les mêmes
+# octets, et un générateur peut lire l'un pour l'autre.
+#
+# AUCUN CHECKSUM NE CHANGE : ils hachent le blob, qui était déjà en LF. Seule la
+# représentation sur disque est normalisée.
+* text=auto eol=lf
+
+# Binaires — jamais convertis.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
