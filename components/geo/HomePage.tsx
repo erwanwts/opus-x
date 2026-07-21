@@ -40,6 +40,38 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   return <h2 className="font-institutional text-h2 font-semibold text-navy-50">{children}</h2>;
 }
 
+/**
+ * CTA de la Homepage. RD-001 — « toute référence interne à un artefact est soumise au
+ * résolveur canonique ; si l'artefact n'existe pas, la référence n'est pas activée et
+ * l'absence est signalée ». `href` nul → libellé INERTE, aucun href émis. Le lien
+ * s'active de lui-même le jour où la page entre dans PILLARS.
+ */
+function HomeCta({
+  cta,
+  active,
+  inert,
+  arrow = false,
+}: {
+  cta: { label: string; href: string | null };
+  active: string;
+  inert: string;
+  arrow?: boolean;
+}) {
+  if (!cta.href) {
+    return (
+      <span aria-disabled="true" className={inert}>
+        {cta.label}
+      </span>
+    );
+  }
+  return (
+    <a href={cta.href} className={active}>
+      {cta.label}
+      {arrow ? ' →' : ''}
+    </a>
+  );
+}
+
 export function HomePage({ content: c }: { content: HomepageContent }) {
   return (
     <main className="min-h-screen bg-navy-950 text-navy-100">
@@ -53,12 +85,16 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
             {c.hero.valueProp}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href={c.hero.ctaPrimary.href} className="inline-flex items-center rounded-control bg-navy-50 px-6 py-3 font-institutional text-body font-semibold text-navy-900 transition-colors hover:bg-navy-100">
-              {c.hero.ctaPrimary.label}
-            </a>
-            <a href={c.hero.ctaSecondary.href} className="inline-flex items-center rounded-control border border-navy-600 px-6 py-3 font-interface text-body text-navy-100 transition-colors hover:border-navy-400">
-              {c.hero.ctaSecondary.label}
-            </a>
+            <HomeCta
+              cta={c.hero.ctaPrimary}
+              active="inline-flex items-center rounded-control bg-navy-50 px-6 py-3 font-institutional text-body font-semibold text-navy-900 transition-colors hover:bg-navy-100"
+              inert="inline-flex cursor-default items-center rounded-control bg-navy-900/40 px-6 py-3 font-institutional text-body font-semibold text-navy-500"
+            />
+            <HomeCta
+              cta={c.hero.ctaSecondary}
+              active="inline-flex items-center rounded-control border border-navy-600 px-6 py-3 font-interface text-body text-navy-100 transition-colors hover:border-navy-400"
+              inert="inline-flex cursor-default items-center rounded-control border border-navy-800 px-6 py-3 font-interface text-body text-navy-500"
+            />
           </div>
         </section>
 
@@ -128,9 +164,12 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 7 · FINAL CTA ── */}
         <section className="border-t border-navy-800 py-breathe-lg">
-          <a href={c.finalCta.href} className="inline-flex items-center gap-2 rounded-control bg-navy-50 px-6 py-3 font-institutional text-body font-semibold text-navy-900 transition-colors hover:bg-navy-100">
-            {c.finalCta.label} →
-          </a>
+          <HomeCta
+            cta={c.finalCta}
+            arrow
+            active="inline-flex items-center gap-2 rounded-control bg-navy-50 px-6 py-3 font-institutional text-body font-semibold text-navy-900 transition-colors hover:bg-navy-100"
+            inert="inline-flex cursor-default items-center gap-2 rounded-control bg-navy-900/40 px-6 py-3 font-institutional text-body font-semibold text-navy-500"
+          />
         </section>
 
         {/* ── Signature éditoriale (archétype) — SANS Last Updated tant que Draft. ── */}

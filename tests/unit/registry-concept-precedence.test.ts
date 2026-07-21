@@ -11,7 +11,6 @@
  * tests vérifient uniquement l'ORDRE de résolution, jamais une inférence.
  */
 import { describe, it, expect } from 'vitest';
-// @ts-expect-error — module de script (.mjs), sans déclaration de types
 import { makeParseNodeRef } from '../../scripts/registry/node-ref.mjs';
 
 /** Tables minimales reproduisant la configuration réelle du corpus. */
