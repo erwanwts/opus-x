@@ -317,16 +317,24 @@ export function buildGeoContent(
   // INERTE. Trou tracé — jamais comblé par une destination de substitution.
   else if (!content.cta.href) _gaps.push(`CTA-destination:${cta.href}`);
 
-  // LACUNE OUVERTE — lien cross-registre. Une page LOCALISÉE qui renvoie vers une
-  // page Record NON LOCALISÉE fait franchir au lecteur une frontière de régime
-  // d'adressage : il quitte `/​{locale}/…` pour `/records/…`, et passe d'une fiche
-  // éditoriale à une projection documentaire. Le lien est techniquement valide —
-  // la page existe, elle répond — mais son opportunité ÉDITORIALE n'est pas
-  // qualifiée : rien n'a encore décidé si un lecteur d'une page pilier doit être
-  // conduit vers le corpus brut, ni comment l'y préparer.
+  // LACUNE OUVERTE — franchissement de RÉGIME D'ADRESSAGE.
+  //
+  // Le document d'architecture (§16.1) nomme trois régimes : LOCALISÉ
+  // (`/{locale}/{slug}`), CANONIQUE (`/{namespace}/{id}`) et TECHNIQUE (`/api/…`).
+  // Ces liens partent d'une page du régime localisé et mènent au régime canonique.
+  //
+  // Ce n'est PAS une question de langue. La destination n'est pas « dans une autre
+  // langue » : elle est NON LOCALISÉE PAR CONSTRUCTION — un Record est en anglais
+  // et le restera, il n'a pas de variante par locale et n'en aura pas. Le lecteur
+  // ne change pas de langue, il change de régime d'adressage, et du même coup de
+  // nature de page : d'une fiche éditoriale à une projection documentaire brute.
+  //
+  // Le lien est TECHNIQUEMENT valide — la page existe, elle répond. C'est son
+  // opportunité ÉDITORIALE qui n'est pas qualifiée : rien n'a décidé si un lecteur
+  // d'une page pilier doit être conduit vers le corpus, ni comment l'y préparer.
   // Déclaré comme lacune, PAS comme acquis. Journal de build uniquement.
   for (const l of content.entityLinks) {
-    if (l.href?.startsWith('/records/')) _gaps.push(`cross-locale-link:${l.id}`);
+    if (l.href?.startsWith('/records/')) _gaps.push(`localized-to-canonical-link:${l.id}`);
   }
   // eslint-disable-next-line no-console
   console.log(`[geo:gaps] ${slug} (${recordId}): ${_gaps.length ? _gaps.join(', ') : 'none'}`);

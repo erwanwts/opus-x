@@ -131,7 +131,7 @@ Aucune ligne de code n'a été écrite au titre de cette entrée.
 
 ---
 
-## DETTE ÉDITORIALE — le lien cross-registre depuis une page localisée
+## DETTE ÉDITORIALE — franchissement de régime d'adressage (localisé → canonique)
 
 **Ouverte le** 2026-07-21, à l'occasion de l'extension d'`entityHref` (Lot GEO 2).
 
@@ -140,12 +140,19 @@ des pages piliers mènent à une page Record. Le lien est **techniquement valide
 page existe, elle répond 200, et aucun `href` ne pointe vers une page non générée.
 
 Mais il fait franchir au lecteur **deux frontières à la fois** : il quitte le régime
-localisé `/{locale}/…` pour le régime canonique `/records/…`, et passe d'une **fiche
-éditoriale** à une **projection documentaire brute**. Rien n'a encore décidé si un
-lecteur d'une page pilier doit être conduit vers le corpus, ni comment l'y préparer.
+**localisé** `/{locale}/…` pour le régime **canonique** `/records/…` (§16.1 du document
+d'architecture), et passe d'une **fiche éditoriale** à une **projection documentaire
+brute**. Rien n'a encore décidé si un lecteur d'une page pilier doit être conduit vers le
+corpus, ni comment l'y préparer.
 
-**Déclaré comme lacune, pas comme acquis** : chaque lien émet `cross-locale-link:{id}`
-dans `_gaps` — journal de build, jamais rendu. Le compte y est visible page par page.
+**Ce n'est pas une question de langue.** La destination n'est pas « dans une autre
+langue » : elle est **non localisée par construction** — un Record est en anglais et le
+restera, il n'a pas de variante par locale et n'en aura pas. Le lecteur ne change pas de
+langue, il change de **régime d'adressage**.
+
+**Déclaré comme lacune, pas comme acquis** : chaque lien émet
+`localized-to-canonical-link:{id}` dans `_gaps` — journal de build, jamais rendu. Le
+compte y est visible page par page.
 
 **À qualifier éditorialement.** Aucune correction appliquée : le lien reste actif, la
 lacune reste ouverte.
