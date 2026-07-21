@@ -4,6 +4,8 @@ Registre des correctifs **identifiés, non appliqués**, chacun à traiter pour 
 Un amendement traite une normalisation clairement identifiée : ce qui devient visible à
 cette occasion est **inscrit ici**, pas embarqué dans le lot en cours.
 
+Une entrée n'est jamais supprimée : elle est **close**, avec le motif de sa clôture.
+
 ---
 
 ## DETTE DOCUMENTAIRE — énumération hétérogène d'OCR-100
@@ -88,6 +90,29 @@ impose de revérifier les checksums de l'ensemble du corpus. C'est un changement
 convention de dépôt : il se traite pour lui-même, avec sa propre preuve.
 
 **À instruire séparément.** Aucun `.gitattributes` créé.
+
+---
+
+## ✅ CLOSE PAR DÉCISION ÉDITORIALE — l'emphase en gras des archétypes
+
+**Ouverte** le 2026-07-21 (transcription des archétypes Phase A) · **close** le même jour.
+
+**Le constat.** Les textes de l'architecte portent du gras d'insistance — « The graph does
+**not** contain operational data ». Le modèle des archétypes (`lib/content/archetype.ts`)
+ne transporte que du texte : les **mots** sont verbatim, le **style** est perdu. `GeoPage`
+sait projeter l'italique d'un Record ; l'équivalent n'existe pas pour les archétypes.
+
+**La décision, verbatim :**
+
+> « Si la fabrique ne restitue pas le gras, j'écrirai désormais des textes qui restent
+> parfaitement lisibles sans emphase typographique. La hiérarchie doit être portée par la
+> structure ; l'emphase ne doit jamais porter le sens. »
+
+**Rien n'est ajouté à la fabrique.** La dette n'est pas reportée, elle est **close** : le
+besoin disparaît au lieu d'être satisfait. Si la fabrique venait un jour à prendre le gras,
+les textes en bénéficieraient **sans en dépendre** — c'est la propriété recherchée.
+
+Aucune ligne de code n'a été écrite au titre de cette entrée.
 
 ---
 
