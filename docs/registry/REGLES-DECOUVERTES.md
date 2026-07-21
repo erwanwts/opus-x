@@ -5,13 +5,14 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Dix entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> **Onze entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
 > plausible n'est pas une source vérifiée) · RD-007 (cycle de publication normative) ·
 > RD-008 (le code révèle, la gouvernance décide) · RD-009 (une projection n'établit rien) ·
-> RD-010 (découplage constat / décision / projection).
+> RD-010 (découplage constat / décision / projection) · RD-011 (plusieurs
+> projections spécialisées, une seule décision).
 >
 > Ce registre tient lieu d'**Architectural Decisions Backlog** — voir la section
 > « Correspondance » pour la réconciliation des deux décomptes.
@@ -319,6 +320,49 @@ droit de faire : présenter, jamais établir.
 Elle généralise RD-009 en y ajoutant le **constat** : c'est la règle qui sépare l'audit
 terminologique (mesure), la qualification (décision) et le dictionnaire (projection) — et
 qui interdit qu'un même document remplisse deux de ces fonctions.
+
+---
+
+## RD-011 — Plusieurs projections spécialisées, une seule décision
+
+**Formulation verbatim (architecte)**
+
+> « Une même décision de gouvernance peut produire plusieurs projections spécialisées
+> répondant à des usages différents, à condition qu'aucune de ces projections ne porte sa
+> propre logique décisionnelle. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | Registry public — décision sur les sitemaps |
+| **Statut** | **découverte** |
+| **Normalisée dans** | — |
+
+**La règle qu'elle sert** : *« Il n'existe qu'une seule décision de gouvernance : le statut
+documentaire du Record. Toutes les représentations techniques qui en découlent sont des
+projections dérivées. »*
+
+**Application mesurée.** Le statut d'un Record produit **quatre** projections, sans qu'aucune
+ne décide quoi que ce soit :
+
+| Projection | Dérivation |
+|---|---|
+| `robots` de la page | `Draft` → `noindex,follow` · sinon `index,follow` |
+| Bandeau de statut | rendu si et seulement si `Draft` |
+| Plan d'**indexation** | inclut la page si `robots === 'index,follow'` |
+| Plan de **découverte** | inclut tout Record publié, quel que soit son statut |
+
+Le plan d'indexation **ne relit pas le statut** : il dérive de `robots`, qui en dérive déjà.
+La chaîne reste à un seul maillon décisionnel. C'est la condition posée par la règle — une
+projection qui consulterait le statut pour son propre compte porterait une seconde logique
+décisionnelle, et deux sources finiraient par diverger.
+
+**Pas de contradiction entre les deux plans** : ils ont des finalités différentes. Le premier
+recommande à l'indexation, le second expose à la découverte ; les pages `Draft` continuent
+de porter `noindex`, et rien dans le second ne le contredit.
+
+Complète [[RD-009]] et [[RD-010]] : une projection n'établit rien, et le constat, la
+décision et la projection restent découplés — ici, **jusque dans le nombre de projections**.
 
 ---
 
