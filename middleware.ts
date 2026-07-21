@@ -16,17 +16,15 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
+import { routeKind } from '@/lib/routing/routeKind';
 
 type CookieToSet = { name: string; value: string; options: CookieOptions };
 
 const intlMiddleware = createMiddleware(routing);
 
-// Premiers segments RÉSERVÉS à l'application / aux handlers (jamais localisés).
-// Validés contre l'arborescence réelle (route groups dépliés) au Lot C2.
-const RESERVED = new Set([
-  'dashboard', 'emission', 'establish', 'verify-email', 'passport', 'link',
-  'me', 'p', 'passports', 'auth', 'api', 'frameworks', 'issuers',
-]);
+// La table des segments RÉSERVÉS et l'aiguillage vivent dans lib/routing/routeKind —
+// SOURCE UNIQUE, couverte par une matrice de non-régression. Aucune copie locale ici :
+// deux tables qui divergeraient seraient une panne silencieuse sur TOUTES les requêtes.
 
 // Sous-ensemble RÉELLEMENT protégé — prédicat verbatim de la garde V1.
 const isProtected = (path: string) =>
@@ -77,18 +75,15 @@ async function appSession(request: NextRequest) {
   return response;
 }
 
-function hasLocalePrefix(seg: string) {
-  return (routing.locales as readonly string[]).includes(seg);
-}
-
 export async function middleware(request: NextRequest) {
-  const first = request.nextUrl.pathname.split('/')[1] ?? '';
-  // Déjà localisé (/en /fr /es) → next-intl.
-  if (hasLocalePrefix(first)) return intlMiddleware(request);
-  // Segment réservé app/handler → garde de session (refresh toujours), JAMAIS de locale.
-  if (RESERVED.has(first)) return appSession(request);
-  // Chemin de site non préfixé (/, /about, …) → next-intl ajoute la locale (307, WEB-D5).
-  return intlMiddleware(request);
+  // La DÉCISION est extraite (lib/routing/routeKind) ; le middleware n'exécute plus
+  // que le régime choisi. Comportement inchangé — cf. routeKind.test.ts, qui compare
+  // la fonction extraite à une réimplémentation littérale de la logique d'origine.
+  //   • `app`  → garde de session (refresh toujours), JAMAIS de locale ;
+  //   • `intl` → next-intl (rendu localisé, ou ajout de la locale : 307, WEB-D5).
+  return routeKind(request.nextUrl.pathname) === 'app'
+    ? appSession(request)
+    : intlMiddleware(request);
 }
 
 export const config = {
