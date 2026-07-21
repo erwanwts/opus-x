@@ -17,7 +17,15 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/link/', '/api/', '/me/'],
       },
     ],
-    sitemap: 'https://opusx.world/sitemap.xml',
+    // DEUX plans, une seule décision de gouvernance (RD-011) :
+    //   • sitemap.xml           — plan d'INDEXATION, uniquement les pages indexables ;
+    //   • sitemap-discovery.xml — plan de DÉCOUVERTE, tout le corpus publié.
+    // Le second est déclaré ici parce que, sans déclaration, aucun agent ne le
+    // trouverait et sa finalité disparaîtrait.
+    sitemap: [
+      'https://opusx.world/sitemap.xml',
+      'https://opusx.world/sitemap-discovery.xml',
+    ],
     host: 'https://opusx.world',
   };
 }

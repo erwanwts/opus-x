@@ -4,9 +4,18 @@
  * =====================================================================
  * Où s'arrête l'en-tête documentaire, où commence le corps canonique.
  *
- * ⚠️ CE POINT N'EST PAS TRANCHÉ. La frontière est donc **paramétrable** : la
- * fabrique ne fige pas ce qu'elle affiche. Le jour où l'arbitrage tombe, une
- * constante change et rien d'autre.
+ * ✅ TRANCHÉ — ARCHITECTURE V3, décision 1 : la frontière du contenu canonique est
+ * le PREMIER SÉPARATEUR HORIZONTAL. Ce n'est plus un défaut provisoire, c'est le
+ * mode RETENU. Justification mesurée, non préférentielle (voir plus bas).
+ *
+ * Le paramètre SUBSISTE, et `after-table` reste dans le code comme TÉMOIN de
+ * l'alternative mesurée : c'est ce qui permet au test d'exercer les deux modes et
+ * de prouver, à chaque exécution, que le mode retenu est le seul des deux à
+ * n'exposer aucun bloc « removed at publication ». Un témoin supprimé rendrait la
+ * justification invérifiable.
+ *
+ * Conséquence portée par V3 : l'empreinte porte sur le corps seul — une promotion
+ * ne la modifie donc plus.
  *
  * MESURE (docs/registry/MESURES-frontiere-promotion-terminologie.md) :
  *   • H1 en ligne 0 — 33/33 ; tableau de métadonnées ensuite — 33/33 ;
@@ -28,17 +37,25 @@
 
 /**
  * Mode de frontière.
- *   • `first-hr`    — le corps commence APRÈS la première règle `---`.
- *                     Exclut le tableau de métadonnées ET les 17 grounding notes.
- *   • `after-table` — le corps commence après la DERNIÈRE ligne du tableau.
- *                     Exclut le tableau seul ; publie les 17 grounding notes.
+ *   • `first-hr`    — **RETENU** (V3, décision 1). Le corps commence APRÈS la
+ *                     première règle `---`. Exclut le tableau de métadonnées ET
+ *                     les 17 grounding notes.
+ *   • `after-table` — **TÉMOIN**, conservé pour que l'alternative reste mesurable.
+ *                     Le corps commence après la DERNIÈRE ligne du tableau ;
+ *                     publierait les 17 grounding notes. N'est utilisé par aucune
+ *                     page : il n'existe que pour le test comparatif.
  */
 export type BoundaryMode = 'first-hr' | 'after-table';
 
 /**
- * Mode appliqué tant que l'arbitrage n'est pas rendu. `first-hr` est retenu par
- * défaut pour une raison mesurée, pas par préférence : c'est le seul des deux qui
- * n'affiche pas les 17 blocs marqués « removed at publication ».
+ * Mode RETENU (Architecture V3, décision 1). Ce n'est pas un défaut d'attente :
+ * c'est la frontière du contenu canonique, arrêtée sur mesure.
+ *
+ * Pourquoi lui : il est le seul des deux candidats à n'exposer aucun des 17 blocs
+ * portant la mention « removed at publication » — un texte qui demande sa propre
+ * suppression n'a pas à figurer sur 17 pages publiques. Le délimiteur est en outre
+ * présent et constant sur les 33 Records : il n'y avait rien à définir, seulement
+ * à constater.
  */
 export const DEFAULT_BOUNDARY: BoundaryMode = 'first-hr';
 

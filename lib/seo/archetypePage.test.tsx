@@ -34,7 +34,7 @@ const ARCHETYPES = [
  * `/knowledge-graph` par décision de l'architecte, ils n'y pointent simplement plus.
  * L'assertion reste donc un garde-fou : rien ne doit réintroduire ce chemin.
  */
-const ABSENT = ['/graph', '/records', '/dictionary'];
+const ABSENT = ['/graph', '/dictionary'];
 
 async function renderArchetype(a: (typeof ARCHETYPES)[number], locale = 'en') {
   const el = await archetypeRoute(a).Page({ params: Promise.resolve({ locale }) });
@@ -92,15 +92,29 @@ describe('destinations absentes — tracées, jamais comblées', () => {
     expect(c._gaps).toEqual([]); // plus aucune destination absente sur cette page
   });
 
-  it('Developers : /registry et /knowledge-graph résolvent, /records reste INERTE', async () => {
+  it('AMENDEMENT — /records résout depuis la publication de l’index du corpus', async () => {
+    // Cette assertion figeait `/records` en null, avec sa lacune documentée. L'index
+    // étant publié (Lot D), le garde-fou cède AU GRAND JOUR : les 4 CTA gravés par
+    // l'architecte s'activent d'eux-mêmes, sans qu'une ligne de son texte ait bougé.
     const c = buildDevelopers('en');
     const byDest = Object.fromEntries(
       [...c.hero.ctas, ...c.finalCta.ctas].map((x) => [x.destination, x.href])
     );
     expect(byDest['/registry']).toBe('/en/registry');
     expect(byDest['/knowledge-graph']).toBe('/en/knowledge-graph');
-    expect(byDest['/records']).toBeNull(); // conservé inerte, lacune documentée
-    expect(c._gaps).toEqual(['cta:/records']);
+    expect(byDest['/records']).toBe('/records'); // sans locale : un Record est en anglais
+    expect(c._gaps).toEqual([]); // plus aucune destination absente sur cette page
+  });
+
+  it('les 4 CTA gravés vers /records sont TOUS actifs', async () => {
+    const dev = buildDevelopers('en');
+    const q = buildQuestions('en');
+    const all = [
+      ...dev.hero.ctas, ...dev.finalCta.ctas,
+      ...q.hero.ctas, ...q.finalCta.ctas,
+    ].filter((c) => c.destination === '/records');
+    expect(all).toHaveLength(4);
+    for (const c of all) expect(c.href).toBe('/records');
   });
 
   it('Questions : /developers résout (la page existe désormais)', async () => {

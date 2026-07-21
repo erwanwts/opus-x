@@ -69,6 +69,16 @@ export function pillarHrefBySlug(slug: string, locale: string): string | null {
 }
 
 /**
+ * Chemins de site PUBLIÉS et NON LOCALISÉS — les projections du corpus.
+ *
+ * Un Record est en anglais et le restera : ces pages n'ont pas de préfixe de
+ * locale, et une référence vers elles ne doit pas en recevoir un. Le registre
+ * reste la SOURCE : tant qu'un chemin n'y figure pas, une référence vers lui reste
+ * INERTE — c'est RD-001, appliquée à un régime d'adressage différent.
+ */
+export const PUBLISHED_PUBLIC_PATHS = new Set(['/records']);
+
+/**
  * Résout la DESTINATION d'un CTA — même discipline que `entityHref` et
  * `pillarHrefBySlug` : on ne lie que ce qui existe, on n'invente jamais.
  *
@@ -92,5 +102,7 @@ export function ctaHref(destination: string, locale: string): string | null {
   if (!destination) return null;
   if (destination.startsWith('/api/')) return destination;
   if (destination.startsWith('#')) return destination;
+  // Page publique non localisée : la destination EST son adresse, sans préfixe.
+  if (PUBLISHED_PUBLIC_PATHS.has(destination)) return destination;
   return pillarHrefBySlug(destination.replace(/^\/+/, ''), locale);
 }
