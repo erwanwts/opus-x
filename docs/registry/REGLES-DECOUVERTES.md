@@ -5,7 +5,8 @@
 > valides mais non encore normalisées**, pour qu'elles ne se perdent pas entre le moment
 > où un chantier les découvre et celui où un Record les publie.
 >
-> **Onze entrées à ce jour, toutes au statut « découverte », aucune normalisée** :
+> **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
+> UNE PROPOSITION sans numéro, en attente d'attribution** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -363,6 +364,43 @@ de porter `noindex`, et rien dans le second ne le contredit.
 
 Complète [[RD-009]] et [[RD-010]] : une projection n'établit rien, et le constat, la
 décision et la projection restent découplés — ici, **jusque dans le nombre de projections**.
+
+---
+
+## PROPOSITION — sans numéro, en attente d'attribution par l'architecte
+
+**Formulation proposée**
+
+> « Un instrument non testé ne mesure rien. Un harnais qui produit un compte sans test
+> de son propre compte n'est pas une mesure, c'est une annonce. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-21 |
+| **Chantier d'origine** | LOT GEO 2 — vérification en production du Registry public |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — deux incidents sur le même lot, tous deux du fait de l'instrument :**
+
+1. **CRLF parasites.** La liste des 92 URLs à contrôler a été écrite sur disque, en
+   CRLF. Chaque chemin traînait un `` invisible ; `curl` a échoué sur les 92, et le
+   harnais a rapporté **« 200 : 0 / 92 »** puis **« aucun écart »** — les deux lignes
+   étant fausses en même temps.
+2. **92ᵉ ligne non lue.** Après correction, la boucle `while read` a rapporté
+   **« 91 / 92 — AUCUN ÉCART »**. Le fichier n'avait pas de saut de ligne final : la
+   dernière URL n'a jamais été testée, et le harnais a affirmé l'absence d'écart sur un
+   ensemble qu'il n'avait pas parcouru en entier.
+
+Dans les deux cas, l'instrument **annonçait autre chose que ce qu'il mesurait** — et il
+l'annonçait avec la même assurance que lorsqu'il avait raison. Aucun des deux n'aurait
+été détecté sans une relecture manuelle du compte.
+
+**Appliquée dans le code** : `registryPaths()` (`lib/seo/sitemapPlans.ts`) dérive des
+mêmes sources que les routes, et son test assère son propre compte — 92 = 1 + 33 + 37 +
+15 + 6 — ainsi que l'absence de doublon, de chemin vide et de caractère de contrôle.
+
+**Portée** : elle vise tout harnais de vérification, pas seulement celui-ci. Un compte
+produit sans test du compte n'est pas opposable.
 
 ---
 

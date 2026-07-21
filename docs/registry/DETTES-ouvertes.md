@@ -89,7 +89,22 @@ normaliserait **33 Records d'un coup**, ce qui touche leur représentation sur d
 impose de revérifier les checksums de l'ensemble du corpus. C'est un changement de
 convention de dépôt : il se traite pour lui-même, avec sa propre preuve.
 
-**À instruire séparément.** Aucun `.gitattributes` créé.
+**✅ CLOSE le 2026-07-21** — après un **cinquième** incident (URLs de vérification
+écrites en CRLF, harnais rapportant « 0 / 92 »). Correctif d'une ligne :
+`* text=auto eol=lf`, plus la liste des binaires jamais convertis.
+
+Ce qui bloquait était la crainte de toucher les 33 checksums. La mesure l'a écartée :
+les **blobs étaient déjà en LF**, seul le disque était en CRLF. `git add --renormalize .`
+n'a modifié aucun blob. Après conversion de l'arbre de travail :
+
+```
+corpus sur disque                  LF 33 / CRLF 0
+checksums conformes au manifeste   33 / 33
+lecture du DISQUE BRUT == checksum du manifeste : OUI
+```
+
+Le contournement par miroir LF hors dépôt, avec rétablissement manuel de
+`generated_from`, n'est plus nécessaire.
 
 ---
 
@@ -113,6 +128,27 @@ besoin disparaît au lieu d'être satisfait. Si la fabrique venait un jour à pr
 les textes en bénéficieraient **sans en dépendre** — c'est la propriété recherchée.
 
 Aucune ligne de code n'a été écrite au titre de cette entrée.
+
+---
+
+## DETTE ÉDITORIALE — le lien cross-registre depuis une page localisée
+
+**Ouverte le** 2026-07-21, à l'occasion de l'extension d'`entityHref` (Lot GEO 2).
+
+**Constat.** Depuis l'extension de la chaîne de résolution, **64 pastilles d'entités**
+des pages piliers mènent à une page Record. Le lien est **techniquement valide** — la
+page existe, elle répond 200, et aucun `href` ne pointe vers une page non générée.
+
+Mais il fait franchir au lecteur **deux frontières à la fois** : il quitte le régime
+localisé `/{locale}/…` pour le régime canonique `/records/…`, et passe d'une **fiche
+éditoriale** à une **projection documentaire brute**. Rien n'a encore décidé si un
+lecteur d'une page pilier doit être conduit vers le corpus, ni comment l'y préparer.
+
+**Déclaré comme lacune, pas comme acquis** : chaque lien émet `cross-locale-link:{id}`
+dans `_gaps` — journal de build, jamais rendu. Le compte y est visible page par page.
+
+**À qualifier éditorialement.** Aucune correction appliquée : le lien reste actif, la
+lacune reste ouverte.
 
 ---
 

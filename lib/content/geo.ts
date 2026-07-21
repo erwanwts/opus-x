@@ -316,6 +316,18 @@ export function buildGeoContent(
   // Destination citée mais non résolue (page absente de PILLARS) : le libellé restera
   // INERTE. Trou tracé — jamais comblé par une destination de substitution.
   else if (!content.cta.href) _gaps.push(`CTA-destination:${cta.href}`);
+
+  // LACUNE OUVERTE — lien cross-registre. Une page LOCALISÉE qui renvoie vers une
+  // page Record NON LOCALISÉE fait franchir au lecteur une frontière de régime
+  // d'adressage : il quitte `/​{locale}/…` pour `/records/…`, et passe d'une fiche
+  // éditoriale à une projection documentaire. Le lien est techniquement valide —
+  // la page existe, elle répond — mais son opportunité ÉDITORIALE n'est pas
+  // qualifiée : rien n'a encore décidé si un lecteur d'une page pilier doit être
+  // conduit vers le corpus brut, ni comment l'y préparer.
+  // Déclaré comme lacune, PAS comme acquis. Journal de build uniquement.
+  for (const l of content.entityLinks) {
+    if (l.href?.startsWith('/records/')) _gaps.push(`cross-locale-link:${l.id}`);
+  }
   // eslint-disable-next-line no-console
   console.log(`[geo:gaps] ${slug} (${recordId}): ${_gaps.length ? _gaps.join(', ') : 'none'}`);
 
