@@ -15,6 +15,11 @@
  * `/records` N'EXISTE PAS : destination conservée, CTA INERTES, absence tracée.
  * Aucune substitution. (`/graph` → `/knowledge-graph` : correction mécanique du slug
  * canonique, décidée par l'architecte.)
+ *
+ * PROMESSE EN PROSE — le §12 d'origine renvoyait le lecteur vers un Dictionary
+ * retiré du périmètre. Une promesse textuelle n'est pas une référence : le résolveur
+ * canonique (RD-001) ne la voit pas et ne peut rien contre elle. Seule une réécriture
+ * éditoriale la lève — texte de remplacement livré par l'architecte, transcrit verbatim.
  * =====================================================================
  */
 import {
@@ -435,7 +440,13 @@ export function buildQuestions(locale: string): ArchetypeContent {
       p('If you are discovering the protocol, begin with the published Records.'),
       p('If you are implementing it, continue with the Developers documentation.'),
       p('If you want to understand how concepts connect, explore the Knowledge Graph.'),
-      p('If you need precise terminology, consult the Dictionary.'),
+      // AMENDEMENT (2026-07-21) — la phrase d'origine, « If you need precise
+      // terminology, consult the Dictionary. », promettait une page RETIRÉE du
+      // périmètre de la Phase A. Ce n'était pas un lien mort — donc invisible au
+      // résolveur — mais une PROMESSE morte, qu'aucun mécanisme ne pouvait
+      // désamorcer. Texte de remplacement livré par l'architecte, transcrit
+      // verbatim : il ne promet aucune page inexistante et décrit l'état réel.
+      p("The concepts introduced in this guide are defined by the published Records of the World Skills Protocol. Additional terminology resources will become available as the protocol's terminology governance progresses."),
       p('Together, these resources explain the protocol from complementary perspectives while remaining grounded in the same canonical corpus.'),
     ],
 

@@ -110,6 +110,21 @@ describe('destinations absentes — tracées, jamais comblées', () => {
   });
 });
 
+describe('Questions §12 — aucune promesse de page inexistante', () => {
+  it('ne renvoie plus le lecteur vers un Dictionary retiré du périmètre', async () => {
+    // Une promesse EN PROSE n'est pas une référence : le résolveur canonique (RD-001)
+    // ne la voit pas. Seule une réécriture éditoriale la lève. Texte de l'architecte.
+    const html = await renderArchetype(ARCHETYPES[2]);
+    expect(html).not.toContain('consult the Dictionary');
+    expect(html).toContain(
+      'The concepts introduced in this guide are defined by the published Records of the World Skills Protocol.'
+    );
+    expect(html).toContain(
+      "Additional terminology resources will become available as the protocol&#x27;s terminology governance progresses."
+    );
+  });
+});
+
 describe('FAQPage — questions inédites seulement', () => {
   it('émet les 41 paires de la page Questions', async () => {
     const pairs = questionsFaqPairs(buildQuestions('en'));
