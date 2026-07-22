@@ -6,8 +6,9 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> DEUX PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
-> ne mesure rien · (2) un artefact jamais exercé ne prouve rien** :
+> TROIS PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
+> excéder la population mesurée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -415,6 +416,20 @@ utilisée des trois occurrences, et **la seule qui figurait dans des lignes de p
 deux autres étant restées internes au harnais. Le bandeau **annonçait** un compte ; il ne le
 **mesurait** pas.
 
+**Deuxième instrument de la même occurrence — le manifeste d'intégrité.** Le bandeau n'est
+pas seul à avoir attesté une conformité qu'il n'avait pas vérifiée ; le manifeste **rejoint le
+bandeau** dans cette troisième occurrence. Le `_manifest.json` porte un checksum par Record,
+censé attester que chaque artefact publié correspond à sa source. À la réidentification
+éditoriale du corpus (`62027b4`, **2026-07-20 00:11**), **11** checksums sont devenus
+périmés : le manifeste a continué d'**attester la conformité** de 11 Records dont le contenu
+avait changé. **Aucun test ne le vérifie — il n'en existe pas.** La divergence n'a pas été
+levée par une alarme mais par la **régénération intégrale** du manifeste lors du lot de
+correction, en comparant le régénéré au stocké. Elle a duré **≈ 24 h 40 min** — de `62027b4`
+(07-20 00:11) à la réparation `1c9ffa3` (**2026-07-21 00:52**). Ce dernier nombre est le seul
+qui dise la gravité : pendant près d'un jour, l'instrument d'intégrité a affirmé une intégrité
+qu'il n'avait pas. Sa conséquence propre — l'absence d'attestation de l'empreinte — est
+inscrite comme lacune de la grille de promotion, non comme critère.
+
 **Conséquence — règle de preuve (standing, non normative) : un compte se cite depuis sa
 source autoritaire, jamais depuis une annonce.** Toute ligne de preuve citant un **compte de
 pages** cite le **manifeste de prérendu** (`prerender-manifest.json`), source nommée. Le
@@ -426,15 +441,19 @@ et non une décision distincte. Elle relève du **registre** et non des **dettes
 est dû ni ouvert — c'est une discipline déjà adoptée, qui guide les développements, ce que ce
 registre conserve précisément.
 
-> **Décompte des occurrences — dit, non masqué.** Ce registre en documente désormais
-> **trois** (deux internes au harnais, une — le bandeau — dans les lignes de preuve). Deux
-> cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont donc pas
-> comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes distinctes
-> (double-compte de `governed_by`), et la projection de **103** formes de surface là où **86**
-> seulement portent un identifiant. Le dépôt ne porte que les valeurs corrigées (222, 86),
-> jamais les annonces (230, 103-comme-pages) : elles ne sont pas traçables comme occurrences.
-> Si l'architecte veut le registre complet des annonces, il dira lesquelles inscrire — je
-> n'écris pas « quatrième » sur un registre qui n'en établit que trois.
+> **Décompte des occurrences — dit, non masqué.** Cette proposition documente **trois**
+> occurrences : deux internes au harnais (CRLF, 92ᵉ ligne), et une **troisième portée par
+> DEUX instruments** — le bandeau de build (dans les lignes de preuve) et le manifeste
+> d'intégrité (dans le dépôt), tous deux attestant une conformité non vérifiée. Le manifeste
+> **rejoint** le bandeau, il n'ouvre pas une quatrième occurrence.
+>
+> Deux cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont
+> donc pas comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes
+> distinctes (double-compte de `governed_by`), et la projection de **103** formes de surface
+> là où **86** seulement portent un identifiant. Le dépôt ne porte que les valeurs corrigées
+> (222, 86), jamais les annonces (230, 103-comme-pages) : elles ne sont pas traçables comme
+> occurrences. Si l'architecte veut le registre complet des annonces, il dira lesquelles
+> inscrire.
 
 ---
 
@@ -476,6 +495,49 @@ comportement qui ne peut ni être constaté ni échouer.
 **Conséquence pratique** : avant de compter un artefact comme une garantie, établir que ses
 conditions d'exercice surviennent. À défaut, il rejoint le registre des dettes, pas celui
 des preuves.
+
+---
+
+## PROPOSITION (3) — sans numéro, en attente d'attribution par l'architecte
+
+> **Distincte des deux premières.** Ici l'instrument est **juste** — il mesure exactement ce
+> qu'on lui a demandé — et l'artefact est **exercé**. Le défaut n'est ni dans l'instrument ni
+> dans l'artefact : il est dans l'**annonce**, qui revendique une population plus large que
+> celle que l'instrument a couverte. Un troisième défaut, à ne pas fusionner avec les deux
+> autres.
+
+**Formulation proposée**
+
+> « L'étendue d'une annonce ne peut excéder la population que l'instrument a mesurée. Un test
+> exact sur une population restreinte n'autorise aucune affirmation sur une population plus
+> large : l'instrument reste juste, c'est l'annonce qui déborde. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-22 |
+| **Chantier d'origine** | Fait de promotion — mesure du régime des pages dérivées |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — la chaîne à un seul maillon décisionnel, annoncée trop large.** La chaîne
+`Status → robots → plan d'indexation` a été présentée comme gouvernant **le corpus
+canonique** — « une seule décision de gouvernance, toutes les représentations en dérivent »
+(RD-011). La mesure établit qu'elle est **exacte pour les 33 pages Record** et **pour elles
+seules** : les 59 pages dérivées (prédicats, familles, types, index) portent un `robots`
+**codé en dur** (`registryEntityPage.ts:59`), hors chaîne, qui ne consulte aucun statut.
+
+| | |
+|---|---|
+| **Population réelle** (mesurée) | les 33 Records |
+| **Population annoncée** | les 92 pages canoniques / « le corpus » |
+| **Instrument** | `recordPage.test.ts` — atteste la dérivation **Record par Record**, exactement comme demandé |
+
+Le test n'a pas menti : il attestait la cascade sur les Records, un par un. C'est l'**annonce**
+qui a dépassé l'instrument, en étendant à 92 pages une propriété vérifiée sur 33. Population
+réelle : les Records. Population annoncée : le corpus canonique.
+
+**Septième occurrence du registre** (trois à la proposition 1, trois à la proposition 2,
+celle-ci à la troisième). Comptée sous sa forme **non numérique** : le défaut n'est pas
+« 33 vs 92 », c'est *une annonce dont l'étendue a dépassé la mesure*.
 
 ---
 

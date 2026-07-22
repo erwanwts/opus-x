@@ -146,9 +146,19 @@ brute**. Rien n'a encore décidé si un lecteur d'une page pilier doit être con
 corpus, ni comment l'y préparer.
 
 **Ce n'est pas une question de langue.** La destination n'est pas « dans une autre
-langue » : elle est **non localisée par construction** — un Record est en anglais et le
-restera, il n'a pas de variante par locale et n'en aura pas. Le lecteur ne change pas de
+langue » : elle est **non localisée AUJOURD'HUI**, par **fallback strict** — une route non
+traduite n'est pas générée (décision i18n, `CLAUDE.md:55`). Le lecteur ne change pas de
 langue, il change de **régime d'adressage**.
+
+**RD-006 — la permanence n'est pas tracée.** L'affirmation antérieure (« un Record est en
+anglais et le restera, il n'en aura pas de variante ») supposait une **permanence** qu'aucune
+source normative ne rend. Le seul énoncé de permanence est le §16.1 du document
+d'architecture — qui **se déclare non normatif** ; et le spec gelé **WEB-001B** planifie
+l'inverse (WEB-007 multilingue, type de contenu `translation`, `EntityPage` traduisible).
+*Une source plausible n'est pas une source vérifiée.* Tant que la permanence n'est pas rendue
+dans un lieu normatif (un Record ou un amendement des décisions verrouillées), le motif se
+borne à ce qui est tracé : **non localisée aujourd'hui, par fallback strict**. La lacune ne
+se ferme pas ; elle deviendra une **décision qualifiée** le jour où la permanence sera rendue.
 
 **Déclaré comme lacune, pas comme acquis** : chaque lien émet
 `localized-to-canonical-link:{id}` dans `_gaps` — journal de build, jamais rendu. Le
@@ -156,6 +166,31 @@ compte y est visible page par page.
 
 **À qualifier éditorialement.** Aucune correction appliquée : le lien reste actif, la
 lacune reste ouverte.
+
+---
+
+## DETTE D'INCOHÉRENCE — deux projections du même corpus se contredisent
+
+**Ouverte le** 2026-07-22, à la mesure du régime des pages dérivées.
+
+**Constat.** Les **59 pages dérivées** du registre (37 prédicats, 15 familles, 6 types,
+1 index) **déclarent `robots: index,follow`** et sont **absentes du plan d'indexation**.
+Deux sorties du même corpus émettent des signaux contraires :
+
+| Sortie | Ce qu'elle dit | Source |
+|---|---|---|
+| Métadonnée de page | ces 59 pages sont indexables (`index,follow`, codé en dur) | `lib/registry/registryEntityPage.ts:59` (helper `meta`) |
+| Plan d'indexation | ces 59 pages n'y figurent pas — `indexPlan()` = éditoriales + Records indexables seulement | `lib/seo/sitemapPlans.ts:87-92` |
+
+Une page qui porte `index,follow` dans son `<head>` mais qu'aucun `sitemap.xml` n'annonce
+envoie au moteur deux signaux qui ne se recoupent pas. **Ce n'est pas une lacune de
+gouvernance** — aucune décision produit/juridique/normative ne manque : c'est une
+**incohérence entre deux projections dérivées**, l'une disant *indexe*, l'autre *je ne te
+recommande pas*.
+
+**NON corrigée — délibérément.** Choisir laquelle des deux a raison (les pages dérivées
+doivent-elles être indexables, ou non ?) est un **arbitrage**, pas une réconciliation
+mécanique. Les deux sources sont inscrites ici pour que l'arbitrage se fasse sur pièce.
 
 ---
 

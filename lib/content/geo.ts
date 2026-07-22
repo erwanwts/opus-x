@@ -324,10 +324,17 @@ export function buildGeoContent(
   // Ces liens partent d'une page du régime localisé et mènent au régime canonique.
   //
   // Ce n'est PAS une question de langue. La destination n'est pas « dans une autre
-  // langue » : elle est NON LOCALISÉE PAR CONSTRUCTION — un Record est en anglais
-  // et le restera, il n'a pas de variante par locale et n'en aura pas. Le lecteur
-  // ne change pas de langue, il change de régime d'adressage, et du même coup de
-  // nature de page : d'une fiche éditoriale à une projection documentaire brute.
+  // langue » : elle est NON LOCALISÉE AUJOURD'HUI, par fallback strict — une route
+  // non traduite n'est pas générée (décision i18n, CLAUDE.md:55). Le lecteur ne
+  // change pas de langue, il change de régime d'adressage, et du même coup de nature
+  // de page : d'une fiche éditoriale à une projection documentaire brute.
+  //
+  // RD-006 — DRAPEAU : la PERMANENCE de cet état (« un Record restera en anglais,
+  // sans variante par locale ») n'est rendue par AUCUNE source normative. Le seul
+  // énoncé de permanence est le §16.1 du document d'architecture, qui se déclare
+  // non normatif ; le spec gelé WEB-001B planifie même l'inverse (WEB-007 multilingue,
+  // type de contenu `translation`). Non tracée, la permanence n'est pas invocable :
+  // la lacune reste ouverte tant qu'elle n'est pas rendue dans un lieu normatif.
   //
   // Le lien est TECHNIQUEMENT valide — la page existe, elle répond. C'est son
   // opportunité ÉDITORIALE qui n'est pas qualifiée : rien n'a décidé si un lecteur
