@@ -192,6 +192,13 @@ recommande pas*.
 doivent-elles être indexables, ou non ?) est un **arbitrage**, pas une réconciliation
 mécanique. Les deux sources sont inscrites ici pour que l'arbitrage se fasse sur pièce.
 
+**MISE À JOUR 2026-07-22 — d'incohérence CONSTATÉE à CONTRADICTION DÉCIDÉE.** La décision
+**D-002 v2 (Modèle B″)** de l'Architecte **fixe le `robots`** des projections (il reste
+`index,follow`, hors chaîne) et **ne dit rien du plan d'indexation**. La contradiction n'est
+donc plus un accident : un côté (robots) est **assumé par décision**, l'autre (plan) reste
+**arbitrage ouvert** — le plan doit-il inclure ces 59 pages, ou leur `robots` revenir à
+`noindex` ? Voir `DOSSIER-SESSION-ARCHITECTE.md` §4.
+
 ---
 
 ## HORS PÉRIMÈTRE (rappel) — les 2 `alias_self_loop`
