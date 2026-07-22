@@ -30,10 +30,17 @@ Trois décisions **non rendues**. Tant qu'elles ne le sont pas, elles ne sont pa
    **WEB-001B** planifie l'inverse (WEB-007 multilingue, type `translation`). La lacune
    `localized-to-canonical-link` reste **ouverte** pour cette raison ; son motif a été ramené
    au tracé (« non localisée **aujourd'hui**, par fallback strict, `CLAUDE.md:55` »).
-2. **Substrat du fait de promotion.** Non tranché. Ce dossier ne le conçoit pas.
-3. **Série d'identifiants de l'artefact de promotion.** Non tranchée — et **critique** : le
+2. **Série d'identifiants de l'artefact de promotion.** Non tranchée — et **critique** : le
    générateur est **silencieux** sur un id hors `expected_ranges` (§3, mesure M2). Sans
-   décision, l'id n'est gardé par rien.
+   décision, l'id n'est gardé par rien. *(Fil de détente posé — la garde de plage échouera si
+   un id hors plage apparaît, §6 ; mais elle n'invente pas la série.)*
+3. **Plan d'indexation des 59 pages dérivées.** Contradiction **décidée** par D-002 v2 côté
+   `robots` (fixé), **ouverte** côté plan : les 59 doivent-elles y entrer, ou leur `robots`
+   revenir à `noindex` ? (§4.)
+4. **D-003 — confirmation attendue.** En attente de l'Architecte ; ce dossier ne l'anticipe pas.
+
+*Le substrat du fait de promotion n'est plus un verrou : il est rendu par **D-001 = Option 1a**
+(§1). Aucun item décidé ne figure ci-dessus.*
 
 ---
 
@@ -154,18 +161,50 @@ c'est arrivé cette session (citations OCR-000..005 : relevé bogué 0 → rejeu
 La dernière ligne est l'attestation en action : **0 dérive** aujourd'hui. Le jour où elle
 cesse d'être 0, le build casse (§6).
 
+### La grille de promotion — état des attestations (mise à jour 2026-07-22)
+
+Colonne DÉRIVABLE, après pose de l'attestation :
+
+| Critère | Avant | Après | Instrument |
+|---|---|---|---|
+| **Empreinte** (checksum) | ❌ aucune attestation | ✅ **attesté** | `manifest.attestation.test.ts` (sha256 par Record) |
+| **Manifeste** (cohérence) | ❌ aucune attestation | ✅ **attesté** | idem (file_count + population + checksums) |
+| **Invariants** (projection) | ✅ | ✅ | `markdown.invariant.test.ts` |
+| **Références** (« cité ≥ 1 ») | ⚠️ substrat sans attestation | ⚠️ **inchangé** | graphe/corpus ; **seulement un script** (bogué cette session) — **aucun test rejouable** |
+| **Modification substantielle** (commits) | ⚠️ substrat sans test | ⚠️ **inchangé** | git ; aucun test |
+| **Dette** (« aucune dette ouverte ») | ⚠️ fichier humain | ⚠️ **inchangé** | `DETTES-ouvertes.md` ; liste curée, aucun test |
+
+**Constat demandé.** L'attestation ferme **les DEUX lacunes nettes** — empreinte **et**
+manifeste — par le même instrument : toutes deux étaient « aucun test », toutes deux le sont
+désormais. Réserve : la **signification** de l'empreinte (contenu canonique vs artefact de
+fichier) reste **une lacune distincte, non fermée** — le test atteste que le checksum
+correspond au contenu, pas ce que le checksum *représente*.
+
+**Les trois ⚠️ sont inchangées.** En particulier, « cité ≥ 1 » n'a **toujours qu'un script**,
+pas un test rejouable — et ce script a menti cette session (§3). Tant qu'il n'y a
+pas de test, le critère n'est pas opposable. *(Le script fautif employait une regex `\b` sur
+des identifiants à trait d'union ; corrigé, mais toujours pas promu en test.)*
+
 ---
 
 ## 6 · Chantiers ouverts
 
-- **Voie B — attestation du manifeste : POSÉE.** `lib/registry/manifest.attestation.test.ts`
-  (3 tests) rejoue le sha256 de chaque Record et le compare au checksum stocké, à chaque
-  `npm test` (donc chaque build). Prouvée : elle attrape une dérive d'un octet et **nomme** le
-  Record. La divergence de 24 h 40 min ne peut plus dormir. *(Aucun statut, aucune promotion —
-  intégrité du manifeste uniquement.)* Reste ouvert : elle n'atteste **pas** la conformité de
-  plage d'un id (M2, verrou §2.3).
+- **Voie B — attestation du manifeste : POSÉE** (D-001). `lib/registry/manifest.attestation.test.ts`
+  (**4 tests**) rejoue le sha256 de chaque Record vs le checksum stocké, à chaque `npm test`
+  (donc chaque build). Prouvée par mutation : elle attrape une dérive d'un octet et **nomme** le
+  Record. La divergence de 24 h 40 min ne peut plus dormir. *(Intégrité du manifeste uniquement
+  — aucun statut, aucune promotion.)*
+- **Garde de plage : POSÉE.** 4ᵉ test de l'attestation — tout id présent tombe dans une plage
+  déclarée, sinon échec nommé. Fil de détente de M2 : passe aujourd'hui, échouera si un id hors
+  plage apparaît. **Ne touche pas aux plages** (série de l'artefact = décision Architecte, §2.2).
+- **Garde du générateur : POSÉE.** `scripts/registry/manifest.mjs` est désormais en **essai à
+  blanc par défaut** ; le chemin réel est une cible explicite (`--out`). Motif : l'incident
+  daté du 2026-07-22 (le rejeu a écrasé le manifeste réel parce que l'écriture était le défaut).
 - **Lot B″ (D-002 v2) : chiffré, non exécuté** (§4). 38 pages dans le périmètre.
-- **Cycle 1 de promotion** : la Phase 1 (30 Records) est exécutable — aucun de ses Records
-  n'échoue un critère dérivable mesuré. Verrou : le substrat du fait de promotion (§2.2).
-- **Dette d'incohérence** : devenue contradiction décidée (§4) ; arbitrage du plan restant.
+- **Cycle 1 de promotion** : la Phase 1 (30 Records) est **exécutable** — aucun de ses Records
+  n'échoue un critère dérivable mesuré. *(Le substrat n'est plus un verrou : D-001 = Option 1a.)*
+- **Dette d'incohérence** : devenue contradiction décidée (§4) ; arbitrage du plan restant (§2.3).
 - **Deux `alias_self_loop`**, énumération hétérogène d'OCR-100, permanence anglaise : inchangés.
+
+*Vérification §6 ↔ §4/§1 : aucun item décidé ne figure comme ouvert. Le substrat (Option 1a),
+le robots des projections (B″) et l'attestation (posée) sont des acquis, cités comme tels.*

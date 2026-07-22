@@ -428,7 +428,22 @@ correction, en comparant le régénéré au stocké. Elle a duré **≈ 24 h 40 
 (07-20 00:11) à la réparation `1c9ffa3` (**2026-07-21 00:52**). Ce dernier nombre est le seul
 qui dise la gravité : pendant près d'un jour, l'instrument d'intégrité a affirmé une intégrité
 qu'il n'avait pas. Sa conséquence propre — l'absence d'attestation de l'empreinte — est
-inscrite comme lacune de la grille de promotion, non comme critère.
+inscrite comme lacune de la grille de promotion, non comme critère. *(Depuis le 2026-07-22,
+elle EST attestée : `lib/registry/manifest.attestation.test.ts` rejoue le sha256 de chaque
+Record à chaque build ; prouvée par mutation — elle attrape une dérive d'un octet et nomme le
+Record.)*
+
+**Troisième instrument de la même occurrence — un script de mesure non testé (le mien,
+2026-07-22).** Un script de comptage de citations employait une regex `\b` sur des
+identifiants à trait d'union (`\bOCR-004\b`) qui ne matchait pas : il a **annoncé « cité par
+0 »** pour OCR-000 à 005, là où le compte réel est **6**. Il n'a pas été arrêté par un test —
+il n'y en avait pas — mais par **contradiction avec une mesure antérieure enregistrée** (le
+DOSSIER de promotion portait « cité par 6 »), confirmée au grep. **Conséquence évitée :** sur
+cette mesure fausse, **6 Records de Phase 1** auraient échoué le critère « cité ≥ 1 » et la
+**Phase 1 serait devenue inexécutable**. Leçon distincte, à joindre à la proposition : *une
+mesure antérieure enregistrée est elle-même un instrument* — c'est elle qui a rattrapé le
+script, là où aucun test ne veillait. Argument pour consigner les mesures, pas seulement les
+conclusions.
 
 **Conséquence — règle de preuve (standing, non normative) : un compte se cite depuis sa
 source autoritaire, jamais depuis une annonce.** Toute ligne de preuve citant un **compte de
@@ -443,9 +458,11 @@ registre conserve précisément.
 
 > **Décompte des occurrences — dit, non masqué.** Cette proposition documente **trois**
 > occurrences : deux internes au harnais (CRLF, 92ᵉ ligne), et une **troisième portée par
-> DEUX instruments** — le bandeau de build (dans les lignes de preuve) et le manifeste
-> d'intégrité (dans le dépôt), tous deux attestant une conformité non vérifiée. Le manifeste
-> **rejoint** le bandeau, il n'ouvre pas une quatrième occurrence.
+> TROIS instruments** — le bandeau de build (lignes de preuve), le manifeste d'intégrité
+> (dépôt), et un script de mesure non testé (le script de citations, 2026-07-22) —, tous
+> attestant ou annonçant une valeur non vérifiée. Les deux derniers **rejoignent** le bandeau,
+> ils n'ouvrent pas de nouvelle occurrence numérotée. Le registre en compte donc **huit** en
+> tout (voir proposition 3).
 >
 > Deux cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont
 > donc pas comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes
@@ -538,6 +555,15 @@ réelle : les Records. Population annoncée : le corpus canonique.
 **Septième occurrence du registre** (trois à la proposition 1, trois à la proposition 2,
 celle-ci à la troisième). Comptée sous sa forme **non numérique** : le défaut n'est pas
 « 33 vs 92 », c'est *une annonce dont l'étendue a dépassé la mesure*.
+
+**Deuxième occurrence — « 58 pages n'affichent aucun statut » (Architecte, 2026-07-22).**
+Arithmétique **exacte** : 37 prédicats + 15 familles + 6 types = 58. Population **fausse** :
+le lot B″ ne concerne que **38 pages** (37 prédicats + le type `record`). Les 15 familles ne
+projettent aucun Record affiché (rendu = prédicats seulement) et 5 types sur 6 non plus — 20
+des 58 n'ont aucun Record auquel attacher un statut. Même défaut que la chaîne ci-dessus : le
+compte est juste, la **population annoncée** (58) dépasse la **population réellement
+concernée** (38). **Huitième occurrence du registre, la troisième de l'Architecte, inscrite à
+son nom** sur sa demande.
 
 ---
 

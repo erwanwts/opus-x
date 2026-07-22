@@ -11,13 +11,19 @@
  * Record. content/registry/ n'est jamais lu ; il ne reçoit que _manifest.json.
  *
  * Sorties :
- *   • stdout                         → le manifeste JSON (preuve machine)
- *   • content/registry/_manifest.json → le même JSON (preuve d'import contrôlé,
- *                                       committé À TERME — pas dans ce lot)
+ *   • stdout                         → le manifeste JSON (preuve machine) — TOUJOURS
+ *   • <chemin --out>                 → le même JSON, écrit UNIQUEMENT si --out est donné
  *   • stderr                         → résumé humain (compte fichiers / anomalies)
  *
+ * ⚠️ ESSAI À BLANC PAR DÉFAUT. Sans `--out`, ce script N'ÉCRIT AUCUN fichier : il
+ *   émet sur stdout et s'arrête. Le chemin réel est une CIBLE EXPLICITE :
+ *   `--out content/registry/_manifest.json`. Motif (incident daté) : le 2026-07-22,
+ *   un rejeu sur un dossier scratch a ÉCRASÉ le manifeste réel parce que l'écriture
+ *   était le défaut — l'instrument qui atteste l'intégrité s'est corrompu lui-même.
+ *   La restauration a été possible (sauvegarde), mais le défaut ne doit plus exister.
+ *
  * Usage :
- *   node scripts/registry/manifest.mjs <dossier-md> [--expected "OCR-000..005,OCR-100..125"] [--pretty]
+ *   node scripts/registry/manifest.mjs <dossier-md> [--expected "OCR-000..005,OCR-100..125"] [--out <chemin>] [--pretty]
  *
  * --expected : plages AUTORITATIVES, éventuellement DISJOINTES (séparées par
  *   des virgules). Les manquants sont calculés UNIQUEMENT à l'intérieur de
@@ -208,12 +214,14 @@ function main() {
   let inputDir = null;
   let expectedSpec = null;
   let excludeSpec = null;
+  let outPath = null; // ESSAI À BLANC par défaut : aucune écriture sans --out.
   const opts = { pretty: true };
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === '--expected') expectedSpec = args[++i];
     else if (a === '--exclude') excludeSpec = args[++i];
+    else if (a === '--out') outPath = args[++i];
     else if (a === '--pretty') opts.pretty = true;
     else if (a === '--no-pretty') opts.pretty = false;
     else if (!a.startsWith('--')) inputDir = a;
@@ -388,11 +396,15 @@ function main() {
 
   const json = JSON.stringify(manifest, null, opts.pretty ? 2 : 0);
 
-  // Écriture : stdout + content/registry/_manifest.json (preuve d'import contrôlé).
-  const outDir = path.join(process.cwd(), 'content', 'registry');
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(path.join(outDir, '_manifest.json'), json + '\n', 'utf8');
+  // stdout : TOUJOURS (preuve machine, essai à blanc).
   process.stdout.write(json + '\n');
+
+  // Fichier : UNIQUEMENT si --out est une cible explicite. Sans lui, rien n'est écrit.
+  if (outPath) {
+    const resolved = path.resolve(outPath);
+    mkdirSync(path.dirname(resolved), { recursive: true });
+    writeFileSync(resolved, json + '\n', 'utf8');
+  }
 
   // Résumé humain sur stderr.
   const byType = {};
@@ -404,7 +416,7 @@ function main() {
   }
   console.error(`Anomalies : ${anomalies.length}` + (anomalies.length ? '' : ' (aucune)'));
   for (const [t, c] of Object.entries(byType)) console.error(`  • ${t} : ${c}`);
-  console.error(`Écrit : content/registry/_manifest.json (NON committé dans ce lot)`);
+  console.error(outPath ? `Écrit : ${path.resolve(outPath)}` : `ESSAI À BLANC — aucun fichier écrit (passer --out <chemin> pour écrire)`);
   console.error('──────────────────────────────────────────────');
 }
 

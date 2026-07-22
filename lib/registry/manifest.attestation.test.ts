@@ -33,8 +33,25 @@ const MANIFEST = path.join(process.cwd(), 'content/registry/_manifest.json');
 const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8')) as {
   file_count: number;
   excluded_files: string[];
-  records: { source_filename: string; checksum_sha256: string }[];
+  expected_ranges: string | null;
+  records: { source_filename: string; checksum_sha256: string; document_id: string | null }[];
 };
+
+/** Plages déclarées « PREFIX-<start>..<end> », séparées par des virgules. */
+function parseRanges(spec: string | null) {
+  if (!spec) return [];
+  return spec.split(',').map((s) => s.trim()).filter(Boolean).map((term) => {
+    const m = term.match(/^([A-Za-z0-9]+)-(\d+)\.\.(\d+)$/);
+    if (!m) throw new Error(`plage invalide : ${term}`);
+    return { prefix: m[1], start: parseInt(m[2], 10), end: parseInt(m[3], 10) };
+  });
+}
+function idInRanges(id: string | null, ranges: ReturnType<typeof parseRanges>) {
+  const m = id?.match(/^([A-Za-z0-9]+)-(\d+)$/);
+  if (!m) return false;
+  const [, prefix, num] = m;
+  return ranges.some((r) => r.prefix === prefix && +num >= r.start && +num <= r.end);
+}
 
 const excluded = new Set(manifest.excluded_files ?? []);
 const mdFiles = readdirSync(DIR)
@@ -67,5 +84,20 @@ describe('ATTESTATION DU MANIFESTE — rejouée à chaque build', () => {
     // C'est exactement la divergence qui a duré ≈ 24 h 40 min sans être vue.
     // Un tableau non vide NOMME les Records périmés, il ne dit pas seulement « faux ».
     expect(drift).toEqual([]);
+  });
+
+  // GARDE DE PLAGE — l'assertion inverse de la mesure M2. Le générateur est SILENCIEUX
+  // sur un id hors `expected_ranges` (il ne signale que les trous DANS chaque plage) :
+  // un artefact non prévu serait absorbé sans un mot. Ce test est le fil de détente —
+  // il passe aujourd'hui (les 33 sont dans les plages) et échouera, en le NOMMANT, le
+  // jour où un id hors plage apparaît. Il ne CORRIGE rien et ne touche pas aux plages :
+  // la série de l'artefact de promotion est une décision de l'Architecte.
+  it('tout id PRÉSENT tombe dans une plage déclarée — sinon échec nommé', () => {
+    const ranges = parseRanges(manifest.expected_ranges);
+    expect(ranges.length, 'des plages doivent être déclarées').toBeGreaterThan(0);
+    const outOfRange = manifest.records
+      .filter((r) => !idInRanges(r.document_id, ranges))
+      .map((r) => `${r.source_filename} (id: ${r.document_id ?? '—'})`);
+    expect(outOfRange).toEqual([]);
   });
 });
