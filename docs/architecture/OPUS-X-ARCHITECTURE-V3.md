@@ -38,6 +38,22 @@ sans hésiter ce qui se recalcule et ce qui se réécrit.
 
 > Ce n'est pas une fréquence. C'est un seuil de divergence.
 
+### Journal des corrections
+
+**[DÉRIVABLE]** — recalculé depuis l'historique du dépôt.
+
+**Sept** corrections factuelles ont été appliquées depuis le versement (21 juillet 2026),
+numérotées 1 à 5, 7 et 8. **Le numéro 6 n'a jamais existé** : il a été sauté par erreur en
+nommant la septième, et n'est pas masqué ici — un document de référence énonce ses propres
+lacunes plutôt que de renuméroter pour sauver les apparences.
+
+Une correction ponctuelle amende un chiffre isolé sans rééditer les parties [DÉRIVABLE]. La
+première **réédition ciblée** des parties [DÉRIVABLE] (§24.1, §24.2) a suivi, le 22 juillet
+2026 : elle n'est pas une neuvième correction. Le seuil de divergence était franchi —
+*nouvelle surface majeure* (le Registry public passé de projeté à 92 pages canoniques en
+ligne) et *le document ne reflétait plus l'état courant* — et le seuil existe précisément
+pour substituer un recalcul depuis le dépôt à l'accumulation de correctifs.
+
 ---
 
 ## STATUT DE CE DOCUMENT
@@ -874,11 +890,24 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 
 | Surface | État |
 |---|---|
-| Pages publiques | 11, vérifiées |
+| Pages publiques découvrables | 103 — 11 indexables + 92 canoniques |
 | Interface machine | 6 routes, explorable |
 | Réidentification | publiée, exposée par la découverte canonique |
 | Knowledge Graph | 80 nœuds, 222 arêtes |
 | Magasin de faits | vide, conforme |
+
+Le mot **publiques** ne qualifie que ces 103 pages. Trace : `discoveryPlan()` = 103,
+soit `indexPlan()` = 11 (éditoriales indexables) + `registryPaths()` = 92 (l'index
+`/records` et les 91 sous-pages du registre). L'interface machine et les écrans
+d'application ne sont **pas** des pages publiques et ne sont pas comptés ici.
+
+**Lacune déclarée — le total de build n'est pas inscrit.** Le bandeau `npm run build`
+annonce « 292 pages ». Ce nombre n'entre pas dans ce document parce qu'il ne se
+décompose pas en somme traçable : la source autoritaire du prérendu
+(`prerender-manifest.json`) énumère **278** routes — 158 API + 92 registre + 19 locales
++ 9 singulières — et le delta de 14 jusqu'à 292 relève du décompte interne du générateur
+de Next (coquilles de routes dynamiques), qu'on ne peut nommer sans inférer. Un total
+dont la composition est inconnue est un nombre sans source ; il est laissé dehors.
 
 ### 24.2 Lots GEO
 
@@ -887,7 +916,7 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 | Lot | Objet | État |
 |---|---|---|
 | 1 | Fondations et piliers | **fait** — 11 pages |
-| 2 | Registry public | **en cours** — moteur et fabrique livrés |
+| 2 | Registry public | **fait** — en ligne, 92 pages canoniques |
 | 3 | Glossaire et entités | débloqué par la décision sur les dettes publiques |
 | 4 | Knowledge Graph public | non commencé |
 | 5 | Comparatifs | non commencé |
