@@ -13,6 +13,8 @@ verrouillées ; les règles non normalisées, dans `REGLES-DECOUVERTES.md`.
 |---|---|---|
 | **D-001** | **Option 1a** — l'artefact de promotion est un **artefact documentaire à côté du Record** | il entre dans l'enveloppe d'intégrité (le manifeste) |
 | **D-002 v2** | **Modèle B″** — les projections **ne sont pas gouvernées** : leur `robots` reste hors chaîne, à sa valeur actuelle ; elles **affichent les statuts des Records projetés** et rendent visible l'hétérogénéité, **sans statut propre** | option de la main de l'Architecte (voir §4) |
+| **D-003** | **SANS OBJET** — la fonction d'agrégation disparaît ; retirée des décisions attendues | rendue caduque |
+| **D-004** | **Série dédiée `PROMO-xxx`**, hors des plages OCR actuelles | l'artefact de promotion a sa propre série ; `expected_ranges` amendé, garde de plage prouvé sur PROMO-001 (§6) |
 
 **Chemin critique de D-001** : l'enveloppe d'intégrité (le manifeste) n'était **attestée par
 aucun test** et avait divergé **≈ 24 h 40 min** sans être vue (§3). L'attestation est
@@ -22,7 +24,7 @@ désormais conçue et posée (§6, Voie B).
 
 ## 2 · Les verrous restants chez l'Architecte
 
-Trois décisions **non rendues**. Tant qu'elles ne le sont pas, elles ne sont pas invocables
+**Deux** décisions **non rendues**. Tant qu'elles ne le sont pas, elles ne sont pas invocables
 (RD-006 : *une source plausible n'est pas une source vérifiée*).
 
 1. **Permanence anglaise des artefacts canoniques.** Aucune source normative ne la rend. Le
@@ -30,17 +32,13 @@ Trois décisions **non rendues**. Tant qu'elles ne le sont pas, elles ne sont pa
    **WEB-001B** planifie l'inverse (WEB-007 multilingue, type `translation`). La lacune
    `localized-to-canonical-link` reste **ouverte** pour cette raison ; son motif a été ramené
    au tracé (« non localisée **aujourd'hui**, par fallback strict, `CLAUDE.md:55` »).
-2. **Série d'identifiants de l'artefact de promotion.** Non tranchée — et **critique** : le
-   générateur est **silencieux** sur un id hors `expected_ranges` (§3, mesure M2). Sans
-   décision, l'id n'est gardé par rien. *(Fil de détente posé — la garde de plage échouera si
-   un id hors plage apparaît, §6 ; mais elle n'invente pas la série.)*
-3. **Plan d'indexation des 59 pages dérivées.** Contradiction **décidée** par D-002 v2 côté
+2. **Plan d'indexation des 59 pages dérivées.** Contradiction **décidée** par D-002 v2 côté
    `robots` (fixé), **ouverte** côté plan : les 59 doivent-elles y entrer, ou leur `robots`
    revenir à `noindex` ? (§4.)
-4. **D-003 — confirmation attendue.** En attente de l'Architecte ; ce dossier ne l'anticipe pas.
 
-*Le substrat du fait de promotion n'est plus un verrou : il est rendu par **D-001 = Option 1a**
-(§1). Aucun item décidé ne figure ci-dessus.*
+*Ne sont plus des verrous : le **substrat** du fait de promotion (rendu par D-001 = Option 1a),
+la **série d'identifiants** (rendue par D-004 = `PROMO-xxx`), et **D-003** (sans objet).
+Aucun item décidé ne figure ci-dessus.*
 
 ---
 
@@ -211,21 +209,32 @@ git mais aucun test ; « aucune dette ouverte » repose sur une liste curée à 
 ## 6 · Chantiers ouverts
 
 - **Voie B — attestation du manifeste : POSÉE** (D-001). `lib/registry/manifest.attestation.test.ts`
-  (**4 tests**) rejoue le sha256 de chaque Record vs le checksum stocké, à chaque `npm test`
+  (**5 tests**) rejoue le sha256 de chaque Record vs le checksum stocké, à chaque `npm test`
   (donc chaque build). Prouvée par mutation : elle attrape une dérive d'un octet et **nomme** le
   Record. La divergence de 24 h 40 min ne peut plus dormir. *(Intégrité du manifeste uniquement
   — aucun statut, aucune promotion.)*
-- **Garde de plage : POSÉE.** 4ᵉ test de l'attestation — tout id présent tombe dans une plage
-  déclarée, sinon échec nommé. Fil de détente de M2 : passe aujourd'hui, échouera si un id hors
-  plage apparaît. **Ne touche pas aux plages** (série de l'artefact = décision Architecte, §2.2).
+- **Garde de plage + D-004 : POSÉES.** Tout id présent tombe dans une plage déclarée, sinon
+  échec nommé. `expected_ranges` **amendé** pour déclarer la série `PROMO` (D-004) :
+  `OCR-000..006,OCR-100..125,PROMO-001..001`. **Prouvé sur cas réel** — un manifeste généré avec
+  un `PROMO-001` présent : le garde **nomme PROMO-001 et échoue AVANT** l'amendement, **passe
+  APRÈS**. Un test scelle l'avant/après par mutation. *Conséquence à signaler : déclarer PROMO
+  dans `expected_ranges` (qui vaut « valide ET requis ») fait apparaître une anomalie advisory
+  `missing_in_sequence: PROMO-001` tant que l'artefact n'est pas créé — tripwire honnête « série
+  armée, premier artefact attendu », qui se lève à la création. La borne haute `..001` devra
+  s'étendre à chaque nouvel artefact minté.*
 - **Garde du générateur : POSÉE.** `scripts/registry/manifest.mjs` est désormais en **essai à
   blanc par défaut** ; le chemin réel est une cible explicite (`--out`). Motif : l'incident
   daté du 2026-07-22 (le rejeu a écrasé le manifeste réel parce que l'écriture était le défaut).
+- **« Cité ≥ 1 » : PROMU EN TEST** (`lib/registry/citations.test.ts`, §5). Rejoue les citations
+  dans un fichier, attrape par mutation le défaut du script (`\b` → backspace). Dernier obstacle
+  dérivable levé.
 - **Lot B″ (D-002 v2) : chiffré, non exécuté** (§4). 38 pages dans le périmètre.
-- **Cycle 1 de promotion** : la Phase 1 (30 Records) est **exécutable** — aucun de ses Records
-  n'échoue un critère dérivable mesuré. *(Le substrat n'est plus un verrou : D-001 = Option 1a.)*
-- **Dette d'incohérence** : devenue contradiction décidée (§4) ; arbitrage du plan restant (§2.3).
+- **Cycle 1 de promotion** : la Phase 1 (30 Records) est **exécutable au regard de ses propres
+  critères** (30·2·1 : stabilité + dette). Réserve inscrite (§3) : le critère « cité ≥ 1 » de la
+  **grille** flaguerait **OCR-123** (Phase 1, cité par 0) — c'est un arbitrage Architecte : quel
+  jeu de critères gouverne. *(Substrat et série ne sont plus des verrous : D-001, D-004.)*
+- **Dette d'incohérence** : devenue contradiction décidée (§4) ; arbitrage du plan restant (§2.2).
 - **Deux `alias_self_loop`**, énumération hétérogène d'OCR-100, permanence anglaise : inchangés.
 
-*Vérification §6 ↔ §4/§1 : aucun item décidé ne figure comme ouvert. Le substrat (Option 1a),
-le robots des projections (B″) et l'attestation (posée) sont des acquis, cités comme tels.*
+*Vérification §6 ↔ §4/§1/§2 : aucun item décidé (Option 1a, B″, D-004, attestation) ne figure
+comme verrou ouvert. Les seuls verrous sont la permanence anglaise et le plan des 59 (§2).*

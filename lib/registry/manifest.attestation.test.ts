@@ -100,4 +100,16 @@ describe('ATTESTATION DU MANIFESTE — rejouée à chaque build', () => {
       .map((r) => `${r.source_filename} (id: ${r.document_id ?? '—'})`);
     expect(outOfRange).toEqual([]);
   });
+
+  // D-004 — la série de promotion PROMO-xxx est déclarée hors des plages OCR. Ce test
+  // PROUVE le garde de plage sur ce cas réel, par mutation : avec la plage PROMO déclarée,
+  // PROMO-001 est accepté ; sans elle (mutation), il est rejeté — exactement l'état
+  // AVANT l'amendement. C'est la démonstration que le garde décide bien sur PROMO-001.
+  it('D-004 — PROMO-001 est en plage APRÈS l’amendement, rejeté sans la plage PROMO (mutation)', () => {
+    const ranges = parseRanges(manifest.expected_ranges);
+    expect(ranges.some((r) => r.prefix === 'PROMO'), 'la plage PROMO doit être déclarée (D-004)').toBe(true);
+    expect(idInRanges('PROMO-001', ranges), 'après amendement : accepté').toBe(true);
+    const sansPromo = ranges.filter((r) => r.prefix !== 'PROMO');
+    expect(idInRanges('PROMO-001', sansPromo), 'avant amendement : rejeté').toBe(false);
+  });
 });
