@@ -403,6 +403,39 @@ mêmes sources que les routes, et son test assère son propre compte — 92 = 1 
 **Portée** : elle vise tout harnais de vérification, pas seulement celui-ci. Un compte
 produit sans test du compte n'est pas opposable.
 
+**Troisième occurrence, inscrite le 2026-07-22 — le bandeau de build.** Les deux incidents
+ci-dessus ont été **rattrapés en interne**, avant publication. Le bandeau de build, lui,
+**a franchi la ligne de preuve** : le compte « build 292 pages » a été cité comme preuve
+brute sur plusieurs lots (fin du lot `entityHref`/harnais, lot de renommage du gap,
+réédition §24.1). Il n'a **jamais mesuré des pages**. Le « 292 » est un décompte interne du
+worker de génération de Next, qui agrège des coquilles de routes dynamiques ; la source
+autoritaire du prérendu (`prerender-manifest.json`) énumère **278** routes prérendues,
+décomposées exactement — 158 API + 92 registre + 19 locales + 9 singulières. C'est la plus
+utilisée des trois occurrences, et **la seule qui figurait dans des lignes de preuve** — les
+deux autres étant restées internes au harnais. Le bandeau **annonçait** un compte ; il ne le
+**mesurait** pas.
+
+**Conséquence — règle de preuve (standing, non normative) : un compte se cite depuis sa
+source autoritaire, jamais depuis une annonce.** Toute ligne de preuve citant un **compte de
+pages** cite le **manifeste de prérendu** (`prerender-manifest.json`), source nommée. Le
+bandeau de build, s'il est mentionné, se dit **« bandeau de build »**, jamais « pages ». Un
+total dont la composition n'est pas décomposable en somme traçable n'entre pas dans un
+document de référence. C'est l'application directe de la présente proposition ; la règle vit
+ici, avec elle, plutôt que dans un document concurrent, parce qu'elle en est la conséquence
+et non une décision distincte. Elle relève du **registre** et non des **dettes** : rien n'y
+est dû ni ouvert — c'est une discipline déjà adoptée, qui guide les développements, ce que ce
+registre conserve précisément.
+
+> **Décompte des occurrences — dit, non masqué.** Ce registre en documente désormais
+> **trois** (deux internes au harnais, une — le bandeau — dans les lignes de preuve). Deux
+> cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont donc pas
+> comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes distinctes
+> (double-compte de `governed_by`), et la projection de **103** formes de surface là où **86**
+> seulement portent un identifiant. Le dépôt ne porte que les valeurs corrigées (222, 86),
+> jamais les annonces (230, 103-comme-pages) : elles ne sont pas traçables comme occurrences.
+> Si l'architecte veut le registre complet des annonces, il dira lesquelles inscrire — je
+> n'écris pas « quatrième » sur un registre qui n'en établit que trois.
+
 ---
 
 ## PROPOSITION (2) — sans numéro, en attente d'attribution par l'architecte
