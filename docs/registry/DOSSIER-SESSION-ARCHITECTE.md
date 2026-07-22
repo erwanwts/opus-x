@@ -69,25 +69,40 @@ Inscrite en dette ; **arbitrée par D-002 v2** (§4).
 familles + 1 type + 1 index**).
 
 **Les 7 Records absents du graphe** = **OCR-000 à 006** (ils se citent en prose mais n'ont
-pas de section machine → aucun nœud). Critère « cité ≥ 1 » appliqué :
+pas de section machine → aucun nœud). Critère « cité ≥ 1 » appliqué (mesuré par
+`lib/registry/citations.test.ts`) :
 
 | Record | Phase (30·2·1) | Cité par | « cité ≥ 1 » |
 |---|---|---:|---|
 | OCR-000…005 | **Phase 1** | 6 chacun | **PASSE** |
-| OCR-006 | Phase 3 | 0 | échoue (attendu en Phase 3) |
+| OCR-006 | Phase 3 | 0 | échoue (Phase 3) |
 
-**Aucun Record de Phase 1 n'échoue le critère dérivable. La Phase 1 peut s'exécuter sur la
-partition actuelle.** *(Note : une première mesure, boguée — regex `\b` sur des id à trait
-d'union — donnait 0 citations et concluait l'inverse ; corrigée par `.includes`, contrôle
-croisé au grep. Le fait est consigné.)*
+**CORRECTION (2026-07-22) — ma première conclusion était incomplète.** J'avais écrit « aucun
+Record de Phase 1 n'échoue le critère » en ne mesurant que les **7 Records absents du graphe**.
+Le test rejouable, appliqué à **tout** le corpus, donne l'inventaire complet des non-cités :
+**{OCR-006, OCR-123}**. Or **OCR-123 est en Phase 1** sous 30·2·1 — donc **un Record de Phase 1
+échoue bien « cité ≥ 1 »**. Nuance décisive : la partition **30·2·1 n'emploie PAS ce critère**
+(elle discrimine sur *stabilité + dette*, `MESURES:94` ; OCR-123 y entre en Phase 1
+explicitement, sa non-citation n'étant « plus discriminante »). Donc **la Phase 1 n'est pas
+bloquée par ses propres critères** — mais **elle le serait si le critère « cité ≥ 1 » de la
+grille était appliqué**. À l'Architecte de trancher lequel gouverne.
 
-**Anomalie de plage (M2), rejouée sur le générateur réel** — artefact hors
-`expected_ranges` (OCR-000..006 / OCR-100..125) : **SILENCE**. `missing_in_sequence` reste
-vide ; l'artefact est **silencieusement absorbé** (file_count 33→35, entrée + checksum
-créés). Le générateur ne signale ni erreur ni avertissement sur un id hors plage — il ne
-vérifie que les trous *dans* chaque plage. *(Le générateur écrit en dur dans
-`content/registry/_manifest.json` : le rejeu a été fait sur copie, manifeste réel restauré et
-vérifié identique à HEAD.)*
+*Cause exacte du bug de la 1ʳᵉ mesure, corrigée : ce n'était PAS le trait d'union. Un `\b`
+construit à travers une couche shell (`node -e`) voit ses backslashes réduits et devient le
+caractère BACKSPACE — jamais une frontière. Dans un fichier avec `\\b`, la frontière compte
+6. Le test vit dans un fichier et le prouve par mutation.*
+
+**Anomalie de plage (M2)** — artefact hors `expected_ranges` (OCR-000..006 / OCR-100..125) :
+**SILENCE**. `missing_in_sequence` reste vide ; l'artefact est **silencieusement absorbé**
+(file_count 33→35, entrée + checksum créés). Le générateur ne signale ni erreur ni
+avertissement sur un id hors plage — il ne vérifie que les trous *dans* chaque plage.
+
+> **Mesuré le 2026-07-22, sur la version du générateur ANTÉRIEURE à la garde.** À l'époque,
+> `manifest.mjs` écrivait en dur dans `content/registry/_manifest.json` — le rejeu a écrasé le
+> manifeste réel (restauré depuis sauvegarde, vérifié identique à HEAD). La garde d'essai à
+> blanc (`--out`, §6) a supprimé ce défaut. **La PROCÉDURE décrite n'est donc plus rejouable
+> en l'état** ; le **RÉSULTAT reste valide**, confirmé indépendamment par la garde de plage de
+> `manifest.attestation.test.ts` (4ᵉ test). Mesure non refaite.
 
 **Substrat du build.** Le build **ne lit rien hors du dépôt** (aucun `fetch`/`supabase`/`http`
 dans le chemin statique). **34 pages** consomment le statut au build (33 Records + l'index) ;
@@ -170,7 +185,7 @@ Colonne DÉRIVABLE, après pose de l'attestation :
 | **Empreinte** (checksum) | ❌ aucune attestation | ✅ **attesté** | `manifest.attestation.test.ts` (sha256 par Record) |
 | **Manifeste** (cohérence) | ❌ aucune attestation | ✅ **attesté** | idem (file_count + population + checksums) |
 | **Invariants** (projection) | ✅ | ✅ | `markdown.invariant.test.ts` |
-| **Références** (« cité ≥ 1 ») | ⚠️ substrat sans attestation | ⚠️ **inchangé** | graphe/corpus ; **seulement un script** (bogué cette session) — **aucun test rejouable** |
+| **Références** (« cité ≥ 1 ») | ⚠️ substrat sans attestation | ✅ **DÉRIVABLE** | `citations.test.ts` — rejoue les citations dans un fichier, prouvé par mutation ; inventaire des non-cités = {OCR-006, OCR-123} |
 | **Modification substantielle** (commits) | ⚠️ substrat sans test | ⚠️ **inchangé** | git ; aucun test |
 | **Dette** (« aucune dette ouverte ») | ⚠️ fichier humain | ⚠️ **inchangé** | `DETTES-ouvertes.md` ; liste curée, aucun test |
 
@@ -180,10 +195,16 @@ désormais. Réserve : la **signification** de l'empreinte (contenu canonique vs
 fichier) reste **une lacune distincte, non fermée** — le test atteste que le checksum
 correspond au contenu, pas ce que le checksum *représente*.
 
-**Les trois ⚠️ sont inchangées.** En particulier, « cité ≥ 1 » n'a **toujours qu'un script**,
-pas un test rejouable — et ce script a menti cette session (§3). Tant qu'il n'y a
-pas de test, le critère n'est pas opposable. *(Le script fautif employait une regex `\b` sur
-des identifiants à trait d'union ; corrigé, mais toujours pas promu en test.)*
+**« Cité ≥ 1 » est promu : il a désormais un test rejouable** (`citations.test.ts`), qui
+mesure les citations dans un fichier et attrape par mutation le défaut qui avait rendu 0 (un
+`\b` réduit au caractère backspace par la couche shell — **pas** le trait d'union). Le critère
+**devient dérivable**. Il révèle du même coup son inventaire : **{OCR-006, OCR-123}** cités par
+0, dont **OCR-123 en Phase 1** (§3) — un fait qui restait invisible tant qu'il n'y avait qu'un
+script.
+
+**Restent deux ⚠️ : commits et dette.** « Modification substantielle » (commits) a un substrat
+git mais aucun test ; « aucune dette ouverte » repose sur une liste curée à la main
+(`DETTES-ouvertes.md`), non mesurée.
 
 ---
 

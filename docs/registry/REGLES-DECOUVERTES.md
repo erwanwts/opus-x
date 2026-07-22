@@ -6,9 +6,9 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> TROIS PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> QUATRE PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
 > ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
-> excéder la population mesurée** :
+> excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -434,16 +434,17 @@ Record à chaque build ; prouvée par mutation — elle attrape une dérive d'un
 Record.)*
 
 **Troisième instrument de la même occurrence — un script de mesure non testé (le mien,
-2026-07-22).** Un script de comptage de citations employait une regex `\b` sur des
-identifiants à trait d'union (`\bOCR-004\b`) qui ne matchait pas : il a **annoncé « cité par
-0 »** pour OCR-000 à 005, là où le compte réel est **6**. Il n'a pas été arrêté par un test —
-il n'y en avait pas — mais par **contradiction avec une mesure antérieure enregistrée** (le
-DOSSIER de promotion portait « cité par 6 »), confirmée au grep. **Conséquence évitée :** sur
-cette mesure fausse, **6 Records de Phase 1** auraient échoué le critère « cité ≥ 1 » et la
-**Phase 1 serait devenue inexécutable**. Leçon distincte, à joindre à la proposition : *une
-mesure antérieure enregistrée est elle-même un instrument* — c'est elle qui a rattrapé le
-script, là où aucun test ne veillait. Argument pour consigner les mesures, pas seulement les
-conclusions.
+2026-07-22).** Un script de comptage de citations a **annoncé « cité par 0 »** pour OCR-000
+à 005, là où le compte réel est **6**. **Cause exacte, mesurée — et corrigée depuis :** ce
+n'était PAS le trait d'union. Le motif `\b` était construit à travers une couche shell
+(`node -e`, heredoc) qui réduit les backslashes ; `\b` y devient le **caractère BACKSPACE
+(U+0008)**, jamais une frontière de mot. Dans un fichier, avec un double backslash (`\\b`), la
+frontière compte bien 6. Le script n'a pas été arrêté par un test — il n'y en avait pas — mais
+par **contradiction avec une mesure antérieure enregistrée** (le DOSSIER portait « cité par
+6 »), confirmée au grep. Leçon distincte, à joindre à la proposition (4) : *une mesure
+antérieure enregistrée est elle-même un instrument*. Depuis le 2026-07-22, le critère est
+**promu en test** (`lib/registry/citations.test.ts`) qui rejoue les citations dans un fichier
+et attrape le défaut par mutation — voir la mise à jour de la grille.
 
 **Conséquence — règle de preuve (standing, non normative) : un compte se cite depuis sa
 source autoritaire, jamais depuis une annonce.** Toute ligne de preuve citant un **compte de
@@ -461,8 +462,8 @@ registre conserve précisément.
 > TROIS instruments** — le bandeau de build (lignes de preuve), le manifeste d'intégrité
 > (dépôt), et un script de mesure non testé (le script de citations, 2026-07-22) —, tous
 > attestant ou annonçant une valeur non vérifiée. Les deux derniers **rejoignent** le bandeau,
-> ils n'ouvrent pas de nouvelle occurrence numérotée. Le registre en compte donc **huit** en
-> tout (voir proposition 3).
+> ils n'ouvrent pas de nouvelle occurrence numérotée. Le registre en compte **dix** en tout
+> (voir propositions 3 et 4).
 >
 > Deux cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont
 > donc pas comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes
@@ -564,6 +565,39 @@ des 58 n'ont aucun Record auquel attacher un statut. Même défaut que la chaîn
 compte est juste, la **population annoncée** (58) dépasse la **population réellement
 concernée** (38). **Huitième occurrence du registre, la troisième de l'Architecte, inscrite à
 son nom** sur sa demande.
+
+---
+
+## PROPOSITION (4) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
+
+> **Distincte des trois premières.** Les propositions 1 à 3 décrivent des instruments qui
+> échouent — non testé, jamais exercé, annonce qui déborde. Celle-ci décrit ce qui **rattrape
+> l'échec en l'absence de test** : une mesure déjà écrite, avec sa source.
+
+**Formulation proposée (Architecte)**
+
+> « Une mesure enregistrée est elle-même un instrument. Un nombre inscrit avec sa source peut
+> contredire une mesure fausse ; un nombre inscrit sans source ne le peut pas. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-22 |
+| **Chantier d'origine** | Corrections de session — ce qui a rattrapé deux mesures sans test |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — deux occurrences :**
+
+| # | La mesure fausse | Ce qui l'a rattrapée (nombre inscrit AVEC sa source) |
+|---|---|---|
+| 1 | le script de citations : « cité par **0** » (OCR-000..005) | le DOSSIER de promotion portait « cité par **6** », avec la source — la contradiction a arrêté le script, **aucun test ne veillait** |
+| 2 | *(corroboration, non un échec)* — pages localisées prérendues | deux mesures indépendantes, deux questions, **même nombre 19** (en 11 · fr 4 · es 4) : `prerender-manifest.json` et le constat de rétractation se sont **confirmés** l'un l'autre |
+
+La première montre la règle en défense (un enregistrement contredit une erreur) ; la seconde
+en confirmation (deux enregistrements convergent). Dans les deux cas, **c'est l'enregistrement
+avec sa source** qui a joué le rôle d'instrument, là où aucun test n'existait.
+
+**Neuvième et dixième occurrences du registre.** Registre : **dix occurrences, quatre
+propositions.**
 
 ---
 
