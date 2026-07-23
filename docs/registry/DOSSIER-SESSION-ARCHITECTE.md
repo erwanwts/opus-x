@@ -265,13 +265,20 @@ cible *avant* implémentation. **RD-006** : *une source plausible n'est pas une 
 Ses recommandations **ressemblent à des décisions** — c'est exactement le piège `[GRAVÉ]` : rien
 n'y renvoie à une source normative externe. Aucune de ses prescriptions n'est opposable.
 
-**Écarts mesurés avec l'implémentation** (relevé, pas arbitrage) :
+**⚠️ Le doc n'est pas encore lu.** Le schéma est un Google Doc, hors de portée de Claude. Il sera
+versé sous `docs/web/SCHEMA-GEO-2026-07-18.md`. **Les faits « côté schéma » ci-dessous viennent de
+la DESCRIPTION de l'Architecte, non du document** — ils sont **provisoires**, à re-vérifier contre
+le fichier versé (dette de provenance : *un document sans sa version n'est pas une source*). Seuls
+les faits « côté implémentation » sont mesurés.
 
-- **URLs du Registry.** Le schéma prescrit `/registry/…` ; l'implémentation a choisi `/records/…`
+**Écarts — implémentation MESURÉE vs schéma DÉCRIT (à confirmer sur le doc versé) :**
+
+- **URLs du Registry.** Schéma *(décrit)* : `/registry/…`. Implémentation *(mesurée)* : `/records/…`
   (décision 607, pour éviter la **collision** avec la page pilier `/en/registry`, slug `registry`
-  = OCR-124). Écart de préfixe sur **91 URLs**. Arbitrage ouvert (voir le relevé de session).
-- **Les 15 sections.** Le schéma diffère de la structure arrêtée par l'architecte sur **six**
-  sections. **La production suit la structure ARCHITECTE** (`GRAVEN_ORDER`), pas le schéma.
+  = OCR-124). Écart de préfixe sur **91 URLs**. Arbitrage ouvert.
+- **Les 15 sections.** Schéma *(décrit)* : diffère sur **six** sections. Implémentation *(mesurée)* :
+  **la production suit la structure ARCHITECTE** (`GRAVEN_ORDER`). Le côté « six sections » reste à
+  vérifier sur le doc.
 
 **Deux points que le schéma tranche SANS autorité — à ne pas prendre pour des décisions :**
 
