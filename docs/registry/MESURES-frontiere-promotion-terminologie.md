@@ -95,6 +95,18 @@ corpus a 5 jours). Il déplace le discriminant de la **date** vers la **dette ou
 | **2 — dette documentaire ouverte** | **2** | OCR-100, OCR-114 |
 | **3 — jamais relu** | **1** | OCR-006 |
 
+> ### ⚠️ RISQUE RÉSIDUEL ACCEPTÉ — à lire avant d'exécuter la Phase 1
+>
+> **La Phase 1 hérite d'une sémantique d'intégrité non déclarée.** L'attestation du manifeste
+> (`manifest.attestation.test.ts`) garantit que les Records **ne sont pas corrompus** (0 dérive
+> de checksum) ; mais **ce que l'empreinte couvre** — contenu canonique ou artefact de fichier —
+> reste une **décision candidate non rendue** (D-006, ex-`[GRAVÉ]` orphelin ; voir le régime des
+> `[GRAVÉ]` dans ARCHITECTURE-V3). Le risque est **accepté** : l'objet de la Phase 1 est
+> d'**éprouver la procédure**, pas de rendre des Records opposables au monde. Les critères de la
+> Phase 1 (stabilité + aucune dette ouverte) n'invoquent pas la signification de l'empreinte —
+> il n'y a donc pas de blocage. Mais qui exécute doit savoir que la garantie d'intégrité repose
+> sur une sémantique encore candidate.
+
 ### Pourquoi 15 Records passent de la Phase 2 à la Phase 1
 
 Les 11 Records rectifiés par `62027b4` et les 4 de la migration `wtf → wtr` étaient en

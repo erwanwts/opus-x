@@ -290,3 +290,24 @@ La classification somme bien à 47 (A9 · B8 · C29 · indécidable1). Mais le *
 (légende) + 11, 31 (régime, **portée non tranchée**). Le « 37/10 » supposait ces 5 retirables ; la
 vérification (§9) et le cadrage antérieur (449/300 hors-lot) l'en empêchent. **Je m'arrête ici**,
 comme la règle de contrôle le demande.
+
+## 12 · Les deux ⚠️ de la grille — matière pour le formulaire à l'Architecte
+
+Les deux critères dérivables non attestés partent en formulaire. **Ne pas les instrumenter ici.**
+Note pour la matière, l'argument central :
+
+- **« commits » lit une métadonnée MUTABLE** (l'historique git : un squash/rebase ou un clone
+  superficiel change le compte sans toucher au Record). Les **quatre critères attestés**
+  (empreinte, manifeste, références, invariants) lisent du **contenu déterministe** — présent
+  dans l'arbre, stable, reproductible. **C'est la différence de NATURE, pas la fragilité, qui est
+  l'argument** : un test sur `commits` mesurerait une propriété qui n'est pas dans le Record.
+- **« dette » (aucune ouverte)** repose sur une liste en **prose libre** (`DETTES-ouvertes.md`,
+  9 sections dont ~6-7 ouvertes) ; un test ne distingue pas *sujet d'une dette* d'une *mention
+  incidente*. Testable seulement en **structurant** le doc (champ `Records concernés`) — décision
+  d'outillage, pas mesure.
+
+Reclassement lié (2026-07-22) : **L230 (signification de l'empreinte)** est passé de retrait
+simple à **décision candidate** — la grille s'appuie dessus comme critère (fondement, pas
+mention). Vérifié : sur les 13 retraits simples, **230 est le seul fondement** ; les 12 autres
+sont des mentions (aucun critère/décision/comportement ne s'y appuie). Inventaire des candidates
+passé de 17 à **18**, garde à jour.

@@ -257,7 +257,7 @@ Un seul Record porte du texte entre son titre et son tableau : celui d'architect
 
 ### 6.1 Signification
 
-L'empreinte représente le **contenu canonique**, non l'artefact documentaire complet.
+**[DÉCISION CANDIDATE — D-006, à rendre]** L'empreinte représente le **contenu canonique**, non l'artefact documentaire complet. *(Reclassé de retrait simple en candidate le 2026-07-22 : la grille s'appuie dessus comme critère — c'est du fondement, pas une mention.)*
 
 > Si une simple promotion modifie l'empreinte, alors l'empreinte ne représente plus le contenu canonique : elle représente un état administratif du document.
 

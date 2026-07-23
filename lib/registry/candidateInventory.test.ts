@@ -39,10 +39,11 @@ describe('Inventaire des décisions candidates — motif unique (D-006)', () => 
     expect(offenders).toEqual([]);
   });
 
-  it('le token inventorie 16 candidates + 1 exemple de la règle = 17 (compte figé)', () => {
+  it('le token inventorie 17 candidates + 1 exemple de la règle = 18 (compte figé)', () => {
     const doc = readFileSync(F, 'utf8');
     // Compte gelé : toute addition/retrait de candidate doit le mettre à jour —
-    // c'est le tripwire qui force la revue de l'inventaire.
-    expect(doc.split(TOKEN).length - 1).toBe(17);
+    // c'est le tripwire qui force la revue de l'inventaire. Passé de 17 à 18 le
+    // 2026-07-22 : L230 (empreinte) reclassé de retrait simple en candidate.
+    expect(doc.split(TOKEN).length - 1).toBe(18);
   });
 });
