@@ -87,12 +87,16 @@ révision substantielle et qui ne portent aucune dette documentaire ouverte. »*
 Ce critère **remplace** celui de l'ancienneté, qu'aucun Record ne pouvait satisfaire (le
 corpus a 5 jours). Il déplace le discriminant de la **date** vers la **dette ouverte**.
 
-## Répartition : **30 · 2 · 1** *(auparavant 16 · 15 · 2)*
+## Répartition : **29 · 3 · 1** *(D-005 ; auparavant 30 · 2 · 1, avant 16 · 15 · 2)*
+
+**D-005 (rendue par l'Architecte, appliquée le 2026-07-24) :** OCR-123 **descend en Phase 2**. Il
+n'a pas de dette documentaire, mais il est **cité par 0** — le critère « cité ≥ 1 » de la grille est
+discriminant, et l'Architecte a tranché qu'il retient OCR-123 hors de la Phase 1.
 
 | Phase | Records | Motif mécanique |
 |---|---:|---|
-| **1 — stables** | **30** | stables depuis leur dernière révision · aucune dette ouverte |
-| **2 — dette documentaire ouverte** | **2** | OCR-100, OCR-114 |
+| **1 — stables** | **29** | stables · aucune dette ouverte · cité ≥ 1 |
+| **2 — retenus** | **3** | OCR-100, OCR-114 (dette ouverte) · **OCR-123** (cité par 0, D-005) |
 | **3 — jamais relu** | **1** | OCR-006 |
 
 > ### ⚠️ RISQUE RÉSIDUEL ACCEPTÉ — à lire avant d'exécuter la Phase 1
@@ -118,12 +122,13 @@ dette ne subsiste sur eux.
 **OCR-115**, amendé hier (v1.1.0), entre en Phase 1 : son amendement est complet, committé,
 et ne laisse aucune dette. Il est stable depuis sa dernière révision substantielle.
 
-### Les 2 Records de Phase 2
+### Les 3 Records de Phase 2
 
-| Record | Dette ouverte |
+| Record | Motif de rétention |
 |---|---|
 | **OCR-100** | énumération hétérogène (§ KG ligne 145) **et** `alias_self_loop` — les deux explicitement « à instruire », non corrigées |
 | **OCR-114** | `alias_self_loop` — explicitement « hors périmètre », non corrigé |
+| **OCR-123** | **cité par 0** — D-005 : le critère « cité ≥ 1 » le retient hors de la Phase 1 (voir ci-dessous) |
 
 ### Le Record de Phase 3
 
@@ -131,13 +136,14 @@ et ne laisse aucune dette. Il est stable depuis sa dernière révision substanti
 il a été créé après), sans `Canonical Name` ni `GEO Summary`. Il reste le seul à ne pas
 satisfaire la précondition d'OCR-005 : *« `Draft → Normative` MUST require grounding »*.
 
-### Un Record qui change de phase et mérite d'être signalé
+### OCR-123 — sa phase, tranchée par D-005
 
-**OCR-123** était en Phase 3 sous l'ancien critère — seul Record que **personne ne cite**.
-Le nouveau critère ne retient que la stabilité et la dette : n'étant l'objet d'aucune dette
-documentaire, il entre en **Phase 1**. Le fait qu'il ne soit jamais cité **subsiste** ; il
-n'est simplement plus discriminant. Je le signale pour que la bascule soit un choix, pas un
-effet de bord.
+**OCR-123** est le seul Record que **personne ne cite** (cité par 0). Sous 16·15·2 il était en
+Phase 3 ; sous 30·2·1 (dette seule) il était passé en Phase 1, sa non-citation « n'étant plus
+discriminante ». **D-005 tranche l'inverse : la non-citation EST discriminante — OCR-123 descend en
+Phase 2.** La bascule est donc un **choix rendu**, pas un effet de bord. C'est cohérent avec le
+critère « cité ≥ 1 » de la grille, prouvé par `citations.test.ts` (OCR-123 y est mesuré cité 0).
+*(Appliquée le 2026-07-24 ; trace dans le registre des décisions.)*
 
 ---
 

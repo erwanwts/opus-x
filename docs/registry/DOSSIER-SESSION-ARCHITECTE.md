@@ -78,27 +78,27 @@ corps.
 Inscrite en dette ; **arbitrée par D-002 v2** (§4).
 
 **Fan-in.** Prédicat 1–26 Records · famille 3–26 (transitif) · type `record` 26 · index 33.
-**22 des 59** pages référencent ≥ 1 des 3 Records restant en Draft (**11 prédicats + 9
-familles + 1 type + 1 index**).
+~~**22 des 59** pages référencent ≥ 1 des 3 Records restant en Draft (11 prédicats + 9 familles +
+1 type + 1 index).~~ **PÉRIMÉ (2026-07-24).** Mesuré sous **30·2·1** (3 Draft : OCR-100/114/006) —
+la partition est **29·3·1** depuis D-005, et surtout ce compte est **sans objet depuis B″** : le
+`robots` des pages dérivées est fixe, hors chaîne du statut des Records. Non recalculé.
 
 **Les 7 Records absents du graphe** = **OCR-000 à 006** (ils se citent en prose mais n'ont
 pas de section machine → aucun nœud). Critère « cité ≥ 1 » appliqué (mesuré par
 `lib/registry/citations.test.ts`) :
 
-| Record | Phase (30·2·1) | Cité par | « cité ≥ 1 » |
+| Record | Phase (29·3·1) | Cité par | « cité ≥ 1 » |
 |---|---|---:|---|
 | OCR-000…005 | **Phase 1** | 6 chacun | **PASSE** |
 | OCR-006 | Phase 3 | 0 | échoue (Phase 3) |
+| OCR-123 | **Phase 2 (D-005)** | 0 | échoue → **retenu hors Phase 1** |
 
-**CORRECTION (2026-07-22) — ma première conclusion était incomplète.** J'avais écrit « aucun
-Record de Phase 1 n'échoue le critère » en ne mesurant que les **7 Records absents du graphe**.
-Le test rejouable, appliqué à **tout** le corpus, donne l'inventaire complet des non-cités :
-**{OCR-006, OCR-123}**. Or **OCR-123 est en Phase 1** sous 30·2·1 — donc **un Record de Phase 1
-échoue bien « cité ≥ 1 »**. Nuance décisive : la partition **30·2·1 n'emploie PAS ce critère**
-(elle discrimine sur *stabilité + dette*, `MESURES:94` ; OCR-123 y entre en Phase 1
-explicitement, sa non-citation n'étant « plus discriminante »). Donc **la Phase 1 n'est pas
-bloquée par ses propres critères** — mais **elle le serait si le critère « cité ≥ 1 » de la
-grille était appliqué**. À l'Architecte de trancher lequel gouverne.
+**RÉSOLU PAR D-005 (appliquée le 2026-07-24).** L'inventaire des non-cités est **{OCR-006,
+OCR-123}**. OCR-006 est Phase 3 ; **OCR-123 descend en Phase 2** par D-005, précisément parce qu'il
+échoue « cité ≥ 1 ». Donc **aucun Record de Phase 1 n'échoue le critère** — l'arbitrage « quel jeu de
+critères gouverne » **est rendu** : la grille (dont « cité ≥ 1 ») gouverne, et OCR-123 en est
+l'application. *(Ma formulation antérieure — « à l'Architecte de trancher » — était fausse : D-005
+était déjà rendue, jamais propagée ; voir la 6ᵉ proposition du registre.)*
 
 *Cause exacte du bug de la 1ʳᵉ mesure, corrigée : ce n'était PAS le trait d'union. Un `\b`
 construit à travers une couche shell (`node -e`) voit ses backslashes réduits et devient le
@@ -199,7 +199,7 @@ Colonne DÉRIVABLE, après pose de l'attestation :
 | **Manifeste** (cohérence) | ❌ aucune attestation | ✅ **attesté** | idem (file_count + population + checksums) |
 | **Invariants** (projection) | ✅ | ✅ | `markdown.invariant.test.ts` |
 | **Références** (« cité ≥ 1 ») | ⚠️ substrat sans attestation | ✅ **DÉRIVABLE** | `citations.test.ts` — rejoue les citations dans un fichier, prouvé par mutation ; inventaire des non-cités = {OCR-006, OCR-123} |
-| **Modification substantielle** (commits) | ⚠️ substrat sans test | ⚠️ **inchangé** | git ; aucun test |
+| ~~**Modification substantielle** (commits)~~ | ⚠️ substrat sans test | 🗑️ **RETIRÉ (D-009)** | supprimé de la grille : lisait une métadonnée MUTABLE (git), pas du contenu |
 | **Dette** (« aucune dette ouverte ») | ⚠️ fichier humain | ⚠️ **inchangé** | `DETTES-ouvertes.md` ; liste curée, aucun test |
 
 **Constat demandé.** L'attestation ferme **les DEUX lacunes nettes** — empreinte **et**
@@ -212,12 +212,12 @@ correspond au contenu, pas ce que le checksum *représente*.
 mesure les citations dans un fichier et attrape par mutation le défaut qui avait rendu 0 (un
 `\b` réduit au caractère backspace par la couche shell — **pas** le trait d'union). Le critère
 **devient dérivable**. Il révèle du même coup son inventaire : **{OCR-006, OCR-123}** cités par
-0, dont **OCR-123 en Phase 1** (§3) — un fait qui restait invisible tant qu'il n'y avait qu'un
-script.
+0 — **OCR-123 est en Phase 2 (D-005)**, retenu précisément par ce critère (§3).
 
-**Restent deux ⚠️ : commits et dette.** « Modification substantielle » (commits) a un substrat
-git mais aucun test ; « aucune dette ouverte » repose sur une liste curée à la main
-(`DETTES-ouvertes.md`), non mesurée.
+**Après D-009, cinq critères dérivables, une seule ⚠️ : la dette.** « Modification substantielle »
+(commits) est **retiré** (D-009) — il lisait une métadonnée mutable (git), pas du contenu, et son
+unique base de contenu candidate (`Last Update`) était elle-même fausse (voir la dette de donnée).
+Reste **« aucune dette ouverte »**, à promouvoir en test si la structuration Q2 le permet.
 
 ---
 
@@ -244,10 +244,10 @@ git mais aucun test ; « aucune dette ouverte » repose sur une liste curée à 
   dans un fichier, attrape par mutation le défaut du script (`\b` → backspace). Dernier obstacle
   dérivable levé.
 - **Lot B″ (D-002 v2) : chiffré, non exécuté** (§4). 38 pages dans le périmètre.
-- **Cycle 1 de promotion** : la Phase 1 (30 Records) est **exécutable au regard de ses propres
-  critères** (30·2·1 : stabilité + dette). Réserve inscrite (§3) : le critère « cité ≥ 1 » de la
-  **grille** flaguerait **OCR-123** (Phase 1, cité par 0) — c'est un arbitrage Architecte : quel
-  jeu de critères gouverne. *(Substrat et série ne sont plus des verrous : D-001, D-004.)*
+- **Cycle 1 de promotion** : partition **29·3·1** (D-005). La Phase 1 (**29** Records) — l'arbitrage
+  OCR-123 est **rendu** (D-005 : cité 0 → Phase 2), plus une réserve ouverte. La grille gouverne
+  (dont « cité ≥ 1 »). *(Substrat et série ne sont plus des verrous : D-001, D-004 ; critère
+  « modification substantielle » retiré : D-009.)*
 - **Dette d'incohérence** : devenue contradiction décidée (§4) ; arbitrage du plan restant (§2.2).
 - **Deux `alias_self_loop`**, énumération hétérogène d'OCR-100, permanence anglaise : inchangés.
 

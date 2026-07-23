@@ -291,16 +291,13 @@ La classification somme bien à 47 (A9 · B8 · C29 · indécidable1). Mais le *
 vérification (§9) et le cadrage antérieur (449/300 hors-lot) l'en empêchent. **Je m'arrête ici**,
 comme la règle de contrôle le demande.
 
-## 12 · Les deux ⚠️ de la grille — matière pour le formulaire à l'Architecte
+## 12 · Les ⚠️ de la grille — matière pour le formulaire à l'Architecte
 
-Les deux critères dérivables non attestés partent en formulaire. **Ne pas les instrumenter ici.**
-Note pour la matière, l'argument central :
-
-- **« commits » lit une métadonnée MUTABLE** (l'historique git : un squash/rebase ou un clone
-  superficiel change le compte sans toucher au Record). Les **quatre critères attestés**
-  (empreinte, manifeste, références, invariants) lisent du **contenu déterministe** — présent
-  dans l'arbre, stable, reproductible. **C'est la différence de NATURE, pas la fragilité, qui est
-  l'argument** : un test sur `commits` mesurerait une propriété qui n'est pas dans le Record.
+- **« modification substantielle » (commits) → RETIRÉ (D-009, 2026-07-24).** L'argument a été
+  retenu : il lit une métadonnée **MUTABLE** (l'historique git — squash/rebase/clone superficiel
+  changent le compte sans toucher au Record), quand les critères attestés lisent du **contenu
+  déterministe**. Sa seule base de contenu candidate (`Last Update`) était elle-même **fausse**
+  (dette de donnée : périmé sur OCR-100/114). Le critère est **hors grille**.
 - **« dette » (aucune ouverte)** repose sur une liste en **prose libre** (`DETTES-ouvertes.md`,
   9 sections dont ~6-7 ouvertes) ; un test ne distingue pas *sujet d'une dette* d'une *mention
   incidente*. Testable seulement en **structurant** le doc (champ `Records concernés`) — décision
