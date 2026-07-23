@@ -249,6 +249,26 @@ ce stade (hors mandat).
 
 ---
 
+## DETTE — orphelins `[GRAVÉ]` RENDUS VERBATIM par du code (hors lot de réédition)
+
+**Ouverte le** 2026-07-22. **Décision cadre :** D-006 retire la marque `[GRAVÉ]` d'un orphelin
+(affirmation sans source opposable). **Ces deux-là ne peuvent PAS suivre le lot** : leur texte est
+**rendu tel quel, en production**, par du code. Retirer la marque laisserait le texte affiché *sans
+même la prétention d'une source*.
+
+| Orphelin | Rendu par | En production |
+|---|---|---|
+| **449 — bandeau Draft** (« STATUS — Draft … not yet been formally validated ») | `components/geo/RecordPage.tsx` | les **33 pages Record** |
+| **300 — étiquette « Derived metadata »** (jamais « Canonical summary ») | `lib/registry/recordPage.ts:118` | description dérivée (Record sans GEO Summary) |
+
+**À traiter à part**, avec sa propre décision : soit le texte reçoit une source opposable (Record
+ou décision verrouillée), soit il est requalifié, mais **on ne retire pas la marque tant que le
+code rend le verbatim**. **Ne pas toucher au composant** — c'est la dette qui est ouverte, pas le
+rendu. C'est la **classe de dépendance la plus dure** : visible en production, pas seulement dans
+les documents.
+
+---
+
 ## HORS PÉRIMÈTRE (rappel) — les 2 `alias_self_loop`
 
 ```

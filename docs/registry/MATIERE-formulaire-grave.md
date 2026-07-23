@@ -168,3 +168,53 @@ architectural est normalisé* (le régime `[GRAVÉ]` lui-même). **Le seuil est 
 à l'édition — et la réédition recalcule au passage les parties `[DÉRIVABLE]` si elles ont bougé.
 Vingt-neuf retraits ponctuels rejoueraient la mécanique du 41 : une suite de gestes locaux là où
 une seule décision de régime est en jeu.
+
+## 7 · Relevé des dépendances sur les 29 orphelins (prérequis de la réédition)
+
+Balayage `docs/** components/** lib/** app/** CLAUDE.md` (ARCHITECTURE-V3 et ce fichier exclus).
+Chaque invocation classée **DÉCIDÉ** (le document/code s'en sert comme d'un acquis) ou **OUVERT**
+(il la traite comme question non tranchée — la retirer aligne au lieu de dégrader).
+
+### 7a · Classe la plus dure — RENDUE/EMBARQUÉE par du code (visible en production)
+
+| Orphelin | Code | Nature | Statut |
+|---|---|---|---|
+| **449 bandeau Draft** | `components/geo/RecordPage.tsx` | **verbatim rendu** (33 pages) | DÉCIDÉ → **dette séparée** (hors lot) |
+| **300 « Derived metadata »** | `lib/registry/recordPage.ts:118` | **verbatim rendu** | DÉCIDÉ → **dette séparée** (hors lot) |
+| **607 index `/records`** | `lib/routing/routeKind.ts:51` + 4 CTA | comportement embarqué (routing) | DÉCIDÉ |
+| **717 redirect de locale** | `lib/seo/archetype.ts:8-14` | comportement embarqué (redirect vivant — **PAS** le 301 wtf retiré) | DÉCIDÉ |
+| **571 pilier interprète / Record restitue** | `lib/seo/pillars.ts:65` | commentaire + ordre de chaîne | DÉCIDÉ |
+| **661 lacune tracée (`_gaps`)** | ~10 fichiers `lib/`, `components/` | règle embarquée | DÉCIDÉ |
+| **470 jamais d'insertion HTML** | `RecordPage.tsx` (aucun `dangerouslySetInnerHTML`) | règle embarquée | DÉCIDÉ *(non captée par phrase — comportement)* |
+
+### 7b · Documents et mandats
+
+| Orphelin | Invoqué par | Statut |
+|---|---|---|
+| **230 empreinte = contenu canonique** | grille : `DOSSIER-promotion-cycle-1.md:178/181/274`, `MESURES…:77`, `DOSSIER-SESSION…:207`, `REGLES-DECOUVERTES.md:277` | **OUVERT** — le dossier PARTIE II flague sa signification comme *non établie* ; la retirer aligne |
+| **276 · 284 procédure de promotion** | `DOSSIER-promotion-cycle-1.md:117 / 5` | DÉCIDÉ |
+| **298 métadonnées éditoriales** | mandat `WEB-003-LOT-GEO-2-instruction-4-points.md:18` | DÉCIDÉ |
+| **684 vocabulaire canonique préservé** | mandat `WEB-002-fondations-mandat.md:5` | DÉCIDÉ |
+| **579 · 669 permanence anglaise** | `DETTES-ouvertes.md`, `DOSSIER-SESSION…` *(paraphrase, hors phrase)* | **OUVERT** — traitée comme question ; la retirer aligne |
+
+### 7c · Sans dépendance trouvée (14)
+
+11, 31, 69, 202, 261, 435, 678, 706, 744, 774, 794, 819, 863, 869 — aucune invocation captée.
+
+**Réserve de méthode, dite : le balayage par phrase a des FAUX NÉGATIFS connus.** Il a raté la
+permanence (invoquée en paraphrase) et le `no-HTML` (embarqué comme comportement, pas comme phrase) —
+les deux rattrapés à la main. Les 14 « sans dépendance » sont donc **« sans dépendance VERBATIM
+trouvée »**, non « sans dépendance prouvée ». La vérification par-orphelin exhaustive (paraphrase +
+comportement) fait partie de la réédition, sur cette base — je ne prétends pas au « aucun écart ».
+
+## 8 · Indécidables — marqueur conservé (D-006)
+
+**L813** (« un concept n'existe que s'il est établi par le corpus ») : **INDÉCIDABLE**, domaine
+d'OCR-004 / OCR-006 P6 sans ancrage verbatim ni RD. Sous D-006 : **marqueur conservé + drapeau
+« statut de traçabilité non établi »**. Un indécidable ne se retire pas sur présomption.
+
+**Vérification — aucun autre item rangé par défaut.** Les 9 de A et 8 de B portent chacun une
+source vérifiée (§4) ; les 29 de C sont soit sans source trouvée, soit vérifiés orphelins (permanence,
+empreinte). **L813 est le seul pur indécidable.** Réserve honnête : les 3 items encore marqués `?`
+au §2 (405 tranché B, 485/731 tranchés A) ont été **résolus**, pas rangés par défaut ; si l'arbitrage
+conteste un verdict de §4, il redevient indécidable — il ne bascule pas en retrait silencieux.
