@@ -218,3 +218,27 @@ source vérifiée (§4) ; les 29 de C sont soit sans source trouvée, soit véri
 empreinte). **L813 est le seul pur indécidable.** Réserve honnête : les 3 items encore marqués `?`
 au §2 (405 tranché B, 485/731 tranchés A) ont été **résolus**, pas rangés par défaut ; si l'arbitrage
 conteste un verdict de §4, il redevient indécidable — il ne bascule pas en retrait silencieux.
+
+## 9 · Vérification par orphelin AVANT réédition (point 6 du cadrage) — MOTIFS QUI NE TIENNENT PAS
+
+La vérification par-orphelin (non par phrase) a révélé cinq dispositions à corriger. Le total
+reste 47, mais l'ensemble à retirer change — je m'arrête avant tout retrait, comme prévu.
+
+| Item | Motif d'origine | Ce que la vérification établit | Nouvelle disposition |
+|---|---|---|---|
+| **69** | orphelin retirable | c'est la **LÉGENDE** (`\| [GRAVÉ] \| décision normative rendue, opposable \|`) — la **définition** du marqueur, pas une affirmation | **hors retrait — D-006 la MET À JOUR** |
+| **11** | orphelin | le **RÉGIME** lui-même (« projection de référence, non normative ») — décision de régime rendue, amendée par D-006 ce lot | **indécidable / question de portée** |
+| **31** | orphelin | le **seuil de réédition** — règle de régime rendue | **indécidable / question de portée** |
+| **863** | sans dépendance | cité verbatim comme règle fondatrice, `REGLES-DECOUVERTES.md:27` | **DÉCIDÉ → retrait + candidate** |
+| **869** | sans dépendance | énoncé + pratiqué, `DETTES-ouvertes.md:7,92,111` | **DÉCIDÉ → retrait + candidate** |
+
+**Compte corrigé (somme = 47, inchangée) :** A 9 · B 8 · **C retirable 24** (dont **11 retrait+candidate**
+[607,717,571,661,470,276,284,298,684,**863,869**] et **13 retrait simple**) · dette hors-lot 2
+(449,300) · **indécidable 3** (813,**11,31**) · **légende 1** (69). → 9+8+(24+2)+3+1 = **47**.
+
+**QUESTION DE PORTÉE — bloquante, D-006 ne la tranche pas.** D-006 dit : `[GRAVÉ]` = source normative
+EXTERNE. Mais la **légende** (69) et le **régime** (11, 31) sont la couche **méta** du document — sa
+propre définition du marqueur et ses règles d'édition. Les traiter comme des orphelins retirables
+stripperait le document de sa constitution, et ferait perdre sa marque à la règle qui *définit* la
+marque. Portée à trancher : **D-006 s'applique-t-il aux marqueurs méta (légende, régime), ou seulement
+aux affirmations substantielles ?** Je ne l'improvise pas.
