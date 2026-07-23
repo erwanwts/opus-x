@@ -8,6 +8,30 @@ Une entrée n'est jamais supprimée : elle est **close**, avec le motif de sa cl
 
 ---
 
+## Attribution — « Records concernés » par dette (structuré le 2026-07-22, Q2 de D-008)
+
+**Règle appliquée :** ne renseigner que le Record que la prose établit **explicitement** comme
+**sujet** de la dette. Une attribution qui demanderait une **inférence** → champ **vide + lacune
+déclarée** (discipline du canonical partagé : *signaler, jamais répartir*).
+
+| Dette | Records concernés | Attribution |
+|---|---|---|
+| énumération hétérogène d'OCR-100 | **OCR-100** | explicite (titre + constat) |
+| `Last Update` périmé (voir ci-dessous) | **OCR-100, OCR-114** | explicite (rectifiés à `62027b4`) |
+| les 2 `alias_self_loop` | **OCR-100, OCR-114** | explicite (auto-boucles montrées) |
+| franchissement de régime d'adressage | — | ouverte · **aucun Record sujet** (sujet = les 64 liens) |
+| incohérence deux projections | — | ouverte · **aucun Record sujet** (sujet = 59 pages dérivées) |
+| promotion en deux parties | — | ouverte · **aucun Record sujet** (procédure) |
+| provenance des documents | — | ouverte · **aucun Record sujet** (procédure) |
+| orphelins verbatim-code (449/300) | — | ouverte · **LACUNE** : affecte les 33 pages Record (bandeau), mais les Records ne sont pas le *sujet* — les orphelins le sont ; attribuer serait une inférence |
+| `.gitattributes` (EOL) | — | close · aucun Record (outillage) |
+| emphase des archétypes | — | close · aucun Record |
+
+**Compte : 9 entrées structurées (attribution définitive) · 1 en lacune** (orphelins verbatim-code).
+**Records figurant dans une dette OUVERTE avec sujet explicite : {OCR-100, OCR-114}** — 2 Records.
+
+---
+
 ## DETTE DOCUMENTAIRE — énumération hétérogène d'OCR-100
 
 **Ouverte le** 2026-07-21, à l'occasion de l'amendement OCR-115 v1.1.0
@@ -266,6 +290,29 @@ ou décision verrouillée), soit il est requalifié, mais **on ne retire pas la 
 code rend le verbatim**. **Ne pas toucher au composant** — c'est la dette qui est ouverte, pas le
 rendu. C'est la **classe de dépendance la plus dure** : visible en production, pas seulement dans
 les documents.
+
+---
+
+## DETTE DE DONNÉE — `Last Update` périmé sur les Records rectifiés
+
+**Ouverte le** 2026-07-22 (Q1 de D-008 — mesure de la stabilité par le contenu).
+
+**Records concernés :** **OCR-100, OCR-114** (sujets explicites).
+
+**Constat.** Les champs d'en-tête censés exprimer la stabilité — `Version`, `Last Update`, et la
+section `Version History` — ne tracent que les **amendements versionnés** (OCR-115 → 1.1.0,
+2026-07-21), pas les **rectifications**. OCR-100 et OCR-114 ont été rectifiés à `62027b4`
+(2026-07-20) mais portent tous deux `Last Update: 2026-07-16`, `Version: 1.0.0`, et une Version
+History à **une seule entrée** (07-16). Le contenu a changé le 07-20 ; la métadonnée dit 07-16 —
+elle est **périmée**.
+
+**Conséquence pour Q1 de D-008.** Aucun champ de contenu n'exprime **fiablement** « le Record n'a
+pas bougé » : reformuler « modification substantielle » sur `Version`/`Last Update`/`Version
+History` classerait OCR-100/114 comme **stables**, à l'inverse de la réalité mesurée par git.
+**Le critère est à RETIRER** (relance en formulaire fermé) — non reformulable sur l'existant. La
+dette de donnée ci-dessus est distincte et se corrige pour elle-même.
+
+**Non corrigé** — modifier `Last Update` sur un Record est un amendement, traité séparément.
 
 ---
 
