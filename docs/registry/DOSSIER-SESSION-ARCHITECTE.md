@@ -253,3 +253,30 @@ git mais aucun test ; « aucune dette ouverte » repose sur une liste curée à 
 
 *Vérification §6 ↔ §4/§1/§2 : aucun item décidé (Option 1a, B″, D-004, attestation) ne figure
 comme verrou ouvert. Les seuls verrous sont la permanence anglaise et le plan des 59 (§2).*
+
+---
+
+## 7 · Sources de travail — NON normatives (RD-006)
+
+### « Schéma GEO du site Opus X » — Google Doc, 18 juillet 2026
+
+**Statut : source de TRAVAIL, non opposable.** Antérieur aux Lots GEO 1 et 2 ; il décrit une
+cible *avant* implémentation. **RD-006** : *une source plausible n'est pas une source vérifiée*.
+Ses recommandations **ressemblent à des décisions** — c'est exactement le piège `[GRAVÉ]` : rien
+n'y renvoie à une source normative externe. Aucune de ses prescriptions n'est opposable.
+
+**Écarts mesurés avec l'implémentation** (relevé, pas arbitrage) :
+
+- **URLs du Registry.** Le schéma prescrit `/registry/…` ; l'implémentation a choisi `/records/…`
+  (décision 607, pour éviter la **collision** avec la page pilier `/en/registry`, slug `registry`
+  = OCR-124). Écart de préfixe sur **91 URLs**. Arbitrage ouvert (voir le relevé de session).
+- **Les 15 sections.** Le schéma diffère de la structure arrêtée par l'architecte sur **six**
+  sections. **La production suit la structure ARCHITECTE** (`GRAVEN_ORDER`), pas le schéma.
+
+**Deux points que le schéma tranche SANS autorité — à ne pas prendre pour des décisions :**
+
+1. **`/p/[handle]`** — le schéma l'emploie ; c'est une **collision ouverte** (l'app utilise déjà
+   `/p/[handle]` pour le Passport public). Non tranché ici.
+2. **Traduction du contenu explicatif** — le schéma la recommande ; elle irait **contre la
+   permanence anglaise** (elle-même **candidate non rendue**, D-006). Deux non-décisions qui
+   s'opposent : le schéma n'a l'autorité de trancher ni l'une ni l'autre.
