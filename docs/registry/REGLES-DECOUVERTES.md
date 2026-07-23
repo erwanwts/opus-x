@@ -6,9 +6,10 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> QUATRE PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> CINQ PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
 > ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
-> excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument** :
+> excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument ·
+> (5) une corroboration exige des sources indépendantes** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -621,6 +622,45 @@ que le troisième instrument de l'occurrence 3 (proposition 1), déjà compté �
 aurait été un double-compte. La série d'échec compte donc **neuf** occurrences (voir
 proposition 3, troisième occurrence) ; la proposition (4) porte **deux illustrations non
 numérotées** dans cette série.
+
+---
+
+## PROPOSITION (5) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
+
+> **Distincte des quatre premières.** Ni instrument défaillant (1), ni artefact non exercé (2),
+> ni annonce qui déborde (3), ni mesure enregistrée (4). Ici les deux instruments **fonctionnent**
+> et **concordent** — mais leur concordance ne prouve rien, parce qu'ils lisent **la même chose**.
+
+**Formulation proposée (Architecte)**
+
+> « Une corroboration ne vaut que si les sources sont indépendantes. Deux lectures d'un même
+> artefact ne sont pas deux sources. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-22 |
+| **Chantier d'origine** | Contestation du « double état » d'ARCHITECTURE-V3 |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — l'occurrence :** « deux sources concordent contre votre conclusion » a été invoqué
+contre la mesure — une copie collée **et** un extrait de l'Architecte, montrant tous deux les
+lignes anciennes. Les deux **descendaient de `88a464c`** (la version versée, périmée depuis la
+réédition `2d475db`). Une source lue deux fois, pas deux sources. La conclusion « fichier
+propre » a tenu parce qu'elle, elle, s'appuyait sur des preuves **indépendantes** : blob-hash,
+grep sur chaînes exactes, historique `git -S`, unicité du fichier.
+
+**Contre-exemple, déjà au registre :** `corroboration locale = 19` (proposition 4, occurrence 2).
+Deux sources **réellement distinctes** — `prerender-manifest.json` et le constat de rétractation —,
+**deux questions différentes**, **même nombre**. C'est ce à quoi ressemble une vraie corroboration ;
+le « double état » n'en était pas une.
+
+**Cause opérationnelle, à joindre :** le document a été transmis **sans provenance** — ni chemin,
+ni commit, ni date. **Un document sans sa version n'est pas une source** : le destinataire ne peut
+pas distinguer le courant du périmé. Le correctif est inscrit en dette de procédure
+([DETTES-ouvertes.md](DETTES-ouvertes.md) — règle de transmission).
+
+**Illustration non numérotée** dans la série d'échec (comme la proposition 4) : elle décrit une
+condition de validité d'une corroboration, non un échec d'instrument.
 
 ---
 

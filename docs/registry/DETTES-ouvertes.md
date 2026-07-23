@@ -220,6 +220,29 @@ comme manquant : un id hors plage ne passe plus en silence. La contrainte pèse 
 
 ---
 
+## DETTE DE PROCÉDURE — provenance obligatoire de tout document transmis
+
+**Ouverte le** 2026-07-22.
+
+**Règle.** Tout document affiché **pour transmission** — à Claude, à l'Architecte, à quiconque —
+porte en **PREMIÈRE LIGNE** son **chemin complet** et le **hash du commit** (ou « working tree,
+non committé »). Exemple :
+
+> `docs/architecture/OPUS-X-ARCHITECTURE-V3.md @ 61ba23a (HEAD)`
+
+**Motif.** Sans provenance, le destinataire ne peut pas distinguer le **courant** du **périmé** —
+c'est exactement ce qui vient de se produire **deux fois** : un contenu versé à `88a464c`, périmé
+depuis la réédition `2d475db`, a été pris pour l'état courant et opposé à une mesure juste.
+Applique la [[proposition (5)]] du registre des règles découvertes : *un document sans sa version
+n'est pas une source*.
+
+**Pourquoi une dette et non une règle du registre :** aucun outil ne l'impose — c'est une
+contrainte de **procédure**, comme la promotion en deux parties (D-004). Elle est **adoptée
+immédiatement** (les réponses portent désormais la provenance des fichiers cités), mais reste
+ouverte tant qu'aucun mécanisme ne la garantit.
+
+---
+
 ## HORS PÉRIMÈTRE (rappel) — les 2 `alias_self_loop`
 
 ```

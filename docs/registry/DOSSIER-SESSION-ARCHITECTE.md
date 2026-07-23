@@ -40,6 +40,21 @@ désormais conçue et posée (§6, Voie B).
 la **série d'identifiants** (rendue par D-004 = `PROMO-xxx`), et **D-003** (sans objet).
 Aucun item décidé ne figure ci-dessus.*
 
+### Décision candidate (à l'Architecte) — le régime des `[GRAVÉ]`
+
+**Remarque de l'Architecte, retenue :** *« `[GRAVÉ]` dans un document non normatif ne peut
+signifier que gravé dans une source normative EXTERNE ; tout `[GRAVÉ]` devrait renvoyer à sa
+source. »* Elle porte sur le **régime** du document, pas sur un chiffre — la remarque sur le
+double Lot 2 était, elle, sans objet (extrait périmé).
+
+**Mesuré (HEAD `61ba23a`) :** le document se déclare non normatif **depuis le versement**
+(`88a464c`, STATUT « Il n'est pas normatif » — stable). Il porte **47 `[GRAVÉ]`**, dont
+**3 seulement** renvoient à une source identifiable dans leur bloc ; **44 sont des assertions
+nues**. La remarque **tient** donc, et quantifie un écart réel : 44 marques « gravé » sans
+renvoi. *(La section dédiée « RÉGIME DE CE DOCUMENT » est postérieure au versement — ajoutée à
+`28f5846` — mais le régime qu'elle formalise, la non-normativité, est stable depuis `88a464c`.)*
+Décision candidate à valider, à son nom ; aucune modification du document sans arbitrage.
+
 ---
 
 ## 3 · Mesures de la session
