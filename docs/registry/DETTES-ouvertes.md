@@ -201,6 +201,25 @@ donc plus un accident : un côté (robots) est **assumé par décision**, l'autr
 
 ---
 
+## DETTE DE PROCÉDURE — la promotion est un acte en DEUX parties
+
+**Ouverte le** 2026-07-22 (D-004).
+
+La série de promotion `PROMO-xxx` est déclarée hors des plages OCR
+(`expected_ranges` = `…,PROMO-001..001`). Conséquence gravée par l'Architecte : **créer un
+artefact de promotion est un acte en deux parties indissociables** —
+
+1. **l'artefact** `PROMO-nnn` (le fichier), et
+2. **l'amendement de plage** (`expected_ranges` étendu à `PROMO-001..nnn`).
+
+Tant que la borne n'est pas étendue, le nouvel artefact **échoue bruyamment** la garde de
+plage (`manifest.attestation.test.ts`) — et l'anomalie `missing_in_sequence` reste tant que
+l'artefact n'existe pas. **Ce n'est pas une friction, c'est le tripwire** que M2 avait mesuré
+comme manquant : un id hors plage ne passe plus en silence. La contrainte pèse sur la
+**procédure**, pas sur le code : le générateur n'est pas modifié (décision Architecte).
+
+---
+
 ## HORS PÉRIMÈTRE (rappel) — les 2 `alias_self_loop`
 
 ```

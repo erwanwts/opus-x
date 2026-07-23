@@ -462,8 +462,9 @@ registre conserve précisément.
 > TROIS instruments** — le bandeau de build (lignes de preuve), le manifeste d'intégrité
 > (dépôt), et un script de mesure non testé (le script de citations, 2026-07-22) —, tous
 > attestant ou annonçant une valeur non vérifiée. Les deux derniers **rejoignent** le bandeau,
-> ils n'ouvrent pas de nouvelle occurrence numérotée. Le registre en compte **dix** en tout
-> (voir propositions 3 et 4).
+> ils n'ouvrent pas de nouvelle occurrence numérotée. La série d'échec compte **neuf**
+> occurrences (proposition 3, troisième occurrence, 2026-07-22) ; la proposition (4) porte deux
+> illustrations non numérotées de ce qui *rattrape* un échec — elle ne s'y ajoute pas.
 >
 > Deux cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont
 > donc pas comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes
@@ -566,6 +567,22 @@ compte est juste, la **population annoncée** (58) dépasse la **population rée
 concernée** (38). **Huitième occurrence du registre, la troisième de l'Architecte, inscrite à
 son nom** sur sa demande.
 
+**Troisième occurrence — « aucun Record de Phase 1 n'échoue cité ≥ 1 » (partagée, 2026-07-22).**
+Conclusion **exacte** sur la population que le mandat avait fixée — les **7 Records absents du
+graphe** (OCR-000 à 006) : aucun de ceux en Phase 1 n'échoue le critère (000-005 cités 6 fois).
+**Annoncée** pour une population plus large — les **33 Records de la partition**. Le test
+rejouable (`citations.test.ts`), appliqué aux 33, trouve **OCR-123** : Phase 1, cité par 0. La
+conclusion a débordé la mesure. **Partage :** le **mandat** a borné la population aux 7 (ce
+n'est pas une faute — c'est le périmètre demandé) ; la **conclusion** l'a étendue aux 33 sans
+re-mesurer (ma part). Les deux sont inscrites.
+
+*Fait positif, à consigner aussi : c'est le **premier défaut réel trouvé par un instrument
+nouvellement construit**, sur un cas que personne ne cherchait. Le test n'a pas seulement
+reproduit une mesure connue — il a **découvert** OCR-123. C'est ce pour quoi on promeut un
+script en test.*
+
+**Neuvième occurrence du registre**, la troisième de la proposition (3).
+
 ---
 
 ## PROPOSITION (4) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
@@ -596,8 +613,14 @@ La première montre la règle en défense (un enregistrement contredit une erreu
 en confirmation (deux enregistrements convergent). Dans les deux cas, **c'est l'enregistrement
 avec sa source** qui a joué le rôle d'instrument, là où aucun test n'existait.
 
-**Neuvième et dixième occurrences du registre.** Registre : **dix occurrences, quatre
-propositions.**
+**Correction de numérotation (2026-07-22).** J'avais numéroté ces deux entrées « neuvième et
+dixième occurrences », à tort : la proposition (4) est **méta** — elle décrit ce qui **rattrape**
+un échec, non un échec lui-même. Ses entrées ne consomment pas la série des occurrences
+d'échec (propositions 1–3). De plus, l'une (le script de citation) est **le même événement**
+que le troisième instrument de l'occurrence 3 (proposition 1), déjà compté — le renuméroter
+aurait été un double-compte. La série d'échec compte donc **neuf** occurrences (voir
+proposition 3, troisième occurrence) ; la proposition (4) porte **deux illustrations non
+numérotées** dans cette série.
 
 ---
 
