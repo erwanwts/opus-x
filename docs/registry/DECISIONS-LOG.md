@@ -8,13 +8,14 @@ des règles découvertes.)
 
 | Décision | Objet | Statut | Appliquée par |
 |---|---|---|---|
-| **D-001** | Option 1a — artefact de promotion à côté du Record | rendue | *(conception, pas de code)* |
-| **D-002 v2** | Modèle B″ — projections non gouvernées | rendue | *(conception ; lot B″ chiffré, non exécuté)* |
-| **D-004** | Série `PROMO-xxx` hors plages | rendue | `expected_ranges` amendé (voir git — attestation de plage) |
-| **D-005** | OCR-123 → Phase 2, partition **29·3·1** | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) — *rendue bien avant ; jamais propagée pendant six tours* |
-| **D-006** | Régime `[GRAVÉ]` — source externe + renvoi | rendue + appliquée | 2ᵉ réédition d'ARCHITECTURE-V3 (`528e303`, `ce7c8d0`) |
-| **D-007** | Seau B suit le régime des orphelins | rendue + appliquée | idem 2ᵉ réédition |
-| **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | `31cad76` (Q2) ; Q1 tranché retrait, cf. D-009 |
+| **D-001** | Option 1a — artefact de promotion à côté du Record | rendue | *(décision de conception ; pas de code — l'artefact n'existe pas encore)* |
+| **D-002 v2** | Modèle B″ — projections non gouvernées | **rendue, NON appliquée** | ⚠️ **exécution en attente** — lot B″ chiffré (38 pages), jamais exécuté. **PENDING par conception** (l'Architecte l'a chiffré, pas ordonné d'exécuter), distinct de D-005 (propagation oubliée) |
+| **D-003** | Fonction d'agrégation | **SANS OBJET** | rendue caduque — rien à appliquer |
+| **D-004** | Série `PROMO-xxx` hors plages (`expected_ranges`) | rendue + appliquée | **`702c2d7`** (série PROMO déclarée, garde de plage) |
+| **D-005** | OCR-123 → Phase 2, partition **29·3·1** | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) — *rendue bien avant ; jamais propagée pendant six tours* ; dossier de promotion propagé le même jour |
+| **D-006** | Régime `[GRAVÉ]` — source externe + renvoi | rendue + appliquée | **`528e303`** (2ᵉ réédition d'ARCHITECTURE-V3), `ce7c8d0` (motif unique) |
+| **D-007** | Seau B suit le régime des orphelins | rendue + appliquée | **`528e303`** (2ᵉ réédition, même lot) |
+| **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
 
 ## Dispositif proposé (NON construit — constat de faisabilité)

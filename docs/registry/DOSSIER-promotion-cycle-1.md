@@ -8,6 +8,29 @@
 **Date de mesure** : 2026-07-21 · `main` à `1022cc7` + branche `web/web-003-lot-geo-2`.
 **Cycle gravé** (RD-007) : `Authoring → Review → Validation → Promotion → Publication → Indexation`.
 
+> ## ⚠️ MISE À JOUR 2026-07-24 — partition et critères corrigés (D-005, D-008, D-009)
+> *Appliquée par le commit de ce lot ; trace au [DECISIONS-LOG.md](DECISIONS-LOG.md).*
+>
+> Ce dossier a été rédigé le 2026-07-21 sous la partition **16·15·2** et une grille contenant le
+> critère d'ancienneté. **Deux révisions et un retrait plus tard**, l'état courant est :
+>
+> - **Partition = 29·3·1** (D-005 : OCR-123 → Phase 2). **Phase 1 = 29** · **Phase 2 = {OCR-100,
+>   OCR-114, OCR-123}** · **Phase 3 = {OCR-006}**. La source autoritaire de la partition est
+>   `MESURES-frontiere-promotion-terminologie.md`.
+> - **Critère « modification substantielle » (ancienneté / commits) : RETIRÉ** (D-009) — il lisait
+>   une métadonnée mutable, non du contenu. La section « ⚠️ Un critère de Phase 1… » et la ligne
+>   « `commits == 1` » de la grille ci-dessous sont **caduques**.
+> - **Grille courante : 5 critères dérivables, tous attestés** (empreinte, manifeste, références,
+>   invariants, dette — cf. `DOSSIER-SESSION-ARCHITECTE.md` §5) + les critères de jugement.
+> - **Un contrôle d'intégrité EXISTE désormais** (`manifest.attestation.test.ts`) — la PARTIE II
+>   ci-dessous (« aucun contrôle n'existe ») décrit l'état du 2026-07-21, corrigé depuis.
+>
+> **Les tableaux par phase ci-dessous portent la mesure du 2026-07-21 ; leur ASSIGNATION de phase
+> est superseded par 29·3·1.** Réassignation : les 13 Records d'ancienne Phase 2 **sans dette
+> ouverte** (rectifications closes) montent en **Phase 1** ; **OCR-100 et OCR-114** restent
+> Phase 2 (dettes ouvertes : énumération, `alias_self_loop`) ; **OCR-123** descend de Phase 3 en
+> **Phase 2** (cité 0). Seul **OCR-006** reste en Phase 3.
+
 ---
 
 # PARTIE I — LES 33 RECORDS, RANGÉS PAR PHASE
@@ -47,7 +70,7 @@ Un Record qui ne satisfait pas **tous** les critères d'une phase passe à la su
 listes fournies : les 11 de `62027b4`, l'énumération hétérogène d'OCR-100, les 2
 `alias_self_loop`, OCR-115 amendé, OCR-006 jamais relu, et les 4 de la migration `wtf → wtr`.
 
-## Répartition : **16 · 15 · 2**
+## Répartition : ~~**16 · 15 · 2**~~ → **29 · 3 · 1** *(voir la mise à jour en tête ; les tableaux ci-dessous gardent la mesure du 07-21, l'assignation est superseded)*
 
 ### PHASE 1 — 16 Records
 *Objectif gravé : « valider la procédure de promotion elle-même. Le résultat attendu n'est
@@ -205,10 +228,15 @@ octets                       27 939 → 27 943  (+4)
 | `MANIFEST-OCR.json` ? | **Oui**, il dérive du précédent (`sourceChecksum` repris de l'inventaire). |
 | Le contrôle d'intégrité échoue-t-il ? | **Il n'y a pas de contrôle.** Voir ci-dessous. |
 
-### ⚠️ Aucun contrôle d'intégrité n'existe
+### ⚠️ Aucun contrôle d'intégrité n'existe ~~(état du 07-21)~~ → **CORRIGÉ depuis le 2026-07-22**
 
-Le checksum est **produit** (`manifest.mjs`) et **servi** (`api.ts`, `source.ts`), il n'est
-**jamais comparé**. Aucun test ne le vérifie ; aucun script ne le recalcule pour l'opposer
+> **Un contrôle existe désormais** : `lib/registry/manifest.attestation.test.ts` rejoue le sha256
+> de chaque Record et l'oppose au manifeste, à chaque `npm test`/build, prouvé par mutation. La
+> divergence des 11 checksums ne pourrait plus rester invisible. Le constat ci-dessous décrit
+> l'état antérieur, conservé comme trace.
+
+Le checksum est **produit** (`manifest.mjs`) et **servi** (`api.ts`, `source.ts`), il n'était
+**jamais comparé**. Aucun test ne le vérifiait ; aucun script ne le recalculait pour l'opposer
 au manifeste.
 
 **Preuve par l'histoire** : 11 checksums sur 33 sont restés **faux pendant plusieurs
