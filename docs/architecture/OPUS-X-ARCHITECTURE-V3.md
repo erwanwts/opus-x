@@ -26,6 +26,27 @@ Document pilier · Version définitive · 21 juillet 2026
 Les tableaux de chiffres portent la marque **[DÉRIVABLE]**. Le jour d'une réédition, on sait
 sans hésiter ce qui se recalcule et ce qui se réécrit.
 
+### Régime du marqueur `[GRAVÉ]` (D-006 / D-007)
+
+**[GRAVÉ]** *(source : décision d'architecture D-006, rendue le 2026-07-22)* Le marqueur
+`[GRAVÉ]` signifie **gravé dans une source normative EXTERNE** (un Record du Canonical Corpus,
+une décision verrouillée), **avec renvoi**. Sans renvoi, la marque n'est pas apposable : une
+affirmation qui se dit gravée sans pointer sa source est une décision jamais rendue, non une
+norme. Quatre régimes en découlent, lisibles à même le texte :
+
+| Marque au fil du texte | Sens |
+|---|---|
+| **[GRAVÉ]** *(source : …)* | gravé dans une source normative externe, renvoi porté |
+| **[DÉCISION CANDIDATE — D-006, à rendre]** | affirmation retirée du régime gravé faute de source, mais **invoquée ailleurs comme décidée** (code ou document) — revient comme décision à rendre, pour qu'aucun comportement de production ne reste gouverné par rien |
+| *(synthèse — écho de RD-00n)* | applique une règle découverte non normalisée ; marqueur **restituable à la normalisation de la RD** (D-007) |
+| **[GRAVÉ — statut de traçabilité non établi]** | ancrage ni confirmé ni infirmé ; marqueur conservé avec son incertitude |
+
+Une classe particulière — l'**invariant prouvé par un test exécutable** (`markdown.invariant.test.ts`)
+— est un ancrage *supérieur* à une RD (il échoue si on le viole) mais **n'est pas une source
+normative opposable** : le test atteste un comportement, il ne grave pas une décision. Ces
+affirmations portent *(synthèse — écho de l'invariant de projection …)* et sont restituables
+quand l'invariant est gravé dans un Record.
+
 ### Seuil de réédition
 
 **[GRAVÉ]** Une nouvelle édition est produite si **au moins une** condition est remplie :
@@ -54,6 +75,15 @@ première **réédition ciblée** des parties [DÉRIVABLE] (§24.1, §24.2) a su
 ligne) et *le document ne reflétait plus l'état courant* — et le seuil existe précisément
 pour substituer un recalcul depuis le dépôt à l'accumulation de correctifs.
 
+La **seconde réédition** (22 juillet 2026) porte sur le **régime des marqueurs `[GRAVÉ]`**
+(D-006 / D-007), pas sur un chiffre. Mesure fondatrice : sur 47 `[GRAVÉ]`, **3 seulement**
+renvoyaient à une source opposable ; **32** ont été retirés (24 orphelins, 6 échos de RD,
+2 échos d'invariant), **9** conservés avec renvoi, 1 indécidable drapeauté, la légende et le
+régime mis à jour, 2 (bandeau Draft, « Derived metadata ») tenus **hors lot** en dette
+verbatim-code. Ce n'est **pas** une correction numérotée : le seuil est franchi sur deux
+conditions — *une partie restructurée* (la couche de qualification) et *un principe normalisé*
+(le régime `[GRAVÉ]` lui-même, via D-006).
+
 ---
 
 ## STATUT DE CE DOCUMENT
@@ -66,7 +96,7 @@ Trois niveaux de qualification sont employés :
 
 | Marque | Signification |
 |---|---|
-| **[GRAVÉ]** | décision normative rendue, opposable |
+| **[GRAVÉ]** | décision gravée dans une source normative EXTERNE, avec renvoi obligatoire (D-006) |
 | **[DÉCOUVERT]** | règle appliquée dans le code, non encore normalisée |
 | **[V3]** | décision prise dans ce document, à valider |
 
@@ -92,7 +122,7 @@ Opus X n'est pas un site avec une base de données. C'est **un corpus avec des p
      public      Graph        API
 ```
 
-**[GRAVÉ]** Une seule règle gouverne l'ensemble :
+**[GRAVÉ]** *(source : OCR-006 P1)* Une seule règle gouverne l'ensemble :
 
 > Aucune information n'est écrite deux fois. Toute surface dérive du corpus, aucune ne le redéfinit.
 
@@ -150,7 +180,7 @@ Trois notions distinctes qu'il ne faut jamais confondre :
 | **Promotion** | sa qualification documentaire — il ne le crée pas, il change son statut |
 | **Indexation** | son exposition aux moteurs — conséquence de la qualification |
 
-**[GRAVÉ]** *La publication rend un artefact accessible ; la promotion lui confère une autorité documentaire. Ces deux actes sont indépendants et relèvent de décisions de gouvernance distinctes.*
+*(synthèse — écho de RD-007, marqueur restituable à sa normalisation)* *La publication rend un artefact accessible ; la promotion lui confère une autorité documentaire. Ces deux actes sont indépendants et relèvent de décisions de gouvernance distinctes.*
 
 **Conséquence directe.** Un Record en Draft est publié, navigable, servi par l'interface machine, et porte `noindex,follow`. Sa promotion le rend indexable sans aucune intervention technique.
 
@@ -199,7 +229,7 @@ Aussi important que ce qu'elle prévoit.
 | OCR-008 à OCR-012 | réservés par OCR-007 | prédicats à venir |
 | OCR-100 à OCR-125 | 26 | mécanismes, entités, registres |
 
-**[GRAVÉ]** *On ne choisit jamais un identifiant avant d'avoir observé l'espace des identifiants existants.*
+*On ne choisit jamais un identifiant avant d'avoir observé l'espace des identifiants existants.*
 
 La série fondationnelle est close : son dernier rang libre a été attribué au Record d'architecture normative. Une nature fondamentale nouvelle devra justifier l'ouverture d'une nouvelle série, non l'ajout opportuniste dans une série devenue trop petite.
 
@@ -227,7 +257,7 @@ Un seul Record porte du texte entre son titre et son tableau : celui d'architect
 
 ### 6.1 Signification
 
-**[GRAVÉ]** L'empreinte représente le **contenu canonique**, non l'artefact documentaire complet.
+L'empreinte représente le **contenu canonique**, non l'artefact documentaire complet.
 
 > Si une simple promotion modifie l'empreinte, alors l'empreinte ne représente plus le contenu canonique : elle représente un état administratif du document.
 
@@ -258,7 +288,7 @@ La preuve est historique : onze empreintes sur trente-trois sont demeurées faus
 
 ### 7.1 Les invariants de promotion
 
-**[GRAVÉ]** Toute promotion répond aux mêmes questions :
+Toute promotion répond aux mêmes questions :
 
 | Question | Réponse |
 |---|---|
@@ -269,11 +299,11 @@ La preuve est historique : onze empreintes sur trente-trois sont demeurées faus
 | Le manifeste change-t-il ? | Oui — il décrit l'état du corpus |
 | Les projections changent-elles ? | Oui — les pages deviennent indexables |
 
-**[GRAVÉ]** *Une promotion est une qualification. Elle n'est pas une version. Sinon on introduit un quatrième axe de versionnement implicite, alors que le huitième principe affirme précisément leur indépendance.*
+**[GRAVÉ]** *(source : OCR-006 P8)* *Une promotion est une qualification. Elle n'est pas une version. Sinon on introduit un quatrième axe de versionnement implicite, alors que le huitième principe affirme précisément leur indépendance.*
 
 ### 7.2 Le Cycle 1
 
-**[GRAVÉ]** Trois phases, avec un critère documentaire et non temporel.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Trois phases, avec un critère documentaire et non temporel.
 
 | Phase | Critère | Objectif | Volume |
 |---|---|---|---:|
@@ -281,7 +311,7 @@ La preuve est historique : onze empreintes sur trente-trois sont demeurées faus
 | 2 | dettes explicitement inscrites et non corrigées | valider le **contenu** | 2 |
 | 3 | jamais relu formellement | valider la **méthode** | 1 |
 
-**[GRAVÉ]** Chaque Record est examiné individuellement. Aucune promotion automatique. Aucun traitement global.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Chaque Record est examiné individuellement. Aucune promotion automatique. Aucun traitement global.
 
 > L'objectif de la Phase 1 n'est pas d'obtenir des Records promus. C'est d'obtenir une procédure de promotion éprouvée.
 
@@ -293,9 +323,9 @@ La preuve est historique : onze empreintes sur trente-trois sont demeurées faus
 
 ## 8. Règles communes
 
-**[GRAVÉ]** *Toute métadonnée publiée par une projection est dérivée exclusivement du Canonical Corpus selon une chaîne de dérivation déterministe. Lorsqu'une valeur ne peut être dérivée sans hypothèse, elle n'est pas produite et la lacune est tracée.*
+*(synthèse — écho de RD-009 / RD-010, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Toute métadonnée publiée par une projection est dérivée exclusivement du Canonical Corpus selon une chaîne de dérivation déterministe. Lorsqu'une valeur ne peut être dérivée sans hypothèse, elle n'est pas produite et la lacune est tracée.*
 
-**[GRAVÉ]** *Toute projection publiée doit porter des métadonnées éditoriales suffisantes pour être correctement interprétée par les moteurs de recherche et les systèmes de découverte.*
+**[DÉCISION CANDIDATE — D-006, à rendre]** *Toute projection publiée doit porter des métadonnées éditoriales suffisantes pour être correctement interprétée par les moteurs de recherche et les systèmes de découverte.*
 
 **[GRAVÉ]** Un gabarit de repli est étiqueté `Derived metadata`, jamais `Canonical summary`. Les champs dérivés doivent être identifiables comme projections.
 
@@ -318,9 +348,9 @@ Le champ de nom canonique n'a pas été retenu : il n'existe que dans 26 Records
 
 ### 9.1 La règle
 
-**[GRAVÉ]** *Le contenu d'un Record constitue un texte canonique. Toute séquence susceptible d'être interprétée comme du balisage est traitée comme du texte tant qu'elle n'appartient pas explicitement au langage de représentation utilisé.*
+*(synthèse — écho de l'invariant de projection, prouvé par `markdown.invariant.test.ts` ; marqueur restituable quand l'invariant est gravé dans un Record)* *Le contenu d'un Record constitue un texte canonique. Toute séquence susceptible d'être interprétée comme du balisage est traitée comme du texte tant qu'elle n'appartient pas explicitement au langage de représentation utilisé.*
 
-**[GRAVÉ]** *Le nombre de caractères significatifs du corps publié doit être identique avant et après projection, à l'exception des transformations explicitement autorisées par le moteur de rendu.*
+*(synthèse — écho de l'invariant de projection, prouvé par `markdown.invariant.test.ts` ; marqueur restituable quand l'invariant est gravé dans un Record)* *Le nombre de caractères significatifs du corps publié doit être identique avant et après projection, à l'exception des transformations explicitement autorisées par le moteur de rendu.*
 
 ### 9.2 Les onze transformations autorisées
 
@@ -382,7 +412,7 @@ Il a aussi révélé un défaut que personne n'avait anticipé : sur cinq Record
 
 ### 10.1 Nature
 
-**[GRAVÉ]** *Le graphe est toujours une projection fidèle du corpus publié à un instant donné. Il n'anticipe jamais des faits futurs et ne réécrit jamais des faits passés. Toute publication produit une nouvelle projection, sans modifier les projections antérieures.*
+**[GRAVÉ]** *(source : OCR-006 P9)* *Le graphe est toujours une projection fidèle du corpus publié à un instant donné. Il n'anticipe jamais des faits futurs et ne réécrit jamais des faits passés. Toute publication produit une nouvelle projection, sans modifier les projections antérieures.*
 
 ### 10.2 État
 
@@ -400,9 +430,9 @@ Les projections antérieures demeurent valides comme photographies de leur époq
 
 ### 10.3 Règle d'extraction
 
-**[GRAVÉ]** L'extracteur ne fabrique jamais une sémantique absente de la source. Les arêtes proviennent exclusivement de la section de relations de chaque Record.
+**[GRAVÉ]** *(source : OCR-006 P6)* L'extracteur ne fabrique jamais une sémantique absente de la source. Les arêtes proviennent exclusivement de la section de relations de chaque Record.
 
-**[GRAVÉ]** *Within a Relations section, if a target identifier matches both a Record title and a declared Concept, concept resolution SHALL take precedence. Record resolution SHALL only occur when no declared Concept matches the identifier.*
+*(synthèse — écho de RD-005, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Within a Relations section, if a target identifier matches both a Record title and a declared Concept, concept resolution SHALL take precedence. Record resolution SHALL only occur when no declared Concept matches the identifier.*
 
 Cette règle ne crée aucune capacité. Elle rend applicable une déclaration de concept qui resterait sans effet dès qu'elle porterait le nom d'un Record.
 
@@ -422,7 +452,7 @@ Ces limites ne sont pas des défauts. Elles garantissent qu'il ne devient jamais
 
 ### 11.1 Statut
 
-**[GRAVÉ]** *Une page de Registry est une projection documentaire dérivée du Canonical Corpus. Elle ne constitue jamais une publication normative indépendante ni une représentation faisant autorité.*
+*(synthèse — écho de RD-009, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Une page de Registry est une projection documentaire dérivée du Canonical Corpus. Elle ne constitue jamais une publication normative indépendante ni une représentation faisant autorité.*
 
 Conséquences : régénérable, supprimable et reconstructible, périssable, jamais source de vérité.
 
@@ -432,7 +462,7 @@ L'interface machine sert **déjà** le corps intégral de chaque Record, en JSON
 
 Une page de registre ne crée pas une seconde surface : elle rend lisible une surface qui existe.
 
-**[GRAVÉ]** Ne montrer que l'identité reviendrait à cacher artificiellement un contenu déjà exposé.
+Ne montrer que l'identité reviendrait à cacher artificiellement un contenu déjà exposé.
 
 ### 11.3 Ce qu'affiche une page
 
@@ -467,7 +497,7 @@ Il est dérivé du statut. Le jour d'une promotion, il disparaît sans intervent
 
 ### 11.5 Contrainte de rendu
 
-**[GRAVÉ]** Jamais d'insertion HTML directe. Le rendu produit des éléments, jamais du balisage interprété. C'est cette règle qui protège les séquences ressemblant à du balisage.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Jamais d'insertion HTML directe. Le rendu produit des éléments, jamais du balisage interprété. C'est cette règle qui protège les séquences ressemblant à du balisage.
 
 ---
 
@@ -482,7 +512,7 @@ Il est dérivé du statut. Le jour d'une promotion, il disparaît sans intervent
 | `/api/concepts` | index | concepts déclarés |
 | `/api/concepts/{slug}` | concept | définition, alias, statut sémantique — tous nuls aujourd'hui et tracés comme lacunes, conformément à la règle de dérivation |
 
-**[GRAVÉ]** Les trois familles en lecture sont explorables. Les routes d'écriture et l'espace privé demeurent interdits.
+**[GRAVÉ]** *(source : CLAUDE.md:28-29 · WEB-001B:43)* Les trois familles en lecture sont explorables. Les routes d'écriture et l'espace privé demeurent interdits.
 
 Le registre et l'interface machine servent un contenu identique dans deux représentations différentes.
 
@@ -568,7 +598,7 @@ Avant de créer une page, il faut pouvoir répondre :
 | `archetypePage` | archétypes | prose gravée, structure variable |
 | `recordPage` | pages de registre | projection intégrale, aucun texte éditorial |
 
-**[GRAVÉ]** Une page pilier **interprète** un Record selon un gabarit éditorial. Une page de registre **restitue** un artefact. Ce sont deux objets différents et ils ne partagent pas la même fabrique.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Une page pilier **interprète** un Record selon un gabarit éditorial. Une page de registre **restitue** un artefact. Ce sont deux objets différents et ils ne partagent pas la même fabrique.
 
 ---
 
@@ -576,7 +606,7 @@ Avant de créer une page, il faut pouvoir répondre :
 
 ### 16.1 Trois régimes
 
-**[GRAVÉ]** Les artefacts canoniques sont en anglais et le resteront. Aucun préfixe de locale : un préfixe annoncerait une traduction qui n'existera jamais.
+Les artefacts canoniques sont en anglais et le resteront. Aucun préfixe de locale : un préfixe annoncerait une traduction qui n'existera jamais.
 
 | Régime | Forme | Objets |
 |---|---|---|
@@ -604,11 +634,11 @@ Avant de créer une page, il faut pouvoir répondre :
 /api/...                       → projections machine
 ```
 
-**[GRAVÉ]** L'index du corpus est à `/records`, non à `/registry`. Quatre appels à l'action gravés y pointent déjà, et `/en/registry` existe comme page pilier. Placer l'index à `/registry` créerait une collision.
+**[DÉCISION CANDIDATE — D-006, à rendre]** L'index du corpus est à `/records`, non à `/registry`. Quatre appels à l'action gravés y pointent déjà, et `/en/registry` existe comme page pilier. Placer l'index à `/registry` créerait une collision.
 
 ### 16.3 Résolution d'identité
 
-**[GRAVÉ]** *Une identité n'est pas une adresse de découverte. Le protocole ne doit jamais présumer qu'une identité constitue, à elle seule, une adresse résoluble.*
+**[GRAVÉ]** *(source : OCR-006 P3)* *Une identité n'est pas une adresse de découverte. Le protocole ne doit jamais présumer qu'une identité constitue, à elle seule, une adresse résoluble.*
 
 Deux portes existent pour un framework : son identifiant canonique complet et son slug public. L'identifiant nu ne résout pas — c'est le raccourci que portent les faits, non une adresse.
 
@@ -658,7 +688,7 @@ Publier les pages du registre activerait automatiquement les 64 liens inertes. L
 | Concept | `DefinedTerm`, `WebPage` |
 | Framework | `EducationalOccupationalCredential` |
 
-**[GRAVÉ]** Générés, jamais rédigés. Une valeur non dérivable n'est pas produite : la lacune est tracée.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Générés, jamais rédigés. Une valeur non dérivable n'est pas produite : la lacune est tracée.
 
 ---
 
@@ -666,7 +696,7 @@ Publier les pages du registre activerait automatiquement les 64 liens inertes. L
 
 ### 19.1 Périmètre
 
-**[GRAVÉ]** Le Canonical Corpus est **monolingue anglais**. Un Record traduit constituerait une seconde représentation d'une même définition, ce que le premier principe interdit.
+Le Canonical Corpus est **monolingue anglais**. Un Record traduit constituerait une seconde représentation d'une même définition, ce que le premier principe interdit.
 
 | Objet | Traduisible |
 |---|---|
@@ -675,13 +705,13 @@ Publier les pages du registre activerait automatiquement les 64 liens inertes. L
 
 ### 19.2 Statut d'une traduction
 
-**[GRAVÉ]** *Une traduction ne constitue jamais une nouvelle source documentaire ; elle constitue une projection linguistique d'une source canonique.*
+*Une traduction ne constitue jamais une nouvelle source documentaire ; elle constitue une projection linguistique d'une source canonique.*
 
 L'anglais fait seul autorité. Une divergence signifie que la projection est périmée, non que deux vérités coexistent.
 
 ### 19.3 Production
 
-**[GRAVÉ]** Une traduction générée est acceptable comme projection, à condition que le vocabulaire canonique soit intégralement préservé.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Une traduction générée est acceptable comme projection, à condition que le vocabulaire canonique soit intégralement préservé.
 
 > Le moteur de traduction n'invente rien. Il transforme une représentation.
 
@@ -693,7 +723,7 @@ Le point critique est le **verrouillage du vocabulaire canonique** : les termes 
 
 ### 19.4 Statut de qualité
 
-**[GRAVÉ]** Trois niveaux, décrivant la révision et non l'autorité :
+Trois niveaux, décrivant la révision et non l'autorité :
 
 | Statut | Signification |
 |---|---|
@@ -703,7 +733,7 @@ Le point critique est le **verrouillage du vocabulaire canonique** : les termes 
 
 ### 19.5 Cycle applicable
 
-**[GRAVÉ]** Deux cycles parallèles, jamais confondus.
+Deux cycles parallèles, jamais confondus.
 
 ```
 Record        : Authoring → Review → Validation → Promotion → Publication → Indexation
@@ -714,9 +744,9 @@ Une traduction n'ajoute aucune information normative. Elle ne requiert donc pas 
 
 ### 19.6 Règle transitoire
 
-**[GRAVÉ]** Tant qu'une langue n'a pas sa page traduite, elle redirige vers l'anglais. La redirection disparaît automatiquement dès qu'une traduction officielle est publiée.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Tant qu'une langue n'a pas sa page traduite, elle redirige vers l'anglais. La redirection disparaît automatiquement dès qu'une traduction officielle est publiée.
 
-**[GRAVÉ]** Une langue non générée ne publie jamais de contenu partiel.
+**[GRAVÉ]** *(source : CLAUDE.md:55 · WEB-001B §10.2)* Une langue non générée ne publie jamais de contenu partiel.
 
 ---
 
@@ -728,7 +758,7 @@ Une traduction n'ajoute aucune information normative. Elle ne requiert donc pas 
 
 ### 20.1 Séparation
 
-**[GRAVÉ]** Le site public et la plateforme sont deux surfaces distinctes. Le site ne lit pas la base ; la plateforme n'écrit pas dans le corpus.
+**[GRAVÉ]** *(source : CLAUDE.md:28-29 · WEB-001B:43)* Le site public et la plateforme sont deux surfaces distinctes. Le site ne lit pas la base ; la plateforme n'écrit pas dans le corpus.
 
 ### 20.2 État réel mesuré
 
@@ -741,7 +771,7 @@ Une traduction n'ajoute aucune information normative. Elle ne requiert donc pas 
 | Issuers | 0 |
 | Fact revocations | 0 |
 
-**[GRAVÉ]** Cet état est conforme. Deux patrimoines coexistent :
+Cet état est conforme. Deux patrimoines coexistent :
 
 | Patrimoine | Contenu | État |
 |---|---|---|
@@ -771,7 +801,7 @@ C'est la seule règle découverte adossée à une preuve matérielle dans le cod
 
 ### 21.1 Le pipeline
 
-**[GRAVÉ]**
+
 
 ```
 Terminology Audit          → constat de l'état documentaire
@@ -791,7 +821,7 @@ Translation Pipeline       → application
 | Terminology Backlog | concepts **envisagés**, hors protocole | matière |
 | Canonical Dictionary | projection publique | projection |
 
-**[GRAVÉ]** Le dictionnaire est généré depuis l'audit, **jamais** depuis le backlog.
+Le dictionnaire est généré depuis l'audit, **jamais** depuis le backlog.
 
 ### 21.3 État mesuré
 
@@ -810,13 +840,13 @@ Sur 47 termes du périmètre :
 
 ### 21.4 Le critère de qualification
 
-**[GRAVÉ]** *Un concept du protocole n'existe que s'il est établi par le corpus. Une relation peut référencer un concept existant. Une relation ne crée jamais un concept.*
+**[GRAVÉ — statut de traçabilité non établi]** *Un concept du protocole n'existe que s'il est établi par le corpus. Une relation peut référencer un concept existant. Une relation ne crée jamais un concept.*
 
 La question n'est donc pas *faut-il définir ces termes* mais **le protocole a-t-il réellement besoin de chacun d'eux**.
 
 ### 21.5 Exposition publique
 
-**[GRAVÉ]** Les dettes sont publiques, avec une exposition maîtrisée.
+Les dettes sont publiques, avec une exposition maîtrisée.
 
 | Statut public | Signification |
 |---|---|
@@ -833,14 +863,14 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 
 ## 22. Règles découvertes
 
-**[GRAVÉ]** Deux statuts distincts :
+*(synthèse — écho de RD-002, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* Deux statuts distincts :
 
 | Statut | Définition |
 |---|---|
 | **Règle découverte** | identifiée pendant un chantier, non normalisée. Reconnue valide, peut guider les développements, ne fait pas partie du corpus |
 | **Règle normalisée** | publiée dans un Record identifié. Opposable, appartient au protocole |
 
-**[GRAVÉ]** *Aucun principe normatif ne peut avoir pour unique source une conversation, un compte rendu de chantier ou un échange de conception. Le protocole n'est modifiable que par ses propres artefacts.*
+**[GRAVÉ]** *(source : OCR-006 P10)* *Aucun principe normatif ne peut avoir pour unique source une conversation, un compte rendu de chantier ou un échange de conception. Le protocole n'est modifiable que par ses propres artefacts.*
 
 ### Registre — 11 entrées, toutes au statut découvert
 
@@ -860,13 +890,13 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 | RD-010 | Découplage des fonctions de constat, décision et projection |
 | RD-011 | Une décision peut produire plusieurs projections spécialisées |
 
-**[GRAVÉ]** Un Record en attente de relecture n'est pas enrichi au fil des découvertes du chantier. Sinon la validation devient une cible mouvante. Ces onze règles attendent le prochain cycle de normalisation.
+**[DÉCISION CANDIDATE — D-006, à rendre]** Un Record en attente de relecture n'est pas enrichi au fil des découvertes du chantier. Sinon la validation devient une cible mouvante. Ces onze règles attendent le prochain cycle de normalisation.
 
 ---
 
 ## 23. Dettes ouvertes
 
-**[GRAVÉ]** *Une entrée n'est jamais supprimée du registre des dettes. Elle est close, avec le motif de sa clôture.*
+**[DÉCISION CANDIDATE — D-006, à rendre]** *Une entrée n'est jamais supprimée du registre des dettes. Elle est close, avec le motif de sa clôture.*
 
 | Dette | Nature | État |
 |---|---|---|
@@ -963,7 +993,7 @@ Gouvernance terminologique ──► Lot 3 (Concepts) ──► Lot 5 (Applicati
 
 ### Plans du site
 
-**[GRAVÉ]** Une seule décision de gouvernance, deux projections spécialisées.
+*(synthèse — écho de RD-011, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* Une seule décision de gouvernance, deux projections spécialisées.
 
 **[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
