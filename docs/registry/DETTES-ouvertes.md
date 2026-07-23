@@ -241,6 +241,12 @@ contrainte de **procédure**, comme la promotion en deux parties (D-004). Elle e
 immédiatement** (les réponses portent désormais la provenance des fichiers cités), mais reste
 ouverte tant qu'aucun mécanisme ne la garantit.
 
+**PARTIELLEMENT OUTILLABLE.** Un utilitaire d'affichage peut préfixer automatiquement
+`<chemin> @ <hash>` (par ex. `git hash-object` du fichier + `git rev-parse` du commit) devant
+tout contenu transmis. Ce **n'est pas un test** — il n'échoue pas si on l'oublie — donc la
+dette **reste ouverte** ; mais elle n'est **pas condamnée à rester manuelle**. Non construit à
+ce stade (hors mandat).
+
 ---
 
 ## HORS PÉRIMÈTRE (rappel) — les 2 `alias_self_loop`
