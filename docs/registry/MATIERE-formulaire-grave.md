@@ -241,4 +241,52 @@ EXTERNE. Mais la **légende** (69) et le **régime** (11, 31) sont la couche **m
 propre définition du marqueur et ses règles d'édition. Les traiter comme des orphelins retirables
 stripperait le document de sa constitution, et ferait perdre sa marque à la règle qui *définit* la
 marque. Portée à trancher : **D-006 s'applique-t-il aux marqueurs méta (légende, régime), ou seulement
-aux affirmations substantielles ?** Je ne l'improvise pas.
+aux affirmations substantielles ?** Je ne l'improvise pas. *(Toujours sans réponse au moment de D-007.)*
+
+## 10 · Seau B sous D-007 — dépendances vérifiées + RD à restituer
+
+D-007 : le seau B suit le régime des orphelins (marqueur retiré, restituable à la normalisation de
+sa RD). Relevé même périmètre que les 29. Vérifié un par un :
+
+| B | Affirmation | Dépendance (DÉCIDÉ / OUVERT) | RD à inscrire |
+|---|---|---|---|
+| 153 | publication vs promotion | **aucune trouvée** → retrait simple | **RD-007** |
+| 296 | métadonnées dérivées du corpus | `lib/registry/recordPage.ts:16` (embarqué) → **DÉCIDÉ + candidate** | **RD-009 / RD-010** |
+| 405 | précédence du Concept | `scripts/registry/node-ref.mjs` + `REGLES-DECOUVERTES.md:164` → **DÉCIDÉ + candidate** | **RD-005** |
+| 425 | page Registry = projection | `recordPage.ts:5-6` + mandat WEB-003 → **DÉCIDÉ + candidate** | **RD-009** |
+| 836 | registre : deux statuts | `REGLES-DECOUVERTES.md:87` (c'est RD-002 même) → **DÉCIDÉ + candidate** | **RD-002** |
+| 966 | une décision, plusieurs projections | `lib/seo/sitemapPlans.ts:9` + RD-011 → **DÉCIDÉ + candidate** | **RD-011** |
+| **321** | contenu = texte canonique | `lib/registry/markdown.ts` + mandat → **DÉCIDÉ + candidate** | **AUCUNE RD** — écho de l'invariant de projection (test) |
+| **323** | invariant de caractères | `markdown.ts:14/16` + `markdown.invariant.test.ts` → **DÉCIDÉ + candidate** | **AUCUNE RD** — idem |
+
+**7 des 8 sont DÉCIDÉS** (candidate simultanée requise), seul **153** est retrait simple.
+
+**ÉCART sur le prérequis 2 — 321 et 323 n'ont pas de RD à porter.** Leur source n'est pas une règle
+découverte mais un **invariant prouvé par un test** (`markdown.invariant.test.ts`). Leur condition de
+restitution n'est donc pas « RD normalisée » mais « invariant gravé dans un Record ». Le format
+« écho de RD-00n — restituable à sa normalisation » **ne s'applique pas** à eux ; ils portent
+« écho de l'invariant de projection (test) — restituable à sa gravure dans un Record ». Motif B
+(« écho non opposable = RD ») **ne tient pas** pour ces deux : leur écho est **exécutable**, plus fort
+qu'une RD. Par la règle du point 6, motif qui ne tient pas → à réexaminer, non rangé de force.
+
+## 11 · ACCOUNTING — l'écart avec « 37 retirés / 10 conservés »
+
+La classification somme bien à 47 (A9 · B8 · C29 · indécidable1). Mais le **retiré** ne fait pas 37 :
+
+| Disposition | Compte | Détail |
+|---|---|---|
+| Retirés — C simple | 13 | orphelins ouverts/non invoqués |
+| Retirés — C + candidate | 11 | 5 embarqués + 4 doc + **863, 869** (§9) |
+| Retirés — B (D-007) | 8 | 7 candidate + 1 simple (153) |
+| **Sous-total retirés** | **32** | |
+| Conservés — A + renvoi | 9 | |
+| Conservés — indécidable + drapeau | 3 | 813, **11, 31** (§9) |
+| Conservés — légende (D-006 met à jour) | 1 | **69** |
+| Hors-lot — dette verbatim-code | 2 | **449, 300** |
+| **Sous-total conservés/différés** | **15** | |
+| **TOTAL** | **47** | 32 + 15 |
+
+**Le retiré est 32, pas 37.** L'écart de 5 = 449, 300 (dette hors-lot, cadrage inchangé) + 69
+(légende) + 11, 31 (régime, **portée non tranchée**). Le « 37/10 » supposait ces 5 retirables ; la
+vérification (§9) et le cadrage antérieur (449/300 hors-lot) l'en empêchent. **Je m'arrête ici**,
+comme la règle de contrôle le demande.
