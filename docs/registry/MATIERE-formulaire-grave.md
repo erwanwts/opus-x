@@ -52,6 +52,28 @@ document lui-même). Appliqué, jamais normalisé dans un Record. **≈ 9.**
 | 966 | une décision, plusieurs projections | RD-011 |
 | 678 `?` | une traduction ne crée jamais une source | écho du monolinguisme (non gravé) |
 
+**CONSTAT — le seau B et la dette de normalisation sont LE MÊME problème, aux deux tiers.**
+Correspondance mesurée, une par une :
+
+| Item du seau B | RD identifiée |
+|---|---|
+| 153 | **RD-007** (cycle de publication) |
+| 296 | **RD-009** + **RD-010** (projection / découplage) |
+| 405 | **RD-005** (précédence du Concept) |
+| 425 | **RD-009** (une projection n'établit rien) |
+| 836 | **RD-002** (distinction découverte/normalisée) |
+| 966 | **RD-011** (plusieurs projections, une décision) |
+| **321 / 323** | **aucune RD** — écho de l'**invariant de projection**, couvert par un *test* (`markdown.invariant.test`), ni Record ni RD |
+| **678** | **aucune RD** — écho du monolinguisme, lui-même orphelin (seau C) |
+
+**Six des neuf** items du seau B correspondent à des RD identifiées (**RD-002, RD-005, RD-007,
+RD-009, RD-010, RD-011** — six règles distinctes). Or les onze RD sont **toutes au statut
+« découverte », zéro normalisée**, et le **principe 10** (OCR-006, seau A) exige la normalisation
+avant clôture de chantier. Donc **ces six ne sont pas six décisions nouvelles : c'est la dette de
+normalisation déjà connue**, vue depuis le document. La normaliser (graver les RD dans des Records)
+résorbe six des neuf. **Trois résiduels** (321, 323, 678) n'ont pas de RD : deux renvoient à un
+**test** (mieux qu'un Record pour un invariant — c'est exécutable), un renvoie à un orphelin.
+
 **Seau C — ORPHELIN, nulle part ailleurs** (ni opposable, ni registre). Décision jamais rendue.
 **≈ 28.** Inclut les marques signalées par l'Architecte et par les mesures :
 
@@ -68,16 +90,22 @@ document lui-même). Appliqué, jamais normalisé dans un Record. **≈ 9.**
 
 ## 3 · Le compte qui dit l'ampleur
 
-| Seau | Compte | Signification |
-|---|---|---|
-| **A — opposable** | **≈ 10** | se répare : ajouter le renvoi à la source qui existe |
-| **B — écho non opposable** | **≈ 9** | appliqué, mais normalisé nulle part d'opposable — à graver dans un Record ou à requalifier |
-| **C — orphelin** | **≈ 28** | **décision jamais rendue** — dont la permanence anglaise et la signification de l'empreinte |
+| Seau | Compte | Exactitude | Signification |
+|---|---|---|---|
+| **Total `[GRAVÉ]`** | **47** | **EXACT** — `grep -c`, mesuré | — |
+| **A — opposable** | **≈ 10** | **APPROXIMATIF** | 8 vérifiés (OCR-006 P1/P3/P6/P8/P9/P10, `CLAUDE.md:55`) + **2 limites** (485, 731, marqués `?`) |
+| **B — écho non opposable** | **≈ 9** | **APPROXIMATIF** | 6 mappés à des RD (vérifiés) + **3 hors-RD** (321, 323 → test ; 678 → orphelin) ; 405 limite (`?`) |
+| **C — orphelin** | **≈ 28** | **APPROXIMATIF** | absorbe le résidu — c'est `47 − A − B`, donc il porte toute l'incertitude des ~10 items-frontière ; MAIS ses orphelins **nommés** (permanence 579/669, empreinte 230) sont **vérifiés exacts** |
 
-**≈ 28 des 47 `[GRAVÉ]` n'existent nulle part ailleurs.** Dans un document qui se déclare non
-normatif, ce sont 28 décisions marquées « gravé » sans qu'aucune source opposable ne les ait
+**Le total est exact ; les trois seaux sont approximatifs.** Le `≈` de chaque seau **doit
+survivre au formulaire** — un compte approximatif qui perd son `≈` devient un fait (la mécanique
+du 41 : un chiffre dérivé, jamais mesuré, pris pour mesuré). Ce qui est **exact et opposable
+séparément**, à ne pas diluer dans l'approximation : le **total 47**, les **8 ancrages A
+vérifiés**, les **6 items B mappés à des RD**, et les **2 orphelins nommés** (permanence,
+empreinte). Le reste — ~10 items-frontière (`?`) — est à trancher, et le seau C porte
+mécaniquement leur incertitude.
+
+**≈ 28 des 47 `[GRAVÉ]` n'existent nulle part ailleurs** — approximatif, mais l'ordre de grandeur
+tient : même en déplaçant les ~10 limites, le seau C reste la majorité. Dans un document qui se
+déclare non normatif, ce sont ~28 décisions marquées « gravé » qu'aucune source opposable n'a
 rendues. C'est l'ampleur.
-
-**Réserve.** Les bornes A/B/C portent `≈` : ~10 items limites (marqués `?` ou à la frontière
-produit/technique) relèvent de l'arbitrage de l'Architecte. Les **ancrages A** (OCR-006 P1/P3/P6/
-P8/P9/P10, `CLAUDE.md:55`) et les **orphelins nommés** (permanence, empreinte) sont, eux, vérifiés.
