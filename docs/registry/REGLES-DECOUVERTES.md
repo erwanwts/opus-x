@@ -584,6 +584,19 @@ script en test.*
 
 **Neuvième occurrence du registre**, la troisième de la proposition (3).
 
+**Quatrième occurrence de la proposition (3) — « 11 » et « 16 » présentés comme un seul compte
+(2026-07-22, ma part).** À la 2e réédition d'ARCHITECTURE-V3, j'ai écrit « 11 [DÉCISION
+CANDIDATE] » (vérification) puis « 16 (11 C + 5 B) » (dernière phrase) sans dire que ce sont
+**deux populations différentes**. **Population réelle mesurée** : les tokens `[DÉCISION
+CANDIDATE` (**11**). **Population annoncée** : les inscriptions candidates (**16** = 11 C + 5 B,
+ces dernières sous une clause en prose distincte). Les **deux comptes étaient exacts** — mes
+mots : *« j'ai conflé le compte de tokens avec le compte de candidates »*. Même défaut que les
+trois occurrences ci-dessus : une annonce (16) dont l'étendue dépasse la population que
+l'instrument cité (le token, 11) mesurait. **Entièrement mienne**, non partagée. Corrigé le
+même jour : motif unifié (token ajouté aux 5 B), un seul `grep -F` rend désormais **17** (16
+candidates + 1 exemple de la règle), garde d'inventaire posée (`candidateInventory.test.ts`,
+prouvée par mutation). **Dixième occurrence du registre**, la quatrième de la proposition (3).
+
 ---
 
 ## PROPOSITION (4) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
@@ -619,9 +632,9 @@ dixième occurrences », à tort : la proposition (4) est **méta** — elle dé
 un échec, non un échec lui-même. Ses entrées ne consomment pas la série des occurrences
 d'échec (propositions 1–3). De plus, l'une (le script de citation) est **le même événement**
 que le troisième instrument de l'occurrence 3 (proposition 1), déjà compté — le renuméroter
-aurait été un double-compte. La série d'échec compte donc **neuf** occurrences (voir
-proposition 3, troisième occurrence) ; la proposition (4) porte **deux illustrations non
-numérotées** dans cette série.
+aurait été un double-compte. La série d'échec compte donc **dix** occurrences (la dixième
+inscrite à la proposition 3, quatrième de sa série) ; la proposition (4) porte **deux
+illustrations non numérotées** dans cette série.
 
 ---
 

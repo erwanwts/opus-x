@@ -323,7 +323,7 @@ Toute promotion répond aux mêmes questions :
 
 ## 8. Règles communes
 
-*(synthèse — écho de RD-009 / RD-010, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Toute métadonnée publiée par une projection est dérivée exclusivement du Canonical Corpus selon une chaîne de dérivation déterministe. Lorsqu'une valeur ne peut être dérivée sans hypothèse, elle n'est pas produite et la lacune est tracée.*
+**[DÉCISION CANDIDATE — D-006, à rendre]** *(synthèse — écho de RD-009 / RD-010, marqueur restituable à sa normalisation)* *Toute métadonnée publiée par une projection est dérivée exclusivement du Canonical Corpus selon une chaîne de dérivation déterministe. Lorsqu'une valeur ne peut être dérivée sans hypothèse, elle n'est pas produite et la lacune est tracée.*
 
 **[DÉCISION CANDIDATE — D-006, à rendre]** *Toute projection publiée doit porter des métadonnées éditoriales suffisantes pour être correctement interprétée par les moteurs de recherche et les systèmes de découverte.*
 
@@ -432,7 +432,7 @@ Les projections antérieures demeurent valides comme photographies de leur époq
 
 **[GRAVÉ]** *(source : OCR-006 P6)* L'extracteur ne fabrique jamais une sémantique absente de la source. Les arêtes proviennent exclusivement de la section de relations de chaque Record.
 
-*(synthèse — écho de RD-005, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Within a Relations section, if a target identifier matches both a Record title and a declared Concept, concept resolution SHALL take precedence. Record resolution SHALL only occur when no declared Concept matches the identifier.*
+**[DÉCISION CANDIDATE — D-006, à rendre]** *(synthèse — écho de RD-005, marqueur restituable à sa normalisation)* *Within a Relations section, if a target identifier matches both a Record title and a declared Concept, concept resolution SHALL take precedence. Record resolution SHALL only occur when no declared Concept matches the identifier.*
 
 Cette règle ne crée aucune capacité. Elle rend applicable une déclaration de concept qui resterait sans effet dès qu'elle porterait le nom d'un Record.
 
@@ -452,7 +452,7 @@ Ces limites ne sont pas des défauts. Elles garantissent qu'il ne devient jamais
 
 ### 11.1 Statut
 
-*(synthèse — écho de RD-009, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* *Une page de Registry est une projection documentaire dérivée du Canonical Corpus. Elle ne constitue jamais une publication normative indépendante ni une représentation faisant autorité.*
+**[DÉCISION CANDIDATE — D-006, à rendre]** *(synthèse — écho de RD-009, marqueur restituable à sa normalisation)* *Une page de Registry est une projection documentaire dérivée du Canonical Corpus. Elle ne constitue jamais une publication normative indépendante ni une représentation faisant autorité.*
 
 Conséquences : régénérable, supprimable et reconstructible, périssable, jamais source de vérité.
 
@@ -863,7 +863,7 @@ Le dictionnaire ne dit jamais *ce terme est absent*. Il dit *ce terme n'est pas 
 
 ## 22. Règles découvertes
 
-*(synthèse — écho de RD-002, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* Deux statuts distincts :
+**[DÉCISION CANDIDATE — D-006, à rendre]** *(synthèse — écho de RD-002, marqueur restituable à sa normalisation)* Deux statuts distincts :
 
 | Statut | Définition |
 |---|---|
@@ -993,7 +993,7 @@ Gouvernance terminologique ──► Lot 3 (Concepts) ──► Lot 5 (Applicati
 
 ### Plans du site
 
-*(synthèse — écho de RD-011, marqueur restituable à sa normalisation ; invoquée comme décidée → décision candidate D-006)* Une seule décision de gouvernance, deux projections spécialisées.
+**[DÉCISION CANDIDATE — D-006, à rendre]** *(synthèse — écho de RD-011, marqueur restituable à sa normalisation)* Une seule décision de gouvernance, deux projections spécialisées.
 
 **[DÉRIVABLE]** — recalculé depuis le dépôt, jamais réécrit.
 
