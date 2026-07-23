@@ -19,6 +19,7 @@ déclarée** (discipline du canonical partagé : *signaler, jamais répartir*).
 | énumération hétérogène d'OCR-100 | **OCR-100** | explicite (titre + constat) |
 | `Last Update` périmé (voir ci-dessous) | **OCR-100, OCR-114** | explicite (rectifiés à `62027b4`) |
 | les 2 `alias_self_loop` | **OCR-100, OCR-114** | explicite (auto-boucles montrées) |
+| canonique partagé `governed_by` (PRD-203/204) | — | ouverte · **aucun Record sujet** (sujet = prédicats PRD-203/204) |
 | franchissement de régime d'adressage | — | ouverte · **aucun Record sujet** (sujet = les 64 liens) |
 | incohérence deux projections | — | ouverte · **aucun Record sujet** (sujet = 59 pages dérivées) |
 | promotion en deux parties | — | ouverte · **aucun Record sujet** (procédure) |
@@ -27,7 +28,7 @@ déclarée** (discipline du canonical partagé : *signaler, jamais répartir*).
 | `.gitattributes` (EOL) | — | close · aucun Record (outillage) |
 | emphase des archétypes | — | close · aucun Record |
 
-**Compte : 9 entrées structurées (attribution définitive) · 1 en lacune** (orphelins verbatim-code).
+**Compte : 10 entrées structurées (attribution définitive) · 1 en lacune** (orphelins verbatim-code).
 **Records figurant dans une dette OUVERTE avec sujet explicite : {OCR-100, OCR-114}** — 2 Records.
 
 ---
@@ -313,6 +314,34 @@ History` classerait OCR-100/114 comme **stables**, à l'inverse de la réalité 
 dette de donnée ci-dessus est distincte et se corrige pour elle-même.
 
 **Non corrigé** — modifier `Last Update` sur un Record est un amendement, traité séparément.
+
+---
+
+## DETTE — canonique partagé `governed_by` (PRD-203 / PRD-204), TROIS manifestations
+
+**Ouverte le** 2026-07-24 (regroupement ; les trois manifestations préexistent, dispersées).
+
+**Records concernés :** — **aucun Record sujet** ; sujet = les **prédicats PRD-203 et PRD-204**, dont
+la forme canonique `governed_by` est **partagée**.
+
+**Constat.** Deux identifiants de prédicat portent la **même forme canonique** `governed_by`. Ce
+partage a produit **trois défauts distincts, une seule cause :**
+
+1. **Double-compte d'arêtes (230 ≠ 222).** La somme d'arêtes de familles a compté `governed_by`
+   deux fois (une par id) → 230 annoncées pour 222 distinctes. Corrigé par comptage d'arêtes
+   distinctes. *(`REGLES-DECOUVERTES.md`, note de décompte ; `edgeCountShared`.)*
+2. **Lacune `edge_attribution`.** Le compte d'arêtes au canonique partagé n'est attribuable à aucun
+   id unique → `_gaps.push('edge_attribution')`. *(`lib/registry/registryEntities.ts` + son test.)*
+3. **Slugs de nom impossibles.** Les 37 noms canoniques donnent **36 slugs** — collision
+   `governed-by` ← PRD-203, PRD-204. Bloque l'adressage des prédicats **par nom** (schéma GEO §4).
+   *(`DOSSIER-SESSION-ARCHITECTE.md` §7.)*
+
+Ce ne sont pas trois incidents : c'est **un** canonique partagé qui se manifeste au **comptage**, à
+l'**attribution**, et à l'**adressage**.
+
+**NON corrigé — lever un canonique partagé est une DÉCISION** (renommer l'un des deux, ou déclarer
+le partage légitime et l'outiller). Regroupé ici pour que la décision porte sur **le problème**, pas
+sur un symptôme.
 
 ---
 

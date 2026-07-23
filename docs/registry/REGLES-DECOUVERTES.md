@@ -597,6 +597,14 @@ même jour : motif unifié (token ajouté aux 5 B), un seul `grep -F` rend déso
 candidates + 1 exemple de la règle), garde d'inventaire posée (`candidateInventory.test.ts`,
 prouvée par mutation). **Dixième occurrence du registre**, la quatrième de la proposition (3).
 
+**Cinquième occurrence de la proposition (3) — « 3 registres manquants » (Architecte, 2026-07-24).**
+Le relevé du schéma GEO (§5, ontologie à 6 registres) : l'Architecte a annoncé que l'implémentation
+en couvre **3**, donc **3 manquants**. Mesuré : l'impl couvre **2 des 6** (Predicate, Type) —
+**Family**, comptée dans les 3, **n'appartient pas** aux 6 du schéma. Donc **4 manquants, pas 3**. La
+couverture **annoncée** (3/6) a dépassé la couverture **mesurée** (2/6) : une annonce dont l'étendue
+excède la population réelle — même défaut que les quatre ci-dessus. **À l'Architecte, à son nom.**
+**Onzième occurrence du registre**, la cinquième de la proposition (3).
+
 ---
 
 ## PROPOSITION (4) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
@@ -632,8 +640,8 @@ dixième occurrences », à tort : la proposition (4) est **méta** — elle dé
 un échec, non un échec lui-même. Ses entrées ne consomment pas la série des occurrences
 d'échec (propositions 1–3). De plus, l'une (le script de citation) est **le même événement**
 que le troisième instrument de l'occurrence 3 (proposition 1), déjà compté — le renuméroter
-aurait été un double-compte. La série d'échec compte donc **dix** occurrences (la dixième
-inscrite à la proposition 3, quatrième de sa série) ; la proposition (4) porte **deux
+aurait été un double-compte. La série d'échec compte donc **onze** occurrences (la onzième
+inscrite à la proposition 3, cinquième de sa série) ; la proposition (4) porte **deux
 illustrations non numérotées** dans cette série.
 
 ---

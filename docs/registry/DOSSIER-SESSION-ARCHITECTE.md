@@ -324,6 +324,13 @@ le dit pas ; c'est une tension non résolue dans le doc.
 **Confirmé DANS le doc — les deux non-décisions :** `/p/[handle]` (§9, §17 — **collision** avec le
 Passport public de l'app) ; **traduction du contenu explicatif** (§12).
 
+**CONCLUSION DU RELEVÉ (opposable).** Le schéma GEO du 18 juillet 2026 **n'est pas adoptable comme
+référence sur ses trois axes structurants** — URLs (contradiction §4/§9), structure de page (sept
+listes distinctes), prédicats par nom (collision `governed-by` mesurée). Ses recommandations de
+**PORTÉE** (45 pages, 8 lots, 4 couches éditoriales) ne présentent **pas** de contradiction interne
+et **restent exploitables**. Ce n'est pas un jugement : un document de travail ne peut servir de
+référence tant que ses contradictions internes ne sont pas levées.
+
 **Deux points que le schéma tranche SANS autorité — à ne pas prendre pour des décisions :**
 
 1. **`/p/[handle]`** — le schéma l'emploie ; c'est une **collision ouverte** (l'app utilise déjà
