@@ -265,20 +265,30 @@ cible *avant* implémentation. **RD-006** : *une source plausible n'est pas une 
 Ses recommandations **ressemblent à des décisions** — c'est exactement le piège `[GRAVÉ]` : rien
 n'y renvoie à une source normative externe. Aucune de ses prescriptions n'est opposable.
 
-**⚠️ Le doc n'est pas encore lu.** Le schéma est un Google Doc, hors de portée de Claude. Il sera
-versé sous `docs/web/SCHEMA-GEO-2026-07-18.md`. **Les faits « côté schéma » ci-dessous viennent de
-la DESCRIPTION de l'Architecte, non du document** — ils sont **provisoires**, à re-vérifier contre
-le fichier versé (dette de provenance : *un document sans sa version n'est pas une source*). Seuls
-les faits « côté implémentation » sont mesurés.
+**Versé et lu : `docs/web/SCHEMA-GEO-2026-07-18.md @ cd159b3` (blob `011c951`).** Les deux côtés
+sont désormais mesurés.
 
-**Écarts — implémentation MESURÉE vs schéma DÉCRIT (à confirmer sur le doc versé) :**
+**Écarts — schéma LU vs implémentation MESURÉE :**
 
-- **URLs du Registry.** Schéma *(décrit)* : `/registry/…`. Implémentation *(mesurée)* : `/records/…`
-  (décision 607, pour éviter la **collision** avec la page pilier `/en/registry`, slug `registry`
-  = OCR-124). Écart de préfixe sur **91 URLs**. Arbitrage ouvert.
-- **Les 15 sections.** Schéma *(décrit)* : diffère sur **six** sections. Implémentation *(mesurée)* :
-  **la production suit la structure ARCHITECTE** (`GRAVEN_ORDER`). Le côté « six sections » reste à
-  vérifier sur le doc.
+- **URLs du Registry.** Schéma (§4, §9, §14) : `/registry`, `/registry/ocr-100`,
+  `/registry/predicates/is-a` (par **nom**), `/registry/types/evidence`. Implémentation : `/records`,
+  `/records/ocr-100`, `/records/predicates/prd-001` (par **id**), `/records/types/{id}`, **plus
+  `/records/families/{id}`** (15 pages, **absentes du schéma**), plus le pilier `/en/registry`.
+  Quatre écarts : (a) préfixe `/registry` vs `/records` — **91 URLs** ; (b) prédicats par **nom** vs
+  par **id** ; (c) **familles** absentes du schéma ; (d) **le schéma se contredit lui-même** : §4
+  préfixe `/registry/predicates/…`, §9 écrit `/predicates/…` (sans `/registry`).
+- **Les 15 sections.** Le schéma §6 (« Modèle de page GEO ») et la structure ARCHITECTE
+  (`GRAVEN_ORDER`) partagent Définition, Pourquoi, Comment, Exemple, FAQ, Sources. **La production
+  suit l'ARCHITECTE.** Schéma-seul (non rendu) : *Résumé 3-5 points, Composants, Limites,
+  Gouvernance, Dernière mise à jour*. Architecte-seul (absent du schéma) : *Actors, Lifecycle,
+  Counter Examples, Distinctions, Related Entities, CTA*.
+- **Lot GEO 3.** Le schéma le nomme « Glossaire et entités » (§15) et veut des pages `/concepts/…`
+  (§3), mais **ne mentionne nulle part OCR-014** : la dépendance OCR-014 (29 concepts) est de
+  l'Architecte, et **OCR-014 est absent du corpus** (hors plages OCR-000..006 / OCR-100..125).
+
+**Confirmé DANS le doc — les deux non-décisions :** `/p/[handle]` (§9, §17 — **collision** avec le
+Passport public de l'app) ; **traduction du contenu explicatif** (§12 : *« Le contenu explicatif
+peut être traduit »*) — contre la permanence anglaise, candidate non rendue.
 
 **Deux points que le schéma tranche SANS autorité — à ne pas prendre pour des décisions :**
 
