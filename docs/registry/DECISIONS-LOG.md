@@ -17,12 +17,15 @@ des règles découvertes.)
 | **D-007** | Seau B suit le régime des orphelins | rendue + appliquée | **`528e303`** (2ᵉ réédition, même lot) |
 | **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
+| **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`<ce commit>`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu) |
 
 ## Décisions EN ATTENTE chez l'Architecte
 
 | Réf | Objet | Statut |
 |---|---|---|
-| **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **remonté, non rendu** — ne pas trancher par conception |
+| **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
+| **D-012** | **Seconde source du statut documentaire** — un artefact `PROMO` dira « promu », le champ `Status` dira « Draft » : deux porteurs, même vérité. **Laquelle gouverne ?** Seconde source **déjà réalisée** : `recordPage.ts:115` (champ) vs `api.ts:56` (`lifecycle_status` du manifeste) | **remontée par D-011, non rendue** |
+| *(amendement)* | **Précision de P9 dans OCR-006** — exclure explicitement le statut documentaire de « any published representation » | à instruire (OCR-006 Phase 3, jamais relu) |
 
 **Matière pour le formulaire D-010 (mesurée, non traitée) :**
 

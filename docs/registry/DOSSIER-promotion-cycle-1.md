@@ -306,30 +306,36 @@ documentaire complet — n'est pas tranchée ici, et aucune procédure n'est pro
 
 ---
 
-# PARTIE III — LE STATUT EST PERSISTÉ (principe 9 enfreint) · 2026-07-24
+# PARTIE III — LE STATUT DOCUMENTAIRE (D-011 : hors P9) · 2026-07-24
 
-**Constat brut, mesuré, non atténué.**
+**Le statut est persisté (mesuré), mais P9 ne s'y applique pas (D-011).**
 
-1. **`Status` est un champ persisté du Markdown** : `| **Status** | Draft |`, présent dans les
-   **33/33** Records (ex. `OCR-110_Evidence.md:9`).
-2. **Il est lu de ce champ, pas dérivé** : `lib/registry/recordPage.ts:115` (`fields['Status']`),
-   `:143` ; `robotsFromStatus` (`:127`) en dérive le `robots`.
-3. **Principe 9 (OCR-006), conséquence normative verbatim** : *« Status SHALL NOT be stored as a
-   column, **field** or attribute of any published representation. »* Le corpus stocke `Status`
-   comme un champ. **P9 est enfreint dans le corpus, avant toute promotion.**
+1. **`Status` est un champ du Markdown** : `| **Status** | Draft |`, dans les **33/33** Records
+   (`OCR-110_Evidence.md:9`) ; lu par `recordPage.ts:115`/`:143`, `robots` dérivé (`:127`).
+2. **D-011 (rendue) : P9 vise le statut du PROTOCOLE** (Trust / Evidence, dérivé de faits), **pas le
+   statut documentaire** (Draft/Normative). Le champ `Status` est **hors périmètre de P9. Pas de
+   violation.** *(Ma PARTIE III antérieure disait « P9 enfreint » — c'était faux, corrigé.)*
+3. **Précision requise dans OCR-006 :** le texte de P9 dit « any published representation », **général**.
+   Que le statut documentaire en soit exclu **doit être précisé dans OCR-006** — amendement à
+   instruire, OCR-006 étant en Phase 3, **jamais relu**.
 
-**Deux questions qui REMONTENT à l'Architecte (non conçues ici) :**
+**Le problème que P9 DÉCRIVAIT subsiste — c'est D-012, pas P9.** Après D-001, un artefact `PROMO` dira
+« promu » pendant que le champ `Status` dira « Draft » : **deux porteurs de la même vérité.** Et cette
+seconde source est **déjà réalisée** aujourd'hui, mesurée :
 
-- **Collision avec le principe 5.** Les *Notes* de P9 : *« Persisting a status … would additionally
-  require modifying that representation, which Principle 5 forbids. »* Promouvoir en changeant le
-  champ (`Draft → Normative`) est une **mutation**, interdite par P5. Le mécanisme de promotion par
-  champ persisté **contredit P5**.
-- **Seconde source.** Dériver le statut (comme P9 l'exige) créerait une **seconde source** à côté du
-  champ. *« The two may diverge. »* **Laquelle gouverne ?** Le champ persisté ou la dérivation ?
-- **Portée de P9** (à trancher aussi) : « Status » y vise-t-il le statut du **protocole** (Trust /
-  Evidence, dérivé de faits) ou **aussi** le statut **documentaire** du Record (Draft/Normative) ?
-  Le libellé « any published representation » est général ; le Record en est-il une ? Non résolu ici.
+| Porteur du statut documentaire | Lu par |
+|---|---|
+| champ `Status` du Record (`.md`) | `lib/registry/recordPage.ts:115` |
+| `lifecycle_status` du `_manifest.json` (copie générée) | `lib/registry/api.ts:56` |
 
-**Conséquence pour la Phase 1 :** son premier acte (une transition de statut) serait, en l'état, soit
-une **mutation interdite par P5**, soit la reconnaissance qu'il faut **cesser de persister le statut**
-et le dériver — deux directions opposées, aucune tranchée. La mesure est rendue ; rien n'est corrigé.
+Deux sources lues, mêmes données, **qui peuvent diverger** (comme les checksums ont divergé 24 h 40).
+**Laquelle gouverne** quand un artefact `PROMO` s'y ajoute ? → **D-012**, non tranchée.
+
+**Les Records SONT amendables (mesuré) :** `62027b4` (2026-07-20) a édité **11 Records** ; le manifeste
+n'a **pas** été régénéré dans le même commit → 11 checksums périmés pendant **24 h 40** (jusqu'à
+`1c9ffa3`). **Changer le champ `Status` est le même geste qu'une rectification** : éditer le `.md` →
+le checksum change (mesuré `86b0a82b → fd126588` pour `Draft → Normative`) → régénérer le manifeste →
+l'attestation (`manifest.attestation.test.ts`, désormais posée) repasse. Promouvoir 29 Records =
+éditer 29 `.md` (champ Status), même geste qu'une rectification, à l'échelle 29. La seule **différence**
+n'est pas mécanique : c'est le **sens** (transition de cycle de vie vs correction de contenu) et la
+**précondition de grounding** (OCR-005 : `Draft → Normative` MUST require grounding).
