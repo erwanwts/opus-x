@@ -18,6 +18,27 @@ des règles découvertes.)
 | **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
 
+## Décisions EN ATTENTE chez l'Architecte
+
+| Réf | Objet | Statut |
+|---|---|---|
+| **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **remonté, non rendu** — ne pas trancher par conception |
+
+**Matière pour le formulaire D-010 (mesurée, non traitée) :**
+
+- **Grain, chiffré :** fin = 28 amendements de plage sur la Phase 1 (D-004, deux parties) ; gros = 1
+  artefact, mais révocation par addition seule (P5), grain de révocation découplé du fichier.
+- **Trois manques de la conception a.–e., à combler par l'arbitrage, pas par moi :**
+  1. **Révocation** — quelle **série** désigne une promotion révoquée (PROMO ou une nouvelle), et par
+     quel **champ** ? Le front-matter proposé **n'a pas de `revokes:`**.
+  2. **Identifiant en double** — nom de fichier **et** champ `decision` portent l'id ; deux porteurs
+     **peuvent diverger** (pas de source unique).
+  3. **Ordre des faits** — tri par `timestamp` ; deux faits sur un même Record au **même timestamp**
+     → l'ordre **n'est pas total**. *(Le timestamp est dans le fichier, donc couvert par le checksum
+     et déterministe : ce n'est pas la mutabilité, c'est l'**ambiguïté** de l'ordre.)*
+- **Préalable P9/P5** (PARTIE III du dossier de promotion) : le statut est déjà **persisté** ; toute
+  conception du grain est en aval d'une décision non rendue sur la persistance du statut.
+
 ## Dispositif proposé (NON construit — constat de faisabilité)
 
 **Cible :** qu'aucune décision rendue ne puisse rester non appliquée sans que ce soit **visible et

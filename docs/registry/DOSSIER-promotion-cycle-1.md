@@ -303,3 +303,33 @@ Les faits sont rendus. La signification de l'empreinte — contenu canonique ou 
 documentaire complet — n'est pas tranchée ici, et aucune procédure n'est proposée.
 
 **Aucun fichier du dépôt n'a été modifié par cette mesure.**
+
+---
+
+# PARTIE III — LE STATUT EST PERSISTÉ (principe 9 enfreint) · 2026-07-24
+
+**Constat brut, mesuré, non atténué.**
+
+1. **`Status` est un champ persisté du Markdown** : `| **Status** | Draft |`, présent dans les
+   **33/33** Records (ex. `OCR-110_Evidence.md:9`).
+2. **Il est lu de ce champ, pas dérivé** : `lib/registry/recordPage.ts:115` (`fields['Status']`),
+   `:143` ; `robotsFromStatus` (`:127`) en dérive le `robots`.
+3. **Principe 9 (OCR-006), conséquence normative verbatim** : *« Status SHALL NOT be stored as a
+   column, **field** or attribute of any published representation. »* Le corpus stocke `Status`
+   comme un champ. **P9 est enfreint dans le corpus, avant toute promotion.**
+
+**Deux questions qui REMONTENT à l'Architecte (non conçues ici) :**
+
+- **Collision avec le principe 5.** Les *Notes* de P9 : *« Persisting a status … would additionally
+  require modifying that representation, which Principle 5 forbids. »* Promouvoir en changeant le
+  champ (`Draft → Normative`) est une **mutation**, interdite par P5. Le mécanisme de promotion par
+  champ persisté **contredit P5**.
+- **Seconde source.** Dériver le statut (comme P9 l'exige) créerait une **seconde source** à côté du
+  champ. *« The two may diverge. »* **Laquelle gouverne ?** Le champ persisté ou la dérivation ?
+- **Portée de P9** (à trancher aussi) : « Status » y vise-t-il le statut du **protocole** (Trust /
+  Evidence, dérivé de faits) ou **aussi** le statut **documentaire** du Record (Draft/Normative) ?
+  Le libellé « any published representation » est général ; le Record en est-il une ? Non résolu ici.
+
+**Conséquence pour la Phase 1 :** son premier acte (une transition de statut) serait, en l'état, soit
+une **mutation interdite par P5**, soit la reconnaissance qu'il faut **cesser de persister le statut**
+et le dériver — deux directions opposées, aucune tranchée. La mesure est rendue ; rien n'est corrigé.
