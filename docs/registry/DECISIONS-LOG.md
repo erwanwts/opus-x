@@ -39,8 +39,10 @@ des règles découvertes.)
   3. **Ordre des faits** — tri par `timestamp` ; deux faits sur un même Record au **même timestamp**
      → l'ordre **n'est pas total**. *(Le timestamp est dans le fichier, donc couvert par le checksum
      et déterministe : ce n'est pas la mutabilité, c'est l'**ambiguïté** de l'ordre.)*
-- **Préalable P9/P5** (PARTIE III du dossier de promotion) : le statut est déjà **persisté** ; toute
-  conception du grain est en aval d'une décision non rendue sur la persistance du statut.
+- **Préalable D-012** (PARTIE III du dossier de promotion, corrigée) : P9 ne vise **pas** le statut
+  documentaire (D-011), mais la **seconde source** subsiste — un artefact `PROMO` et le champ `Status`
+  porteraient la même vérité. Toute conception du grain (D-010) est **en aval** de D-012 (laquelle
+  gouverne), non rendue.
 
 ## Dispositif proposé (NON construit — constat de faisabilité)
 
