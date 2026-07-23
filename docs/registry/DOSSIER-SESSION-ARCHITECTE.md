@@ -268,27 +268,61 @@ n'y renvoie à une source normative externe. Aucune de ses prescriptions n'est o
 **Versé et lu : `docs/web/SCHEMA-GEO-2026-07-18.md @ cd159b3` (blob `011c951`).** Les deux côtés
 sont désormais mesurés.
 
+**Le doc est une source HISTORIQUE datée** (18 juillet). On ne le réécrit pas : le prescriptif
+meurt, l'historique reste (même règle que le miroir LF). « Aligner sur l'implémentation » = **rendre
+une décision qui déclare le schéma SUPERSEDED sur ce point** — le document n'est pas touché.
+
 **Écarts — schéma LU vs implémentation MESURÉE :**
 
-- **URLs du Registry.** Schéma (§4, §9, §14) : `/registry`, `/registry/ocr-100`,
-  `/registry/predicates/is-a` (par **nom**), `/registry/types/evidence`. Implémentation : `/records`,
-  `/records/ocr-100`, `/records/predicates/prd-001` (par **id**), `/records/types/{id}`, **plus
-  `/records/families/{id}`** (15 pages, **absentes du schéma**), plus le pilier `/en/registry`.
-  Quatre écarts : (a) préfixe `/registry` vs `/records` — **91 URLs** ; (b) prédicats par **nom** vs
-  par **id** ; (c) **familles** absentes du schéma ; (d) **le schéma se contredit lui-même** : §4
-  préfixe `/registry/predicates/…`, §9 écrit `/predicates/…` (sans `/registry`).
-- **Les 15 sections.** Le schéma §6 (« Modèle de page GEO ») et la structure ARCHITECTE
-  (`GRAVEN_ORDER`) partagent Définition, Pourquoi, Comment, Exemple, FAQ, Sources. **La production
-  suit l'ARCHITECTE.** Schéma-seul (non rendu) : *Résumé 3-5 points, Composants, Limites,
-  Gouvernance, Dernière mise à jour*. Architecte-seul (absent du schéma) : *Actors, Lifecycle,
-  Counter Examples, Distinctions, Related Entities, CTA*.
-- **Lot GEO 3.** Le schéma le nomme « Glossaire et entités » (§15) et veut des pages `/concepts/…`
-  (§3), mais **ne mentionne nulle part OCR-014** : la dépendance OCR-014 (29 concepts) est de
-  l'Architecte, et **OCR-014 est absent du corpus** (hors plages OCR-000..006 / OCR-100..125).
+- **URLs du Registry — préfixe (arbitraire).** Schéma : `/registry/…` ; impl : `/records/…` (607, pour
+  éviter la collision avec le pilier `/en/registry`). **91 URLs.** Le schéma se **contredit lui-même** :
+  §4 `/registry/predicates/…`, §9 `/predicates/…`. Aligner vers `/registry` = superseder le schéma sur
+  le préfixe **+ rouvrir la collision `/en/registry`** + 2 sitemaps + maillage 94 liens + 92 canonicals.
+  Aligner vers `/records` = une décision qui **supersede le schéma**, sans toucher au doc.
+- **URLs du Registry — nom vs id (PAS arbitraire, sort du lot — voir décision propre ci-dessous).**
+  Schéma : prédicats par **nom** (`/predicates/is-a`) ; impl : par **id** (`/records/predicates/prd-001`).
+  Mesuré : les 37 noms canoniques donnent **36 slugs** — **collision `governed-by` ← PRD-203, PRD-204**
+  (même canonique partagé que le double-compte d'arêtes). Les slugs de nom ne sont donc **ni uniques**
+  (1 collision) **ni stables** (un renommage casse l'URL) ; l'id est unique et stable. C'est le seul
+  point où le schéma peut avoir raison **pour des raisons GEO** (lisibilité), mais au prix d'une
+  collision réelle à lever d'abord. **Mérite sa propre décision** — pas le même arbitrage que le préfixe.
+- **Familles absentes du schéma.** L'impl a **15 pages `/records/families/{id}`** ; le schéma n'a pas
+  la notion.
+- **Modèle de page — le schéma en porte QUATRE, non concordants.** §6 (« Modèle GEO ») = 15 items ;
+  §3 (structure d'entité) = 11 items ; §2 = **cinq** listes par pilier, toutes différentes (Passport 15,
+  WSP 18, Verified Skills 11, Verifiable Evidence 13, Knowledge Graph 14). **Sept listes distinctes en
+  tout, aucune identique.** La production suit `GRAVEN_ORDER` (architecte). Schéma-seul (non rendu) :
+  Résumé, Composants, Limites, Gouvernance, Dernière mise à jour. Architecte-seul (absent du schéma) :
+  Actors, Lifecycle, Counter Examples, Distinctions, Related Entities, CTA. **Non adoptable sur la
+  structure : le schéma n'a pas UN modèle.**
+- **Ontologie — 6 registres au schéma, 3 surfaces à l'impl.** Schéma §5 : Type, Predicate, Attribute,
+  Constraint, Inference, Cardinality Registries. Impl : Predicate + Type (2 des 6) **+ Family**
+  (impl-seul, hors schéma). **Quatre manquants : Attribute, Constraint, Inference, Cardinality** — leur
+  substrat serait des Records **OCR-008/…/012, tous absents** du corpus (gap 007-099). *(L'Architecte
+  a dit « 3 manquants » ; mesuré = 4, car Family de l'impl ne correspond à aucun des 6.)*
+- **Framework slug.** Schéma §4 : `/frameworks/world-trader-pass`. **En vigueur : `world-trader`**
+  (D2, `CLAUDE.md:47`, décision verrouillée). Le schéma diverge ; D2 prime.
+- **Lot GEO 3 — sans substrat, motif corrigé.** La dépendance `/concepts/…` → définitions de concepts
+  est **réelle** (documentée ailleurs dans le projet). Ce qui manque, c'est la **source** : les
+  29 définitions (OCR-014) sont **en attente chez l'Architecte**, absentes du corpus. *(Correction :
+  OCR-014 n'est PAS dans le schéma — mon attribution était une fabrication ; la dépendance, elle,
+  n'en est pas une. C'est la source qui n'existe pas, pas la dépendance.)*
+
+**QUATRE éléments du schéma poussent CONTRE la permanence anglaise** (candidate non rendue) : §12
+(« le contenu explicatif peut être traduit »), §9/§12 préfixes `/en/ /fr/ /es/`, §15 **Lot GEO 7 =
+localisation FR/ES comme lot entier**, et l'exemple §12 `/fr/professional-passport`. Un doc de
+travail qui accumule quatre appuis pro-traduction, alors que la permanence n'est rendue nulle part.
+
+**§14 se contredit lui-même sur « une URL stable ».** Il énonce le principe *« une entité, une
+définition canonique, une URL stable »* (ligne 1006) puis, pour l'entité Evidence, liste **six URLs** :
+`/evidence`, `/registry/ocr-110`, `/api/registry/ocr-110`, `/professional-passport/evidence`,
+`/trust/evidence`, `/verification/evidence`. Les trois dernières (« pages contextuelles ») mettent la
+**même entité sur plusieurs URLs éditoriales** — compatible avec « une URL stable » seulement si l'on
+lit « une URL **canonique** », les contextuelles portant un `canonical` vers `/evidence`. Le schéma ne
+le dit pas ; c'est une tension non résolue dans le doc.
 
 **Confirmé DANS le doc — les deux non-décisions :** `/p/[handle]` (§9, §17 — **collision** avec le
-Passport public de l'app) ; **traduction du contenu explicatif** (§12 : *« Le contenu explicatif
-peut être traduit »*) — contre la permanence anglaise, candidate non rendue.
+Passport public de l'app) ; **traduction du contenu explicatif** (§12).
 
 **Deux points que le schéma tranche SANS autorité — à ne pas prendre pour des décisions :**
 
