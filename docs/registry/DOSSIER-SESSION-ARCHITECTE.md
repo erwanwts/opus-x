@@ -200,7 +200,7 @@ Colonne DÉRIVABLE, après pose de l'attestation :
 | **Invariants** (projection) | ✅ | ✅ | `markdown.invariant.test.ts` |
 | **Références** (« cité ≥ 1 ») | ⚠️ substrat sans attestation | ✅ **DÉRIVABLE** | `citations.test.ts` — rejoue les citations dans un fichier, prouvé par mutation ; inventaire des non-cités = {OCR-006, OCR-123} |
 | ~~**Modification substantielle** (commits)~~ | ⚠️ substrat sans test | 🗑️ **RETIRÉ (D-009)** | supprimé de la grille : lisait une métadonnée MUTABLE (git), pas du contenu |
-| **Dette** (« aucune dette ouverte ») | ⚠️ fichier humain | ⚠️ **inchangé** | `DETTES-ouvertes.md` ; liste curée, aucun test |
+| **Dette** (« aucune dette ouverte ») | ⚠️ fichier humain | ✅ **attesté** | `promotionDebt.test.ts` — lit la table d'attribution (Q2), prouvé par mutation ; **lacune** verbatim-code (sans sujet Record) |
 
 **Constat demandé.** L'attestation ferme **les DEUX lacunes nettes** — empreinte **et**
 manifeste — par le même instrument : toutes deux étaient « aucun test », toutes deux le sont
