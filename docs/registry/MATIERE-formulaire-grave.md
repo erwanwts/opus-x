@@ -109,3 +109,62 @@ mécaniquement leur incertitude.
 tient : même en déplaçant les ~10 limites, le seau C reste la majorité. Dans un document qui se
 déclare non normatif, ce sont ~28 décisions marquées « gravé » qu'aucune source opposable n'a
 rendues. C'est l'ampleur.
+
+## 4 · Résolution des items-frontière (D-006 — le ≈ devient enjeu de marqueur)
+
+Chaque frontière tranchée contre une source **vérifiée**. Sous D-006, un item rangé à tort en C
+perdrait sa marque à tort — donc chaque verdict porte son motif et sa source.
+
+| Ligne | Verdict | Source vérifiée / motif |
+|---|---|---|
+| 485 | **A** | `CLAUDE.md:28-29` + `WEB-001B:43,79,166` — RLS deny-by-default, zéro `service_role`, lecture whitelistée. Opposable. |
+| 731 | **A** | idem — séparation site/plateforme, le site ne lit pas la base. Opposable. |
+| 385 | **A** | OCR-006 **P9** *verbatim* : « Status Is Derived and Never Persisted ». |
+| 405 | **B** | grep vide dans OCR-115 et OCR-007 : la précédence n'est dans **aucun Record**, seulement RD-005. |
+| 296 | **B** | RD-009 / RD-010 ; pas de formulation verbatim dans un Record. |
+| 153 | **B** | RD-007. OCR-000 grave l'**acte** de promotion (Draft→Normative), mais **pas** le cadrage « publication indépendante de promotion » — c'est l'apport de RD-007. |
+| 678 | **C** | grep « translation » vide dans les Records : descend de l'orphelin monolingue (579/669), lui-même sans source. |
+| 607 | **C** | index `/records` : décision de session (Lot GEO 2), absente de toute décision verrouillée (grep `CLAUDE.md` vide). |
+| 717 | **C** | redirection transitoire : notes MIG (non opposables) **et retirée**. Rien de vivant. |
+| **813** | **INDÉCIDABLE** | « un concept n'existe que s'il est établi par le corpus » : domaine d'OCR-004 / OCR-006 P6, mais **aucun ancrage verbatim** et **aucune RD nette**. Reste indécidable — non poussé dans un seau pour faire tomber le compte. |
+
+**Comptes FERMES après résolution** (total 47, exact) :
+
+| Seau | Ferme | Δ vs approx. |
+|---|---|---|
+| **A — opposable** | **9** | 813 sort (→ indécidable) ; 485, 731, 385 fermes |
+| **B — écho non opposable** | **8** | 678 sort (→ C) |
+| **C — orphelin** | **29** | + 678 |
+| **Indécidable** | **1** | 813 |
+
+**Seau C ferme = 29.** (Un seul item reste indécidable ; il n'est compté dans aucun seau.)
+
+## 5 · Dépendances — avant toute suppression
+
+Orphelins du seau C **invoqués ailleurs comme décidés** (retirer leur marqueur les dégraderait en
+silence) :
+
+| Orphelin | Invoqué comme décidé par | Risque |
+|---|---|---|
+| **230 — empreinte** | grille de promotion : `DOSSIER-promotion-cycle-1.md`, `MESURES-frontiere-promotion-terminologie.md`, `DOSSIER-SESSION-ARCHITECTE.md` (§5), `REGLES-DECOUVERTES.md` | **fort** — critère de qualification ; le retirer casse la grille |
+| **449 — bandeau Draft (verbatim)** | **code** : `components/geo/RecordPage.tsx` (rendu), `REGLES-DECOUVERTES.md` | **fort** — dépendance exécutable ; le texte est rendu tel quel |
+| **607 — index `/records`** | `DETTES-ouvertes.md` (dette d'adressage) | moyen — adresse invoquée |
+
+**Cas distinct — la permanence anglaise (579/669)** est invoquée par `DETTES-ouvertes.md` et
+`DOSSIER-SESSION-ARCHITECTE.md`, mais **comme question OUVERTE**, jamais comme décidée. Retirer sa
+marque **aligne** ces documents au lieu de les dégrader. *(Balayage non exhaustif des 29 : ces
+dépendances sont établies, d'autres orphelins peuvent en porter ; le relevé complet fait partie du
+mandat de suppression, pas de celui-ci.)*
+
+## 6 · Seuil de divergence — constat avant édition
+
+Retirer **≈ 29 marqueurs sur 47** (62 %) touche **toutes les sections** : ce n'est pas un chiffre
+isolé, c'est la **couche de qualification** du document qui change. Deux conditions du seuil gravé
+sont réunies : *une partie est restructurée* (le régime de marquage), et — via D-006 — *un principe
+architectural est normalisé* (le régime `[GRAVÉ]` lui-même). **Le seuil est franchi.**
+
+**Conséquence, constat (non décision) :** c'est une **réédition**, pas 29 corrections. Le régime
+`[GRAVÉ]` se traite **en une fois** — résolution A/B/C + préservation des dépendances (§5) intégrées
+à l'édition — et la réédition recalcule au passage les parties `[DÉRIVABLE]` si elles ont bougé.
+Vingt-neuf retraits ponctuels rejoueraient la mécanique du 41 : une suite de gestes locaux là où
+une seule décision de régime est en jeu.
