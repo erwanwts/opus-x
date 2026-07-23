@@ -6,10 +6,11 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> CINQ PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> SIX PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
 > ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
 > excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument ·
-> (5) une corroboration exige des sources indépendantes** :
+> (5) une corroboration exige des sources indépendantes · (6) une décision rendue n'est pas une
+> décision appliquée** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -458,14 +459,25 @@ et non une décision distincte. Elle relève du **registre** et non des **dettes
 est dû ni ouvert — c'est une discipline déjà adoptée, qui guide les développements, ce que ce
 registre conserve précisément.
 
-> **Décompte des occurrences — dit, non masqué.** Cette proposition documente **trois**
-> occurrences : deux internes au harnais (CRLF, 92ᵉ ligne), et une **troisième portée par
+**Quatrième occurrence — le champ `Last Update` périmé (2026-07-24, ma part).** Le champ d'en-tête
+`Last Update` est censé dire **quand un Record a changé**. OCR-100 et OCR-114 ont été rectifiés à
+`62027b4` (2026-07-20) ; leur `Last Update` annonce **2026-07-16**. Il **annonce ce qu'il n'a pas
+obtenu** — un instrument non tenu qui affirme une valeur fausse, exactement la proposition (1). Lien
+avec Q1 de D-008 : c'est **la raison pour laquelle « modification substantielle » n'est pas
+instrumentable** — la seule base de contenu déterministe candidate (`Last Update` / `Version` /
+`Version History`) est elle-même fausse sur les Records rectifiés. Le critère a été **retiré**
+(D-009), et cette occurrence en est la cause mesurée. Inscrite en **dette de donnée** séparée.
+**Entièrement mienne** (la mesure vient de moi).
+
+> **Décompte des occurrences — dit, non masqué.** Cette proposition documente **quatre**
+> occurrences : deux internes au harnais (CRLF, 92ᵉ ligne), une **troisième portée par
 > TROIS instruments** — le bandeau de build (lignes de preuve), le manifeste d'intégrité
 > (dépôt), et un script de mesure non testé (le script de citations, 2026-07-22) —, tous
-> attestant ou annonçant une valeur non vérifiée. Les deux derniers **rejoignent** le bandeau,
-> ils n'ouvrent pas de nouvelle occurrence numérotée. La série d'échec compte **neuf**
-> occurrences (proposition 3, troisième occurrence, 2026-07-22) ; la proposition (4) porte deux
-> illustrations non numérotées de ce qui *rattrape* un échec — elle ne s'y ajoute pas.
+> attestant ou annonçant une valeur non vérifiée. Le manifeste et le script **rejoignent** le
+> bandeau (même occurrence). La **quatrième** est distincte : le champ `Last Update` périmé
+> (2026-07-24). La série d'échec compte désormais **douze** occurrences (la douzième = cette
+> quatrième de la proposition 1) ; la proposition (4) porte deux illustrations non numérotées de ce
+> qui *rattrape* un échec — elle ne s'y ajoute pas.
 >
 > Deux cas apparentés ont été **mesurés en session mais jamais inscrits ici**, et ne sont
 > donc pas comptés : la sommation d'arêtes de familles annonçant **230** pour **222** arêtes
@@ -640,9 +652,9 @@ dixième occurrences », à tort : la proposition (4) est **méta** — elle dé
 un échec, non un échec lui-même. Ses entrées ne consomment pas la série des occurrences
 d'échec (propositions 1–3). De plus, l'une (le script de citation) est **le même événement**
 que le troisième instrument de l'occurrence 3 (proposition 1), déjà compté — le renuméroter
-aurait été un double-compte. La série d'échec compte donc **onze** occurrences (la onzième
-inscrite à la proposition 3, cinquième de sa série) ; la proposition (4) porte **deux
-illustrations non numérotées** dans cette série.
+aurait été un double-compte. La série d'échec compte donc **douze** occurrences (la onzième à la
+proposition 3, la douzième = quatrième de la proposition 1, `Last Update` périmé) ; la
+proposition (4) porte **deux illustrations non numérotées** dans cette série.
 
 ---
 
@@ -682,6 +694,37 @@ pas distinguer le courant du périmé. Le correctif est inscrit en dette de proc
 
 **Illustration non numérotée** dans la série d'échec (comme la proposition 4) : elle décrit une
 condition de validité d'une corroboration, non un échec d'instrument.
+
+---
+
+## PROPOSITION (6) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
+
+> **Distincte des cinq premières.** Ni instrument défaillant (1), ni artefact non exercé (2), ni
+> annonce qui déborde (3), ni mesure enregistrée (4), ni corroboration sans indépendance (5). Celle-ci
+> est le **chaînon entre gouvernance et implémentation** — non un défaut de mesure, mais un défaut de
+> **propagation**.
+
+**Formulation proposée (Architecte)**
+
+> « Une décision rendue n'est pas une décision appliquée. Rien n'atteste qu'un arbitrage a atteint le
+> dépôt. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-24 |
+| **Chantier d'origine** | Découverte que D-005 (OCR-123 → Phase 2) n'avait jamais été propagée |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — l'occurrence :** **D-005 rendue, jamais propagée.** Le dépôt portait `30·2·1` ; le chantier
+`[GRAVÉ]` a occupé six tours ; la décision a été présentée, six tours plus tard, comme **encore
+ouverte** (« à l'Architecte de trancher »), alors qu'elle **était rendue**. Aucune mesure ne pouvait
+révéler l'écart, car chacune mesurait le **dépôt** (juste : 30·2·1) sans savoir qu'une décision
+attendait d'y être appliquée.
+
+**Parade proposée (non normative) :** un **registre des décisions** avec un champ « appliquée par
+`<commit>` », posé à [DECISIONS-LOG.md](DECISIONS-LOG.md) ; D-005 et D-009 y portent leur commit
+d'application (`733646f`). **Limite honnête :** il rend visible ce qui est inscrit, mais **ne peut
+attraper une décision rendue en chat et jamais inscrite** — le trou même par lequel D-005 est passée.
 
 ---
 
