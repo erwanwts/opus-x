@@ -1,4 +1,4 @@
-`docs/registry/CARTE-CONFORMITE-OCR-006.md` · *(hash d'application : voir commit de versement)*
+`docs/registry/CARTE-CONFORMITE-OCR-006.md` · versée en `75072ca` (2026-07-24)
 
 # Carte des angles morts — 10 principes d'OCR-006
 
