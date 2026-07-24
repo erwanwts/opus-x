@@ -17,9 +17,10 @@ des règles découvertes.)
 | **D-007** | Seau B suit le régime des orphelins | rendue + appliquée | **`528e303`** (2ᵉ réédition, même lot) |
 | **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
-| **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`8a8b61d`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu) |
-| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, puis RETIRÉE (D-013)** | 🗑️ **RETIRÉE — ne pas appliquer, conservée au registre avec son motif** (premier cas d'usage : une décision retirée reste tracée). Contredisait Q3/Q5 (« le statut n'est **jamais écrit**, il est **calculé** ») ; D-013 a tranché **Q3 prévaut**, donc D-012 tombe |
-| **D-013** | **Q3 prévaut** : le statut est **dérivé des faits** par un **résolveur** ; la révocation est un **second fait**, jamais un changement d'état | **rendue, NON appliquée** | ⏸️ **rien appliqué — sous-question ouverte.** L'option retenue portait **deux issues** (champ `Status` projection OU retiré) — la mesure a montré qu'elles **présupposent toutes deux le résolveur inexistant** → **sous-question REPORTÉE** en aval du résolveur (ligne dédiée). Défaut de formulaire (2ᵉ du même type, cf. proposition (7)). Trace D-012 comme retirée. D-010 reste en aval |
+| **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`8a8b61d`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu). **✅ Motif intact — confirmé et généralisé par D-014** (le split protocole/documentaire vaut pour les 10 principes, plus P9 seul) |
+| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, puis RETIRÉE (D-013)** | 🗑️ **RETIRÉE — ne pas appliquer, conservée au registre avec son motif** (premier cas d'usage : une décision retirée reste tracée). Contredisait Q3/Q5 (« le statut n'est **jamais écrit**, il est **calculé** ») ; D-013 a tranché **Q3 prévaut**, donc D-012 tombe. **Sous D-014**, la question « lequel gouverne » devient un **choix de gouvernance**, non un mandat P9 — D-012 **reste retirée** |
+| **D-013** | **Q3 prévaut** : le statut est **dérivé des faits** par un **résolveur** ; la révocation est un **second fait**, jamais un changement d'état | **rendue, NON appliquée** | ⏸️ **rien appliqué — sous-question ouverte.** L'option retenue portait **deux issues** (champ `Status` projection OU retiré) — la mesure a montré qu'elles **présupposent toutes deux le résolveur inexistant** → **sous-question REPORTÉE** en aval du résolveur (ligne dédiée). Défaut de formulaire (2ᵉ du même type, cf. proposition (7)). Trace D-012 comme retirée. D-010 reste en aval. **⚠️ Motif Q3/P9 caduc sous D-014** : Q3 exigeait le résolveur *au nom de P9* ; P9 ne gouverne plus le statut documentaire. **La décision reste VALIDE** (résolveur, révocation = second fait) mais comme **choix de gouvernance**, **justification à réécrire** — précédent **D-001** (retenue sur une enveloppe non attestée) |
+| **D-014** | **Les 10 principes d'OCR-006 visent le PROTOCOLE.** Les Records `.md` sont des **artefacts documentaires** ; **P2, P5, P7** (et par extension les autres) **ne les gouvernent pas** | **rendue + APPLIQUÉE** *(reclassement — pas de code)* | **`<ce commit>`** (2026-07-24) — **généralise D-011** (fait pour P9 seul). Conséquences inscrites : motif de **D-013 à réécrire** ; **amendement d'OCR-006 obligatoire** (portée protocole à déclarer) ; **portée de P10 remontée → D-015** |
 
 ## Décisions EN ATTENTE chez l'Architecte
 
@@ -27,7 +28,32 @@ des règles découvertes.)
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
 | **D-013 · sous-question** | **Le sort du champ `Status` — REPORTÉE en aval du résolveur.** La mesure a tranché la forme : les **deux** issues (projection *et* retrait) **présupposent le résolveur, qui n'existe pas**. La question n'est donc pas « projection ou retrait » mais « **à quel moment** » — et le moment est **après la conception du résolveur**. Motif mesuré : **4 lecteurs** du champ, **2 projections** (`api.ts:56`, `build-migration-manifest.mjs:74`), **résolveur inexistant** | **REPORTÉE** (en aval du résolveur) |
-| *(amendement)* | **Précision de P9 dans OCR-006** — exclure explicitement le statut documentaire de « any published representation » | à instruire (OCR-006 Phase 3, jamais relu) |
+| **D-015** | **Portée de P10** — P10 s'auto-limite à « the expected behaviour **of the protocol** » (Canonical Statement), mais ses *Consequences* disent « expected behaviour » **sans qualifier** (tension interne). Si P10 vise le protocole, la **dette documentaire** (13 décisions + 11 RD + 17 candidates) serait **sans force normative P10**. Dette chiffrée dans le mémo ci-dessous | **remontée par D-014, non rendue** |
+| *(amendement — **OBLIGATOIRE**, dans l'option D-013/Q3 cochée)* | **Déclarer dans OCR-006 que sa portée est le PROTOCOLE** (D-014). P9:250 « any published representation » est **général** → à restreindre. **Principes concernés :** **P2, P5, P7** (nommés par D-014), **P9** (« any published representation »), et **P8** (nomme « documentary versioning » comme couche — **tension** : un principe protocole qui cite le documentaire). OCR-006 en Phase 3, **jamais relu, cité par 0** | à instruire (obligatoire) |
+
+**Dette de normalisation P10 (mémo D-015, chiffrée le 2026-07-24 — constat, pas plan de normalisation) :**
+
+- **Trois gisements, comptés :**
+
+  | Gisement | Nombre | Foyer (hors corpus OCR) |
+  |---|---|---|
+  | Décisions `D-001…D-013` | **13** (dont `D-003` *sans objet* + `D-012` *retirée* → **11 vivantes**) | `DECISIONS-LOG.md` |
+  | Règles découvertes `RD-001…RD-011` | **11** (0 normalisée) | `REGLES-DECOUVERTES.md` |
+  | Décisions candidates `[GRAVÉ]` | **17** (18 tokens − 1 exemple ; **pas 16** — antérieur à la reclassification de L230) | `docs/architecture/OPUS-X-ARCHITECTURE-V3.md` |
+
+- **Total brut : 41 entrées** (13 + 11 + 17). **Recouvrement :** au niveau **identité**, aucun — trois
+  espaces d'id disjoints (`D-xxx`, `RD-xxx`, tokens candidats). Au niveau **sémantique**, réel :
+  `ARCHITECTURE-V3` porte un **bloc de correspondance** (L881–891) mappant **les 11 RD**, plus des échos
+  « (synthèse — écho de RD-00n) » — une même règle peut exister comme **RD** (découverte) *et* comme
+  **candidate** (à rendre). Le recouvrement exact **n'est pas mécaniquement énumérable** sans lire le sujet
+  de chaque candidate ; il est structurel et certain, non chiffré par déduction. **39 obligations vivantes**
+  (41 − 2 caduques), majorant du nombre d'objets **distincts**.
+- **Sous D-014 / portée de P10 (à trancher, D-015) :** P10 s'auto-limite à « altering the expected
+  behaviour **of the protocol** ». La quasi-totalité de ces 39 sont des décisions **documentaires / de
+  procédure** (partition de promotion, régime `[GRAVÉ]`, structuration des dettes, résolveur de références
+  du site) — **elles n'altèrent pas le comportement du protocole**. Si P10 vise le protocole (D-014), leur
+  **force normative P10 tombe** : la clôture de Phase 1 ne serait pas conditionnée à leur normalisation en
+  Record. **Constat, pas conclusion** — la portée de P10 est remontée en D-015.
 
 **Matière pour le formulaire D-010 (mesurée, non traitée) :**
 
