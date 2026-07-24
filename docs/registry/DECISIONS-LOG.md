@@ -18,13 +18,14 @@ des règles découvertes.)
 | **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
 | **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`8a8b61d`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu) |
+| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, NON appliquée** | ⛔ **CONFLIT — ne pas appliquer.** Contredit les réponses **Q3/Q5** de l'Architecte (« la promotion est un fait **immuable**, jamais un changement d'état ; le statut n'est **jamais écrit**, il est **calculé** »). Si le statut est calculé, aucun champ ne le gouverne ; si un champ le gouverne, il est persisté. Arbitrage **D-013 en cours** — première décision **retenue par conflit**, distincte de D-002 (attente d'exécution) et D-005 (propagation oubliée) |
 
 ## Décisions EN ATTENTE chez l'Architecte
 
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
-| **D-012** | **Seconde source du statut documentaire** — un artefact `PROMO` dira « promu », le champ `Status` dira « Draft » : deux porteurs, même vérité. **Laquelle gouverne ?** Seconde source **déjà réalisée** : `recordPage.ts:115` (champ) vs `api.ts:56` (`lifecycle_status` du manifeste) | **remontée par D-011, non rendue** |
+| **D-013** | **Contradiction D-012 ↔ Q3/Q5** — D-012 dit « le champ gouverne » ; Q3/Q5 disent « le statut n'est jamais écrit, il est **calculé** ». Les deux ne peuvent pas tenir : un statut calculé n'a pas de champ qui le gouverne ; un champ qui gouverne est un statut persisté. La seconde source **déjà réalisée** (`recordPage.ts:115` champ vs `api.ts:56` manifeste) est le fait qui a précédé — elle a divergé 24h40 | **arbitrage en cours** (remontée par D-012) |
 | *(amendement)* | **Précision de P9 dans OCR-006** — exclure explicitement le statut documentaire de « any published representation » | à instruire (OCR-006 Phase 3, jamais relu) |
 
 **Matière pour le formulaire D-010 (mesurée, non traitée) :**
@@ -39,10 +40,10 @@ des règles découvertes.)
   3. **Ordre des faits** — tri par `timestamp` ; deux faits sur un même Record au **même timestamp**
      → l'ordre **n'est pas total**. *(Le timestamp est dans le fichier, donc couvert par le checksum
      et déterministe : ce n'est pas la mutabilité, c'est l'**ambiguïté** de l'ordre.)*
-- **Préalable D-012** (PARTIE III du dossier de promotion, corrigée) : P9 ne vise **pas** le statut
-  documentaire (D-011), mais la **seconde source** subsiste — un artefact `PROMO` et le champ `Status`
-  porteraient la même vérité. Toute conception du grain (D-010) est **en aval** de D-012 (laquelle
-  gouverne), non rendue.
+- **Préalable D-013** (PARTIE III du dossier de promotion, corrigée) : P9 ne vise **pas** le statut
+  documentaire (D-011). D-012 a tranché « le champ gouverne » mais est **retenue** — elle contredit
+  Q3/Q5 (« le statut est calculé, jamais écrit »). Toute conception du grain (D-010) est **en aval**
+  de **D-013**, l'arbitrage de cette contradiction, non rendu.
 
 ## Dispositif proposé (NON construit — constat de faisabilité)
 
