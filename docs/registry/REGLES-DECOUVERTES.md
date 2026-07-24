@@ -6,11 +6,11 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> SIX PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> SEPT PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
 > ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
 > excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument ·
 > (5) une corroboration exige des sources indépendantes · (6) une décision rendue n'est pas une
-> décision appliquée** :
+> décision appliquée · (7) une option qui porte deux issues n'est pas une option** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -725,6 +725,45 @@ attendait d'y être appliquée.
 `<commit>` », posé à [DECISIONS-LOG.md](DECISIONS-LOG.md) ; D-005 et D-009 y portent leur commit
 d'application (`733646f`). **Limite honnête :** il rend visible ce qui est inscrit, mais **ne peut
 attraper une décision rendue en chat et jamais inscrite** — le trou même par lequel D-005 est passée.
+
+---
+
+## PROPOSITION (7) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
+
+> **Distincte des six premières.** Les cinq premières visent l'**instrument de mesure** (non testé,
+> non exercé, qui déborde, qui se mesure lui-même, sans indépendance) ; la sixième vise la
+> **propagation** (rendue ≠ appliquée). Celle-ci vise l'**instrument de décision** : un formulaire
+> d'arbitrage qui **rend une option sans en déterminer la conséquence** ne rend pas la décision — il
+> la **reporte** en la déguisant en réponse.
+
+**Formulation proposée (Architecte)**
+
+> « Une option qui porte deux issues n'est pas une option. Un formulaire dont une case peut être cochée
+> sans que la conséquence soit déterminée reporte la décision au lieu de la rendre. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-24 |
+| **Chantier d'origine** | Persistance du statut documentaire — arbitrages D-008 puis D-013 |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — deux occurrences, les deux de l'Architecte :**
+
+1. **D-008 Q1** — « le critère porte sur le contenu : **reformulé ou retiré** ». La case était cochée
+   (« Q1 rendue »), mais l'issue restait double ; le retrait n'a été déterminé qu'ensuite, via **D-009**.
+2. **D-013** — « le champ `Status` devient une **projection** OU **est retiré** ». Arbitrage rendu
+   (Q3 prévaut), mais l'issue reste double ; le sort du champ n'est **pas** tranché.
+
+**Pourquoi elle est d'un autre type que la (4).** La proposition (4) est **méta** — une mesure
+enregistrée devient elle-même un instrument qui peut faillir. Ici, ce n'est **ni** la mesure **ni** la
+propagation qui échoue : c'est la **forme de la décision**. Une décision à deux issues laisse le dépôt
+dans le même état d'indétermination qu'avant l'arbitrage — mais **sous l'apparence** d'un arbitrage
+rendu, ce qui est plus dangereux que l'absence de décision, car le registre la portera comme « rendue ».
+
+**Parade proposée (non normative) :** au DECISIONS-LOG, une décision dont l'objet contient « ou » entre
+deux issues matérielles est inscrite **« rendue, sous-question ouverte »**, jamais **« rendue +
+appliquée »**, tant que l'issue n'est pas unique. D-013 y est inscrite ainsi, avec sa sous-question
+« projection ou retrait » portée en ligne distincte.
 
 ---
 

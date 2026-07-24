@@ -18,14 +18,15 @@ des règles découvertes.)
 | **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
 | **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
 | **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`8a8b61d`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu) |
-| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, NON appliquée** | ⛔ **CONFLIT — ne pas appliquer.** Contredit les réponses **Q3/Q5** de l'Architecte (« la promotion est un fait **immuable**, jamais un changement d'état ; le statut n'est **jamais écrit**, il est **calculé** »). Si le statut est calculé, aucun champ ne le gouverne ; si un champ le gouverne, il est persisté. Arbitrage **D-013 en cours** — première décision **retenue par conflit**, distincte de D-002 (attente d'exécution) et D-005 (propagation oubliée) |
+| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, puis RETIRÉE (D-013)** | 🗑️ **RETIRÉE — ne pas appliquer, conservée au registre avec son motif** (premier cas d'usage : une décision retirée reste tracée). Contredisait Q3/Q5 (« le statut n'est **jamais écrit**, il est **calculé** ») ; D-013 a tranché **Q3 prévaut**, donc D-012 tombe |
+| **D-013** | **Q3 prévaut** : le statut est **dérivé des faits** par un **résolveur** ; la révocation est un **second fait**, jamais un changement d'état | **rendue, NON appliquée** | ⏸️ **rien appliqué — sous-question ouverte.** L'option retenue porte **deux issues non tranchées** : le champ `Status` **devient une projection** OU **est retiré**. Défaut de formulaire (2ᵉ du même type, cf. proposition (7)). Trace D-012 comme retirée. D-010 reste en aval |
 
 ## Décisions EN ATTENTE chez l'Architecte
 
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
-| **D-013** | **Contradiction D-012 ↔ Q3/Q5** — D-012 dit « le champ gouverne » ; Q3/Q5 disent « le statut n'est jamais écrit, il est **calculé** ». Les deux ne peuvent pas tenir : un statut calculé n'a pas de champ qui le gouverne ; un champ qui gouverne est un statut persisté. La seconde source **déjà réalisée** (`recordPage.ts:115` champ vs `api.ts:56` manifeste) est le fait qui a précédé — elle a divergé 24h40 | **arbitrage en cours** (remontée par D-012) |
+| **D-013 · sous-question** | **Le champ `Status` : projection OU retrait ?** L'arbitrage D-013 (Q3 prévaut) laisse ouvert le sort du champ : soit il **devient une projection** synchronisée depuis le résolveur (3 porteurs à faire concorder), soit il est **retiré** (33 Records modifiés). Coût des deux issues mesuré ci-dessous | **non tranchée** (issue de D-013) |
 | *(amendement)* | **Précision de P9 dans OCR-006** — exclure explicitement le statut documentaire de « any published representation » | à instruire (OCR-006 Phase 3, jamais relu) |
 
 **Matière pour le formulaire D-010 (mesurée, non traitée) :**
@@ -40,10 +41,40 @@ des règles découvertes.)
   3. **Ordre des faits** — tri par `timestamp` ; deux faits sur un même Record au **même timestamp**
      → l'ordre **n'est pas total**. *(Le timestamp est dans le fichier, donc couvert par le checksum
      et déterministe : ce n'est pas la mutabilité, c'est l'**ambiguïté** de l'ordre.)*
-- **Préalable D-013** (PARTIE III du dossier de promotion, corrigée) : P9 ne vise **pas** le statut
-  documentaire (D-011). D-012 a tranché « le champ gouverne » mais est **retenue** — elle contredit
-  Q3/Q5 (« le statut est calculé, jamais écrit »). Toute conception du grain (D-010) est **en aval**
-  de **D-013**, l'arbitrage de cette contradiction, non rendu.
+- **Préalable D-013 · sous-question** (PARTIE III du dossier de promotion, corrigée) : P9 ne vise
+  **pas** le statut documentaire (D-011) ; D-013 a tranché **Q3 prévaut** (statut dérivé, résolveur,
+  révocation = second fait) et **retiré D-012**. Reste ouvert le **sort du champ** (projection ou
+  retrait). Toute conception du grain (D-010) est **en aval** de cette sous-question, non tranchée.
+
+**Coût des deux issues de la sous-question D-013 (mesuré le 2026-07-24, constat — pas recommandation) :**
+
+- **Porteurs du statut, recensés dans le code :**
+  - *Champ documentaire* (`| Status | … |` du `.md`, lu par `loadRecord`/`buildRecordPage`) — **4**
+    lecteurs : `recordPage.ts:115` (métadonnée dérivée), `recordPage.ts:143` (+ garde de lacune
+    `:145`), `robotsFromStatus` (`:127`, appelé `:165`), **et `app/records/page.tsx:25`** (`p.status`
+    via `buildRecordPage`) — *ce dernier ne figurait pas dans la liste de trois : quatrième lecteur*.
+  - *Manifeste* `lifecycle_status` : écrit par `manifest.mjs:289`, exposé par **`api.ts:56`**
+    (confirmé : **sous Q3, c'est une projection**), **et recopié par `build-migration-manifest.mjs:74`**
+    dans un second manifeste — *donc pas une, mais **deux** projections dérivées du champ*.
+  - *(Hors périmètre : `registryEntities.ts:142/164`, `registryEntityPage.ts:94/202`,
+    `build-graph.mjs:203` lisent le `status` d'une **surface d'entité** — autre domaine, pas le statut
+    documentaire du Record. `passport.status` = statut DB du Passport, autre domaine.)*
+- **Concordance aujourd'hui : mesurée, 0 divergence** champ↔manifeste sur 33/33 (manifeste régénéré
+  `1c9ffa3`). La divergence de 24h40 était transitoire, refermée.
+- **Issue « champ RETIRÉ » :** 33 Records modifiés (retrait de la ligne `| Status | … |`), 33 checksums
+  changés, manifeste régénéré. **Touche aussi :** les 4 lecteurs du champ perdent leur source → doivent
+  consommer le **résolveur** (qui **n'existe pas encore**) ; `robotsFromStatus` perd son entrée ; la
+  **garde de lacune** `recordPage.ts:145` (`if (!status) gaps.push('Status')`) s'inverse ; `manifest.mjs`
+  n'extrait plus rien → `api.ts:56` renvoie `null` sans résolveur ; `recordPage.test.ts:141-143` et
+  `manifest.attestation.test.ts` à ré-outiller. **Le retrait présuppose donc le résolveur**, il ne s'y
+  substitue pas.
+- **Issue « champ PROJECTION » :** le champ reste mais devient dérivé, **synchronisé à chaque
+  promotion** depuis le résolveur. **Faisable ?** Oui — un test de concordance **à trois porteurs**
+  (champ · manifeste · résolveur), même classe que `manifest.attestation.test.ts`, prouvé par mutation.
+  **Limite honnête :** il atteste la **concordance**, pas la **correction** du résolveur ; et il ajoute
+  un **troisième** porteur à tenir synchrone là où le couple à deux a déjà divergé 24h40 (la
+  régénération du manifeste est une étape **séparée et manuelle**). Plus de porteurs = plus de surface
+  de divergence — exactement le risque que Q3 nomme.
 
 ## Dispositif proposé (NON construit — constat de faisabilité)
 
