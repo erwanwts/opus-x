@@ -345,3 +345,62 @@ l'absence de règle). **6 domaines sur 8 sont gouvernés**, pas zéro.
 
 **Rien réorienté. La séquence corrigée tient. Je remonte le GAP à instruire — la décision de reframer D-015
 (nouveau Record vs amendement d'OCR-000…005) vous revient.**
+
+---
+
+## Précondition D-015 — mesures du 2026-07-25 (après lecture INTÉGRALE des méta-Records)
+
+### Mesure 1 — état de lecture (provenance : « lu » seulement ce que je tiens)
+
+| Record | Lu intégralement CE chantier ? |
+|---|---|
+| **OCR-000** Governance · **001** Structure · **002** Editorial · **003** Terminology · **004** Relationships · **005** Versioning · **006** Principles | **OUI — le 2026-07-25 (ce tour).** Avant : **partiel** (fragments via `grep`) — c'est l'angle mort qui a produit les deux renversements (champ Status, puis OCR-000…005) |
+| **OCR-100…125** (26 Records de concept) | **NON — jamais ouverts intégralement ce chantier.** Au mieux *partiel* : OCR-110 (Evidence, pilote GEO) manipulé par sections ; OCR-100/114/123 en fragments. **Les 26 restent non certifiés.** |
+
+- **L'angle mort SUBSISTE : 26 Records de concept non lus.** Trois sont **potentiellement pertinents** pour
+  le GAP ci-dessous — **OCR-112** (Evidence Lifecycle), **OCR-113** (Evidence Integrity), **OCR-124**
+  (Canonical Registry) — donc mes verdicts « déficit » sur **intégrité** et **cycle de vie** sont
+  **provisoires** tant que ces trois ne sont pas lus.
+
+- **⚠️ Correction à la Mesure 1 du 2026-07-24 (un acte ou huit) — le header `OCR-006:13` la révise :** il
+  déclare *« informative sections create no independent obligation and shall never be interpreted as
+  extending, restricting or redefining their meaning; … the normative sections take precedence. »* Or, des
+  8 passages relevés, **seuls C (`:250` P9), E (`:216` P8), G (`:139` P5) sont NORMATIFS** ; **A (`:27`),
+  B (`:293`), D (`:256`), F (`:220`), H (`:210`) sont INFORMATIFS** (Introduction/Motivation/Notes/
+  Conclusion). Donc les passages « entire corpus » (§27) et « including this Record » (§293) **ne créent
+  aucune obligation** — la « contradiction » avec D-014 est **moins forte que je ne l'ai dite** : c'est du
+  cadrage informatif, à **aligner éditorialement** (PATCH), pas un conflit normatif. **Les vraies cibles
+  normatives de l'amendement sont trois : C, E, G** — une clause de portée couvre **C** et **G**, **E (P8)
+  reste l'exception**. *(Défaut relevé : `§295` emploie « SHALL » dans une section informative — misuse au
+  sens `OCR-002:38`.)*
+
+### Mesure 2 — le GAP réel, domaine par domaine (citations verbatim des méta-Records)
+
+| Domaine | Gouverné par — verbatim | Verdict |
+|---|---|---|
+| **Amendement d'un Record** | `OCR-005:46` « Published normative meaning MUST NOT be edited in place; a change MUST be a new version » + `OCR-000:59` « Canonical meaning MUST NOT be changed silently; changes MUST be versioned » ; autorité `OCR-000:35` (Opus X, sole write authority) | **GOUVERNÉ** *(un correctif purement éditorial reste un PATCH, `OCR-005:34/54`)* |
+| **Versioning documentaire** | `OCR-005:31` semver, `:35` « Version field MUST reflect… Version History MUST record each release » ; `OCR-001:45` (Version History = section requise) | **GOUVERNÉ** |
+| **Cycle de vie** (`Draft`/`Normative`) | `OCR-000:42-47` (modèle de statut) + `OCR-005:39` « Draft → Normative MUST require grounding… and Opus X approval » | **GOUVERNÉ** — la transition **est** écrite |
+| **Promotion & révocation** | Promotion = `OCR-000:47` + `OCR-005:39` ; révocation = `OCR-000:44-45` (Deprecated/Superseded) + `OCR-005:40-41` | **GOUVERNÉ** — *et la promotion Phase 1 des 33 Draft EST cette promotion `Draft→Normative` : elle exige grounding + approbation Opus X* |
+| **Séries & `expected_ranges`** | `OCR-001:31-35` (plages, durable, non réassigné) + `:56` (extensible) | **GOUVERNÉ** (+ anomalie OCR-006, mesure 3) |
+| **Normalisation des décisions** | `OCR-006` P10 `:280` « Where an existing Record is conceptually appropriate… otherwise a new Record SHALL be created » + `OCR-000` (dérive sans autorité) | **GOUVERNÉ** (la règle) — le **backlog** des 36 est un déficit d'**exécution**, pas de règle |
+| **Intégrité** (checksums, manifeste) | Cherché « checksum / hash / integrity / digest / manifest / derived artifact » dans OCR-000…005 : **rien**, sauf `OCR-001:55` « derived artifacts MUST match [source] » (exigence de concordance, pas de sceau) | **DÉFICIT** au niveau méta *(provisoire : `OCR-113` Evidence Integrity non lu)* |
+| **Provenance & transmission** | Provenance : `OCR-002:51` « Unattributed or invented facts, quotes, or citations — prohibited ». Transmission (chemin+hash) : cherché « transmission / path / hash / provenance » dans OCR-000…005 : **rien** | Provenance **PARTIELLE** ; transmission **DÉFICIT** (convention de session, hors Record) |
+
+- **Bilan corrigé : 6/8 domaines GOUVERNÉS** par OCR-000/001/002/005/006-P10. **Déficits réels et
+  mesurés (recherche citée) : intégrité** (mécanisme de sceau — aucun terme checksum/hash dans OCR-000…005 ;
+  provisoire vs OCR-113), **transmission** (chemin+hash absent des méta-Records), et le **backlog** des 36
+  (exécution). **Un déficit affirmé est ici un déficit cherché.**
+
+### Mesure 3 — l'anomalie OCR-006 hors plage méta (000–005)
+
+- `OCR-001:31` : « **OCR-000–005** — meta/governance documents. » OCR-006 est le **n°6**, **hors** de la plage.
+- **Depuis quand :** `OCR-006` Version History = « 1.0.0 (**2026-07-20**) » ; `OCR-001` = « 1.0.0
+  (**2026-07-16**) ». **OCR-006 a été créé 4 jours APRÈS** qu'OCR-001 a fixé la plage 000–005 — **sans
+  amender OCR-001**. Anomalie **d'origine**, datée du **2026-07-20**.
+- **Clause d'admission ?** Lu OCR-001 en entier : **aucune**. `:56` « extensible without disturbing existing
+  addresses » autorise l'extension mais **ne déclare pas** 006 comme méta ; `:35` (durable/non réassigné) ne
+  l'admet pas. **Donc :** ajouter un Record méta au-delà de 005 **aurait dû** être une **version MINOR
+  d'OCR-001** (`OCR-005:33` : ajout compatible) — non faite pour OCR-006. **Précédent pour le régime :** un
+  nouveau Record méta **exige d'amender la plage dans OCR-001**, pas seulement `expected_ranges` du dépôt —
+  et OCR-006 est la preuve que ce geste a **déjà été omis une fois**.
