@@ -677,6 +677,35 @@ trois Records, un seul, ou deux autres qu'`OCR-000`/`OCR-005`.** Or D-019 a tran
 
 ---
 
+## Questions de préparation OUVERTES — à traiter AVANT l'étape 8 (inscrites le 2026-07-25)
+
+*(Issues du tri préparation/phase des 36 — réf. [[GRILLE-DEUX-FAMILLES-conception]] · [[RANGEMENT-B-D-F-G-conception]].
+« Préparation » = propriété du Record ; « phase » = propriété du lot. Aucune ne bloque le rendu ; toutes se
+règlent avant de promouvoir.)*
+
+- **E — seuil de « prêt » d'un G1 (OUVERTE, différée).** Un Record **Normative-mais-non-implémenté** (G1
+  dominant) est-il **promouvable avec badge « planifié »** (règle d'or du grounding : « un concept peut être
+  Normative ET non encore implémenté »), **ou bloqué** tant que le code manque ? Les deux ne coexistent pas
+  avec l'état de champ « protocole requis — non fait → pas Normative » (conception étape 4). **Conditionne les
+  11 Records G1-dominant** (`105,106,107,108,109,117,118,119,121,122,123`). *Non urgente — rien n'est promu
+  avant l'étape 8.* **À trancher avant 8.**
+- **B — 006 : `HORS_PHASE_1` mal réglé (constat rendu, arbitrage attendu).** D-021 (`bfc888a`) promeut 006 2ᵉ
+  (Phase 1) ; la partition (`48be4cd`, antérieure) le classe hors (Phase-3 pré-amendement). Retrait de
+  `HORS_PHASE_1` = **partition 32→33**, matière **D-005** → **décision**. *(006 sans dette → présence inerte
+  pour le critère dette ; ne fausse que la sémantique de phase.)*
+- **F — liste étape 5 périmée (constat rendu).** « Grounder les 6 : `101,104,106,107,108,109` » (ligne 651)
+  est **faux** (101/104 ont un cœur Conforme ; manquent 105,117,118,119,121,122,123) **et** le cadre « à
+  grounder » est **obsolète** (les 32 sont grounés). Réalignée : **11 G1-dominant** (voir E). **À graver** à
+  l'étape 5.
+- **D — sync interne du log (mécanique).** La **ligne 37** (D-021 canonique) place `{007,008,009}` en strate
+  méta ; les **récitations d'aval** (étape 5 ligne 651, étape 8 ligne 654) sont **périmées** (ordre sans
+  {007,008,009}, « les 29 »). **À aligner sur la ligne 37** — pas une décision.
+- **112 → Phase 2 (attend D-024).** Décision rendue par l'Architecte, **non appliquée** : 112 rejoint 114
+  (même bloqueur GAP-F1-01) ; ne pas coder la supersession pour le débloquer. **Conséquence à l'application :
+  Phase 1 32→31.** `HORS_PHASE_1` **inchangé jusqu'à D-024**.
+
+---
+
 ## D-018 & point d'opposabilité — mesures du 2026-07-25 (avant 1b ; rien préparé)
 
 ### Point 1 (le plus important) — une édition de Draft rend-elle D-014 opposable ? **NON.**
