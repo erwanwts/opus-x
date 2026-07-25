@@ -404,3 +404,73 @@ l'absence de règle). **6 domaines sur 8 sont gouvernés**, pas zéro.
   d'OCR-001** (`OCR-005:33` : ajout compatible) — non faite pour OCR-006. **Précédent pour le régime :** un
   nouveau Record méta **exige d'amender la plage dans OCR-001**, pas seulement `expected_ranges` du dépôt —
   et OCR-006 est la preuve que ce geste a **déjà été omis une fois**.
+
+---
+
+## Précondition D-015 — mesures du 2026-07-25 (2ᵉ lot ; OCR-112/113/124 lus intégralement)
+
+### Action 1 — lecture d'OCR-112/113/124, puis tranche du GAP
+
+**OCR-112/113/124 : lus INTÉGRALEMENT le 2026-07-25.** Ils sont tous trois **de couche 100 (concepts
+protocole)**, pas des méta-Records — ce qui décide la tranche :
+
+- **Intégrité documentaire → RESTE EN DÉFICIT.** `OCR-113` (Evidence Integrity) gouverne l'intégrité des
+  **payloads Evidence** : `:91` « Integrity MUST be computed over the JCS (RFC 8785) canonical form », HMAC,
+  recomputation constant-time. **Objet protocole, pas le corpus documentaire.** Le sceau des `.md` (sha256
+  du manifeste) n'est **couvert par aucun Record** ; le plus proche reste `OCR-001:55` (« derived artifacts
+  MUST match source » — concordance, pas sceau). **Déficit confirmé, non plus provisoire.**
+- **Cycle de vie documentaire → GOUVERNÉ (confirmé, renforcé).** `OCR-112` (Evidence Lifecycle) est le cycle
+  des **faits Evidence** (observation→acceptance→supersession), **autre objet**. Mais **`OCR-124`
+  (Canonical Registry) gouverne le cycle des OCR eux-mêmes** : `:72` State Machine « States of an OCR:
+  Draft → Normative → (Deprecated | Superseded) », `:63-68` Lifecycle (Drafting→Grounding→Promotion→…),
+  `:91` « An OCR MUST NOT be promoted to Normative while contradicting the implementation ». **Cycle de vie
+  documentaire = gouverné par OCR-000 + OCR-005 + OCR-124.** Non-déficit.
+
+### Action 2 — PRISE MAJEURE : la grille de promotion ignore les deux vraies portes
+
+La grille attestée (empreinte, citations, invariants, dette) mesure la **cohérence documentaire**. Or la
+promotion `Draft → Normative` exige **deux portes normatives qu'elle ne touche pas** :
+
+- **GROUNDING — défini, verbatim.** `OCR-000:49-53` « The Grounding Rule (Normative) » : « Any OCR whose
+  normative machine-facing sections (definitions, JSON-LD, examples, wire formats) describe protocol
+  behavior **MUST be diffed against the current implementation before promotion to Normative** » · « An OCR
+  that contradicts the implementation **MUST NOT** be Normative » · « the disagreement **MUST** be resolved
+  … before promotion ». Repris par `OCR-005:39`, `OCR-124:64/91`. **Concrètement : un diff doc↔code des
+  sections machine.** La preuve vit déjà dans les en-têtes : `OCR-113`/`OCR-112` portent **`Review Status:
+  Pending machine-section diff against production code`** et une **Grounding note** nommant l'émetteur de
+  prod à differ. **La grille ne mesure PAS cela** — empreinte/citations/invariants/dette sont
+  **orthogonaux** au grounding.
+- **OPUS X APPROVAL — requis, tracé, mais sous-spécifié.** `OCR-000:47/57` + `OCR-005:39` l'exigent. Sa
+  **trace** : `OCR-005:55` « Promoting Draft → Normative — recorded as a release with the grounding note
+  resolved » (Version History) + le champ **`Review Status`**. **Mais la FORME de l'approbation** (qui signe,
+  quel artefact) **n'est définie nulle part** — ni signature, ni format d'acte. Requis + traçable, non
+  formalisé.
+- **Conséquence (constat) :** promouvoir les 33 Draft sur la **seule grille** violerait `OCR-000:47` /
+  `OCR-005:39` / `OCR-124:91`. **Il manque à la grille les deux portes normatives — grounding (doc↔code) et
+  approbation Opus X — et personne ne l'avait vu.** *(Note : les 33 Records portent tous `Status: Draft` ;
+  la « promotion Phase 1 » EST la promotion `Draft→Normative` d'OCR-000/124, pas une opération distincte.)*
+
+### Action 3 — force de §295 : INFORMATIF (mais sa substance est normativement ancrée ailleurs)
+
+- **Section :** `§295` (et `§293`, `§291`) vivent dans **`## Conclusion`** (`OCR-006:289`). Le header `:13`
+  liste l'informatif = « Introduction, Motivation, Notes, **Conclusion** ». **Donc §295 est INFORMATIF** —
+  et son « SHALL » est un **misuse** au sens `OCR-002:38` (« informative passages MUST NOT imply
+  normativity »).
+- **Portée corrigée :** la voie « incohérence → amendement, pas précédence » qu'énonce §295 est donc
+  **recommandée, pas imposée** *par §295*. **MAIS sa substance est normativement garantie ailleurs :**
+  `OCR-005:46` (« a change MUST be a new version ») + `OCR-000:59` (« changes MUST be versioned ») imposent
+  qu'un changement de sens d'OCR-006 passe par une **nouvelle version** ; et surtout **`OCR-006` P10 `:279`
+  (NORMATIF)** : « A conversation, working report, design exchange or implementation **SHALL NOT** be cited
+  as the normative source of a rule. » **C'est P10, pas §295, qui rend D-011/D-014 (décisions de chat)
+  non-opposables tant qu'elles ne sont pas dans un Record.**
+- **La séquence corrigée TIENT** — mais son autorité est **P10:279 + OCR-005** (normatifs), **pas §295**
+  (informatif). L'amendement d'OCR-006 reste **utile et requis** (C/E/G sont normatifs et contredisent
+  D-014), et il prend la **forme d'une version MAJOR** (OCR-005), avec grounding + approbation (OCR-000).
+
+### Action 4 — le précédent OCR-006 : une COUVERTURE, pas deux dettes
+
+Ajouter un Record méta exige d'amender la plage d'`OCR-001` (**MINOR**, `OCR-005:33`). OCR-006 a **omis** ce
+geste le 2026-07-20 (mesure 3, 1er lot). **Si un Record de régime est ajouté**, le **même** MINOR d'OCR-001
+qui déclare sa plage **répare aussi l'omission d'OCR-006** — étendre `OCR-000–005` à `OCR-000–00X` couvre
+006 **et** le nouveau. **Une occasion, une version d'OCR-001, deux dettes réglées.** *(À défaut, l'anomalie
+OCR-006 subsiste comme violation dormante de `OCR-001:31`.)*
