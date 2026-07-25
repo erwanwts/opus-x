@@ -525,3 +525,59 @@ Le déficit de **forme de l'approbation Opus X** est de **même nature** que les
   **OCR-111** (provenance) et **OCR-106** (statut/P9) — vraisemblablement objets protocole distincts. Les 21
   autres : protocole pur (identité, trust, vérification, passeport, skills, issuers), **risque nul** pour le
   régime. *(Classement par métadonnée, non certifié par lecture intégrale.)*
+
+---
+
+## Précondition D-015 — mesures du 2026-07-25 (4ᵉ lot : OCR-111/106 lus, boucle chiffrée, raccord)
+
+### Mesure 1 — OCR-111 & OCR-106 lus intégralement → objets protocole, confirmé
+
+- **OCR-111 (Evidence Source) = provenance PROTOCOLE.** `:42` « the verifiable provenance of an Evidence —
+  the Certified Issuer that produced it and the source records it derives from », intégrité référentielle
+  `ON DELETE RESTRICT`. C'est la provenance des **faits Evidence**, **pas** la transmission documentaire
+  (chemin+hash). **Déficit transmission : intact.**
+- **OCR-106 (Trust Status) = statut PROTOCOLE dérivé.** `:42` « the current value produced by the Trust
+  computation … a derived, reproducible, recomputable state that is **never authored** ». C'est l'exemplaire
+  même de **P9** (dérivé, jamais persisté), au niveau **protocole** — **pas** le `Status` documentaire
+  (Draft/Normative, champ persisté gouverné par OCR-000/005). **Confirme D-011/D-014**, ne les touche pas.
+- **Bilan : les 12 Records lus intégralement ne contiennent aucun concept de gouvernance documentaire hors
+  OCR-000…005 + OCR-124. Renversement de prémisse CLOS.** Les 21 restants = protocole pur (majorant accepté).
+
+### Mesure 2 — fermeture de boucle du grounding, chiffrée (29 de Phase 1)
+
+**Le texte d'abord — `OCR-000:51` est CONDITIONNEL :** « **Any OCR whose normative machine-facing sections
+(definitions, JSON-LD, examples, wire formats) describe protocol behavior** MUST be diffed against the
+current implementation before promotion to Normative. » ⇒ **un Record purement éditorial / de gouvernance
+n'est PAS soumis au diff doc↔code** ; il lui faut la **revue éditoriale + l'approbation Opus X**, pas le
+grounding machine. La charge de grounding ne porte donc **pas sur 29**, mais sur les **machine-facing**.
+
+| Sous-ensemble de Phase 1 (29) | Compte | Détail |
+|---|---|---|
+| **Machine-facing** (« Pending machine-section diff », porte une *grounding note*) | **15** | 101,104,105,106,107,108,109,110,111,112,113,115,119,120,121 |
+| — dont **grounding FAIT** (rapport OCR-GROUND-001, verdict « Conforme ») | **9** | 105,110,111,112,113,115,119,120,121 *(F1/F2/F3)* |
+| — dont **grounding À FAIRE** (aucun rapport) | **6** | **101,104,106,107,108,109** *(liste confirmée)* |
+| **Éditorial** (« Pending editorial review ») | **14** | 6 méta (000–005) + 102,103,116,117,118,122,124,125 |
+| — **hors** diff doc↔code (`OCR-000:51`) ; requiert revue + approbation | **14** | *(dont 116/117/118 ont un rapport F2 en prime)* |
+
+- **En clair :** grounding requis sur **15** (pas 29) ; **9 déjà faits (Conforme)**, **6 à faire**. Les **14
+  éditoriaux** ne relèvent pas du diff doc↔code — seulement revue + approbation. **La boucle à fermer côté
+  grounding est donc étroite : 6 diffs à produire, 9 à réconcilier, 14 hors périmètre machine.**
+
+### Mesure 3 — le raccord manquant entre rapport « Conforme » et grille (constat)
+
+**Cherché, mesuré :**
+
+- **Aucun Record ne cite son rapport ni son verdict** (`grep OCR-GROUND|Conforme|groundé` sur les 33 `.md` →
+  **vide**). La seule trace du grounding dans les Records est la *« Grounding note (removed at publication) »*
+  — un **TODO** (« Diff X before promotion »), **pas un résultat**.
+- **Aucun test de la grille ne lit les rapports** (`grep` sur `lib/registry/*.test.ts`, `scripts/registry/*`
+  → le seul code « grounding » est `recordPage.test.ts` qui **compte/retire les 17 grounding notes**, et
+  `generate.mjs` **spécifié par** OCR-GROUND-001 §9 — aucun ne **consomme** F1/F2/F3).
+- **`Review Status` n'est lu ni écrit par aucun code** (`grep` → vide) : champ documentaire **inerte**.
+
+**Ce qui existe :** les rapports (`docs/web/OCR-GROUND-001-rapport-F*.md`), le champ `Review Status`, la
+grille (tests lisant corpus + manifeste). **Ce qui manque — le raccord, l'un de :** (a) un **champ dans le
+Record** citant `rapport · verdict · commit` ; (b) un **test** qui lit le rapport et **échoue si non
+« Conforme »** avant promotion ; (c) le **`Review Status` réécrit** d'un état « Pending » vers « grounded
+(réf. rapport) ». **Aucun des trois n'existe.** Rapport et Record sont deux artefacts **disjoints** ; la
+grille consomme le corpus, **jamais** les rapports. **C'est exactement « la boucle ouverte ».**
