@@ -1,4 +1,4 @@
-`docs/registry/LIEU-ACTE-FONDATEUR-conception.md` · conception · 2026-07-25 *(hash : voir commit)*
+`docs/registry/LIEU-ACTE-FONDATEUR-conception.md` · conception · 2026-07-25 versée en `d3cab5e`
 
 # Le lieu de l'acte fondateur — CONCEPTION (étape 3 partielle, précède l'étape 0)
 
