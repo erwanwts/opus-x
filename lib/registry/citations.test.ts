@@ -39,9 +39,16 @@ describe('« cité ≥ 1 » — critère promu en test rejouable', () => {
     for (const r of RECORDS) expect(citedBy(r.id, correct(r.id))).toBeGreaterThanOrEqual(0);
   });
 
-  it('OCR-000..005 sont cités 6 fois — la mesure du DOSSIER, rejouée dans un fichier', () => {
-    for (const id of ['OCR-000', 'OCR-001', 'OCR-002', 'OCR-003', 'OCR-004', 'OCR-005']) {
-      expect(citedBy(id, correct(id))).toBe(6);
+  it('OCR-000..005 : compte de citations mesuré (amendement OCR-006 → 000/005 à 7)', () => {
+    // Mesure du DOSSIER = 6 chacun AVANT l'amendement d'OCR-006 (étape 1). Depuis, OCR-006 défère au
+    // régime documentaire et cite les BORNES de la plage « OCR-000 through OCR-005 » (+ §291/§295, renvoi
+    // P8) : OCR-000 et OCR-005 passent à 7 ; les bornes internes 001..004, non citées littéralement par la
+    // plage, restent à 6. Valeurs re-mesurées, non figées à la main.
+    const expected: Record<string, number> = {
+      'OCR-000': 7, 'OCR-001': 6, 'OCR-002': 6, 'OCR-003': 6, 'OCR-004': 6, 'OCR-005': 7,
+    };
+    for (const [id, n] of Object.entries(expected)) {
+      expect(citedBy(id, correct(id)), id).toBe(n);
     }
   });
 

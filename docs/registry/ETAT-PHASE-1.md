@@ -80,15 +80,20 @@ grounding (Conforme) → verdict écrit DANS le Record (D-017) → PROMO émis =
 PROMO **présuppose** le grounding (tracé au Record), ne le **porte** pas. Tout autre ordre viole
 `OCR-000:47`, D-017, ou P9.
 
-## 7. Séquence d'exécution — huit étapes gravées, aucune lancée
+## 7. Séquence d'exécution — neuf étapes (0–8)
 
-1. **Amender OCR-006** v2.0.0 (MAJOR ; C/E/G normatifs) — D-014/D-011
-2. **MINOR OCR-001** (plage méta + réparation OCR-006) — D-015
-3. **Loger les 3 règles** (intégrité, transmission, approbation) — D-015/D-016
-4. **Fermer la boucle grounding** (champ verdict + test) — D-017
-5. **Grounder les 6** (101,104,106,107,108,109) — D-017
-6. **Concevoir l'artefact PROMO** (rouvre **D-010**) — D-001/D-010/D-016
-7. **Normaliser les 36** par amendements (pas de Record neuf) — D-015/P10
-8. **Promouvoir les 29** `Draft → Normative` — D-016/OCR-000:47
+| # | Étape | État |
+|---|---|---|
+| **0a** | Créer le **lieu** de l'acte fondateur (série `RATIF`, garde) | ✅ **FAIT** (`6e230ef`) |
+| **0b** | **Ratification fondatrice** `RATIF-001` — signé Opus X, déclare `{OCR-000, OCR-005}` Normative | ✅ **FAIT** (`a372138`) |
+| **1** | Amender **OCR-006** (édition Draft, D-018 : Version 1.0.0 ; portée protocole) puis promouvoir | 🟢 **1a FAIT** ; promotion → étape 6/8 |
+| **2** | **Édition OCR-001** (D-018) — étendre la plage méta + réparer l'anomalie OCR-006 | conception en cours |
+| **3** | Loger le **régime documentaire** (4 déficits + amorçage) | ⛔ |
+| **4** | Fermer la **boucle grounding** — champ D-017 à **trois états** (dont « éditorial ») | ⛔ |
+| **5** | **Grounder les 6** (101,104,106,107,108,109) | ⛔ |
+| **6** | Concevoir l'artefact **PROMO** (rouvre **D-010**) | ⛔ |
+| **7** | **Normaliser les 36** | ⛔ |
+| **8** | **Promouvoir les 29** dans l'**ordre D-021 à strates** : `{OCR-000, OCR-005}` → `OCR-006` → `{001,002,003,004}` → 23 concepts | ⛔ |
 
-**Point de reprise = étape 1, sur feu vert. D-010 reste suspendue jusqu'à l'étape 6.**
+**L'amorçage est brisé** (RATIF-001) : `OCR-000`/`OCR-005` font autorité. **Point de reprise = étape 2**
+(édition OCR-001). **D-010 reste suspendue jusqu'à l'étape 6.**

@@ -24,9 +24,23 @@ Each principle recorded here exists to preserve a property of the protocol. Wher
 
 The motivations in this Record therefore do not describe how the protocol was built. They describe what each principle protects. A motivation that depended on the memory of its authors would cease to be intelligible once those authors are gone; the constraints recorded here are intended to remain readable and enforceable independently of any knowledge of their origin.
 
-This Record establishes no authority above the protocol. It is governed by the same rules as every other Record: it is versioned, citable and amendable. Its scope is the set of architectural constraints to which the entire corpus is subject.
+This Record establishes no authority above the protocol. It is governed by the same rules as every other Record: it is versioned, citable and amendable. Its scope is the set of architectural constraints to which the protocol is subject; the documentary corpus is governed by OCR-000 through OCR-005 (see Scope).
 
 The ten principles are ordered by logical dependency rather than by chronology. Fundamental concepts define the objects of the protocol. Architectural mechanisms define how those objects behave. Architectural guarantees define what must remain true as they change. Evolution governance defines how the protocol itself may change. No principle presupposes a concept introduced later.
+
+---
+
+## Scope
+
+### Canonical Statement
+
+These principles govern the protocol: its logical definitions, immutable facts, identities, canonical representations and their evolution. They do not govern the documentary corpus — the Opus Canonical References as authored artefacts — whose authoring, structure, editorial register, terminology, relationships, versioning, status, promotion and integrity are governed by the Canonical Knowledge Governance Records, OCR-000 through OCR-005.
+
+### Normative Consequences
+
+* The scope of these principles SHALL be the protocol; they SHALL NOT be interpreted as governing the documentary corpus.
+* Where the wording of a principle could be read to reach a documentary artefact, it SHALL be read as reaching only the protocol object it names.
+* The documentary counterpart of such an artefact SHALL be governed by OCR-000 through OCR-005, not by this Record.
 
 ---
 
@@ -227,6 +241,7 @@ Where the layers are conflated, a correction applied to one propagates to the ot
 * The version of one layer SHALL NOT be inferred, derived or aligned from the version of another.
 * A change in one layer SHALL NOT require a change in any other.
 * Where a version value is corrected, the correction SHALL be applied only to the layer concerned.
+* The mechanism of the documentary versioning layer — how a Record's version is assigned, incremented and recorded — SHALL be governed by OCR-005 (Versioning Rules), not by this principle; this principle governs only the requirement that the three layers remain independent and that no layer's version be inferred from another's.
 
 ### Notes
 
@@ -288,11 +303,11 @@ An implementation may demonstrate that a rule is necessary. It never establishes
 
 ## Conclusion
 
-These principles define the architectural constraints governing the interpretation, evolution and implementation of the World Skills Protocol. Any future Record SHALL be interpreted consistently with them unless they are themselves amended through the protocol's normative amendment process.
+These principles define the architectural constraints governing the interpretation, evolution and implementation of the World Skills Protocol. Any future Record is interpreted consistently with them unless they are themselves amended through the protocol's normative amendment process (OCR-005).
 
-They establish no authority above the corpus. They state the constraints to which the corpus, including this Record, is subject.
+They establish no authority above the protocol. They state the constraints to which the protocol is subject; this Record, as a documentary artefact, is itself governed by OCR-000 through OCR-005.
 
-Where an inconsistency is identified between this Record and another normative Record, the inconsistency SHALL be resolved through the protocol's normative amendment process rather than by interpretative precedence.
+Where an inconsistency is identified between this Record and another normative Record, the inconsistency is resolved through the protocol's normative amendment process (OCR-005), never by interpretative precedence; this Record claims no precedence over another.
 
 ---
 
