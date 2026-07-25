@@ -21,9 +21,12 @@ const DETTES = path.join(process.cwd(), 'docs/registry/DETTES-ouvertes.md');
 const CORPUS = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 
 // Partition (D-005) : Phase 2/3 = retenus hors Phase 1. Membres MESURÉS, pas figés d'origine.
-// CORRECTION 006 : retiré d'ici — D-021 (postérieur à cette partition) le promeut 2ᵉ (Phase 1) ;
-// sa présence était un reliquat d'avant D-021. [Suit D-024 : OCR-112 → Phase 2, +1 ici → 32.]
-const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-114', 'OCR-123']);
+// CORRECTION 006 : retiré — D-021 (postérieur à cette partition) le promeut 2ᵉ (Phase 1) ; sa présence
+//   était un reliquat d'avant D-021 (`c82f8f7`).
+// D-024 : OCR-112 ajouté — descendu en Phase 2 (même bloqueur GAP-F1-01 que 114 ; le GAP se lève en lot
+//   de code propre, 112 et 114 remontent ensemble plus tard). NE PAS coder la supersession pour le débloquer.
+// Net : swap 006↔112, HORS reste 4 → Phase 1 = 32.
+const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-112', 'OCR-114', 'OCR-123']);
 
 /** Ids de Records concernés par une dette OUVERTE, lus dans la SEULE table d'attribution. */
 function recordsEnDetteOuverte(): string[] {
@@ -57,12 +60,12 @@ describe('« aucune dette ouverte » — critère de Phase 1, rejoué depuis la 
     expect(recordsEnDetteOuverte().sort()).toEqual(['OCR-100', 'OCR-114']);
   });
 
-  it('la partition couvre 36 Records ; Phase 1 = 33 (006 corrigé en Phase 1 ; AVANT D-024)', () => {
+  it('la partition couvre 36 Records ; Phase 1 = 32 (mesuré ; swap 006↔112, D-024)', () => {
     const total = readdirSync(CORPUS).filter((f) => /^OCR-\d+_.*\.md$/.test(f)).length;
     // FAIT, PAS invariant : 33 + 3 Records du régime (OCR-007/008/009) = 36. Un 37ᵉ Record DOIT
     // casser ce test — la population de promotion est un nombre attendu, pas une conséquence à dériver.
-    // ÉTAT TRANSITOIRE : 006 retiré (Phase 1) → HORS = 3 → Phase 1 = 33. D-024 (112 → Phase 2) le ramène à 32.
+    // Phase 1 = 32 : le swap 006(sort)↔112(entre) laisse HORS à 4. 007/008/009 sont DANS Phase 1 (régime doc).
     expect(total).toBe(36);
-    expect(total - HORS_PHASE_1.size).toBe(33); // HORS_PHASE_1 = {OCR-100, OCR-114, OCR-123} (3)
+    expect(total - HORS_PHASE_1.size).toBe(32); // HORS_PHASE_1 = {OCR-100, OCR-112, OCR-114, OCR-123} (4)
   });
 });
