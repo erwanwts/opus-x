@@ -33,6 +33,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-017** | Le Record porte son **verdict de grounding** avant promotion | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5* |
 | **D-018** | **Un Record Draft s'édite en place** — l'amendement d'OCR-006 est une **édition**, pas une v2.0.0 (résout le point 4 de la conception 1a). Règle de **régime documentaire** (déficit D-015) | **rendue, INSCRITE — NON appliquée** |  **`4b11bd6`** | **—** · *gouverne l'édition de l'étape 1 (Version **inchangée**) ; règle tracée au régime (D-015)* |
 | **D-019** | **Ratification fondatrice unique** — acte **daté, signé Opus X, hors processus ordinaire**, qui rend `{OCR-000, OCR-005}` Normative en premier (sortie de la circularité, `OCR-000:35`). 4ᵉ déficit du régime (D-015) : forme + **lieu** de l'acte | **rendue, INSCRITE — NON appliquée** |  **`b21d06c`** | **—** · *mesures ci-dessous ; ordre + voie = D-020 ; le **lieu** de l'acte n'existe pas (à créer par le régime)* |
+| **D-020** | **Voie + ordre** — la ratification émet un artefact d'une **AUTRE NATURE** (pas un PROMO) ; **ordre = portail méta d'abord** (garde d'invariant, faisable). **Deux voies vers Normative** → le résolveur (D-013) lit les deux comme faits de statut | **rendue, INSCRITE — NON appliquée** | **`<ce commit>`** | **—** · *ferme le cadrage ; séquence finale 0–8 gravée ; lieu conçu ci-dessous* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
@@ -46,7 +47,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
-| **D-020** | **Ordre de promotion + voie de la ratification** — (a) **ordre intra-Phase-1** : le portail `{OCR-000, OCR-005}` promu **avant** les 23 concepts (« étape 0 ») ; (b) la ratification **émet-elle un PROMO fondateur** (donc pas hors processus) **ou un objet d'une autre nature** (deux voies vers Normative → le résolveur D-013 lit les deux) ? Dépend de D-019 mais gravée à part | **remontée par D-019, non rendue** — mesures ci-dessous |
+| **D-020** | *(RENDUE — voir table principale)* Voie = artefact d'une autre nature ; ordre = portail méta d'abord | **✅ RENDUE le 2026-07-25 — cadrage CLOS** |
 | **D-013 · sous-question** | **Le sort du champ `Status` — REPORTÉE en aval du résolveur.** La mesure a tranché la forme : les **deux** issues (projection *et* retrait) **présupposent le résolveur, qui n'existe pas**. La question n'est donc pas « projection ou retrait » mais « **à quel moment** » — et le moment est **après la conception du résolveur**. Motif mesuré : **4 lecteurs** du champ, **2 projections** (`api.ts:56`, `build-migration-manifest.mjs:74`), **résolveur inexistant** | **REPORTÉE** (en aval du résolveur) |
 | **Nouveau Record — régime documentaire** | **À écrire (D-015), avant clôture.** Gouverne le corpus documentaire : amendement, intégrité, versioning documentaire, cycle de vie, promotion/révocation, séries/plages, provenance, normalisation. Périmètre = inventaire du sans-règle (mémo ci-dessous). **Série non attribuable** : 0 id libre dans `expected_ranges` (mémo série) | **à instruire — RÉGIME COMPLET** |
 | *(amendement — **OBLIGATOIRE**, dans l'option D-013/Q3 cochée)* | **Déclarer dans OCR-006 que sa portée est le PROTOCOLE** (D-014). P9:250 « any published representation » est **général** → à restreindre. **Principes concernés :** **P2, P5, P7** (nommés par D-014), **P9** (« any published representation »), **P8** (nomme « documentary versioning » — tension). **⚠️ Contradiction mesurée : `OCR-006:27`** dit *« Its scope is the set of architectural constraints to which the **entire corpus** is subject »* — le Record **s'auto-attribue le corpus entier**, ce que D-014 **retire**. L'amendement doit lever cette contradiction, pas seulement P9:250. OCR-006 en Phase 3, **jamais relu, cité par 0** | à instruire (obligatoire) |
@@ -629,21 +630,25 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
   la **sous-question D-013, REPORTÉE** en aval du résolveur — elle ne bloque pas l'ordre ci-dessus, elle en
   est l'aval (étape 4, forme du statut dérivé).
 
-### SÉQUENCE D'EXÉCUTION — gravée, huit étapes (AUCUNE commencée ; feu vert étape par étape)
+### SÉQUENCE D'EXÉCUTION — FINALE, gravée, NEUF étapes (0–8) — cadrage CLOS, AUCUNE lancée
+
+*Cadrage entièrement clos (D-020 rendue) : plus aucune décision ouverte. Feu vert étape par étape.*
 
 | # | Étape | Décision(s) source | État |
 |---|---|---|---|
-| **1** | **Amender OCR-006** — **édition en place** (D-018 : Version **reste 1.0.0**, pas de v2.0.0) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`**) ; aligner A/B ; corriger §295/§291 | D-014 · D-011 · **D-018** · `OCR-005` | 🟠 **1a validée** *(conception + E validé par OCR-005:35)* ; **version résolue** (D-018) ; ⚠️ **séquence en révision** — point 1 : une édition de Draft **ne rend pas** D-014 opposable (Draft = non autoritatif) → **OCR-006 devra être PROMU**, pas seulement édité. **1b NON préparée** |
-| **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` : déclare la série du régime **et** répare l'omission OCR-006 (une occasion) | D-015 · `OCR-005:33` · (anomalie 2026-07-20) | ⛔ non lancée |
-| **3** | **Loger les 3 règles manquantes** — intégrité documentaire (checksum), transmission (chemin+hash), **forme de l'approbation** | D-015 · D-016 | ⛔ non lancée |
-| **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test qui échoue si non-« Conforme » avant promotion | **D-017** | ⛔ non lancée |
-| **5** | **Grounder les 6** machine-facing sans rapport : `101,104,106,107,108,109` | D-017 · `OCR-000:49-53` | ⛔ non lancée |
-| **6** | **Concevoir l'artefact PROMO** — champ `authority` (approbation) ; **présuppose** le grounding (étape 4) ; ordre de la mesure 1 | D-001 · **D-010** · D-016 | ⛔ non lancée — **rouvre D-010 ICI, pas avant** |
-| **7** | **Normaliser les 36** — par **amendements** des Records d'accueil (OCR-000…005, P10), **pas** un Record neuf | D-015 · `P10:280` | ⛔ non lancée |
-| **8** | **Promouvoir les 29** `Draft → Normative` — grounding (5) + verdict (4) + PROMO (6) réunis | D-016 · `OCR-000:47` | ⛔ non lancée |
+| **0** | **RATIFICATION FONDATRICE** — acte d'une **autre nature** (D-020), daté, signé Opus X, hors processus ordinaire, déclarant `{OCR-000, OCR-005}` **Normative** (sortie de circularité, `OCR-000:35`). **Précédée** par le **lieu** de l'acte (conception ci-dessous) | **D-019 · D-020** · `OCR-000:35` | ⛔ non lancée — *attend une décision **hors** de ce chantier (Opus X)* |
+| **1** | **Amender OCR-006** (édition en place, D-018 : Version **reste 1.0.0**) — portée protocole (**C/E/G**), aligner A/B, corriger §295/§291 — **puis PROMOUVOIR** (Draft non opposable) | D-014 · D-011 · D-018 · `OCR-000:47` | ⛔ non lancée — *1a validée + E validé (OCR-005:35) ; 1b non préparée* |
+| **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` (série du régime **+** répare l'omission OCR-006) | D-015 · `OCR-005:33` | ⛔ non lancée |
+| **3** | **Loger les règles du régime documentaire (D-015)** — les 4 déficits : intégrité (checksum), transmission (chemin+hash), **forme de l'approbation** (D-016), **LIEU de l'acte fondateur** (4ᵉ) **+ la règle d'amorçage** (D-018/D-019) | D-015 · D-016 · D-018 · D-019 | ⛔ non lancée — *conception du lieu ci-dessous (étape 3 partielle, mais **précède l'étape 0**)* |
+| **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test « non-Conforme → échec » | **D-017** | ⛔ non lancée |
+| **5** | **Grounder les 6** concepts machine-facing : `101,104,106,107,108,109` | D-017 · `OCR-000:49-53` | ⛔ non lancée |
+| **6** | **Concevoir l'artefact PROMO** — champ `authority` ; présuppose le grounding ; **rouvre D-010** | D-001 · **D-010** · D-016 | ⛔ non lancée |
+| **7** | **Normaliser les 36** — par **amendements** (OCR-000…005, `P10:280`), **pas** un Record neuf | D-015 · `P10:280` | ⛔ non lancée |
+| **8** | **Promouvoir les 29** `Draft → Normative` **dans l'ordre D-020** (portail méta d'abord ; garde d'invariant d'ordre, faisable — voir ci-dessus) | **D-020** · D-016 · `OCR-000:47` | ⛔ non lancée |
 
-**D-010 (grain de l'artefact PROMO) reste SUSPENDUE — elle se rouvre à l'étape 6, pas avant.** Aucune étape
-n'est lancée sans feu vert, étape par étape.
+**Nœud de dépendance :** l'**étape 0** (ratification) a besoin du **lieu** de l'acte, **conçu à l'étape 3**
+— donc **la conception du lieu précède l'étape 0**. **D-010** reste SUSPENDUE jusqu'à l'étape 6. La
+ratification elle-même (étape 0) **attend une décision hors de ce chantier** (Opus X, autorité fondatrice).
 
 ---
 
