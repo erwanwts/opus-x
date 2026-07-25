@@ -1,4 +1,4 @@
-`docs/registry/COHERENCE-INTER-CRITERES-36-conception.md` · conception (grille étape 8) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/COHERENCE-INTER-CRITERES-36-conception.md` · conception (grille étape 8) · 2026-07-25 versée en `01e13a1`
 
 # Cohérence inter-critères des 36 Records + garde du registre GAP — CONCEPTION (pour arbitrage)
 
