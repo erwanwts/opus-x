@@ -651,6 +651,24 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
 — donc **la conception du lieu précède l'étape 0**. **D-010** reste SUSPENDUE jusqu'à l'étape 6. La
 ratification elle-même (étape 0) **attend une décision hors de ce chantier** (Opus X, autorité fondatrice).
 
+**⚠️ Porte ouverte relevée sur 0a (contenu de `RATIF-001`) — garde à armer AVANT 0b :** la garde de plage
+(0a) contrôle l'**identifiant** (`RATIF-001` in range) mais **PAS le contenu** — `foundingLieu.test.ts` ne
+référence **jamais** `declares_normative` (grep = 0). **Rien n'empêche aujourd'hui un `RATIF-001` de déclarer
+trois Records, un seul, ou deux autres qu'`OCR-000`/`OCR-005`.** Or D-019 a tranché : `RATIF-001` déclare
+**EXACTEMENT `{OCR-000, OCR-005}`**, ni plus ni moins.
+
+- **Option A — FAISABLE (mécanique) :** un test spécifique à `RATIF-001` : `declares_normative` **doit être
+  exactement `[OCR-000, OCR-005]`** (l'ensemble minimal mesuré, M3). **Armé maintenant** (à vide tant que
+  `records: []` / aucun fichier), il **mord à l'instant où 0b émet `RATIF-001`**. Prouvé par mutation : 3
+  Records → échec · 1 → échec · 2 autres → échec. **Même classe que la garde de plage.** Comme `RATIF` est
+  **unique** (`RATIF-001..001`, D-019), un test spécifique à `RATIF-001` couvre **tout** le domaine.
+- **Option B — N'EST PAS une contrainte :** le **résolveur** est un **consommateur** (il lit
+  `declares_normative` et dérive le statut — il rendrait Normative *ce que l'acte déclare*, sur-déclaration
+  comprise) ; la **revue humaine de 0b** est précisément le chemin **accidentel** que l'Architecte veut
+  éliminer. Ni l'un ni l'autre ne **contraint** le contenu.
+- **Constat : seule l'option A empêche 0b de sur-déclarer par accident.** **Non construite** (« ne construisez
+  pas ») — **à armer avant 0b**, sur go.
+
 ---
 
 ## D-018 & point d'opposabilité — mesures du 2026-07-25 (avant 1b ; rien préparé)
