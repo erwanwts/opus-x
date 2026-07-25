@@ -630,7 +630,7 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
 
 | # | Étape | Décision(s) source | État |
 |---|---|---|---|
-| **1** | **Amender OCR-006** — version **v2.0.0** (MAJOR) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`** — les 3 normatifs) ; aligner l'informatif (§27/§293) | D-014 · D-011 · `OCR-005:32` | ⛔ non lancée |
+| **1** | **Amender OCR-006** — version **v2.0.0** (MAJOR) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`** — les 3 normatifs) ; aligner l'informatif (§27/§293) | D-014 · D-011 · `OCR-005:32` | 🔵 **1a conception rendue** (`AMENDEMENT-OCR-006-conception-1a.md`), **en revue** — aucune écriture dans OCR-006 ; 1b sur approbation |
 | **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` : déclare la série du régime **et** répare l'omission OCR-006 (une occasion) | D-015 · `OCR-005:33` · (anomalie 2026-07-20) | ⛔ non lancée |
 | **3** | **Loger les 3 règles manquantes** — intégrité documentaire (checksum), transmission (chemin+hash), **forme de l'approbation** | D-015 · D-016 | ⛔ non lancée |
 | **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test qui échoue si non-« Conforme » avant promotion | **D-017** | ⛔ non lancée |
