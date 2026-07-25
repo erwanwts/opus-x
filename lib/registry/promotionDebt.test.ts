@@ -4,7 +4,7 @@
  * Possible depuis la structuration Q2 (D-008) : le registre des dettes porte une
  * table « Records concernés », attribution EXPLICITE seulement. Ce test lit cette
  * table, extrait les Records sujets d'une dette OUVERTE, et vérifie qu'aucun
- * Record de PHASE 1 (partition 29·3·1, D-005) n'y figure — sinon il échoue le
+ * Record de PHASE 1 (partition D-005, membres corrigés 006/D-024) n'y figure — sinon il échoue le
  * critère, nommé par son id.
  *
  * Portée honnête (D-009 action 3) : le test atteste les dettes ATTRIBUÉES. Une
@@ -20,8 +20,10 @@ import path from 'node:path';
 const DETTES = path.join(process.cwd(), 'docs/registry/DETTES-ouvertes.md');
 const CORPUS = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 
-// Partition 29·3·1 (D-005) : Phase 2/3 = retenus hors Phase 1.
-const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-114', 'OCR-123', 'OCR-006']);
+// Partition (D-005) : Phase 2/3 = retenus hors Phase 1. Membres MESURÉS, pas figés d'origine.
+// CORRECTION 006 : retiré d'ici — D-021 (postérieur à cette partition) le promeut 2ᵉ (Phase 1) ;
+// sa présence était un reliquat d'avant D-021. [Suit D-024 : OCR-112 → Phase 2, +1 ici → 32.]
+const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-114', 'OCR-123']);
 
 /** Ids de Records concernés par une dette OUVERTE, lus dans la SEULE table d'attribution. */
 function recordsEnDetteOuverte(): string[] {
@@ -43,7 +45,7 @@ function recordsEnDetteOuverte(): string[] {
 }
 
 describe('« aucune dette ouverte » — critère de Phase 1, rejoué depuis la table structurée', () => {
-  it('aucun Record de Phase 1 (29·3·1) ne figure dans une dette ouverte', () => {
+  it('aucun Record de Phase 1 (D-005) ne figure dans une dette ouverte', () => {
     const enDette = recordsEnDetteOuverte();
     const phase1EnDette = enDette.filter((id) => !HORS_PHASE_1.has(id));
     // Un Record de Phase 1 sujet d'une dette ouverte échoue le critère : le test
@@ -55,11 +57,12 @@ describe('« aucune dette ouverte » — critère de Phase 1, rejoué depuis la 
     expect(recordsEnDetteOuverte().sort()).toEqual(['OCR-100', 'OCR-114']);
   });
 
-  it('la partition couvre 36 Records ; Phase 1 = 32 (FAIT gravé — +OCR-007/008/009, D-021)', () => {
+  it('la partition couvre 36 Records ; Phase 1 = 33 (006 corrigé en Phase 1 ; AVANT D-024)', () => {
     const total = readdirSync(CORPUS).filter((f) => /^OCR-\d+_.*\.md$/.test(f)).length;
     // FAIT, PAS invariant : 33 + 3 Records du régime (OCR-007/008/009) = 36. Un 37ᵉ Record DOIT
     // casser ce test — la population de promotion est un nombre attendu, pas une conséquence à dériver.
+    // ÉTAT TRANSITOIRE : 006 retiré (Phase 1) → HORS = 3 → Phase 1 = 33. D-024 (112 → Phase 2) le ramène à 32.
     expect(total).toBe(36);
-    expect(total - HORS_PHASE_1.size).toBe(32); // HORS_PHASE_1 = {OCR-100, OCR-114, OCR-123, OCR-006}
+    expect(total - HORS_PHASE_1.size).toBe(33); // HORS_PHASE_1 = {OCR-100, OCR-114, OCR-123} (3)
   });
 });
