@@ -28,7 +28,7 @@ A growing body of specifications becomes unusable without a predictable structur
 
 ## Numbering and Layers (Normative)
 
-- **OCR-000–005** — meta/governance documents.
+- **OCR-000–009** — meta/governance documents.
 - **OCR-100–199** — foundational concepts (Identity, Evidence, Framework, Trust, Issuer, …).
 - **OCR-200–299** — mechanisms and processes (verification flow, consent, trust engine, evidence graph, …).
 - **OCR-300–399** — reference models and implementation guides (API patterns, implementation profiles, worked examples, best practices).
@@ -74,7 +74,7 @@ This document operationalizes OCR-000 (governance) and structures OCR-124 (the R
 ## FAQ
 
 1. **What does this govern?** The organization of the Registry.
-2. **What are the layers?** 000–005 meta, 100s foundational, 200s mechanisms, 300s implementation.
+2. **What are the layers?** 000–009 meta, 100s foundational, 200s mechanisms, 300s implementation.
 3. **How many concepts per OCR?** Exactly one.
 4. **Are numbers reusable?** No; they are durable and not reassigned.
 5. **Which artifact is authoritative?** The Markdown source.
@@ -96,7 +96,7 @@ This document operationalizes OCR-000 (governance) and structures OCR-124 (the R
 
 ## LLM Summary
 
-Canonical Registry Structure defines how the World Skills Protocol's canonical knowledge is organized: a layered numbering scheme (000–005 meta, 100s foundational, 200s mechanisms, 300s implementation), a strict one-concept-per-OCR rule with durable, non-reassigned numbers, a required document structure for concept OCRs (which meta documents may adapt), and an output-artifact set in which the Markdown source is authoritative and PDF (plus optional JSON-LD/FAQ/SEO/GEO/LLM/Keywords) are derived to match it. It makes the Registry navigable and extensible and operationalizes the governance in OCR-000.
+Canonical Registry Structure defines how the World Skills Protocol's canonical knowledge is organized: a layered numbering scheme (000–009 meta, 100s foundational, 200s mechanisms, 300s implementation), a strict one-concept-per-OCR rule with durable, non-reassigned numbers, a required document structure for concept OCRs (which meta documents may adapt), and an output-artifact set in which the Markdown source is authoritative and PDF (plus optional JSON-LD/FAQ/SEO/GEO/LLM/Keywords) are derived to match it. It makes the Registry navigable and extensible and operationalizes the governance in OCR-000.
 
 ## SEO Summary
 

@@ -1,10 +1,10 @@
 {
   "schema": "opusx.registry.manifest/v1",
   "generated_from": "docs/web/registry-import/OCR-100",
-  "expected_ranges": "OCR-000..006,OCR-100..125,PROMO-001..001",
+  "expected_ranges": "OCR-000..009,OCR-100..125,PROMO-001..001",
   "excluded_files": [],
   "file_count": 33,
-  "anomaly_count": 65,
+  "anomaly_count": 66,
   "records": [
     {
       "source_filename": "OCR-000_Canonical_Knowledge_Governance.md",
@@ -39,7 +39,7 @@
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Structure Rules, Numbering, Output Formats) · Informative (Rationale, FAQ)",
-      "checksum_sha256": "51a0e9751550dc8d623c57dac593cdb67cfe2cff516f0f458020f6bf0ad252bf",
+      "checksum_sha256": "5bd121214457627dcc0caf55be5c6d5b71b8fff89990fbd38ceca0dcdf04ec57",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -1216,6 +1216,15 @@
       "file": "OCR-125_Identity.md",
       "pdf": "OCR-125_Identity.pdf",
       "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "missing_in_sequence",
+      "range": "OCR-000..009",
+      "missing": [
+        "OCR-007",
+        "OCR-008",
+        "OCR-009"
+      ]
     },
     {
       "type": "missing_in_sequence",
