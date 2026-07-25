@@ -69,14 +69,44 @@ RATIF) qui **déclare R Normative**, et **aucun fait de révocation** postérieu
 collecte pour chaque Record les déclarations, applique les révocations. **Il lit l'interface, pas le
 `kind`** — d'où « deux natures, une lecture » (la formule de D-020).
 
+> **⚠️ CAVEAT du 2026-07-25 — l'interface NE TIENT PAS encore champ pour champ (vérification demandée).**
+> Le tableau ci-dessus l'expose lui-même : PROMO porte **`record:` (scalaire, 1)**, RATIF
+> **`declares_normative:` (liste, N)** — **noms et formes différents**. Voir PROMO comme « N=1 » **exige**
+> qu'il expose une **liste** (`declares_normative: [OCR-xxx]`), pas un scalaire ; sinon le résolveur a besoin
+> d'un **adaptateur par `kind`**, ce qui **contredit** D-020. De plus la **révocation n'est spécifiée pour
+> aucun des deux** (la matière D-010 note l'absence de `revokes:`). **« Une lecture » est donc une fiction
+> tant que l'interface n'est pas UNIFIÉE** : un champ de déclaration commun (`declares_normative: [...]`,
+> PROMO = singleton) **+** une forme de révocation commune. **Unification = étape 3/6, pas ici. Constat, non
+> corrigé.**
+
 ## 5 — Ce que la conception NE tranche pas (hors de ma main)
 
 - **La ratification elle-même** — la signer, la dater, l'émettre : **décision d'Opus X, hors chantier**
   (l'étape 0 attend cela).
-- **Le grain `RATIF` vs `PROMO`** touche **D-010** (un artefact multi-Records existe ici par nécessité) —
-  mais D-010 reste **SUSPENDUE** jusqu'à l'étape 6 ; je ne la rouvre pas, je **note** que le fait fondateur
-  est le premier cas avéré de « gros grain ».
+- **Le grain `RATIF` vs `PROMO` — D-010 N'EST PAS tranchée par RATIF.** Inscription explicite :
+  **`RATIF` = grain GROS par NÉCESSITÉ** (acte fondateur unique déclarant 2 Records en un fait) ; **le grain
+  de `PROMO` reste OUVERT — D-010, étape 6**. **Deux séries, deux grains, décidés séparément.** Lire RATIF
+  comme ayant tranché D-010 serait **faux** : RATIF est un cas particulier (fondateur), il ne dit rien du
+  grain ordinaire de PROMO.
 - **L'écriture du régime** (le Record qui *normalise* cette forme) = **étape 3**, après l'amendement +
   promotion d'OCR-006 (étape 1). Ici : **conception**, pas normalisation.
 
-**Rien construit, rien écrit hors cette conception. La ratification attend Opus X.**
+## 6 — Le nœud d'ordre : découpage **0a / 0b** (proposé, non exécuté)
+
+**La conception (ce document) NE suffit PAS à ratifier.** Une ratification est un **fait** qui doit
+s'**inscrire** quelque part ; une conception est un plan, pas un lieu. Pour inscrire `RATIF-001`, le lieu
+doit **exister réellement** : le répertoire `content/registry/founding/`, la **série `RATIF` déclarée**, et
+sa **garde de plage armée** (comme D-004 pour PROMO). Donc **l'étape 0 se scinde** :
+
+- **0a — CRÉER LE LIEU** *(construction)* : écrire le registre fondateur, déclarer la série `RATIF` hors
+  plages, armer la garde, **et unifier l'interface de fait de statut** (caveat §4). C'est un **fragment de
+  l'étape 3** (le régime), **tiré en tête** parce que l'étape 0b en dépend. **Ne crée aucune circularité :**
+  le lieu n'est **pas** un OCR → il n'a pas besoin d'être ratifié pour exister.
+- **0b — RATIFIER** *(hors chantier)* : Opus X signe/date/émet `RATIF-001` dans le lieu. **Attend Opus X.**
+
+**Ordre : 0a (nous, sur go) → 0b (Opus X) → étape 1…** La **normalisation** de la forme du lieu dans le
+Record du régime reste à l'**étape 3** (après OCR-006 promu) ; 0a n'en fait que la **partie matérielle**
+(le fichier + la garde), tracée comme « objet avant règle » assumé (même schéma que PROMO : conçu/bâti à
+l'étape 6, normalisé à l'étape 7).
+
+**Rien construit, rien écrit hors cette conception. 0a attend votre go ; 0b attend Opus X.**
