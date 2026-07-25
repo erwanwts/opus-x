@@ -35,6 +35,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-019** | **Ratification fondatrice unique** — acte **daté, signé Opus X, hors processus ordinaire**, qui rend `{OCR-000, OCR-005}` Normative en premier (sortie de la circularité, `OCR-000:35`). 4ᵉ déficit du régime (D-015) : forme + **lieu** de l'acte | **rendue, INSCRITE — NON appliquée** |  **`b21d06c`** | **—** · *mesures ci-dessous ; ordre + voie = D-020 ; le **lieu** de l'acte n'existe pas (à créer par le régime)* |
 | **D-020** | **Voie + ordre** — la ratification émet un artefact d'une **AUTRE NATURE** (pas un PROMO) ; **ordre = portail méta d'abord** (garde d'invariant, faisable). **Deux voies vers Normative** → le résolveur (D-013) lit les deux comme faits de statut | **rendue, INSCRITE — NON appliquée** |  **`d3cab5e`** | **—** · *ferme le cadrage ; séquence finale 0–8 gravée ; lieu conçu ci-dessous* |
 | **D-021** | **Ordre de promotion à strates** (précise D-020 pour la place d'OCR-006) : **`{OCR-000, OCR-005}` → `OCR-006` → `{001, 002, 003, 004}` → `{007, 008, 009}` (régime, strate 2) → 23 concepts.** OCR-006 promu **2ᵉ** ; les 3 Records du régime rejoignent la **strate 2 (méta)** | **rendue, INSCRITE — NON appliquée** | **`bfc888a`** | **—** · *ordre d'exécution de l'**étape 8** ; **FAIT gravé (étape 3) : corpus 33→36, promotion 29→32** (`promotionDebt` dit 36/32) ; l'invariant d'ordre (D-020) à vérifier **à strates**. **⚠️ À vérifier avant étape 8** : OCR-009 décrit l'approbation qui gouverne la promotion — dépendance sur sa propre promotion ? (constat pour plus tard)* |
+| **D-022** | **Le FAIT prime le CHAMP** : un Record **ratifié** est **Normative** dès la ratification, indépendamment de son champ `Status` — une **projection** résolue à l'étape 6. Il **ne s'édite plus en place** ; tout changement passe par **versioning** (`OCR-005:46`). **Borne haute de D-018** (Draft s'édite en place ; ratifié/promu, non) | **rendue, INSCRITE — NON appliquée** | **`<ce commit>`** | **—** · *règle du régime (matière OCR-005/OCR-006) ; ⚠️ mesuré : la **fenêtre est ACTIVE** (le champ faux d'OCR-000/005 est lu) → **D-023** doit la neutraliser* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
@@ -48,6 +49,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
+| **D-023** | **Neutraliser (ou déclarer inerte) la fenêtre active** — entre RATIF-001 et le résolveur (étape 6), le champ `Status: Draft` d'OCR-000/005 est **lu et conséquent** : `robotsFromStatus` → **noindex,follow** (mesuré), `lifecycle_status` du manifeste = **Draft**, le sitemap les classe **noindex**, la garde `recordPage.test:132` assère « tous Draft → noindex ». **Deux Records que RATIF-001 déclare Normative sont rendus en brouillons** — la divergence P9, ici **active**, à neutraliser, pas subir | **remontée par D-022, non rendue** — mesure ci-dessous |
 | **D-020** | *(RENDUE — voir table principale)* Voie = artefact d'une autre nature ; ordre = portail méta d'abord | **✅ RENDUE le 2026-07-25 — cadrage CLOS** |
 | **D-013 · sous-question** | **Le sort du champ `Status` — REPORTÉE en aval du résolveur.** La mesure a tranché la forme : les **deux** issues (projection *et* retrait) **présupposent le résolveur, qui n'existe pas**. La question n'est donc pas « projection ou retrait » mais « **à quel moment** » — et le moment est **après la conception du résolveur**. Motif mesuré : **4 lecteurs** du champ, **2 projections** (`api.ts:56`, `build-migration-manifest.mjs:74`), **résolveur inexistant** | **REPORTÉE** (en aval du résolveur) |
 | **Nouveau Record — régime documentaire** | **À écrire (D-015), avant clôture.** Gouverne le corpus documentaire : amendement, intégrité, versioning documentaire, cycle de vie, promotion/révocation, séries/plages, provenance, normalisation. Périmètre = inventaire du sans-règle (mémo ci-dessous). **Série non attribuable** : 0 id libre dans `expected_ranges` (mémo série) | **à instruire — RÉGIME COMPLET** |
@@ -845,3 +847,35 @@ qui n'existe pas encore ?
 existera, sa source devra basculer sur le résolveur. (2) L'**ensemble portail** est paramétrable : `{000,005}`
 (minimal, D-020/M3) **ou** les 6 méta `000-005` — la faisabilité est identique, seul le prédicat change. **Le
 garde attend que D-020 grave l'ensemble et l'ordre ; je ne le construis pas.**
+
+---
+
+## D-022 (le fait prime le champ) & la FENÊTRE ACTIVE — mesures du 2026-07-25
+
+**D-022 — règle du régime (matière OCR-005/OCR-006), borne haute de D-018 :**
+
+> Un Record **ratifié** (ou promu) est **Normative dès la ratification**, indépendamment de son champ
+> `Status` — le champ est une **projection** résolue à l'étape 6, pas la source du statut. Un Record ratifié
+> **ne s'édite plus en place** ; tout changement passe par **versioning** (`OCR-005:46` : « a change MUST be
+> a new version »). D-018 (« un Draft s'édite en place ») en est le **bas** ; D-022 en est le **haut**.
+
+**Point 1 — la fenêtre est ACTIVE (mesuré, constat brut, aucune correction) :**
+
+Entre RATIF-001 (gravé) et le résolveur (étape 6), le champ `Status: Draft` d'OCR-000/005 est **lu et
+conséquent** en **quatre** endroits :
+
+| Lecteur | Conséquence sur OCR-000/005 |
+|---|---|
+| `recordPage.ts` (`fields['Status']` → `robotsFromStatus`) | champ `Draft` → **`noindex,follow`** (mesuré : les deux) |
+| `_manifest.json` `lifecycle_status` (→ `api.ts:56`) | **`Draft`** (mesuré : les deux) |
+| `sitemapPlans` (noindex = tous Draft) | OCR-000/005 **dans l'ensemble noindex** |
+| garde `recordPage.test:132` + invariant sitemap | assèrent « tous Draft → noindex » — **incluent 000/005** |
+
+⇒ **Deux Records que RATIF-001 déclare Normative sont rendus en BROUILLONS** (noindex, `lifecycle_status`
+Draft). C'est la divergence que **P9** décrit — ici **tolérée par D-022 le temps du résolveur**, mais
+**active**, pas inerte. **Elle doit être neutralisée ou déclarée inerte → D-023** (non rendue ; ne rien
+corriger avant, l'Architecte tranche).
+
+**Point 3 — échéance OCR-009 précisée :** l'orphelinat d'OCR-009 se lève à l'**étape 8**, par un **PATCH
+d'OCR-000/005 via versioning** (`OCR-005:46` ; plus d'édition en place, D-022), **dans le même mouvement**
+que leur promotion. Inscrit ainsi (`citations.test`, inventaire non-cité).

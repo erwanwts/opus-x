@@ -61,8 +61,9 @@ describe('« cité ≥ 1 » — critère promu en test rejouable', () => {
     //  · OCR-123 — hors Phase 1 (partition), motif Phase-2.
     //  · OCR-009 — ORPHELIN ATTENDU (Voie 3, décidée) : le lien de fond EXISTE (OCR-000:47 exige
     //    l'approbation, OCR-005:55 la trace en release — l'objet qu'OCR-009 forme), mais son inscription
-    //    ATTEND la promotion d'OCR-000/005 (ÉTAPE 8), pour ne pas éditer un Record ratifié hors de son
-    //    régime. La citation OCR-000/005 → OCR-009 s'ajoutera dans le MÊME mouvement que leur promotion.
+    //    ATTEND un PATCH d'OCR-000/005 à l'ÉTAPE 8 — par VERSIONING (OCR-005:46), plus d'édition en place :
+    //    OCR-000/005 sont ratifiés Normative (D-022), donc figés au champ. La citation OCR-000/005 → OCR-009
+    //    s'ajoutera dans le MÊME mouvement que leur promotion.
     //    « Cité ≥ 1 » est une porte de promotion (étape 8), pas d'écriture — l'orphelinat ne bloque rien.
     expect(uncited).toEqual(['OCR-009', 'OCR-123']);
   });
