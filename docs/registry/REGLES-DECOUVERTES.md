@@ -722,9 +722,25 @@ révéler l'écart, car chacune mesurait le **dépôt** (juste : 30·2·1) sans 
 attendait d'y être appliquée.
 
 **Parade proposée (non normative) :** un **registre des décisions** avec un champ « appliquée par
-`<commit>` », posé à [DECISIONS-LOG.md](DECISIONS-LOG.md) ; D-005 et D-009 y portent leur commit
-d'application (`733646f`). **Limite honnête :** il rend visible ce qui est inscrit, mais **ne peut
-attraper une décision rendue en chat et jamais inscrite** — le trou même par lequel D-005 est passée.
+`<commit>` », posé à [DECISIONS-LOG.md](DECISIONS-LOG.md). **Limite honnête :** il rend visible ce qui est
+inscrit, mais **ne peut attraper une décision rendue en chat et jamais inscrite** — le trou même par lequel
+D-005 est passée. *(⚠️ Correction du 2026-07-25 : cette ligne disait « D-005 et D-009 portent leur commit
+d'application `733646f` » — faux. `733646f` est **docs-only** ; le code de D-005 est `48be4cd`
+(`promotionDebt.test.ts`), D-009 **n'a aucun code**. Voir 2ᵉ occurrence ci-dessous.)*
+
+**Motif — 2ᵉ occurrence (2026-07-25), à mon nom : la parade a commis la faute qu'elle nomme.** Au dernier
+contrôle avant l'étape 1, `git cat-file` + `git show --stat` ont révélé que **six lignes** du DECISIONS-LOG
+affirmaient « appliquée » alors qu'il n'y avait qu'**inscription** (D-009, D-011, D-014, D-015, D-016,
+D-017), et que **la parade elle-même** (ci-dessus) citait `733646f` comme « commit d'application » de
+D-005/D-009 — un commit **docs-only**. L'instrument bâti pour attester « rendue ≠ appliquée » **conflait
+rendu et application**. Deux faces d'une même faute cette session, groupées par l'Architecte à son nom : son
+*« ETAT-PHASE-1 préparé au tour précédent »* (fichier **jamais créé**) et mon *« appliquée par `c678947` »*
+(commit qui **précédait** la décision) — **une existence/application affirmée sans avoir eu lieu.**
+**Parade appliquée :** le log porte désormais **deux colonnes** (`inscrite par` ⁄ `appliquée par — code
+existe`), classées par mesure `git show --stat`. **Limite persistante :** la distinction est tenue à la
+main ; seul un test lisant le log et vérifiant `git cat-file` sur la colonne « appliquée » la garderait —
+non construit. **Deuxième occurrence de la proposition (6)** ; distincte de la (7) — ce n'est pas la
+décision-à-deux-issues, c'est le **registre de traçabilité qui se trompe lui-même**.
 
 ---
 

@@ -6,24 +6,38 @@ n'attestait qu'elle avait atteint le code. Ce registre est le **chaînon** manqu
 y porte le commit qui l'a appliquée, ou l'aveu qu'elle ne l'a pas été. (Proposition (6) du registre
 des règles découvertes.)
 
-| Décision | Objet | Statut | Appliquée par |
-|---|---|---|---|
-| **D-001** | Option 1a — artefact de promotion à côté du Record | rendue | *(décision de conception ; pas de code — l'artefact n'existe pas encore)* |
-| **D-002 v2** | Modèle B″ — projections non gouvernées | **rendue, NON appliquée** | ⚠️ **exécution en attente** — lot B″ chiffré (38 pages), jamais exécuté. **PENDING par conception** (l'Architecte l'a chiffré, pas ordonné d'exécuter), distinct de D-005 (propagation oubliée) |
-| **D-003** | Fonction d'agrégation | **SANS OBJET** | rendue caduque — rien à appliquer |
-| **D-004** | Série `PROMO-xxx` hors plages (`expected_ranges`) | rendue + appliquée | **`702c2d7`** (série PROMO déclarée, garde de plage) |
-| **D-005** | OCR-123 → Phase 2, partition **29·3·1** | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) — *rendue bien avant ; jamais propagée pendant six tours* ; dossier de promotion propagé le même jour |
-| **D-006** | Régime `[GRAVÉ]` — source externe + renvoi | rendue + appliquée | **`528e303`** (2ᵉ réédition d'ARCHITECTURE-V3), `ce7c8d0` (motif unique) |
-| **D-007** | Seau B suit le régime des orphelins | rendue + appliquée | **`528e303`** (2ᵉ réédition, même lot) |
-| **D-008** | Q1 critère sur le contenu (→ retiré) · Q2 structurer les dettes | rendue + appliquée | **`31cad76`** (Q2 dettes structurées) ; Q1 → retrait, appliqué via D-009 |
-| **D-009** | Retirer « modification substantielle » de la grille | **rendue + APPLIQUÉE** | **`733646f`** (2026-07-24) |
-| **D-011** | P9 vise le statut **protocole**, pas le documentaire — le champ `Status` est hors P9, **pas de violation** | **rendue + APPLIQUÉE** | **`8a8b61d`** (2026-07-24, correction de la PARTIE III) — ⚠️ **conséquence NON tranchée : la seconde source reste ouverte → D-012.** Exige aussi une **précision de P9 dans OCR-006** (« any published representation » est général ; OCR-006 en Phase 3, jamais relu). **✅ Motif intact — confirmé et généralisé par D-014** (le split protocole/documentaire vaut pour les 10 principes, plus P9 seul) |
-| **D-012** | Le **champ gouverne** ; l'artefact `PROMO` est une **trace de décision**, pas un second porteur du statut | **rendue, puis RETIRÉE (D-013)** | 🗑️ **RETIRÉE — ne pas appliquer, conservée au registre avec son motif** (premier cas d'usage : une décision retirée reste tracée). Contredisait Q3/Q5 (« le statut n'est **jamais écrit**, il est **calculé** ») ; D-013 a tranché **Q3 prévaut**, donc D-012 tombe. **Sous D-014**, la question « lequel gouverne » devient un **choix de gouvernance**, non un mandat P9 — D-012 **reste retirée** |
-| **D-013** | **Q3 prévaut** : le statut est **dérivé des faits** par un **résolveur** ; la révocation est un **second fait**, jamais un changement d'état | **rendue, NON appliquée** | ⏸️ **rien appliqué — sous-question ouverte.** L'option retenue portait **deux issues** (champ `Status` projection OU retiré) — la mesure a montré qu'elles **présupposent toutes deux le résolveur inexistant** → **sous-question REPORTÉE** en aval du résolveur (ligne dédiée). Défaut de formulaire (2ᵉ du même type, cf. proposition (7)). Trace D-012 comme retirée. D-010 reste en aval. **⚠️ Motif Q3/P9 caduc sous D-014** : Q3 exigeait le résolveur *au nom de P9* ; P9 ne gouverne plus le statut documentaire. **La décision reste VALIDE** (résolveur, révocation = second fait) mais comme **choix de gouvernance**, **justification à réécrire** — précédent **D-001** (retenue sur une enveloppe non attestée) |
-| **D-014** | **Les 10 principes d'OCR-006 visent le PROTOCOLE.** Les Records `.md` sont des **artefacts documentaires** ; **P2, P5, P7** (et par extension les autres) **ne les gouvernent pas** | **rendue + APPLIQUÉE** *(reclassement — pas de code)* | **`c447935`** (2026-07-24) — **généralise D-011** (fait pour P9 seul). Conséquences inscrites : motif de **D-013 à réécrire** ; **amendement d'OCR-006 obligatoire** (portée protocole à déclarer) ; **portée de P10 remontée → D-015** |
-| **D-015** | **Un régime documentaire distinct est à écrire** — nouveau Record gouvernant le corpus documentaire (que D-014 laisse sans principe), **à instruire avant clôture du chantier**. Régime **COMPLET** (pas de version minimale) | **rendue** *(trajectoire ; pas de rédaction)* | **`357d924`** (2026-07-24) — mesures inscrites ci-dessous : **dette distincte chiffrée**, **série du Record** (⚠️ 0 id libre ; OCR-006:27 contredit D-014), **périmètre du sans-règle**, **chaîne de dépendances**. `PROMO-001` et **D-010** passent **en aval de D-015** |
-| **D-016** | **L'artefact `PROMO` EST l'approbation Opus X** (champ `authority`) — comble le déficit « forme de l'approbation ». Le statut `Normative` en est **dérivé** (D-013), jamais persisté | **rendue** *(trajectoire ; pas de code)* | **`c678947`+** (cadrage) — croise **D-013** (statut dérivé) et **D-017** (grounding tracé au Record) ; ordre gravé ci-dessous. PROMO **présuppose** le grounding, ne le porte pas |
-| **D-017** | **Le Record porte son verdict de grounding AVANT promotion** (champ verdict, réf. rapport `OCR-GROUND-001`) — **ferme la boucle ouverte**, comble le raccord absent (mesure du 4ᵉ lot) | **rendue** *(trajectoire ; pas de code)* | **`c678947`+** (cadrage) — grounding tracé **dans le Record**, jamais dans PROMO (sinon 2ᵉ source, P9) |
+**Deux colonnes distinctes (correction du 2026-07-25).** *« Inscrite par »* = le **rendu** est gravé dans un
+document. *« Appliquée par (code existe) »* = un **artefact de code** (test/générateur) **enacte et garde**
+la décision. Une décision peut être **inscrite sans être appliquée** — sans cette distinction, « appliquée
+par » **ment par construction**. Classement établi par mesure (`git show --stat` : le commit a-t-il touché
+`lib/`/`scripts/`/`*.test` ou seulement `docs/`).
+
+| Décision | Objet | État | Inscrite par (rendu gravé) | **Appliquée par (code existe)** |
+|---|---|---|---|---|
+| **D-001** | Artefact PROMO à côté du Record | rendue (conception) | *(ce log)* | — · *appl. = étape 6* |
+| **D-002 v2** | Modèle B″ — projections | **rendue, NON appliquée** | *(ce log)* | — · **PENDING par conception** (lot B″, jamais exécuté) |
+| **D-003** | Fonction d'agrégation | **SANS OBJET** | — | — |
+| **D-004** | Série `PROMO` hors plages + garde | **rendue + APPLIQUÉE** | `702c2d7` | **`702c2d7`** — garde de plage, `manifest.attestation.test.ts` |
+| **D-005** | OCR-123 → Phase 2, partition **29·3·1** | **rendue + APPLIQUÉE** | `733646f` *(propagation docs)* | **`48be4cd`** — partition = `HORS_PHASE_1` dans `promotionDebt.test.ts` *(⚠️ `733646f` était docs-only)* |
+| **D-006** | Régime `[GRAVÉ]` | **rendue + APPLIQUÉE** | `528e303` *(ARCHITECTURE-V3)* | **`ce7c8d0`** — garde de tokens, `candidateInventory.test.ts` |
+| **D-007** | Seau B = régime des orphelins | **rendue + APPLIQUÉE** | `528e303` | `ce7c8d0` *(même garde, tokens candidats)* |
+| **D-008** | Q2 structurer les dettes | **rendue + APPLIQUÉE** | `31cad76` *(table DETTES)* | **`48be4cd`** — `promotionDebt.test.ts` lit la table *(Q1 → retrait via D-009)* |
+| **D-009** | Retirer « modification substantielle » | **rendue, INSCRITE — NON appliquée** | `733646f` *(retrait en docs)* | **—** · *aucun test ne garde le retrait ; il vit en docs* |
+| **D-010** | Grain de l'artefact PROMO | **SUSPENDUE** | *(ce log)* | — · *rouvre à l'étape 6* |
+| **D-011** | P9 vise le protocole, pas le documentaire | **rendue, INSCRITE — NON appliquée** | `8a8b61d` *(PARTIE III corrigée)* | **—** · *appl. normative = amendement OCR-006 (étape 1)* |
+| **D-012** | « le champ gouverne » | **RETIRÉE (par D-013)** | `6f14824` *(inscrite puis retirée)* | **—** · *jamais — conservée au registre avec son motif* |
+| **D-013** | Q3 : statut dérivé (résolveur), révocation = 2ᵉ fait | **rendue, NON appliquée** ; sous-question **REPORTÉE** | `77c9df0` | **—** · *résolveur inexistant ; appl. = étapes 4/6 ; motif Q3/P9 caduc sous D-014, décision valide (gouvernance)* |
+| **D-014** | Les 10 principes visent le PROTOCOLE | **rendue, INSCRITE — NON appliquée** *(reclassement, pas de code)* | `c447935` | **—** · *appl. = amendement OCR-006 **v2.0.0** (étape 1)* |
+| **D-015** | Régime documentaire (consolidation du GAP) | **rendue, INSCRITE — NON appliquée** | `357d924` | **—** · *le régime n'existe pas ; appl. = étapes 2/3/7* |
+| **D-016** | PROMO **EST** l'approbation Opus X (`authority`) | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5/6* |
+| **D-017** | Le Record porte son **verdict de grounding** avant promotion | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5* |
+
+**Compte (mesuré par `git show --stat`) — 17 décisions :**
+- **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
+- **Inscrites, NON appliquées (commit d'inscription, aucun code) : 7** — D-009, D-011, D-013, D-014, D-015, D-016, D-017.
+- **Sans application (états) : 5** — D-001 (conception), D-002 (pending), D-003 (sans objet), D-010 (suspendue), D-012 (retirée).
+- **Lignes qui affirmaient « appliquée » alors que c'était une inscription : 6** — D-009, D-011, D-014, D-015, D-016, D-017 *(corrigées ci-dessus)*. **+ 3 citations imprécises** (application réelle mais commit **docs** cité au lieu du commit **code**) : D-005, D-007, D-008 *(commit code rétabli : `48be4cd`/`ce7c8d0`)*.
+- **Ironie tracée :** la **parade** de la proposition (6) — ce log — **enfreignait la proposition (6)** : sa ligne fondatrice disait « D-005 et D-009 portent leur commit d'application `733646f` », or `733646f` est **docs-only**. Occurrence inscrite au registre (proposition (6), 2ᵉ occurrence).
 
 ## Décisions EN ATTENTE chez l'Architecte
 
