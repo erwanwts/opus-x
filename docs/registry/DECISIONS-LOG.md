@@ -474,3 +474,54 @@ geste le 2026-07-20 (mesure 3, 1er lot). **Si un Record de régime est ajouté**
 qui déclare sa plage **répare aussi l'omission d'OCR-006** — étendre `OCR-000–005` à `OCR-000–00X` couvre
 006 **et** le nouveau. **Une occasion, une version d'OCR-001, deux dettes réglées.** *(À défaut, l'anomalie
 OCR-006 subsiste comme violation dormante de `OCR-001:31`.)*
+
+---
+
+## Précondition D-015 — mesures du 2026-07-25 (3ᵉ lot : grounding, 3 déficits, priorisation)
+
+### Mesure 1 — état réel du grounding : le dispositif EXISTE, la boucle est OUVERTE
+
+- **Review Status des 33 Records — mesuré :** **aucun n'est passé « groundé »**. 17 portent « Pending
+  **machine-section diff** against production code », 16 « Pending **editorial** review ». Sur les **29 de
+  Phase 1** : **15** en « machine-section diff » (grounding doc↔code requis), **14** en « editorial ». **Et
+  les 33 sont `Status: Draft`** — 0 promu.
+- **⚠️ Le dispositif de grounding est DÉJÀ ÉCRIT — `OCR-GROUND-001`** (`docs/web/OCR-GROUND-001-*` : mandat,
+  addendum, **rapports F1 evidence / F2 framework / F3 issuer**). **MANUEL** (diff doc↔**code et migrations
+  VERSIONNÉS** du dépôt, jamais la base live ; addendum §B), pilotes OCR-110/101. **A tourné** — verdicts
+  « **Conforme** » dominants.
+- **Périmètre couvert (mesuré) :** F1 = {110,111,112,113,114}, F2 = {105,113,115,116,117,118,119}, F3 =
+  {120,121} → **13 Records de concept groundés**. Des **15 machine-facing de Phase 1**, **~9 ont un rapport**
+  (105,110,111,112,113,115,119,120,121) ; **6 non** (101,104,106,107,108,109).
+- **La boucle est OUVERTE :** le grounding a été **produit en rapports** mais **(a)** non réécrit dans le
+  `Review Status` des Records (tous encore « Pending »), **(b)** aucune promotion `Draft→Normative` n'a
+  suivi, **(c)** la **grille de promotion attestée ne consomme pas** ces rapports. **Constat : grounding ≠
+  0 % — il est fait à ~60 % des machine-facing de Phase 1, mais déconnecté des Records et de la promotion.**
+
+### Mesure 2 — TROIS déficits, confirmé (pas deux)
+
+Le déficit de **forme de l'approbation Opus X** est de **même nature** que les deux du gap documentaire
+(règle absente d'un Record). **La liste des déficits du régime documentaire est donc :**
+
+1. **Intégrité documentaire** — le sceau sha256 des `.md` (manifeste) n'a pas de Record (OCR-113 = payloads Evidence).
+2. **Transmission** — la discipline chemin + hash n'a pas de Record (convention de session).
+3. **Forme de l'approbation Opus X** — requise (`OCR-000:47`) et tracée (`OCR-005:55`), mais l'**acte** (qui signe, quel artefact) n'est **défini nulle part**.
+
+### Mesure 3 — les 23 concepts non lus : priorisés par métadonnée, non lus
+
+- **Kind/Layer :** les 23 sont **tous** couche 100 (concepts de protocole), **aucun n'est `Kind: Meta —
+  Governance`** (seuls 000–005 le sont). Le seul concept ayant gouverné du documentaire était **OCR-124**
+  (Canonical Registry) — **déjà lu**.
+- **Shortlist « risque de renverser une prémisse », vérifiée par la Canonical Definition (1 ligne, non lus) :**
+  - **OCR-119** Framework Registry → « the **resolution layer** … skill-mapping table » = mécanisme
+    protocole, **pas** un registre documentaire. Grounded (F2). **Risque BAS.**
+  - **OCR-111** Evidence Source → « the **provenance model** … every Immutable Fact carries verifiable
+    attribution » = provenance **protocole** (comme OCR-113 pour l'intégrité), **autre objet** que la
+    transmission documentaire. **BAS**, mais adjacent au déficit « provenance » — lecture de confirmation utile.
+  - **OCR-106** Trust Status → « Trust Status is the current **computed output** » = statut **protocole**
+    calculé (P9-adjacent), pas le `Status` documentaire. **BAS**, adjacent à P9.
+- **Conclusion :** **le risque de renversement de prémisse est largement CLOS.** La gouvernance documentaire
+  est concentrée dans **OCR-000…005 + OCR-124** — tous lus. Aucun des 23 n'est un concept de gouvernance
+  documentaire. **Les deux seuls valant une lecture de confirmation** (car adjacents à des déficits nommés) :
+  **OCR-111** (provenance) et **OCR-106** (statut/P9) — vraisemblablement objets protocole distincts. Les 21
+  autres : protocole pur (identité, trust, vérification, passeport, skills, issuers), **risque nul** pour le
+  régime. *(Classement par métadonnée, non certifié par lecture intégrale.)*
