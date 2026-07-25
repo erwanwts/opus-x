@@ -31,7 +31,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-015** | Régime documentaire (consolidation du GAP) | **rendue, INSCRITE — NON appliquée** | `357d924` | **—** · *le régime n'existe pas ; appl. = étapes 2/3/7* |
 | **D-016** | PROMO **EST** l'approbation Opus X (`authority`) | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5/6* |
 | **D-017** | Le Record porte son **verdict de grounding** avant promotion | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5* |
-| **D-018** | **Un Record Draft s'édite en place** — l'amendement d'OCR-006 est une **édition**, pas une v2.0.0 (résout le point 4 de la conception 1a). Règle de **régime documentaire** (déficit D-015) | **rendue, INSCRITE — NON appliquée** | **`<ce commit>`** | **—** · *gouverne l'édition de l'étape 1 (Version **inchangée**) ; règle tracée au régime (D-015)* |
+| **D-018** | **Un Record Draft s'édite en place** — l'amendement d'OCR-006 est une **édition**, pas une v2.0.0 (résout le point 4 de la conception 1a). Règle de **régime documentaire** (déficit D-015) | **rendue, INSCRITE — NON appliquée** |  **`4b11bd6`** | **—** · *gouverne l'édition de l'étape 1 (Version **inchangée**) ; règle tracée au régime (D-015)* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
