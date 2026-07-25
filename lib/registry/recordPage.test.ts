@@ -45,7 +45,7 @@ describe('FRONTIÈRE — paramétrable, jamais figée', () => {
       if (raw.includes('Grounding note (removed at publication)')) notes++;
     }
     expect(notes).toBe(17);
-    expect(differ).toBe(33); // tous diffèrent : la règle `---` elle-même sort du corps
+    expect(differ).toBe(RECORDS.length); // INVARIANT : tous diffèrent (la règle `---` sort du corps) — dérivé du corpus
   });
 
   it('`first-hr` n’expose JAMAIS un bloc marqué « removed at publication »', () => {

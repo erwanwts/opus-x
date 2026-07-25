@@ -3,8 +3,8 @@
   "generated_from": "docs/web/registry-import/OCR-100",
   "expected_ranges": "OCR-000..009,OCR-100..125,PROMO-001..001",
   "excluded_files": [],
-  "file_count": 33,
-  "anomaly_count": 66,
+  "file_count": 36,
+  "anomaly_count": 68,
   "records": [
     {
       "source_filename": "OCR-000_Canonical_Knowledge_Governance.md",
@@ -160,6 +160,78 @@
       "classification": null,
       "normative_informative": "Normative (Canonical Statement, Normative Consequences) · Informative (Introduction, Motivation, Notes, Conclusion) · Normative sections alone create, modify or remove normative obligations; informative sections create no independent obligation and shall never be interpreted as extending, restricting or redefining their meaning; in the event of an apparent discrepancy, the normative sections take precedence.",
       "checksum_sha256": "bf099b8cbac811a2b94ef6fca50b2c44e0ead13d54a64f41c45ce2a9fb497e81",
+      "pdf_homonym": false,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-007_Documentary_Integrity.md",
+      "document_id": "OCR-007",
+      "title": "OCR-007 — Documentary Integrity",
+      "canonical_id": "documentary-integrity",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Integrity Rule, Boundary) · Informative (Motivation, FAQ, Summaries)",
+      "checksum_sha256": "0081362192e57d1d488539c95e5b41aae1a997dc28f218a2fc6e73e88c6a1f46",
+      "pdf_homonym": false,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-008_Document_Transmission.md",
+      "document_id": "OCR-008",
+      "title": "OCR-008 — Document Transmission",
+      "canonical_id": "document-transmission",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Transmission Rule, Boundary) · Informative (Motivation, FAQ, Summaries)",
+      "checksum_sha256": "8d734c78e6f3362e173c5868e8c74d5e4ff45d43af8cbad3a629e4dd66264973",
+      "pdf_homonym": false,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
+    },
+    {
+      "source_filename": "OCR-009_Approval_Form.md",
+      "document_id": "OCR-009",
+      "title": "OCR-009 — Approval Form",
+      "canonical_id": "approval-form",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Approval Rule, Boundary) · Informative (Motivation, The Founding Approval, FAQ, Summaries)",
+      "checksum_sha256": "372caf7a76d4dca615a0143cad41a8361ae6ec4c25c2aef430c3d000dc4bc765",
       "pdf_homonym": false,
       "header_format": "md-table",
       "metadata_fields_found": [
@@ -887,6 +959,27 @@
     },
     {
       "type": "metadata_incomplete",
+      "file": "OCR-007_Documentary_Integrity.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-008_Document_Transmission.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-009_Approval_Form.md",
+      "fields": [
+        "classification"
+      ]
+    },
+    {
+      "type": "metadata_incomplete",
       "file": "OCR-100_World_Skills_Protocol.md",
       "fields": [
         "classification"
@@ -1216,15 +1309,6 @@
       "file": "OCR-125_Identity.md",
       "pdf": "OCR-125_Identity.pdf",
       "note": "présence signalée seulement — aucun parsing PDF"
-    },
-    {
-      "type": "missing_in_sequence",
-      "range": "OCR-000..009",
-      "missing": [
-        "OCR-007",
-        "OCR-008",
-        "OCR-009"
-      ]
     },
     {
       "type": "missing_in_sequence",

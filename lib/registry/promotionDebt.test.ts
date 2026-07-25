@@ -55,9 +55,11 @@ describe('« aucune dette ouverte » — critère de Phase 1, rejoué depuis la 
     expect(recordsEnDetteOuverte().sort()).toEqual(['OCR-100', 'OCR-114']);
   });
 
-  it('la partition couvre 33 Records ; Phase 1 = 29', () => {
+  it('la partition couvre 36 Records ; Phase 1 = 32 (FAIT gravé — +OCR-007/008/009, D-021)', () => {
     const total = readdirSync(CORPUS).filter((f) => /^OCR-\d+_.*\.md$/.test(f)).length;
-    expect(total).toBe(33);
-    expect(total - HORS_PHASE_1.size).toBe(29);
+    // FAIT, PAS invariant : 33 + 3 Records du régime (OCR-007/008/009) = 36. Un 37ᵉ Record DOIT
+    // casser ce test — la population de promotion est un nombre attendu, pas une conséquence à dériver.
+    expect(total).toBe(36);
+    expect(total - HORS_PHASE_1.size).toBe(32); // HORS_PHASE_1 = {OCR-100, OCR-114, OCR-123, OCR-006}
   });
 });

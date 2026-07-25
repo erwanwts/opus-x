@@ -13,6 +13,23 @@ import path from 'node:path';
 
 const FOUNDING = path.join(process.cwd(), 'content/registry/founding');
 const OCR_MANIFEST = path.join(process.cwd(), 'content/registry/_manifest.json');
+const OCR009 = path.join(
+  process.cwd(),
+  'docs/web/registry-import/OCR-100/OCR-009_Approval_Form.md',
+);
+
+// ── Non-circularité : la section fondatrice d'OCR-009 reste DESCRIPTIVE, à jamais ──
+// OCR-009 DÉCRIT founding/ sans le gouverner ; un MUST/SHALL sur founding/ rouvrirait la circularité que
+// RATIF-001 a fermée. Le détecteur borne la vérification à la section « The Founding Approval (Informative) ».
+const NORMATIVE_KEYWORD = /\b(MUST NOT|SHALL NOT|MUST|SHALL)\b/;
+function sectionText(md: string, headingIncludes: string): string {
+  const lines = md.split(/\r?\n/);
+  const start = lines.findIndex((l) => l.startsWith('## ') && l.includes(headingIncludes));
+  if (start < 0) throw new Error(`OCR-009 : section « ${headingIncludes} » introuvable`);
+  let end = lines.findIndex((l, i) => i > start && l.startsWith('## '));
+  if (end < 0) end = lines.length;
+  return lines.slice(start + 1, end).join('\n');
+}
 
 // ── Dispositif de plage, identique à D-004 (manifest.attestation.test) ────────
 type Range = { prefix: string; start: number; end: number };
@@ -145,5 +162,20 @@ describe('0a — garde de CONTENU de RATIF-001 : declares_normative = {OCR-000, 
         `RATIF-001 doit déclarer exactement {OCR-000, OCR-005} — a déclaré ${JSON.stringify(fact.declares_normative)}`,
       ).toBe(true);
     }
+  });
+});
+
+describe('OCR-009 — non-circularité : la section fondatrice reste DESCRIPTIVE (aucun MUST/SHALL)', () => {
+  it('la section « The Founding Approval (Informative) » ne porte AUCUN énoncé normatif', () => {
+    const section = sectionText(readFileSync(OCR009, 'utf8'), 'The Founding Approval');
+    expect(
+      NORMATIVE_KEYWORD.test(section),
+      'la section fondatrice doit rester descriptive — un MUST/SHALL sur founding/ rouvrirait la circularité',
+    ).toBe(false);
+  });
+
+  it('MUTATION — le détecteur attrape un MUST/SHALL glissé, laisse passer le descriptif', () => {
+    expect(NORMATIVE_KEYWORD.test('founding/ SHALL be governed by this Record'), 'SHALL glissé → détecté').toBe(true);
+    expect(NORMATIVE_KEYWORD.test('founding/ is described here; it governs nothing'), 'descriptif → non détecté').toBe(false);
   });
 });

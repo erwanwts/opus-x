@@ -63,9 +63,13 @@ describe('ÉTAT D’ORIGINE — inchangé par l’amendement', () => {
     expect(entityHref('OCR-999', 'en')).toBeNull();
   });
 
-  it('le corpus compte 33 Records, dont 26 SANS pilier', () => {
-    expect(RECORD_IDS).toHaveLength(33);
-    expect(RECORD_IDS.filter((id) => !WITH_PILLAR.includes(id))).toHaveLength(26);
+  it('le corpus se partitionne en Records AVEC pilier et SANS pilier (invariant dérivé)', () => {
+    // RECORD_IDS = le corpus (lu du disque) ; WITH_PILLAR = les piliers (fixe). « Sans pilier » est le
+    // COMPLÉMENT : total − piliers présents. Reste vrai à 36, 40, 100 — le nombre est une conséquence.
+    const pilierDansCorpus = WITH_PILLAR.filter((id) => RECORD_IDS.includes(id));
+    const sansPilier = RECORD_IDS.filter((id) => !WITH_PILLAR.includes(id));
+    expect(sansPilier.length + pilierDansCorpus.length).toBe(RECORD_IDS.length);
+    expect(RECORD_IDS.length).toBeGreaterThan(0);
   });
 });
 

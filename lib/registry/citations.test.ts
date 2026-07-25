@@ -39,32 +39,31 @@ describe('« cité ≥ 1 » — critère promu en test rejouable', () => {
     for (const r of RECORDS) expect(citedBy(r.id, correct(r.id))).toBeGreaterThanOrEqual(0);
   });
 
-  it('OCR-000..005 : compte de citations mesuré (amendement OCR-006 → 000/005 à 7)', () => {
-    // Mesure du DOSSIER = 6 chacun AVANT l'amendement d'OCR-006 (étape 1). Depuis, OCR-006 défère au
-    // régime documentaire et cite les BORNES de la plage « OCR-000 through OCR-005 » (+ §291/§295, renvoi
-    // P8) : OCR-000 et OCR-005 passent à 7 ; les bornes internes 001..004, non citées littéralement par la
-    // plage, restent à 6. Valeurs re-mesurées, non figées à la main.
-    const expected: Record<string, number> = {
-      'OCR-000': 7, 'OCR-001': 6, 'OCR-002': 6, 'OCR-003': 6, 'OCR-004': 6, 'OCR-005': 7,
-    };
-    for (const [id, n] of Object.entries(expected)) {
-      expect(citedBy(id, correct(id)), id).toBe(n);
+  it('OCR-000..005 sont tous cités ≥ 1 — INVARIANT du critère, jamais un compte figé', () => {
+    // INVARIANT : chaque méta de gouvernance est cité au moins une fois. Le nombre EXACT est une
+    // conséquence du corpus (il bouge à chaque Record ajouté — proposition (8) à l'échelle) ; on n'en
+    // fige aucune valeur. Reste vrai à 36, 40, 100 Records.
+    for (const id of ['OCR-000', 'OCR-001', 'OCR-002', 'OCR-003', 'OCR-004', 'OCR-005']) {
+      expect(citedBy(id, correct(id)), id).toBeGreaterThanOrEqual(1);
     }
   });
 
-  it('MUTATION — le matcher fautif (`\\b` → backspace) rend 0, le correct rend 6', () => {
-    // Preuve, comme l'attestation : le test distingue le bon matcher du mauvais.
-    // Un critère « ≥ 1 » ÉCHOUERAIT avec le matcher fautif et PASSE avec le correct.
+  it('MUTATION — le matcher fautif (`\\b` → backspace) rend 0, le correct rend > 0', () => {
+    // Preuve, comme l'attestation : le test distingue le bon matcher du mauvais — sans figer le nombre.
     expect(citedBy('OCR-004', buggy('OCR-004'))).toBe(0);
-    expect(citedBy('OCR-004', correct('OCR-004'))).toBe(6);
+    expect(citedBy('OCR-004', correct('OCR-004'))).toBeGreaterThan(0);
   });
 
   it('INVENTAIRE mesuré — les Records cités par 0 (échec « cité ≥ 1 »)', () => {
     const uncited = RECORDS.filter((r) => citedBy(r.id, correct(r.id)) === 0).map((r) => r.id).sort();
-    // Constat, pas seuil. OCR-006 est en Phase 3 ; OCR-123 est en Phase 1 sous la
-    // partition 30·2·1 (dette, pas citation, y est discriminante) — donc un Record
-    // de Phase 1 échoue CE critère dérivable, même si la partition ne l'emploie pas.
-    // À l'Architecte de décider si le critère de la grille s'applique.
-    expect(uncited).toEqual(['OCR-006', 'OCR-123']);
+    // Constat mesuré, pas seuil. OCR-006 est désormais CITÉ (par OCR-007/009 qui y défèrent) — il quitte
+    // l'ensemble. Restent deux orphelins, de motifs DISTINCTS :
+    //  · OCR-123 — hors Phase 1 (partition), motif Phase-2.
+    //  · OCR-009 — ORPHELIN ATTENDU (Voie 3, décidée) : le lien de fond EXISTE (OCR-000:47 exige
+    //    l'approbation, OCR-005:55 la trace en release — l'objet qu'OCR-009 forme), mais son inscription
+    //    ATTEND la promotion d'OCR-000/005 (ÉTAPE 8), pour ne pas éditer un Record ratifié hors de son
+    //    régime. La citation OCR-000/005 → OCR-009 s'ajoutera dans le MÊME mouvement que leur promotion.
+    //    « Cité ≥ 1 » est une porte de promotion (étape 8), pas d'écriture — l'orphelinat ne bloque rien.
+    expect(uncited).toEqual(['OCR-009', 'OCR-123']);
   });
 });

@@ -30,7 +30,7 @@ describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
 
   it('ne déclare jamais une URL en noindex — les deux signaux ne se contredisent pas', () => {
     const noindex = recordPlanEntries().filter((r) => !r.indexable).map((r) => r.url);
-    expect(noindex).toHaveLength(33);
+    expect(noindex).toHaveLength(RECORDS.length); // INVARIANT : = nb de Records (tous Draft → tous noindex)
     const urls = new Set(indexPlan().map((e) => e.url));
     for (const u of noindex) expect(urls.has(u), u).toBe(false);
   });
@@ -56,13 +56,16 @@ describe('PLAN DE DÉCOUVERTE — tout le corpus publié', () => {
     // /records lui-même, qui n'est aucune des 91 pages mais est bien une URL
     // publiée et découvrable. Mesuré, non arrondi.
     const plan = discoveryPlan();
-    expect(plan).toHaveLength(11 + 1 + 91);
-    expect(plan).toHaveLength(103);
+    // INVARIANT dérivé : 11 éditoriales + l'index /records + (pages du registre). Les pages du registre =
+    // une par Record (RECORDS.length) + les entités fixes (37 prédicats + 15 familles + 6 types). Le total
+    // est une CONSÉQUENCE du corpus, jamais un nombre figé.
+    const registryPages = RECORDS.length + 37 + 15 + 6;
+    expect(plan).toHaveLength(11 + 1 + registryPages);
   });
 
   it('expose les 91 pages du registre, y compris les 33 en noindex', () => {
     const urls = discoveryPlan().map((e) => e.url);
-    expect(urls.filter((u) => /\/records\/ocr-\d+$/.test(u))).toHaveLength(33);
+    expect(urls.filter((u) => /\/records\/ocr-\d+$/.test(u))).toHaveLength(RECORDS.length); // INVARIANT : une page par Record
     expect(urls.filter((u) => u.includes('/records/predicates/'))).toHaveLength(37);
     expect(urls.filter((u) => u.includes('/records/families/'))).toHaveLength(15);
     expect(urls.filter((u) => u.includes('/records/types/'))).toHaveLength(6);
@@ -99,8 +102,9 @@ describe('L’INSTRUMENT DE VÉRIFICATION — un harnais non testé ne mesure ri
     // 92ᵉ ligne non lue faute de saut de ligne final. Le compte est désormais
     // ASSERTÉ, pas supposé.
     const paths = registryPaths();
-    expect(paths).toHaveLength(92);
-    expect(paths).toHaveLength(1 + 33 + 37 + 15 + 6);
+    // INVARIANT dérivé : l'index /records (1) + une page par Record (RECORDS.length) + les entités fixes
+    // (37 prédicats + 15 familles + 6 types). Le compte est une CONSÉQUENCE du corpus, plus une valeur figée.
+    expect(paths).toHaveLength(1 + RECORDS.length + 37 + 15 + 6);
   });
 
   it('aucun chemin vide, aucun doublon, aucun caractère de contrôle', () => {

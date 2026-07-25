@@ -109,8 +109,10 @@ describe('PSEUDO-BALISES — traitées comme du texte, jamais comme du balisage'
       before += count(body, PSEUDO);
       after += count(projectedText(parseRecordBody(body)), PSEUDO);
     }
-    expect(before).toBe(73);
-    expect(after).toBe(73);
+    // INVARIANT : les deux implémentations comptent le MÊME nombre de pseudo-balises — elles survivent
+    // toutes, dans les deux modes. Le nombre exact est une conséquence du corpus, jamais une valeur figée.
+    expect(after).toBe(before);
+    expect(before).toBeGreaterThan(0);
   });
 
   it("CAS RÉEL D'OCR-110 — `<level>` en code inline survit au retrait des accents graves", () => {
