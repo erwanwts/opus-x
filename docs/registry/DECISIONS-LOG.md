@@ -32,6 +32,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-016** | PROMO **EST** l'approbation Opus X (`authority`) | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5/6* |
 | **D-017** | Le Record porte son **verdict de grounding** avant promotion | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5* |
 | **D-018** | **Un Record Draft s'édite en place** — l'amendement d'OCR-006 est une **édition**, pas une v2.0.0 (résout le point 4 de la conception 1a). Règle de **régime documentaire** (déficit D-015) | **rendue, INSCRITE — NON appliquée** |  **`4b11bd6`** | **—** · *gouverne l'édition de l'étape 1 (Version **inchangée**) ; règle tracée au régime (D-015)* |
+| **D-019** | **Ratification fondatrice unique** — acte **daté, signé Opus X, hors processus ordinaire**, qui rend `{OCR-000, OCR-005}` Normative en premier (sortie de la circularité, `OCR-000:35`). 4ᵉ déficit du régime (D-015) : forme + **lieu** de l'acte | **rendue, INSCRITE — NON appliquée** | **`<ce commit>`** | **—** · *mesures ci-dessous ; ordre + voie = D-020 ; le **lieu** de l'acte n'existe pas (à créer par le régime)* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
@@ -45,7 +46,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
-| **D-019** | **Amorçage de l'autorité** — par quelle autorité les **premiers** OCR deviennent Normative, alors que les règles qui gouvernent la promotion (OCR-000/005) sont **elles-mêmes en Draft** ? Circularité ; la sortie est **hors corpus** (Opus X, `OCR-000:35`). Inclut l'**ordre intra-Phase-1** : le portail (OCR-000…005) doit-il être promu **avant** les 23 concepts qu'il gouverne (« étape 0 ») ? | **remontée du point d'opposabilité, non rendue** — mesures ci-dessous |
+| **D-020** | **Ordre de promotion + voie de la ratification** — (a) **ordre intra-Phase-1** : le portail `{OCR-000, OCR-005}` promu **avant** les 23 concepts (« étape 0 ») ; (b) la ratification **émet-elle un PROMO fondateur** (donc pas hors processus) **ou un objet d'une autre nature** (deux voies vers Normative → le résolveur D-013 lit les deux) ? Dépend de D-019 mais gravée à part | **remontée par D-019, non rendue** — mesures ci-dessous |
 | **D-013 · sous-question** | **Le sort du champ `Status` — REPORTÉE en aval du résolveur.** La mesure a tranché la forme : les **deux** issues (projection *et* retrait) **présupposent le résolveur, qui n'existe pas**. La question n'est donc pas « projection ou retrait » mais « **à quel moment** » — et le moment est **après la conception du résolveur**. Motif mesuré : **4 lecteurs** du champ, **2 projections** (`api.ts:56`, `build-migration-manifest.mjs:74`), **résolveur inexistant** | **REPORTÉE** (en aval du résolveur) |
 | **Nouveau Record — régime documentaire** | **À écrire (D-015), avant clôture.** Gouverne le corpus documentaire : amendement, intégrité, versioning documentaire, cycle de vie, promotion/révocation, séries/plages, provenance, normalisation. Périmètre = inventaire du sans-règle (mémo ci-dessous). **Série non attribuable** : 0 id libre dans `expected_ranges` (mémo série) | **à instruire — RÉGIME COMPLET** |
 | *(amendement — **OBLIGATOIRE**, dans l'option D-013/Q3 cochée)* | **Déclarer dans OCR-006 que sa portée est le PROTOCOLE** (D-014). P9:250 « any published representation » est **général** → à restreindre. **Principes concernés :** **P2, P5, P7** (nommés par D-014), **P9** (« any published representation »), **P8** (nomme « documentary versioning » — tension). **⚠️ Contradiction mesurée : `OCR-006:27`** dit *« Its scope is the set of architectural constraints to which the **entire corpus** is subject »* — le Record **s'auto-attribue le corpus entier**, ce que D-014 **retire**. L'amendement doit lever cette contradiction, pas seulement P9:250. OCR-006 en Phase 3, **jamais relu, cité par 0** | à instruire (obligatoire) |
@@ -747,3 +748,47 @@ méta — elle les contient (6 des 29).**
 - **Matière de D-019 :** l'amorçage doit rendre `{OCR-000, OCR-005(, OCR-002)}` Normative **d'abord** (hors
   corpus), **puis** un **ordre intra-Phase-1** promeut le reste des méta, **puis** les concepts. C'est
   peut-être **l'étape 0** que vous pressentiez. *(Constat — je ne conçois pas la séquence.)*
+
+---
+
+## D-019 rendue (ratification fondatrice) & D-020 — mesures du 2026-07-25 (constat, aucune conception)
+
+### Mesure 3 (tranchée d'abord — elle dimensionne la ratification) — OCR-002 est HORS de l'ensemble minimal
+
+**Verbatim :** `OCR-000:47` « Promotion `Draft → Normative` **MUST** require **agreement with the
+implementation and Opus X approval**. » · `OCR-005:39` « `Draft → Normative` — **MUST** require **grounding
+… and Opus X approval**. » **Ni l'un ni l'autre n'invoque une revue éditoriale ni OCR-002** (`grep
+editorial|OCR-002|register|review` sur `OCR-000:47` = **0**). Le « Pending **editorial** review » est un
+**libellé de `Review Status`** (workflow), **pas** une porte de promotion.
+
+⇒ **Ensemble minimal EXACT = `{OCR-000, OCR-005}`.** *(Correction : la parenthèse « (, OCR-002) » du lot
+précédent est **levée** — OCR-002 n'est pas requis. On ne surdimensionne pas ce qu'Opus X rend Normative en
+premier.)*
+
+### Mesure 1 — le LIEU de la ratification : **rien n'existe** (4ᵉ déficit, forme aiguë)
+
+Un acte qui déclare `{OCR-000, OCR-005}` Normative **ne peut pas vivre dans OCR-000/005** (re-circularité).
+Cherché un lieu qui porterait un acte fondateur **sans être ratifié par lui** :
+
+- **Un OCR déjà Normative ?** **Non** — les **33 sont Draft** (mesuré). Aucun Record ne peut le porter.
+- **Un registre de releases / ratification ?** **Non.** `content/registry/MANIFEST-OCR.json` existe mais
+  c'est un **PLAN de migration Drive** (`"applied": false`), pas un registre d'actes fondateurs.
+- **DECISIONS-LOG ?** C'est un **document de travail** (`docs/registry/`), **ni Record ni ratifié** — il peut
+  *tracer* l'acte, mais il n'est pas un **lieu autoritatif** de l'acte fondateur.
+
+⇒ **Aucun lieu n'existe.** C'est **le 4ᵉ déficit de D-015 dans sa forme aiguë** : le régime doit **créer le
+lieu de l'acte fondateur** — un registre qui porte la ratification **sans** en dépendre. **Constat, je ne le
+crée pas.**
+
+### Mesure 2 — le mécanisme PROMO peut-il ratifier DEUX Records à la fois ? **Non, tel que conçu.**
+
+- **D-016** : la promotion **EST** l'artefact PROMO (un fait d'approbation). Le **grain** de cet artefact est
+  **D-010 — SUSPENDU** : « un artefact **par Record** (fin) vs un artefact **multi-événements** (gros) ». La
+  conception a.–e. (D-001) portait un front-matter **`record:` singulier** → **un Record par artefact**.
+- **Donc, tel que conçu (grain fin), un PROMO ne peut PAS déclarer deux Records Normative simultanément.**
+  Ratifier `{OCR-000, OCR-005}` en un acte exige soit **deux PROMO fondateurs**, soit le **grain « gros »**
+  (D-010), soit un **objet d'une autre nature** (la 2ᵉ voie de D-020).
+- **Conséquence tracée :** la ratification **rouvre D-010** (le grain) **par un angle neuf** — non plus la
+  promotion ordinaire, mais l'acte fondateur à deux Records. **Et elle arme la contradiction D-016 ↔ D-019 :**
+  si la ratification émet un PROMO, elle **n'est pas** hors processus ; si elle émet autre chose, **il y a
+  deux voies vers Normative** et le résolveur (D-013) **doit lire les deux**. **C'est D-020, non tranché.**

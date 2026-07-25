@@ -487,6 +487,14 @@ instrumentable** — la seule base de contenu déterministe candidate (`Last Upd
 > occurrences. Si l'architecte veut le registre complet des annonces, il dira lesquelles
 > inscrire.
 
+**Cinquième occurrence de la proposition (1) — DE L'ARCHITECTE, à son nom (2026-07-25).** « La Phase 1
+n'inclut pas les méta-Records » a été **affirmé sans mesure** ; le **comptage** l'a infirmé (les 6 méta
+`OCR-000…005` sont **dans** les 29). **Même faute que le schéma GEO « jamais lu »** (une conclusion tirée
+sans l'instrument), mais **arrêtée cette fois par la mesure avant d'entrer en décision** — le comptage a
+précédé la conclusion, D-019/D-020 partent du fait juste. *Occurrence positive : la discipline a tenu.*
+**Cinquième de la proposition (1), treizième de la série d'échec** *(les quatre précédentes de la (1) :
+CRLF, 92ᵉ ligne, enveloppe non attestée, `Last Update` périmé)*.
+
 ---
 
 ## PROPOSITION (2) — sans numéro, en attente d'attribution par l'architecte
