@@ -1,4 +1,4 @@
-`docs/registry/GRILLE-DEUX-FAMILLES-conception.md` · conception (grille étape 8, révision) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/GRILLE-DEUX-FAMILLES-conception.md` · conception (grille étape 8, révision) · 2026-07-25 versée en `bac0145`
 
 # La grille en DEUX FAMILLES + cohérence des 36 revue + GAP lié aux phases — CONCEPTION (pour arbitrage)
 
