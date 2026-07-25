@@ -170,3 +170,79 @@ testable**.
   parade est la discipline d'inscription, que le registre rend au moins visible.
 
 Non construit à ce stade (hors mandat — proposition, pas conception).
+
+---
+
+## Précondition D-015 — matière de l'amendement OCR-006 (mesures du 2026-07-24)
+
+> L'amendement d'OCR-006 est une **précondition** de D-015 : écrire le régime documentaire pendant
+> qu'OCR-006 revendique « the entire corpus » produirait deux textes en conflit. Ces trois mémos
+> **préparent la matière, sans écrire** ni l'amendement ni le régime.
+
+### Mesure 1 — relevé exhaustif : passages d'OCR-006 revendiquant une portée que D-014 retire
+
+Balayage des 10 principes **et** du texte de cadrage. *(D-014 : les principes visent le protocole ; les
+Records `.md` sont documentaires, hors portée.)*
+
+| # | Ligne | Verbatim (abrégé) | Ce que D-014 retire |
+|---|---|---|---|
+| **A** | `:27` (cadrage) | « Its scope is the set of architectural constraints to which the **entire corpus** is subject » | Le **corpus documentaire** n'est plus « subject » — portée à restreindre au protocole |
+| **B** | `:293` (Conclusion) | « They state the constraints to which **the corpus, including this Record**, is subject » | **Plus fort que A** : auto-inclusion explicite du corpus documentaire. À restreindre |
+| **C** | `:250` (P9) | « Status SHALL NOT be stored as a column, field or attribute of **any published representation** » | Le champ `Status` **documentaire** (D-011) sort — « any » est trop général |
+| **D** | `:256` (P9 note) | « Persisting a status … modifying that representation, **which Principle 5 forbids** » | Étend P5 à « that representation » (documentaire) ; l'invocation de P5 tombe pour le documentaire |
+| **E** | `:216` (P8) | « **Documentary versioning**, normative versioning and representation versioning are independent » | P8 **nomme** le versioning documentaire comme couche gouvernée — tension frontale avec D-014 |
+| **F** | `:220` (P8 motiv.) | « **a Record carries a version**, the norm it describes carries a version… » | P8 atteint explicitement le **Record** (documentaire) |
+| **G** | `:139` (P5) | « **A published representation is never modified** » | Énoncé général (angle mort déjà relevé) ; à borner au protocole |
+| **H** | `:210` (P7) | « The criterion applies to **any property**, including properties introduced after this Record » | Portée « any property » à borner au protocole |
+| **I** | `:3` (sous-titre) | « constraints governing identity, **representation, publication, versioning** and protocol evolution » | Le cadrage général englobe representation/publication/versioning documentaires |
+| *(sec.)* | `:45`,`:47`,`:168` | « the corpus », « every publication », « as long as the corpus exists » | Références de **motivation** au corpus — à relire une fois A/B tranchés |
+
+- **Total : 8 passages substantiels (A–H) + 1 cadrage (I) + 3 échos de motivation.** Les deux connus
+  (§27, P9:250) n'étaient **pas** les seuls : **§293 (auto-inclusion), P8 (documentary versioning + « a
+  Record carries a version »), P5:139, P7:210** revendiquent aussi le documentaire.
+- **⚠️ La voie est prescrite par OCR-006 lui-même — `:295` :** « Where an inconsistency is identified
+  between this Record and another normative Record, the inconsistency SHALL be resolved through the
+  protocol's **normative amendment process** rather than by interpretative precedence. » Donc D-014 (une
+  **décision**, pas un Record) **ne peut pas** primer OCR-006 par précédence : l'amendement **doit**
+  passer par le processus normatif — ce qui **est** la précondition, et renvoie à **P10** (normaliser la
+  décision dans un Record).
+
+### Mesure 2 — le Record du régime : deux questions à instruire (pas à trancher)
+
+- **Identifiant — extension de plage (geste D-004) *ou* série nouvelle :**
+  - *Extension de plage* (`OCR-000..006` → `…007`) : le Record entre dans le **namespace OCR** (sémantique :
+    un Record gouvernant le corpus, comme OCR-006). Implique **éditer `expected_ranges`** dans le générateur
+    + la **garde de plage** (`manifest.attestation`) pour admettre le nouvel id. Coût : 1 id, 1 garde mise à
+    jour. Signal : « c'est un pair d'OCR-006 ».
+  - *Série nouvelle* (ex. `REG-001`, geste PROMO) : le Record vit **hors plages OCR** ; D-004 a déjà établi
+    que la garde admet une **série déclarée hors plage**. Coût : déclarer la série. Signal : « c'est un objet
+    d'une **autre nature** que les OCR » — ce qui **contredirait** l'idée qu'il est un Record comme les
+    autres (cf. patron ci-dessous). **Constat, pas choix.**
+- **Circularité — le patron d'OCR-006:27 survit-il à l'amendement ?**
+  - Le patron : *un Record comme les autres, sans autorité supérieure, à **portée déclarée**.* Sa **forme**
+    survit — le régime documentaire se déclarerait de portée « corpus documentaire », comme OCR-006 se
+    déclare de portée « protocole ».
+  - Mais l'amendement **touche la phrase même** qui porte le patron (§27/§293 : la déclaration de portée).
+    Après amendement, OCR-006 déclare **protocole**, le régime déclare **documentaire** : les deux portées
+    **partitionnent** le corpus. L'**auto-inclusion** (§293, « including this Record ») est ce que le régime
+    reprend : gouvernant le corpus documentaire, il **se gouverne lui-même** — exactement le mécanisme
+    d'OCR-006. **Le patron survit ; l'amendement en change le contenu (la portée), pas la forme.**
+
+### Mesure 3 — les 8 domaines × matière existante (consolider vs écrire)
+
+| Domaine | Déjà formulé (où) | Sans formulation | Verdict |
+|---|---|---|---|
+| **Amendement d'un Record** | Rien de documentaire ; P5/§295 sont **protocole** (retirés par D-014) | **L'autorisation du geste** (20 juil.) — qui, quand, comment | **ÉCRIRE** (fondation : gouverne le geste qui produit tous les autres) |
+| **Intégrité** (manifeste, checksums) | **RD-004** (coordonnée scellée dans le condensat), candidate `L260` (empreinte = contenu canonique), `manifest.attestation` | Le **statut normatif** du checksum | **CONSOLIDER** |
+| **Versioning documentaire** | P8 **nomme** les couches ; **RD-007** (cycle de publication) | Règles sur `Version`/`Last Update`/`Version History` (qui, quand) | **PARTIEL** |
+| **Cycle de vie** (`Draft`/`Normative`) | **D-011**, **D-013** (+ sous-question), **RD-002**, candidate `L866` (« deux statuts distincts ») | La **transition** (critère de passage) | **CONSOLIDER** (riche) |
+| **Promotion & révocation** | Promotion : **D-001/D-005/D-010**, dossier, candidates `L306`/`L314` ; **PROMO** (D-004) | **Révocation** : seulement P5 (protocole) + matière D-010 | **CONSOLIDER** promotion ; **ÉCRIRE** révocation |
+| **Séries d'id & `expected_ranges`** | **D-004** + garde de plage ; candidate `L637` | Rien de majeur | **CONSOLIDER** |
+| **Provenance & transmission** | **RD-006** (source plausible ≠ vérifiée), candidates `L326`/`L328` (métadonnée dérivée) | La discipline **chemin + hash** (non écrite au dépôt) | **PARTIEL** |
+| **Normalisation des décisions** | **P10** (protocole), **prop. (6)** + **(7)**, **RD-002**, ce **DECISIONS-LOG**, candidate `L893` | Le **régime documentaire** de normalisation (Record d'accueil) | **CONSOLIDER** |
+
+- **Ordre de rédaction que la matière dicte :** un seul domaine part **de rien** — **l'amendement d'un
+  Record** — et c'est le **fondement** (il autorise le geste par lequel tous les autres s'écrivent). Deux
+  sont **partiels** (versioning, provenance/transmission). Cinq sont **à consolider** (matière déjà dense).
+  La révocation est le seul sous-domaine caché **à écrire**. **Consolider ≠ écrire** : ~5/8 domaines sont
+  de la reprise, 1 est de la fondation neuve, 2 sont mixtes.
