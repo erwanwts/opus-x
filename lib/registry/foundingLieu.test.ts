@@ -33,6 +33,23 @@ function idInRanges(id: string, ranges: Range[]): boolean {
 
 const manifest = JSON.parse(readFileSync(path.join(FOUNDING, 'founding.manifest.json'), 'utf8'));
 
+// ── Garde de CONTENU : declares_normative = un ENSEMBLE de deux Records distincts nommés ──
+// Décide par ensemble : ni l'ordre ni les doublons ne comptent — [005,000] passe, [000,000] échoue.
+function declaresExactSet(declares: unknown, expected: string[]): boolean {
+  if (!Array.isArray(declares)) return false;
+  if (new Set(declares).size !== declares.length) return false; // aucun doublon (Records DISTINCTS)
+  if (declares.length !== expected.length) return false; // même cardinalité
+  const got = new Set(declares);
+  return expected.every((e) => got.has(e)); // même ensemble
+}
+// Le fait RATIF-001, où qu'il soit émis (fichier dédié OU entrée du manifeste) — null tant qu'absent (0a).
+function findRatif001(): { id?: string; declares_normative?: unknown } | null {
+  const file = path.join(FOUNDING, 'RATIF-001.json');
+  if (existsSync(file)) return JSON.parse(readFileSync(file, 'utf8'));
+  const rec = (manifest.records ?? []).find((r: { id?: string }) => r.id === 'RATIF-001');
+  return rec ?? null;
+}
+
 describe('0a — lieu de l’acte fondateur : garde de plage RATIF (dispositif D-004)', () => {
   it('le lieu existe, avec sa série RATIF et son schéma — records VIDE (le lieu, pas l’acte)', () => {
     expect(existsSync(FOUNDING), 'content/registry/founding/ doit exister').toBe(true);
@@ -77,5 +94,34 @@ describe('0a — lieu de l’acte fondateur : garde de plage RATIF (dispositif D
     const schema = JSON.parse(readFileSync(path.join(FOUNDING, 'RATIF.schema.json'), 'utf8'));
     expect(Object.keys(schema.fields)).not.toContain('status');
     expect(Object.keys(schema.fields)).not.toContain('Status');
+  });
+});
+
+describe('0a — garde de CONTENU de RATIF-001 : declares_normative = {OCR-000, OCR-005} EXACTEMENT', () => {
+  // L'ensemble minimal MESURÉ (M3, D-019/D-020) : la ratification fondatrice ne peut déclarer que lui.
+  const EXPECTED = ['OCR-000', 'OCR-005'];
+
+  it('décide par ENSEMBLE (pas ordre, pas doublon) — prouvé par MUTATION', () => {
+    expect(declaresExactSet(['OCR-000', 'OCR-005'], EXPECTED), 'l’exact → passe').toBe(true);
+    expect(declaresExactSet(['OCR-005', 'OCR-000'], EXPECTED), 'même ensemble, autre ordre → passe').toBe(true);
+    expect(declaresExactSet(['OCR-000', 'OCR-005', 'OCR-001'], EXPECTED), '3 Records → échec').toBe(false);
+    expect(declaresExactSet(['OCR-000'], EXPECTED), '1 seul → échec').toBe(false);
+    expect(declaresExactSet(['OCR-001', 'OCR-002'], EXPECTED), '2 autres → échec').toBe(false);
+    expect(declaresExactSet(['OCR-000', 'OCR-000'], EXPECTED), 'doublon (pas 2 distincts) → échec').toBe(false);
+    expect(declaresExactSet(['OCR-000', 'OCR-005', 'OCR-000'], EXPECTED), 'doublon + 3 positions → échec').toBe(false);
+  });
+
+  it('armée à VIDE aujourd’hui (aucun RATIF-001) ; elle MORD à l’émission 0b', () => {
+    const fact = findRatif001();
+    if (fact === null) {
+      // 0a = le lieu, pas l'acte : records vide, aucun fichier RATIF-001. La garde est armée.
+      expect(manifest.records, 'aucun RATIF-001 émis en 0a').toEqual([]);
+    } else {
+      // 0b a émis RATIF-001 → son ensemble DOIT être exactement {OCR-000, OCR-005}, sinon échec nommé.
+      expect(
+        declaresExactSet(fact.declares_normative, EXPECTED),
+        `RATIF-001 doit déclarer exactement {OCR-000, OCR-005} — a déclaré ${JSON.stringify(fact.declares_normative)}`,
+      ).toBe(true);
+    }
   });
 });

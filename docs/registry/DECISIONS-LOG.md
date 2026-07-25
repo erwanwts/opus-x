@@ -666,8 +666,11 @@ trois Records, un seul, ou deux autres qu'`OCR-000`/`OCR-005`.** Or D-019 a tran
   `declares_normative` et dérive le statut — il rendrait Normative *ce que l'acte déclare*, sur-déclaration
   comprise) ; la **revue humaine de 0b** est précisément le chemin **accidentel** que l'Architecte veut
   éliminer. Ni l'un ni l'autre ne **contraint** le contenu.
-- **Constat : seule l'option A empêche 0b de sur-déclarer par accident.** **Non construite** (« ne construisez
-  pas ») — **à armer avant 0b**, sur go.
+- **Constat : seule l'option A empêche 0b de sur-déclarer par accident.**
+- **✅ ARMÉE (option A) :** `foundingLieu.test.ts` — garde de contenu, `declares_normative` = **ensemble**
+  `{OCR-000, OCR-005}` (pas d'ordre, pas de doublon), **prouvée par mutation** (3 → échec · 1 → échec · 2
+  autres → échec · doublon → échec · l'exact / l'ordre inverse → passe). **Armée à vide** (aucun `RATIF-001`)
+  ; **mord à l'émission 0b**. Le lieu est désormais **complet ET verrouillé**.
 
 ---
 
