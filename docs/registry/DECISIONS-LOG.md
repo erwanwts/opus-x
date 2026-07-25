@@ -879,3 +879,38 @@ corriger avant, l'Architecte tranche).
 **Point 3 — échéance OCR-009 précisée :** l'orphelinat d'OCR-009 se lève à l'**étape 8**, par un **PATCH
 d'OCR-000/005 via versioning** (`OCR-005:46` ; plus d'édition en place, D-022), **dans le même mouvement**
 que leur promotion. Inscrit ainsi (`citations.test`, inventaire non-cité).
+
+---
+
+## D-023 — la fenêtre active : mesures pour l'arbitrage (2026-07-25, constat, aucune correction)
+
+**Nature (l'Architecte) :** D-022 a rendu une décision que le code ne peut pas encore honorer — **le champ
+prime en pratique, faute de résolveur (étape 6)**. D-022 précède son instrument, comme RATIF-001 précédait
+le résolveur.
+
+**Point 1 — l'enjeu réel du noindex aujourd'hui : NUL.**
+- Le **site n'est pas lancé** (prod interdite, aucun credential prod local ; `app/robots.ts`/`sitemap.ts`
+  pointent `opusx.world` mais rien n'est déployé). **Aucun crawler ne voit le noindex.**
+- OCR-000/005 sont des Records **méta/gouvernance**, pas des piliers SEO. Leur indexation publique n'a de
+  sens qu'**après** promotion **et** lancement — donc **après** l'étape 6/8.
+- ⇒ **La divergence est TOLÉRABLE et documentée, pas urgente.** Le noindex est même le comportement *correct*
+  d'un Draft-au-champ ; l'anomalie est seulement qu'OCR-000/005 sont ratifiés mais pas encore résolus. Inerte
+  jusqu'au lancement.
+
+**Point 2 — `recordPage.test:132` est fausse au sens de D-022, et inclut bien 000/005.**
+Elle boucle `for ({id, raw} of RECORDS)` — **tous** les Records — et assère `status === 'Draft'` +
+`robots === 'noindex,follow'` pour **chacun**, OCR-000/005 compris. Elle **fige une divergence déclarée
+transitoire** (même défaut que l'assertion de phase du lieu). **Elle devra évoluer quelle que soit la voie.**
+Non corrigée (dépend de D-023).
+
+**Point 3 — les trois voies, chiffrées (faisabilité, pas reco) :**
+
+| Voie | Fichiers touchés | Verdict de fond |
+|---|---|---|
+| **A — corriger le champ** (Status `Draft→Normative` sur OCR-000/005) | 2 Records + manifeste régénéré | ⛔ **crée une SECONDE source** (champ « Normative » **+** fait RATIF) — la divergence P9 même ; **et viole D-022** (édite un ratifié en place). **Contredit la décision qui la motive.** |
+| **B — anticiper le résolveur** (`robotsFromStatus` lit `founding/` pour les ratifiés) | `recordPage.ts` (qq lignes) + 1 test | ⚠️ **fragment de l'étape 6 sorti de l'ordre**, et **partiel** (RATIF seul, pas PROMO qui n'existe pas). Anticipe le résolveur de façon incohérente. |
+| **C — divergence tolérée** (documenter + `:132` exclut 000/005 avec motif) | 1 test (exclusion motivée) + doc D-023 | ✅ **le moins-disant** : aucun code, **aucune seconde source**, **dans l'ordre**. S'appuie sur le Point 1 (enjeu nul). La garde assère « tous Draft→noindex **sauf les ratifiés {000,005}**, dont le rendu attend le résolveur (étape 6) ». |
+
+**Constat :** sous Point 1 (enjeu nul aujourd'hui), la voie **C** est cohérente avec D-022 (le champ est une
+projection, on ne l'édite pas) et n'anticipe rien hors ordre. **A** se contredit ; **B** tire l'étape 6 en
+avant. **Mais D-023 tranche — je ne corrige rien.**
