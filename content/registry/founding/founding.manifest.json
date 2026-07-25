@@ -1,0 +1,15 @@
+{
+  "schema": "opusx.registry.founding/v1",
+  "purpose": "LIEU de l'acte fondateur (etape 0a). Registre DISTINCT du corpus OCR : il porte la ratification fondatrice (serie RATIF) SANS etre lui-meme un OCR ratifie par l'acte qu'il contient. C'est ce qui brise l'amorcage (D-019 / D-020). NON genere depuis les OCR ; hors content/registry/_manifest.json.",
+  "not_an_ocr": true,
+  "no_status": true,
+  "no_promotion": true,
+  "no_grounding": true,
+  "authority_source": "signature Opus X (OCR-000:35) — seul point d'autorite extra-corpus admis",
+  "series": "RATIF",
+  "expected_ranges": "RATIF-001..001",
+  "range_note": "Une seule fente : la ratification fondatrice est UNIQUE (D-019). Prefixe RATIF distinct de OCR et PROMO => hors de leurs plages par construction.",
+  "record_schema": "RATIF.schema.json",
+  "records": [],
+  "records_note": "VIDE a l'etape 0a : le LIEU, pas l'ACTE. L'emission de RATIF-001 = etape 0b, decision d'Opus X, hors chantier."
+}

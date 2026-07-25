@@ -1,0 +1,20 @@
+{
+  "schema": "opusx.registry.founding.ratif/v1",
+  "purpose": "FORME du fait fondateur RATIF (etape 0a). Aucun contenu — juste les champs. L'emission d'un RATIF-001 rempli = etape 0b (Opus X, hors chantier).",
+  "fields": {
+    "id": "RATIF-NNN (dans la plage RATIF declaree par founding.manifest.json)",
+    "kind": "founding-ratification",
+    "declares_normative": "[OCR-xxx, ...]  (LISTE — forme native ; l'interface commune avec PROMO est une PROJECTION au resolveur (voie 2), pas une unification au fichier — etape 6)",
+    "authority": "Opus X",
+    "signature": "<signature Opus X>   (rempli en 0b)",
+    "date": "<date>                     (rempli en 0b)",
+    "basis": "OCR-000:35",
+    "ordinary_process": false,
+    "immutable": true
+  },
+  "absent_by_design": {
+    "status": "PAS de champ Status — le lieu n'est pas un OCR (pas de cycle Draft/Normative).",
+    "grounding_verdict": "PAS de verdict — l'amorcage precede la porte grounding (elle-meme Draft).",
+    "revokes": "PAS de forme de revocation ici — forme COMMUNE PROMO/RATIF, decidee UNE fois a l'etape 6 (D-013). 0a ne l'invente pas."
+  }
+}
