@@ -1,4 +1,4 @@
-`docs/registry/REGIME-DOCUMENTAIRE-conception-etape3.md` · conception (étape 3) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/REGIME-DOCUMENTAIRE-conception-etape3.md` · conception (étape 3) · 2026-07-25 versée en `2ceea99`
 
 # Le régime documentaire — CONCEPTION des trois Records (étape 3, pour revue)
 
