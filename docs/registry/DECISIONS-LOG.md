@@ -31,6 +31,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-015** | Régime documentaire (consolidation du GAP) | **rendue, INSCRITE — NON appliquée** | `357d924` | **—** · *le régime n'existe pas ; appl. = étapes 2/3/7* |
 | **D-016** | PROMO **EST** l'approbation Opus X (`authority`) | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5/6* |
 | **D-017** | Le Record porte son **verdict de grounding** avant promotion | **rendue, INSCRITE — NON appliquée** | **`abbdd03`** *(corrigé de `c678947`)* | **—** · *appl. = étapes 4/5* |
+| **D-018** | **Un Record Draft s'édite en place** — l'amendement d'OCR-006 est une **édition**, pas une v2.0.0 (résout le point 4 de la conception 1a). Règle de **régime documentaire** (déficit D-015) | **rendue, INSCRITE — NON appliquée** | **`<ce commit>`** | **—** · *gouverne l'édition de l'étape 1 (Version **inchangée**) ; règle tracée au régime (D-015)* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
@@ -630,7 +631,7 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
 
 | # | Étape | Décision(s) source | État |
 |---|---|---|---|
-| **1** | **Amender OCR-006** — version **v2.0.0** (MAJOR) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`** — les 3 normatifs) ; aligner l'informatif (§27/§293) | D-014 · D-011 · `OCR-005:32` | 🔵 **1a conception rendue** (`AMENDEMENT-OCR-006-conception-1a.md`), **en revue** — aucune écriture dans OCR-006 ; 1b sur approbation |
+| **1** | **Amender OCR-006** — **édition en place** (D-018 : Version **reste 1.0.0**, pas de v2.0.0) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`**) ; aligner A/B ; corriger §295/§291 | D-014 · D-011 · **D-018** · `OCR-005` | 🟠 **1a validée** *(conception + E validé par OCR-005:35)* ; **version résolue** (D-018) ; ⚠️ **séquence en révision** — point 1 : une édition de Draft **ne rend pas** D-014 opposable (Draft = non autoritatif) → **OCR-006 devra être PROMU**, pas seulement édité. **1b NON préparée** |
 | **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` : déclare la série du régime **et** répare l'omission OCR-006 (une occasion) | D-015 · `OCR-005:33` · (anomalie 2026-07-20) | ⛔ non lancée |
 | **3** | **Loger les 3 règles manquantes** — intégrité documentaire (checksum), transmission (chemin+hash), **forme de l'approbation** | D-015 · D-016 | ⛔ non lancée |
 | **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test qui échoue si non-« Conforme » avant promotion | **D-017** | ⛔ non lancée |
@@ -641,3 +642,51 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
 
 **D-010 (grain de l'artefact PROMO) reste SUSPENDUE — elle se rouvre à l'étape 6, pas avant.** Aucune étape
 n'est lancée sans feu vert, étape par étape.
+
+---
+
+## D-018 & point d'opposabilité — mesures du 2026-07-25 (avant 1b ; rien préparé)
+
+### Point 1 (le plus important) — une édition de Draft rend-elle D-014 opposable ? **NON.**
+
+**Constat verbatim (OCR-000, OCR-124) — un Draft n'a AUCUNE autorité tant qu'il n'est pas promu :**
+
+- `OCR-000:42` — « **Draft** — authored but not yet grounded/approved; **not authoritative**. »
+- `OCR-000:43` — « **Normative** — grounded … and approved; **authoritative**. »
+- `OCR-000:63` — « Draft knowledge **MUST NOT** be presented as authoritative. »
+- `OCR-000:67` — « it treats only **Normative, versioned OCRs as authoritative**; it **never relies on
+  Draft** definitions as settled. »
+- `OCR-000:86` — « **When is an OCR authoritative? Only when Normative and grounded.** »
+- `OCR-124:171` — « It is assumed Draft equals authoritative; **only Normative, implementation-grounded OCRs
+  are.** »
+
+**Conséquence (la 1ʳᵉ branche de l'arbitrage) :** éditer OCR-006 en place (D-018) **corrige** le Draft, mais
+le Draft corrigé **reste non autoritatif**. **L'édition seule ne rend donc PAS D-014 opposable** — OCR-006
+doit être **PROMU à Normative** (revue + approbation Opus X ; pas de grounding machine, point 5 de 1a).
+**La séquence change : l'amendement seul ne suffit pas — il faut amender PUIS promouvoir OCR-006.**
+
+**⚠️ Découverte de portée (constat, non résolu — vous revient) :** **les 33 Records sont `Draft`**, donc
+**OCR-000…005 eux-mêmes ne sont pas encore autoritatifs.** Les règles de promotion que nous citons sont
+elles aussi en Draft. Il y a donc un **amorçage** : par quelle autorité la **première** promotion a-t-elle
+lieu, alors que les règles qui la gouvernent ne sont pas encore Normative ? (Opus X comme autorité
+fondatrice, `OCR-000:35` ?) — **question de séquence, à rendre.** Elle décide si l'étape 1 doit promouvoir
+OCR-000…005 **avant** OCR-006.
+
+### Point 2 — confirmé : la Version d'OCR-006 NE BOUGE PAS
+
+D-018 = édition en place. **`Version` reste `1.0.0`**, **aucune** entrée Version History nouvelle, **aucun**
+superseded. Fondé : `OCR-005:46` ne vise que « **Published normative meaning** MUST NOT be edited in place »
+— un **Draft** n'est pas *published normative* → l'édition en place est permise, sans incrément. *(Un Draft
+édité n'est pas un « release » ; `OCR-005:35` « the OCR's current version » = 1.0.0, toujours exact.)* **Non
+incrémenté par réflexe.**
+
+### Point 3 — règle du régime documentaire (matière D-015), posée par D-018
+
+> **Règle (D-018) :** « Un Record **Draft** s'édite **en place**. La promotion `Draft → Normative` **retire
+> ce privilège** : après promotion, tout changement passe par **MAJOR/superseded** (`OCR-005:40/46`). »
+
+**Borne** : le privilège d'édition-en-place est **strictement** l'état Draft. Il **cesse** à la promotion.
+Cette règle **complète le domaine « amendement d'un Record »** du régime — `OCR-005:46` couvrait le cas
+**Normative** (nouvelle version), **pas** le cas **Draft** (édition permise) ; D-018 comble ce demi-vide.
+**Troisième règle de régime cristallisée par la pratique** (après D-016 = forme de l'approbation, et le
+raccord grounding = D-017).
