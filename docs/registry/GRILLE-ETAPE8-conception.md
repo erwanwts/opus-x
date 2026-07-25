@@ -1,4 +1,4 @@
-`docs/registry/GRILLE-ETAPE8-conception.md` · conception (étape 4→8) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/GRILLE-ETAPE8-conception.md` · conception (étape 4→8) · 2026-07-25 versée en `8609be4`
 
 # Registre des GAP de promotion + grille étape 8 — CONCEPTION (pour revue)
 
