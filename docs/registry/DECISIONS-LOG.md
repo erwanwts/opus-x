@@ -45,6 +45,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | Réf | Objet | Statut |
 |---|---|---|
 | **D-010** | **Grain de l'artefact de promotion** — un artefact par Record (fin) vs un artefact multi-événements (gros) | **SUSPENDUE** (en aval de la persistance du statut) — ne pas trancher par conception |
+| **D-019** | **Amorçage de l'autorité** — par quelle autorité les **premiers** OCR deviennent Normative, alors que les règles qui gouvernent la promotion (OCR-000/005) sont **elles-mêmes en Draft** ? Circularité ; la sortie est **hors corpus** (Opus X, `OCR-000:35`). Inclut l'**ordre intra-Phase-1** : le portail (OCR-000…005) doit-il être promu **avant** les 23 concepts qu'il gouverne (« étape 0 ») ? | **remontée du point d'opposabilité, non rendue** — mesures ci-dessous |
 | **D-013 · sous-question** | **Le sort du champ `Status` — REPORTÉE en aval du résolveur.** La mesure a tranché la forme : les **deux** issues (projection *et* retrait) **présupposent le résolveur, qui n'existe pas**. La question n'est donc pas « projection ou retrait » mais « **à quel moment** » — et le moment est **après la conception du résolveur**. Motif mesuré : **4 lecteurs** du champ, **2 projections** (`api.ts:56`, `build-migration-manifest.mjs:74`), **résolveur inexistant** | **REPORTÉE** (en aval du résolveur) |
 | **Nouveau Record — régime documentaire** | **À écrire (D-015), avant clôture.** Gouverne le corpus documentaire : amendement, intégrité, versioning documentaire, cycle de vie, promotion/révocation, séries/plages, provenance, normalisation. Périmètre = inventaire du sans-règle (mémo ci-dessous). **Série non attribuable** : 0 id libre dans `expected_ranges` (mémo série) | **à instruire — RÉGIME COMPLET** |
 | *(amendement — **OBLIGATOIRE**, dans l'option D-013/Q3 cochée)* | **Déclarer dans OCR-006 que sa portée est le PROTOCOLE** (D-014). P9:250 « any published representation » est **général** → à restreindre. **Principes concernés :** **P2, P5, P7** (nommés par D-014), **P9** (« any published representation »), **P8** (nomme « documentary versioning » — tension). **⚠️ Contradiction mesurée : `OCR-006:27`** dit *« Its scope is the set of architectural constraints to which the **entire corpus** is subject »* — le Record **s'auto-attribue le corpus entier**, ce que D-014 **retire**. L'amendement doit lever cette contradiction, pas seulement P9:250. OCR-006 en Phase 3, **jamais relu, cité par 0** | à instruire (obligatoire) |
@@ -690,3 +691,59 @@ Cette règle **complète le domaine « amendement d'un Record »** du régime �
 **Normative** (nouvelle version), **pas** le cas **Draft** (édition permise) ; D-018 comble ce demi-vide.
 **Troisième règle de régime cristallisée par la pratique** (après D-016 = forme de l'approbation, et le
 raccord grounding = D-017).
+
+---
+
+## D-019 — amorçage de l'autorité : mesures du 2026-07-25 (constat, aucune conception)
+
+### Point 1 — l'autorité d'Opus X : affirmée PAR un Record (Draft), amorçage SILENCIEUX
+
+**`OCR-000:35` verbatim :** « **Opus X (governing body)** — owns the Registry; **authors, reviews, promotes,
+versions, and retires OCRs**; **holds sole write authority** over canonical meaning. » Contexte (`:33-38`) :
+« Contributors … subject to Opus X review » ; « No consumer or contributor MUST be able to unilaterally
+alter canonical meaning. »
+
+- **Tient-il son autorité d'un Record, ou est-il posé comme antérieur au corpus ?** Opus X est **décrit
+  comme propriétaire/gouverneur** du Registry **par OCR-000** (`:19` « sets the governance frame within which
+  every OCR is written »). **Aucun texte ne le pose comme externe/antérieur** — son autorité est **asseriée
+  à l'intérieur d'OCR-000**, lui-même **Draft**. **C'est la circularité exacte** : le Record qui fonde
+  l'autorité de promotion n'est pas encore autoritatif.
+- **Texte d'amorçage / de ratification initiale ?** Recherche sur **tout le corpus** (bootstrap, ratif,
+  founding, first/initial normative, « becomes normative », autorité antérieure) : **les seuls « founding »
+  visent les deux principes du PROTOCOLE** (« Evidence Is Produced / Issuer owns the learning journey »),
+  **jamais l'acte par lequel les premiers OCR deviennent Normative.** **Le corpus est SILENCIEUX sur
+  l'amorçage.**
+- **⇒ QUATRIÈME DÉFICIT du régime documentaire (D-015)** — après (1) intégrité, (2) transmission, (3) forme
+  de l'approbation : **(4) l'amorçage** — aucun Record ne décrit comment le corpus passe de « tout Draft » à
+  « auto-autoritatif ». La sortie est **hors corpus** (`OCR-000:35`, Opus X fondatrice), mais **non écrite**.
+
+### Point 2 — ensemble minimal à rendre Normative pour promouvoir un OCR
+
+Ce qu'invoque **l'acte de promotion** `Draft → Normative` (constat des textes) :
+
+| Record | Rôle dans la promotion | Requis Normative ? |
+|---|---|---|
+| **OCR-000** | autorité (Opus X), modèle de statut, règle de promotion `:47`, grounding | **OUI — cœur** |
+| **OCR-005** | transition `Draft → Normative` (`:39` grounding + approbation), versioning | **OUI — cœur** |
+| **OCR-002** | registre éditorial — la revue d'un Record éditorial (dont OCR-006) se fait **contre** OCR-002 | **OUI si** la revue doit s'appuyer sur un standard autoritatif |
+| OCR-124 | concept Registry + State Machine (redit le cycle) | non — **redondant** avec OCR-000/005 |
+| OCR-001 / 003 / 004 | structure / terminologie / relations | non invoqués par l'**acte** de promotion |
+
+- **Ensemble minimal : {OCR-000, OCR-005}** (+ **OCR-002** pour une revue éditoriale autoritative).
+- **⚠️ La circularité se referme ici :** `{OCR-000, OCR-005}` sont **eux-mêmes Draft**. Pour les promouvoir,
+  il faudrait leurs propres règles — déjà en Draft. **Ils doivent donc se promouvoir eux-mêmes**, ce
+  qu'aucune règle de Draft n'autorise → **c'est l'acte d'amorçage (Opus X, hors corpus) qui doit rendre
+  `{OCR-000, OCR-005(, OCR-002)}` Normative EN PREMIER**, avant tout le reste.
+
+### Point 3 — CORRECTION : la Phase 1 **inclut** les méta-Records (votre prémisse est infirmée)
+
+**Mesuré :** Phase 1 = 29 ; **méta dans Phase 1 : `OCR-000 OCR-001 OCR-002 OCR-003 OCR-004 OCR-005` ; méta
+hors Phase 1 : aucun.** Seul **OCR-006** est hors Phase 1 (Phase 3). **Donc la Phase 1 n'exclut PAS les
+méta — elle les contient (6 des 29).**
+
+- **Mais la partition n'impose AUCUN ORDRE :** les 29 sont un seul sac. **Rien ne garantit qu'OCR-000…005
+  (le portail) soient promus AVANT les 23 concepts qu'ils gouvernent.** Or promouvoir un concept **exige** le
+  portail Normative (point 2). **Le portail est dans le sac, pas à l'entrée.**
+- **Matière de D-019 :** l'amorçage doit rendre `{OCR-000, OCR-005(, OCR-002)}` Normative **d'abord** (hors
+  corpus), **puis** un **ordre intra-Phase-1** promeut le reste des méta, **puis** les concepts. C'est
+  peut-être **l'étape 0** que vous pressentiez. *(Constat — je ne conçois pas la séquence.)*
