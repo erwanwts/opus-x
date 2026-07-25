@@ -1,4 +1,4 @@
-`docs/registry/AMENDEMENT-OCR-006-conception-1a.md` · conception (étape 1a) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/AMENDEMENT-OCR-006-conception-1a.md` · conception (étape 1a) · versée en `d6bbf6e` (2026-07-25)
 
 # Amendement OCR-006 → v2.0.0 — CONCEPTION (étape 1a, pour revue)
 
