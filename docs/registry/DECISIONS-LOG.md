@@ -792,3 +792,28 @@ crée pas.**
   promotion ordinaire, mais l'acte fondateur à deux Records. **Et elle arme la contradiction D-016 ↔ D-019 :**
   si la ratification émet un PROMO, elle **n'est pas** hors processus ; si elle émet autre chose, **il y a
   deux voies vers Normative** et le résolveur (D-013) **doit lire les deux**. **C'est D-020, non tranché.**
+
+### Faisabilité de l'invariant d'ordre (préparation D-020 — constat, PAS de construction)
+
+**Question :** si D-020 grave « portail méta d'abord », un garde peut-il assérer **dès maintenant** qu'aucun
+Record de couche 100 n'est Normative tant que `{OCR-000, OCR-005}` sont Draft — **sans** le résolveur (D-013)
+qui n'existe pas encore ?
+
+**Oui — faisable aujourd'hui.** Mesuré :
+
+- **Le statut est lisible sans résolveur** : champ `Status` de l'en-tête `.md` (`buildRecordPage`) **et**
+  `lifecycle_status` du manifeste — les deux porteurs, concordants (0 divergence). Le test lit le statut
+  **persisté** (source de vérité actuelle sous D-011/D-013, tant que le résolveur n'est pas là).
+- **La couche est dérivable mécaniquement** de l'id : `000-005` = méta, `100+` = concept.
+- **Prédicat :** `∀ R (couche 100+) : statut(R) ∈ {Normative, Deprecated, Superseded} ⇒
+  statut(OCR-000)=statut(OCR-005)=Normative`. *(Inclure Deprecated/Superseded : un concept qui les porte a
+  **été** promu → viole aussi « portail d'abord ».)*
+- **Vert aujourd'hui, à vide** : portail = `OCR-000=Draft OCR-005=Draft`, concepts non-Draft = **0** →
+  implication trivialement tenue.
+- **Prouvable par mutation** : basculer un concept (p. ex. OCR-110) à `Normative` pendant que le portail est
+  Draft → le test **échoue**. Même classe que `manifest.attestation` / le garde du DECISIONS-LOG.
+
+**Limites honnêtes (pour D-020) :** (1) le test lit le statut **persisté** ; quand le résolveur (D-013)
+existera, sa source devra basculer sur le résolveur. (2) L'**ensemble portail** est paramétrable : `{000,005}`
+(minimal, D-020/M3) **ou** les 6 méta `000-005` — la faisabilité est identique, seul le prédicat change. **Le
+garde attend que D-020 grave l'ensemble et l'ordre ; je ne le construis pas.**
