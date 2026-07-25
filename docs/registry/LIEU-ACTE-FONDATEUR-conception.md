@@ -1,4 +1,4 @@
-`docs/registry/LIEU-ACTE-FONDATEUR-conception.md` · conception · 2026-07-25 versée en `44824a3`
+`docs/registry/LIEU-ACTE-FONDATEUR-conception.md` · conception · 2026-07-25 versée en `947aef4`
 
 # Le lieu de l'acte fondateur — CONCEPTION (étape 3 partielle, précède l'étape 0)
 
