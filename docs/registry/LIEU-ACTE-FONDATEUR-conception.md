@@ -69,15 +69,22 @@ RATIF) qui **déclare R Normative**, et **aucun fait de révocation** postérieu
 collecte pour chaque Record les déclarations, applique les révocations. **Il lit l'interface, pas le
 `kind`** — d'où « deux natures, une lecture » (la formule de D-020).
 
-> **⚠️ CAVEAT du 2026-07-25 — l'interface NE TIENT PAS encore champ pour champ (vérification demandée).**
-> Le tableau ci-dessus l'expose lui-même : PROMO porte **`record:` (scalaire, 1)**, RATIF
-> **`declares_normative:` (liste, N)** — **noms et formes différents**. Voir PROMO comme « N=1 » **exige**
-> qu'il expose une **liste** (`declares_normative: [OCR-xxx]`), pas un scalaire ; sinon le résolveur a besoin
-> d'un **adaptateur par `kind`**, ce qui **contredit** D-020. De plus la **révocation n'est spécifiée pour
-> aucun des deux** (la matière D-010 note l'absence de `revokes:`). **« Une lecture » est donc une fiction
-> tant que l'interface n'est pas UNIFIÉE** : un champ de déclaration commun (`declares_normative: [...]`,
-> PROMO = singleton) **+** une forme de révocation commune. **Unification = étape 3/6, pas ici. Constat, non
-> corrigé.**
+> **⚠️ CAVEAT du 2026-07-25, RÉVISÉ — l'interface tient par PROJECTION au résolveur (voie 2), sans D-021.**
+> Les champs divergent au **fichier** (PROMO `record:` scalaire ≠ RATIF `declares_normative:` liste), mais la
+> communité peut vivre **au résolveur** : un accesseur `declaredRecords(f) = f.declares_normative ?? [f.record]`
+> normalise la **forme** (scalaire→liste) **sans brancher sur `kind`** — une seule règle. Ce n'est **pas**
+> un adaptateur-par-kind (rejeté) ni la voie « liste au fichier » (qui, elle, toucherait D-016 → D-021).
+> **Donc : `record:` reste dans PROMO (D-016 intact), `declares_normative:` reste ici ; l'interface est la
+> projection, conçue à l'étape 6 (résolveur). Pas de D-021.** *(La communité vit au résolveur, pas au format ;
+> qui lit les fichiers bruts voit deux formes — conforme à D-020, « le résolveur lit l'interface ».)*
+>
+> **⚠️ RÉVOCATION — déficit de conception PARTAGÉ (pas un défaut d'interface).** La forme de révocation est
+> **absente de PROMO ET de RATIF** (la matière D-010 note l'absence de `revokes:`). D-013 dérive le statut de
+> **promotion + révocation** → la révocation est un **fait** lu par le même résolveur. **Sa forme doit être
+> décidée UNE fois**, commune aux deux séries (PROMO à l'étape 6, RATIF à 0a) — sinon deux formes
+> divergentes. **0a NE doit PAS inventer une révocation propre à RATIF** : la déclaration fondatrice
+> (`RATIF-001`) n'est pas une révocation, donc 0a n'en a pas besoin **maintenant** ; la forme commune se
+> décide à la conception du résolveur (étape 6) et **RATIF l'adopte**. **Dépendance notée.**
 
 ## 5 — Ce que la conception NE tranche pas (hors de ma main)
 
@@ -99,9 +106,11 @@ doit **exister réellement** : le répertoire `content/registry/founding/`, la *
 sa **garde de plage armée** (comme D-004 pour PROMO). Donc **l'étape 0 se scinde** :
 
 - **0a — CRÉER LE LIEU** *(construction)* : écrire le registre fondateur, déclarer la série `RATIF` hors
-  plages, armer la garde, **et unifier l'interface de fait de statut** (caveat §4). C'est un **fragment de
-  l'étape 3** (le régime), **tiré en tête** parce que l'étape 0b en dépend. **Ne crée aucune circularité :**
-  le lieu n'est **pas** un OCR → il n'a pas besoin d'être ratifié pour exister.
+  plages, armer la garde. **RATIF garde sa forme native (`declares_normative:`)** — **pas** d'unification
+  d'interface ici (voie 2 : la projection vit au résolveur, étape 6 ; D-016 intact, pas de D-021). **Pas de
+  révocation propre à RATIF** (forme commune décidée à l'étape 6). C'est un **fragment de l'étape 3**, **tiré
+  en tête** parce que 0b en dépend. **Ne crée aucune circularité :** le lieu n'est **pas** un OCR → il n'a
+  pas besoin d'être ratifié pour exister.
 - **0b — RATIFIER** *(hors chantier)* : Opus X signe/date/émet `RATIF-001` dans le lieu. **Attend Opus X.**
 
 **Ordre : 0a (nous, sur go) → 0b (Opus X) → étape 1…** La **normalisation** de la forme du lieu dans le

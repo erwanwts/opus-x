@@ -636,14 +636,14 @@ grille consomme le corpus, **jamais** les rapports. **C'est exactement « la bou
 
 | # | Étape | Décision(s) source | État |
 |---|---|---|---|
-| **0a** | **CRÉER LE LIEU** de l'acte fondateur *(construction)* — registre `content/registry/founding/`, série `RATIF` hors plages + garde (comme D-004), **+ unifier l'interface de fait de statut** (⚠️ non commune à ce jour : `record:` scalaire de PROMO ≠ `declares_normative:` liste de RATIF ; révocation non spécifiée). Fragment d'étape 3 **tiré en tête** (0b en dépend) ; le lieu n'est **pas** un OCR → pas de circularité | **D-019 · D-020 · D-015** | ⛔ non lancée — *attend votre go ; conception versée* |
+| **0a** | **CRÉER LE LIEU** de l'acte fondateur *(construction)* — registre `content/registry/founding/`, série `RATIF` hors plages + garde (comme D-004). RATIF garde `declares_normative:` (forme native) ; l'interface commune vit **au résolveur** (voie 2, étape 6 ; **D-016 intact, pas de D-021**). Fragment d'étape 3 **tiré en tête** (0b en dépend) ; pas un OCR → pas de circularité | **D-019 · D-020 · D-015** | ⛔ non lancée — *attend votre go ; conception versée* |
 | **0b** | **RATIFICATION FONDATRICE** — Opus X signe/date/émet `RATIF-001` dans le lieu, déclarant `{OCR-000, OCR-005}` **Normative** (`OCR-000:35`) | **D-019 · D-020** · `OCR-000:35` | ⛔ non lancée — *attend une décision **hors** de ce chantier (Opus X)* |
 | **1** | **Amender OCR-006** (édition en place, D-018 : Version **reste 1.0.0**) — portée protocole (**C/E/G**), aligner A/B, corriger §295/§291 — **puis PROMOUVOIR** (Draft non opposable) | D-014 · D-011 · D-018 · `OCR-000:47` | ⛔ non lancée — *1a validée + E validé (OCR-005:35) ; 1b non préparée* |
 | **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` (série du régime **+** répare l'omission OCR-006) | D-015 · `OCR-005:33` | ⛔ non lancée |
 | **3** | **Loger les règles du régime documentaire (D-015)** — les 4 déficits : intégrité (checksum), transmission (chemin+hash), **forme de l'approbation** (D-016), **LIEU de l'acte fondateur** (4ᵉ) **+ la règle d'amorçage** (D-018/D-019) | D-015 · D-016 · D-018 · D-019 | ⛔ non lancée — *conception du lieu ci-dessous (étape 3 partielle, mais **précède l'étape 0**)* |
 | **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test « non-Conforme → échec » | **D-017** | ⛔ non lancée |
 | **5** | **Grounder les 6** concepts machine-facing : `101,104,106,107,108,109` | D-017 · `OCR-000:49-53` | ⛔ non lancée |
-| **6** | **Concevoir l'artefact PROMO** — champ `authority` ; présuppose le grounding ; **rouvre D-010** | D-001 · **D-010** · D-016 | ⛔ non lancée |
+| **6** | **Concevoir l'artefact PROMO** — champ `authority` ; présuppose le grounding ; **rouvre D-010** ; **+ interface de projection au résolveur** (voie 2, `declaredRecords`) **+ forme de révocation COMMUNE** PROMO⁄RATIF (décidée **une fois**, D-013) | D-001 · **D-010** · D-016 · D-013 | ⛔ non lancée |
 | **7** | **Normaliser les 36** — par **amendements** (OCR-000…005, `P10:280`), **pas** un Record neuf | D-015 · `P10:280` | ⛔ non lancée |
 | **8** | **Promouvoir les 29** `Draft → Normative` **dans l'ordre D-020** (portail méta d'abord ; garde d'invariant d'ordre, faisable — voir ci-dessus) | **D-020** · D-016 · `OCR-000:47` | ⛔ non lancée |
 
