@@ -91,22 +91,27 @@ que par un **test** (intégrité, plages), deux par du **code** (cycle de vie, v
 **pratique non écrite** (amendement, promotion, provenance, normalisation). C'est **exactement** le vide que
 D-015 confie au nouveau Record.
 
-**Chaîne de dépendances (mémo — elle a changé trois fois ; état au 2026-07-24, à lire d'un coup d'œil) :**
+**Chaîne de dépendances — SÉQUENCE CORRIGÉE par §295 (état au 2026-07-25 ; a changé quatre fois) :**
+
+`§295` d'OCR-006 : *« inconsistency … SHALL be resolved through the … normative amendment process rather
+than by interpretative precedence. »* Donc **D-011/D-014/D-015 ne sont pas opposables tant qu'elles ne
+sont pas normalisées** — on **ne peut pas** écrire le régime **en s'appuyant sur** D-014 avant que D-014
+soit gravée. L'ordre n'est **pas** « amendement ∥ régime en parallèle » (faux) mais une **séquence
+stricte** :
 
 ```
-D-014 (principes = protocole ; documentaire hors)
-  └─> D-015 (régime documentaire distinct = nouveau Record, COMPLET, avant clôture)
-        ├─> amendement OCR-006 (portée protocole ; lève la contradiction OCR-006:27)
-        ├─> D-013 (résolveur de statut — justification à réécrire ; choix de gouvernance)
-        │     └─> sous-question D-013 (sort du champ Status) — REPORTÉE en aval du résolveur
-        └─> D-010 (grain de PROMO-001)  ─┐
-              └─> cadrage PROMO-001  ────┴─> EN AVAL DE D-015 (l'objet documentaire ne
-                                             précède pas son régime)
+1. AMENDER OCR-006          → rend D-011 / D-014 opposables (via processus normatif §295, PAS précédence)
+        ↓
+2. ÉCRIRE le Record du régime documentaire   (dépend de l'opposabilité de D-014)
+        ↓
+3. NORMALISER les ~36        (dette distincte ; force P10 une fois le régime en place)
+        ↓
+4. D-010 (grain) puis PROMO-001              (l'objet documentaire ne précède ni sa règle ni son régime)
 ```
 
-**Le déplacement :** `PROMO-001` et `D-010` étaient « en aval de D-013 » ; ils sont désormais **en aval de
-D-015** — concevoir l'objet documentaire avant que son régime existe, ce serait produire **l'objet avant la
-règle**. **Rien ne commence avant le régime.**
+**Le déplacement :** `PROMO-001` et `D-010`, jadis en aval de D-013, sont désormais **en bout de chaîne** —
+en aval de l'**opposabilité** de D-014, elle-même en aval de l'**amendement**. **Rien ne commence avant que
+l'amendement soit gravé.**
 
 **Matière pour le formulaire D-010 (mesurée, non traitée) :**
 
@@ -230,6 +235,12 @@ Records `.md` sont documentaires, hors portée.)*
 
 ### Mesure 3 — les 8 domaines × matière existante (consolider vs écrire)
 
+> **⚠️ CORRIGÉ le 2026-07-25 — voir « Correction majeure » en fin de document.** Ce tableau ne lisait que
+> `docs/registry/` et le code ; il **ignorait la couche de gouvernance documentaire OCR-000…005** (que je
+> n'avais pas lue). Les colonnes « sans formulation »/« nulle part » sont **fausses** pour ≥ 4 domaines :
+> l'amendement, le versioning, le cycle de vie et les séries **sont déjà gouvernés** par OCR-000/001/005.
+> Le tableau est **laissé tel quel** (mesure non retouchée) ; la correction vaut en bloc ci-dessous.
+
 | Domaine | Déjà formulé (où) | Sans formulation | Verdict |
 |---|---|---|---|
 | **Amendement d'un Record** | Rien de documentaire ; P5/§295 sont **protocole** (retirés par D-014) | **L'autorisation du geste** (20 juil.) — qui, quand, comment | **ÉCRIRE** (fondation : gouverne le geste qui produit tous les autres) |
@@ -246,3 +257,91 @@ Records `.md` sont documentaires, hors portée.)*
   sont **partiels** (versioning, provenance/transmission). Cinq sont **à consolider** (matière déjà dense).
   La révocation est le seul sous-domaine caché **à écrire**. **Consolider ≠ écrire** : ~5/8 domaines sont
   de la reprise, 1 est de la fondation neuve, 2 sont mixtes.
+
+---
+
+## Précondition D-015 — mesures du 2026-07-25
+
+**Séquence corrigée (§295) inscrite en tête** (bloc « Chaîne de dépendances »). Deux mesures, plus une
+correction majeure.
+
+### Mesure 1 — les huit passages : UN acte ou HUIT ? → **DEUX**
+
+A/B posent la portée générale ; on teste si une **clause de portée unique** (« la portée d'OCR-006 est le
+protocole ; le corpus documentaire relève d'un régime distinct ») règle A et B et **absorbe** les six
+autres.
+
+| Passage | Une clause de portée le règle-t-elle ? |
+|---|---|
+| **A** `:27`, **B** `:293` | **C'est la clause elle-même** (portée générale) |
+| **C** `:250` « any published representation » | ✅ **Absorbé** — devient « any published *protocol* representation » ; le champ documentaire sort par construction |
+| **D** `:256` note (invoque P5) | ✅ **Absorbé** — l'invocation de P5 se borne au protocole |
+| **G** `:139` « never modified » (P5) | ✅ **Absorbé** pour D-014 (borné au protocole). *(L'ambiguïté interne Statement↔Consequences de P5 reste, mais c'est un défaut distinct, pas de D-014.)* |
+| **H** `:210` « any property » (P7) | ✅ **Absorbé** — « any property » d'une définition *protocole* |
+| **E** `:216` « **Documentary versioning** … independent » (P8) | ❌ **NON absorbé** — P8 **nomme** le versioning documentaire comme couche gouvernée. Une clause « le documentaire est hors » **contredit** le texte de P8 et **gut** son propos (l'indépendance des trois couches *exige* que la couche documentaire existe dans P8). **Acte propre requis.** |
+| **F** `:220` « **a Record carries a version** » (P8) | ❌ **NON absorbé** — même motif que E (P8 atteint le Record) |
+
+**Constat : l'amendement est DEUX actes** — (1) **une clause de portée** absorbant A/B/C/D/G/H, et (2) **un
+acte spécifique sur P8** (E/F), car P8 concerne *intrinsèquement* la relation documentaire↔normatif↔
+représentation et ne peut être « exclu » sans être détruit. **P8 est l'exception irréductible.** *(Et son
+sujet — le versioning documentaire — chevauche `OCR-005`, cf. correction ci-dessous : le geste sur P8 est
+« déférer le versioning documentaire à OCR-005 ».)*
+
+### Mesure 2 — le processus d'amendement normatif : **il EXISTE, il est DÉFINI**
+
+`§291`/`§295` nomment « the protocol's normative amendment process ». **Il n'est pas seulement nommé — il
+est défini**, dans la couche de gouvernance :
+
+- **`OCR-000` (Canonical Knowledge Governance)** — autorité (Opus X), modèle de statut (Draft → Normative →
+  Deprecated/Superseded), **promotion `Draft → Normative` = grounding + approbation Opus X**, « never silent
+  edits », histoire préservée. *« sets the governance frame within which every OCR is written and
+  maintained »* ; s'applique aux méta-documents **000–005**.
+- **`OCR-005` (Versioning Rules)** — semver (MAJOR incompatible / MINOR / PATCH), transitions de statut,
+  **« published normative meaning MUST NOT be edited in place; a change MUST be a new version »**, « recorded
+  in Version History with its version and date », versions supersédées préservées.
+
+**Donc amender OCR-006 = publier `OCR-006 v2.0.0`** (MAJOR : la portée change de façon incompatible), la v1.x
+**préservée comme superseded**, consignée en Version History, avec approbation Opus X + grounding. **Le
+« comment on amende » n'est PAS à inventer** — contrairement à ce que j'avais supposé au tour précédent. Le
+processus est **défini** (OCR-000 + OCR-005) ; ce qui reste partiel est son **outillage** (les Records
+portent bien les champs Version/Version History/Status via OCR-001, mais aucun test n'atteste le semver ni
+le no-silent-edit).
+
+### ⚠️ Correction majeure — le corpus documentaire N'EST PAS sans règle
+
+En lisant enfin les méta-Records, la prémisse « D-014 laisse le corpus documentaire sans principe → écrire
+un nouveau régime » s'avère **largement fausse**. Une **couche de gouvernance documentaire complète existe
+déjà** :
+
+| Record | Gouverne |
+|---|---|
+| **OCR-000** Canonical Knowledge Governance | autorité, modèle de statut, grounding, no-silent-edit, préservation de l'histoire — « la constitution » |
+| **OCR-001** Canonical Registry Structure | **numérotation** (000–005 méta · 100s · 200s · 300s), un-concept-par-OCR, structure de document, **plages** (« numbers MUST be durable … MUST NOT be reassigned … extensible ») |
+| **OCR-002** Editorial Rules | registre éditorial |
+| **OCR-003** Terminology Governance | terminologie |
+| **OCR-004** Entity Relationships | relations |
+| **OCR-005** Versioning Rules | semver, transitions, change records, no-silent-edit, préservation |
+
+**Reclassement des 8 domaines (corrigé) :** **amendement d'un Record** → OCR-005:46 + OCR-000 (**gouverné** ;
+« nulle part » était faux) · **versioning documentaire** → OCR-005 + OCR-001:45 (**gouverné**) · **cycle de
+vie** → OCR-000:47 + OCR-005 (**gouverné** ; la transition = grounding + approbation Opus X **est** écrite)
+· **promotion/révocation** documentaires → OCR-000:45/47 (**gouverné**) · **séries & plages** → OCR-001:31-35
+(**gouverné**). Restent réellement partiels : **intégrité** (le checksum est un outil de dépôt, pas dans un
+Record ; OCR-001:62 exige seulement « derived artifacts match source »), **transmission** (chemin+hash =
+convention de session, hors Record), et le **backlog** des 36 décisions non normalisées (le *déficit*, pas
+l'absence de règle). **6 domaines sur 8 sont gouvernés**, pas zéro.
+
+**Conséquences (constat, pas conception — je ne réoriente pas D-015 sans votre arbitrage) :**
+
+1. Le « nouveau Record » de D-015 est **en grande partie déjà écrit** (OCR-000…005). La question n'est plus
+   « écrire un régime » mais « **quel est le GAP** entre OCR-000…005 et ce que D-015 exige ? » — vraisembla-
+   blement : intégrité/checksums, transmission, et l'accueil du backlog décisionnel.
+2. La **série** du régime (mesure du tour précédent) se précise : OCR-001 réserve **000–005** aux méta-
+   documents — or **OCR-006 est déjà hors de cette plage** (numéro 6 ∉ 000–005), anomalie à relever. Un
+   régime documentaire serait un **méta-document** → il faudrait **étendre la plage méta** dans OCR-001 lui-
+   même, pas seulement dans `expected_ranges`.
+3. `§295` s'applique **aussi** à OCR-000…005 : si le régime les **amende/étend**, c'est le **même processus
+   normatif** (nouvelle version), pas un Record neuf ex nihilo.
+
+**Rien réorienté. La séquence corrigée tient. Je remonte le GAP à instruire — la décision de reframer D-015
+(nouveau Record vs amendement d'OCR-000…005) vous revient.**
