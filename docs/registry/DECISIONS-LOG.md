@@ -22,6 +22,8 @@ des règles découvertes.)
 | **D-013** | **Q3 prévaut** : le statut est **dérivé des faits** par un **résolveur** ; la révocation est un **second fait**, jamais un changement d'état | **rendue, NON appliquée** | ⏸️ **rien appliqué — sous-question ouverte.** L'option retenue portait **deux issues** (champ `Status` projection OU retiré) — la mesure a montré qu'elles **présupposent toutes deux le résolveur inexistant** → **sous-question REPORTÉE** en aval du résolveur (ligne dédiée). Défaut de formulaire (2ᵉ du même type, cf. proposition (7)). Trace D-012 comme retirée. D-010 reste en aval. **⚠️ Motif Q3/P9 caduc sous D-014** : Q3 exigeait le résolveur *au nom de P9* ; P9 ne gouverne plus le statut documentaire. **La décision reste VALIDE** (résolveur, révocation = second fait) mais comme **choix de gouvernance**, **justification à réécrire** — précédent **D-001** (retenue sur une enveloppe non attestée) |
 | **D-014** | **Les 10 principes d'OCR-006 visent le PROTOCOLE.** Les Records `.md` sont des **artefacts documentaires** ; **P2, P5, P7** (et par extension les autres) **ne les gouvernent pas** | **rendue + APPLIQUÉE** *(reclassement — pas de code)* | **`c447935`** (2026-07-24) — **généralise D-011** (fait pour P9 seul). Conséquences inscrites : motif de **D-013 à réécrire** ; **amendement d'OCR-006 obligatoire** (portée protocole à déclarer) ; **portée de P10 remontée → D-015** |
 | **D-015** | **Un régime documentaire distinct est à écrire** — nouveau Record gouvernant le corpus documentaire (que D-014 laisse sans principe), **à instruire avant clôture du chantier**. Régime **COMPLET** (pas de version minimale) | **rendue** *(trajectoire ; pas de rédaction)* | **`357d924`** (2026-07-24) — mesures inscrites ci-dessous : **dette distincte chiffrée**, **série du Record** (⚠️ 0 id libre ; OCR-006:27 contredit D-014), **périmètre du sans-règle**, **chaîne de dépendances**. `PROMO-001` et **D-010** passent **en aval de D-015** |
+| **D-016** | **L'artefact `PROMO` EST l'approbation Opus X** (champ `authority`) — comble le déficit « forme de l'approbation ». Le statut `Normative` en est **dérivé** (D-013), jamais persisté | **rendue** *(trajectoire ; pas de code)* | **`c678947`+** (cadrage) — croise **D-013** (statut dérivé) et **D-017** (grounding tracé au Record) ; ordre gravé ci-dessous. PROMO **présuppose** le grounding, ne le porte pas |
+| **D-017** | **Le Record porte son verdict de grounding AVANT promotion** (champ verdict, réf. rapport `OCR-GROUND-001`) — **ferme la boucle ouverte**, comble le raccord absent (mesure du 4ᵉ lot) | **rendue** *(trajectoire ; pas de code)* | **`c678947`+** (cadrage) — grounding tracé **dans le Record**, jamais dans PROMO (sinon 2ᵉ source, P9) |
 
 ## Décisions EN ATTENTE chez l'Architecte
 
@@ -581,3 +583,47 @@ Record** citant `rapport · verdict · commit` ; (b) un **test** qui lit le rapp
 « Conforme »** avant promotion ; (c) le **`Review Status` réécrit** d'un état « Pending » vers « grounded
 (réf. rapport) ». **Aucun des trois n'existe.** Rapport et Record sont deux artefacts **disjoints** ; la
 grille consomme le corpus, **jamais** les rapports. **C'est exactement « la boucle ouverte ».**
+
+---
+
+## Cadrage CLOS — compatibilités + SÉQUENCE D'EXÉCUTION gravée (2026-07-25)
+
+### Mesure 1 — D-016 × D-013 × D-017 : l'ordre est unique
+
+**Ordre confirmé — grounder → écrire le verdict (D-017) → émettre PROMO (D-016) → statut dérivé (D-013) :**
+
+```
+1. GROUNDING       diff doc↔code (OCR-000:51) → verdict « Conforme »   [rapport OCR-GROUND-001]
+2. VERDICT (D-017)  le champ verdict est écrit DANS le Record          [avant promotion]
+3. PROMO (D-016)    l'artefact PROMO = l'approbation Opus X (authority) [le fait d'approbation]
+4. STATUT (D-013)   « Normative » est DÉRIVÉ du fait PROMO             [jamais persisté, résolveur]
+```
+
+- **PROMO ne porte PAS le grounding — il le présuppose.** Le grounding est tracé **dans le Record**
+  (D-017) ; PROMO ne porte que l'**approbation** (D-016). Séparés : grounding = propriété Record↔code (par
+  Record) ; approbation = acte Opus X.
+- **Aucun autre ordre n'est compatible :**
+  - *PROMO avant grounding* → viole `OCR-000:47` / `OCR-005:39` (promotion exige grounding). **Interdit.**
+  - *Verdict après PROMO* → l'approbation existerait sans que le Record trace son grounding ; D-017 l'exige
+    **avant**. **Interdit.**
+  - *Grounding porté par PROMO* → seconde source du grounding (PROMO **et** Record), divergeable — le motif
+    **P9** que D-013 applique. **Interdit** → le grounding vit dans le Record, source unique.
+- **Réserve tracée :** le **sort du champ `Status`** à la promotion (projection dérivée *ou* retrait) reste
+  la **sous-question D-013, REPORTÉE** en aval du résolveur — elle ne bloque pas l'ordre ci-dessus, elle en
+  est l'aval (étape 4, forme du statut dérivé).
+
+### SÉQUENCE D'EXÉCUTION — gravée, huit étapes (AUCUNE commencée ; feu vert étape par étape)
+
+| # | Étape | Décision(s) source | État |
+|---|---|---|---|
+| **1** | **Amender OCR-006** — version **v2.0.0** (MAJOR) ; restreindre la portée au protocole (**C `:250`, E `:216`, G `:139`** — les 3 normatifs) ; aligner l'informatif (§27/§293) | D-014 · D-011 · `OCR-005:32` | ⛔ non lancée |
+| **2** | **MINOR OCR-001** — étendre la plage méta `000–005 → 000–00X` : déclare la série du régime **et** répare l'omission OCR-006 (une occasion) | D-015 · `OCR-005:33` · (anomalie 2026-07-20) | ⛔ non lancée |
+| **3** | **Loger les 3 règles manquantes** — intégrité documentaire (checksum), transmission (chemin+hash), **forme de l'approbation** | D-015 · D-016 | ⛔ non lancée |
+| **4** | **Fermer la boucle grounding** — champ verdict dans le Record + test qui échoue si non-« Conforme » avant promotion | **D-017** | ⛔ non lancée |
+| **5** | **Grounder les 6** machine-facing sans rapport : `101,104,106,107,108,109` | D-017 · `OCR-000:49-53` | ⛔ non lancée |
+| **6** | **Concevoir l'artefact PROMO** — champ `authority` (approbation) ; **présuppose** le grounding (étape 4) ; ordre de la mesure 1 | D-001 · **D-010** · D-016 | ⛔ non lancée — **rouvre D-010 ICI, pas avant** |
+| **7** | **Normaliser les 36** — par **amendements** des Records d'accueil (OCR-000…005, P10), **pas** un Record neuf | D-015 · `P10:280` | ⛔ non lancée |
+| **8** | **Promouvoir les 29** `Draft → Normative` — grounding (5) + verdict (4) + PROMO (6) réunis | D-016 · `OCR-000:47` | ⛔ non lancée |
+
+**D-010 (grain de l'artefact PROMO) reste SUSPENDUE — elle se rouvre à l'étape 6, pas avant.** Aucune étape
+n'est lancée sans feu vert, étape par étape.
