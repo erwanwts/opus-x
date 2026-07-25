@@ -1,4 +1,4 @@
-`docs/registry/RANGEMENT-B-D-F-G-conception.md` · conception (grille étape 8, rangement mesuré) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/RANGEMENT-B-D-F-G-conception.md` · conception (grille étape 8, rangement mesuré) · 2026-07-25 versée en `916fe55`
 
 # B mesuré · D placé · F réaligné · G confirmé — CONSTATS BRUTS (pour arbitrage)
 
