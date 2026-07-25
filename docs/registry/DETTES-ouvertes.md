@@ -359,3 +359,29 @@ alias : ni `Protocol` ni `Fact` n'est un concept déclaré.
 
 Leur correction suppose deux décisions distinctes : déclarer ces libellés comme concepts,
 **et** étendre la règle aux raccourcis. À instruire séparément.
+
+---
+
+## Divergence champ/fait sur OCR-000/005 — dette BORNÉE (D-023, 2026-07-25)
+
+*(Hors de la table « Attribution » ci-dessus : ce n'est pas un manque **pré-promotion** de Phase 1 — c'est
+une divergence **post-ratification**, donc `promotionDebt` ne la lit pas.)*
+
+**La dette :** `OCR-000` et `OCR-005` ont **champ `Status` = `Draft`** mais **fait = `Normative`** (ratifiés
+par `RATIF-001`). D-022 tranche que le fait prime ; mais **faute de résolveur (étape 6)**, le **champ prime
+en pratique** — les lecteurs le traitent en `Draft` → **noindex**.
+
+**Enjeu : NUL aujourd'hui** — site non lancé (prod interdite), aucun crawler ne voit le noindex ; OCR-000/005
+sont méta, pas piliers SEO. **Divergence tolérée et documentée (D-023 Q1)**, inerte jusqu'au lancement.
+
+**Les 5 lecteurs du champ `Status` que le résolveur (étape 6) devra réconcilier :**
+1. `recordPage.ts:115` (`fields['Status']`) — *dans `buildRecordPage`, central* ;
+2. `recordPage.ts:143` (`fields['Status']`) — *dans `buildRecordPage`, central* ;
+3. **`geo.ts:294` (`metadata['Status']`) — direct, HORS `buildRecordPage`** ;
+4. `manifest.mjs:289` → `lifecycle_status` (lu par `api.ts:56` + `build-migration-manifest.mjs:74`) ;
+5. `robotsFromStatus` / `sitemap` / pages `/records` / garde `recordPage.test` — *tous via `buildRecordPage`*.
+   ⇒ **3 familles d'accès** : `buildRecordPage` (central, couvre le rendu), `geo.ts`, le manifeste.
+
+**Levée :** **étape 6** — le résolveur dérive le statut du **fait** (`RATIF`/`PROMO`), plus du champ, et
+couvre les 3 familles. Jusque-là : garde `recordPage.test` **fait une exception nominative {OCR-000, OCR-005}**
+(D-023 Q2), levée à l'étape 6.

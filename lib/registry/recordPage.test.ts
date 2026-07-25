@@ -129,12 +129,29 @@ describe('DÉRIVATION — rien n’est fabriqué', () => {
 });
 
 describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
-  it('les 33 Records étant en Draft, les 33 pages sont en noindex,follow', () => {
+  it('Draft → noindex pour TOUS sauf les ratifiés {OCR-000, OCR-005} — exception bornée, levée à l’étape 6', () => {
+    // OCR-000/005 : ratifiés Normative (RATIF-001), mais leur champ Status n'est pas encore résolu (le
+    // résolveur = étape 6). D-023 : divergence tolérée et documentée. Exception BORNÉE, levée à l'étape 6.
+    // Elle est NOMINATIVE : elle doit ÉGALER l'ensemble ratifié (RATIF-001), jamais un trou ouvert — un 3e
+    // Record ratifié non ajouté ici fait échouer l'égalité ci-dessous.
+    const ratif = JSON.parse(
+      readFileSync(path.join(process.cwd(), 'content/registry/founding/RATIF-001.json'), 'utf8'),
+    );
+    const EXCLUDED = ['OCR-000', 'OCR-005'];
+    expect([...EXCLUDED].sort()).toEqual([...ratif.declares_normative].sort());
+    // Tous les AUTRES Records : Draft → noindex (l'assertion d'origine, moins l'exception bornée).
     for (const { id, raw } of RECORDS) {
+      if (EXCLUDED.includes(id)) continue;
       const p = buildRecordPage(raw)!;
       expect(p.status, id).toBe('Draft');
       expect(p.meta.robots, id).toBe('noindex,follow');
     }
+  });
+
+  it('MUTATION — l’exception doit ÉGALER l’ensemble ratifié (un 3e ratifié non exclu → signalé)', () => {
+    const eq = (a: string[], b: string[]) => JSON.stringify([...a].sort()) === JSON.stringify([...b].sort());
+    expect(eq(['OCR-000', 'OCR-005'], ['OCR-000', 'OCR-005']), 'exclusion = ratifiés → OK').toBe(true);
+    expect(eq(['OCR-000', 'OCR-005'], ['OCR-000', 'OCR-005', 'OCR-001']), '3e ratifié non exclu → échec').toBe(false);
   });
 
   it('à la promotion, la page devient indexable SANS intervention', () => {
