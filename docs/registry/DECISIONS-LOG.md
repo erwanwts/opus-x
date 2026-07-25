@@ -36,6 +36,7 @@ par » **ment par construction**. Classement établi par mesure (`git show --sta
 | **D-020** | **Voie + ordre** — la ratification émet un artefact d'une **AUTRE NATURE** (pas un PROMO) ; **ordre = portail méta d'abord** (garde d'invariant, faisable). **Deux voies vers Normative** → le résolveur (D-013) lit les deux comme faits de statut | **rendue, INSCRITE — NON appliquée** |  **`d3cab5e`** | **—** · *ferme le cadrage ; séquence finale 0–8 gravée ; lieu conçu ci-dessous* |
 | **D-021** | **Ordre de promotion à strates** (précise D-020 pour la place d'OCR-006) : **`{OCR-000, OCR-005}` → `OCR-006` → `{001, 002, 003, 004}` → `{007, 008, 009}` (régime, strate 2) → 23 concepts.** OCR-006 promu **2ᵉ** ; les 3 Records du régime rejoignent la **strate 2 (méta)** | **rendue, INSCRITE — NON appliquée** | **`bfc888a`** | **—** · *ordre d'exécution de l'**étape 8** ; **FAIT gravé (étape 3) : corpus 33→36, promotion 29→32** (`promotionDebt` dit 36/32) ; l'invariant d'ordre (D-020) à vérifier **à strates**. **⚠️ À vérifier avant étape 8** : OCR-009 décrit l'approbation qui gouverne la promotion — dépendance sur sa propre promotion ? (constat pour plus tard)* |
 | **D-022** | **Le FAIT prime le CHAMP** : un Record **ratifié** est **Normative** dès la ratification, indépendamment de son champ `Status` — une **projection** résolue à l'étape 6. Il **ne s'édite plus en place** ; tout changement passe par **versioning** (`OCR-005:46`). **Borne haute de D-018** (Draft s'édite en place ; ratifié/promu, non) | **rendue, INSCRITE — NON appliquée** |  **`71ceda6`** | **—** · *règle du régime (matière OCR-005/OCR-006) ; ⚠️ mesuré : la **fenêtre est ACTIVE** (le champ faux d'OCR-000/005 est lu) → **D-023** doit la neutraliser* |
+| **D-024** | **OCR-112 → Phase 2** — 112 est **Phase 1** (hors `HORS_PHASE_1`, placé S4) **mais bloqué par GAP-F1-01** (supersession absente) : obstacle réel au lot courant. Plutôt que coder la supersession (lot non cadré tiré dans la promotion), 112 **rejoint 114** (même bloqueur) en **Phase 2** ; le GAP se lèvera en lot de code propre, 112+114 remonteront ensemble | **rendue + APPLIQUÉE le 2026-07-25** | **`8bb0f2b`** | **`8bb0f2b`** · *ajout à `HORS_PHASE_1` ; net avec la **correction 006** (`c82f8f7`, retrait — D-021 prime) = swap 006↔112, **Phase 1 = 32** (garde `promotionDebt` verte)* |
 
 **Compte (mesuré par `git show --stat`) — 17 décisions :**
 - **Réellement APPLIQUÉES (un test/code les garde) : 5** — D-004 (`702c2d7`), D-005 (`48be4cd`), D-006 (`ce7c8d0`), D-007 (`ce7c8d0`), D-008 (`48be4cd`).
@@ -689,10 +690,9 @@ règlent avant de promouvoir.)*
   avec l'état de champ « protocole requis — non fait → pas Normative » (conception étape 4). **Conditionne les
   11 Records G1-dominant** (`105,106,107,108,109,117,118,119,121,122,123`). *Non urgente — rien n'est promu
   avant l'étape 8.* **À trancher avant 8.**
-- **B — 006 : `HORS_PHASE_1` mal réglé (constat rendu, arbitrage attendu).** D-021 (`bfc888a`) promeut 006 2ᵉ
-  (Phase 1) ; la partition (`48be4cd`, antérieure) le classe hors (Phase-3 pré-amendement). Retrait de
-  `HORS_PHASE_1` = **partition 32→33**, matière **D-005** → **décision**. *(006 sans dette → présence inerte
-  pour le critère dette ; ne fausse que la sémantique de phase.)*
+- **B — 006 : CORRIGÉ (appliqué `c82f8f7`).** D-021 (`bfc888a`, postérieur) promeut 006 2ᵉ (Phase 1) ; la
+  partition (`48be4cd`) le classait hors par **reliquat pré-D-021**. **006 retiré de `HORS_PHASE_1`** —
+  correction, pas décision (D-021 prime). *(006 sans dette → retrait sans effet sur le critère dette.)*
 - **F — liste étape 5 périmée (constat rendu).** « Grounder les 6 : `101,104,106,107,108,109` » (ligne 651)
   est **faux** (101/104 ont un cœur Conforme ; manquent 105,117,118,119,121,122,123) **et** le cadre « à
   grounder » est **obsolète** (les 32 sont grounés). Réalignée : **11 G1-dominant** (voir E). **À graver** à
@@ -700,9 +700,14 @@ règlent avant de promouvoir.)*
 - **D — sync interne du log (mécanique).** La **ligne 37** (D-021 canonique) place `{007,008,009}` en strate
   méta ; les **récitations d'aval** (étape 5 ligne 651, étape 8 ligne 654) sont **périmées** (ordre sans
   {007,008,009}, « les 29 »). **À aligner sur la ligne 37** — pas une décision.
-- **112 → Phase 2 (attend D-024).** Décision rendue par l'Architecte, **non appliquée** : 112 rejoint 114
-  (même bloqueur GAP-F1-01) ; ne pas coder la supersession pour le débloquer. **Conséquence à l'application :
-  Phase 1 32→31.** `HORS_PHASE_1` **inchangé jusqu'à D-024**.
+- **112 → Phase 2 : D-024 rendue + APPLIQUÉE (`8bb0f2b`).** 112 rejoint 114 (bloqueur GAP-F1-01) ;
+  supersession **non codée** (pas de lot de code tiré dans la promotion). Net avec la correction 006 : **swap
+  006↔112**, `HORS_PHASE_1` reste 4, **Phase 1 = 32** (mesuré, garde `promotionDebt` verte).
+- **⚠️ Phase 1 PAS nette de GAP (mesuré APRÈS les deux corrections).** 006 entre **sans GAP** — pas un 3ᵉ 112.
+  **Mais** restent **Phase-1 + GAP ouvert** : **111** (GAP-F1-02, BACKLOG CODE) · **101** et **110** (GAP-3
+  pilote, BACKLOG CODE) · **110**, **113** (OCR-REV : GAP-2 cardinalité, GAP-F1-03 HMAC). Chacun est le **même
+  cas que 112** (Phase-1 non-prêt) → même arbitrage : **lever le GAP avant l'étape 8, ou → Phase 2**. À trancher
+  (distinct de D-024). *(Réf. [[RANGEMENT-B-D-F-G-conception]] · [[PARTITION-CONSOLIDEE-conception]].)*
 
 ---
 
