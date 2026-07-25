@@ -742,6 +742,21 @@ main ; seul un test lisant le log et vérifiant `git cat-file` sur la colonne «
 non construit. **Deuxième occurrence de la proposition (6)** ; distincte de la (7) — ce n'est pas la
 décision-à-deux-issues, c'est le **registre de traçabilité qui se trompe lui-même**.
 
+**Corollaire de la proposition (6) — DE L'ARCHITECTE, à son nom :**
+
+> « Une décision peut porter une trace d'application **fausse**. Le champ ‹ appliquée par › n'était pas
+> **vide** — il citait un commit **antérieur** à la décision. **Une trace non testée n'atteste pas.** »
+
+*Distinct de la proposition (6) originale.* La (6) visait la trace **absente** (D-005 : rendue, jamais
+propagée — rien n'attestait). Le corollaire vise la trace **présente mais fausse** (D-016/D-017 : `c678947`,
+un commit **antérieur** au rendu, débusqué au contrôle du 2026-07-25) — plus dangereuse que l'absence, car
+elle **paraît** attester. **Parade construite (pas seulement proposée) :**
+[`lib/registry/decisionsLog.test.ts`](../../lib/registry/decisionsLog.test.ts) — pour chaque commit cité :
+existence (`git cat-file`), l'inscription **mentionne** l'id de la décision, et `date(appliquée) ≥
+date(inscrite)`. **Prouvé par mutation** : citer `c678947` pour D-016 échoue. C'est la première parade de ce
+registre qui **passe du « proposé » au testé** — l'anachronisme ne peut plus rentrer sans qu'un test rouge
+l'arrête.
+
 ---
 
 ## PROPOSITION (7) — sans numéro, en attente d'attribution ; DE L'ARCHITECTE, à son nom
