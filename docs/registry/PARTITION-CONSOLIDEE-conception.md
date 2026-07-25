@@ -1,4 +1,4 @@
-`docs/registry/PARTITION-CONSOLIDEE-conception.md` · état consolidé (partition Phase 1) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/PARTITION-CONSOLIDEE-conception.md` · état consolidé (partition Phase 1) · 2026-07-25 versée en `f1add85`
 
 # Partition consolidée après correction 006 + D-024 (112 → Phase 2) — MESURÉ
 
