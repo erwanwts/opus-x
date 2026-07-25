@@ -1,4 +1,4 @@
-`docs/registry/ETAT-PHASE-1.md` · point de reprise · composé le 2026-07-25 *(hash de versement : voir commit)*
+`docs/registry/ETAT-PHASE-1.md` · point de reprise · composé le 2026-07-25 versé en `7619826`
 
 # État de la Phase 1 — point de reprise
 
