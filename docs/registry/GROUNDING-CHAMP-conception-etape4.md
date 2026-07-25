@@ -1,4 +1,4 @@
-`docs/registry/GROUNDING-CHAMP-conception-etape4.md` · conception (étape 4) · 2026-07-25 *(hash : voir commit)*
+`docs/registry/GROUNDING-CHAMP-conception-etape4.md` · conception (étape 4) · 2026-07-25 versée en `c32344d`
 
 # Le champ de grounding (D-017) — CONCEPTION (étape 4, pour revue)
 
