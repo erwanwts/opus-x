@@ -1,0 +1,12 @@
+{
+  "id": "RATIF-001",
+  "kind": "founding-ratification",
+  "declares_normative": ["OCR-000", "OCR-005"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-07-25",
+  "basis": "OCR-000:35",
+  "ordinary_process": false,
+  "immutable": true,
+  "declaration": "Acte fondateur de ratification. Opus X, autorité de gouvernance du corpus nommée par OCR-000:35, déclare par le présent acte que OCR-000 et OCR-005 sont Normative. Cette déclaration est posée hors du processus de promotion ordinaire — car elle l'instaure. Elle brise l'amorçage par lequel aucune première promotion n'était possible : les règles qui gouvernent la promotion ne pouvaient devenir autoritatives par une promotion. Fondé sur la seule autorité d'Opus X, cet acte les rend autoritatives par ratification. À compter de cet acte, OCR-000 et OCR-005 font autorité ; toute promotion ultérieure procède selon les règles qu'ils portent."
+}

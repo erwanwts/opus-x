@@ -49,16 +49,38 @@ function findRatif001(): { id?: string; declares_normative?: unknown } | null {
   const rec = (manifest.records ?? []).find((r: { id?: string }) => r.id === 'RATIF-001');
   return rec ?? null;
 }
+// ── INVARIANT (phase-agnostique) : vrai à VIDE (0a) comme REMPLI (0b) ────────
+// « Tout fichier RATIF présent est RATIF-001 (aucun autre id). » La cardinalité (jamais deux) est
+// garantie par la PLAGE `RATIF-001..001` ; l'invariant s'appuie dessus (idInRanges), il ne compte pas.
+function ratifIdsInvariant(ratifIds: string[], ranges: Range[]): boolean {
+  return ratifIds.every((id) => id === 'RATIF-001' && idInRanges(id, ranges));
+}
+// Ids RATIF réellement présents dans founding/ (extraits des noms de fichiers).
+function presentRatifIds(): string[] {
+  return readdirSync(FOUNDING)
+    .map((f) => f.match(/^(RATIF-\d+)\./)?.[1])
+    .filter((x): x is string => Boolean(x));
+}
 
 describe('0a — lieu de l’acte fondateur : garde de plage RATIF (dispositif D-004)', () => {
-  it('le lieu existe, avec sa série RATIF et son schéma — records VIDE (le lieu, pas l’acte)', () => {
+  it('le lieu existe (série RATIF, schéma) ; INVARIANT : tout fichier RATIF présent est RATIF-001', () => {
     expect(existsSync(FOUNDING), 'content/registry/founding/ doit exister').toBe(true);
     expect(manifest.series).toBe('RATIF');
     expect(existsSync(path.join(FOUNDING, 'RATIF.schema.json')), 'le schéma RATIF doit exister').toBe(true);
-    expect(manifest.records, 'aucun RATIF émis en 0a (le lieu, pas l’acte)').toEqual([]);
-    // Aucun fichier RATIF-xxx émis : le répertoire ne porte que manifeste + schéma + readme.
-    const ratifFiles = readdirSync(FOUNDING).filter((f) => /^RATIF-\d+\./.test(f));
-    expect(ratifFiles, 'aucun fichier RATIF-xxx en 0a').toEqual([]);
+    // INVARIANT phase-agnostique : vrai à VIDE (0a) comme REMPLI (0b). Ne compte pas — s'appuie sur la plage.
+    const ranges = parseRanges(manifest.expected_ranges);
+    expect(
+      ratifIdsInvariant(presentRatifIds(), ranges),
+      `tout fichier RATIF présent doit être RATIF-001 — présents : ${JSON.stringify(presentRatifIds())}`,
+    ).toBe(true);
+  });
+
+  it('INVARIANT prouvé par MUTATION (vrai à vide ET rempli, faux sur un autre id / deux ids)', () => {
+    const ranges = parseRanges(manifest.expected_ranges);
+    expect(ratifIdsInvariant([], ranges), 'à vide (0a) → passe').toBe(true);
+    expect(ratifIdsInvariant(['RATIF-001'], ranges), 'RATIF-001 seul (0b) → passe').toBe(true);
+    expect(ratifIdsInvariant(['RATIF-002'], ranges), 'RATIF-002 (autre id, hors plage) → échec').toBe(false);
+    expect(ratifIdsInvariant(['RATIF-001', 'RATIF-002'], ranges), 'deux ids → échec').toBe(false);
   });
 
   it('la plage RATIF est déclarée, prouvée PAR MUTATION (dans la plage passe, hors plage échoue)', () => {

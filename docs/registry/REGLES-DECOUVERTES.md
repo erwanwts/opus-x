@@ -6,11 +6,12 @@
 > où un chantier les découvre et celui où un Record les publie.
 >
 > **Onze entrées numérotées, toutes au statut « découverte », aucune normalisée — plus
-> SEPT PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
+> HUIT PROPOSITIONS sans numéro, en attente d'attribution — (1) un instrument non testé
 > ne mesure rien · (2) un artefact jamais exercé ne prouve rien · (3) une annonce ne peut
 > excéder la population mesurée · (4) une mesure enregistrée est elle-même un instrument ·
 > (5) une corroboration exige des sources indépendantes · (6) une décision rendue n'est pas une
-> décision appliquée · (7) une option qui porte deux issues n'est pas une option** :
+> décision appliquée · (7) une option qui porte deux issues n'est pas une option · (8) un test
+> d'invariant ne doit pas assérer un état transitoire** :
 > RD-001 (résolveur canonique) · RD-002 (distinction découverte / normalisée) ·
 > RD-003 (la locale d'une référence, lacune de RD-001) · RD-004 (la coordonnée scellée
 > dans le condensat) · RD-005 (précédence du Concept sur le Record) · RD-006 (une source
@@ -803,6 +804,39 @@ rendu, ce qui est plus dangereux que l'absence de décision, car le registre la 
 deux issues matérielles est inscrite **« rendue, sous-question ouverte »**, jamais **« rendue +
 appliquée »**, tant que l'issue n'est pas unique. D-013 y est inscrite ainsi, avec sa sous-question
 « projection ou retrait » portée en ligne distincte.
+
+---
+
+## PROPOSITION (8) — sans numéro, en attente d'attribution par l'architecte ; à MON nom
+
+> **Distincte des sept.** Ni instrument non testé (1), ni artefact non exercé (2), ni annonce qui déborde
+> (3), ni mesure-instrument (4), ni corroboration sans indépendance (5), ni rendue ≠ appliquée (6), ni option
+> à deux issues (7). Celle-ci porte sur la **forme d'un test** : un test d'**invariant** ne doit pas assérer
+> un **état transitoire**.
+
+**Formulation proposée**
+
+> « Une garde permanente ne doit pas porter une assertion de phase transitoire. Un test d'invariant assère ce
+> qui reste vrai **à travers** les phases, jamais un instantané condamné à devenir faux au premier acte. »
+
+| | |
+|---|---|
+| **Date** | 2026-07-25 |
+| **Chantier d'origine** | 0b — l'émission de `RATIF-001` a fait échouer l'assertion « aucun fichier RATIF-xxx » de 0a |
+| **Statut** | **proposée** — numéro non attribué |
+
+**Motif — l'occurrence :** la garde `foundingLieu.test.ts` (0a) portait `expect(ratifFiles).toEqual([])` —
+« **le lieu est vide** ». Vraie en 0a (*le lieu, pas l'acte*), elle a **échoué à l'instant** où 0b a émis
+`RATIF-001.json` — non parce que l'acte était fautif (contenu + plage **verts**), mais parce que le test
+assérait un **instantané de phase**. **C'est la dernière leçon du chantier, et elle est tombée sur le dernier
+test.**
+
+**Parade (appliquée) :** l'assertion est réécrite en **invariant** — « tout fichier RATIF présent est
+RATIF-001 » — **vrai à vide (0a) ET rempli (0b)**, prouvé par mutation (`RATIF-002` → échec · deux ids →
+échec · absent → passe · présent exact → passe). L'invariant **s'appuie sur une propriété stable** (la plage
+`RATIF-001..001`), jamais sur un **compte d'état** : « zéro ou un » est une **conséquence** de la plage, pas
+une assertion à re-vérifier. **Limite honnête :** rien n'empêche *mécaniquement* d'écrire un instantané de
+phase ; seule la relecture « ce test restera-t-il vrai à la phase suivante ? » l'attrape.
 
 ---
 
