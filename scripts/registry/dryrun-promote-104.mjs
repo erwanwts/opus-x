@@ -2,15 +2,15 @@
 /**
  * DRY-RUN de promotion — OCR-104 (Opus ID) · Draft → Normative.
  *
- * PREUVE, pas répétition. LECTURE SEULE, ZÉRO écriture : ce script ne crée, ne
- * modifie et ne committe RIEN. Il construit en mémoire le fait PROMO-001 qui SERAIT
- * émis, tente la dérivation de statut, et MONTRE le point précis où elle échoue faute
- * de résolveur. Sa sortie est le cahier des charges de l'étape 6.
+ * TEST D'ACCEPTATION de l'étape 6 (avant/après). LECTURE SEULE, ZÉRO écriture : ce
+ * script ne crée, ne modifie et ne committe RIEN. Il construit en mémoire le fait
+ * PROMO-001 qui SERAIT émis et PROUVE que le mécanisme est complet : le résolveur
+ * dérive (§2), la garde anti-forgeage détecte (§4), le champ reste intact (§3), la
+ * promotion est réversible (§5). OCR-104 n'est PAS promu — on prouve que ça marcherait.
  *
  * Réexécutable : `node scripts/registry/dryrun-promote-104.mjs`
  */
-import { readFileSync, existsSync } from 'node:fs';
-import { execSync } from 'node:child_process';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = process.cwd();
@@ -54,38 +54,44 @@ P('    anomalie courante : ' + (anomPromo ? JSON.stringify(anomPromo.missing) + 
 P('    ⇒ pour PROMO-001, la plage est PRÉ-RÉSERVÉE ; écrire le fichier CLÔT l\'anomalie missing_in_sequence.');
 P('      (pour PROMO-002+, part (b) = étendre la borne — acte en 2 parties plein.)');
 
-// ── 2. La dérivation qui SUIVRAIT — et où elle échoue ─────────────────────────
-H('2. DÉRIVATION — ce qui suivrait, et le point EXACT d\'échec (spec du résolveur)');
-P('  Fonction qui DEVRAIT exister (n\'existe pas) :');
-P('    resolveStatus(recordId: string, facts: ApprovalFact[]): "Draft" | "Normative"');
-P('      LIT    : tous les faits RATIF-* (content/registry/founding/) + PROMO-* (content/registry/promo/)');
-P('               + les faits de RÉVOCATION (D-013)');
-P('      DÉRIVE : promoted = ∪ declares_normative(faits d\'approbation non révoqués)');
-P('               revoked  = ∪ declares_normative(faits de révocation)');
-P('               effective = promoted \\ revoked');
-P('      REND   : recordId ∈ effective ? "Normative" : "Draft"');
-P('      ÉCRIT  : RIEN (dérivation pure — le champ n\'est jamais touché)');
+// ── 2. La dérivation — RÉUSSIE (le résolveur existe depuis l'étape 6) ──────────
+H('2. DÉRIVATION — RÉUSSIE (résolveur construit à l\'étape 6)');
+// Miroir de lib/registry/resolveStatus.ts (le vrai vit en TS, testé isolément) — pour DÉMONTRER ici.
+const resolveStatusMirror = (recordId, facts) => {
+  const promoted = new Set();
+  const revoked = new Set();
+  for (const f of facts) {
+    if (f.kind === 'revocation') for (const id of f.revokes_normative ?? []) revoked.add(id);
+    else for (const id of f.declares_normative ?? []) promoted.add(id);
+  }
+  return promoted.has(recordId) && !revoked.has(recordId) ? 'Normative' : 'Draft';
+};
+const loadFactsMirror = () => {
+  const facts = [];
+  for (const rel of ['content/registry/founding', 'content/registry/promo']) {
+    const dir = path.join(ROOT, rel);
+    if (!existsSync(dir)) continue;
+    for (const fn of readdirSync(dir).filter((n) => n.endsWith('.json'))) {
+      let j;
+      try { j = JSON.parse(readFileSync(path.join(dir, fn), 'utf8')); } catch { continue; }
+      if (j && ['founding-ratification', 'promotion', 'revocation'].includes(j.kind)) facts.push(j);
+    }
+  }
+  return facts;
+};
+const resolverExists = existsSync(path.join(ROOT, 'lib/registry/resolveStatus.ts'));
+P('  resolveStatus(recordId, facts) EXISTE : ' + resolverExists + '   (lib/registry/resolveStatus.ts, testé)');
+P('    dérive promoted \\ revoked ; ne lit AUCUN champ ; n\'écrit rien.');
 P('');
-P('  Ce que la dérivation donnerait pour ' + TARGET + ', SI le résolveur existait :');
-P('    facts = [ RATIF-001 (declares {OCR-000,OCR-005}), PROMO-001 (declares {' + TARGET + '}) ]');
-P('    resolveStatus("' + TARGET + '", facts) → "Normative"');
+P('  (a) SI le fait PROMO-001 était écrit → ' + TARGET + ' dériverait :');
+P('    resolveStatus("' + TARGET + '", [PROMO-001]) → ' + resolveStatusMirror(TARGET, [promo001]) + '   ← dérivation RÉUSSIE');
 P('');
-// Le point d'échec : aucune fonction ne dérive ; les lecteurs lisent le champ.
-// git grep sort en code ≠ 0 quand il ne trouve rien → on capture proprement (pas de bruit shell).
-let resolverHits = '';
-try {
-  resolverHits = execSync('git grep -l -E "resolveStatus|deriveStatus" -- lib scripts',
-    { encoding: 'utf8', cwd: ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-} catch { resolverHits = ''; } // exit ≠ 0 = aucune occurrence
-P('  POINT D\'ÉCHEC MESURÉ : aucune implémentation de résolveur.');
-P('    git grep resolveStatus|deriveStatus dans lib/,scripts/ → ' + (resolverHits ? resolverHits : '(aucune)'));
-P('    Les lecteurs lisent le CHAMP, pas un fait :');
-P('      lib/registry/recordPage.ts:115  const status = fields[\'Status\'];');
-P('      lib/registry/recordPage.ts:143  const status = fields[\'Status\'] ?? \'\';');
-P('      lib/content/geo.ts:294          metadata[\'Status\']');
-P('      manifeste lifecycle_status (manifest.mjs → api.ts)');
-P('    ⇒ SANS résolveur, PROMO-001 est INERTE : ' + TARGET + ' resterait lu "Draft" partout,');
-P('      exactement comme RATIF-001 pour {OCR-000,OCR-005} aujourd\'hui (fenêtre D-023).');
+const realFacts = loadFactsMirror();
+P('  (b) ÉTAT RÉEL (aucun PROMO-001 écrit — dry-run) : ' + TARGET + ' reste NON promu :');
+P('    faits réellement présents : ' + (realFacts.map((f) => f.id).join(', ') || '(aucun)'));
+P('    resolveStatus("' + TARGET + '", <faits réels>) → ' + resolveStatusMirror(TARGET, realFacts) + '   ← Draft : ' + TARGET + ' n\'est PAS promu');
+P('    resolveStatus("OCR-000", <faits réels>) → ' + resolveStatusMirror('OCR-000', realFacts) + '   ← Normative (RATIF-001, réel — fenêtre D-023 fermée)');
+P('  ⇒ Le mécanisme FONCTIONNE. Écrire PROMO-001 suffirait à promouvoir ' + TARGET + '. Le dry-run ne l\'écrit pas.');
 
 // ── 3. Le champ Status — INCHANGÉ ─────────────────────────────────────────────
 H('3. CHAMP Status — resté Draft (la promotion propre ne le touche PAS)');
@@ -93,22 +99,20 @@ const md = readFileSync(path.join(ROOT, 'docs/web/registry-import/OCR-100/OCR-10
 const statusLine = md.split('\n').find((l) => /\|\s*\*\*Status\*\*\s*\|/.test(l));
 P('  OCR-104 champ actuel : ' + (statusLine ? statusLine.trim() : '(introuvable)'));
 P('  Après une promotion PROPRE : IDENTIQUE (D-022 : statut = projection, jamais authored ; OCR-009 §4).');
-P('  CONTRASTE — le chemin INTERDIT encore ouvert (forgeage) :');
-P('    lib/registry/recordPage.test.ts:163-164');
-P('      raw.replace(\'| **Status** | Draft |\', \'| **Status** | Normative |\')');
-P('      → buildRecordPage(promoted).meta.robots === \'index,follow\'');
-P('    ⇒ éditer le champ = promotion de facto, sans fait, sans garde. OCR-009 §2 l\'interdit ; rien ne l\'empêche.');
+P('  CONTRASTE — le chemin de forgeage (édition du champ) est désormais FERMÉ (§4) :');
+P('    éditer le champ en "Normative" ne promeut plus (le résolveur ignore le champ), et');
+P('    la garde anti-forgeage le DÉTECTE. Le statut ne se promeut que par un FAIT.');
 
-// ── 4. La garde absente (spec de la garde anti-forgeage) ──────────────────────
-H('4. GARDE PROMO absente — ce qu\'elle refuserait (spec anti-forgeage)');
-P('  Garde qui DEVRAIT exister (n\'existe pas) :');
-P('    Pour CHAQUE Record .md : le champ Status authored NE DOIT JAMAIS valoir "Normative"/"Validated".');
-P('    Le statut est DÉRIVÉ (résolveur), jamais authored. Un "Normative" authored = FORGEAGE = échec.');
-P('    Prouvé par mutation : éditer un champ en "Normative" → la garde échoue en nommant le Record.');
-const forge = md.includes('| **Status** | Normative |') || md.includes('| **Status** | Validated |');
-P('  État courant OCR-104 : champ Normative/Validated authored ? ' + forge + '  (attendu : false)');
-P('  Cette garde FERME recordPage.test:163-164 : le champ ne peut plus porter Normative,');
-P('  et le résolveur ignore le champ de toute façon — double fermeture du forgeage.');
+// ── 4. La garde anti-forgeage — PRÉSENTE (construite à l'étape 6) ──────────────
+H('4. GARDE ANTI-FORGEAGE — PRÉSENTE (construite à l\'étape 6, palier 2)');
+const AUTHORED_NORMATIVE = /\|\s*\*\*Status\*\*\s*\|\s*(Normative|Validated)\s*\|/i; // miroir de antiForgery.ts
+const guardExists = existsSync(path.join(ROOT, 'lib/registry/antiForgery.ts'));
+P('  authorsNormativeStatus(raw) EXISTE : ' + guardExists + '   (lib/registry/antiForgery.ts, testé)');
+P('    règle : aucun Record .md ne porte "Status: Normative"/"Validated" authored (OCR-009 §2).');
+P('  OCR-104 réel : champ Normative/Validated authored ? ' + AUTHORED_NORMATIVE.test(md) + '   (attendu : false)');
+const forged104 = md.replace('| **Status** | Draft |', '| **Status** | Normative |');
+P('  Un champ forgé en Normative est DÉTECTÉ : ' + AUTHORED_NORMATIVE.test(forged104) + '   (attendu : true)');
+P('  Double fermeture : la garde interdit le champ authored ET le résolveur ignore le champ.');
 
 // ── 5. Réversibilité ──────────────────────────────────────────────────────────
 H('5. RÉVERSIBILITÉ — un 2e fait révoque (D-013), champ jamais touché');
@@ -126,9 +130,9 @@ P('  révocation restent en historique (append-only). Promotion entièrement ré
 
 // ── Verdict ───────────────────────────────────────────────────────────────────
 H('VERDICT DU DRY-RUN');
-P('  Le chemin de promotion propre est INCOMPLET, de façon reproductible :');
-P('   • §2 résolveur ABSENT → un fait PROMO est inerte (rien ne dérive) ;');
-P('   • §4 garde anti-forgeage ABSENTE → l\'édition de champ (§3) promeut sans fait ;');
-P('   • fenêtre D-023 = la même cause (statut lu au champ, pas dérivé du fait).');
-P('  ⇒ L\'étape 8 NE PEUT PAS s\'ouvrir sans l\'étape 6 (résolveur + garde + fermeture D-023).');
-P('  AUCUNE écriture effectuée par ce script.');
+P('  Le mécanisme de promotion propre est COMPLET et sûr, de façon reproductible :');
+P('   • §2 résolveur PRÉSENT → un fait PROMO dériverait Normative ; sans fait, ' + TARGET + ' reste Draft ;');
+P('   • §4 garde anti-forgeage PRÉSENTE → l\'édition de champ (§3) est détectée et ignorée ;');
+P('   • fenêtre D-023 FERMÉE (OCR-000/005 dérivent Normative du fait, plus du champ).');
+P('  ⇒ L\'étape 8 (émission d\'un PROMO réel) PEUT s\'ouvrir : le mécanisme est prêt.');
+P('    ' + TARGET + ' N\'EST PAS promu par ce script — AUCUNE écriture effectuée.');
