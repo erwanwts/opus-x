@@ -1,0 +1,26 @@
+{
+  "schema": "opusx.registry.promo.promo/v1",
+  "purpose": "FORME du fait de promotion PROMO (D-027, grain souple) et du fait de revocation. Aucun contenu reel — juste les champs. L'emission d'un PROMO rempli = etape 8 (mandat distinct).",
+  "promotion_fields": {
+    "id": "PROMO-NNN — dans la plage PROMO ; le CONTENU fait foi, pas le nom de fichier (D-027)",
+    "kind": "promotion",
+    "declares_normative": "[OCR-xxx, ...] — TABLEAU d'un ou plusieurs ids OCR EXISTANTS et DISTINCTS (grain souple). Un seul id est un cas valide ; plusieurs aussi.",
+    "authority": "Opus X",
+    "signature": "<signature Opus X>",
+    "date": "<date>",
+    "basis": "OCR-009 (Approval Form) · OCR-000:47 (grounding + approbation Opus X)",
+    "grounding": "{ verdict, report, gap } — l'approbation PRESUPPOSE le grounding satisfait (OCR-009 §3)",
+    "ordinary_process": true,
+    "immutable": true
+  },
+  "revocation_fields": {
+    "id": "PROMO-NNN-REV (ou une serie dediee) — dans la plage PROMO",
+    "kind": "revocation",
+    "revokes_normative": "[OCR-xxx, ...] — Records dont la Normative est RETIREE. Fait SEPARE, jamais suppression (D-013). Le resolveur fait effective = promoted \\ revoked.",
+    "authority": "Opus X",
+    "immutable": true
+  },
+  "absent_by_design": {
+    "status": "PAS de champ Status — le lieu n'est pas un OCR ; le statut est DERIVE du fait (resolveur resolveStatus, etape 6)."
+  }
+}
