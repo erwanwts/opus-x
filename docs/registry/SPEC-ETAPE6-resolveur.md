@@ -1,4 +1,4 @@
-`docs/registry/SPEC-ETAPE6-resolveur.md` · spec (étape 6, cahier des charges) · 2026-07-26 *(hash : voir commit)*
+`docs/registry/SPEC-ETAPE6-resolveur.md` · spec (étape 6, cahier des charges) · 2026-07-26 versée en `8a0ecbb`
 
 # Étape 6 — résolveur + garde anti-forgeage + fermeture D-023 : SPEC MESURÉE
 
