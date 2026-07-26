@@ -27,9 +27,17 @@ describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
     const plan = indexPlan();
     // Dérivé, pas figé : home + piliers + les Records dont le fait déclare Normative.
     expect(plan).toHaveLength(1 + PILLARS.length + NORMATIVE.length);
-    // Aujourd'hui : {OCR-000, OCR-005} ratifiés (RATIF-001) + OCR-104 promu (PROMO-001) → 3 pages Record
-    // indexables. Ancré sur les FAITS émis ; chaque nouvelle promotion met à jour cet ensemble.
-    expect(NORMATIVE.sort()).toEqual(['OCR-000', 'OCR-005', 'OCR-104']);
+    // NORMATIVE (PROJECTION, via résolveur) = ce que les FAITS déclarent (SOURCE), lu des deux lieux
+    // (RATIF + PROMO), révocations retranchées. Auto-suivi : chaque promotion met à jour l'ensemble.
+    const declaredSet = new Set<string>();
+    for (const dir of ['content/registry/founding', 'content/registry/promo']) {
+      for (const f of readdirSync(path.join(process.cwd(), dir)).filter((n) => n.endsWith('.json'))) {
+        const j = JSON.parse(readFileSync(path.join(process.cwd(), dir, f), 'utf8'));
+        if (j.kind === 'founding-ratification' || j.kind === 'promotion') (j.declares_normative ?? []).forEach((x: string) => declaredSet.add(x));
+        if (j.kind === 'revocation') (j.revokes_normative ?? []).forEach((x: string) => declaredSet.delete(x));
+      }
+    }
+    expect(NORMATIVE.sort()).toEqual([...declaredSet].sort());
   });
 
   it('seuls les Records Normative (ratifiés) figurent au plan d’indexation', () => {

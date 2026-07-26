@@ -99,15 +99,18 @@ describe('lieu promo/ — existence, non-OCR, plage cohérente (D-027)', () => {
     expect(Object.keys(schema.promotion_fields)).not.toContain('status');
   });
 
-  it('la plage PROMO du lieu est COHÉRENTE avec le manifeste OCR (D-004, source unique — pas de divergence)', () => {
+  it('la plage PROMO du lieu COUVRE la réservation du manifeste OCR (D-004, borne basse — jamais plus étroit)', () => {
     const lieuPromo = parseRanges(manifest.expected_ranges).filter((r) => r.prefix === 'PROMO');
     const ocrPromo = parseRanges(JSON.parse(readFileSync(OCR_MANIFEST, 'utf8')).expected_ranges).filter(
       (r) => r.prefix === 'PROMO',
     );
     expect(lieuPromo.length, 'le lieu déclare une plage PROMO').toBe(1);
     expect(ocrPromo.length, 'le manifeste OCR réserve la plage PROMO (D-004)').toBe(1);
-    // Même borne des deux côtés : l'id à source unique vaut aussi pour la plage.
-    expect(lieuPromo[0]).toEqual(ocrPromo[0]);
+    // Le lieu PROMO fait AUTORITÉ (grain souple, D-027) et s'étend à l'émission ; le manifeste OCR RÉSERVE
+    // la série (tripwire D-004, borne basse). Le lieu COUVRE la réservation — jamais plus étroit qu'elle.
+    expect(lieuPromo[0].prefix).toBe(ocrPromo[0].prefix);
+    expect(lieuPromo[0].start, 'lieu.start ≤ OCR.start').toBeLessThanOrEqual(ocrPromo[0].start);
+    expect(lieuPromo[0].end, 'lieu.end ≥ OCR.end (couvre)').toBeGreaterThanOrEqual(ocrPromo[0].end);
   });
 });
 

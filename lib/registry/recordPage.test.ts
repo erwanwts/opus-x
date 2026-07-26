@@ -142,14 +142,17 @@ describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
   });
 
   it('AVEC les faits → ratifiés ET promus dérivent Normative → index ; le reste Draft → noindex (statut du FAIT)', () => {
-    // Ensemble ATTENDU = union des faits d'approbation (SOURCE) : RATIF-001 {000,005} + PROMO-001 {104}.
-    const ratif = JSON.parse(
-      readFileSync(path.join(process.cwd(), 'content/registry/founding/RATIF-001.json'), 'utf8'),
-    );
-    const promo1 = JSON.parse(
-      readFileSync(path.join(process.cwd(), 'content/registry/promo/PROMO-001.json'), 'utf8'),
-    );
-    const expected = [...new Set([...ratif.declares_normative, ...promo1.declares_normative])].sort();
+    // Ensemble ATTENDU = union des faits d'approbation (SOURCE), lue des DEUX lieux (RATIF + PROMO),
+    // révocations retranchées. Auto-suivi : chaque promotion émise met à jour l'ensemble sans éditer le test.
+    const declaredSet = new Set<string>();
+    for (const dir of ['content/registry/founding', 'content/registry/promo']) {
+      for (const f of readdirSync(path.join(process.cwd(), dir)).filter((n) => n.endsWith('.json'))) {
+        const j = JSON.parse(readFileSync(path.join(process.cwd(), dir, f), 'utf8'));
+        if (j.kind === 'founding-ratification' || j.kind === 'promotion') (j.declares_normative ?? []).forEach((x: string) => declaredSet.add(x));
+        if (j.kind === 'revocation') (j.revokes_normative ?? []).forEach((x: string) => declaredSet.delete(x));
+      }
+    }
+    const expected = [...declaredSet].sort();
     const facts = loadFacts();
     const indexed: string[] = [];
     for (const { id, raw } of RECORDS) {
