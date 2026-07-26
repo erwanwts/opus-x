@@ -348,7 +348,7 @@
       "title": "OCR-104 — Opus ID",
       "canonical_id": "opus-id",
       "version": "1.0.0",
-      "lifecycle_status": "Draft",
+      "lifecycle_status": "Normative",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
       "checksum_sha256": "d2dd6672f2f08743b007e2b9e22d92310b3b3f427507ad379a26b76e349af9a5",

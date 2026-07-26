@@ -6,7 +6,8 @@
  * script ne crée, ne modifie et ne committe RIEN. Il construit en mémoire le fait
  * PROMO-001 qui SERAIT émis et PROUVE que le mécanisme est complet : le résolveur
  * dérive (§2), la garde anti-forgeage détecte (§4), le champ reste intact (§3), la
- * promotion est réversible (§5). OCR-104 n'est PAS promu — on prouve que ça marcherait.
+ * promotion est réversible (§5). State-aware : il LIT l'état réel (OCR-104 promu ou non,
+ * selon les faits présents dans les lieux) et ne l'ÉCRIT jamais — instrument avant/après.
  *
  * Réexécutable : `node scripts/registry/dryrun-promote-104.mjs`
  */
@@ -87,11 +88,13 @@ P('  (a) SI le fait PROMO-001 était écrit → ' + TARGET + ' dériverait :');
 P('    resolveStatus("' + TARGET + '", [PROMO-001]) → ' + resolveStatusMirror(TARGET, [promo001]) + '   ← dérivation RÉUSSIE');
 P('');
 const realFacts = loadFactsMirror();
-P('  (b) ÉTAT RÉEL (aucun PROMO-001 écrit — dry-run) : ' + TARGET + ' reste NON promu :');
+const real104 = resolveStatusMirror(TARGET, realFacts);
+P('  (b) ÉTAT RÉEL (faits présents dans les lieux) — ce script ne fait que LIRE :');
 P('    faits réellement présents : ' + (realFacts.map((f) => f.id).join(', ') || '(aucun)'));
-P('    resolveStatus("' + TARGET + '", <faits réels>) → ' + resolveStatusMirror(TARGET, realFacts) + '   ← Draft : ' + TARGET + ' n\'est PAS promu');
+P('    resolveStatus("' + TARGET + '", <faits réels>) → ' + real104 + '   ← ' +
+  (real104 === 'Normative' ? TARGET + ' EST promu (fait PROMO-001 présent)' : TARGET + ' n\'est PAS promu (aucun PROMO)'));
 P('    resolveStatus("OCR-000", <faits réels>) → ' + resolveStatusMirror('OCR-000', realFacts) + '   ← Normative (RATIF-001, réel — fenêtre D-023 fermée)');
-P('  ⇒ Le mécanisme FONCTIONNE. Écrire PROMO-001 suffirait à promouvoir ' + TARGET + '. Le dry-run ne l\'écrit pas.');
+P('  ⇒ Le statut réel se DÉRIVE des faits présents. Ce script n\'écrit rien : il lit l\'état.');
 
 // ── 3. Le champ Status — INCHANGÉ ─────────────────────────────────────────────
 H('3. CHAMP Status — resté Draft (la promotion propre ne le touche PAS)');
@@ -134,5 +137,6 @@ P('  Le mécanisme de promotion propre est COMPLET et sûr, de façon reproducti
 P('   • §2 résolveur PRÉSENT → un fait PROMO dériverait Normative ; sans fait, ' + TARGET + ' reste Draft ;');
 P('   • §4 garde anti-forgeage PRÉSENTE → l\'édition de champ (§3) est détectée et ignorée ;');
 P('   • fenêtre D-023 FERMÉE (OCR-000/005 dérivent Normative du fait, plus du champ).');
-P('  ⇒ L\'étape 8 (émission d\'un PROMO réel) PEUT s\'ouvrir : le mécanisme est prêt.');
-P('    ' + TARGET + ' N\'EST PAS promu par ce script — AUCUNE écriture effectuée.');
+P('  ⇒ Mécanisme prêt et ACTIONNÉ : ' + TARGET + ' est réellement ' + real104 +
+  (real104 === 'Normative' ? ' (dérivé du fait PROMO-001, champ .md intact).' : ' (aucun PROMO écrit).'));
+P('    Ce script n\'écrit RIEN — il lit et prédit. AUCUNE écriture effectuée.');

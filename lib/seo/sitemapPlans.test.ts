@@ -27,8 +27,9 @@ describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
     const plan = indexPlan();
     // Dérivé, pas figé : home + piliers + les Records dont le fait déclare Normative.
     expect(plan).toHaveLength(1 + PILLARS.length + NORMATIVE.length);
-    // Aujourd'hui : {OCR-000, OCR-005} ratifiés (RATIF-001) → 2 pages Record indexables.
-    expect(NORMATIVE.sort()).toEqual(['OCR-000', 'OCR-005']);
+    // Aujourd'hui : {OCR-000, OCR-005} ratifiés (RATIF-001) + OCR-104 promu (PROMO-001) → 3 pages Record
+    // indexables. Ancré sur les FAITS émis ; chaque nouvelle promotion met à jour cet ensemble.
+    expect(NORMATIVE.sort()).toEqual(['OCR-000', 'OCR-005', 'OCR-104']);
   });
 
   it('seuls les Records Normative (ratifiés) figurent au plan d’indexation', () => {

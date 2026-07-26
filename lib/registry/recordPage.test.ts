@@ -141,10 +141,15 @@ describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
     }
   });
 
-  it('AVEC les faits → les ratifiés dérivent Normative → index ; le reste Draft → noindex (D-023 fermée par dérivation)', () => {
+  it('AVEC les faits → ratifiés ET promus dérivent Normative → index ; le reste Draft → noindex (statut du FAIT)', () => {
+    // Ensemble ATTENDU = union des faits d'approbation (SOURCE) : RATIF-001 {000,005} + PROMO-001 {104}.
     const ratif = JSON.parse(
       readFileSync(path.join(process.cwd(), 'content/registry/founding/RATIF-001.json'), 'utf8'),
     );
+    const promo1 = JSON.parse(
+      readFileSync(path.join(process.cwd(), 'content/registry/promo/PROMO-001.json'), 'utf8'),
+    );
+    const expected = [...new Set([...ratif.declares_normative, ...promo1.declares_normative])].sort();
     const facts = loadFacts();
     const indexed: string[] = [];
     for (const { id, raw } of RECORDS) {
@@ -157,8 +162,8 @@ describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
         expect(p.meta.robots, id).toBe('noindex,follow');
       }
     }
-    // Les indexés = EXACTEMENT l'ensemble ratifié — dérivé du fait, plus une exception codée.
-    expect(indexed.sort()).toEqual([...ratif.declares_normative].sort());
+    // Les indexés (PROJECTION, via résolveur) = l'union déclarée par les faits (SOURCE) — dérivé, jamais authored.
+    expect(indexed.sort()).toEqual(expected);
   });
 
   it('MUTATION — un Record hors des faits ne devient JAMAIS Normative', () => {

@@ -1,0 +1,13 @@
+{
+  "id": "PROMO-001",
+  "kind": "promotion",
+  "declares_normative": ["OCR-104"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-07-26",
+  "basis": "OCR-009 (Approval Form) · OCR-000:47 (grounding + Opus X approval)",
+  "grounding": { "verdict": "G0", "report": "OCR-GROUND-001-SYNTHESE §2", "gap": "none" },
+  "ordinary_process": true,
+  "immutable": true,
+  "declaration": "Promotion ordinaire d'OCR-104 (Opus ID) de Draft à Normative, sous autorité Opus X, le grounding étant satisfait (G0, aucun désaccord doc↔code ; OCR-GROUND-001-SYNTHESE §2). Statut dérivé de ce fait par le résolveur, jamais authored sur le Record (OCR-009 §4, D-022). Premier acte de promotion ordinaire (grain souple, D-027), déclarant UN seul Record."
+}

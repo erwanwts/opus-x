@@ -174,18 +174,27 @@ describe('lieu promo/ — GARDE DE CONTENU, mutation-prouvée (grain souple)', (
   });
 });
 
-describe('lieu promo/ — armé À VIDE : aucun PROMO réel émis', () => {
-  it('le lieu ne contient AUCUN fait de promotion réel (records vide, aucun fichier promotion)', () => {
-    expect(manifest.records, 'records: [] à la création du lieu').toEqual([]);
-    // Aucun fichier .json du lieu n'est un fait de promotion/révocation (seuls manifeste + schéma).
-    const factFiles = readdirSync(PROMO)
-      .filter((f) => f.endsWith('.json'))
-      .map((f) => JSON.parse(readFileSync(path.join(PROMO, f), 'utf8')))
-      .filter((j) => j && (j.kind === 'promotion' || j.kind === 'revocation'));
-    expect(factFiles, 'aucun fait réel dans le lieu (à vide)').toEqual([]);
+/** Les faits PROMO réels présents dans le lieu (lus du CONTENU, pas du nom de fichier). */
+function loadRealPromoFacts(): PromoFact[] {
+  return readdirSync(PROMO)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => JSON.parse(readFileSync(path.join(PROMO, f), 'utf8')))
+    .filter((j): j is PromoFact => j && (j.kind === 'promotion' || j.kind === 'revocation'));
+}
+
+describe('lieu promo/ — la garde passe sur l’ensemble RÉEL (PROMO-001 émis)', () => {
+  const real = loadRealPromoFacts();
+  const ranges = parseRanges(manifest.expected_ranges);
+
+  it('les 4 règles sont VERTES sur l’ensemble réel (plus vide) — aucune faute', () => {
+    expect(validatePromoSet(real, CORPUS_IDS, ranges)).toEqual([]);
   });
 
-  it('la garde appliquée à l’ensemble RÉEL (vide) passe — armée, aucune faute', () => {
-    expect(validatePromoSet([], CORPUS_IDS, parseRanges(manifest.expected_ranges))).toEqual([]);
+  it('PROMO-001 est présent et bien formé (déclare OCR-104, existe au corpus, en plage)', () => {
+    const p1 = real.find((f) => f.id === 'PROMO-001');
+    expect(p1, 'PROMO-001 émis').toBeTruthy();
+    expect(p1!.kind).toBe('promotion');
+    expect(p1!.declares_normative).toEqual(['OCR-104']); // grain souple : un seul Record, valide
+    expect(validatePromoFact(p1!, CORPUS_IDS, ranges)).toEqual([]);
   });
 });
