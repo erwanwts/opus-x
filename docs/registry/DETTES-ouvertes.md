@@ -362,7 +362,13 @@ Leur correction suppose deux décisions distinctes : déclarer ces libellés com
 
 ---
 
-## Divergence champ/fait sur OCR-000/005 — dette BORNÉE (D-023, 2026-07-25)
+## ✅ CLOSE le 2026-07-26 — Divergence champ/fait sur OCR-000/005 — dette BORNÉE (D-023, 2026-07-25)
+
+**✅ CLOSE par l'étape 6 (`d36ae71`, palier 3).** Le résolveur `resolveStatus` est construit : les **3 familles**
+d'accès dérivent le statut du **fait** (`RATIF-001`), plus du champ. Mesuré : `OCR-000`/`OCR-005` dérivent
+**Normative → index** ; `grep` du champ Status comme source de vérité dans le code = **0**. L'**exception
+nominative** `recordPage.test:132` est **RETIRÉE** (palier 4) — inutile, le statut est dérivé. La divergence
+champ/fait **n'existe plus** : plus rien ne lit le champ. *(Historique de la dette ci-dessous, conservé.)*
 
 *(Hors de la table « Attribution » ci-dessus : ce n'est pas un manque **pré-promotion** de Phase 1 — c'est
 une divergence **post-ratification**, donc `promotionDebt` ne la lit pas.)*

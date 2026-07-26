@@ -13,6 +13,7 @@ import path from 'node:path';
 import { splitRecord, headerFields, DEFAULT_BOUNDARY } from './recordBoundary';
 import { buildRecordPage, labelFromH1, firstSentence, robotsFromStatus, deriveDescription } from './recordPage';
 import { authorsNormativeStatus } from './antiForgery';
+import { loadFacts } from './loadFacts';
 
 const DIR = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 const RECORDS = readdirSync(DIR)
@@ -130,29 +131,40 @@ describe('DÉRIVATION — rien n’est fabriqué', () => {
 });
 
 describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
-  it('Draft → noindex pour TOUS sauf les ratifiés {OCR-000, OCR-005} — exception bornée, levée à l’étape 6', () => {
-    // OCR-000/005 : ratifiés Normative (RATIF-001), mais leur champ Status n'est pas encore résolu (le
-    // résolveur = étape 6). D-023 : divergence tolérée et documentée. Exception BORNÉE, levée à l'étape 6.
-    // Elle est NOMINATIVE : elle doit ÉGALER l'ensemble ratifié (RATIF-001), jamais un trou ouvert — un 3e
-    // Record ratifié non ajouté ici fait échouer l'égalité ci-dessous.
-    const ratif = JSON.parse(
-      readFileSync(path.join(process.cwd(), 'content/registry/founding/RATIF-001.json'), 'utf8'),
-    );
-    const EXCLUDED = ['OCR-000', 'OCR-005'];
-    expect([...EXCLUDED].sort()).toEqual([...ratif.declares_normative].sort());
-    // Tous les AUTRES Records : Draft → noindex (l'assertion d'origine, moins l'exception bornée).
+  it('SANS fait → TOUS les Records sont Draft → noindex (fenêtre D-023 close, plus d’exception nominative)', () => {
+    // Le statut se dérive du FAIT (résolveur, étape 6). Sans fait passé, tout est Draft. L'exception
+    // transitoire {OCR-000, OCR-005} de la fenêtre D-023 est RETIRÉE — inutile une fois le statut dérivé.
     for (const { id, raw } of RECORDS) {
-      if (EXCLUDED.includes(id)) continue;
-      const p = buildRecordPage(raw)!;
+      const p = buildRecordPage(raw)!; // aucun fait
       expect(p.status, id).toBe('Draft');
       expect(p.meta.robots, id).toBe('noindex,follow');
     }
   });
 
-  it('MUTATION — l’exception doit ÉGALER l’ensemble ratifié (un 3e ratifié non exclu → signalé)', () => {
-    const eq = (a: string[], b: string[]) => JSON.stringify([...a].sort()) === JSON.stringify([...b].sort());
-    expect(eq(['OCR-000', 'OCR-005'], ['OCR-000', 'OCR-005']), 'exclusion = ratifiés → OK').toBe(true);
-    expect(eq(['OCR-000', 'OCR-005'], ['OCR-000', 'OCR-005', 'OCR-001']), '3e ratifié non exclu → échec').toBe(false);
+  it('AVEC les faits → les ratifiés dérivent Normative → index ; le reste Draft → noindex (D-023 fermée par dérivation)', () => {
+    const ratif = JSON.parse(
+      readFileSync(path.join(process.cwd(), 'content/registry/founding/RATIF-001.json'), 'utf8'),
+    );
+    const facts = loadFacts();
+    const indexed: string[] = [];
+    for (const { id, raw } of RECORDS) {
+      const p = buildRecordPage(raw, facts)!;
+      if (p.meta.robots === 'index,follow') {
+        indexed.push(id);
+        expect(p.status, id).toBe('Normative');
+      } else {
+        expect(p.status, id).toBe('Draft');
+        expect(p.meta.robots, id).toBe('noindex,follow');
+      }
+    }
+    // Les indexés = EXACTEMENT l'ensemble ratifié — dérivé du fait, plus une exception codée.
+    expect(indexed.sort()).toEqual([...ratif.declares_normative].sort());
+  });
+
+  it('MUTATION — un Record hors des faits ne devient JAMAIS Normative', () => {
+    // OCR-110 n'est déclaré par aucun fait → reste Draft, même avec tous les faits chargés.
+    const raw = RECORDS.find((r) => r.id === 'OCR-110')!.raw;
+    expect(buildRecordPage(raw, loadFacts())!.status).toBe('Draft');
   });
 
   it('le mapping robots du statut reste dérivé (Draft→noindex, Normative→index)', () => {
