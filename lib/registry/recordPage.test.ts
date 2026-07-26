@@ -12,6 +12,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { splitRecord, headerFields, DEFAULT_BOUNDARY } from './recordBoundary';
 import { buildRecordPage, labelFromH1, firstSentence, robotsFromStatus, deriveDescription } from './recordPage';
+import { authorsNormativeStatus } from './antiForgery';
 
 const DIR = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 const RECORDS = readdirSync(DIR)
@@ -154,14 +155,23 @@ describe('ROBOTS — dérivé du statut, jamais codé en dur (RD-007)', () => {
     expect(eq(['OCR-000', 'OCR-005'], ['OCR-000', 'OCR-005', 'OCR-001']), '3e ratifié non exclu → échec').toBe(false);
   });
 
-  it('à la promotion, la page devient indexable SANS intervention', () => {
+  it('le mapping robots du statut reste dérivé (Draft→noindex, Normative→index)', () => {
+    // `robotsFromStatus` est le mapping PUR statut→robots. Après l'étape 6, le statut
+    // qu'on lui passe vient du RÉSOLVEUR (fait), plus du champ (voir palier 3).
     expect(robotsFromStatus('Draft')).toBe('noindex,follow');
     expect(robotsFromStatus('Normative')).toBe('index,follow');
     expect(robotsFromStatus('Validated')).toBe('index,follow');
-    // le seul champ qui change dans le Record est Status : la page suit d'elle-même.
+  });
+
+  it('FORGEAGE INTERDIT — promouvoir en éditant le champ Status est détecté, plus autorisé (étape 6)', () => {
+    // Ce test documentait naguère le forgeage (« la page suit le champ ») ; il l'INTERDIT
+    // désormais. Un `Status: Normative` authored est un forgeage (OCR-009 §2) : la garde
+    // anti-forgeage le repère. Le statut ne se promeut que par un FAIT (résolveur), jamais
+    // par une édition de champ.
     const raw = RECORDS.find((r) => r.id === 'OCR-110')!.raw;
-    const promoted = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
-    expect(buildRecordPage(promoted)!.meta.robots).toBe('index,follow');
+    expect(authorsNormativeStatus(raw), 'le Record réel n’authore jamais Normative').toBe(false);
+    const forged = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
+    expect(authorsNormativeStatus(forged), 'un champ Normative authored = forgeage, détecté').toBe(true);
   });
 });
 
