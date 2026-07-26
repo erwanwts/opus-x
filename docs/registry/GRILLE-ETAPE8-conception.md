@@ -5,6 +5,13 @@
 > **Rien écrit dans les Records, rien construit.** Conception, suite à §0 (groundé ≠ promouvable, mesuré sur
 > OCR-112). Le GAP bloquant **sort** du champ Grounding — il n'est **ni** un 5ᵉ état **ni** un qualificateur.
 
+> **⚠️ À INTÉGRER DÈS LE DÉPART — D-026 (2026-07-26).** Sous D-026, **un GAP ouvert est BLOQUANT, jamais
+> « planifié »** ; le badge n'a **aucune valeur permissive**. Et le blocage ne se limite **pas** aux GAP nommés
+> (GAP-N) : `OCR-000:49` prime → **tout désaccord doc↔code (tout G1 « code incomplet », tout G3)** bloque la
+> promotion. Le registre construit devra donc capter **tous** les désaccords, pas seulement les GAP étiquetés
+> — mesuré : **18 bloqués, pas 4** ([[FRANCHISSABLE-SOUS-D026-mesure]]). *La mesure du GAP reste ; c'est sa
+> lecture « feu vert » qui est retirée.*
+
 ## 1 — Le registre de dépendances de promotion (les GAP bloquants)
 
 **Motif :** « Conforme » et « Conforme hors GAP » ont le **même grounding** (le diff doc↔code est fait) ; ils

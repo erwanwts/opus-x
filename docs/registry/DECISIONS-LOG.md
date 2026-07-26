@@ -686,12 +686,11 @@ trois Records, un seul, ou deux autres qu'`OCR-000`/`OCR-005`.** Or D-019 a tran
 « Préparation » = propriété du Record ; « phase » = propriété du lot. Aucune ne bloque le rendu ; toutes se
 règlent avant de promouvoir.)*
 
-- **E — seuil de « prêt » d'un G1 (OUVERTE, différée).** Un Record **Normative-mais-non-implémenté** (G1
-  dominant) est-il **promouvable avec badge « planifié »** (règle d'or du grounding : « un concept peut être
-  Normative ET non encore implémenté »), **ou bloqué** tant que le code manque ? Les deux ne coexistent pas
-  avec l'état de champ « protocole requis — non fait → pas Normative » (conception étape 4). **Conditionne les
-  11 Records G1-dominant** (`105,106,107,108,109,117,118,119,121,122,123`). *Non urgente — rien n'est promu
-  avant l'étape 8.* **À trancher avant 8.**
+- **E — seuil de « prêt » d'un G1 — ✅ CLOSE par D-026 (2026-07-26), PAS ajournée.** La question (« un G1 est-il
+  promouvable avec badge « planifié » ? ») **tombe** : `OCR-000:49` prime, la règle d'or du grounding n'a **aucun
+  rang normatif**, le badge n'est **pas** un feu vert. **Il n'y a aucun seuil** — un GAP ouvert / tout G1 bloque.
+  Conséquence mesurée ([[FRANCHISSABLE-SOUS-D026-mesure]]) : **18 Records bloqués**, pas 4 (les 11 G1-dominant +
+  102/115/116/125). *Le sort des bloqués : code (101/111…) ou OCR-REV (110/113…), voies propres, chips ouverts.*
 - **B — 006 : CORRIGÉ (appliqué `c82f8f7`).** D-021 (`bfc888a`, postérieur) promeut 006 2ᵉ (Phase 1) ; la
   partition (`48be4cd`) le classait hors par **reliquat pré-D-021**. **006 retiré de `HORS_PHASE_1`** —
   correction, pas décision (D-021 prime). *(006 sans dette → retrait sans effet sur le critère dette.)*

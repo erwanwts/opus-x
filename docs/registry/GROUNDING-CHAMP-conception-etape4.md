@@ -6,6 +6,12 @@
 > avant écriture. Ferme la boucle **ouverte** : aujourd'hui aucun Record ne cite son rapport, aucun test ne
 > lit les rapports, `Review Status` est inerte.
 
+> **⚠️ D-026 (2026-07-26) neutralise le badge.** La gradation G0–G4 et sa « règle d'or » (*Normative + badge
+> « planifié »*) n'ont **aucun rang normatif** ; `OCR-000:49` prime. **Un état de grounding « Conforme hors
+> GAP » / « protocole requis — non fait » / tout G1 = NON promouvable**, sans exception, sans seuil. Le champ
+> **enregistre** le verdict et le GAP (la mesure reste) mais ne les traduit **jamais** en autorisation de
+> promotion. La question du « seuil G1 » (E) est **close** par D-026 — il n'y a pas de seuil.
+
 ## 0 — Une NUANCE mesurée avant les 4 états
 
 En lisant `OCR-GROUND-001-rapport-F1`, un **5ᵉ cas** apparaît, que les 4 états ne couvrent pas :
