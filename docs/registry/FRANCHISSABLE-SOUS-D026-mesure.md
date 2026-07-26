@@ -1,4 +1,4 @@
-`docs/registry/FRANCHISSABLE-SOUS-D026-mesure.md` · mesure (sous-ensemble étape 8 sous D-026) · 2026-07-26 versé en `e378772`
+`docs/registry/FRANCHISSABLE-SOUS-D026-mesure.md` · mesure (sous-ensemble étape 8 sous D-026) · 2026-07-26 versé en `bee0e58`
 
 # Sous-ensemble franchissable de l'étape 8 sous D-026 — MESURE EN EXTENSION
 
