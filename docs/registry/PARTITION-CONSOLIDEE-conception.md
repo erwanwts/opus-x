@@ -25,12 +25,26 @@
 **32**. *(Le « 31 » évoqué comptait 006 hors alors qu'il est dedans — écarté par la mesure, comme le « 008 »
 de la plage l'avait été.)*
 
-## 2 — Cohérence retrouvée : l'ordre D-021 et la partition s'accordent enfin
+## 2 — Écart mesuré EN EXTENSION : `{OCR-112}`, PAS 006 (correction — ma réconciliation était fausse)
 
-Après les deux corrections, l'ordre D-021 **et** la partition comptent le **même** ensemble de 32 :
-`{000,005}`(2) → `006`(1) → `{001-004}`(4) → `{007,008,009}`(3) → **22 concepts** (23 − 112, sorti par D-024)
-= **32**. *(Avant : l'ordre comptait 33 en incluant 006, la partition 32 en l'excluant — l'écart de 1 était
-exactement 006. Il est levé.)*
+Ma version précédente se contredisait (« 006 dans la Phase 1 » **et** « 32 excl. 006 »). **006 est DANS la
+Phase 1** — les 32 l'incluent ; « excl. 006 » était faux. Mesure brute (sortie machine, `node`) :
+
+```
+D-021 ordre GRAVÉ (ligne 37) = 33 : inclut 006 ET 112
+Phase 1                      = 32 : inclut 006, EXCLUT 112
+ÉCART EN EXTENSION :
+  D-021 \ Phase1 = { OCR-112 }        ← non vide
+  Phase1 \ D-021 = (vide)
+```
+
+**L'écart est `{OCR-112}`, pas 006, et il n'était pas vide.** Cause : l'ordre D-021 (gravé avant D-024) **liste
+encore 112**, que D-024 a sorti en Phase 2. La réconciliation était **annoncée, pas démontrée**.
+
+**Réconciliation DÉMONTRÉE (ordre effectif post-D-024).** En retirant 112 de la strate concepts (23 → 22),
+l'ordre effectif = `{000,005}`(2) → `006`(1) → `{001-004}`(4) → `{007,008,009}`(3) → **22 concepts** = **32**,
+**identique** à Phase 1 — écart des deux côtés **vide**, `sets identiques = true` (mesuré). ⇒ La réconciliation
+**exige d'enregistrer l'amendement de D-024 sur l'ordre** (112 retiré) — fait au **point 4** (sync ci-dessous).
 
 ## 3 — Point 3 : Phase 1 **PAS** nette de GAP — constat honnête
 
@@ -67,6 +81,8 @@ n'est pas compté ici comme bloqueur ; à qualifier séparément.)*
 ---
 
 **État consolidé :** corpus **36** · HORS_PHASE_1 **4** `{100,112,114,123}` · **Phase 1 = 32** (mesuré, garde
-verte) · 007/008/009 **dans** Phase 1. Ordre D-021 ↔ partition **réconciliés**. **Phase 1 pas nette de GAP :
+verte) · 007/008/009 **dans** Phase 1. Ordre D-021 ↔ partition : écart mesuré `{OCR-112}`, **réconciliés APRÈS
+enregistrement de l'amendement D-024** (112 retiré de l'ordre → 32 = 32, écart vide démontré ; sync point 4).
+**Phase 1 pas nette de GAP :
 101, 110, 111, 113 restent à arbitrer** (même cas que 112). D/F/G confirmés. **Rien écrit dans les Records.
 RATIF-001 intact.**
