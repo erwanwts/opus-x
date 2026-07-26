@@ -72,15 +72,19 @@ describe('AUCUN HTML INJECTÉ — les pseudo-balises atteignent la page', () => 
     expect(html).toContain('&lt;opus_id&gt;');
   });
 
-  it('sur les 33 pages, aucune pseudo-balise n’est perdue', () => {
-    let total = 0;
+  it('sur tout le corpus, aucune pseudo-balise n’est perdue à la projection', () => {
+    // L'INVARIANT falsifiable est PAR RECORD : out (rendu) == src (source). Une projection qui perd ou
+    // ajoute une balise sur N'IMPORTE quel Record échoue ici (cas OCR-110 ci-dessus = preuve par mutation).
+    // On NE somme PLUS. Un total FIGÉ (73) dérive avec le corpus — il est passé faux à 74 dès l'ajout
+    // d'OCR-007/008/009 (compte oublié par la conversion « comptes → invariants »). Et un total
+    // « == somme(src) » serait dérivé de la MÊME source que « somme(out) », donc IMPLIQUÉ par l'assertion
+    // par-Record : incapable d'échouer, il ne prouverait rien (cf. la tautologie `entityHref.test:71`).
+    // Le contrôle par-Record suffit ET reste falsifiable — c'est la seule forme qui teste.
     for (const { id, raw } of RECORDS) {
       const src = (raw.match(/<[a-zA-Z][a-zA-Z0-9_ -]*>/g) ?? []).length;
       const out = (render(raw).match(PSEUDO) ?? []).length;
       expect(out, `${id} : pseudo-balises rendues`).toBe(src);
-      total += out;
     }
-    expect(total).toBe(73);
   });
 });
 
