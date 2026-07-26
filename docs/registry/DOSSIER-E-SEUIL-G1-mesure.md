@@ -1,4 +1,4 @@
-`docs/registry/DOSSIER-E-SEUIL-G1-mesure.md` · dossier mesuré (E, pour l'Architecte) · 2026-07-26 *(hash : voir commit)*
+`docs/registry/DOSSIER-E-SEUIL-G1-mesure.md` · dossier mesuré (E, pour l'Architecte) · 2026-07-26 versé en `41d3eea`
 
 # Dossier E — le seuil de « prêt » d'un G1 : MESURE BRUTE (pas de proposition de seuil)
 
