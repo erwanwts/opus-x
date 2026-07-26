@@ -1,4 +1,4 @@
-`docs/registry/CADRAGE-PROMOTION-avant-etape8.md` · cadrage (mécanisme de promotion, avant étape 8) · 2026-07-26 *(hash : voir commit)*
+`docs/registry/CADRAGE-PROMOTION-avant-etape8.md` · cadrage (mécanisme de promotion, avant étape 8) · 2026-07-26 versé en `094ce05`
 
 # Cadrage du mécanisme de promotion — AVANT toute étape 8 (mesure + conception)
 
