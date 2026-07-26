@@ -207,9 +207,39 @@ function pad(num, width) {
 }
 
 // ---------------------------------------------------------------------
+// Statut DÉRIVÉ du fait (miroir de lib/registry/resolveStatus.ts + loadFacts.ts).
+// Le manifeste ne stocke JAMAIS le champ authored comme statut : il dérive du fait
+// (OCR-009 §4, D-022, étape 6). Le champ .md reste Draft (garde anti-forgeage).
+// ---------------------------------------------------------------------
+const FACT_KINDS = new Set(['founding-ratification', 'promotion', 'revocation']);
+function loadApprovalFacts() {
+  const facts = [];
+  for (const rel of ['content/registry/founding', 'content/registry/promo']) {
+    const dir = path.join(process.cwd(), rel);
+    if (!existsSync(dir)) continue;
+    for (const f of readdirSync(dir).filter((n) => n.endsWith('.json'))) {
+      let j;
+      try { j = JSON.parse(readFileSync(path.join(dir, f), 'utf8')); } catch { continue; }
+      if (j && typeof j.kind === 'string' && FACT_KINDS.has(j.kind)) facts.push(j);
+    }
+  }
+  return facts;
+}
+function deriveStatus(recordId, facts) {
+  const promoted = new Set();
+  const revoked = new Set();
+  for (const f of facts) {
+    if (f.kind === 'revocation') for (const id of f.revokes_normative ?? []) revoked.add(id);
+    else for (const id of f.declares_normative ?? []) promoted.add(id);
+  }
+  return promoted.has(recordId) && !revoked.has(recordId) ? 'Normative' : 'Draft';
+}
+
+// ---------------------------------------------------------------------
 // Programme principal.
 // ---------------------------------------------------------------------
 function main() {
+  const approvalFacts = loadApprovalFacts();
   const args = process.argv.slice(2);
   let inputDir = null;
   let expectedSpec = null;
@@ -286,7 +316,7 @@ function main() {
       title: fields.title ?? null,
       canonical_id: fields.canonical_id ?? null,
       version: fields.version ?? null,
-      lifecycle_status: fields.lifecycle_status ?? null,
+      lifecycle_status: deriveStatus(fields.document_id, approvalFacts), // DÉRIVÉ du fait, jamais le champ
       classification: fields.classification ?? null,
       normative_informative: fields.normative_informative ?? null,
       checksum_sha256: checksum,

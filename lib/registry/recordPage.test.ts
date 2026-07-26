@@ -111,7 +111,7 @@ describe('DÉRIVATION — rien n’est fabriqué', () => {
   });
 
   it('une description non dérivable est NULLE et tracée — jamais inventée', () => {
-    const { value } = deriveDescription([], {});
+    const { value } = deriveDescription([], {}, '');
     expect(value).toBeNull();
     const orphan = ['# OCR-999 — Sans Rien', '', '| Field | Value |', '|---|---|', '', '---', '', 'Corps.'].join('\n');
     const p = buildRecordPage(orphan)!;

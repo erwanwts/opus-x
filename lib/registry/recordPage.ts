@@ -22,6 +22,7 @@
  */
 import { splitRecord, headerFields, type BoundaryMode, DEFAULT_BOUNDARY } from './recordBoundary';
 import { parseRecordBody, type MdBlock } from './markdown';
+import { resolveStatus, type ApprovalFact } from './resolveStatus';
 
 const BASE = 'https://opusx.world';
 /** Racine des projections. `/records` — 4 CTA gravés y pointent déjà. */
@@ -106,13 +107,14 @@ function sectionText(blocks: MdBlock[], title: string): string {
 export function deriveDescription(
   blocks: MdBlock[],
   fields: Record<string, string>,
+  status: string,
 ): { value: string | null; derived: boolean } {
   const geo = firstSentence(sectionText(blocks, 'GEO Summary'));
   if (geo) return { value: geo, derived: false };
 
   const kindOrLayer = fields['Kind'] || fields['Layer'];
   const version = fields['Version'];
-  const status = fields['Status'];
+  // `status` est le statut DÉRIVÉ (résolveur), passé par l'appelant — jamais lu du champ ici.
   if (kindOrLayer && version && status) {
     return {
       value: `Derived metadata — ${kindOrLayer} · Version ${version} · Status ${status} · Canonical Registry of the World Skills Protocol.`,
@@ -130,6 +132,7 @@ export function robotsFromStatus(status: string): RecordPageMeta['robots'] {
 /** Projette un Record en contenu de page. Ne modifie ni n'interprète aucune valeur. */
 export function buildRecordPage(
   raw: string,
+  facts: readonly ApprovalFact[] = [],
   boundary: BoundaryMode = DEFAULT_BOUNDARY,
 ): RecordPageContent | null {
   const split = splitRecord(raw, boundary);
@@ -140,12 +143,17 @@ export function buildRecordPage(
   const blocks = parseRecordBody(split.body);
   const gaps: string[] = [];
 
-  const status = fields['Status'] ?? '';
+  // Le champ authored n'est lu QUE pour sa présence structurelle (il vaut toujours Draft,
+  // garde anti-forgeage) — jamais comme décision de statut.
+  const fieldStatus = fields['Status'] ?? '';
   const version = fields['Version'] ?? '';
-  if (!status) gaps.push('Status');
+  if (!fieldStatus) gaps.push('Status');
   if (!version) gaps.push('Version');
 
-  const { value: description, derived } = deriveDescription(blocks, fields);
+  // STATUT DÉRIVÉ du fait (résolveur), jamais du champ (OCR-009 §4, D-022). Sans fait → Draft.
+  const status = resolveStatus(head.id, facts);
+
+  const { value: description, derived } = deriveDescription(blocks, fields, status);
   if (!description) gaps.push('description');
 
   return {

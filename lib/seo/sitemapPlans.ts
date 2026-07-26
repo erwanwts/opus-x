@@ -31,6 +31,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { PILLARS } from './pillars';
 import { buildRecordPage, RECORDS_ROOT } from '@/lib/registry/recordPage';
+import { loadFacts } from '@/lib/registry/loadFacts';
 import { allPredicates, allFamilies, allTypes } from '@/lib/registry/registryEntities';
 
 export const BASE = 'https://opusx.world';
@@ -69,7 +70,7 @@ export function recordPlanEntries(): { url: string; indexable: boolean }[] {
   const out: { url: string; indexable: boolean }[] = [];
   for (const f of readdirSync(RECORDS_DIR).filter((x) => x.endsWith('.md')).sort()) {
     const raw = readFileSync(path.join(RECORDS_DIR, f), 'utf8');
-    const page = buildRecordPage(raw);
+    const page = buildRecordPage(raw, loadFacts());
     if (!page) continue;
     out.push({
       url: `${BASE}${RECORDS_ROOT}/${page.id.toLowerCase()}`,

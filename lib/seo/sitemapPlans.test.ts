@@ -11,35 +11,47 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { indexPlan, discoveryPlan, recordPlanEntries, registryPaths, BASE } from './sitemapPlans';
 import { buildRecordPage } from '@/lib/registry/recordPage';
+import { resolveStatus, type ApprovalFact } from '@/lib/registry/resolveStatus';
+import { loadFacts } from '@/lib/registry/loadFacts';
 import { PILLARS } from './pillars';
 
 const DIR = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 const RECORDS = readdirSync(DIR).filter((f) => f.endsWith('.md')).sort();
+const IDS = RECORDS.map((f) => f.split('_')[0]);
+/** Les Records dont le statut DÉRIVÉ (fait) est Normative → index-éligibles. Aujourd'hui {000,005} (RATIF-001). */
+const NORMATIVE = IDS.filter((id) => resolveStatus(id, loadFacts()) === 'Normative');
+const DRAFT = IDS.filter((id) => resolveStatus(id, loadFacts()) === 'Draft');
 
 describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
-  it('compte 11 URLs aujourd’hui : la home et les 10 piliers publiés', () => {
+  it('compte home + piliers + Records index-éligibles (statut DÉRIVÉ Normative)', () => {
     const plan = indexPlan();
-    expect(plan).toHaveLength(1 + PILLARS.length);
-    expect(plan).toHaveLength(11);
+    // Dérivé, pas figé : home + piliers + les Records dont le fait déclare Normative.
+    expect(plan).toHaveLength(1 + PILLARS.length + NORMATIVE.length);
+    // Aujourd'hui : {OCR-000, OCR-005} ratifiés (RATIF-001) → 2 pages Record indexables.
+    expect(NORMATIVE.sort()).toEqual(['OCR-000', 'OCR-005']);
   });
 
-  it('AUCUNE page de Record — les 33 sont en Draft', () => {
-    const urls = indexPlan().map((e) => e.url);
-    expect(urls.filter((u) => u.includes('/records/'))).toEqual([]);
+  it('seuls les Records Normative (ratifiés) figurent au plan d’indexation', () => {
+    const recordUrls = indexPlan().map((e) => e.url).filter((u) => /\/records\/ocr-\d+$/.test(u)).sort();
+    const expected = NORMATIVE.map((id) => `${BASE}/records/${id.toLowerCase()}`).sort();
+    expect(recordUrls).toEqual(expected);
   });
 
-  it('ne déclare jamais une URL en noindex — les deux signaux ne se contredisent pas', () => {
+  it('les Records noindex = ceux qui ne sont PAS Normative ; aucun n’est au plan d’indexation', () => {
     const noindex = recordPlanEntries().filter((r) => !r.indexable).map((r) => r.url);
-    expect(noindex).toHaveLength(RECORDS.length); // INVARIANT : = nb de Records (tous Draft → tous noindex)
+    expect(noindex).toHaveLength(DRAFT.length); // = Records non-Normative (dérivé du fait)
     const urls = new Set(indexPlan().map((e) => e.url));
     for (const u of noindex) expect(urls.has(u), u).toBe(false);
   });
 
-  it('REMONTE de lui-même à la promotion, sans intervention', () => {
-    // Le seul champ modifié est Status : la page devient indexable, donc éligible.
+  it('REMONTE à la promotion — par un FAIT, jamais par le champ', () => {
     const raw = readFileSync(path.join(DIR, RECORDS.find((f) => f.startsWith('OCR-110'))!), 'utf8');
-    const promoted = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
-    expect(buildRecordPage(promoted)!.meta.robots).toBe('index,follow');
+    // Éditer le champ ne promeut PLUS (le résolveur ignore le champ) :
+    const forged = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
+    expect(buildRecordPage(forged)!.meta.robots).toBe('noindex,follow');
+    // Un FAIT promeut : la page devient indexable, sans toucher au champ.
+    const fact: ApprovalFact = { id: 'PROMO-TEST', kind: 'promotion', declares_normative: ['OCR-110'] };
+    expect(buildRecordPage(raw, [fact])!.meta.robots).toBe('index,follow');
   });
 
   it('les clusters hreflang restent limités aux locales traduites', () => {
@@ -82,7 +94,7 @@ describe('PLAN DE DÉCOUVERTE — tout le corpus publié', () => {
 describe('CHAÎNE DE DÉRIVATION — un seul maillon décisionnel (RD-011)', () => {
   it('le verdict d’indexation vient de `robots`, jamais d’une relecture du statut', () => {
     for (const f of RECORDS) {
-      const page = buildRecordPage(readFileSync(path.join(DIR, f), 'utf8'))!;
+      const page = buildRecordPage(readFileSync(path.join(DIR, f), 'utf8'), loadFacts())!;
       const entry = recordPlanEntries().find((r) => r.url.endsWith(page.id.toLowerCase()))!;
       expect(entry.indexable, page.id).toBe(page.meta.robots === 'index,follow');
     }

@@ -11,6 +11,7 @@ import path from 'node:path';
 import { RegistryEntityPage } from '@/components/geo/RegistryEntityPage';
 import { buildRecordsIndex } from '@/lib/registry/registryEntityPage';
 import { buildRecordPage } from '@/lib/registry/recordPage';
+import { loadFacts } from '@/lib/registry/loadFacts';
 import { JsonLd, organizationLd, breadcrumbLd, webPageLd } from '@/lib/seo/jsonld';
 
 export const dynamic = 'force-static';
@@ -21,7 +22,7 @@ function records() {
   return readdirSync(DIR)
     .filter((f) => f.endsWith('.md'))
     .sort()
-    .map((f) => buildRecordPage(readFileSync(path.join(DIR, f), 'utf8'))!)
+    .map((f) => buildRecordPage(readFileSync(path.join(DIR, f), 'utf8'), loadFacts())!)
     .map((p) => ({ id: p.id, label: p.label, status: p.status }));
 }
 

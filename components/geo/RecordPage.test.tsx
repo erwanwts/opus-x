@@ -47,13 +47,16 @@ describe('BANDEAU DE STATUT — dérivé, et AVANT le titre', () => {
     for (const { id, raw } of RECORDS) expect(render(raw), id).toContain('STATUS — Draft');
   });
 
-  it('DISPARAÎT à la promotion, sans intervention', () => {
+  it('DISPARAÎT à la promotion — par un FAIT (le champ ne promeut plus)', () => {
     const raw = RECORDS.find((r) => r.id === 'OCR-110')!.raw;
-    const promoted = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
-    const html = render(promoted);
+    // Éditer le champ ne promeut plus : le résolveur l'ignore, le bandeau Draft reste.
+    const forged = raw.replace('| **Status** | Draft |', '| **Status** | Normative |');
+    expect(render(forged)).toContain('STATUS —');
+    // Un FAIT promeut : le bandeau disparaît, sans que le champ ait été touché.
+    const fact = { id: 'PROMO-TEST', kind: 'promotion' as const, declares_normative: ['OCR-110'] };
+    const html = renderToStaticMarkup(<RecordPage content={buildRecordPage(raw, [fact])!} />);
     expect(html).not.toContain('STATUS —');
     expect(html).not.toContain('has not yet been formally validated');
-    // le seul champ modifié est Status : rien d'autre n'a été touché.
     expect(html).toContain('Evidence');
   });
 });

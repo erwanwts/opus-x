@@ -23,6 +23,8 @@
  * =====================================================================
  */
 import { loadRecord } from '@/lib/registry/source';
+import { resolveStatus } from '@/lib/registry/resolveStatus';
+import { loadFacts } from '@/lib/registry/loadFacts';
 import { graphNeighborhood } from '@/lib/registry/api';
 import { entityHref, ctaHref } from '@/lib/seo/pillars';
 import { CTA_ENABLED } from '@/lib/seo/flags';
@@ -291,7 +293,7 @@ export function buildGeoContent(
       version: doc.metadata['Version'] || '',
       author: doc.metadata['Owner'] || '',
       date: doc.metadata['Last Update'] || '',
-      status: doc.metadata['Status'] || '',
+      status: resolveStatus(recordId, loadFacts()), // DÉRIVÉ du fait, jamais du champ (OCR-009 §4)
     },
     entityLinks,
     // `enabled` vient EXCLUSIVEMENT du flag unique lib/seo/flags — la page ne fournit

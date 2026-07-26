@@ -11,6 +11,8 @@
 import { createHash } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { loadGraph, loadManifest, registryRecords, loadRecord, graphVersion, type GraphNode, type GraphEdge } from './source';
+import { resolveStatus } from './resolveStatus';
+import { loadFacts } from './loadFacts';
 
 // ─── Enveloppe _meta + réponse ETag (déterministe) ────────────────────────────
 // Triptyque de versions demandé par l'architecte : context_version /
@@ -53,7 +55,7 @@ export function registryIndex() {
     canonical_id: r.canonical_id,
     name: r.title.replace(/^OCR-\d+\s*[—–-]\s*/, ''),
     version: r.version,
-    status: r.lifecycle_status,
+    status: resolveStatus(r.document_id, loadFacts()), // DÉRIVÉ du fait, jamais du champ manifeste (OCR-009 §4)
     normative_informative: r.normative_informative,
     checksum: r.checksum_sha256,
     href: `/api/registry/${r.document_id}`,

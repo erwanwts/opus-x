@@ -5,6 +5,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { RecordPage } from '@/components/geo/RecordPage';
 import { buildRecordPage } from '@/lib/registry/recordPage';
+import { loadFacts } from '@/lib/registry/loadFacts';
 import { JsonLd, organizationLd, breadcrumbLd } from '@/lib/seo/jsonld';
 
 export const dynamic = 'force-static';
@@ -14,7 +15,7 @@ const DIR = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 const files = () => readdirSync(DIR).filter((f) => f.endsWith('.md')).sort();
 const byId = (id: string) => {
   const f = files().find((x) => x.toLowerCase().startsWith(id.toLowerCase() + '_'));
-  return f ? buildRecordPage(readFileSync(path.join(DIR, f), 'utf8')) : null;
+  return f ? buildRecordPage(readFileSync(path.join(DIR, f), 'utf8'), loadFacts()) : null;
 };
 
 export function generateStaticParams() {
