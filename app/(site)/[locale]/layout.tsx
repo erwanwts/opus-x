@@ -4,6 +4,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { fontVars } from '@/lib/site/fonts';
+import { SiteHeader } from '@/components/geo/SiteHeader';
 import '@/app/globals.css';
 
 /**
@@ -66,7 +67,10 @@ export default async function SiteRootLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={fontVars}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <SiteHeader locale={locale} />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
