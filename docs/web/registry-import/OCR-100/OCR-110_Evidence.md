@@ -5,15 +5,15 @@
 | **Document ID** | OCR-110 |
 | **Canonical ID** | `evidence` |
 | **Canonical Name** | Evidence |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending machine-section diff against production code |
 | **Normative / Informative** | Normative (Sections: Canonical Definition, Protocol Rules, State Machine, Validation) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-08-31 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** The machine-facing sections of this document — Machine Interpretation, JSON-LD Mapping, and the wire examples — are written from the structures gravees en base during Sprint-002 (lots C1–C4): `criterion_levels` as an object, `type:"evidence"` as sibling of the body, framework id `wtr`, the four-line skill mapping to `wtr:212`, JCS canonicalization, HMAC integrity, ULID identifiers, and the append-only fact store. Before this OCR moves from **Draft** to **Normative**, every literal in those sections MUST be diffed against the current `evidence-payload.ts` emitter and the Opus X ingestion path. Do not publish a wire format the code contradicts.
+> **Grounding note (removed at publication).** The machine-facing sections of this document — Machine Interpretation, JSON-LD Mapping, and the wire examples — are written from the structures gravees en base during Sprint-002 (lots C1–C4): `criterion_levels` as an object, `type:"evidence"` as sibling of the body, framework id `wtr`, the single-criterion skill mapping to `wtr:212`, JCS canonicalization, HMAC integrity, ULID identifiers, and the append-only fact store. Before this OCR moves from **Draft** to **Normative**, every literal in those sections MUST be diffed against the current `evidence-payload.ts` emitter and the Opus X ingestion path. Do not publish a wire format the code contradicts.
 
 ---
 
@@ -49,7 +49,7 @@ Evidence does not compute trust, does not rank professionals, does not store lev
 - **Professional** — the human subject of the Evidence, identified by an Opus ID (see OCR-103, OCR-104).
 - **Framework** — the published reference of skills and levels against which Evidence is expressed (see OCR-115).
 - **Framework Reference** — the specific coordinate within a Framework that Evidence points to, e.g. `wtr:212`.
-- **Criterion Levels** — the object mapping each referenced criterion to the level attested, e.g. `{ "S03.C08": <level> }`. Levels are defined by the Framework, not by the Issuer.
+- **Criterion Levels** — the object mapping the referenced criterion to the level attested (exactly one criterion per Evidence), e.g. `{ "S03.C08": <level> }`. Levels are defined by the Framework, not by the Issuer.
 - **Evidence Link** — the append-only binding between an accepted Evidence and the Passport update it produced.
 - **Immutable Fact** — the append-only, non-mutable database record of an accepted Evidence (see OCR-114).
 - **Provenance** — the verifiable record of who produced the Evidence, when, and under what authorization.
@@ -114,7 +114,7 @@ An Issuer produces Evidence. Only a Certified Issuer's Evidence is accepted. Opu
 - A withdrawal **SHALL** be expressed as a revocation fact; the revoked record **SHALL** be preserved and marked revoked.
 - Every accepted Evidence **SHALL** be linked to exactly one Passport update; the Evidence Link **SHALL** enforce this uniqueness.
 - An Evidence record **SHOULD** carry supporting artifacts where they aid independent verification.
-- An Evidence record **MAY** reference multiple criteria within a single Framework coordinate.
+- An Evidence record **MUST** reference exactly one criterion within a single Framework coordinate; the `criterion_levels` object **MUST** contain exactly one entry.
 - Evidence **MUST NOT** carry a trust score, ranking, or interpretation.
 
 ## Security Considerations
@@ -131,7 +131,7 @@ An AI system MAY read Evidence to answer questions about what a Professional has
 
 ## Machine Interpretation
 
-An Evidence submission is a JSON object carrying the discriminator `type: "evidence"` as a sibling of the body. The body references the Professional (Opus ID), the Issuer, the Framework coordinate, and a `criterion_levels` **object** mapping each criterion to its attested level. Integrity is computed over the JCS-canonicalized form. The accepted record is stored as an append-only Immutable Fact and bound to the Passport update through a uniqueness-constrained Evidence Link.
+An Evidence submission is a JSON object carrying the discriminator `type: "evidence"` as a sibling of the body. The body references the Professional (Opus ID), the Issuer, the Framework coordinate, and a `criterion_levels` **object** mapping its single criterion to the attested level. Integrity is computed over the JCS-canonicalized form. The accepted record is stored as an append-only Immutable Fact and bound to the Passport update through a uniqueness-constrained Evidence Link.
 
 ```json
 {
@@ -141,14 +141,11 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "issued_at": "2026-07-16T00:00:00Z",
   "issuer": { "id": "<issuer_id>" },
   "subject": { "opus_id": "<opus_id>" },
-  "framework": { "id": "wtf", "reference": "wtf:212" },
+  "framework": { "id": "wtr", "reference": "wtr:212" },
   "body": {
     "observation": "<what was demonstrated>",
     "criterion_levels": {
-      "S03.C08": "<level>",
-      "S08.C06": "<level>",
-      "S05.C08": "<level>",
-      "S02.C12": "<level>"
+      "S03.C08": "<level>"
     },
     "artifacts": []
   },
@@ -170,8 +167,8 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
   "@id": "urn:opusx:evidence:ev_01KXM07GFE2GX8ZA4NJC42JDF5",
   "producedBy": { "@type": "Issuer", "@id": "urn:opusx:issuer:<issuer_id>" },
   "about": { "@type": "Professional", "@id": "urn:opusx:opusid:<opus_id>" },
-  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtf" },
-  "frameworkReference": "wtf:212",
+  "referencesFramework": { "@type": "Framework", "@id": "urn:opusx:framework:wtr" },
+  "frameworkReference": "wtr:212",
   "isImmutable": true,
   "supersedes": null,
   "revoked": false
@@ -195,7 +192,7 @@ An Evidence submission is a JSON object carrying the discriminator `type: "evide
 
 ## Examples
 
-- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtf:212` with `criterion_levels` for `S03.C08`, `S08.C06`, `S05.C08`, and `S02.C12`; Opus X verifies, journals the fact, and links it to the Passport.
+- A trading academy (Certified Issuer) observes a demonstrated risk-management competency and emits Evidence referencing `wtr:212` with `criterion_levels` for the single criterion `S03.C08`; Opus X verifies, journals the fact, and links it to the Passport.
 - A university emits Evidence attesting a completed degree; the fact is later reinterpreted under a new Framework version, and Trust is recomputed without altering the original Evidence.
 - An employer emits Evidence of workplace performance; a correction is required, so a new superseding Evidence is emitted and the original is preserved.
 - A professional association revokes a lapsed certification by journaling a revocation fact; the original Evidence remains, marked revoked.
@@ -245,7 +242,7 @@ Evidence is often mistaken for a credential or a badge; it is neither — it is 
 19. **Can a superseded Evidence be shown as current?** No. Provenance and status MUST be preserved.
 20. **Does consent deletion remove Evidence?** No. Consent governs disclosure, not existence.
 21. **What is the difference between Evidence and an Immutable Fact?** Evidence is the concept; the Immutable Fact is its accepted, journaled record (OCR-114).
-22. **Can Evidence reference multiple criteria?** Yes, within a Framework coordinate.
+22. **How many criteria does one Evidence reference?** Exactly one, within a single Framework coordinate.
 23. **Is a rejected submission stored as Evidence?** No. Rejection is terminal and journals no fact.
 
 ## LLM Summary
@@ -282,4 +279,5 @@ OCR-100 World Skills Protocol · OCR-101 Professional Passport · OCR-103 Profes
 
 ## Version History
 
+- **1.1.0** (2026-08-31) — Correct the criterion **cardinality** to match the implementation: an Evidence references **exactly one** criterion within a single Framework coordinate (`criterion_levels` = exactly one entry), per the ingestion guard (`wsp_ingestion.sql:184-186`, `observation_invalid` when the key count ≠ 1). The prior « MAY reference multiple criteria » rule and the four-criteria examples (Machine Interpretation, JSON-LD, Examples) are reduced to one. Obsolete framework prefix `wtf:` → `wtr:` in the machine sections (D2). Normative correction under the Grounding Rule (OCR-000:49), D-030 (volet cardinalité). The Passport-link rule (:115 « SHALL be linked to exactly one Passport update ») is **unchanged** — its gap is resolved through code, not text (D-030, Voie Code).
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-110 v0.1 skeleton draft. Machine sections pending diff against production emitter before promotion to Normative.
