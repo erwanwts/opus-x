@@ -216,7 +216,7 @@ describe('PROJECTION — identité et adresse', () => {
     const raw = RECORDS.find((r) => r.id === 'OCR-115')!.raw;
     const f = headerFields(splitRecord(raw));
     expect(f['Document ID']).toBe('OCR-115');
-    expect(f['Version']).toBe('1.1.0');
+    expect(f['Version']).toBe('1.2.0'); // D-033 : correctif grounding wtr:212 (skill/niveaux)
     expect(f['Status']).toBe('Draft');
   });
 });

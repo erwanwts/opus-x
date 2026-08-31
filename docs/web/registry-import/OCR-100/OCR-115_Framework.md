@@ -5,15 +5,15 @@
 | **Document ID** | OCR-115 |
 | **Canonical ID** | `framework` |
 | **Canonical Name** | Framework |
-| **Version** | 1.1.0 |
+| **Version** | 1.2.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
-| **Review Status** | Pending machine-section diff against production code |
+| **Review Status** | Machine sections diffed against production code — wtr:212 skill/levels model (D-033) |
 | **Normative / Informative** | Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-21 |
+| **Last Update** | 2026-08-31 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** This concept reflects the Framework model gravé en base during Sprint-002: a Framework identified by `wtr`, addressed by coordinates such as `wtr:212`, whose **levels are defined by the Framework and published by Opus X** — never carried inside Evidence and never authored by an Issuer at emission time. Diff coordinate syntax and level semantics against the production `framework-client.ts` parser before promotion to Normative.
+> **Grounding note (removed at publication).** This concept reflects the Framework model gravé en base during Sprint-002: a Framework identified by `wtr`, addressed by coordinates such as `wtr:212`, whose **levels are defined by the Framework and published by Opus X** — never carried inside Evidence and never authored by an Issuer at emission time. Diff coordinate syntax and level semantics against the production `lib/api/frameworkDiscovery.ts` parser before promotion to Normative.
 
 ---
 
@@ -49,7 +49,7 @@ A Framework does not observe demonstrations, does not produce Evidence, does not
 - **Skill** — a nameable capability the Framework defines (OCR-116).
 - **Competency** — an applied, demonstrable skill cluster (OCR-117).
 - **Level** — the graded semantics of a skill, defined by the Framework, published by Opus X.
-- **Criterion** — a specific assessable element (e.g. `S03.C08`) mapped to a coordinate via the Framework Registry.
+- **Criterion** — a specific assessable element mapped to a coordinate via the Framework Registry.
 - **Version** — a published revision of a Framework carrying evolving level semantics.
 
 ## Core Principles
@@ -115,7 +115,7 @@ An AI MAY use a Framework to interpret what a referenced coordinate and level me
 
 ## Machine Interpretation
 
-A Framework is addressed by a Framework ID and coordinates. Evidence carries a `framework` object with an `id` (e.g. `wtr`) and a `reference` (e.g. `wtr:212`); the Registry resolves the reference to skills/criteria and their level semantics for a version. The production emitter parses the nested Framework structure (`framework.version` plus the correct skill's `levels`) — machine literals here must be diffed against that parser.
+A Framework is addressed by a Framework ID and coordinates. Evidence carries a `framework` object with an `id` (e.g. `wtr`) and a `reference` (e.g. `wtr:212`); the Registry resolves the reference to the skill and its named level semantics for a version. The production parser reads the nested Framework structure (`framework.version` plus the skill's `levels`) — machine literals here must be diffed against that parser.
 
 ```json
 {
@@ -124,7 +124,8 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
     "version": "0.1",
     "coordinate": "wtr:212",
     "resolves_to": {
-      "criteria": ["S03.C08", "S08.C06", "S05.C08", "S02.C12"],
+      "skill": "Intention vs Engagement",
+      "levels": ["aware", "applied", "proficient", "mastery"],
       "levels_defined_by": "framework",
       "levels_authored_by": "opusx"
     }
@@ -141,7 +142,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
   "@id": "urn:opusx:framework:wtr",
   "name": "World Trader Framework",
   "version": "0.1",
-  "definesSkill": ["urn:opusx:skill:S03.C08", "urn:opusx:skill:S08.C06"],
+  "definesSkill": ["urn:opusx:skill:wtr:212"],
   "publishedBy": { "@type": "Organization", "@id": "urn:opusx:org:opusx" },
   "isReferencedBy": "urn:opusx:concept:evidence"
 }
@@ -161,7 +162,7 @@ A Framework is addressed by a Framework ID and coordinates. Evidence carries a `
 
 ## Examples
 
-- The `wtr` Framework defines a competency addressed by `wtr:212` and the levels for its criteria; an Issuer references `wtr:212` in Evidence without restating the level definitions.
+- The `wtr` Framework defines a skill addressed by `wtr:212` and its named levels (aware, applied, proficient, mastery); an Issuer references `wtr:212` in Evidence without restating the level definitions.
 - Opus X publishes `wtr` version 1.1 refining a level's semantics; past Evidence is unchanged, and trust is recomputed against the new version per policy.
 - A coordinate is deprecated for new references but remains addressable because existing Evidence points to it.
 
@@ -201,7 +202,7 @@ A Framework is often confused with a course or curriculum; it defines meaning, n
 13. **Is a Framework a course?** No.
 14. **Does a Framework contain personal data?** No.
 15. **Can an AI invent a level?** No; it must resolve against the Framework version.
-16. **What is a criterion?** An assessable element (e.g. `S03.C08`) mapped to a coordinate.
+16. **What is a criterion?** An assessable element mapped to a coordinate.
 17. **How many Frameworks can exist?** Many; each has a stable ID.
 18. **Who publishes versions?** Opus X, authenticated.
 19. **What computes against a Framework?** Trust (OCR-105).
@@ -221,7 +222,7 @@ The **Framework** is the shared meaning of the World Skills Protocol: a versione
 
 ## Search Keywords
 
-framework, world skills protocol, wsp, skills framework, competency framework, framework id, wtr, world trader framework, framework coordinate, wtr:212, level, level definition, level semantics, skill, competency, capability, criterion, S03.C08, S08.C06, S05.C08, S02.C12, framework registry, coordinate resolution, versioning, framework version, published framework, opus x, evidence, evidence reference, references not embeds, trust, trust computation, recomputable trust, deprecation, superseded version, shared meaning, comparable attestations, multi-issuer, interoperability, canonical vocabulary, namespace, addressability, stable coordinate, meaning evolution, reinterpretation, framework governance, publication authority, authenticated publication, framework-client, nested framework structure, skills namespace, skill definition, competency definition, capability definition, assessment criterion, leveling, graded semantics, credential meaning, verifiable credential, skills standard, professional skills, skills taxonomy, ontology, knowledge graph, json-ld, machine interpretation, framework model, protocol reference, standard reference, docs opusx world, ocr-115, ocr, level bands, observation bands, not in evidence, not issuer-defined, trust semantics, applicable version, version pinning, framework publication, framework lifecycle, framework relationships, framework rules
+framework, world skills protocol, wsp, skills framework, competency framework, framework id, wtr, world trader framework, framework coordinate, wtr:212, level, level definition, level semantics, skill, competency, capability, criterion, named levels, aware, applied, proficient, mastery, framework registry, coordinate resolution, versioning, framework version, published framework, opus x, evidence, evidence reference, references not embeds, trust, trust computation, recomputable trust, deprecation, superseded version, shared meaning, comparable attestations, multi-issuer, interoperability, canonical vocabulary, namespace, addressability, stable coordinate, meaning evolution, reinterpretation, framework governance, publication authority, authenticated publication, frameworkDiscovery, nested framework structure, skills namespace, skill definition, competency definition, capability definition, assessment criterion, leveling, graded semantics, credential meaning, verifiable credential, skills standard, professional skills, skills taxonomy, ontology, knowledge graph, json-ld, machine interpretation, framework model, protocol reference, standard reference, docs opusx world, ocr-115, ocr, level bands, observation bands, not in evidence, not issuer-defined, trust semantics, applicable version, version pinning, framework publication, framework lifecycle, framework relationships, framework rules
 
 ## Synonyms
 
@@ -241,5 +242,6 @@ OCR-100 World Skills Protocol · OCR-105 Trust · OCR-110 Evidence · OCR-116 Sk
 
 ## Version History
 
+- **1.2.0** (2026-08-31) — Grounding correction to match the built Framework (D-033): the coordinate `wtr:212` is described as a single skill (« Intention vs Engagement ») with four named levels (aware / applied / proficient / mastery), as gravé en base (`wsp_framework.sql:247-268`). The phantom criteria `S03.C08` / `S08.C06` / `S05.C08` / `S02.C12` — absent from the Framework — removed from Machine Interpretation, JSON-LD, Terminology, FAQ, and keywords. Grounding-note parser reference corrected to the real file `lib/api/frameworkDiscovery.ts` (stale filename removed). Normative correction under the Grounding Rule (OCR-000:49).
 - **1.1.0** (2026-07-21) — Added `reidentified_as` / `was_reidentified_from` (OCR-007 PRD-306, Resolution family) to Knowledge Graph Relationships, alongside `supersedes`: the two modes of evolution of the same concept. Backward-compatible addition; no existing statement modified or removed. The entry publishes the rule — a Framework may be reidentified — never an instance.
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-115 v0.1 skeleton. Machine sections pending diff against `framework-client.ts` before promotion to Normative.
