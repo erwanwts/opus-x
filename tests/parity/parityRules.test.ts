@@ -13,6 +13,7 @@ const CONFORME: ParityProbes = {
   publicViewIssuedAt: 'present',
   anonPassportsRaw: 'denied',
   passportUpdatesTable: 'present',
+  skillsSourceFn: 'present',
 };
 
 describe('parityViolation — garde vérité-terrain (pure)', () => {
@@ -48,12 +49,20 @@ describe('parityViolation — garde vérité-terrain (pure)', () => {
     expect(v).toContain('20260831000002_wsp_passport_updates');
   });
 
+  it('MUTATION — fonction wsp_my_active_skills absente → violation (palier 3)', () => {
+    const v = parityViolation({ ...CONFORME, skillsSourceFn: 'absent' });
+    expect(v).not.toBeNull();
+    expect(v).toContain('wsp_my_active_skills');
+    expect(v).toContain('20260901000001_wsp_skills_source');
+  });
+
   it('plusieurs dérives → TOUTES listées (jamais la première seule)', () => {
     const v = parityViolation({
       bridgeResolveFn: 'absent',
       publicViewIssuedAt: 'absent',
       anonPassportsRaw: 'readable',
       passportUpdatesTable: 'absent',
+      skillsSourceFn: 'absent',
     });
     for (const s of SENTINELS) expect(v).toContain(s.migration);
   });

@@ -130,26 +130,24 @@ export class DashboardService {
     };
   }
 
-  private async readSkillsStatus(passportId: string): Promise<SkillsStatus | null> {
-    const [all, verified] = await Promise.all([
-      this.supabase
-        .from('skills')
-        .select('id', { count: 'exact', head: true })
-        .eq('passport_id', passportId),
-      this.supabase
-        .from('skills')
-        .select('id', { count: 'exact', head: true })
-        .eq('passport_id', passportId)
-        .eq('verified', true),
-    ]);
+  private async readSkillsStatus(_passportId: string): Promise<SkillsStatus | null> {
+    // Palier 3 (#5) — source RÉELLE : compétences ACTIVES du caller, dérivées des
+    // preuves acceptées non révoquées (D-036), au lieu de la table Sprint-1 vide.
+    // Owner-scopée (current_opus_id) → passportId inutilisé : le Dashboard lit
+    // toujours SON propre Passport (la source empêche de lire celui d'un autre).
+    const { data, error } = await this.supabase.rpc('wsp_my_active_skills');
+    if (error) return null;
 
-    if (all.error || verified.error) return null;
-
-    const count = all.count ?? 0;
+    const rows = (data ?? []) as { skill_uri: string }[];
+    // Décompte = skills DISTINCTS (une compétence à plusieurs niveaux = une skill).
+    const count = new Set(rows.map((r) => r.skill_uri)).size;
     return {
       state: count === 0 ? 'empty' : 'active',
       count,
-      verified_count: verified.count ?? 0,
+      // TRANSFORMATION SIGNALÉE (à valider, NON décidée) : « verified » est une
+      // notion de vérification/confiance sans source fidèle au palier 3 (couplée
+      // au trust, palier 4). On ne l'INVENTE pas : verified_count = 0 jusque-là.
+      verified_count: 0,
     };
   }
 

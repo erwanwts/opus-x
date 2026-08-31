@@ -34,7 +34,12 @@ export async function gatherProbes(
   const pu = await admin.from('wsp_passport_updates').select('id', { head: true, count: 'exact' }).limit(0);
   const passportUpdatesTable: ParityProbes['passportUpdatesTable'] = pu.error ? 'absent' : 'present';
 
-  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable };
+  // Palier 3 : la fonction wsp_my_active_skills existe (PGRST202 = absente ;
+  // en service_role elle rend [] sans erreur, ce qui suffit à prouver sa présence).
+  const sk = await admin.rpc('wsp_my_active_skills');
+  const skillsSourceFn: ParityProbes['skillsSourceFn'] = sk.error?.code === 'PGRST202' ? 'absent' : 'present';
+
+  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn };
 }
 
 /** Applique la garde : lève BRUYAMMENT si le staging ne reflète pas le dépôt. */

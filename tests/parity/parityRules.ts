@@ -29,6 +29,8 @@ export interface ParityProbes {
   anonPassportsRaw: 'denied' | 'readable';
   /** La table `wsp_passport_updates` existe (palier 2). */
   passportUpdatesTable: 'present' | 'absent';
+  /** La fonction `wsp_my_active_skills` existe (palier 3, source des skills). */
+  skillsSourceFn: 'present' | 'absent';
 }
 
 interface Sentinel {
@@ -66,6 +68,12 @@ export const SENTINELS: readonly Sentinel[] = [
     expected: 'present',
     migration: '20260831000002_wsp_passport_updates',
     what: 'table wsp_passport_updates (le Passport grandit)',
+  },
+  {
+    key: 'skillsSourceFn',
+    expected: 'present',
+    migration: '20260901000001_wsp_skills_source',
+    what: 'fonction wsp_my_active_skills (source réelle des skills)',
   },
 ];
 
