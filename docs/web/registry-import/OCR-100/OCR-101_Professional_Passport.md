@@ -5,12 +5,12 @@
 | **Document ID** | OCR-101 |
 | **Canonical ID** | `professional-passport` |
 | **Canonical Name** | Professional Passport |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending machine-section diff against production code |
 | **Normative / Informative** | Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-08-31 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
 > **Grounding note (removed at publication).** This concept reflects the Passport model gravé en base during Sprint-002: each accepted Evidence links to exactly one **Passport update** (`passport_update_id`, `UNIQUE`), the Passport is the professional-facing surface of the identity Opus X holds on the professional's behalf, and disclosure is governed by consent expressed as facts. Diff the update-linking model against the production Evidence Link table before promotion to Normative.
@@ -19,11 +19,11 @@
 
 ## Abstract
 
-The Professional Passport is the professional-facing surface of the identity that Opus X holds, on the professional's behalf, within the World Skills Protocol. It is not itself the identity (that is Opus ID, OCR-104) and it is not a credential wallet; it is the coherent, verifiable view of the immutable facts bound to a professional. Every accepted Evidence produces exactly one Passport update, and the Passport is the accumulation of those updates over time — an append-only professional record whose meaning is computed, not curated. The Passport belongs to the professional: they own the identity it surfaces and govern what is disclosed from it, through consent expressed as facts rather than by editing or deleting the underlying record. This separation — the professional controls disclosure, but no one rewrites history — is what lets a Passport be simultaneously private and trustworthy. This document defines the Professional Passport: what it surfaces, how it updates, who governs it, and how it relates to Opus ID, Evidence, Immutable Fact, and Trust. It is where the protocol's guarantees become something a human can hold and present.
+The Professional Passport is the professional-facing surface of the identity that Opus X holds, on the professional's behalf, within the World Skills Protocol. It is not itself the identity (that is Opus ID, OCR-104) and it is not a credential wallet; it is the coherent, verifiable view of the immutable facts bound to a professional. Every accepted Evidence produces exactly one Passport update of type evidence, and the Passport is the append-only accumulation of its updates over time — evidence updates and other Passport changes alike — a professional record whose meaning is computed, not curated. The Passport belongs to the professional: they own the identity it surfaces and govern what is disclosed from it, through consent expressed as facts rather than by editing or deleting the underlying record. This separation — the professional controls disclosure, but no one rewrites history — is what lets a Passport be simultaneously private and trustworthy. This document defines the Professional Passport: what it surfaces, how it updates, who governs it, and how it relates to Opus ID, Evidence, Immutable Fact, and Trust. It is where the protocol's guarantees become something a human can hold and present.
 
 ## Executive Summary
 
-A Professional Passport is the accumulated, verifiable surface of a professional's bound Evidence. It updates by one Passport update per accepted Evidence, is owned by the professional, and discloses under consent without ever mutating the underlying facts. It surfaces what Trust computes; it does not let the professional or an Issuer edit history. The Passport is the difference between raw facts in a store and a coherent professional identity a person can present and a verifier can check.
+A Professional Passport is the accumulated, verifiable surface of a professional's bound Evidence. It updates by exactly one update per accepted Evidence, and by further updates recording non-evidence changes; it is owned by the professional, and discloses under consent without ever mutating the underlying facts. It surfaces what Trust computes; it does not let the professional or an Issuer edit history. The Passport is the difference between raw facts in a store and a coherent professional identity a person can present and a verifier can check.
 
 ## Motivation
 
@@ -39,13 +39,13 @@ The Professional Passport is not the identity itself (Opus ID), not a credential
 
 ## Canonical Definition
 
-> A **Professional Passport** is the professional-facing, append-only surface of a professional's Opus ID within the World Skills Protocol, accumulating one Passport update per accepted Evidence, owned by the professional, disclosed under consent expressed as facts, and never permitting mutation or deletion of the underlying Immutable Facts.
+> A **Professional Passport** is the professional-facing, append-only surface of a professional's Opus ID within the World Skills Protocol, accumulating Passport updates — one, of type evidence, per accepted Evidence, and others recording non-evidence changes — owned by the professional, disclosed under consent expressed as facts, and never permitting mutation or deletion of the underlying Immutable Facts.
 
 ## Terminology
 
 - **Professional Passport** — the surface defined here.
 - **Opus ID** — the underlying professional identity (OCR-104).
-- **Passport update** — the append event produced by one accepted Evidence, uniquely linked to it.
+- **Passport update** — an append event recording a change to the Passport. An accepted Evidence produces exactly one update, of type evidence, uniquely linked to it; other changes (e.g. disclosure/consent) produce updates of other types.
 - **Disclosure** — what is shown from the Passport, governed by consent.
 - **Consent** — the professional's disclosure decisions, expressed as facts.
 - **Holder** — the professional who owns the Passport.
@@ -57,7 +57,7 @@ The Passport is owned by the professional. The Passport is append-only. One acce
 
 ## Conceptual Model
 
-A Passport comprises the professional's Opus ID reference, the ordered accumulation of Passport updates (each linked to exactly one accepted Evidence), the current disclosure state derived from consent facts, and the trust surface computed over the bound facts.
+A Passport comprises the professional's Opus ID reference, the ordered accumulation of Passport updates (each evidence update linked to exactly one accepted Evidence), the current disclosure state derived from consent facts, and the trust surface computed over the bound facts.
 
 It does **not** comprise editable fields, deletable entries, or issuer-owned sections. The relations: an accepted Evidence `produces` a Passport update; the update `belongs_to` an Opus ID; the professional `owns` the Passport and `governs disclosure`; Trust `is surfaced by` the Passport. No relation lets the holder or an Issuer mutate a bound fact.
 
@@ -87,6 +87,7 @@ The professional owns the Passport and governs disclosure. Opus X holds and main
 ## Protocol Rules
 
 - Each accepted Evidence **MUST** produce exactly one Passport update, uniquely linked (`UNIQUE`).
+- A Passport update records a change to the Passport: the update produced by an accepted Evidence is **of type evidence**, and non-evidence changes (e.g. consent/disclosure) **MAY** produce updates of other types. An update of type evidence **MUST** carry its Evidence Link; an update of another type **MUST NOT**.
 - A Passport update **MUST NOT** be edited or deleted.
 - The professional **MUST** own the Passport and govern disclosure.
 - An Issuer **MUST NOT** own the Passport or alter its disclosure.
@@ -109,15 +110,16 @@ An AI MAY read a Passport, subject to disclosure, to answer questions about a pr
 
 ## Machine Interpretation
 
-A Passport is keyed by Opus ID and accumulates Passport updates, each linked one-to-one to an accepted Evidence via `passport_update_id`. Disclosure is derived from consent facts; trust is a computed surface.
+A Passport is keyed by Opus ID and accumulates Passport updates; an evidence update is linked one-to-one to an accepted Evidence via `passport_update_id`. Disclosure is derived from consent facts; trust is a computed surface.
 
 ```json
 {
   "opus_id": "<opus_id>",
   "updates": [
-    { "passport_update_id": "<uuid>", "evidence_id": "ev_01KXM07GFE2GX8ZA4NJC42JDF5", "status": "active", "disclosed": true }
+    { "passport_update_id": "<uuid>", "type": "evidence", "evidence_id": "ev_01KXM07GFE2GX8ZA4NJC42JDF5", "status": "active", "disclosed": true },
+    { "passport_update_id": "<uuid>", "type": "disclosure", "status": "active", "disclosed": true }
   ],
-  "constraints": { "passport_update_id": "UNIQUE (one per accepted evidence)" },
+  "constraints": { "evidence_link.passport_update_id": "UNIQUE (one evidence update per accepted evidence)" },
   "trust_surface": "computed",
   "editable": false
 }
@@ -149,7 +151,7 @@ A Passport is keyed by Opus ID and accumulates Passport updates, each linked one
 
 ## Examples
 
-- A professional's Passport shows a trust surface computed from bound Evidence; each entry traces to one accepted Evidence via a unique Passport update.
+- A professional's Passport shows a trust surface computed from bound Evidence; each evidence update traces to one accepted Evidence via a unique Passport update.
 - The professional withholds a specific item; it disappears from disclosure but remains stored and can be re-disclosed later.
 - An Evidence is revoked; the Passport reflects the revocation without deleting the entry.
 
@@ -193,11 +195,11 @@ The Passport is often confused with the identity itself; the identity is Opus ID
 17. **Can withheld items be re-disclosed?** Yes.
 18. **What does a verifier check?** Disclosed, surfaced facts, independently.
 19. **Can an AI see withheld items?** No.
-20. **What links an update to Evidence?** A unique `passport_update_id`.
+20. **What links an evidence update to Evidence?** A unique `passport_update_id` — an update of type evidence carries the link; other update types do not.
 
 ## LLM Summary
 
-A Professional Passport is the professional-facing, append-only surface of a professional's Opus ID in the World Skills Protocol. It accumulates exactly one Passport update per accepted Evidence (uniquely linked), is owned by the professional, and discloses under consent expressed as facts — withholding hides but never deletes. It surfaces computed Trust rather than authoring it, reflects supersession and revocation without erasing history, and keeps each surfaced fact independently verifiable. It is not the identity (that is Opus ID) and not an editable résumé.
+A Professional Passport is the professional-facing, append-only surface of a professional's Opus ID in the World Skills Protocol. It accumulates exactly one update of type evidence per accepted Evidence (uniquely linked) plus updates recording non-evidence changes, is owned by the professional, and discloses under consent expressed as facts — withholding hides but never deletes. It surfaces computed Trust rather than authoring it, reflects supersession and revocation without erasing history, and keeps each surfaced fact independently verifiable. It is not the identity (that is Opus ID) and not an editable résumé.
 
 ## SEO Summary
 
@@ -229,4 +231,5 @@ OCR-100 World Skills Protocol · OCR-103 Professional · OCR-104 Opus ID · OCR-
 
 ## Version History
 
+- **1.1.0** (2026-08-31) — **Passport update generalized to an event model (D-034).** A Passport update now records any change to the Passport; an accepted Evidence produces exactly **one update of type evidence** (uniquely linked, `UNIQUE`), while non-evidence changes (e.g. consent/disclosure) MAY produce updates of other types. The Evidence→update guarantee and the link uniqueness are **unchanged**; only the reverse implication — that *every* update derives from an Evidence — is relaxed. The reciprocal rules in OCR-110 (:115), OCR-112 (:98) and OCR-114 (:68/:98) are the Evidence→update direction and remain correct, untouched. Amendment under D-034; Status remains Draft.
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-101 v0.1 skeleton. Machine sections pending diff against the production Evidence Link / Passport update model before promotion to Normative.

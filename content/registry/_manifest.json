@@ -275,11 +275,11 @@
       "document_id": "OCR-101",
       "title": "OCR-101 — Professional Passport",
       "canonical_id": "professional-passport",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "lifecycle_status": "Draft",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
-      "checksum_sha256": "47041a3ed6c427c6bc5da928f6d032448d641ca3b469cf6a27b55ff084627b06",
+      "checksum_sha256": "3dbab0a1bd6c7f93762bdb92e63e0372e117069588f1e3c549064d8d899cf6a3",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
