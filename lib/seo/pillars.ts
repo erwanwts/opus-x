@@ -42,9 +42,9 @@ export const PILLARS: Pillar[] = [
   // pour la MÊME raison que les piliers : sitemap, generateStaticParams et résolution
   // des liens (pillarHrefBySlug / ctaHref) restent synchrones PAR CONSTRUCTION.
   // `ctaLabel` absent : leur CTA est porté par leur propre contenu, pas par le registre.
-  { slug: 'knowledge-graph', recordId: null, translatedLocales: ['en'] },
-  { slug: 'developers', recordId: null, translatedLocales: ['en'] },
-  { slug: 'questions', recordId: null, translatedLocales: ['en'] },
+  { slug: 'knowledge-graph', recordId: null, translatedLocales: ['en', 'fr', 'es'] },
+  { slug: 'developers', recordId: null, translatedLocales: ['en', 'fr', 'es'] },
+  { slug: 'questions', recordId: null, translatedLocales: ['en', 'fr', 'es'] },
 ];
 
 export function pillarBySlug(slug: string): Pillar | undefined {

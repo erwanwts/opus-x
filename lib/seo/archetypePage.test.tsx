@@ -82,8 +82,14 @@ describe.each(ARCHETYPES)('archétype /$slug', (a) => {
     }
   });
 
-  it('une locale non traduite REDIRIGE vers l’anglais (307 dérivé)', async () => {
-    await expect(renderArchetype(a, 'fr')).rejects.toThrow(`redirect:/en/${a.slug}`);
+  it('les 3 locales traduites (en/fr/es) RENDENT — archétype trilingue (phase 2)', async () => {
+    // Phase 2 : les archétypes sont traduits en/fr/es → ils rendent leur contenu dans
+    // les 3 locales (plus de redirection 307 ; le fallback ne concerne plus qu'une
+    // locale HORS routing, testée ci-dessous par le cas 404).
+    for (const loc of ['en', 'fr', 'es']) {
+      const html = await renderArchetype(a, loc);
+      expect(html, `${a.slug}/${loc}`).toContain('<h1');
+    }
   });
 
   it('une locale hors routing → 404', async () => {

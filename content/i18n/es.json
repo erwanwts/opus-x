@@ -25,22 +25,34 @@
     ],
     "foundationsIntro": "La confianza profesional se construye combinando cuatro componentes complementarios. Cada uno tiene una responsabilidad distinta dentro del ecosistema.",
     "foundations": [
-      { "name": "Professional Passport", "body": [
-        "El Professional Passport es la representación pública de la identidad profesional verificada de una persona.",
-        "En lugar de enumerar declaraciones, presenta logros verificados conectados con su evidencia justificativa, permitiendo a las organizaciones y a las personas comprender lo que realmente se ha demostrado."
-      ] },
-      { "name": "Evidence", "body": [
-        "Evidence — la evidencia verificable — es el fundamento de la confianza.",
-        "Cada logro verificado proviene de una evidencia producida por una plataforma de formación, una organización, un proceso de evaluación u otra fuente de confianza. Opus X preserva esta procedencia para que los logros sigan siendo rastreables y verificables de forma independiente."
-      ] },
-      { "name": "Trust", "body": [
-        "Trust — la confianza — no se declara: se calcula.",
-        "Opus X evalúa la fiabilidad de la información profesional combinando el estado de verificación, la procedencia, las reglas de gobernanza y la integridad de la evidencia en un modelo de confianza transparente, capaz de evolucionar con el tiempo."
-      ] },
-      { "name": "World Skills Protocol", "body": [
-        "El World Skills Protocol define el lenguaje común que permite a las organizaciones intercambiar información profesional verificada.",
-        "Especifica cómo las identidades, la evidencia, los logros y la verificación pueden representarse de manera coherente, haciendo posible la interoperabilidad sin exigir que cada organización adopte los mismos sistemas internos."
-      ] }
+      {
+        "name": "Professional Passport",
+        "body": [
+          "El Professional Passport es la representación pública de la identidad profesional verificada de una persona.",
+          "En lugar de enumerar declaraciones, presenta logros verificados conectados con su evidencia justificativa, permitiendo a las organizaciones y a las personas comprender lo que realmente se ha demostrado."
+        ]
+      },
+      {
+        "name": "Evidence",
+        "body": [
+          "Evidence — la evidencia verificable — es el fundamento de la confianza.",
+          "Cada logro verificado proviene de una evidencia producida por una plataforma de formación, una organización, un proceso de evaluación u otra fuente de confianza. Opus X preserva esta procedencia para que los logros sigan siendo rastreables y verificables de forma independiente."
+        ]
+      },
+      {
+        "name": "Trust",
+        "body": [
+          "Trust — la confianza — no se declara: se calcula.",
+          "Opus X evalúa la fiabilidad de la información profesional combinando el estado de verificación, la procedencia, las reglas de gobernanza y la integridad de la evidencia en un modelo de confianza transparente, capaz de evolucionar con el tiempo."
+        ]
+      },
+      {
+        "name": "World Skills Protocol",
+        "body": [
+          "El World Skills Protocol define el lenguaje común que permite a las organizaciones intercambiar información profesional verificada.",
+          "Especifica cómo las identidades, la evidencia, los logros y la verificación pueden representarse de manera coherente, haciendo posible la interoperabilidad sin exigir que cada organización adopte los mismos sistemas internos."
+        ]
+      }
     ],
     "ecosystem": [
       "Cada logro profesional comienza con un evento.",
@@ -51,10 +63,41 @@
       "El resultado es un ecosistema donde la identidad profesional ya no se construye a partir de documentos aislados, sino a partir de evidencia verificable conectada mediante un protocolo compartido y presentada como un pasaporte profesional fiable y portable."
     ],
     "readingPaths": [
-      { "audience": "Para profesionales", "text": "Si quieres entender cómo los logros verificados pasan a formar parte de tu identidad profesional, empieza por el Professional Passport y luego explora Evidence y Trust.", "pages": ["Professional Passport", "Evidence", "Trust"] },
-      { "audience": "Para desarrolladores", "text": "Si quieres integrar tu plataforma con Opus X o consumir información profesional verificada, empieza por API y Desarrolladores y continúa con el World Skills Protocol.", "pages": ["API & Developers", "World Skills Protocol"] },
-      { "audience": "Para organizaciones", "text": "Si tu organización emite, valida o consume logros profesionales, empieza por el World Skills Protocol y luego explora Verification y Registry.", "pages": ["World Skills Protocol", "Verification", "Registry"] },
-      { "audience": "Para verificadores", "text": "Si necesitas entender cómo se verifica y se confía en la información profesional, empieza por Verification y continúa con Trust y Evidence.", "pages": ["Verification", "Trust", "Evidence"] }
+      {
+        "audience": "Para profesionales",
+        "text": "Si quieres entender cómo los logros verificados pasan a formar parte de tu identidad profesional, empieza por el Professional Passport y luego explora Evidence y Trust.",
+        "pages": [
+          "Professional Passport",
+          "Evidence",
+          "Trust"
+        ]
+      },
+      {
+        "audience": "Para desarrolladores",
+        "text": "Si quieres integrar tu plataforma con Opus X o consumir información profesional verificada, empieza por API y Desarrolladores y continúa con el World Skills Protocol.",
+        "pages": [
+          "API & Developers",
+          "World Skills Protocol"
+        ]
+      },
+      {
+        "audience": "Para organizaciones",
+        "text": "Si tu organización emite, valida o consume logros profesionales, empieza por el World Skills Protocol y luego explora Verification y Registry.",
+        "pages": [
+          "World Skills Protocol",
+          "Verification",
+          "Registry"
+        ]
+      },
+      {
+        "audience": "Para verificadores",
+        "text": "Si necesitas entender cómo se verifica y se confía en la información profesional, empieza por Verification y continúa con Trust y Evidence.",
+        "pages": [
+          "Verification",
+          "Trust",
+          "Evidence"
+        ]
+      }
     ],
     "resourcesIntro": "Explora los componentes clave que, juntos, forman el ecosistema Opus X.",
     "finalCtaLabel": "Explorar el World Skills Protocol"
@@ -84,6 +127,1038 @@
       "frameworks": "Ver la ficha de registro Framework",
       "registry": "Explorar el Canonical Registry",
       "verification": "Ver la ficha de registro Verification"
+    }
+  },
+  "developers": {
+    "seoTitle": "Desarrolladores | Construir con el World Skills Protocol",
+    "seoDescription": "Aprende a crear software con el World Skills Protocol: identificadores canónicos, Records publicados, resolución de identidad, representaciones versionadas y datos de protocolo trazables.",
+    "hero": {
+      "h1": "Construir sobre un significado publicado",
+      "subtitle": "Un protocolo diseñado para sistemas que deben intercambiar datos de competencias sin perder identidad, contexto ni trazabilidad.",
+      "blocks": [
+        "El World Skills Protocol proporciona una arquitectura común para publicar, identificar, resolver y conectar información sobre competencias profesionales.",
+        "Los desarrolladores pueden usarlo para crear aplicaciones que entiendan los mismos conceptos, sigan las mismas relaciones y preserven el origen de cada definición publicada.",
+        "El protocolo no impone ningún lenguaje de programación, base de datos, framework ni proveedor de infraestructura.",
+        "Define el significado que las implementaciones deben preservar."
+      ],
+      "ctaLabels": [
+        "Explorar los recursos técnicos",
+        "Leer los Records del protocolo"
+      ]
+    },
+    "sections": [
+      {
+        "title": "Sección 1 — Qué pueden construir los desarrolladores",
+        "blocks": [
+          "El World Skills Protocol está destinado a sistemas que necesitan intercambiar o interpretar información sobre competencias profesionales más allá de las fronteras organizativas y técnicas.",
+          "Puede sustentar aplicaciones como:",
+          {
+            "ul": [
+              "professional passports;",
+              "registros de competencias;",
+              "sistemas de certificación;",
+              "plataformas de formación y evaluación;",
+              "herramientas de reclutamiento;",
+              "sistemas de gestión de plantilla;",
+              "servicios de evidencia de confianza;",
+              "capas de interoperabilidad;",
+              "agentes de IA que consumen información profesional estructurada."
+            ]
+          },
+          "Estos sistemas no necesitan compartir la misma arquitectura interna.",
+          "Necesitan preservar el mismo significado publicado.",
+          "El protocolo proporciona los conceptos, identificadores y relaciones comunes que lo hacen posible."
+        ]
+      },
+      {
+        "title": "Sección 2 — Empezar por el corpus canónico",
+        "blocks": [
+          "El protocolo comienza por sus Records.",
+          "Los Records definen los conceptos, las reglas y las relaciones que constituyen el World Skills Protocol.",
+          "Son la fuente normativa frente a la cual se interpretan las implementaciones.",
+          "Por tanto, un desarrollador nunca debería deducir el significado del protocolo únicamente a partir de:",
+          {
+            "ul": [
+              "una interfaz de usuario;",
+              "un ejemplo de carga útil;",
+              "un esquema de base de datos;",
+              "un SDK;",
+              "una proyección de grafo;",
+              "o el comportamiento de otra implementación."
+            ]
+          },
+          "Esos recursos pueden facilitar el uso del protocolo, pero no reemplazan a los Records que establecen su significado.",
+          "Cuando una implementación y un Record parecen discrepar, el Record prevalece."
+        ]
+      },
+      {
+        "title": "Sección 3 — Usar identificadores canónicos",
+        "blocks": [
+          "Los nombres son útiles para las personas.",
+          "Los identificadores son necesarios para los sistemas.",
+          "El World Skills Protocol distingue el significado de un objeto publicado de la dirección utilizada para descubrir una de sus representaciones.",
+          "Un título legible por humanos puede cambiar.",
+          "Una ubicación de almacenamiento puede cambiar.",
+          "Un nombre de dominio puede cambiar.",
+          "Una representación puede ser reemplazada.",
+          "La identidad de la definición publicada debe permanecer estable.",
+          "Por tanto, los desarrolladores deberían usar los identificadores canónicos establecidos por el protocolo al almacenar, referenciar o intercambiar objetos del protocolo.",
+          "Las etiquetas de visualización pueden ayudar a los lectores humanos, pero no deben sustituir a la identidad canónica."
+        ]
+      },
+      {
+        "title": "Sección 4 — Resolver la identidad mediante la capa de lectura",
+        "blocks": [
+          "Los identificadores canónicos no exigen que las implementaciones sepan dónde está almacenado actualmente un objeto.",
+          "La resolución de identidad pertenece a la capa de lectura.",
+          "Cuando un sistema recibe un identificador canónico, debería usar los mecanismos de resolución y descubrimiento publicados por el protocolo para localizar la representación actual asociada a esa identidad.",
+          "Esta separación protege a las implementaciones de los cambios en:",
+          {
+            "ul": [
+              "infraestructura;",
+              "ubicación de publicación;",
+              "organización de archivos;",
+              "alojamiento;",
+              "o representación canónica."
+            ]
+          },
+          "Así, las aplicaciones pueden seguir referenciando la misma identidad publicada aunque evolucione la forma en que se lee.",
+          "El identificador permanece estable.",
+          "El mecanismo de lectura resuelve la representación actual."
+        ]
+      },
+      {
+        "title": "Sección 5 — Distinguir la identidad de la representación",
+        "blocks": [
+          "Una representación canónica es la expresión aprobada por el protocolo de una definición publicada, en un estado documental determinado.",
+          "No es la identidad de la definición.",
+          "Pueden existir varias representaciones a lo largo del tiempo preservando la misma definición lógica.",
+          "Por tanto, los desarrolladores deben evitar tratar una ruta de archivo, una URL de documento, una fila de base de datos o una carga útil serializada como si fueran la identidad del objeto en sí.",
+          "Esta distinción permite que el protocolo evolucione sin romper todas las implementaciones que lo referencian.",
+          "La definición lógica responde a:",
+          "¿Qué es este objeto publicado?",
+          "La representación canónica responde a:",
+          "¿Cómo se expresa ese objeto en este estado de publicación?",
+          "La dirección de descubrimiento responde a:",
+          "¿Dónde puede leerse la representación actual?",
+          "Estas tres preguntas deben permanecer separadas."
+        ]
+      },
+      {
+        "title": "Sección 6 — Tratar los hechos publicados como inmutables",
+        "blocks": [
+          "Un hecho publicado no se reescribe en silencio.",
+          "Cuando el protocolo necesita expresar una nueva relación, estado o representación, procede por adición.",
+          "Esto significa que las implementaciones deberían preservar los hechos históricos que han consumido, en lugar de reemplazarlos como si la publicación anterior nunca hubiera existido.",
+          "La información nueva puede:",
+          {
+            "ul": [
+              "superseder una representación anterior;",
+              "identificar un sucesor;",
+              "establecer una reidentificación;",
+              "publicar una nueva versión;",
+              "o cambiar la lectura derivada de un objeto."
+            ]
+          },
+          "No debe borrar el hecho de que la publicación anterior ocurrió.",
+          "Esto habilita la auditabilidad y la reconstrucción histórica en todo el protocolo."
+        ]
+      },
+      {
+        "title": "Sección 7 — Entender la sucesión y la reidentificación",
+        "blocks": [
+          "El protocolo distingue dos formas de continuidad.",
+          {
+            "h3": "La sucesión"
+          },
+          "La sucesión se aplica cuando la semántica ha cambiado lo suficiente como para que la nueva definición constituya un objeto normativo distinto.",
+          "El nuevo objeto sigue al anterior, pero no pretende ser la misma definición.",
+          {
+            "h3": "La reidentificación"
+          },
+          "La reidentificación se aplica cuando la semántica permanece sin cambios, pero la identidad publicada o la representación canónica debe corregirse o reemplazarse.",
+          "La nueva publicación preserva las propiedades normativas de la definición reidentificada.",
+          "Estas relaciones no deben tratarse como intercambiables.",
+          "La sucesión expresa una evolución semántica.",
+          "La reidentificación expresa una continuidad de significado a través de una identidad o representación corregida.",
+          "Las aplicaciones que exponen el historial deberían preservar esta distinción."
+        ]
+      },
+      {
+        "title": "Sección 8 — Separar los conceptos de las instancias",
+        "blocks": [
+          "El protocolo publica conceptos.",
+          "Las implementaciones almacenan ocurrencias de esos conceptos.",
+          "Por ejemplo, el protocolo puede publicar que un Framework puede reidentificarse.",
+          "Una implementación puede almacenar el hecho concreto de que un Framework fue reidentificado como otro.",
+          "Lo primero es una regla del protocolo.",
+          "Lo segundo es una ocurrencia operativa.",
+          "Los desarrolladores no deberían insertar ocurrencias propias de su implementación en el corpus normativo ni en su proyección conceptual.",
+          "A la inversa, no deberían tratar el Knowledge Graph como si fuera una base de datos operativa.",
+          "Esta separación mantiene el protocolo universal, permitiendo a la vez que las implementaciones almacenen los hechos relevantes para sus propios usuarios y sistemas."
+        ]
+      },
+      {
+        "title": "Sección 9 — Usar el registro canónico",
+        "blocks": [
+          "El Canonical Registry expone los predicados, los identificadores y las relaciones controladas reconocidos por el protocolo.",
+          "Los desarrolladores deberían usar los identificadores de predicados canónicos exactamente como se publican.",
+          "Un sinónimo cómodo a nivel local no es un identificador de protocolo equivalente.",
+          "Cambiar:",
+          "reidentified_as",
+          "por una ortografía, mayúsculas o forma verbal distinta puede crear una relación que parezca comprensible para una persona, pero que el software conforme no reconozca.",
+          "Por tanto, los identificadores canónicos deben reutilizarse sin traducción dentro de los datos de protocolo legibles por máquina.",
+          "Las interfaces dirigidas a humanos pueden acompañarlos de etiquetas explicativas."
+        ],
+        "ctaLabel": "Abrir el Canonical Registry"
+      },
+      {
+        "title": "Sección 10 — Leer correctamente el Knowledge Graph",
+        "blocks": [
+          "El Knowledge Graph es una proyección generada de los conceptos y relaciones publicados por el corpus.",
+          "Puede ayudar a los desarrolladores a:",
+          {
+            "ul": [
+              "descubrir conceptos relacionados;",
+              "entender dependencias;",
+              "navegar entre los Records;",
+              "inspeccionar las relaciones publicadas;",
+              "y proporcionar contexto estructurado a agentes de software."
+            ]
+          },
+          "No debe usarse como una fuente normativa independiente.",
+          "El grafo no contiene instancias de base de datos.",
+          "No infiere relaciones a partir de datos de implementación.",
+          "No publica hechos ausentes de los Records.",
+          "Cada proyección del grafo corresponde a un estado documental concreto del corpus.",
+          "Por tanto, los desarrolladores deberían conservar la identidad o la huella de la proyección en la que se apoyan cuando la reproducibilidad importa."
+        ],
+        "ctaLabel": "Explorar el Knowledge Graph"
+      },
+      {
+        "title": "Sección 11 — Respetar las tres capas de versionado",
+        "blocks": [
+          "El protocolo distingue tres formas independientes de versionado.",
+          {
+            "h3": "El versionado documental"
+          },
+          "El versionado documental sigue los cambios de un Record como documento publicado.",
+          "Identifica el estado de ese Record dentro del corpus.",
+          {
+            "h3": "El versionado normativo"
+          },
+          "El versionado normativo sigue los cambios de significado, obligaciones o definición lógica establecidos por el protocolo.",
+          "Una revisión documental no cambia necesariamente el significado normativo.",
+          {
+            "h3": "El versionado de representación"
+          },
+          "El versionado de representación sigue los cambios de la forma en que se expresa o se entrega un objeto publicado.",
+          "Una nueva serialización, estructura de archivo o formato de publicación no crea necesariamente un nuevo objeto normativo.",
+          "Los desarrolladores no deberían fusionar estas capas en un único número de versión.",
+          "Hacerlo hace imposible distinguir una corrección textual, una enmienda semántica y un cambio de representación."
+        ]
+      },
+      {
+        "title": "Sección 12 — Derivar el estado; no persistirlo como verdad",
+        "blocks": [
+          "El estado del protocolo se deriva de hechos publicados.",
+          "No debería tratarse como un campo mutable aislado cuyo valor pueda cambiarse sin preservar los hechos que lo justifican.",
+          "Una implementación puede almacenar en caché un estado derivado por rendimiento o presentación.",
+          "Ese valor en caché debe permanecer reproducible a partir de los hechos publicados subyacentes.",
+          "La derivación debería ser determinista.",
+          "Los hechos deberían permanecer trazables.",
+          "Una etiqueta almacenada que no pueda justificarse a partir del historial de publicación no debe tratarse como verdad del protocolo."
+        ]
+      },
+      {
+        "title": "Sección 13 — Preservar la procedencia",
+        "blocks": [
+          "Cada objeto del protocolo consumido por una implementación debería permanecer trazable hasta su origen publicado.",
+          "Según el caso de uso, esto puede incluir:",
+          {
+            "ul": [
+              "el identificador canónico;",
+              "el Record que establece el objeto;",
+              "la versión documental;",
+              "la huella de la representación;",
+              "la proyección del grafo;",
+              "la fecha o el estado de resolución;",
+              "y las relaciones utilizadas en la interpretación."
+            ]
+          },
+          "La procedencia es lo que permite a un sistema explicar por qué interpretó un objeto de una manera determinada.",
+          "Sin procedencia, dos sistemas pueden mostrar la misma etiqueta apoyándose en estados documentales distintos.",
+          "Con procedencia, la interpretación puede reconstruirse y auditarse."
+        ]
+      },
+      {
+        "title": "Sección 14 — Diseñar para un comportamiento determinista",
+        "blocks": [
+          "Donde el protocolo proporciona una regla canónica, los sistemas conformes deberían producir el mismo resultado a partir de los mismos hechos publicados.",
+          "La resolución no debe depender de suposiciones no documentadas.",
+          "La derivación del estado no debe depender de elecciones manuales ocultas.",
+          "Los identificadores canónicos no deben depender de las etiquetas de visualización.",
+          "Las relaciones del grafo no deben depender de contenido de base de datos privado.",
+          "El comportamiento determinista permite que implementaciones independientes lleguen a conclusiones compatibles sin compartir el mismo código.",
+          "Es una de las condiciones fundamentales de la interoperabilidad."
+        ]
+      },
+      {
+        "title": "Sección 15 — No inventar una semántica ausente",
+        "blocks": [
+          "Un desarrollador puede encontrarse con una relación que parece obvia pero que no está publicada.",
+          "La implementación no debe promover en silencio esa interpretación al rango de significado del protocolo.",
+          "La respuesta correcta es distinguir entre:",
+          {
+            "ul": [
+              "lo que el protocolo establece;",
+              "lo que una implementación observa;",
+              "y lo que el desarrollador infiere."
+            ]
+          },
+          "Puede existir lógica específica de la implementación donde sea necesaria.",
+          "Debe permanecer identificable como lógica de implementación.",
+          "No debe representarse como si formara parte del World Skills Protocol hasta que la regla apropiada se haya publicado mediante el proceso de gobernanza del protocolo.",
+          "La ausencia en el protocolo no es permiso para fabricar una respuesta normativa."
+        ]
+      },
+      {
+        "title": "Sección 16 — La conformidad trata del significado preservado",
+        "blocks": [
+          "El World Skills Protocol no exige que cada implementación use la misma tecnología.",
+          "Un sistema puede usar almacenamiento relacional.",
+          "Otro puede usar un almacén de documentos.",
+          "Otro puede consumir artefactos publicados estáticos.",
+          "Otro puede funcionar como un agente de IA.",
+          "Sus diseños internos pueden diferir sustancialmente.",
+          "Siguen siendo interoperables cuando preservan:",
+          {
+            "ul": [
+              "la identidad canónica;",
+              "las definiciones publicadas;",
+              "las relaciones normativas;",
+              "las distinciones de versión;",
+              "la procedencia;",
+              "el comportamiento de resolución;",
+              "y la separación entre los conceptos del protocolo y las instancias de implementación."
+            ]
+          },
+          "Por tanto, la conformidad concierne al significado observable, no al parecido interno."
+        ]
+      },
+      {
+        "title": "Sección 17 — Un camino práctico de implementación",
+        "blocks": [
+          "Un desarrollador que inicia una integración debería proceder en el siguiente orden.",
+          {
+            "h3": "1. Identificar los conceptos en cuestión"
+          },
+          "Determinar qué conceptos del protocolo necesita consumir, publicar o referenciar la aplicación.",
+          {
+            "h3": "2. Leer los Records que los establecen"
+          },
+          "Localizar los Records que definen esos conceptos y sus relaciones normativas.",
+          {
+            "h3": "3. Recuperar los identificadores canónicos"
+          },
+          "Usar los identificadores y los nombres de predicados publicados por el Canonical Registry.",
+          {
+            "h3": "4. Implementar la resolución"
+          },
+          "Resolver los identificadores mediante los mecanismos de lectura y descubrimiento, en lugar de codificar de forma fija las ubicaciones de almacenamiento actuales.",
+          {
+            "h3": "5. Preservar la procedencia"
+          },
+          "Registrar el estado documental y la representación utilizados por la aplicación.",
+          {
+            "h3": "6. Separar los hechos del protocolo de los hechos locales"
+          },
+          "Mantener las definiciones normativas distintas de las instancias propias de la implementación y de los datos operativos.",
+          {
+            "h3": "7. Probar el comportamiento determinista"
+          },
+          "Verificar que los mismos hechos publicados producen la misma resolución, el mismo estado derivado y la misma interpretación de las relaciones.",
+          {
+            "h3": "8. Vigilar los cambios de publicación"
+          },
+          "Cuando el corpus evoluciona, evaluar de forma independiente los cambios documentales, normativos y de representación pertinentes.",
+          "Este camino permite que una implementación empiece pequeña sin dejar de ser compatible con la arquitectura más amplia del protocolo."
+        ]
+      },
+      {
+        "title": "Sección 18 — Lo que el protocolo no prescribe",
+        "blocks": [
+          "El World Skills Protocol no prescribe:",
+          {
+            "ul": [
+              "una interfaz de usuario;",
+              "un motor de base de datos;",
+              "un proveedor de alojamiento;",
+              "un sistema de autenticación;",
+              "un lenguaje de programación;",
+              "un framework de software;",
+              "un modelo comercial;",
+              "ni una arquitectura de aplicación única."
+            ]
+          },
+          "Tampoco exige que las implementaciones expongan todos los conceptos del protocolo.",
+          "Una implementación puede admitir solo los conceptos relevantes para su propósito.",
+          "Lo que no debe hacer es alterar el significado de los conceptos que dice admitir.",
+          "La libertad técnica está permitida.",
+          "La divergencia semántica no."
+        ]
+      },
+      {
+        "title": "Sección 19 — Para agentes de IA",
+        "blocks": [
+          "Los sistemas de IA pueden usar el protocolo para acceder a información profesional con una estructura explícita y un origen trazable.",
+          "Pueden usar:",
+          {
+            "ul": [
+              "los Records para recuperar el significado normativo;",
+              "el Knowledge Graph para navegar entre conceptos;",
+              "el Canonical Registry para reconocer predicados;",
+              "y los mecanismos de descubrimiento para resolver las representaciones actuales y los hechos operativos."
+            ]
+          },
+          "Un agente de IA debe seguir distinguiendo los hechos recuperados de las interpretaciones generadas.",
+          "La presencia de un concepto en el grafo no prueba que una persona u organización determinada lo posea.",
+          "La existencia de una relación en el protocolo no prueba que exista una ocurrencia operativa correspondiente.",
+          "El acceso estructurado mejora la fiabilidad.",
+          "No elimina la necesidad de procedencia y evidencia."
+        ]
+      },
+      {
+        "title": "Sección 20 — Cuando el protocolo cambia",
+        "blocks": [
+          "El protocolo evoluciona mediante sus mecanismos de gobernanza publicados.",
+          "Los desarrolladores no deberían suponer que cada actualización documental crea un cambio disruptivo.",
+          "Deberían determinar qué capa cambió.",
+          "Una publicación puede implicar:",
+          {
+            "ul": [
+              "una corrección editorial;",
+              "una nueva versión documental;",
+              "una enmienda normativa;",
+              "una nueva representación canónica;",
+              "una reidentificación;",
+              "una sucesión;",
+              "o una nueva proyección de grafo."
+            ]
+          },
+          "Cada una tiene consecuencias distintas.",
+          "Las aplicaciones deberían responder a la naturaleza del cambio, más que a la mera presencia de una nueva versión."
+        ]
+      }
+    ],
+    "qaSections": [],
+    "conclusion": [
+      "El World Skills Protocol ofrece a los desarrolladores una manera estable de construir con información sobre competencias profesionales, sin forzar a cada sistema al mismo diseño técnico.",
+      "Su requisito central no es la uniformidad tecnológica.",
+      "Es la fidelidad al significado publicado.",
+      "Usa los identificadores canónicos.",
+      "Resuelve la identidad mediante la capa de lectura.",
+      "Distingue las definiciones de las representaciones.",
+      "Separa los conceptos de las instancias.",
+      "Preserva la procedencia.",
+      "Deriva el estado a partir de los hechos.",
+      "Y nunca introduzcas una semántica de protocolo que el corpus no haya publicado.",
+      "Cuando se respetan estos principios, aplicaciones independientes pueden intercambiar, interpretar y verificar información profesional sin renunciar a la trazabilidad ni al control."
+    ],
+    "finalCta": {
+      "title": "Empezar a construir con el protocolo",
+      "text": "Explora los recursos canónicos que establecen los conceptos, los identificadores y las relaciones que tu implementación puede usar.",
+      "ctaLabels": [
+        "Explorar los recursos técnicos",
+        "Leer los Records del protocolo",
+        "Explorar el Knowledge Graph"
+      ]
+    }
+  },
+  "knowledgeGraph": {
+    "seoTitle": "Knowledge Graph | Cómo el World Skills Protocol conecta competencias, Records y confianza",
+    "seoDescription": "Descubre cómo el Knowledge Graph del World Skills Protocol conecta conceptos, Records y definiciones publicadas. Qué garantiza, qué excluye deliberadamente y por qué nunca infiere nada más allá del corpus canónico.",
+    "hero": {
+      "h1": "El Knowledge Graph",
+      "subtitle": "Una proyección navegable del conocimiento publicado del protocolo.",
+      "blocks": [
+        "El World Skills Protocol es mucho más que una colección de documentos.",
+        "Cada definición, concepto y relación publicados forman parte de un cuerpo de conocimiento coherente.",
+        "El Knowledge Graph proyecta ese cuerpo de conocimiento en una red explorable, permitiendo a humanos, sistemas de software y agentes de IA navegar por el protocolo exactamente tal como se ha publicado — sin interpretación, sin inferencia, sin suposiciones ocultas.",
+        "Existe para hacer comprensible el protocolo sin cambiar su significado."
+      ],
+      "ctaLabels": [
+        "Explorar el Knowledge Graph"
+      ]
+    },
+    "sections": [
+      {
+        "title": "Sección 1 — ¿Qué es el Knowledge Graph?",
+        "blocks": [
+          "El Knowledge Graph es la proyección canónica del World Skills Protocol.",
+          "Transforma los conceptos y relaciones publicados por el protocolo en un grafo interconectado, preservando exactamente la semántica establecida por el propio protocolo.",
+          "Cada nodo representa un concepto formalmente publicado por el protocolo.",
+          "Cada arista representa una relación explícitamente declarada por el protocolo.",
+          "Por tanto, el grafo no es una fuente de conocimiento independiente.",
+          "Es una lectura estructurada del corpus canónico.",
+          "Nada aparece en el grafo sin haber sido antes publicado por el protocolo.",
+          "Del mismo modo, nada de lo que publica el protocolo se omite intencionadamente del grafo.",
+          "El grafo existe para exponer la estructura — no para crearla."
+        ]
+      },
+      {
+        "title": "Sección 2 — ¿Por qué existe?",
+        "blocks": [
+          "A medida que el protocolo crece, entender cómo se relacionan los conceptos entre sí se vuelve cada vez más importante.",
+          "Leer los Records de forma secuencial explica los conceptos individuales.",
+          "El Knowledge Graph explica cómo encajan esos conceptos.",
+          "En lugar de navegar por los documentos uno a uno, los lectores pueden explorar el protocolo a través de su arquitectura.",
+          "Los desarrolladores pueden descubrir dependencias.",
+          "Los sistemas de IA pueden recorrer las relaciones publicadas.",
+          "Los investigadores pueden entender cómo se conectan las definiciones.",
+          "Por tanto, el grafo proporciona una representación navegable del protocolo, preservando la autoridad de los propios Records.",
+          "El protocolo sigue siendo la fuente.",
+          "El grafo sigue siendo su proyección."
+        ]
+      },
+      {
+        "title": "Sección 3 — ¿Cómo se construye?",
+        "blocks": [
+          "El Knowledge Graph se genera directamente a partir del corpus publicado.",
+          "El proceso de proyección lee los Records del protocolo y extrae solo los conceptos y relaciones que esos Records publican explícitamente.",
+          "El generador del grafo nunca inventa conceptos.",
+          "Nunca crea relaciones.",
+          "Nunca deriva semántica a partir de datos de implementación.",
+          "Cada proyección se genera a partir de una versión concreta del corpus publicado y, por tanto, representa un estado documental preciso del protocolo.",
+          "Cuando el corpus evoluciona, se genera una nueva proyección.",
+          "Las proyecciones anteriores permanecen como artefactos históricos y nunca se reescriben.",
+          "Por tanto, el grafo refleja la evolución del protocolo preservando la integridad de cada estado publicado."
+        ]
+      },
+      {
+        "title": "Sección 4 — ¿Qué garantiza el grafo?",
+        "blocks": [
+          "El Knowledge Graph garantiza que cada relación publicada procede del propio protocolo.",
+          "Cada nodo corresponde a un concepto publicado.",
+          "Cada arista corresponde a una relación publicada.",
+          "Cada proyección es reproducible a partir del corpus publicado.",
+          "Como el grafo se genera en lugar de mantenerse manualmente, su estructura siempre puede rastrearse hasta los Records que la definen.",
+          "Esto proporciona una trazabilidad documental completa.",
+          "Cada relación puede justificarse.",
+          "Cada concepto puede localizarse.",
+          "Cada proyección puede regenerarse a partir del mismo estado documental.",
+          "Por tanto, el grafo es determinista, reproducible y auditable."
+        ]
+      },
+      {
+        "title": "Sección 5 — Lo que el grafo no garantiza, deliberadamente",
+        "blocks": [
+          "El Knowledge Graph está intencionadamente limitado.",
+          "Estas limitaciones son garantías arquitectónicas, no funciones ausentes.",
+          "El grafo no contiene datos operativos.",
+          "No representa instancias de base de datos.",
+          "No expone relaciones no publicadas.",
+          "No infiere semántica.",
+          "No interpreta el protocolo.",
+          "Si una implementación almacena información adicional que el protocolo nunca ha publicado, esa información no aparece en el grafo.",
+          "Del mismo modo, si una relación existe solo en una implementación y nunca ha sido establecida por un Record, el grafo la ignora intencionadamente.",
+          "El grafo proyecta conceptos.",
+          "No proyecta las ocurrencias individuales de esos conceptos.",
+          "Por tanto, el grafo representa lo que el protocolo publica — no todo lo que una implementación sabe."
+        ]
+      },
+      {
+        "title": "Sección 6 — Conceptos e instancias",
+        "blocks": [
+          "El World Skills Protocol distingue los conceptos de sus ocurrencias individuales.",
+          "Un concepto pertenece al protocolo.",
+          "Una ocurrencia pertenece a una implementación.",
+          "Por ejemplo, el protocolo puede establecer que un Framework puede reidentificarse.",
+          "Esta relación pertenece al grafo porque forma parte de la arquitectura publicada.",
+          "Que un Framework concreto sea reidentificado por otro Framework es un evento de implementación.",
+          "Tales ocurrencias permanecen fuera del grafo y se exponen, en cambio, mediante los mecanismos de descubrimiento del protocolo.",
+          "Esta separación garantiza que el grafo permanezca estable mientras las implementaciones siguen evolucionando."
+        ]
+      },
+      {
+        "title": "Sección 7 — Relación con el corpus canónico",
+        "blocks": [
+          "El Knowledge Graph nunca reemplaza al protocolo.",
+          "Los Records siguen siendo la única fuente normativa.",
+          "El grafo existe únicamente para mejorar la navegación, la exploración y la comprensión.",
+          "Cada vez que un concepto o una relación aparece en el grafo, su autoridad procede enteramente del Record que lo estableció.",
+          "Si una relación nunca ha sido publicada por el protocolo, el grafo no puede mostrarla.",
+          "A la inversa, una vez que una relación es establecida por el corpus, se vuelve elegible para la proyección sin requerir modelado manual.",
+          "Por tanto, el grafo sigue al protocolo.",
+          "El protocolo nunca sigue al grafo."
+        ]
+      },
+      {
+        "title": "Sección 8 — Relación con los sistemas de IA",
+        "blocks": [
+          "Los grandes modelos de lenguaje y el software inteligente se benefician del conocimiento estructurado.",
+          "En lugar de depender únicamente de la búsqueda en lenguaje natural, pueden navegar por conceptos explícitos y relaciones publicadas.",
+          "Esto reduce la ambigüedad.",
+          "Mejora la descubribilidad.",
+          "Permite a los agentes de software entender cómo se relacionan los conceptos publicados sin requerir interpretación adicional.",
+          "Como el grafo contiene solo conocimiento aprobado por el protocolo, los sistemas de IA reciben información cuyo origen permanece plenamente trazable.",
+          "Cada respuesta puede, en última instancia, rastrearse hasta el Record que estableció el concepto o la relación subyacentes."
+        ]
+      },
+      {
+        "title": "Sección 9 — Versionado",
+        "blocks": [
+          "Cada proyección del Knowledge Graph corresponde a un estado documental concreto del protocolo.",
+          "Cada vez que el corpus cambia, se genera una nueva proyección.",
+          "Las proyecciones anteriores se conservan como representaciones históricas.",
+          "Nunca se modifican retrospectivamente.",
+          "Esto garantiza que las referencias hechas frente a una proyección anterior permanezcan reproducibles y auditables incluso después de que el protocolo evolucione.",
+          "Por tanto, el grafo evoluciona por publicación, no por mutación."
+        ]
+      }
+    ],
+    "qaSections": [],
+    "conclusion": [
+      "El Knowledge Graph existe para hacer más fácil explorar el World Skills Protocol sin cambiar lo que dice.",
+      "No reemplaza a los Records.",
+      "No los interpreta.",
+      "No infiere lo que no se ha publicado.",
+      "Su propósito es simple:",
+      "exponer la arquitectura que ya existe dentro del protocolo y hacer esa arquitectura navegable, tanto para humanos como para máquinas."
+    ],
+    "finalCta": {
+      "title": "Explorar el protocolo",
+      "text": "Entiende cómo los conceptos, los Records y las relaciones publicadas se conectan a través del World Skills Protocol.",
+      "ctaLabels": [
+        "Explorar el Knowledge Graph"
+      ]
+    }
+  },
+  "questions": {
+    "seoTitle": "Preguntas frecuentes | World Skills Protocol",
+    "seoDescription": "Respuestas a las preguntas más comunes sobre el World Skills Protocol: conceptos, Records, identidad, versionado, Knowledge Graph, identificadores canónicos e interoperabilidad.",
+    "hero": {
+      "h1": "Preguntas frecuentes",
+      "subtitle": "Entender el protocolo empieza por entender sus principios.",
+      "blocks": [
+        "El World Skills Protocol introduce conceptos que a menudo resultan poco familiares al principio: identificadores canónicos, definiciones lógicas, representaciones, Knowledge Graphs, resolución de identidad, reidentificación y más.",
+        "Esta página responde a las preguntas más frecuentes de lectores, desarrolladores, implementadores y organizaciones que descubren el protocolo.",
+        "Cada respuesta refleja el protocolo publicado.",
+        "Donde existe detalle adicional, los enlaces apuntan a los Records o a los recursos técnicos correspondientes."
+      ],
+      "ctaLabels": [
+        "Explorar los Records del protocolo"
+      ]
+    },
+    "sections": [],
+    "qaSections": [
+      {
+        "title": "Sección 1 — Sobre el protocolo",
+        "qa": [
+          {
+            "q": "¿Qué es el World Skills Protocol?",
+            "a": [
+              "El World Skills Protocol es un protocolo abierto para publicar, identificar, conectar y verificar información sobre competencias profesionales.",
+              "Define conceptos, identificadores y relaciones compartidos para que sistemas independientes puedan intercambiar información profesional sin perder significado ni trazabilidad.",
+              "No es un producto de software.",
+              "Es una especificación."
+            ]
+          },
+          {
+            "q": "¿Para quién es el protocolo?",
+            "a": [
+              "El protocolo está destinado a:",
+              {
+                "ul": [
+                  "desarrolladores;",
+                  "proveedores de software;",
+                  "organismos de certificación;",
+                  "organizaciones educativas;",
+                  "empleadores;",
+                  "sistemas de IA;",
+                  "instituciones públicas;",
+                  "y cualquier organización que necesite datos interoperables sobre competencias profesionales."
+                ]
+              }
+            ]
+          },
+          {
+            "q": "¿El protocolo reemplaza a las plataformas existentes?",
+            "a": [
+              "No.",
+              "El protocolo está diseñado para conectar sistemas independientes.",
+              "Las aplicaciones existentes siguen siendo responsables de sus propios usuarios, interfaces y datos operativos.",
+              "El protocolo proporciona un lenguaje común entre ellas."
+            ]
+          },
+          {
+            "q": "¿El protocolo es abierto?",
+            "a": [
+              "Sí.",
+              "Sus conceptos publicados, sus Records y su gobernanza están destinados a documentarse abiertamente.",
+              "Cada implementación es libre de elegir sus propias licencias y modelos de negocio."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 2 — Sobre los Records",
+        "qa": [
+          {
+            "q": "¿Qué es un Record?",
+            "a": [
+              "Un Record es un documento publicado que establece uno o más elementos normativos del protocolo.",
+              "Los Records definen conceptos, relaciones, reglas o decisiones de gobernanza.",
+              "Constituyen la fuente autorizada del significado del protocolo."
+            ]
+          },
+          {
+            "q": "¿Los Records son especificaciones?",
+            "a": [
+              "Sí.",
+              "Un Record es la especificación normativa de los conceptos que establece.",
+              "Todo lo demás deriva de esos Records."
+            ]
+          },
+          {
+            "q": "¿Qué documento tiene autoridad?",
+            "a": [
+              "Los Records.",
+              "El material de apoyo puede explicar el protocolo.",
+              "Solo los Records publicados lo establecen."
+            ]
+          },
+          {
+            "q": "¿Puede el software discrepar de un Record?",
+            "a": [
+              "El software puede comportarse de otra manera.",
+              "El protocolo no.",
+              "Cuando una implementación entra en conflicto con un Record publicado, el Record prevalece."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 3 — Identidad",
+        "qa": [
+          {
+            "q": "¿Por qué el protocolo no usa URLs como identificadores?",
+            "a": [
+              "Porque las ubicaciones cambian.",
+              "La identidad debe permanecer estable aunque el almacenamiento, el alojamiento o los mecanismos de publicación evolucionen.",
+              "Los identificadores canónicos identifican el objeto publicado.",
+              "Los mecanismos de descubrimiento localizan su representación actual."
+            ]
+          },
+          {
+            "q": "¿Qué es un identificador canónico?",
+            "a": [
+              "Un identificador canónico es la identidad estable asignada a un objeto publicado del protocolo.",
+              "Permanece independiente de:",
+              {
+                "ul": [
+                  "los nombres de archivo;",
+                  "las URLs;",
+                  "las bases de datos;",
+                  "los formatos de publicación;",
+                  "y las tecnologías de almacenamiento."
+                ]
+              }
+            ]
+          },
+          {
+            "q": "¿Qué es la resolución de identidad?",
+            "a": [
+              "La resolución de identidad es el proceso de localizar la representación actual asociada a un identificador canónico.",
+              "Pertenece a la capa de lectura del protocolo.",
+              "No cambia la identidad en sí."
+            ]
+          },
+          {
+            "q": "¿Puede cambiar un identificador?",
+            "a": [
+              "El protocolo distingue entre identidad y representación.",
+              "Si la identidad en sí debe corregirse, el protocolo publica una reidentificación en lugar de cambiar en silencio las publicaciones históricas."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 4 — Versionado",
+        "qa": [
+          {
+            "q": "¿Por qué hay varios tipos de versión?",
+            "a": [
+              "Porque cosas distintas evolucionan de forma independiente.",
+              "El protocolo distingue:",
+              {
+                "ul": [
+                  "el versionado documental;",
+                  "el versionado normativo;",
+                  "el versionado de representación."
+                ]
+              },
+              "Cada uno responde a una pregunta diferente."
+            ]
+          },
+          {
+            "q": "¿Cada nueva versión de documento cambia el protocolo?",
+            "a": [
+              "No.",
+              "Muchas revisiones documentales mejoran la redacción, la estructura o la presentación sin cambiar el significado normativo."
+            ]
+          },
+          {
+            "q": "¿Qué es una versión de representación?",
+            "a": [
+              "Identifica una expresión publicada concreta de una definición lógica.",
+              "Cambiar una representación no cambia necesariamente el significado."
+            ]
+          },
+          {
+            "q": "¿Pueden dos representaciones describir la misma definición?",
+            "a": [
+              "Sí.",
+              "Distintas representaciones canónicas pueden preservar la misma definición lógica."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 5 — Knowledge Graph",
+        "qa": [
+          {
+            "q": "¿Qué es el Knowledge Graph?",
+            "a": [
+              "El Knowledge Graph es la proyección canónica de los conceptos y relaciones publicados establecidos por el protocolo.",
+              "Ayuda a lectores y software a navegar por la arquitectura del protocolo."
+            ]
+          },
+          {
+            "q": "¿El Knowledge Graph tiene autoridad?",
+            "a": [
+              "No.",
+              "El grafo se genera a partir de los Records.",
+              "Los Records siguen siendo la fuente autorizada."
+            ]
+          },
+          {
+            "q": "¿El grafo contiene datos de base de datos?",
+            "a": [
+              "No.",
+              "El grafo proyecta conceptos.",
+              "No proyecta instancias operativas."
+            ]
+          },
+          {
+            "q": "¿Puede el grafo inferir relaciones?",
+            "a": [
+              "No.",
+              "Cada relación mostrada por el grafo debe haber sido publicada antes por el protocolo.",
+              "El grafo nunca inventa semántica."
+            ]
+          },
+          {
+            "q": "¿Por qué no es visible una relación?",
+            "a": [
+              "Porque aún no ha sido establecida por un Record publicado.",
+              "El grafo no puede proyectar conocimiento no publicado."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 6 — Conceptos e instancias",
+        "qa": [
+          {
+            "q": "¿Cuál es la diferencia entre un concepto y una instancia?",
+            "a": [
+              "Un concepto pertenece al protocolo.",
+              "Una instancia pertenece a una implementación.",
+              "El protocolo publica definiciones.",
+              "Las aplicaciones almacenan ocurrencias de esas definiciones."
+            ]
+          },
+          {
+            "q": "¿Por qué el grafo no muestra todos los hechos operativos?",
+            "a": [
+              "Porque los hechos operativos pertenecen a las implementaciones.",
+              "El grafo representa intencionadamente solo el conocimiento publicado del protocolo."
+            ]
+          },
+          {
+            "q": "¿Pueden las implementaciones extender el protocolo?",
+            "a": [
+              "Sí.",
+              "Pueden introducir conceptos y comportamientos locales.",
+              "Esas extensiones siguen siendo propias de la implementación hasta que el protocolo las publique formalmente."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 7 — Reidentificación",
+        "qa": [
+          {
+            "q": "¿Qué es la reidentificación?",
+            "a": [
+              "La reidentificación preserva la continuidad de una definición publicada cuando su identidad o su representación canónica debe corregirse.",
+              "El significado permanece sin cambios."
+            ]
+          },
+          {
+            "q": "¿La reidentificación es lo mismo que la sucesión?",
+            "a": [
+              "No.",
+              "La sucesión introduce un objeto normativo distinto.",
+              "La reidentificación preserva la misma definición lógica a través de una identidad o representación corregida."
+            ]
+          },
+          {
+            "q": "¿Por qué son necesarias ambas relaciones?",
+            "a": [
+              "Porque responden a preguntas diferentes.",
+              "La sucesión explica la evolución semántica.",
+              "La reidentificación explica la continuidad."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 8 — Implementaciones",
+        "qa": [
+          {
+            "q": "¿Debe cada implementación usar la misma base de datos?",
+            "a": [
+              "No.",
+              "El protocolo especifica el significado.",
+              "Las implementaciones son libres de elegir su propia tecnología."
+            ]
+          },
+          {
+            "q": "¿Deben las implementaciones exponer todos los conceptos del protocolo?",
+            "a": [
+              "No.",
+              "Pueden implementar solo los conceptos relevantes para su propósito."
+            ]
+          },
+          {
+            "q": "¿Puede una implementación añadir campos locales?",
+            "a": [
+              "Sí.",
+              "Siempre que esos campos no se representen como si fueran conceptos del protocolo."
+            ]
+          },
+          {
+            "q": "¿La conformidad con el protocolo trata sobre la arquitectura de software?",
+            "a": [
+              "No.",
+              "La conformidad concierne a la preservación del significado publicado, no a la implementación interna."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 9 — IA",
+        "qa": [
+          {
+            "q": "¿Pueden los sistemas de IA usar el protocolo?",
+            "a": [
+              "Sí.",
+              "Los conceptos y relaciones explícitos del protocolo lo hacen adecuado para la recuperación y el razonamiento estructurados."
+            ]
+          },
+          {
+            "q": "¿El protocolo garantiza que las respuestas de una IA sean correctas?",
+            "a": [
+              "No.",
+              "El protocolo garantiza el origen y la estructura de la información publicada.",
+              "La interpretación correcta sigue siendo responsabilidad del sistema que la consume."
+            ]
+          },
+          {
+            "q": "¿Puede una IA inventar relaciones del protocolo?",
+            "a": [
+              "No.",
+              "Las interpretaciones generadas deben seguir siendo distinguibles de los hechos publicados del protocolo."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 10 — Gobernanza",
+        "qa": [
+          {
+            "q": "¿Cómo evoluciona el protocolo?",
+            "a": [
+              "Mediante procesos de gobernanza publicados y nuevos Records.",
+              "Los cambios pasan a formar parte del protocolo solo una vez que se han establecido formalmente."
+            ]
+          },
+          {
+            "q": "¿Pueden reescribirse los hechos publicados?",
+            "a": [
+              "No.",
+              "Las publicaciones históricas siguen formando parte del historial documental.",
+              "La evolución ocurre mediante nuevas publicaciones, no mediante modificación silenciosa."
+            ]
+          },
+          {
+            "q": "¿Por qué preservar los estados históricos?",
+            "a": [
+              "Porque la reproducibilidad, la trazabilidad y la auditabilidad requieren que el historial de publicación del protocolo permanezca observable."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Sección 11 — Interoperabilidad",
+        "qa": [
+          {
+            "q": "¿Qué hace que dos implementaciones sean interoperables?",
+            "a": [
+              "Preservan el mismo significado publicado.",
+              "No necesitan arquitecturas de software idénticas."
+            ]
+          },
+          {
+            "q": "¿La interoperabilidad requiere APIs idénticas?",
+            "a": [
+              "No.",
+              "Requiere una interpretación compatible de los conceptos del protocolo."
+            ]
+          },
+          {
+            "q": "¿La interoperabilidad requiere bases de datos idénticas?",
+            "a": [
+              "No.",
+              "El protocolo estandariza la semántica, no el almacenamiento."
+            ]
+          },
+          {
+            "q": "¿Qué ocurre si las implementaciones discrepan?",
+            "a": [
+              "El protocolo publicado proporciona la referencia común utilizada para resolver las diferencias semánticas."
+            ]
+          }
+        ]
+      }
+    ],
+    "conclusion": [
+      "Si estás descubriendo el protocolo, empieza por los Records publicados.",
+      "Si lo estás implementando, continúa con la documentación de Desarrolladores.",
+      "Si quieres entender cómo se conectan los conceptos, explora el Knowledge Graph.",
+      "Los conceptos presentados en esta guía están definidos por los Records publicados del World Skills Protocol. Habrá recursos terminológicos adicionales a medida que avance la gobernanza terminológica del protocolo.",
+      "Juntos, estos recursos explican el protocolo desde perspectivas complementarias, permaneciendo anclados en el mismo corpus canónico."
+    ],
+    "finalCta": {
+      "title": "Seguir explorando el protocolo",
+      "text": "Elige el recurso que mejor se ajuste a tu objetivo.",
+      "ctaLabels": [
+        "Leer los Records del protocolo",
+        "Explorar el Knowledge Graph",
+        "Desarrollar con el protocolo"
+      ]
     }
   }
 }

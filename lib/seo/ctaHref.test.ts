@@ -37,15 +37,14 @@ describe('ctaHref — le cas null', () => {
     expect(g).not.toBe(kg); // une absence n'emprunte jamais l'adresse d'une voisine
   });
 
-  it('un pilier traduit résout dans les 3 locales ; un archétype EN-only reste null hors en', () => {
-    // registry est un PILIER activé en/fr/es → résout la locale.
-    expect(ctaHref('/registry', 'en')).toBe('/en/registry');
+  it('pilier ET archétype traduits résolvent dans les 3 locales ; une destination inexistante reste null', () => {
+    // Site public trilingue : piliers ET archétypes résolvent en/fr/es.
     expect(ctaHref('/registry', 'fr')).toBe('/fr/registry');
-    expect(ctaHref('/registry', 'es')).toBe('/es/registry');
-    // developers est un ARCHÉTYPE EN-only → jamais fabriqué en /fr/ (garde-fou RD-001).
-    expect(ctaHref('/developers', 'en')).toBe('/en/developers');
-    expect(ctaHref('/developers', 'fr')).toBeNull();
-    expect(ctaHref('/developers', 'es')).toBeNull();
+    expect(ctaHref('/developers', 'fr')).toBe('/fr/developers'); // archétype désormais traduit
+    expect(ctaHref('/developers', 'es')).toBe('/es/developers');
+    // Garde-fou RD-001 : une destination qui n'est PAS une page publiée → null dans TOUTE locale.
+    expect(ctaHref('/page-inexistante', 'en')).toBeNull();
+    expect(ctaHref('/page-inexistante', 'fr')).toBeNull();
   });
 });
 

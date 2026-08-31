@@ -35,12 +35,13 @@ describe('CTA de la Homepage — résolus, jamais fabriqués', () => {
     }
   });
 
-  it("aucune adresse fabriquée : une cible NON traduite (archétype EN-only) reste null en fr", () => {
-    // Les CTA piliers résolvent (activés), MAIS un lien Reading Path vers un archétype
-    // EN-only (API & Developers → /developers) ne DOIT PAS être fabriqué en /fr/ — RD-001.
+  it('en fr, TOUS les liens de la Home résolvent — site public trilingue (phase 2)', () => {
+    // Phase 2 : les 3 archétypes sont traduits. Le lien Reading Path « API & Developers »
+    // (→ /developers) résout désormais en /fr/developers ; plus aucune lacune en fr.
     const c = buildHomepage('fr');
     const dev = c.readingPaths.flatMap((p) => p.links).find((l) => l.name === 'API & Developers');
-    expect(dev?.href).toBeNull();
+    expect(dev?.href).toBe('/fr/developers');
+    expect(c._gaps).toEqual([]);
   });
 
   it('en anglais, la Homepage ne signale aucune lacune', () => {

@@ -106,3 +106,57 @@ export function logGaps(slug: string, gaps: string[]): void {
 export const p = (text: string): ArchetypeBlock => ({ kind: 'p', text });
 export const ul = (...items: string[]): ArchetypeBlock => ({ kind: 'ul', items });
 export const h3 = (text: string): ArchetypeBlock => ({ kind: 'h3', text });
+
+// ─── Hydratation locale-aware depuis content/i18n/{locale}.json ────────────────
+/** Bloc JSON : chaîne (paragraphe), { ul: [...] } (liste) ou { h3: '...' } (sous-titre). */
+type JsonBlock = string | { ul: string[] } | { h3: string };
+interface JsonArchetype {
+  seoTitle: string;
+  seoDescription: string;
+  hero: { h1: string; subtitle: string; blocks: JsonBlock[]; ctaLabels: string[] };
+  sections: { title: string; blocks: JsonBlock[]; ctaLabel?: string }[];
+  qaSections: { title: string; qa: { q: string; a: JsonBlock[] }[] }[];
+  conclusion: JsonBlock[];
+  finalCta: { title: string; text: string; ctaLabels: string[] };
+}
+/** DESTINATIONS structurelles (identiques par locale) — le JSON ne porte que les LIBELLÉS.
+ * `sectionDest` : index de section (0-based) → destination du CTA intercalé. */
+export interface ArchetypeStructure {
+  slug: string;
+  heroDest: string[];
+  sectionDest: Record<number, string>;
+  finalDest: string[];
+}
+const SIGNATURE_LANGUAGE: Record<string, string> = { en: 'English', fr: 'Français', es: 'Español' };
+const toBlock = (b: JsonBlock): ArchetypeBlock =>
+  typeof b === 'string' ? p(b) : 'ul' in b ? ul(...b.ul) : h3(b.h3);
+
+/**
+ * Reconstruit un ArchetypeContent depuis la prose LOCALISÉE (content/i18n) et les
+ * DESTINATIONS structurelles. Les libellés de CTA viennent du JSON ; leurs cibles,
+ * fixes, sont appariées par position — chaque destination reste résolue par `ctaHref`
+ * (jamais un lien mort ; absence tracée dans `_gaps`).
+ */
+export function hydrateArchetype(locale: string, data: JsonArchetype, struct: ArchetypeStructure): ArchetypeContent {
+  const gaps: string[] = [];
+  const blocks = (bs: JsonBlock[]) => bs.map(toBlock);
+  const ctas = (labels: string[], dests: string[]) => labels.map((label, i) => resolveCta(label, dests[i], locale, gaps));
+  const content: ArchetypeContent = {
+    slug: struct.slug,
+    seoTitle: data.seoTitle,
+    seoDescription: data.seoDescription,
+    hero: { h1: data.hero.h1, subtitle: data.hero.subtitle, blocks: blocks(data.hero.blocks), ctas: ctas(data.hero.ctaLabels, struct.heroDest) },
+    sections: data.sections.map((s, i) => ({
+      title: s.title,
+      blocks: blocks(s.blocks),
+      ...(struct.sectionDest[i] ? { cta: resolveCta(s.ctaLabel ?? '', struct.sectionDest[i], locale, gaps) } : {}),
+    })),
+    qaSections: data.qaSections.map((qs) => ({ title: qs.title, qa: qs.qa.map((item) => ({ q: item.q, a: blocks(item.a) })) })),
+    conclusion: blocks(data.conclusion),
+    finalCta: { title: data.finalCta.title, text: data.finalCta.text, ctas: ctas(data.finalCta.ctaLabels, struct.finalDest) },
+    signature: { documentVersion: '1.0.0', editorialStatus: 'Draft', publisher: 'Opus X', language: SIGNATURE_LANGUAGE[locale] ?? 'English' },
+    _gaps: [...new Set(gaps)],
+  };
+  logGaps(struct.slug, gaps);
+  return content;
+}
