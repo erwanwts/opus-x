@@ -252,7 +252,7 @@
       "title": "OCR-100 — World Skills Protocol",
       "canonical_id": "world-skills-protocol",
       "version": "1.1.0",
-      "lifecycle_status": "Draft",
+      "lifecycle_status": "Normative",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Core Principles, Protocol Rules) · Informative (Examples, FAQ, Summaries)",
       "checksum_sha256": "f2576072ae9b76a88dfb06070d76e9ec53cc3fa424966a6863f7e6b382446e08",

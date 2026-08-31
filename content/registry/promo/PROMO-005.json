@@ -1,0 +1,13 @@
+{
+  "id": "PROMO-005",
+  "kind": "promotion",
+  "declares_normative": ["OCR-100"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-08-31",
+  "basis": "OCR-100 v1.1.0 (World Skills Protocol) · OCR-000:49 (Grounding Rule) · OCR-009 (Approval Form)",
+  "grounding": { "verdict": "conforme (doc↔code : après correctif D-032 / Voie Opus ID, les 3 désaccords sont tombés — wtr:212 (wsp_framework.sql:110), intégrité SHA-256 non keyé (canonical.ts:84, ingestion:176-179), liaison à l'identité via Opus ID (wsp_evidence.subject_id → profiles.opus_id))", "report": "D-032 · palier 1 (correctif) · commit d8da451", "gap": "none" },
+  "ordinary_process": true,
+  "immutable": true,
+  "declaration": "Promotion ordinaire d'OCR-100 (World Skills Protocol) de Draft à Normative, sous autorité Opus X. Le concept fondateur du protocole. Débloqué par le correctif de texte D-032 (Voie Opus ID) : régime OCR-REV résolu — coordonnée wtr, intégrité SHA-256 non keyé, liaison à l'identité par Opus ID ; le raffinement Passport-update reste la matière propre d'OCR-101 (bloqué par D-031). Statut dérivé de ce fait, jamais authored (OCR-009 §4, D-022)."
+}
