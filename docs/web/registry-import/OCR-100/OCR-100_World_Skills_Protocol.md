@@ -5,15 +5,15 @@
 | **Document ID** | OCR-100 |
 | **Canonical ID** | `world-skills-protocol` |
 | **Canonical Name** | World Skills Protocol (WSP) |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
-| **Review Status** | Pending machine-section diff against production code |
+| **Review Status** | Machine sections diffed against production code — wtr / SHA-256 / Opus ID binding (D-032) |
 | **Normative / Informative** | Normative (Canonical Definition, Core Principles, Protocol Rules) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-08-31 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
-> **Grounding note (removed at publication).** References to concrete mechanisms — the append-only fact store, JCS canonicalization, HMAC integrity, the `wtr` Framework, Opus ID, and Passport updates — reflect the state gravé en base during Sprint-002 (lots C1–C4). Diff every literal against production before promoting this OCR to Normative.
+> **Grounding note (removed at publication).** References to concrete mechanisms — the append-only fact store, JCS canonicalization, SHA-256 integrity (non-keyed, over the JCS canonical form), the `wtr` Framework, and Opus ID — reflect the state gravé en base during Sprint-002 (lots C1–C4). Diff every literal against production before promoting this OCR to Normative.
 
 ---
 
@@ -71,7 +71,7 @@ WSP is **not** composed of course content, presentation layers, scoring opinions
 2. Opus X publishes a Framework the Issuer references.
 3. The Issuer observes a demonstration and produces Evidence.
 4. Opus X verifies integrity and authorization and journals the fact.
-5. The fact is bound to the professional's identity (Passport update).
+5. The fact is bound to the professional's identity (Opus ID).
 6. Trust is computed from accumulated facts.
 7. Any third party verifies trust independently.
 8. Frameworks evolve; trust is recomputed; facts are preserved.
@@ -102,7 +102,7 @@ Opus X governs the protocol: it certifies Issuers, publishes Frameworks, verifie
 
 ## Security Considerations
 
-Protocol security rests on integrity and authorization at ingestion: Evidence integrity is verified over its JCS-canonicalized form with keyed authentication and constant-time comparison, and Issuer authorization is checked against certification state. The append-only store makes tampering detectable by construction. Compromise of an Issuer's key is contained by suspension/revocation of that Issuer and does not retroactively mutate existing facts.
+Protocol security rests on integrity and authorization at ingestion: Evidence integrity is verified by recomputing the SHA-256 digest over its JCS-canonicalized form and comparing in constant time, and Issuer authorization is checked against certification state. The append-only store makes tampering detectable by construction. Compromise of an Issuer's key is contained by suspension/revocation of that Issuer and does not retroactively mutate existing facts.
 
 ## Privacy Considerations
 
@@ -114,7 +114,7 @@ An AI system MAY use WSP to answer questions about verified professional facts a
 
 ## Machine Interpretation
 
-WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtf:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to a Passport update through a uniqueness-constrained link. Trust artifacts are computed views over facts and are never authored directly.
+WSP artifacts are JSON objects discriminated by a `type` field carried as a sibling of the body (e.g. `type: "evidence"`). Facts reference a Framework coordinate (e.g. `wtr:212`) and are integrity-protected via JCS canonicalization. Accepted facts are stored append-only and bound to the professional's identity (Opus ID). Trust artifacts are computed views over facts and are never authored directly.
 
 ```json
 {
@@ -213,7 +213,7 @@ The **World Skills Protocol** defines how professional truth is produced and ver
 
 ## Search Keywords
 
-world skills protocol, wsp, skills protocol, professional identity protocol, verifiable skills, evidence, trust, trust computation, opus x, opus id, professional passport, professional identity, issuer, certified issuer, framework, framework registry, verification, verification request, verification response, immutable fact, append-only, provenance, jcs, canonicalization, hmac, integrity, decentralized credentials, verifiable credentials, did core, open badges, skills verification, competency, capability, achievement, attestation, credential, digital credential, portable credential, issuer-independent verification, reproducible verification, trust status, professional profile, organization, consent, disclosure, privacy, separation of powers, fact layer, trust layer, identity layer, recomputable trust, standard, protocol specification, rfc style, knowledge graph, machine interpretation, json-ld, professional truth, learning journey, skills passport, skill mapping, wtr framework, world trader framework, protocol governance, non-custodial credential, tamper detection, auditability, multi-issuer ecosystem, interoperability, long-term verification, revocation, supersession, professional demonstration, observed skill, verified skill, skills graph, evidence graph, trust engine, consent as facts, ownership of identity, protocol invariants, deterministic trust, historical truth, canonical registry, ocr, docs opusx world, skills standard, global skills protocol, professional credentialing protocol, verifiable professional record
+world skills protocol, wsp, skills protocol, professional identity protocol, verifiable skills, evidence, trust, trust computation, opus x, opus id, professional passport, professional identity, issuer, certified issuer, framework, framework registry, verification, verification request, verification response, immutable fact, append-only, provenance, jcs, canonicalization, sha-256, non-keyed hash, integrity, decentralized credentials, verifiable credentials, did core, open badges, skills verification, competency, capability, achievement, attestation, credential, digital credential, portable credential, issuer-independent verification, reproducible verification, trust status, professional profile, organization, consent, disclosure, privacy, separation of powers, fact layer, trust layer, identity layer, recomputable trust, standard, protocol specification, rfc style, knowledge graph, machine interpretation, json-ld, professional truth, learning journey, skills passport, skill mapping, wtr framework, world trader framework, protocol governance, non-custodial credential, tamper detection, auditability, multi-issuer ecosystem, interoperability, long-term verification, revocation, supersession, professional demonstration, observed skill, verified skill, skills graph, evidence graph, trust engine, consent as facts, ownership of identity, protocol invariants, deterministic trust, historical truth, canonical registry, ocr, docs opusx world, skills standard, global skills protocol, professional credentialing protocol, verifiable professional record
 
 ## Synonyms
 
@@ -233,4 +233,5 @@ OCR-101 Professional Passport · OCR-102 Professional Identity · OCR-103 Profes
 
 ## Version History
 
+- **1.1.0** (2026-08-31) — Grounding corrections to match the implementation (D-032, Voie Opus ID): (a) Framework coordinate `wtf:212` → `wtr:212` (`wsp_framework.sql:110`, D2); (b) integrity described as a **SHA-256 digest over the JCS canonical form (non-keyed)**, recomputed and compared in constant time (`canonical.ts:84`, `wsp_ingestion.sql:176-179`) — the erroneous keyed-HMAC characterization removed (as OCR-113 C1, D-029); (c) fact binding reworded from « Passport update through a uniqueness-constrained link » to « bound to the professional's identity (Opus ID) » (`wsp_evidence.subject_id → profiles.opus_id`) — the Passport-update refinement belongs to OCR-101, not the protocol root. Normative correction under the Grounding Rule (OCR-000:49).
 - **1.0.0** (2026-07-16) — Initial full specification of the protocol root. Supersedes the OCR-100 v0.1 skeleton. Machine sections pending diff against production before promotion to Normative.
