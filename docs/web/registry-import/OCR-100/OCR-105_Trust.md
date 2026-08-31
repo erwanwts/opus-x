@@ -5,12 +5,12 @@
 | **Document ID** | OCR-105 |
 | **Canonical ID** | `trust` |
 | **Canonical Name** | Trust |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending machine-section diff against production code |
 | **Normative / Informative** | Normative (Canonical Definition, Protocol Rules, Core Principles) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-08-31 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
 > **Grounding note (removed at publication).** This concept reflects the trust model of the World Skills Protocol as built through Sprint-002: trust is a deterministic **computation over Immutable Facts**, never a value an Issuer or Opus X asserts; it is recomputable against the applicable Framework version; and its inputs are the append-only facts bound to an Opus ID. Diff any computation specifics against the production trust path before promotion to Normative.
@@ -56,7 +56,7 @@ Trust is computed, never asserted. Trust is deterministic. Trust is reproducible
 
 ## Conceptual Model
 
-Trust comprises a computation function, its inputs (the Immutable Facts bound to an Opus ID), and its interpretation (the applicable Framework version). Its output is a computed state exposed as Trust Status.
+Trust comprises a computation function, its inputs (the Immutable Facts bound to an Opus ID), and its interpretation (the applicable Framework version). Its output is a computed state exposed as Trust Status. Trust is computed **per competence** (per Framework criterion coordinate): each competence carries its own qualitative state derived from the active facts that attest it, never a single global value across competences.
 
 Trust does **not** comprise stored opinions, issuer-set values, or non-fact signals. The relations: Trust `consumes` Immutable Facts; Trust `is interpreted against` a Framework version; Trust `is exposed as` Trust Status; Verification `inspects` Trust. No relation lets Trust be authored directly or an Issuer set a value.
 
@@ -91,6 +91,11 @@ Opus X computes Trust and MUST NOT assert it independently of facts. Issuers pro
 - Superseded or revoked facts **MUST** be reflected deterministically; they **MUST NOT** count as active inputs.
 - Trust **MUST NOT** consume non-fact signals that are not verifiable Immutable Facts.
 - An Issuer **MUST NOT** set a trust value; Opus X **MUST NOT** author one outside the computation.
+- Trust **MUST** be computed **per competence** (per Framework criterion coordinate), never as a single global value.
+- For each competence, Trust **MUST** derive its state solely from the **active** Immutable Facts attesting that competence — a superseded or revoked fact **MUST NOT** be an input — interpreted against the applicable Framework version.
+- The derived state **MUST** be one of three qualitative states: **`establishing`** (no active fact yet reaches the competence's Framework-defined level), **`emerging`** (active facts partially reach it), **`established`** (active facts reach it).
+- The computation's only inputs **MUST** be the **presence**, **attested level**, and **active status** of Immutable Facts. Issuer identity, elapsed time, and any cross-professional comparison **MUST NOT** influence it.
+- Trust **MUST NOT** be expressed as a numeric score, a rating, or a ranking.
 
 ## Security Considerations
 
@@ -106,17 +111,21 @@ An AI MAY report Trust as a computed state and MUST NOT present it as an opinion
 
 ## Machine Interpretation
 
-Trust is a function `compute(facts_bound_to_opus_id, applicable_framework_version) → trust_status`. Inputs are immutable; the function is deterministic; the result is exposed as Trust Status.
+Trust is a function `compute(active_facts_bound_to_opus_id, applicable_framework_version) → { per_competence: trust_state }`. Inputs are the **active** immutable facts (superseded/revoked excluded); the function is deterministic; the result is a **per-competence** qualitative state (`establishing | emerging | established`) exposed as Trust Status.
 
 ```json
 {
   "trust": {
     "subject": "<opus_id>",
-    "inputs": "immutable_facts_bound_to_subject",
+    "inputs": "active_immutable_facts_bound_to_subject",
     "interpretation": { "framework": "wtr", "version": "0.1" },
     "deterministic": true,
     "asserted": false,
-    "result": "trust_status"
+    "granularity": "per_competence",
+    "result": {
+      "wtr:212": "established",
+      "wtr:118": "emerging"
+    }
   }
 }
 ```
@@ -229,4 +238,5 @@ OCR-100 World Skills Protocol · OCR-104 Opus ID · OCR-106 Trust Status · OCR-
 
 ## Version History
 
+- **1.1.0** (2026-08-31) — **Trust computation formula graven (the *how*).** Adds the normative derivation: Trust is computed **per competence** (per Framework criterion), from **active** Immutable Facts only (superseded/revoked excluded), interpreted against the applicable Framework version, yielding one of three qualitative states — `establishing` / `emerging` / `established`. Inputs are limited to fact **presence**, **attested level**, and **active status**; Issuer identity, elapsed time, and cross-professional comparison are excluded; no numeric score or ranking. Additive specification — the prior *what* (deterministic, reproducible, recomputable, never asserted) is unchanged; Machine Interpretation refined to per-competence output. Status remains Draft; the per-competence granularity is the target for the (unbuilt) trust engine (`trust_index` is a single per-Passport stub today — reconciled at the trust-engine palier).
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-105 v0.1 skeleton. Machine sections pending diff against the production trust path before promotion to Normative.
