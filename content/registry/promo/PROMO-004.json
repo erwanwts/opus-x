@@ -1,0 +1,13 @@
+{
+  "id": "PROMO-004",
+  "kind": "promotion",
+  "declares_normative": ["OCR-113"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-08-31",
+  "basis": "OCR-113 v1.1.0 (Evidence Integrity) · OCR-000:49 (Grounding Rule) · OCR-009 (Approval Form)",
+  "grounding": { "verdict": "conforme (doc↔code : après correctif C1 / D-029, l'intégrité décrit un SHA-256 NON keyé sur la forme canonique JCS — canonical.ts:84 — recalculé et comparé en temps constant à l'ingestion — wsp_ingestion.sql:176-179)", "report": "D-029 · palier 1 (correctif C1) · commit 1cbc5d6", "gap": "none" },
+  "ordinary_process": true,
+  "immutable": true,
+  "declaration": "Promotion ordinaire d'OCR-113 (Evidence Integrity) de Draft à Normative, sous autorité Opus X. Débloqué par le correctif C1 (D-029) : le régime OCR-REV a été résolu en corrigeant le texte — le condensé d'intégrité n'est pas un « keyed HMAC over the canonical bytes » mais un SHA-256 NON keyé sur la forme canonique JCS ; l'authentification de transport (HMAC sur `${timestamp}.${payload}`) reste hors périmètre. Plus aucun volet résiduel. Statut dérivé de ce fait, jamais authored (OCR-009 §4, D-022)."
+}
