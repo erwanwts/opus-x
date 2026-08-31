@@ -56,15 +56,11 @@ describe('« cité ≥ 1 » — critère promu en test rejouable', () => {
 
   it('INVENTAIRE mesuré — les Records cités par 0 (échec « cité ≥ 1 »)', () => {
     const uncited = RECORDS.filter((r) => citedBy(r.id, correct(r.id)) === 0).map((r) => r.id).sort();
-    // Constat mesuré, pas seuil. OCR-006 est désormais CITÉ (par OCR-007/009 qui y défèrent) — il quitte
-    // l'ensemble. Restent deux orphelins, de motifs DISTINCTS :
-    //  · OCR-123 — hors Phase 1 (partition), motif Phase-2.
-    //  · OCR-009 — ORPHELIN ATTENDU (Voie 3, décidée) : le lien de fond EXISTE (OCR-000:47 exige
-    //    l'approbation, OCR-005:55 la trace en release — l'objet qu'OCR-009 forme), mais son inscription
-    //    ATTEND un PATCH d'OCR-000/005 à l'ÉTAPE 8 — par VERSIONING (OCR-005:46), plus d'édition en place :
-    //    OCR-000/005 sont ratifiés Normative (D-022), donc figés au champ. La citation OCR-000/005 → OCR-009
-    //    s'ajoutera dans le MÊME mouvement que leur promotion.
-    //    « Cité ≥ 1 » est une porte de promotion (étape 8), pas d'écriture — l'orphelinat ne bloque rien.
-    expect(uncited).toEqual(['OCR-009', 'OCR-123']);
+    // Constat mesuré, pas seuil. OCR-006 est CITÉ (par OCR-007/009). OCR-009 est désormais CITÉ AUSSI :
+    // D-028 (Voie A) a tenu la promesse — OCR-000 v1.1.0 cite OCR-009 à :47 (« Opus X approval (its form
+    // is defined by OCR-009) »), amendement par VERSIONING (pas d'édition en place). OCR-009 quitte donc
+    // l'ensemble : sa porte « cité ≥ 1 » est franchie, il devient promouvable.
+    //  · OCR-123 — SEUL orphelin restant ; hors Phase 1 (partition), motif Phase-2.
+    expect(uncited).toEqual(['OCR-123']);
   });
 });

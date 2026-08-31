@@ -4,12 +4,12 @@
 |---|---|
 | **Document ID** | OCR-000 |
 | **Canonical ID** | `canonical-knowledge-governance` |
-| **Version** | 1.0.0 |
+| **Version** | 1.1.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending editorial review |
 | **Normative / Informative** | Normative (Governance Rules, Authority, Status Model) · Informative (Rationale, FAQ) |
-| **Last Update** | 2026-07-16 |
+| **Last Update** | 2026-07-26 |
 | **Kind** | Meta — Governance |
 
 ---
@@ -44,7 +44,7 @@ Authority is singular and accountable: Opus X governs the canonical knowledge. K
 - **Deprecated** — retired from new use; retained for reference.
 - **Superseded** — replaced by a newer version; retained.
 
-Promotion `Draft → Normative` **MUST** require agreement with the implementation and Opus X approval. `Normative → Superseded/Deprecated` **MUST** preserve the prior version.
+Promotion `Draft → Normative` **MUST** require agreement with the implementation and Opus X approval (its form is defined by OCR-009). `Normative → Superseded/Deprecated` **MUST** preserve the prior version.
 
 ## The Grounding Rule (Normative)
 
@@ -121,4 +121,5 @@ OCR-001 Canonical Registry Structure · OCR-002 Editorial Rules · OCR-003 Termi
 
 ## Version History
 
+- **1.1.0** (2026-07-26) — Cite OCR-009 (Approval Form) au niveau de la règle de promotion : l'approbation Opus X requise est formée par OCR-009. Ajout de référence croisée, aucun changement normatif (D-028).
 - **1.0.0** (2026-07-16) — Initial governance specification. Supersedes the OCR-000 v0.1 skeleton.

@@ -11,11 +11,11 @@
       "document_id": "OCR-000",
       "title": "OCR-000 — Canonical Knowledge Governance",
       "canonical_id": "canonical-knowledge-governance",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "lifecycle_status": "Normative",
       "classification": null,
       "normative_informative": "Normative (Governance Rules, Authority, Status Model) · Informative (Rationale, FAQ)",
-      "checksum_sha256": "fb71c2623c96318832d3cc4740745aae455f21e4b1d0af18f1c8fe67b09f0724",
+      "checksum_sha256": "145601760937612becc70266ca3286501ceb897394dc36d7c2755f3c09523e00",
       "pdf_homonym": true,
       "header_format": "md-table",
       "metadata_fields_found": [
