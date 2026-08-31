@@ -1,0 +1,89 @@
+{
+  "home": {
+    "seoTitle": "Opus X — Identité professionnelle et compétences vérifiables",
+    "seoDescription": "Opus X — l'infrastructure d'identité professionnelle fondée sur des compétences vérifiables, des preuves vérifiables et une vérification ouverte via le World Skills Protocol.",
+    "hero": {
+      "h1": "L'identité professionnelle, fondée sur des preuves vérifiables.",
+      "valueProp": "Opus X est l'infrastructure qui permet d'émettre des identités professionnelles de confiance à partir de réalisations vérifiables. Plutôt que de reposer sur des déclarations, des CV ou des compétences auto-proclamées, chaque réalisation peut être reliée à une preuve (Evidence), vérifiée par un protocole commun, et intégrée à une identité professionnelle à laquelle les autres peuvent se fier.",
+      "ctaPrimaryLabel": "Commencer avec le Professional Passport",
+      "ctaSecondaryLabel": "Explorer les fondations"
+    },
+    "headings": {
+      "whyExists": "Pourquoi Opus X existe",
+      "foundations": "Les quatre fondations d'Opus X",
+      "ecosystem": "Comment fonctionne l'écosystème",
+      "readingPaths": "Parcours de lecture",
+      "resources": "Explorer les ressources"
+    },
+    "whyExists": [
+      "Depuis des décennies, l'identité professionnelle repose sur des documents difficiles à vérifier. Diplômes, CV, certificats et portfolios décrivent ce qu'une personne prétend savoir, mais ils expliquent rarement comment ces compétences ont été démontrées, qui les a vérifiées, ou si elles restent fiables dans le temps.",
+      "En parallèle, le nombre de plateformes de formation en ligne, de communautés professionnelles, de programmes de certification et de workflows assistés par l'IA ne cesse de croître. Les compétences se développent partout, mais leur preuve reste fragmentée. Chaque organisation stocke ses preuves différemment, chaque plateforme définit ses propres standards, et chaque processus de vérification repart de zéro.",
+      "Opus X existe pour résoudre cette fragmentation.",
+      "Plutôt que de devenir une plateforme de certification de plus, Opus X fournit une infrastructure de confiance commune, capable de relier des preuves vérifiables issues de sources multiples en une seule identité professionnelle. Chaque réalisation vérifiée peut alimenter un Professional Passport, tout en préservant sa provenance et en autorisant une vérification indépendante.",
+      "L'objectif est simple : rendre les réalisations professionnelles compréhensibles, vérifiables et réutilisables entre les organisations, les plateformes et les technologies.",
+      "La confiance professionnelle ne devrait pas dépendre du lieu où l'on a appris, mais de ce qui peut être vérifié."
+    ],
+    "foundationsIntro": "La confiance professionnelle se construit en combinant quatre composants complémentaires. Chacun a une responsabilité distincte au sein de l'écosystème.",
+    "foundations": [
+      { "name": "Professional Passport", "body": [
+        "Le Professional Passport est la représentation publique de l'identité professionnelle vérifiée d'une personne.",
+        "Plutôt que de lister des déclarations, il présente des réalisations vérifiées reliées à leurs preuves justificatives, permettant aux organisations et aux individus de comprendre ce qui a réellement été démontré."
+      ] },
+      { "name": "Evidence", "body": [
+        "Evidence — la preuve vérifiable — est le fondement de la confiance.",
+        "Chaque réalisation vérifiée provient d'une preuve produite par une plateforme de formation, une organisation, un processus d'évaluation ou une autre source de confiance. Opus X préserve cette provenance afin que les réalisations restent traçables et vérifiables de façon indépendante."
+      ] },
+      { "name": "Trust", "body": [
+        "Trust — la confiance — ne se déclare pas : elle se calcule.",
+        "Opus X évalue la fiabilité de l'information professionnelle en combinant le statut de vérification, la provenance, les règles de gouvernance et l'intégrité des preuves en un modèle de confiance transparent, capable d'évoluer dans le temps."
+      ] },
+      { "name": "World Skills Protocol", "body": [
+        "Le World Skills Protocol définit le langage commun qui permet aux organisations d'échanger une information professionnelle vérifiée.",
+        "Il spécifie comment les identités, les preuves, les réalisations et la vérification peuvent être représentées de manière cohérente, rendant l'interopérabilité possible sans exiger que chaque organisation adopte les mêmes systèmes internes."
+      ] }
+    ],
+    "ecosystem": [
+      "Chaque réalisation professionnelle commence par un événement.",
+      "Un apprenant achève un programme, un candidat réussit une évaluation, un employé démontre une compétence, ou une organisation valide un jalon professionnel. Ces événements génèrent des preuves qui peuvent être conservées avec leur origine et leur historique de vérification.",
+      "Le World Skills Protocol fournit la structure commune pour représenter cette information. Plutôt que de remplacer les plateformes existantes, il leur permet de décrire des réalisations vérifiées à l'aide d'un langage partagé.",
+      "Opus X agrège ensuite cette information vérifiée dans un Professional Passport. Le passeport ne duplique pas les preuves : il les référence, préservant la provenance tout en présentant une identité professionnelle cohérente.",
+      "Des services de vérification peuvent valider indépendamment l'authenticité de l'information, tandis que les organisations et les applications consomment l'information de confiance qui en résulte à travers des interfaces communes.",
+      "Le résultat est un écosystème où l'identité professionnelle n'est plus bâtie à partir de documents isolés, mais à partir de preuves vérifiables reliées par un protocole partagé et présentées sous la forme d'un passeport professionnel fiable et portable."
+    ],
+    "readingPaths": [
+      { "audience": "Pour les professionnels", "text": "Si vous voulez comprendre comment des réalisations vérifiées deviennent partie intégrante de votre identité professionnelle, commencez par le Professional Passport, puis explorez Evidence et Trust.", "pages": ["Professional Passport", "Evidence", "Trust"] },
+      { "audience": "Pour les développeurs", "text": "Si vous voulez intégrer votre plateforme à Opus X ou consommer de l'information professionnelle vérifiée, commencez par API & Développeurs, puis poursuivez avec le World Skills Protocol.", "pages": ["API & Developers", "World Skills Protocol"] },
+      { "audience": "Pour les organisations", "text": "Si votre organisation émet, valide ou consomme des réalisations professionnelles, commencez par le World Skills Protocol, puis explorez Verification et Registry.", "pages": ["World Skills Protocol", "Verification", "Registry"] },
+      { "audience": "Pour les vérifieurs", "text": "Si vous devez comprendre comment l'information professionnelle est vérifiée et rendue fiable, commencez par Verification, puis poursuivez avec Trust et Evidence.", "pages": ["Verification", "Trust", "Evidence"] }
+    ],
+    "resourcesIntro": "Explorez les composants clés qui, ensemble, forment l'écosystème Opus X.",
+    "finalCtaLabel": "Explorer le World Skills Protocol"
+  },
+  "pillars": {
+    "breadcrumbRoot": "Opus X",
+    "recordsBreadcrumb": "Records",
+    "sectionLabels": {
+      "canonicalDefinition": "Définition canonique",
+      "keyFacts": "Faits clés",
+      "whyItExists": "Pourquoi cela existe",
+      "howItWorks": "Comment cela fonctionne",
+      "actors": "Acteurs",
+      "lifecycle": "Cycle de vie",
+      "examples": "Exemples",
+      "counterExamples": "Contre-exemples",
+      "distinctions": "Distinctions",
+      "faq": "FAQ",
+      "relatedEntities": "Entités liées",
+      "normativeSources": "Sources normatives"
+    },
+    "cta": {
+      "evidence": "Voir la fiche de registre Evidence",
+      "professional-passport": "Voir la fiche de registre Professional Passport",
+      "world-skills-protocol": "Voir la fiche de registre World Skills Protocol",
+      "trust": "Voir la fiche de registre Trust",
+      "frameworks": "Voir la fiche de registre Framework",
+      "registry": "Explorer le Canonical Registry",
+      "verification": "Voir la fiche de registre Verification"
+    }
+  }
+}

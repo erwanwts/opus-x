@@ -24,15 +24,19 @@ export interface Pillar {
   ctaLabel?: string;
 }
 
+/** Locales où l'ACCUEIL (`/[locale]`) est traduit et généré. Source unique, partagée
+ * par la page (TRANSLATED) et le sitemap (cluster hreflang de la home). Phase 1 : en/fr/es. */
+export const HOME_LOCALES = ['en', 'fr', 'es'];
+
 /** Les piliers PUBLIÉS. On n'ajoute une entrée que quand la page existe vraiment. */
 export const PILLARS: Pillar[] = [
-  { slug: 'evidence', recordId: 'OCR-110', translatedLocales: ['en'], ctaLabel: 'View the Evidence Registry Entry' },
-  { slug: 'professional-passport', recordId: 'OCR-101', translatedLocales: ['en'], ctaLabel: 'View the Professional Passport Registry Entry' },
-  { slug: 'world-skills-protocol', recordId: 'OCR-100', translatedLocales: ['en'], ctaLabel: 'View the World Skills Protocol Registry Entry' },
-  { slug: 'trust', recordId: 'OCR-105', translatedLocales: ['en'], ctaLabel: 'View the Trust Registry Entry' },
-  { slug: 'frameworks', recordId: 'OCR-115', translatedLocales: ['en'], ctaLabel: 'View the Framework Registry Entry' },
-  { slug: 'registry', recordId: 'OCR-124', translatedLocales: ['en'], ctaLabel: 'Explore the Canonical Registry' },
-  { slug: 'verification', recordId: 'OCR-107', translatedLocales: ['en'], ctaLabel: 'View the Verification Registry Entry' },
+  { slug: 'evidence', recordId: 'OCR-110', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the Evidence Registry Entry' },
+  { slug: 'professional-passport', recordId: 'OCR-101', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the Professional Passport Registry Entry' },
+  { slug: 'world-skills-protocol', recordId: 'OCR-100', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the World Skills Protocol Registry Entry' },
+  { slug: 'trust', recordId: 'OCR-105', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the Trust Registry Entry' },
+  { slug: 'frameworks', recordId: 'OCR-115', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the Framework Registry Entry' },
+  { slug: 'registry', recordId: 'OCR-124', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'Explore the Canonical Registry' },
+  { slug: 'verification', recordId: 'OCR-107', translatedLocales: ['en', 'fr', 'es'], ctaLabel: 'View the Verification Registry Entry' },
   // ARCHÉTYPES ÉDITORIAUX — pas de Record source (`recordId: null`) : leur prose est
   // livrée par l'architecte, elle ne se projette pas d'un OCR. Ils entrent au registre
   // pour la MÊME raison que les piliers : sitemap, generateStaticParams et résolution

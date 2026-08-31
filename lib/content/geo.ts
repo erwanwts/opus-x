@@ -28,6 +28,7 @@ import { loadFacts } from '@/lib/registry/loadFacts';
 import { graphNeighborhood } from '@/lib/registry/api';
 import { entityHref, ctaHref } from '@/lib/seo/pillars';
 import { CTA_ENABLED } from '@/lib/seo/flags';
+import { i18nContent } from '@/lib/content/i18n';
 
 // ─── Modèle de texte riche ─────────────────────────────────────────────────
 /** Segment inline : du texte, éventuellement en emphase (italique présente dans le Record). */
@@ -52,6 +53,7 @@ export interface EntityLink {
 export interface GeoPageContent {
   slug: string;
   recordId: string;
+  locale: string; // pour le fil d'ariane localisé (lien vers l'accueil de la locale)
   title: string; // H1 (plain — sert aussi au <title>, au breadcrumb, aux métadonnées)
   directAnswer: Span[]; // 40-80 mots
   definition: Span[]; // définition canonique
@@ -69,6 +71,9 @@ export interface GeoPageContent {
   entityLinks: EntityLink[]; // liens entités (depuis le graphe)
   /** CTA éditorial/UI. `href` RÉSOLU : null = destination inexistante → libellé inerte. */
   cta: { label: string; href: string | null; enabled: boolean };
+  /** Labels d'interface LOCALISÉS (fil d'ariane + titres de sections) — content/i18n.
+   * Le CORPS des sections reste corpus (anglais) ; seuls les titres se traduisent. */
+  labels: { breadcrumbRoot: string; sectionLabels: Record<string, string> };
   /**
    * Sections canoniques SANS source dans le Record (une absence est une information).
    * INSTRUMENT DE TRAÇABILITÉ INTERNE UNIQUEMENT : consommé par le journal de build,
@@ -259,6 +264,7 @@ export function buildGeoContent(
   if (!doc) return null;
   const S = doc.sections;
   const ctx = (section: string): ProseCtx => ({ slug, section });
+  const t = i18nContent(locale); // labels/CTA localisés (le CORPS reste corpus/anglais)
 
   // Liens entités : Records reliés dans le graphe (voisinage), SAUF le Record
   // courant (pas d'auto-lien). Le href vient du résolveur UNIQUE `entityHref`.
@@ -276,6 +282,7 @@ export function buildGeoContent(
   const content: Omit<GeoPageContent, '_gaps'> = {
     slug,
     recordId,
+    locale,
     title: plainText(doc.metadata['Canonical Name'] || doc.title.replace(/^OCR-\d+\s*[—–-]\s*/, '')),
     directAnswer: quoted(S['GEO Summary'] || ''),
     definition: quoted(S['Canonical Definition'] || ''),
@@ -300,7 +307,8 @@ export function buildGeoContent(
     // que label + destination ; elle ne peut pas rendre le CTA actif localement.
     // La DESTINATION est RÉSOLUE (ctaHref) : elle ne devient un href que si la cible
     // existe. Absente → null → libellé inerte, jamais un lien mort.
-    cta: { label: cta.label, href: ctaHref(cta.href, locale), enabled: CTA_ENABLED },
+    cta: { label: (t.pillars.cta as Record<string, string>)[slug] ?? cta.label, href: ctaHref(cta.href, locale), enabled: CTA_ENABLED },
+    labels: { breadcrumbRoot: t.pillars.breadcrumbRoot, sectionLabels: t.pillars.sectionLabels },
   };
 
   // Traçabilité des sections sans source (null → omises au rendu). Section canonique →

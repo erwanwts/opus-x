@@ -1,0 +1,89 @@
+{
+  "home": {
+    "seoTitle": "Opus X — Professional Identity Built on Verifiable Skills",
+    "seoDescription": "Build a professional identity based on verifiable skills, trusted evidence and open verification through the World Skills Protocol.",
+    "hero": {
+      "h1": "Professional identity, built on verified evidence.",
+      "valueProp": "Opus X is the infrastructure for issuing trusted professional identities from verifiable achievements. Instead of relying on claims, résumés, or self-declared skills, every achievement can be linked to evidence, verified through a common protocol, and become part of a professional identity that others can trust.",
+      "ctaPrimaryLabel": "Start with the Professional Passport",
+      "ctaSecondaryLabel": "Explore the Foundations"
+    },
+    "headings": {
+      "whyExists": "Why Opus X Exists",
+      "foundations": "The Four Foundations of Opus X",
+      "ecosystem": "How the Ecosystem Works",
+      "readingPaths": "Reading Paths",
+      "resources": "Explore the Resources"
+    },
+    "whyExists": [
+      "For decades, professional identity has been built on documents that are difficult to verify. Diplomas, résumés, certificates and portfolios describe what a person claims to know, but they rarely explain how those claims were demonstrated, who verified them, or whether they remain trustworthy over time.",
+      "At the same time, the number of digital learning platforms, professional communities, certification programs and AI-assisted workflows continues to grow. Skills are developed everywhere, yet proof remains fragmented. Each organization stores evidence differently, each platform defines its own standards, and every verification process starts from scratch.",
+      "Opus X exists to solve this fragmentation.",
+      "Rather than becoming another certification platform, Opus X provides a common trust infrastructure capable of connecting verified evidence from multiple sources into a single professional identity. Every verified achievement can contribute to a Professional Passport, while preserving its provenance and allowing independent verification.",
+      "The objective is simple: make professional achievements understandable, verifiable and reusable across organizations, platforms and technologies.",
+      "Professional trust should not depend on where someone learned, but on what can be verified."
+    ],
+    "foundationsIntro": "Professional trust is built by combining four complementary components. Each has a distinct responsibility within the ecosystem.",
+    "foundations": [
+      { "name": "Professional Passport", "body": [
+        "The Professional Passport is the public representation of a person's verified professional identity.",
+        "Rather than listing claims, it presents verified achievements connected to their supporting evidence, allowing organizations and individuals to understand what has actually been demonstrated."
+      ] },
+      { "name": "Evidence", "body": [
+        "Evidence is the foundation of trust.",
+        "Every verified achievement originates from evidence produced by a learning platform, an organization, an assessment process or another trusted source. Opus X preserves this provenance so that achievements remain traceable and independently verifiable."
+      ] },
+      { "name": "Trust", "body": [
+        "Trust is not declared—it is computed.",
+        "Opus X evaluates the reliability of professional information by combining verification status, provenance, governance rules and evidence integrity into a transparent trust model that can evolve over time."
+      ] },
+      { "name": "World Skills Protocol", "body": [
+        "The World Skills Protocol defines the common language that allows organizations to exchange verified professional information.",
+        "It specifies how identities, evidence, achievements and verification can be represented consistently, enabling interoperability without requiring every organization to adopt the same internal systems."
+      ] }
+    ],
+    "ecosystem": [
+      "Every professional achievement begins with an event.",
+      "A learner completes a programme, a candidate passes an assessment, an employee demonstrates a competency, or an organization validates a professional milestone. These events generate evidence that can be preserved together with its origin and verification history.",
+      "The World Skills Protocol provides the common structure for representing this information. Rather than replacing existing platforms, it allows them to describe verified achievements using a shared language.",
+      "Opus X then aggregates this verified information into a Professional Passport. The passport does not duplicate evidence; it references it, preserving provenance while presenting a coherent professional identity.",
+      "Verification services can independently validate the authenticity of the information, while organizations and applications consume the resulting trust information through common interfaces.",
+      "The result is an ecosystem where professional identity is no longer built from isolated documents, but from verifiable evidence connected through a shared protocol and presented as a trustworthy, portable professional passport."
+    ],
+    "readingPaths": [
+      { "audience": "For Professionals", "text": "If you want to understand how verified achievements become part of your professional identity, begin with the Professional Passport, then explore Evidence and Trust.", "pages": ["Professional Passport", "Evidence", "Trust"] },
+      { "audience": "For Developers", "text": "If you want to integrate your platform with Opus X or consume verified professional information, start with API & Developers, then continue with the World Skills Protocol.", "pages": ["API & Developers", "World Skills Protocol"] },
+      { "audience": "For Organizations", "text": "If your organization issues, validates or consumes professional achievements, begin with the World Skills Protocol, then explore Verification and Registry.", "pages": ["World Skills Protocol", "Verification", "Registry"] },
+      { "audience": "For Verifiers", "text": "If you need to understand how professional information is verified and trusted, start with Verification, then continue with Trust and Evidence.", "pages": ["Verification", "Trust", "Evidence"] }
+    ],
+    "resourcesIntro": "Explore the core components that together form the Opus X ecosystem.",
+    "finalCtaLabel": "Explore the World Skills Protocol"
+  },
+  "pillars": {
+    "breadcrumbRoot": "Opus X",
+    "recordsBreadcrumb": "Records",
+    "sectionLabels": {
+      "canonicalDefinition": "Canonical Definition",
+      "keyFacts": "Key Facts",
+      "whyItExists": "Why It Exists",
+      "howItWorks": "How It Works",
+      "actors": "Actors",
+      "lifecycle": "Lifecycle",
+      "examples": "Examples",
+      "counterExamples": "Counter Examples",
+      "distinctions": "Distinctions",
+      "faq": "FAQ",
+      "relatedEntities": "Related Entities",
+      "normativeSources": "Normative Sources"
+    },
+    "cta": {
+      "evidence": "View the Evidence Registry Entry",
+      "professional-passport": "View the Professional Passport Registry Entry",
+      "world-skills-protocol": "View the World Skills Protocol Registry Entry",
+      "trust": "View the Trust Registry Entry",
+      "frameworks": "View the Framework Registry Entry",
+      "registry": "Explore the Canonical Registry",
+      "verification": "View the Verification Registry Entry"
+    }
+  }
+}

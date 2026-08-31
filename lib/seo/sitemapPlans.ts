@@ -29,7 +29,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import { PILLARS } from './pillars';
+import { PILLARS, HOME_LOCALES } from './pillars';
 import { buildRecordPage, RECORDS_ROOT } from '@/lib/registry/recordPage';
 import { loadFacts } from '@/lib/registry/loadFacts';
 import { allPredicates, allFamilies, allTypes } from '@/lib/registry/registryEntities';
@@ -50,7 +50,10 @@ export interface PlanEntry {
 
 /** Les pages éditoriales, avec leur cluster hreflang limité aux traductions réelles. */
 function editorialEntries(): PlanEntry[] {
-  const out: PlanEntry[] = [{ url: `${BASE}/en`, languages: { en: `${BASE}/en` } }];
+  const out: PlanEntry[] = [];
+  // Accueil : une entrée par locale traduite, cluster hreflang complet (fallback strict).
+  const homeLanguages = Object.fromEntries(HOME_LOCALES.map((l) => [l, `${BASE}/${l}`]));
+  for (const locale of HOME_LOCALES) out.push({ url: `${BASE}/${locale}`, languages: homeLanguages });
   for (const p of PILLARS) {
     const languages = Object.fromEntries(
       p.translatedLocales.map((l) => [l, `${BASE}/${l}/${p.slug}`]),

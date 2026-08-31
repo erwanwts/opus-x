@@ -44,13 +44,13 @@ describe('ÉTAT D’ORIGINE — inchangé par l’amendement', () => {
     );
   });
 
-  it('une locale non traduite ne résout jamais — GARDE-FOU RÉTABLI', () => {
-    // Cette assertion avait été amendée lors de l'extension d'entityHref. La mesure
-    // a établi que l'amendement ne servait QUE le chemin fr/es, qu'aucune page
-    // n'emprunte : les 64 liens gagnés sont tous en `en`. Le garde-fou est donc
-    // rétabli, et l'étape 2 de la chaîne bornée à la locale canonique.
-    expect(entityHref('OCR-110', 'fr')).toBeNull();
-    expect(entityHref('OCR-110', 'es')).toBeNull();
+  it('les 7 piliers résolvent dans les 3 locales — activation FR/ES (phase 1)', () => {
+    // OCR-110 (evidence) est un PILIER traduit en/fr/es (translatedLocales) → entityHref
+    // résout la locale courante. Le garde-fou fallback reste couvert par le test suivant
+    // (un Record SANS pilier ne résout qu'en 'en').
+    expect(entityHref('OCR-110', 'en')).toBe('/en/evidence');
+    expect(entityHref('OCR-110', 'fr')).toBe('/fr/evidence');
+    expect(entityHref('OCR-110', 'es')).toBe('/es/evidence');
   });
 
   it('un Record SANS pilier ne résout pas davantage hors locale canonique', () => {

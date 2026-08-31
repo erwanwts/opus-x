@@ -66,7 +66,7 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
       <article className="mx-auto max-w-[820px]">
         {/* Fil d'ariane (le JSON-LD BreadcrumbList est émis par la page). */}
         <nav aria-label="Breadcrumb" className="font-interface text-body-sm text-navy-400">
-          <Link href="/en" className="hover:text-navy-200">Opus X</Link>
+          <Link href={`/${c.locale}`} className="hover:text-navy-200">{c.labels.breadcrumbRoot}</Link>
           <span className="mx-2">/</span>
           <span className="text-navy-300">{c.title}</span>
         </nav>
@@ -83,14 +83,14 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
 
         {/* Définition canonique */}
         {c.definition.length ? (
-          <Section title="Canonical Definition">
+          <Section title={c.labels.sectionLabels.canonicalDefinition}>
             <p className="font-institutional text-body-lg text-navy-100"><Inline spans={c.definition} /></p>
           </Section>
         ) : null}
 
         {/* Key Facts (bloc LLM) */}
         {c.keyFacts.length ? (
-          <Section title="Key Facts">
+          <Section title={c.labels.sectionLabels.keyFacts}>
             <ul className="space-y-2">
               {c.keyFacts.map((f, i) => (
                 <li key={i} className="flex gap-2"><span className="text-navy-500">—</span><span><Inline spans={f} /></span></li>
@@ -101,22 +101,22 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
 
         {/* Pourquoi cela existe */}
         {c.whyExists.length ? (
-          <Section title="Why It Exists"><Prose blocks={c.whyExists} /></Section>
+          <Section title={c.labels.sectionLabels.whyItExists}><Prose blocks={c.whyExists} /></Section>
         ) : null}
 
         {/* Comment cela fonctionne */}
         {c.howItWorks.length ? (
-          <Section title="How It Works"><Prose blocks={c.howItWorks} /></Section>
+          <Section title={c.labels.sectionLabels.howItWorks}><Prose blocks={c.howItWorks} /></Section>
         ) : null}
 
         {/* Acteurs */}
         {c.actors.length ? (
-          <Section title="Actors"><Prose blocks={c.actors} /></Section>
+          <Section title={c.labels.sectionLabels.actors}><Prose blocks={c.actors} /></Section>
         ) : null}
 
         {/* Cycle de vie */}
         {c.lifecycle.length ? (
-          <Section title="Lifecycle">
+          <Section title={c.labels.sectionLabels.lifecycle}>
             <ol className="space-y-2">
               {c.lifecycle.map((step, i) => (
                 <li key={i} className="flex gap-3">
@@ -130,26 +130,26 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
 
         {/* Exemple */}
         {c.examples.length ? (
-          <Section title="Examples">
+          <Section title={c.labels.sectionLabels.examples}>
             <ul className="space-y-2">{c.examples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">·</span><span><Inline spans={e} /></span></li>)}</ul>
           </Section>
         ) : null}
 
         {/* Non-exemple */}
         {c.nonExamples.length ? (
-          <Section title="Counter Examples">
+          <Section title={c.labels.sectionLabels.counterExamples}>
             <ul className="space-y-2">{c.nonExamples.map((e, i) => <li key={i} className="flex gap-2"><span className="text-navy-500">×</span><span><Inline spans={e} /></span></li>)}</ul>
           </Section>
         ) : null}
 
         {/* Distinctions */}
         {c.distinctions.length ? (
-          <Section title="Distinctions"><Prose blocks={c.distinctions} /></Section>
+          <Section title={c.labels.sectionLabels.distinctions}><Prose blocks={c.distinctions} /></Section>
         ) : null}
 
         {/* FAQ (le JSON-LD FAQPage est émis par la page) */}
         {c.faq.length ? (
-          <Section title="FAQ">
+          <Section title={c.labels.sectionLabels.faq}>
             <dl className="space-y-4">
               {c.faq.map((qa, i) => (
                 <div key={i}>
@@ -164,7 +164,7 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
         {/* Liens entités — href résolu par entityHref (source unique). Une entité
              sans page pilier publiée reste du TEXTE BRUT, jamais un lien /api/. */}
         {c.entityLinks.length ? (
-          <Section title="Related Entities">
+          <Section title={c.labels.sectionLabels.relatedEntities}>
             <ul className="flex flex-wrap gap-2">
               {c.entityLinks.map((e) => (
                 <li key={e.id}>
@@ -184,7 +184,7 @@ export function GeoPage({ content }: { content: GeoPageContent }) {
 
         {/* Sources normatives */}
         {c.sources.length ? (
-          <Section title="Normative Sources">
+          <Section title={c.labels.sectionLabels.normativeSources}>
             <p className="font-engraved text-body-sm leading-relaxed text-navy-300">{c.sources.join(' · ')}</p>
           </Section>
         ) : null}

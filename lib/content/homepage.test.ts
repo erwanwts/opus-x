@@ -23,21 +23,24 @@ describe('CTA de la Homepage — résolus, jamais fabriqués', () => {
     expect(buildHomepage('en').hero.ctaSecondary.href).toBe('#platform');
   });
 
-  it('LE CAS NULL — locale non traduite → aucun href, absence tracée', () => {
-    // Les piliers ne sont traduits qu'en anglais : en français, la cible n'existe pas.
-    const c = buildHomepage('fr');
-    expect(c.hero.ctaPrimary.href).toBeNull();
-    expect(c.finalCta.href).toBeNull();
-    expect(c._gaps).toContain('cta:/professional-passport');
-    expect(c._gaps).toContain('cta:/world-skills-protocol');
+  it('en fr/es, les CTA de la Home résolvent vers la locale (piliers activés, phase 1)', () => {
+    // Activation FR/ES des piliers : les cibles /professional-passport et
+    // /world-skills-protocol existent dans la locale → href résolu (jamais fabriqué,
+    // c'est pillarHrefBySlug qui produit l'adresse), aucune lacune sur ces cibles.
+    for (const loc of ['fr', 'es']) {
+      const c = buildHomepage(loc);
+      expect(c.hero.ctaPrimary.href).toBe(`/${loc}/professional-passport`);
+      expect(c.finalCta.href).toBe(`/${loc}/world-skills-protocol`);
+      expect(c._gaps).not.toContain('cta:/professional-passport');
+    }
   });
 
-  it("aucune adresse n'est fabriquée par concaténation de la locale", () => {
-    // Le défaut d'origine produisait `/fr/professional-passport` alors que la page
-    // n'existe pas. Plus aucune adresse ne doit apparaître pour une locale non traduite.
+  it("aucune adresse fabriquée : une cible NON traduite (archétype EN-only) reste null en fr", () => {
+    // Les CTA piliers résolvent (activés), MAIS un lien Reading Path vers un archétype
+    // EN-only (API & Developers → /developers) ne DOIT PAS être fabriqué en /fr/ — RD-001.
     const c = buildHomepage('fr');
-    const hrefs = [c.hero.ctaPrimary.href, c.finalCta.href];
-    expect(hrefs.some((h) => typeof h === 'string' && h.startsWith('/fr/'))).toBe(false);
+    const dev = c.readingPaths.flatMap((p) => p.links).find((l) => l.name === 'API & Developers');
+    expect(dev?.href).toBeNull();
   });
 
   it('en anglais, la Homepage ne signale aucune lacune', () => {

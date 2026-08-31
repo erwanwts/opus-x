@@ -100,7 +100,7 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 2 · WHY OPUS X EXISTS ── */}
         <section className="border-t border-navy-800 py-breathe-lg">
-          <SectionTitle>Why Opus X Exists</SectionTitle>
+          <SectionTitle>{c.headings.whyExists}</SectionTitle>
           <div className="mt-6 space-y-5 font-interface text-body leading-relaxed text-navy-200">
             {c.whyExists.map((p, i) => <p key={i}>{p}</p>)}
           </div>
@@ -108,7 +108,7 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 3 · THE FOUR FOUNDATIONS (ancre #platform) ── */}
         <section id="platform" className="scroll-mt-24 border-t border-navy-800 py-breathe-lg">
-          <SectionTitle>The Four Foundations of Opus X</SectionTitle>
+          <SectionTitle>{c.headings.foundations}</SectionTitle>
           <p className="mt-6 font-interface text-body leading-relaxed text-navy-200">{c.foundationsIntro}</p>
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             {c.foundations.map((f) => (
@@ -124,7 +124,7 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 4 · HOW THE ECOSYSTEM WORKS ── */}
         <section className="border-t border-navy-800 py-breathe-lg">
-          <SectionTitle>How the Ecosystem Works</SectionTitle>
+          <SectionTitle>{c.headings.ecosystem}</SectionTitle>
           <div className="mt-6 space-y-5 font-interface text-body leading-relaxed text-navy-200">
             {c.ecosystem.map((p, i) => <p key={i}>{p}</p>)}
           </div>
@@ -132,7 +132,7 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 5 · READING PATHS ── */}
         <section className="border-t border-navy-800 py-breathe-lg">
-          <SectionTitle>Reading Paths</SectionTitle>
+          <SectionTitle>{c.headings.readingPaths}</SectionTitle>
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             {c.readingPaths.map((rp) => (
               <div key={rp.audience}>
@@ -147,7 +147,7 @@ export function HomePage({ content: c }: { content: HomepageContent }) {
 
         {/* ── 6 · EXPLORE THE RESOURCES (liens piliers projetés) ── */}
         <section className="border-t border-navy-800 py-breathe-lg">
-          <SectionTitle>Explore the Resources</SectionTitle>
+          <SectionTitle>{c.headings.resources}</SectionTitle>
           <p className="mt-6 font-interface text-body leading-relaxed text-navy-200">{c.resourcesIntro}</p>
           <ul className="mt-8 flex flex-wrap gap-3">
             {c.resources.map((r) => (

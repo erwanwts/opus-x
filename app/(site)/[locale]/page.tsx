@@ -15,19 +15,19 @@ import { HomePage } from '@/components/geo/HomePage';
 import { buildHomepage } from '@/lib/content/homepage';
 import { JsonLd, organizationLd, breadcrumbLd, webSiteLd, webPageLd } from '@/lib/seo/jsonld';
 import { guardArchetypeLocale } from '@/lib/seo/archetype';
+import { HOME_LOCALES } from '@/lib/seo/pillars';
+import { i18nContent } from '@/lib/content/i18n';
 import { routing } from '@/i18n/routing';
 
 const BASE = 'https://opusx.world';
-const TITLE = 'Opus X — Professional Identity Built on Verifiable Skills';
-const DESCRIPTION =
-  'Build a professional identity based on verifiable skills, trusted evidence and open verification through the World Skills Protocol.';
+const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR', es: 'es_ES' };
 
 // Archétype éditorial : source unique des traductions publiées de la Homepage.
 // Les 3 locales sont TOUTES pré-générées → rendu STATIQUE préservé : /en rend le contenu,
 // /fr /es émettent une REDIRECTION STATIQUE vers /en (guardArchetypeLocale, redirect() en
 // SSG). dynamicParams=false → /xyz (hors routing) = 404. Ajouter une locale à TRANSLATED
 // (+ sa traduction) fait rendre son contenu et DISPARAÎTRE sa redirection d'elle-même.
-const TRANSLATED = ['en'];
+const TRANSLATED = HOME_LOCALES;
 export const dynamic = 'force-static';
 export const dynamicParams = false;
 
@@ -35,24 +35,28 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const home = i18nContent(locale).home;
+  const title = home.seoTitle;
+  const description = home.seoDescription;
+  // hreflang : l'accueil est traduit dans HOME_LOCALES + x-default → /en (fallback strict).
+  const languages: Record<string, string> = Object.fromEntries(HOME_LOCALES.map((l) => [l, `${BASE}/${l}`]));
+  languages['x-default'] = `${BASE}/en`;
   return {
-    title: { absolute: TITLE }, // Title SEO gravé, sans suffixe de template
-    description: DESCRIPTION,
-    alternates: {
-      canonical: `${BASE}/en`,
-      languages: { en: `${BASE}/en`, 'x-default': `${BASE}/en` },
-    },
+    title: { absolute: title }, // Title SEO localisé, sans suffixe de template
+    description,
+    alternates: { canonical: `${BASE}/${locale}`, languages },
     openGraph: {
       type: 'website',
       siteName: 'Opus X',
-      locale: 'en_US',
-      url: `${BASE}/en`,
-      title: TITLE,
-      description: DESCRIPTION,
+      locale: OG_LOCALE[locale] ?? 'en_US',
+      url: `${BASE}/${locale}`,
+      title,
+      description,
       images: ['/og-image.png'],
     },
-    twitter: { card: 'summary_large_image', title: TITLE, description: DESCRIPTION, images: ['/og-image.png'] },
+    twitter: { card: 'summary_large_image', title, description, images: ['/og-image.png'] },
   };
 }
 
@@ -66,12 +70,13 @@ export default async function Home({ params }: Props) {
   setRequestLocale(locale);
 
   const content = buildHomepage(locale);
+  const home = i18nContent(locale).home;
   const url = `${BASE}/${locale}`;
   const ld = [
     organizationLd(),
     breadcrumbLd([{ name: 'Opus X', url }]),
     webSiteLd(),
-    webPageLd({ name: TITLE, description: DESCRIPTION, url }),
+    webPageLd({ name: home.seoTitle, description: home.seoDescription, url }),
   ];
 
   return (

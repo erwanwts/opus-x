@@ -13,7 +13,11 @@ import { indexPlan, discoveryPlan, recordPlanEntries, registryPaths, BASE } from
 import { buildRecordPage } from '@/lib/registry/recordPage';
 import { resolveStatus, type ApprovalFact } from '@/lib/registry/resolveStatus';
 import { loadFacts } from '@/lib/registry/loadFacts';
-import { PILLARS } from './pillars';
+import { PILLARS, HOME_LOCALES } from './pillars';
+
+/** Nombre d'entrées ÉDITORIALES du plan : l'accueil dans ses locales (HOME_LOCALES)
+ * + chaque pilier dans SES locales traduites. Dérivé, jamais figé. */
+const editorialCount = HOME_LOCALES.length + PILLARS.reduce((n, p) => n + p.translatedLocales.length, 0);
 
 const DIR = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 const RECORDS = readdirSync(DIR).filter((f) => f.endsWith('.md')).sort();
@@ -25,8 +29,9 @@ const DRAFT = IDS.filter((id) => resolveStatus(id, loadFacts()) === 'Draft');
 describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
   it('compte home + piliers + Records index-éligibles (statut DÉRIVÉ Normative)', () => {
     const plan = indexPlan();
-    // Dérivé, pas figé : home + piliers + les Records dont le fait déclare Normative.
-    expect(plan).toHaveLength(1 + PILLARS.length + NORMATIVE.length);
+    // Dérivé, pas figé : entrées éditoriales (accueil × HOME_LOCALES + piliers × leurs
+    // locales) + les Records dont le fait déclare Normative (en-only).
+    expect(plan).toHaveLength(editorialCount + NORMATIVE.length);
     // NORMATIVE (PROJECTION, via résolveur) = ce que les FAITS déclarent (SOURCE), lu des deux lieux
     // (RATIF + PROMO), révocations retranchées. Auto-suivi : chaque promotion met à jour l'ensemble.
     const declaredSet = new Set<string>();
@@ -63,11 +68,15 @@ describe('PLAN D’INDEXATION — uniquement l’indexable', () => {
     expect(buildRecordPage(raw, [fact])!.meta.robots).toBe('index,follow');
   });
 
-  it('les clusters hreflang restent limités aux locales traduites', () => {
+  it('les clusters hreflang correspondent aux locales traduites (en/fr/es), aucune fantôme', () => {
+    // Fallback strict : chaque clé de cluster ∈ HOME_LOCALES (jamais une locale non générée).
     for (const e of indexPlan()) {
       if (!e.languages) continue;
-      expect(Object.keys(e.languages)).toEqual(['en']);
+      for (const k of Object.keys(e.languages)) expect(HOME_LOCALES).toContain(k);
     }
+    // L'activation FR/ES produit des clusters à 3 langues (accueil + 7 piliers).
+    const clusters = indexPlan().filter((e) => e.languages).map((e) => Object.keys(e.languages!).sort().join(','));
+    expect(clusters).toContain('en,es,fr');
   });
 });
 
@@ -81,7 +90,7 @@ describe('PLAN DE DÉCOUVERTE — tout le corpus publié', () => {
     // une par Record (RECORDS.length) + les entités fixes (37 prédicats + 15 familles + 6 types). Le total
     // est une CONSÉQUENCE du corpus, jamais un nombre figé.
     const registryPages = RECORDS.length + 37 + 15 + 6;
-    expect(plan).toHaveLength(11 + 1 + registryPages);
+    expect(plan).toHaveLength(editorialCount + 1 + registryPages);
   });
 
   it('expose les 91 pages du registre, y compris les 33 en noindex', () => {
