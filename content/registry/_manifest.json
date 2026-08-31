@@ -612,7 +612,7 @@
       "title": "OCR-115 — Framework",
       "canonical_id": "framework",
       "version": "1.2.0",
-      "lifecycle_status": "Draft",
+      "lifecycle_status": "Normative",
       "classification": null,
       "normative_informative": "Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries)",
       "checksum_sha256": "c1113adf5d6d098750df966724128e02dd028d33381e4b34ae43b04696ae8dfb",

@@ -1,0 +1,13 @@
+{
+  "id": "PROMO-006",
+  "kind": "promotion",
+  "declares_normative": ["OCR-115"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-08-31",
+  "basis": "OCR-115 v1.2.0 (Framework) · OCR-000:49 (Grounding Rule) · OCR-009 (Approval Form)",
+  "grounding": { "verdict": "conforme (doc↔code : après correctif D-033, le texte décrit exactement le Framework construit — wtr:212 = 1 skill « Intention vs Engagement » à 4 niveaux nommés aware/applied/proficient/mastery, wsp_framework.sql:247-268 ; critères fantômes retirés ; renvoi frameworkDiscovery.ts corrigé)", "report": "D-033 · palier 1 (correctif) · commit 192b06d", "gap": "none" },
+  "ordinary_process": true,
+  "immutable": true,
+  "declaration": "Promotion ordinaire d'OCR-115 (Framework) de Draft à Normative, sous autorité Opus X. Le Framework est le concept dont le code est construit (wsp_framework.sql) ; il fait foi. Débloqué par le correctif D-033 : régime OCR-REV résolu — wtr:212 décrit comme un skill à 4 niveaux nommés (le modèle en base), critères fantômes S0x.Cxx retirés du texte vivant, renvoi de parser corrigé. Statut dérivé de ce fait, jamais authored (OCR-009 §4, D-022)."
+}
