@@ -12,6 +12,7 @@ const CONFORME: ParityProbes = {
   bridgeResolveFn: 'present',
   publicViewIssuedAt: 'present',
   anonPassportsRaw: 'denied',
+  passportUpdatesTable: 'present',
 };
 
 describe('parityViolation — garde vérité-terrain (pure)', () => {
@@ -40,11 +41,19 @@ describe('parityViolation — garde vérité-terrain (pure)', () => {
     expect(v).toContain('20260717000001_public_passport_view');
   });
 
+  it('MUTATION — table wsp_passport_updates absente → violation (palier 2)', () => {
+    const v = parityViolation({ ...CONFORME, passportUpdatesTable: 'absent' });
+    expect(v).not.toBeNull();
+    expect(v).toContain('wsp_passport_updates');
+    expect(v).toContain('20260831000002_wsp_passport_updates');
+  });
+
   it('plusieurs dérives → TOUTES listées (jamais la première seule)', () => {
     const v = parityViolation({
       bridgeResolveFn: 'absent',
       publicViewIssuedAt: 'absent',
       anonPassportsRaw: 'readable',
+      passportUpdatesTable: 'absent',
     });
     for (const s of SENTINELS) expect(v).toContain(s.migration);
   });

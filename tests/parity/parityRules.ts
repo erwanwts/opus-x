@@ -27,6 +27,8 @@ export interface ParityProbes {
   publicViewIssuedAt: 'present' | 'absent';
   /** L'anon ne peut PAS lire `passports` en brut (durcissement Lot 3). */
   anonPassportsRaw: 'denied' | 'readable';
+  /** La table `wsp_passport_updates` existe (palier 2). */
+  passportUpdatesTable: 'present' | 'absent';
 }
 
 interface Sentinel {
@@ -58,6 +60,12 @@ export const SENTINELS: readonly Sentinel[] = [
     expected: 'denied',
     migration: '20260717000001_public_passport_view',
     what: 'lecture brute anon de passports REFUSÉE (durcissement Point B)',
+  },
+  {
+    key: 'passportUpdatesTable',
+    expected: 'present',
+    migration: '20260831000002_wsp_passport_updates',
+    what: 'table wsp_passport_updates (le Passport grandit)',
   },
 ];
 

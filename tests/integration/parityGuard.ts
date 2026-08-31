@@ -30,7 +30,11 @@ export async function gatherProbes(
   const raw = await anon.from('passports').select('id').limit(1);
   const anonPassportsRaw: ParityProbes['anonPassportsRaw'] = raw.error ? 'denied' : 'readable';
 
-  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw };
+  // Palier 2 : la table wsp_passport_updates existe (erreur = absente).
+  const pu = await admin.from('wsp_passport_updates').select('id', { head: true, count: 'exact' }).limit(0);
+  const passportUpdatesTable: ParityProbes['passportUpdatesTable'] = pu.error ? 'absent' : 'present';
+
+  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable };
 }
 
 /** Applique la garde : lève BRUYAMMENT si le staging ne reflète pas le dépôt. */
