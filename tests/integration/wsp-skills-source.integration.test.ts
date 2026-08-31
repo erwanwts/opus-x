@@ -33,6 +33,7 @@ import {
   LINK_CONSENT_VERSION,
   LINK_CODE_TTL_SECONDS,
 } from '../../lib/link/issuerAuthToken';
+import { DashboardService } from '../../lib/dashboard/DashboardService';
 
 const ISSUER = 'issuer:qa-skills-x';
 const SECRET = 'qa-skills-secret-x-4471';
@@ -176,5 +177,19 @@ describe('Palier 3 — la source des skills rebranchée sur le réel', () => {
     // service_role (admin, sans JWT) → current_opus_id() NULL → aucun skill.
     const { data } = await admin.rpc('wsp_my_active_skills');
     expect((data ?? []) as unknown[]).toHaveLength(0);
+  });
+
+  it('verified_count RESTE 0 malgré des skills actifs — jamais de vérification non calculée (palier 4)', async () => {
+    const E = await makeSubject('skills-e');
+    await grantConsent(E.client, ISSUER, REDIRECT);
+    await acceptEvidenceFor(E.opus);
+
+    // Le Dashboard lit la source réelle : des skills actifs EXISTENT (count ≥ 1)...
+    const dash = await new DashboardService(E.client).getDashboard();
+    expect(dash?.skills_status).toBeTruthy();
+    expect(dash!.skills_status!.count).toBeGreaterThanOrEqual(1);
+    // ...mais AUCUN n'est « vérifié » : le trust engine (palier 4) n'existe pas.
+    // FALSIFIABLE : égaler verified_count à count sans trust → cette assertion casse.
+    expect(dash!.skills_status!.verified_count).toBe(0);
   });
 });

@@ -144,9 +144,9 @@ export class DashboardService {
     return {
       state: count === 0 ? 'empty' : 'active',
       count,
-      // TRANSFORMATION SIGNALÉE (à valider, NON décidée) : « verified » est une
-      // notion de vérification/confiance sans source fidèle au palier 3 (couplée
-      // au trust, palier 4). On ne l'INVENTE pas : verified_count = 0 jusque-là.
+      // DÉCISION palier 3 : verified_count est dérivé au palier 4 (trust engine) ;
+      // 0 tant que Trust n'est pas calculé. Le champ ne doit JAMAIS affirmer une
+      // vérification non calculée — on ne l'invente pas.
       verified_count: 0,
     };
   }
