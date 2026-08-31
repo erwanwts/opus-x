@@ -11,7 +11,10 @@
 
 /**
  * CTA des pages GEO : `true` = lien actif ; `false` = libellé inerte (non cliquable).
- * Reste `false` tant que l'API JSON n'est pas déployée (exigence architecte : ne
- * JAMAIS pointer vers une ressource inexistante). Bascule ICI, nulle part ailleurs.
+ * ACTIVÉ : tous les CTA pointent désormais vers des PAGES HTML réelles — les piliers
+ * vers `/records/{id}` (la page du Record, résolue par le registre), les archétypes
+ * vers des pages existantes (`/registry`, `/records`, `/knowledge-graph`). Aucun CTA
+ * ne mène à du JSON. La destination reste RÉSOLUE (ctaHref) : une cible absente rend
+ * le libellé inerte, jamais un lien mort. Bascule ICI, nulle part ailleurs.
  */
-export const CTA_ENABLED = false;
+export const CTA_ENABLED = true;

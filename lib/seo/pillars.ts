@@ -131,5 +131,9 @@ export function ctaHref(destination: string, locale: string): string | null {
   if (destination.startsWith('#')) return destination;
   // Page publique non localisée : la destination EST son adresse, sans préfixe.
   if (PUBLISHED_PUBLIC_PATHS.has(destination)) return destination;
+  // Page HTML d'un Record `/records/{ocr-id}` : résolue par le REGISTRE (même source
+  // qu'entityHref) — jamais un lien vers une page non générée. Absente → null (inerte).
+  const rec = destination.match(/^\/records\/(ocr-\d+)$/i);
+  if (rec) return hasRecordPage(rec[1]) ? recordPagePath(rec[1]) : null;
   return pillarHrefBySlug(destination.replace(/^\/+/, ''), locale);
 }

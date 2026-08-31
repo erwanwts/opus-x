@@ -36,7 +36,7 @@ export function pillarRoute(slug: string) {
     generateMetadata: async ({ params }: Params): Promise<Metadata> => {
       const { locale } = await params;
       const ctaLabel = pillar.ctaLabel ?? '';
-      const c = buildGeoContent(slug, recordId, { label: ctaLabel, href: ctaLabel ? `/api/registry/${recordId}` : '' }, locale);
+      const c = buildGeoContent(slug, recordId, { label: ctaLabel, href: ctaLabel ? `/records/${recordId.toLowerCase()}` : '' }, locale);
       return pageMetadata({
         locale,
         slug,
@@ -56,7 +56,7 @@ export function pillarRoute(slug: string) {
       const content = buildGeoContent(
         slug,
         recordId,
-        { label: ctaLabel, href: ctaLabel ? `/api/registry/${recordId}` : '' },
+        { label: ctaLabel, href: ctaLabel ? `/records/${recordId.toLowerCase()}` : '' },
         locale,
       );
       if (!content) notFound();

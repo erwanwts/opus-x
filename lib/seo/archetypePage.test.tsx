@@ -18,6 +18,7 @@ vi.mock('next/navigation', () => ({
 }));
 
 import { archetypeRoute } from './archetypePage';
+import { CTA_ENABLED } from '@/lib/seo/flags';
 import { buildKnowledgeGraph } from '@/lib/content/knowledgeGraph';
 import { buildDevelopers } from '@/lib/content/developers';
 import { buildQuestions, questionsFaqPairs } from '@/lib/content/questions';
@@ -66,12 +67,19 @@ describe.each(ARCHETYPES)('archétype /$slug', (a) => {
     expect(html).not.toContain('cta:/');
   });
 
-  it('CTA_ENABLED=false → aucun CTA actif, les libellés restent inertes', async () => {
+  it('les CTA suivent le flag CTA_ENABLED — DÉRIVÉ, jamais figé', async () => {
     const html = await renderArchetype(a);
     const content = a.build('en');
-    const labels = [...content.hero.ctas, ...content.finalCta.ctas].map((c) => c.label);
-    for (const label of labels) expect(html).toContain(label);
-    expect(html).toContain('aria-disabled="true"');
+    const ctas = [...content.hero.ctas, ...content.finalCta.ctas];
+    for (const c of ctas) expect(html).toContain(c.label); // le libellé est toujours rendu
+    if (CTA_ENABLED) {
+      // Flag actif + destinations des archétypes toutes résolues → liens actifs, aucun inerte.
+      for (const c of ctas) if (c.href) expect(html).toContain(`href="${c.href}"`);
+      expect(html).not.toContain('aria-disabled="true"');
+    } else {
+      // Flag inactif → libellés inertes, aucun href émis.
+      expect(html).toContain('aria-disabled="true"');
+    }
   });
 
   it('une locale non traduite REDIRIGE vers l’anglais (307 dérivé)', async () => {
