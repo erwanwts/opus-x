@@ -228,7 +228,7 @@
       "title": "OCR-009 — Approval Form",
       "canonical_id": "approval-form",
       "version": "1.0.0",
-      "lifecycle_status": "Draft",
+      "lifecycle_status": "Normative",
       "classification": null,
       "normative_informative": "Normative (Approval Rule, Boundary) · Informative (Motivation, The Founding Approval, FAQ, Summaries)",
       "checksum_sha256": "372caf7a76d4dca615a0143cad41a8361ae6ec4c25c2aef430c3d000dc4bc765",

@@ -1,0 +1,13 @@
+{
+  "id": "PROMO-003",
+  "kind": "promotion",
+  "declares_normative": ["OCR-009"],
+  "authority": "Opus X",
+  "signature": "Opus X — Erwan Signe",
+  "date": "2026-07-26",
+  "basis": "OCR-009 (Approval Form) · OCR-000:47 (grounding + Opus X approval)",
+  "grounding": { "verdict": "conforme (doc↔tooling : le résolveur de l'étape 6 implémente la règle d'approbation qu'OCR-009 décrit)", "report": "étape 6 (resolveStatus) · FRANCHISSABLE-SOUS-D026-mesure", "gap": "none" },
+  "ordinary_process": true,
+  "immutable": true,
+  "declaration": "Promotion ordinaire d'OCR-009 (Approval Form) de Draft à Normative, sous autorité Opus X. Débloqué par l'étape 6 (le résolveur implémente le mécanisme qu'OCR-009 décrit) ; porte « cité ≥ 1 » franchie (OCR-000 v1.1.0 cite OCR-009, D-028, Voie A). Le corpus se referme sur lui-même : le Record qui décrit la promotion, promu par le mécanisme qu'il décrit. Statut dérivé de ce fait, jamais authored (OCR-009 §4, D-022)."
+}
