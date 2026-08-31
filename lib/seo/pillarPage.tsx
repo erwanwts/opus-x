@@ -19,7 +19,7 @@ import { GeoPage } from '@/components/geo/GeoPage';
 import { buildGeoContent, spansToText } from '@/lib/content/geo';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { pillarBySlug } from '@/lib/seo/pillars';
-import { JsonLd, organizationLd, breadcrumbLd, webPageLd, faqPageLd } from '@/lib/seo/jsonld';
+import { JsonLd, organizationLd, breadcrumbLd, webPageLd, faqPageLd, definedTermSetLd, definedTermLd } from '@/lib/seo/jsonld';
 
 const BASE = 'https://opusx.world';
 
@@ -63,6 +63,12 @@ export function pillarRoute(slug: string) {
 
       const url = `${BASE}/${locale}/${slug}`;
       const description = spansToText(content.directAnswer);
+      // DefinedTerm (Lot GEO 3) : n'est émis QUE si le Record source est Normative
+      // (OCR-000 : un Draft n'est pas autoritatif). La `description` est CONSOMMÉE du
+      // corpus (GEO Summary = content.directAnswer, déjà projeté), jamais réécrite.
+      // Aujourd'hui seul OCR-124 (registry) est Normative → seul /en/registry en émet ;
+      // les autres apparaîtront d'eux-mêmes à leur promotion.
+      const emitsDefinedTerm = Boolean(recordId) && content.meta.status === 'Normative';
       const ld = [
         organizationLd(),
         breadcrumbLd([
@@ -71,6 +77,7 @@ export function pillarRoute(slug: string) {
         ]),
         webPageLd({ name: content.title, description, url, datePublished: content.meta.date, version: content.meta.version }),
         ...(content.faq.length ? [faqPageLd(content.faq.map((qa) => ({ q: spansToText(qa.q), a: spansToText(qa.a) })))] : []),
+        ...(emitsDefinedTerm ? [definedTermSetLd(), definedTermLd({ name: content.title, description, url })] : []),
       ];
 
       return (

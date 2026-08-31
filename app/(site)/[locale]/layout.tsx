@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL('https://opusx.world'),
-    title: { default: 'Opus X', template: '%s · Opus X' },
+    title: { default: 'Opus X — World Skills Protocol', template: '%s · Opus X — World Skills Protocol' },
     description,
     openGraph: {
       type: 'website',

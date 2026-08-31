@@ -14,11 +14,45 @@
 const BASE = 'https://opusx.world';
 const SCHEMA = 'https://schema.org';
 
+/** @id CANONIQUE de l'entité Opus X — référencé à l'identique par toutes les pages
+ * (une SEULE entité) et par le DefinedTermSet (publisher/creator). C'est lui qui
+ * désambiguïse « Opus X » (World Skills Protocol) des homonymes. */
+export const ORG_ID = `${BASE}/#organization`;
+/** @id du glossaire canonique WSP (DefinedTermSet, Lot GEO 3). */
+export const WSP_TERMSET_ID = `${BASE}/#wsp-glossary`;
+
 type Ld = Record<string, unknown>;
 
-/** Organization — Opus X, cohérent sur toutes les pages (§15). */
+/** Organization — Opus X, cohérent sur toutes les pages (§15). Entité canonique
+ * « Opus X — World Skills Protocol » : @id stable, alternateName, sameAs (présences
+ * externes réelles), knowsAbout, description — le socle de désambiguïsation. */
 export function organizationLd(): Ld {
-  return { '@context': SCHEMA, '@type': 'Organization', name: 'Opus X', url: BASE };
+  return {
+    '@context': SCHEMA,
+    '@type': 'Organization',
+    '@id': ORG_ID,
+    name: 'Opus X',
+    alternateName: ['World Skills Protocol', 'WSP'],
+    url: BASE,
+    logo: `${BASE}/icon-512.png`,
+    description:
+      'Opus X is the infrastructure for verified professional identity. Through the World Skills Protocol, professional achievements are linked to trusted evidence, verified through a common protocol, and turned into a Professional Passport that others can independently verify.',
+    knowsAbout: [
+      'Verified professional identity',
+      'Professional Passport',
+      'World Skills Protocol',
+      'Verifiable credentials',
+      'Skill verification',
+      'Knowledge graph',
+      'Trust infrastructure',
+    ],
+    sameAs: [
+      'https://www.linkedin.com/company/opus-x-world-skills-protocol',
+      'https://www.crunchbase.com/organization/opus-x',
+      'https://github.com/opus-x-protocol',
+      'https://x.com/opusxprotocol',
+    ],
+  };
 }
 
 /** WebSite — le site dans son ensemble (émis sur la Homepage). */
@@ -61,9 +95,31 @@ export function faqPageLd(qa: { q: string; a: string }[]): Ld {
   };
 }
 
-/** DefinedTerm — fiche Concept (lot ultérieur, DefinedTermSet en projection Glossary). */
-export function definedTermLd(input: { name: string; description?: string | null; url: string; termSetUrl: string }): Ld {
-  const ld: Ld = { '@context': SCHEMA, '@type': 'DefinedTerm', name: input.name, url: input.url, inDefinedTermSet: input.termSetUrl };
+/** DefinedTermSet — le glossaire canonique « World Skills Protocol » (Lot GEO 3).
+ * publisher/creator = l'entité Opus X par son @id (une seule entité, pas un doublon). */
+export function definedTermSetLd(): Ld {
+  return {
+    '@context': SCHEMA,
+    '@type': 'DefinedTermSet',
+    '@id': WSP_TERMSET_ID,
+    name: 'World Skills Protocol',
+    url: BASE,
+    publisher: { '@id': ORG_ID },
+    creator: { '@id': ORG_ID },
+  };
+}
+
+/** DefinedTerm — fiche Concept canonique (Lot GEO 3), rattachée au glossaire WSP par
+ * son @id. La `description` est CONSOMMÉE du corpus (GEO Summary du Record), jamais
+ * réécrite. N'émettre que pour un concept dont le Record source est Normative. */
+export function definedTermLd(input: { name: string; description?: string | null; url: string }): Ld {
+  const ld: Ld = {
+    '@context': SCHEMA,
+    '@type': 'DefinedTerm',
+    name: input.name,
+    url: input.url,
+    inDefinedTermSet: { '@id': WSP_TERMSET_ID },
+  };
   if (input.description) ld.description = input.description;
   return ld;
 }

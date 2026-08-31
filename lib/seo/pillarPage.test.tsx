@@ -4,10 +4,13 @@
  * PILLARS. Une régression sur UNE page casse le build (pas découverte à l'œil).
  * Pour chaque page : rend sans erreur · H1 attendu · ordre des sections = sous-suite de
  * la SÉQUENCE GRAVÉE · 0 fuite _gaps (HTML + JSON-LD) · 0 titre orphelin (implicite via
- * l'ordre) · présence des 4 blocs JSON-LD (Organization·BreadcrumbList·WebPage·FAQPage).
+ * l'ordre) · blocs JSON-LD dérivés du statut : Organization·BreadcrumbList·WebPage·FAQPage,
+ * PLUS DefinedTermSet·DefinedTerm SI le Record source est Normative (Lot GEO 3, gaté).
  */
 import { describe, it, expect, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { resolveStatus } from '@/lib/registry/resolveStatus';
+import { loadFacts } from '@/lib/registry/loadFacts';
 
 vi.mock('next/link', () => ({ default: ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href}>{children}</a> }));
 vi.mock('next-intl/server', () => ({ setRequestLocale: () => {} }));
@@ -42,7 +45,7 @@ const strip = (s: string) => s.replace(/<[^>]+>/g, '').trim();
 // éditorial (Knowledge Graph, Developers, Questions). Il ne se projette d'aucun Record,
 // n'a ni sections canoniques ni FAQ dérivée — il est couvert par archetypePage.test.
 describe.each(PILLARS.filter((p) => p.recordId).map((p) => p.slug))('page pilier /%s', (slug) => {
-  it('rend correctement (H1, ordre gravé, 0 fuite _gaps, 4 blocs JSON-LD)', async () => {
+  it('rend correctement (H1, ordre gravé, 0 fuite _gaps, blocs JSON-LD dérivés du statut)', async () => {
     const el = await pillarRoute(slug).Page({ params: Promise.resolve({ locale: 'en' }) });
     const html = renderToStaticMarkup(el);
 
@@ -60,11 +63,17 @@ describe.each(PILLARS.filter((p) => p.recordId).map((p) => p.slug))('page pilier
     // _gaps ne fuit jamais au rendu
     expect(html, `_gaps HTML (${slug})`).not.toContain('_gaps');
 
-    // 4 blocs JSON-LD, dans l'ordre, sans _gaps
+    // Blocs JSON-LD, dans l'ordre, sans _gaps. Le DefinedTerm (Lot GEO 3) n'est émis
+    // QUE si le Record source est Normative (gaté) — l'attendu est DÉRIVÉ du statut réel
+    // (source), jamais figé : un pilier Draft porte 4 blocs, un Normative 6.
+    const recordId = PILLARS.find((p) => p.slug === slug)!.recordId!;
+    const isNormative = resolveStatus(recordId, loadFacts()) === 'Normative';
+    const expectedBlocks = [
+      'Organization', 'BreadcrumbList', 'WebPage', 'FAQPage',
+      ...(isNormative ? ['DefinedTermSet', 'DefinedTerm'] : []),
+    ];
     const blocks = [...html.matchAll(/application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
-    expect(blocks.map((b) => b['@type']), `blocs JSON-LD (${slug})`).toEqual(
-      ['Organization', 'BreadcrumbList', 'WebPage', 'FAQPage'],
-    );
+    expect(blocks.map((b) => b['@type']), `blocs JSON-LD (${slug}, Normative=${isNormative})`).toEqual(expectedBlocks);
     expect(blocks.some((b) => JSON.stringify(b).includes('_gaps')), `_gaps JSON-LD (${slug})`).toBe(false);
   });
 });
