@@ -5,12 +5,12 @@
 | **Document ID** | OCR-101 |
 | **Canonical ID** | `professional-passport` |
 | **Canonical Name** | Professional Passport |
-| **Version** | 1.1.0 |
+| **Version** | 1.2.0 |
 | **Status** | Draft |
 | **Owner** | Opus X — Canonical Registry |
 | **Review Status** | Pending machine-section diff against production code |
 | **Normative / Informative** | Normative (Canonical Definition, Protocol Rules, Governance) · Informative (Examples, FAQ, Summaries) |
-| **Last Update** | 2026-08-31 |
+| **Last Update** | 2026-09-01 |
 | **Layer** | OCR-100 — Foundational Concepts |
 
 > **Grounding note (removed at publication).** This concept reflects the Passport model gravé en base during Sprint-002: each accepted Evidence links to exactly one **Passport update** (`passport_update_id`, `UNIQUE`), the Passport is the professional-facing surface of the identity Opus X holds on the professional's behalf, and disclosure is governed by consent expressed as facts. Diff the update-linking model against the production Evidence Link table before promotion to Normative.
@@ -69,6 +69,8 @@ It does **not** comprise editable fields, deletable entries, or issuer-owned sec
 4. **Disclosure** — the professional governs what is shown via consent facts.
 5. **Presentation & Verification** — a verifier checks disclosed, surfaced facts independently.
 6. **Supersession/Revocation reflection** — when a fact is superseded or revoked, the Passport reflects the change without deleting history.
+
+The abstract phases above describe how a Passport changes; the concrete, ordered lifecycle a Passport traverses over a career — its seven stages and their linear order — is defined by the **Passport Lifecycle** (OCR-126).
 
 ## State Machine
 
@@ -227,9 +229,10 @@ Use: **Professional Passport**, **surface**, **Passport update**, **one per acce
 
 ## Cross References
 
-OCR-100 World Skills Protocol · OCR-103 Professional · OCR-104 Opus ID · OCR-105 Trust · OCR-106 Trust Status · OCR-107 Verification · OCR-110 Evidence · OCR-114 Immutable Fact.
+OCR-100 World Skills Protocol · OCR-103 Professional · OCR-104 Opus ID · OCR-105 Trust · OCR-106 Trust Status · OCR-107 Verification · OCR-110 Evidence · OCR-114 Immutable Fact · OCR-126 Passport Lifecycle.
 
 ## Version History
 
+- **1.2.0** (2026-09-01) — Cites **OCR-126 (Passport Lifecycle)** as a cross reference: the Lifecycle section now points to the dedicated Record for the concrete seven-stage trajectory, and OCR-126 is added to Cross References. **Cross-reference only — no normative change** (follows the OCR-110 → OCR-112 precedent; no new predicate introduced). Status remains Draft.
 - **1.1.0** (2026-08-31) — **Passport update generalized to an event model (D-034).** A Passport update now records any change to the Passport; an accepted Evidence produces exactly **one update of type evidence** (uniquely linked, `UNIQUE`), while non-evidence changes (e.g. consent/disclosure) MAY produce updates of other types. The Evidence→update guarantee and the link uniqueness are **unchanged**; only the reverse implication — that *every* update derives from an Evidence — is relaxed. The reciprocal rules in OCR-110 (:115), OCR-112 (:98) and OCR-114 (:68/:98) are the Evidence→update direction and remain correct, untouched. Amendment under D-034; Status remains Draft.
 - **1.0.0** (2026-07-16) — Initial full specification. Supersedes the OCR-101 v0.1 skeleton. Machine sections pending diff against the production Evidence Link / Passport update model before promotion to Normative.

@@ -26,9 +26,10 @@ const CORPUS = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 // D-024 : OCR-112 ajouté — descendu en Phase 2 (même bloqueur GAP-F1-01 que 114 ; le GAP se lève en lot
 //   de code propre, 112 et 114 remontent ensemble plus tard). NE PAS coder la supersession pour le débloquer.
 // Net : swap 006↔112, HORS reste 4 → Phase 1 = 32.
-// D-039 : OCR-126 (Passport Lifecycle) gravé Draft, mais ORPHELIN (cité par 0) — sa citation par OCR-101
-//   est le mandat SUIVANT. Même régime qu'OCR-123 : hors Phase 1, motif Phase-2 (porte « cité ≥ 1 » non
-//   franchie). HORS passe à 5, Phase 1 RESTE 32 (37 − 5).
+// D-039 : OCR-126 (Passport Lifecycle) gravé Draft. Il est désormais CITÉ (OCR-101 v1.2.0, Cross Reference)
+//   — la porte « cité ≥ 1 » est franchie, il n'est plus orphelin. Il reste néanmoins HORS Phase 1 : c'est
+//   un Record neuf, hors du lot Phase-1 planifié (D-005/D-021/D-024) ; sa phase de promotion est une
+//   décision SÉPARÉE, non prise dans le mandat de citation. HORS = 5, Phase 1 RESTE 32 (37 − 5).
 const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-112', 'OCR-114', 'OCR-123', 'OCR-126']);
 
 /** Ids de Records concernés par une dette OUVERTE, lus dans la SEULE table d'attribution. */

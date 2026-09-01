@@ -60,9 +60,9 @@ describe('« cité ≥ 1 » — critère promu en test rejouable', () => {
     // D-028 (Voie A) a tenu la promesse — OCR-000 v1.1.0 cite OCR-009 à :47 (« Opus X approval (its form
     // is defined by OCR-009) »), amendement par VERSIONING (pas d'édition en place). OCR-009 quitte donc
     // l'ensemble : sa porte « cité ≥ 1 » est franchie, il devient promouvable.
-    //  · OCR-123 — orphelin ; hors Phase 1 (partition), motif Phase-2.
-    //  · OCR-126 (Passport Lifecycle, D-039) — nouvellement gravé Draft, cité par 0 : sa citation par
-    //    OCR-101 est le mandat SUIVANT (délibérément différée). Orphelin attendu, hors Phase 1.
-    expect(uncited).toEqual(['OCR-123', 'OCR-126']);
+    //  · OCR-123 — SEUL orphelin restant ; hors Phase 1 (partition), motif Phase-2.
+    //  · OCR-126 (Passport Lifecycle) N'EST PLUS orphelin : OCR-101 v1.2.0 le cite en Cross Reference
+    //    (précédent OCR-110→OCR-112) — la porte « cité ≥ 1 » est franchie, il quitte l'ensemble.
+    expect(uncited).toEqual(['OCR-123']);
   });
 });
