@@ -1,10 +1,10 @@
 {
   "schema": "opusx.registry.manifest/v1",
   "generated_from": "docs/web/registry-import/OCR-100",
-  "expected_ranges": "OCR-000..009,OCR-100..125,PROMO-001..001",
+  "expected_ranges": "OCR-000..009,OCR-100..126,PROMO-001..001",
   "excluded_files": [],
-  "file_count": 36,
-  "anomaly_count": 68,
+  "file_count": 37,
+  "anomaly_count": 69,
   "records": [
     {
       "source_filename": "OCR-000_Canonical_Knowledge_Governance.md",
@@ -869,6 +869,30 @@
       "metadata_fields_missing": [
         "classification"
       ]
+    },
+    {
+      "source_filename": "OCR-126_Passport_Lifecycle.md",
+      "document_id": "OCR-126",
+      "title": "OCR-126 — Passport Lifecycle",
+      "canonical_id": "passport-lifecycle",
+      "version": "1.0.0",
+      "lifecycle_status": "Draft",
+      "classification": null,
+      "normative_informative": "Normative (Canonical Definition, Stages, State Machine, Protocol Rules) · Informative (Examples, FAQ, Summaries, and the indicative \"reflects\" annotations of the Stages list)",
+      "checksum_sha256": "0209b78b42573c0e01efc179c2c31deecd3efd7cbde0348368d0ea6bab4afc19",
+      "pdf_homonym": false,
+      "header_format": "md-table",
+      "metadata_fields_found": [
+        "document_id",
+        "title",
+        "canonical_id",
+        "version",
+        "lifecycle_status",
+        "normative_informative"
+      ],
+      "metadata_fields_missing": [
+        "classification"
+      ]
     }
   ],
   "anomalies": [
@@ -1309,6 +1333,13 @@
       "file": "OCR-125_Identity.md",
       "pdf": "OCR-125_Identity.pdf",
       "note": "présence signalée seulement — aucun parsing PDF"
+    },
+    {
+      "type": "metadata_incomplete",
+      "file": "OCR-126_Passport_Lifecycle.md",
+      "fields": [
+        "classification"
+      ]
     },
     {
       "type": "missing_in_sequence",

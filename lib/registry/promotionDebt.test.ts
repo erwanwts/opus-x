@@ -26,7 +26,10 @@ const CORPUS = path.join(process.cwd(), 'docs/web/registry-import/OCR-100');
 // D-024 : OCR-112 ajouté — descendu en Phase 2 (même bloqueur GAP-F1-01 que 114 ; le GAP se lève en lot
 //   de code propre, 112 et 114 remontent ensemble plus tard). NE PAS coder la supersession pour le débloquer.
 // Net : swap 006↔112, HORS reste 4 → Phase 1 = 32.
-const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-112', 'OCR-114', 'OCR-123']);
+// D-039 : OCR-126 (Passport Lifecycle) gravé Draft, mais ORPHELIN (cité par 0) — sa citation par OCR-101
+//   est le mandat SUIVANT. Même régime qu'OCR-123 : hors Phase 1, motif Phase-2 (porte « cité ≥ 1 » non
+//   franchie). HORS passe à 5, Phase 1 RESTE 32 (37 − 5).
+const HORS_PHASE_1 = new Set(['OCR-100', 'OCR-112', 'OCR-114', 'OCR-123', 'OCR-126']);
 
 /** Ids de Records concernés par une dette OUVERTE, lus dans la SEULE table d'attribution. */
 function recordsEnDetteOuverte(): string[] {
@@ -62,10 +65,10 @@ describe('« aucune dette ouverte » — critère de Phase 1, rejoué depuis la 
 
   it('la partition couvre 36 Records ; Phase 1 = 32 (mesuré ; swap 006↔112, D-024)', () => {
     const total = readdirSync(CORPUS).filter((f) => /^OCR-\d+_.*\.md$/.test(f)).length;
-    // FAIT, PAS invariant : 33 + 3 Records du régime (OCR-007/008/009) = 36. Un 37ᵉ Record DOIT
-    // casser ce test — la population de promotion est un nombre attendu, pas une conséquence à dériver.
+    // FAIT, PAS invariant : 33 + 3 Records du régime (OCR-007/008/009) + OCR-126 (D-039) = 37. Un Record
+    // ajouté DOIT casser ce test — la population de promotion est un nombre attendu, pas une conséquence à dériver.
     // Phase 1 = 32 : le swap 006(sort)↔112(entre) laisse HORS à 4. 007/008/009 sont DANS Phase 1 (régime doc).
-    expect(total).toBe(36);
-    expect(total - HORS_PHASE_1.size).toBe(32); // HORS_PHASE_1 = {OCR-100, OCR-112, OCR-114, OCR-123} (4)
+    expect(total).toBe(37); // +OCR-126 (D-039) — un Record ajouté DOIT casser ce compte attendu
+    expect(total - HORS_PHASE_1.size).toBe(32); // HORS_PHASE_1 = {OCR-100, OCR-112, OCR-114, OCR-123, OCR-126} (5) ; Phase 1 inchangée = 32
   });
 });

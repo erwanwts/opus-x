@@ -156,7 +156,7 @@ describe('OPACITÉ DES BLOCS DE CODE — aucune transformation à l’intérieur
     expect(block.text).toContain('# pas un titre');
   });
 
-  it('les 52 blocs de code du corpus ressortent à l’octet près', () => {
+  it('les 54 blocs de code du corpus ressortent à l’octet près', () => {
     let checked = 0;
     for (const { body } of RECORDS) {
       const fences = body.match(/^```[\s\S]*?^```/gm) ?? [];
@@ -169,7 +169,7 @@ describe('OPACITÉ DES BLOCS DE CODE — aucune transformation à l’intérieur
         checked++;
       }
     }
-    expect(checked).toBe(52);
+    expect(checked).toBe(54); // +2 blocs JSON d'OCR-126 (Machine Interpretation, JSON-LD) — D-039
   });
 });
 

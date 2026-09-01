@@ -3,7 +3,7 @@
  *
  * Deux invariants portent ce test :
  *   • la frontière n'est PAS figée — les deux modes sont exercés, et l'écart entre
- *     eux est exactement les 17 grounding notes ;
+ *     eux est exactement les 18 grounding notes ;
  *   • aucune métadonnée n'est fabriquée — à défaut de dérivation, la valeur est
  *     nulle et la lacune tracée (règle gravée).
  */
@@ -37,7 +37,7 @@ describe('FRONTIÈRE — paramétrable, jamais figée', () => {
     }
   });
 
-  it('l’écart entre les deux modes est EXACTEMENT les 17 grounding notes', () => {
+  it('l’écart entre les deux modes est EXACTEMENT les 18 grounding notes', () => {
     let differ = 0;
     let notes = 0;
     for (const { raw } of RECORDS) {
@@ -46,7 +46,7 @@ describe('FRONTIÈRE — paramétrable, jamais figée', () => {
       if (hr.body !== tbl.body) differ++;
       if (raw.includes('Grounding note (removed at publication)')) notes++;
     }
-    expect(notes).toBe(17);
+    expect(notes).toBe(18); // +OCR-126 (D-039) porte sa grounding note
     expect(differ).toBe(RECORDS.length); // INVARIANT : tous diffèrent (la règle `---` sort du corps) — dérivé du corpus
   });
 
@@ -57,11 +57,11 @@ describe('FRONTIÈRE — paramétrable, jamais figée', () => {
     }
   });
 
-  it('`after-table` les exposerait — 17 pages afficheraient leur propre suppression', () => {
+  it('`after-table` les exposerait — 18 pages afficheraient leur propre suppression', () => {
     const exposed = RECORDS.filter((r) =>
       splitRecord(r.raw, 'after-table').body.includes('Grounding note (removed at publication)'),
     );
-    expect(exposed).toHaveLength(17);
+    expect(exposed).toHaveLength(18); // +OCR-126 (D-039)
   });
 
   it('le découpage ne perd aucun caractère — h1 + en-tête + corps == source', () => {
