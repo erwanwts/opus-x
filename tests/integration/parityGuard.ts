@@ -39,7 +39,12 @@ export async function gatherProbes(
   const sk = await admin.rpc('wsp_my_active_skills');
   const skillsSourceFn: ParityProbes['skillsSourceFn'] = sk.error?.code === 'PGRST202' ? 'absent' : 'present';
 
-  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn };
+  // D-040 : la fonction wsp_advance_lifecycle existe (PGRST202 = absente ; sinon
+  // présente — un uuid bidon renvoie void sans effet, aucune erreur bloquante).
+  const lc = await admin.rpc('wsp_advance_lifecycle', { p_passport_id: '00000000-0000-0000-0000-000000000000' });
+  const lifecycleAdvanceFn: ParityProbes['lifecycleAdvanceFn'] = lc.error?.code === 'PGRST202' ? 'absent' : 'present';
+
+  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn, lifecycleAdvanceFn };
 }
 
 /** Applique la garde : lève BRUYAMMENT si le staging ne reflète pas le dépôt. */

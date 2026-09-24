@@ -31,6 +31,8 @@ export interface ParityProbes {
   passportUpdatesTable: 'present' | 'absent';
   /** La fonction `wsp_my_active_skills` existe (palier 3, source des skills). */
   skillsSourceFn: 'present' | 'absent';
+  /** La fonction `wsp_advance_lifecycle` existe (D-040, jalon monotone). */
+  lifecycleAdvanceFn: 'present' | 'absent';
 }
 
 interface Sentinel {
@@ -74,6 +76,12 @@ export const SENTINELS: readonly Sentinel[] = [
     expected: 'present',
     migration: '20260901000001_wsp_skills_source',
     what: 'fonction wsp_my_active_skills (source réelle des skills)',
+  },
+  {
+    key: 'lifecycleAdvanceFn',
+    expected: 'present',
+    migration: '20260924000001_wsp_lifecycle_advance',
+    what: 'fonction wsp_advance_lifecycle (jalon monotone D-040)',
   },
 ];
 
