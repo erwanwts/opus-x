@@ -25,10 +25,15 @@
  */
 import type { PublicPassport } from '@/lib/api/publicPassport';
 import {
-  STATUS_LABELS,
   LIFECYCLE_STAGES,
+  TRUST_STATE_LABELS,
   PUBLIC_PASSPORT_STRINGS as S,
 } from '@/lib/constants/passport.strings';
+
+/** Libellé qualitatif d'un état de Trust — jamais un score (OCR-105). */
+function trustStateLabel(state: string): string {
+  return (TRUST_STATE_LABELS as Record<string, string>)[state] ?? state;
+}
 
 /** Libellé institutionnel d'une étape — sans jamais lever si la clé est inconnue. */
 function lifecycleLabelSafe(stage: string): string | null {
@@ -58,8 +63,7 @@ function VerifiedSeal({ label }: { label: string }) {
 }
 
 export function PassportView({ passport }: { passport: PublicPassport }) {
-  const { display_name, headline, lifecycle_stage, issued_at, verified, skills_status, evidence } =
-    passport;
+  const { display_name, headline, lifecycle_stage, issued_at, verified, competencies } = passport;
   const stageLabel = lifecycleLabelSafe(lifecycle_stage);
   const currentIndex = Math.max(0, LIFECYCLE_STAGES.findIndex((s) => s.key === lifecycle_stage));
 
@@ -152,60 +156,67 @@ export function PassportView({ passport }: { passport: PublicPassport }) {
             </p>
           </div>
 
-          {/* ── Bloc 4 — Skills Status ── */}
+          {/* ── COMPÉTENCES VÉRIFIÉES (Palier 5, D-044) — le cœur de la page ──
+               Par compétence PUBLIÉE : nom, état de Trust (qualitatif, jamais un
+               score — OCR-105) et la PROVENANCE VISIBLE « vérifié par X · date ».
+               C'est ce qui distingue d'un profil déclaratif — donc central, pas
+               en petit. L'OR n'apparaît QUE pour une compétence `established`.
+               La liste vient de la vue à DOUBLE FILTRE : rien ici n'est publié
+               qui ne soit un passeport public ET une compétence publiée. */}
           <section className="mt-10 border-t border-navy-700 pt-8">
             <h2 className="font-interface text-micro uppercase tracking-[0.12em] text-navy-400">
-              {STATUS_LABELS.skills}
+              {S.competencies}
             </h2>
-            {skills_status && skills_status !== 'empty' ? (
-              <p className="mt-3 font-institutional text-body-lg text-navy-100">{skills_status}</p>
+            {competencies.length === 0 ? (
+              <p className="mt-3 font-interface text-body text-navy-300">{S.competenciesEmpty}</p>
             ) : (
-              <p className="mt-3 font-interface text-body text-navy-300">{S.skillsEmpty}</p>
-            )}
-          </section>
-
-          {/* ── Bloc 5 — Evidence publique (uniquement ce que le helper autorise) ── */}
-          <section className="mt-10 border-t border-navy-700 pt-8">
-            <h2 className="font-interface text-micro uppercase tracking-[0.12em] text-navy-400">
-              {STATUS_LABELS.evidence}
-            </h2>
-            {evidence.length === 0 ? (
-              <p className="mt-3 font-interface text-body text-navy-300">{S.evidenceEmpty}</p>
-            ) : (
-              <ul className="mt-4 space-y-4">
-                {evidence.map((e, i) => (
-                  <li
-                    key={`${e.type}-${e.title}-${i}`}
-                    className="rounded-object border border-navy-700 bg-navy-900/60 p-6"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="font-institutional text-body-lg text-navy-100">{e.title}</p>
-                        <p className="mt-1 font-interface text-body-sm text-navy-400">{e.type}</p>
+              <ul className="mt-5 space-y-5">
+                {competencies.map((c) => {
+                  const isEstablished = c.state === 'established';
+                  return (
+                    <li
+                      key={c.skill_id}
+                      className="rounded-object border border-navy-700 bg-navy-900/60 p-6"
+                    >
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <p className="font-institutional text-body-lg text-navy-100">
+                          {c.skill_name ?? c.skill_id}
+                        </p>
+                        {/* État de Trust — OR mérité seulement pour `established`. */}
+                        {isEstablished ? (
+                          <VerifiedSeal label={trustStateLabel(c.state)} />
+                        ) : (
+                          <span className="inline-flex items-center rounded-control border border-navy-600 px-3 py-1 font-interface text-body-sm text-navy-300">
+                            {trustStateLabel(c.state)}
+                          </span>
+                        )}
                       </div>
-                      {/* OR uniquement sur une Evidence vérifiée. */}
-                      {e.verified ? <VerifiedSeal label={S.verified} /> : null}
-                    </div>
-                    {e.issuer ? (
-                      <p className="mt-3 font-interface text-body-sm text-navy-300">{e.issuer}</p>
-                    ) : null}
-                    {e.issued_at ? (
-                      <p className="mt-1 opus-id text-body-sm text-navy-400">{e.issued_at}</p>
-                    ) : null}
-                  </li>
-                ))}
+
+                      {/* PROVENANCE VISIBLE — l'atout central : « vérifié par X · date ». */}
+                      {c.provenance.length > 0 ? (
+                        <div className="mt-4 space-y-1.5">
+                          {c.provenance.map((p, i) => (
+                            <p
+                              key={i}
+                              className="font-interface text-body-sm text-navy-300"
+                            >
+                              {S.verifiedBy}{' '}
+                              <span className="text-navy-100">{p.issuer_name ?? '—'}</span>
+                              {p.occurred_at ? (
+                                <span className="opus-id text-navy-400">
+                                  {' · '}
+                                  {formatIssued(p.occurred_at)}
+                                </span>
+                              ) : null}
+                            </p>
+                          ))}
+                        </div>
+                      ) : null}
+                    </li>
+                  );
+                })}
               </ul>
             )}
-          </section>
-
-          {/* ── Bloc 6 — Trust Status : moteur absent → capacité PLANIFIÉE ──
-               Jamais une valeur simulée, jamais le stub interne, jamais un score. */}
-          <section className="mt-10 border-t border-navy-700 pt-8">
-            <h2 className="font-interface text-micro uppercase tracking-[0.12em] text-navy-400">
-              {STATUS_LABELS.trust}
-            </h2>
-            <p className="mt-3 font-institutional text-body-lg text-navy-200">{S.trustNotComputed}</p>
-            <p className="mt-1 font-interface text-body-sm text-navy-400">{S.trustPlannedNote}</p>
           </section>
 
           {/* ── Bloc 8 — Contrôle & propriété (le pro possède ; Opus X garde & vérifie) ── */}

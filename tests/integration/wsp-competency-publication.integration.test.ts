@@ -110,13 +110,20 @@ describe('Palier 5 — divulgation par compétence, double filtre (D-042)', () =
     const row = rows[0];
     expect(row.skill_id).toBe(SKILL);
     expect(row.state).toBe('established');
-    // provenance = existence (émetteur, date), JAMAIS le contenu brut
+    // NOM lisible de la compétence (D-044) — pas l'id brut.
+    expect(row.skill_name).toBe('Intention vs Engagement');
+    // provenance = existence VISIBLE (NOM d'émetteur + date), JAMAIS le contenu brut.
     expect(Array.isArray(row.evidence_provenance)).toBe(true);
-    expect((row.evidence_provenance as unknown[]).length).toBeGreaterThanOrEqual(1);
-    // whitelist stricte : aucune colonne de contenu brut
+    const prov = row.evidence_provenance as Record<string, unknown>[];
+    expect(prov.length).toBeGreaterThanOrEqual(1);
+    // « vérifié par [ÉMETTEUR] · [date] » : le NOM public + la date, jamais l'id brut.
+    expect(prov[0].issuer_name).toBe('QA Pub Issuer');
+    expect(typeof prov[0].occurred_at).toBe('string');
+    expect(prov[0]).not.toHaveProperty('issuer_id'); // l'id brut ne fuit pas.
+    // whitelist stricte : le NOM lisible s'ajoute, aucune colonne de contenu brut.
     const cols = Object.keys(row).sort();
-    expect(cols).toEqual(['basis_level', 'evidence_provenance', 'handle', 'skill_id', 'state']);
-    for (const forbidden of ['observation', 'canonical_hash', 'opus_id', 'profile_id', 'passport_id'])
+    expect(cols).toEqual(['basis_level', 'evidence_provenance', 'handle', 'skill_id', 'skill_name', 'state']);
+    for (const forbidden of ['observation', 'canonical_hash', 'opus_id', 'profile_id', 'passport_id', 'issuer_id'])
       expect(cols).not.toContain(forbidden);
   });
 

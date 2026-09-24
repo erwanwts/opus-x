@@ -44,18 +44,39 @@ export async function fetchPublicPassport(handle: string): Promise<PublicPasspor
 
   if (!data) return null; // ← chemin unique : inexistant == non public.
 
-  // Projection whitelistée. `display_name`/`headline`/`issued_at` proviennent de
-  // la vue ; `verified`/`trust_status`/`skills_status`/`evidence` ne sont pas
-  // portés par la vue en Sprint 1 → valeurs sûres par défaut. Aucune donnée
-  // n'est inventée.
+  // Palier 5 (D-044) — les compétences PUBLIÉES + leur Trust par compétence +
+  // la provenance visible, depuis la vue sécurisée `public_passport_competencies`
+  // (DOUBLE FILTRE visibility='public' ET published, D-042/D-043). L'anon lit la
+  // vue, JAMAIS une table brute ; la garde back tient, le lecteur ne la contourne pas.
+  const { data: comps } = await supabase
+    .from('public_passport_competencies')
+    .select('skill_id, skill_name, state, basis_level, evidence_provenance')
+    .eq('handle', handle);
+
+  const competencies = (comps ?? []).map((c) => ({
+    skill_id: c.skill_id as string,
+    skill_name: (c.skill_name as string | null) ?? null,
+    state: c.state as string,
+    basis_level: (c.basis_level as string | null) ?? null,
+    provenance: (
+      (c.evidence_provenance as { issuer_name?: string | null; occurred_at?: string | null }[]) ?? []
+    ).map((p) => ({ issuer_name: p.issuer_name ?? null, occurred_at: p.occurred_at ?? null })),
+  }));
+
+  // Résumés DÉRIVÉS du réel (plus de stubs Sprint 1) : verified = ≥1 compétence
+  // `established` ; trust_status = le plus haut état atteint « quelque part » (OCR-126).
+  const anyEstablished = competencies.some((c) => c.state === 'established');
+  const anyEmerging = competencies.some((c) => c.state === 'emerging');
+
   return buildPublicPassport({
     display_name: data.display_name ?? null,
     headline: data.headline ?? null,
     lifecycle_stage: data.lifecycle_stage,
     issued_at: data.issued_at ?? null,
-    verified: false,
-    trust_status: 'establishing',
-    skills_status: 'empty',
+    verified: anyEstablished,
+    trust_status: anyEstablished ? 'established' : anyEmerging ? 'emerging' : 'establishing',
+    skills_status: competencies.length > 0 ? 'active' : 'empty',
     evidence: [],
+    competencies,
   });
 }

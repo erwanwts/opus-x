@@ -119,6 +119,10 @@ export const PUBLIC_PASSPORT_STRINGS = {
   /** Bloc 6 — Trust Status : moteur absent → capacité planifiée, NON calculée. */
   trustNotComputed: 'Not yet computed',
   trustPlannedNote: 'Trust verification is a planned protocol capability.',
+  /** Palier 5 (D-044) — compétences publiées + provenance VISIBLE (l'atout central). */
+  competencies: 'Verified Competencies',
+  competenciesEmpty: 'No competencies published yet',
+  verifiedBy: 'Verified by',
   /** Bloc 8 — propriété & garde (le professionnel possède ; Opus X garde & vérifie). */
   ownershipCustody:
     'This Professional Passport belongs to the professional. Opus X holds it in custody and verifies it according to the rules of the World Skills Protocol.',

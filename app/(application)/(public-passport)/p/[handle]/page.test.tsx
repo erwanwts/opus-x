@@ -27,7 +27,7 @@ const { fetchPublicPassport } = vi.hoisted(() => ({ fetchPublicPassport: vi.fn()
 vi.mock('@/lib/api/readPublicPassport', () => ({ fetchPublicPassport }));
 
 import PublicPassportPage from './page';
-import { PUBLIC_PASSPORT_STRINGS as S } from '@/lib/constants/passport.strings';
+import { PUBLIC_PASSPORT_STRINGS as S, TRUST_STATE_LABELS } from '@/lib/constants/passport.strings';
 
 const paramsFor = (handle: string) => ({ params: Promise.resolve({ handle }) });
 
@@ -41,22 +41,23 @@ describe('Page publique du Passport /p/{handle}', () => {
     expect(notFound).toHaveBeenCalledOnce();
   });
 
-  it('ligne publique SIMULÉE (vérifiée) → champs autorisés + timeline + date, Opus ID ABSENT, Trust non calculé', async () => {
+  it('ligne publique SIMULÉE (vérifiée) → identité + timeline + date, COMPÉTENCE établie avec PROVENANCE VISIBLE, or mérité, Opus ID ABSENT', async () => {
     fetchPublicPassport.mockResolvedValue({
       display_name: 'Marie Dubois',
       headline: 'Consultante indépendante',
       lifecycle_stage: 'identity_established',
       issued_at: '2026-07-01T00:00:00Z',
-      verified: true,
-      trust_status: 'establishing', // stub interne : NE DOIT JAMAIS être rendu.
-      skills_status: 'empty',
-      evidence: [
+      verified: true, // ≥1 compétence `established`
+      trust_status: 'established', // résumé DÉRIVÉ — jamais rendu tel quel
+      skills_status: 'active',
+      evidence: [],
+      competencies: [
         {
-          type: 'certification',
-          title: 'Certification X',
-          verified: true,
-          issued_at: '2026-07-01T00:00:00Z',
-          issuer: 'Partenaire Y',
+          skill_id: 'wtr:212',
+          skill_name: 'Intention vs Engagement',
+          state: 'established',
+          basis_level: 'proficient',
+          provenance: [{ issuer_name: 'World Trading Skool', occurred_at: '2026-07-01T00:00:00Z' }],
         },
       ],
       // Pollution volontaire : champs internes que le composant NE DOIT JAMAIS rendre.
@@ -68,11 +69,9 @@ describe('Page publique du Passport /p/{handle}', () => {
     render(await PublicPassportPage(paramsFor('marie-k3n7')));
     const html = document.body.innerHTML;
 
-    // Champs AUTORISÉS rendus.
+    // Identité + objet.
     expect(screen.getByText('Marie Dubois')).toBeTruthy();
     expect(screen.getByText('Consultante indépendante')).toBeTruthy();
-    expect(screen.getByText('Certification X')).toBeTruthy();
-    expect(screen.getByText('Partenaire Y')).toBeTruthy();
     expect(screen.getByText(S.object)).toBeTruthy();
 
     // Timeline 7 étapes : étape courante + progression rendues.
@@ -83,18 +82,54 @@ describe('Page publique du Passport /p/{handle}', () => {
     expect(html).toContain(S.issuedOn);
     expect(html).toContain('July 1, 2026');
 
-    // Trust : capacité PLANIFIÉE, jamais le stub 'establishing'.
-    expect(screen.getByText(S.trustNotComputed)).toBeTruthy();
-    expect(screen.getByText(S.trustPlannedNote)).toBeTruthy();
-    expect(html).not.toMatch(/establishing/i);
+    // LE CŒUR (D-044) — compétence publiée + état de Trust LISIBLE (pas un score) +
+    // PROVENANCE VISIBLE « Verified by [émetteur] · [date] ».
+    expect(screen.getByText(S.competencies)).toBeTruthy();
+    expect(screen.getByText('Intention vs Engagement')).toBeTruthy();
+    expect(screen.getByText(TRUST_STATE_LABELS.established)).toBeTruthy();
+    expect(screen.getByText('World Trading Skool')).toBeTruthy();
+    expect(html).toContain(S.verifiedBy);
+    // Aucun score numérique nulle part (interdit PRODUCT-001).
+    expect(html).not.toMatch(/\b\d{1,3}\s*\/\s*100\b/);
 
     // OPUS ID + champs internes ABSENTS du DOM (whitelist stricte au rendu).
     expect(html).not.toMatch(/opx_/i);
     expect(html).not.toContain('uuid-secret-1234');
     expect(html).not.toContain('marie@example.com');
+    expect(html).not.toContain('wtr:212'); // l'id brut ne fuit pas : on montre le NOM
   });
 
-  it('non vérifié + vide → mention sobre, PAS de sceau OR, états vides sans jugement', async () => {
+  it('compétence NON established → état lisible SANS or (or = confiance méritée seulement)', async () => {
+    fetchPublicPassport.mockResolvedValue({
+      display_name: 'En cours',
+      headline: null,
+      lifecycle_stage: 'identity_established',
+      issued_at: null,
+      verified: false,
+      trust_status: 'emerging',
+      skills_status: 'active',
+      evidence: [],
+      competencies: [
+        {
+          skill_id: 'wtr:212',
+          skill_name: 'Intention vs Engagement',
+          state: 'emerging',
+          basis_level: 'applied',
+          provenance: [{ issuer_name: 'World Trading Skool', occurred_at: '2026-07-01T00:00:00Z' }],
+        },
+      ],
+    });
+
+    render(await PublicPassportPage(paramsFor('emerging-x')));
+
+    // L'état est lisible…
+    expect(screen.getByText(TRUST_STATE_LABELS.emerging)).toBeTruthy();
+    // …mais l'objet global n'est pas « Verified » (aucune compétence établie).
+    expect(screen.getByText(S.notVerified)).toBeTruthy();
+    expect(screen.queryByText(S.verified)).toBeNull(); // aucun OR mérité au niveau objet.
+  });
+
+  it('aucune compétence publiée → état vide SOBRE, sans jugement', async () => {
     fetchPublicPassport.mockResolvedValue({
       display_name: null,
       headline: null,
@@ -104,13 +139,13 @@ describe('Page publique du Passport /p/{handle}', () => {
       trust_status: 'establishing',
       skills_status: 'empty',
       evidence: [],
+      competencies: [],
     });
 
     render(await PublicPassportPage(paramsFor('sobre')));
 
     expect(screen.getByText(S.notVerified)).toBeTruthy();
     expect(screen.queryByText(S.verified)).toBeNull(); // aucun OR mérité.
-    expect(screen.getByText(S.skillsEmpty)).toBeTruthy();
-    expect(screen.getByText(S.evidenceEmpty)).toBeTruthy();
+    expect(screen.getByText(S.competenciesEmpty)).toBeTruthy();
   });
 });

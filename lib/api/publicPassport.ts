@@ -29,7 +29,11 @@ export const PUBLIC_PASSPORT_WHITELIST = [
   'trust_status',
   'skills_status',
   'evidence',
+  'competencies', // Palier 5 : compétences publiées + Trust par compétence + provenance visible (D-044)
 ] as const;
+
+/** Les seules clés qu'une PROVENANCE de compétence publique expose (jamais le contenu). */
+export const PUBLIC_COMPETENCY_PROVENANCE_WHITELIST = ['issuer_name', 'occurred_at'] as const;
 
 /** Les seules clés qu'une Evidence publique peut exposer (jamais le payload). */
 export const PUBLIC_EVIDENCE_WHITELIST = [
@@ -64,6 +68,28 @@ export interface PublicEvidenceInput {
   description?: string | null;
 }
 
+/** Provenance PUBLIQUE d'une compétence : « vérifié par [émetteur] · [date] ». */
+export interface PublicCompetencyProvenance {
+  issuer_name: string | null; // NOM public de l'émetteur (jamais l'id brut)
+  occurred_at: string | null; // date de la démonstration
+}
+
+/** Une compétence publiée : état de Trust + provenance visible (D-044). */
+export interface PublicCompetencyInput {
+  skill_id: string;
+  skill_name: string | null; // nom lisible ('Intention vs Engagement'), pas l'id brut
+  state: string; // establishing | emerging | established (qualitatif, jamais un score — OCR-105)
+  basis_level: string | null; // niveau atteint (aware/applied/proficient/mastery)
+  provenance: PublicCompetencyProvenance[];
+}
+export interface PublicCompetency {
+  skill_id: string;
+  skill_name: string | null;
+  state: string;
+  basis_level: string | null;
+  provenance: PublicCompetencyProvenance[];
+}
+
 export interface PublicPassportInput {
   display_name: string | null;
   headline: string | null;
@@ -73,6 +99,7 @@ export interface PublicPassportInput {
   trust_status: string; // niveau qualitatif (jamais un score)
   skills_status: string; // niveau qualitatif
   evidence: PublicEvidenceInput[];
+  competencies: PublicCompetencyInput[]; // Palier 5 (D-044)
 }
 
 export interface PublicEvidence {
@@ -92,6 +119,7 @@ export interface PublicPassport {
   trust_status: string;
   skills_status: string;
   evidence: PublicEvidence[];
+  competencies: PublicCompetency[];
 }
 
 /** N'émet QUE les champs whitelistés — construction explicite, jamais un spread. */
@@ -102,6 +130,20 @@ export function buildPublicEvidence(e: PublicEvidenceInput): PublicEvidence {
     verified: e.verified,
     issued_at: e.issued_at ?? null,
     issuer: e.issuer ?? null,
+  };
+}
+
+/** N'émet QUE les champs whitelistés d'une compétence — jamais un spread. */
+export function buildPublicCompetency(c: PublicCompetencyInput): PublicCompetency {
+  return {
+    skill_id: c.skill_id,
+    skill_name: c.skill_name ?? null,
+    state: c.state,
+    basis_level: c.basis_level ?? null,
+    provenance: (c.provenance ?? []).map((p) => ({
+      issuer_name: p.issuer_name ?? null,
+      occurred_at: p.occurred_at ?? null,
+    })),
   };
 }
 
@@ -116,5 +158,6 @@ export function buildPublicPassport(input: PublicPassportInput): PublicPassport 
     trust_status: input.trust_status,
     skills_status: input.skills_status,
     evidence: input.evidence.map(buildPublicEvidence),
+    competencies: (input.competencies ?? []).map(buildPublicCompetency),
   };
 }
