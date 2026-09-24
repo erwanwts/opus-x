@@ -74,7 +74,7 @@ async function grantConsent(client: SupabaseClient, issuerId: string, redirect: 
   if (error) throw new Error(`grant consent: ${error.message}`);
 }
 
-function evidence(opusId: string, evidenceId: string) {
+function evidence(opusId: string, evidenceId: string, level = 'applied', obs = 3) {
   const critKey = 'S03.C08';
   const base: Record<string, unknown> = {
     protocol_version: '1.0',
@@ -85,8 +85,8 @@ function evidence(opusId: string, evidenceId: string) {
     issuer: { id: ISSUER, evidence_id: evidenceId, attested_by: { actor_id: ACTOR, role: 'coach' } },
     subject: { opus_id: opusId },
     framework: { id: 'framework:wtr', version: '0.1' },
-    demonstrates: { skill_id: SKILL, claimed_level: 'applied' },
-    observation: { criteria: [critKey], criterion_levels: { [critKey]: 3 } },
+    demonstrates: { skill_id: SKILL, claimed_level: level },
+    observation: { criteria: [critKey], criterion_levels: { [critKey]: obs } },
     provenance: { evidence_ref: { kind: 'mission_result', id: 'uuid-1' } },
     occurred_at: '2026-07-20T14:32:00.000Z',
     attested_at: '2026-07-20T14:35:12.480Z',
@@ -96,8 +96,8 @@ function evidence(opusId: string, evidenceId: string) {
   return base;
 }
 
-async function acceptEvidenceFor(opus: string): Promise<string> {
-  const payload = evidence(opus, uniq('ev'));
+async function acceptEvidenceFor(opus: string, level = 'applied', obs = 3): Promise<string> {
+  const payload = evidence(opus, uniq('ev'), level, obs);
   const raw = JSON.stringify(payload);
   const ts = Math.floor(Date.now() / 1000).toString();
   const sig = signIssuerRequest(SECRET, ts, raw);
@@ -179,17 +179,24 @@ describe('Palier 3 — la source des skills rebranchée sur le réel', () => {
     expect((data ?? []) as unknown[]).toHaveLength(0);
   });
 
-  it('verified_count RESTE 0 malgré des skills actifs — jamais de vérification non calculée (palier 4)', async () => {
+  it('verified_count REFLÈTE LE TRUST RÉEL (le gel du palier 3 devient le test du vrai calcul, palier 4)', async () => {
+    // Hier : verified_count était figé à 0 (le trust engine n'existait pas). Aujourd'hui
+    // il est CALCULÉ (compétences à l'état `established`, D-041). Ce test le prouve,
+    // falsifiable dans les DEUX sens.
     const E = await makeSubject('skills-e');
     await grantConsent(E.client, ISSUER, REDIRECT);
-    await acceptEvidenceFor(E.opus);
 
-    // Le Dashboard lit la source réelle : des skills actifs EXISTENT (count ≥ 1)...
-    const dash = await new DashboardService(E.client).getDashboard();
-    expect(dash?.skills_status).toBeTruthy();
+    // (1) une compétence au niveau `applied` → emerging → PAS verified → 0.
+    // FALSIFIABLE : un mapping trop généreux (applied → established) donnerait 1.
+    await acceptEvidenceFor(E.opus, 'applied', 3);
+    let dash = await new DashboardService(E.client).getDashboard();
     expect(dash!.skills_status!.count).toBeGreaterThanOrEqual(1);
-    // ...mais AUCUN n'est « vérifié » : le trust engine (palier 4) n'existe pas.
-    // FALSIFIABLE : égaler verified_count à count sans trust → cette assertion casse.
     expect(dash!.skills_status!.verified_count).toBe(0);
+
+    // (2) une preuve `proficient` (même compétence) → established → verified_count MONTE.
+    // FALSIFIABLE : si le calcul restait figé à 0, cette assertion casserait.
+    await acceptEvidenceFor(E.opus, 'proficient', 4);
+    dash = await new DashboardService(E.client).getDashboard();
+    expect(dash!.skills_status!.verified_count).toBeGreaterThanOrEqual(1);
   });
 });
