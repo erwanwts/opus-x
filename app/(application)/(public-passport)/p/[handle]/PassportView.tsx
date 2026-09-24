@@ -62,7 +62,7 @@ function VerifiedSeal({ label }: { label: string }) {
   );
 }
 
-export function PassportView({ passport }: { passport: PublicPassport }) {
+export function PassportView({ passport, handle }: { passport: PublicPassport; handle: string }) {
   const { display_name, headline, lifecycle_stage, issued_at, verified, competencies } = passport;
   const stageLabel = lifecycleLabelSafe(lifecycle_stage);
   const currentIndex = Math.max(0, LIFECYCLE_STAGES.findIndex((s) => s.key === lifecycle_stage));
@@ -111,6 +111,10 @@ export function PassportView({ passport }: { passport: PublicPassport }) {
           {headline ? (
             <p className="mt-3 font-interface text-body-lg text-navy-300">{headline}</p>
           ) : null}
+
+          {/* Handle public — l'identifiant de la page (déjà dans l'URL). Discret,
+               gravé en mono, sous l'identité. Jamais l'Opus ID (hors whitelist). */}
+          <p className="mt-2 opus-id text-body-sm text-navy-400">@{handle}</p>
 
           {/* Date d'émission — gravée (.opus-id = mono/tracké), mais c'est la DATE. */}
           {issued_at ? (

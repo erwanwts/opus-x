@@ -69,9 +69,10 @@ describe('Page publique du Passport /p/{handle}', () => {
     render(await PublicPassportPage(paramsFor('marie-k3n7')));
     const html = document.body.innerHTML;
 
-    // Identité + objet.
+    // Identité + objet + handle public (identifiant de la page, déjà dans l'URL).
     expect(screen.getByText('Marie Dubois')).toBeTruthy();
     expect(screen.getByText('Consultante indépendante')).toBeTruthy();
+    expect(screen.getByText('@marie-k3n7')).toBeTruthy();
     expect(screen.getByText(S.object)).toBeTruthy();
 
     // Timeline 7 étapes : étape courante + progression rendues.

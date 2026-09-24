@@ -65,5 +65,8 @@ export default async function PublicPassportPage({ params }: Props) {
   const passport = await fetchPublicPassport(handle);
   if (!passport) notFound(); // privé / unlisted / inexistant / inaccessible → identique.
 
-  return <PassportView passport={passport} />;
+  // Le handle est le paramètre d'URL (déjà public) et a résolu une ligne PUBLIQUE :
+  // on le passe tel quel à la vue. Il ne transite PAS par la whitelist DB — ce n'est
+  // pas une divulgation de la projection, c'est l'identifiant public de la page.
+  return <PassportView passport={passport} handle={handle} />;
 }
