@@ -44,7 +44,11 @@ export async function gatherProbes(
   const lc = await admin.rpc('wsp_advance_lifecycle', { p_passport_id: '00000000-0000-0000-0000-000000000000' });
   const lifecycleAdvanceFn: ParityProbes['lifecycleAdvanceFn'] = lc.error?.code === 'PGRST202' ? 'absent' : 'present';
 
-  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn, lifecycleAdvanceFn };
+  // Palier 4 : la table wsp_competency_trust existe (erreur = absente).
+  const ct = await admin.from('wsp_competency_trust').select('passport_id', { head: true, count: 'exact' }).limit(0);
+  const competencyTrustTable: ParityProbes['competencyTrustTable'] = ct.error ? 'absent' : 'present';
+
+  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn, lifecycleAdvanceFn, competencyTrustTable };
 }
 
 /** Applique la garde : lève BRUYAMMENT si le staging ne reflète pas le dépôt. */

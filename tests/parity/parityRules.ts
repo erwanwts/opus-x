@@ -33,6 +33,8 @@ export interface ParityProbes {
   skillsSourceFn: 'present' | 'absent';
   /** La fonction `wsp_advance_lifecycle` existe (D-040, jalon monotone). */
   lifecycleAdvanceFn: 'present' | 'absent';
+  /** La table `wsp_competency_trust` existe (palier 4, Trust par compétence). */
+  competencyTrustTable: 'present' | 'absent';
 }
 
 interface Sentinel {
@@ -82,6 +84,12 @@ export const SENTINELS: readonly Sentinel[] = [
     expected: 'present',
     migration: '20260924000001_wsp_lifecycle_advance',
     what: 'fonction wsp_advance_lifecycle (jalon monotone D-040)',
+  },
+  {
+    key: 'competencyTrustTable',
+    expected: 'present',
+    migration: '20260924000002_wsp_trust_engine',
+    what: 'table wsp_competency_trust (Trust par compétence, palier 4)',
   },
 ];
 

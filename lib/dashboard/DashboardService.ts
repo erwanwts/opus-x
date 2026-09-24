@@ -141,13 +141,15 @@ export class DashboardService {
     const rows = (data ?? []) as { skill_uri: string }[];
     // Décompte = skills DISTINCTS (une compétence à plusieurs niveaux = une skill).
     const count = new Set(rows.map((r) => r.skill_uri)).size;
+    // Palier 4 : verified_count BRANCHÉ sur le trust engine réel — compétences à
+    // l'état Trust `established` (D-041). Il ne vaut plus 0 par défaut ; il reflète
+    // le Trust calculé (non monotone : peut redescendre si une preuve est révoquée).
+    const est = await this.supabase.rpc('wsp_my_established_count');
+    const verified_count = (est.data as number | null) ?? 0;
     return {
       state: count === 0 ? 'empty' : 'active',
       count,
-      // DÉCISION palier 3 : verified_count est dérivé au palier 4 (trust engine) ;
-      // 0 tant que Trust n'est pas calculé. Le champ ne doit JAMAIS affirmer une
-      // vérification non calculée — on ne l'invente pas.
-      verified_count: 0,
+      verified_count,
     };
   }
 

@@ -15,6 +15,7 @@ const CONFORME: ParityProbes = {
   passportUpdatesTable: 'present',
   skillsSourceFn: 'present',
   lifecycleAdvanceFn: 'present',
+  competencyTrustTable: 'present',
 };
 
 describe('parityViolation — garde vérité-terrain (pure)', () => {
@@ -64,6 +65,13 @@ describe('parityViolation — garde vérité-terrain (pure)', () => {
     expect(v).toContain('20260924000001_wsp_lifecycle_advance');
   });
 
+  it('MUTATION — table wsp_competency_trust absente → violation (palier 4)', () => {
+    const v = parityViolation({ ...CONFORME, competencyTrustTable: 'absent' });
+    expect(v).not.toBeNull();
+    expect(v).toContain('wsp_competency_trust');
+    expect(v).toContain('20260924000002_wsp_trust_engine');
+  });
+
   it('plusieurs dérives → TOUTES listées (jamais la première seule)', () => {
     const v = parityViolation({
       bridgeResolveFn: 'absent',
@@ -72,6 +80,7 @@ describe('parityViolation — garde vérité-terrain (pure)', () => {
       passportUpdatesTable: 'absent',
       skillsSourceFn: 'absent',
       lifecycleAdvanceFn: 'absent',
+      competencyTrustTable: 'absent',
     });
     for (const s of SENTINELS) expect(v).toContain(s.migration);
   });
