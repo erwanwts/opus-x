@@ -35,6 +35,8 @@ export interface ParityProbes {
   lifecycleAdvanceFn: 'present' | 'absent';
   /** La table `wsp_competency_trust` existe (palier 4, Trust par compétence). */
   competencyTrustTable: 'present' | 'absent';
+  /** La vue `public_passport_competencies` existe (palier 5, double filtre D-042). */
+  publicCompetenciesView: 'present' | 'absent';
 }
 
 interface Sentinel {
@@ -90,6 +92,12 @@ export const SENTINELS: readonly Sentinel[] = [
     expected: 'present',
     migration: '20260924000002_wsp_trust_engine',
     what: 'table wsp_competency_trust (Trust par compétence, palier 4)',
+  },
+  {
+    key: 'publicCompetenciesView',
+    expected: 'present',
+    migration: '20260924000003_wsp_competency_publication',
+    what: 'vue public_passport_competencies (double filtre, palier 5)',
   },
 ];
 

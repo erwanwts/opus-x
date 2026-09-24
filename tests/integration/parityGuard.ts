@@ -48,7 +48,11 @@ export async function gatherProbes(
   const ct = await admin.from('wsp_competency_trust').select('passport_id', { head: true, count: 'exact' }).limit(0);
   const competencyTrustTable: ParityProbes['competencyTrustTable'] = ct.error ? 'absent' : 'present';
 
-  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn, lifecycleAdvanceFn, competencyTrustTable };
+  // Palier 5 : la vue public_passport_competencies existe (erreur = absente).
+  const pc = await anon.from('public_passport_competencies').select('handle', { head: true, count: 'exact' }).limit(0);
+  const publicCompetenciesView: ParityProbes['publicCompetenciesView'] = pc.error ? 'absent' : 'present';
+
+  return { bridgeResolveFn, publicViewIssuedAt, anonPassportsRaw, passportUpdatesTable, skillsSourceFn, lifecycleAdvanceFn, competencyTrustTable, publicCompetenciesView };
 }
 
 /** Applique la garde : lève BRUYAMMENT si le staging ne reflète pas le dépôt. */
