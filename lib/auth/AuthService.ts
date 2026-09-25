@@ -21,7 +21,9 @@
 import type { SupabaseClient, Session, User } from '@supabase/supabase-js';
 import {
   buildEstablishmentConsents,
+  buildPassportCreationConsent,
   type ConsentRecord,
+  type PassportCreationConsent,
 } from '@/lib/constants/passport.strings';
 import { safeLinkReturnPath } from '@/lib/link/returnPath';
 
@@ -53,6 +55,12 @@ export interface SignupMetadata {
   full_name: string;
   locale: string;
   consents: ConsentRecord[];
+  /**
+   * O-B (D-054) — le consentement de CRÉATION du Passeport. Voyage avec le
+   * signup, matérialisé par issue_passport dans son store dédié, AVANT le
+   * Passeport. Distinct des `consents` (produit) et de wsp_consent_events.
+   */
+  passport_creation: PassportCreationConsent;
 }
 
 export type EmissionStatus = {
@@ -94,6 +102,9 @@ export class AuthService {
       locale: input.locale ?? 'fr',
       // V2 — version documentaire ET date d'entrée en vigueur, toutes deux.
       consents: buildEstablishmentConsents(input.consents),
+      // O-B (D-054) — l'acte fondateur « créer mon Passeport », explicite et
+      // versionné, dans son propre système. Précède l'émission.
+      passport_creation: buildPassportCreationConsent('create'),
     };
 
     const { error } = await this.supabase.auth.signInWithOtp({

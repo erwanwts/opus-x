@@ -200,6 +200,33 @@ export interface ConsentRecord {
 }
 
 /**
+ * O-B (D-054) — Le consentement de CRÉATION du Passeport : l'acte fondateur,
+ * DISTINCT de terms/privacy (produit) ET de l'autorisation d'émission par
+ * Issuer (wsp_consent_events). Le sujet consent à ce que son Passeport EXISTE.
+ *
+ * `decision` : 'create' (fonder) — 'link' réservé à O-E (créer OU lier, D-056).
+ * Transporté dans les métadonnées de signup, matérialisé par issue_passport
+ * AVANT l'insertion du Passport (store dédié passport_creation_consents).
+ */
+export interface PassportCreationConsent {
+  decision: 'create' | 'link';
+  granted: boolean;
+  version: string;
+  effective_date: string;
+}
+
+export function buildPassportCreationConsent(
+  decision: 'create' | 'link' = 'create'
+): PassportCreationConsent {
+  return {
+    decision,
+    granted: true, // l'acte de fonder son Passeport, explicite et versionné
+    version: LEGAL_DOCUMENTS.version,
+    effective_date: LEGAL_DOCUMENTS.effectiveDate,
+  };
+}
+
+/**
  * Les consentements recueillis à l'établissement de l'identité (Sprint 1).
  * Cases NON pré-cochées : l'acceptation est explicite (§5.4).
  *

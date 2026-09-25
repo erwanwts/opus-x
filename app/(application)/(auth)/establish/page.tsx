@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import {
   ESTABLISH_IDENTITY_TITLE,
   buildEstablishmentConsents,
+  buildPassportCreationConsent,
 } from '@/lib/constants/passport.strings';
 import { fr } from '@/lib/i18n/fr';
 import { AuthService } from '@/lib/auth/AuthService';
@@ -104,6 +105,8 @@ export default function EstablishPage() {
         full_name: fullName.trim(),
         locale: 'fr',
         consents: buildEstablishmentConsents(consents),
+        // O-B — l'acte de création re-voyage aussi (un renvoi ne le perd pas).
+        passport_creation: buildPassportCreationConsent('create'),
       },
       returnTo: returnTo ?? undefined,
     });

@@ -248,6 +248,15 @@ export async function adminConsents(userId: string) {
     .order('type');
   return data ?? [];
 }
+/** O-B — les consentements de CRÉATION du Passeport (store dédié D-054). */
+export async function adminCreationConsents(userId: string) {
+  const { data } = await admin
+    .from('passport_creation_consents')
+    .select('*')
+    .eq('profile_id', userId)
+    .order('decision');
+  return data ?? [];
+}
 export async function adminTrustIndex(passportId: string) {
   const { data } = await admin
     .from('trust_index')
