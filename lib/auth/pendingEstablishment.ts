@@ -17,6 +17,12 @@ const KEY = 'opusx.pending_establishment';
 export interface PendingEstablishment {
   email: string;
   metadata: SignupMetadata;
+  /**
+   * O-A — chemin de retour /link (Issuer) à rejoindre après l'émission. Il
+   * survit ainsi à un RENVOI de lien et à l'avance multi-appareils (l'onglet
+   * qui « écoute » n'a pas le `next` de l'URL du magic link).
+   */
+  returnTo?: string;
 }
 
 export function savePendingEstablishment(pending: PendingEstablishment): void {

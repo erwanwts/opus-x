@@ -25,6 +25,7 @@ import { fr } from '@/lib/i18n/fr';
 import { AuthService, RESEND_COOLDOWN_SECONDS } from '@/lib/auth/AuthService';
 import { createClient } from '@/lib/supabase/client';
 import { loadPendingEstablishment } from '@/lib/auth/pendingEstablishment';
+import { buildEmissionPath } from '@/lib/link/returnPath';
 
 const t = fr.verifyEmail;
 
@@ -57,9 +58,11 @@ function VerifyEmailInner() {
   }, [auth]);
 
   // ── Attente active : dès que l'email est réellement vérifié, on avance ──
+  // O-A : cet onglet n'a pas le `next` de l'URL du magic link ; on le relit
+  // depuis l'établissement en cours pour REVENIR au consentement de l'Issuer.
   useEffect(() => {
     const stop = auth.watchForVerification(() => {
-      router.replace('/emission');
+      router.replace(buildEmissionPath(loadPendingEstablishment()?.returnTo));
     });
     return stop;
   }, [auth, router]);
@@ -88,7 +91,8 @@ function VerifyEmailInner() {
 
     const pending = loadPendingEstablishment();
     // V2 — les consentements re-voyagent : un renvoi ne les perd jamais.
-    const { error } = await auth.resendLink(email, pending?.metadata);
+    // O-A — le retour /link (Issuer) re-voyage aussi.
+    const { error } = await auth.resendLink(email, pending?.metadata, pending?.returnTo);
     setNotice(error ? t.expired : t.resent);
   }
 

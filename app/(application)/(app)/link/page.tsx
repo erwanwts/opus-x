@@ -15,6 +15,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { fr } from '@/lib/i18n/fr';
+import { buildEstablishReturn } from '@/lib/link/returnPath';
 import { ConsentForm } from './ConsentForm';
 
 const t = fr.link;
@@ -31,7 +32,9 @@ export default async function LinkPage({
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect('/establish'); // l'identité doit être établie d'abord
+  // O-A (D-052) : un sujet FRAIS établit son identité DANS le flux et REVIENT
+  // ici. On porte le /link?… d'origine (Issuer préservé), plus de cul-de-sac.
+  if (!user) redirect(buildEstablishReturn({ issuer_id, redirect_uri, state }));
 
   // Identité de l'Issuer (jamais le secret HMAC — colonnes d'identité publique).
   const { data: issuer } = issuer_id

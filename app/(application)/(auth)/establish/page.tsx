@@ -26,6 +26,7 @@ import { fr } from '@/lib/i18n/fr';
 import { AuthService } from '@/lib/auth/AuthService';
 import { createClient } from '@/lib/supabase/client';
 import { savePendingEstablishment } from '@/lib/auth/pendingEstablishment';
+import { safeLinkReturnPath } from '@/lib/link/returnPath';
 
 const t = fr.establish;
 
@@ -71,6 +72,13 @@ export default function EstablishPage() {
     setSubmitting(true);
     setBanner(null);
 
+    // O-A — retour /link (Issuer) éventuel, porté depuis /link?…→/establish?next=…
+    // Validé interne-/link : un `next` détourné est simplement ignoré.
+    const returnTo =
+      typeof window !== 'undefined'
+        ? safeLinkReturnPath(new URLSearchParams(window.location.search).get('next'))
+        : null;
+
     const consents = { terms, privacy };
     const auth = new AuthService(createClient());
     const res = await auth.establishIdentity({
@@ -78,6 +86,7 @@ export default function EstablishPage() {
       fullName: fullName.trim(),
       locale: 'fr',
       consents,
+      returnTo: returnTo ?? undefined,
     });
 
     if (res.error) {
@@ -88,6 +97,7 @@ export default function EstablishPage() {
     }
 
     // V2 — on conserve email + consentements versionnés pour un renvoi fidèle.
+    // O-A — et le retour /link, pour survivre au renvoi et au multi-appareils.
     savePendingEstablishment({
       email: email.trim().toLowerCase(),
       metadata: {
@@ -95,6 +105,7 @@ export default function EstablishPage() {
         locale: 'fr',
         consents: buildEstablishmentConsents(consents),
       },
+      returnTo: returnTo ?? undefined,
     });
 
     router.push('/verify-email');

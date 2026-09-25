@@ -34,6 +34,7 @@ import {
 import { fr } from '@/lib/i18n/fr';
 import { AuthService, type EmissionStatus } from '@/lib/auth/AuthService';
 import { createClient } from '@/lib/supabase/client';
+import { safeLinkReturnPath } from '@/lib/link/returnPath';
 
 const c = fr.ceremony;
 
@@ -160,7 +161,15 @@ export default function EmissionPage() {
   const handleDiscover = () => {
     if (navigating) return;
     setNavigating(true);
-    router.push('/dashboard');
+    // O-A : le Passeport est né PENDANT le flux d'un Issuer → on REVIENT au
+    // consentement (/link…), sinon on découvre le Dashboard. Le `next` est lu
+    // au clic (client) — pas de useSearchParams, donc pas de bascule dynamique
+    // de la cérémonie — et validé interne-/link (jamais un open-redirect).
+    const back =
+      typeof window !== 'undefined'
+        ? safeLinkReturnPath(new URLSearchParams(window.location.search).get('next'))
+        : null;
+    router.push(back ?? '/dashboard');
   };
 
   return (

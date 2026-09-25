@@ -23,6 +23,7 @@ import {
   buildEstablishmentConsents,
   type ConsentRecord,
 } from '@/lib/constants/passport.strings';
+import { safeLinkReturnPath } from '@/lib/link/returnPath';
 
 // ---------------------------------------------------------------------
 // Contrat d'établissement d'identité
@@ -36,6 +37,12 @@ export interface EstablishIdentityInput {
     terms: boolean;
     privacy: boolean;
   };
+  /**
+   * O-A — retour /link (Issuer) à rejoindre APRÈS l'émission. Transporté
+   * jusqu'à la cérémonie via /auth/callback. Validé (interne-/link only) ici
+   * même : un retour non conforme est simplement ignoré.
+   */
+  returnTo?: string;
 }
 
 /**
@@ -98,7 +105,9 @@ export class AuthService {
         // Le lien revient sur /auth/callback : le code y est échangé contre une
         // session (cookies posés) AVANT d'atteindre /emission. Sans ce relais,
         // la cérémonie — route protégée — rejette l'onglet faute de session.
-        emailRedirectTo: `${this.appOrigin()}/auth/callback?next=/emission`,
+        // O-A : si un retour /link est présent, la cérémonie le porte pour
+        // REVENIR au consentement de l'Issuer une fois le Passeport né.
+        emailRedirectTo: this.emissionCallbackUrl(input.returnTo),
       },
     });
 
@@ -113,7 +122,11 @@ export class AuthService {
   // -------------------------------------------------------------------
   // RENVOYER LE LIEN — avec cooldown anti-spam
   // -------------------------------------------------------------------
-  async resendLink(email: string, metadata?: SignupMetadata): Promise<{ error?: string }> {
+  async resendLink(
+    email: string,
+    metadata?: SignupMetadata,
+    returnTo?: string
+  ): Promise<{ error?: string }> {
     const { error } = await this.supabase.auth.signInWithOtp({
       email: email.trim().toLowerCase(),
       options: {
@@ -121,7 +134,8 @@ export class AuthService {
         // Les consentements re-voyagent : un renvoi ne doit pas les perdre (V2).
         data: metadata as unknown as Record<string, unknown> | undefined,
         // Même relais d'échange de code que l'établissement (voir establishIdentity).
-        emailRedirectTo: `${this.appOrigin()}/auth/callback?next=/emission`,
+        // O-A : le renvoi conserve aussi le retour /link (Issuer).
+        emailRedirectTo: this.emissionCallbackUrl(returnTo),
       },
     });
 
@@ -267,5 +281,25 @@ export class AuthService {
       process.env.NEXT_PUBLIC_APP_URL ??
       (typeof window !== 'undefined' ? window.location.origin : '')
     );
+  }
+
+  /**
+   * O-A — URL de retour du magic link : /auth/callback (échange du code →
+   * session), qui relaie vers la cérémonie. Si un retour /link SÛR est fourni,
+   * la cérémonie le porte (« /emission?next=/link… ») pour revenir au
+   * consentement de l'Issuer. Chaque couche est encodée UNE fois
+   * (URLSearchParams) : les `?`/`&` imbriqués survivent sans ambiguïté.
+   */
+  private emissionCallbackUrl(returnTo?: string): string {
+    const safe = safeLinkReturnPath(returnTo);
+    const emission = safe
+      ? `/emission?${new URLSearchParams({ next: safe }).toString()}`
+      : '/emission';
+    const origin = this.appOrigin();
+    const cb = new URL('/auth/callback', origin || 'http://placeholder.invalid');
+    cb.searchParams.set('next', emission);
+    // Historique : URL absolue quand l'origine est connue ; sinon chemin relatif
+    // (l'origine factice ne doit jamais fuiter dans le lien).
+    return origin ? cb.toString() : `${cb.pathname}${cb.search}`;
   }
 }
