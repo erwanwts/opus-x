@@ -7,7 +7,7 @@
 | **Document** | ENG-002 |
 | **Title** | Opus X Reference Implementation Profile (Sprint 2) |
 | **Series** | Engineering |
-| **Version** | 0.2 |
+| **Version** | 0.3 |
 | **Status** | Draft — Execution Phase |
 | **Date** | 2026-07-13 |
 | **Language** | English |
@@ -26,6 +26,7 @@
 |---|---|---|---|
 | 0.1 | 2026-07-13 | Draft — Execution Phase | Initial publication. Founds the Implementation Profile document type. Binds the canonicalization profile (RFC 8785 / JCS), the hashable object, the identity-of-emission key, the consolidated ingestion order, the Framework coherence check, the `wsp_` naming convention, the subject anchor, and `is_declaration`. Recorded during Sprint 2, Lot O1 design. No normative document was modified. |
 | 0.2 | 2026-07-13 | Draft — Execution Phase | Adds Chapter 9 — **The Published Correspondence**: the Framework publishes its observation-to-level table, versioned and dated, so that an Issuer *applies* a public rule rather than inventing a private one (§5.3). Records the conceptual clarification that **a level is an interpretation, not a fact** — and that what the fact store records is the *act of claiming*, not the level itself (§6.1.1), which is why `claimed_level` is a **checksum** and why it will eventually leave the contract (§9.5). Clarifies §10.2.4: the two mappings run in opposite directions and only one is private to the Issuer. Adds the TRUNCATE guard to the locked list. Recorded during Sprint 2, Lot O1 closure. No normative document was modified. |
+| 0.3 | 2026-09-25 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §6.5 — **The Attached Credential**: the ingestion envelope gains a `credential` field, a compact **VC-JWT (JWS, EdDSA)** carrying the Issuer's signed Open Badges 3.0 credential, verified against the Issuer's **public** key in `wsp_issuer_keys` (D-048); **excluded from the hashable object** (§6.2 — it is a proof artifact). Requires a **cross-check** that the credential's signed claims equal the envelope's (D-049, `credential_envelope_mismatch`); binds the **strict verification order** HMAC → issuer → badge signature → cross-check → integrity → transform → write (D-050); reaffirms that the **level is DERIVED** from the observation and never imposed by the Issuer (D-051, consistent with §6.1.1 / §9). Commando (the Issuer) must now emit the `credential` (VC-JWT carrying an observation). No normative document was modified. |
 
 ---
 
@@ -274,6 +275,24 @@ The hash MUST be computed after excluding every derived or transport field:
 **Note what the example already demonstrates.** `criteria` lists two criteria — the grid the coach consulted — while `criterion_levels` carries **one** entry: the observation that grounds the attestation. That asymmetry is deliberate and is made a rule in §9.2. And the observation is `3`, which maps to `applied` under the published Framework table — which is what §9 verifies, and which the `claimed_level` above honestly reflects.
 
 The canonical form is this object serialized per RFC 8785 — keys ordered, no whitespace, ECMAScript numbers — UTF-8 encoded. `canonical_hash` is the lowercase hex SHA-256 of those bytes, and is **not** a member of the object above.
+
+---
+
+### 6.5 The Attached Credential — Signed Open Badges 3.0 Verifiable Credential (Amendment v0.3 — D-048…D-051)
+
+Beyond the transport signature (HMAC, §6.3) and the content `canonical_hash`, an ingestion request carries the Issuer's own **signed credential** — proof that the *credential itself*, not merely the request, is authentic and unaltered. This is the amendment that lets Opus X verify a third-party badge (D-046), and it is a **versioned change to the contract**, never a silent patch.
+
+- **6.5.1 — The `credential` field (D-048).** The envelope gains one field, `credential`: a **compact JWS (VC-JWT), signed with EdDSA (Ed25519)**, carrying the Open Badges 3.0 Verifiable Credential. It is verified against the Issuer's **public** key, registered in `wsp_issuer_keys` — Opus X never holds an Issuer private key. The reference verifier is `obVerify` (`lib/wsp/obVerify.ts`): it fixes `algorithms: ['EdDSA']` (an `alg: none` or an algorithm-confusion token is rejected) and refuses any JWK that carries a private component (`d`).
+
+- **6.5.2 — Excluded from the hash (§6.2).** `credential` is a **proof artifact**, not a semantic claim. It is added to the §6.2 exclusion list and is **never** a member of the hashable object. The `canonical_hash` identifies and protects the WSP fact; the `credential` proof authenticates the badge; they are cross-checked (§6.5.3), never conflated (§6.3).
+
+- **6.5.3 — Cross-check: the credential MUST agree with the envelope (D-049).** A valid signature is necessary but not sufficient. The claims *inside* the signed credential — subject, skill (via `alignment.targetUrl` resolved to a `wsp_skills` id), framework, and the observation basis — MUST equal the envelope's (`subject.opus_id`, `demonstrates.skill_id`, `framework`, `observation`). Any divergence is rejected (`credential_envelope_mismatch`): an Issuer must not sign one thing and claim another.
+
+- **6.5.4 — The level is DERIVED, never imposed (D-051).** Consistent with §6.1.1 and Chapter 9, the credential carries an **observation**, not an imposed level. Opus X derives the level from the observation through the published Framework correspondence (§9). A credential asserting a level **divergent from the derived level** is rejected (`level_incoherent`) — or the asserted level is ignored in favour of the derived one. The Issuer cannot impose the level (D6).
+
+- **6.5.5 — Strict verification order (D-050).** Nothing is written before everything is verified, in this order: **(1)** HMAC transport → **(2)** Issuer resolution / authorization → **(3)** badge signature (`obVerify` + public key; `badge_signature_invalid` on failure, `issuer_key_missing` if the Issuer has no active key) → **(4)** credential↔envelope cross-check (`credential_envelope_mismatch`) → **(5)** canonicalization + integrity digest (§5–§6) → **(6)** WSP coherence / transform (§10) → **(7)** insert, or reject. Because the HMAC is verified in the database (constant-time, step 1 of the ingestion RPC), honouring (1)→(3) requires either a `SECURITY DEFINER` pre-check (HMAC + Issuer) callable before `obVerify`, or a route-side reordering — an implementation choice, not a contract change.
+
+**What Commando (the Issuer) MUST emit to conform to the amended contract:** the same WSP-native envelope as before, **plus** a `credential` field = a compact **VC-JWT (EdDSA)** signed with the Issuer's private key (whose public half is posted in `wsp_issuer_keys`), whose signed claims match the envelope (§6.5.3) and whose achievement carries an **observation** (not a level — §6.5.4). The HMAC transport signature is computed over the full raw body, `credential` included.
 
 ---
 
