@@ -64,5 +64,20 @@ export async function POST(request: NextRequest) {
   if (error) return refused();
 
   // Succès : le SEUL endroit où un jeton est renvoyé — à l'Issuer authentifié.
-  return apiJson({ opus_id: (data as { opus_id: string }).opus_id, token });
+  // Retour ENRICHI (ENG-002 v0.4 §13, D-055) : l'Issuer met en cache le reliage
+  // en un aller-retour. passport_id = indice de cache (jamais un ancrage de fait,
+  // §4) ; link_status dérivé (linked/relinked) ; token = le secret, minté ici.
+  const d = data as {
+    opus_id: string;
+    passport_id: string | null;
+    link_status: string;
+    issuer_authorization_id: string;
+  };
+  return apiJson({
+    opus_id: d.opus_id,
+    passport_id: d.passport_id,
+    link_status: d.link_status,
+    issuer_authorization_id: d.issuer_authorization_id,
+    token,
+  });
 }

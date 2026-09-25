@@ -27,6 +27,7 @@
 | 0.1 | 2026-07-13 | Draft — Execution Phase | Initial publication. Founds the Implementation Profile document type. Binds the canonicalization profile (RFC 8785 / JCS), the hashable object, the identity-of-emission key, the consolidated ingestion order, the Framework coherence check, the `wsp_` naming convention, the subject anchor, and `is_declaration`. Recorded during Sprint 2, Lot O1 design. No normative document was modified. |
 | 0.2 | 2026-07-13 | Draft — Execution Phase | Adds Chapter 9 — **The Published Correspondence**: the Framework publishes its observation-to-level table, versioned and dated, so that an Issuer *applies* a public rule rather than inventing a private one (§5.3). Records the conceptual clarification that **a level is an interpretation, not a fact** — and that what the fact store records is the *act of claiming*, not the level itself (§6.1.1), which is why `claimed_level` is a **checksum** and why it will eventually leave the contract (§9.5). Clarifies §10.2.4: the two mappings run in opposite directions and only one is private to the Issuer. Adds the TRUNCATE guard to the locked list. Recorded during Sprint 2, Lot O1 closure. No normative document was modified. |
 | 0.3 | 2026-09-25 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §6.5 — **The Attached Credential**: the ingestion envelope gains a `credential` field, a compact **VC-JWT (JWS, EdDSA)** carrying the Issuer's signed Open Badges 3.0 credential, verified against the Issuer's **public** key in `wsp_issuer_keys` (D-048); **excluded from the hashable object** (§6.2 — it is a proof artifact). Requires a **cross-check** that the credential's signed claims equal the envelope's (D-049, `credential_envelope_mismatch`); binds the **strict verification order** HMAC → issuer → badge signature → cross-check → integrity → transform → write (D-050); reaffirms that the **level is DERIVED** from the observation and never imposed by the Issuer (D-051, consistent with §6.1.1 / §9). Commando (the Issuer) must now emit the `credential` (VC-JWT carrying an observation). No normative document was modified. |
+| 0.4 | 2026-09-26 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §13 — **The Link Exchange Response**: the server-to-server exchange response (POST `/link/token`) is enriched from `{opus_id, token}` to also carry `passport_id`, `link_status`, and `issuer_authorization_id` (D-055), so the Issuer (Commando) caches the reliage in one round trip while **Opus X stays authoritative** over it (D-053). `passport_id` is a **cache hint, never a fact anchor** (§4); `link_status` (`linked`/`relinked`) is **derived by Opus X, never asserted by the Issuer** (§6.1.1, D-051); the single indifferentiated 401 on every failure is unchanged (non-enumeration). Renumbers the former §13/§14 to §14/§15. Commando (the Issuer) consumes the enriched response at its link callback. No normative document was modified. |
 
 ---
 
@@ -44,8 +45,9 @@
 10. The Framework Coherence Check
 11. Declarations Are Not Attestations
 12. Permanent Verifiability: What Every Fact Retains
-13. What This Profile Locks, and What It Leaves Open
-14. Summary
+13. The Link Exchange Response
+14. What This Profile Locks, and What It Leaves Open
+15. Summary
 
 References
 
@@ -472,7 +474,41 @@ Every row of `wsp_evidence` MUST retain, permanently:
 
 ---
 
-## 13. What This Profile Locks, and What It Leaves Open
+## 13. The Link Exchange Response (Amendment v0.4 — D-055)
+
+The link exchange (SPRINT-002, Lot O2a) is the server-to-server back channel by which an authenticated Issuer redeems a one-time exchange code for a token, *after* the professional has authorized that Issuer on Opus X. Until this amendment the response carried only the subject's `opus_id` and the minted `token`. This amendment **enriches** the success response so that the Issuer (Commando) can, in one round trip, cache the reliage it needs — **without ever becoming authoritative over it** (D-053). It is a versioned change to a contract shared with the Issuer, never a silent patch.
+
+### 13.1 The Response Fields
+
+On a successful exchange, `POST /link/token` returns a JSON object with exactly these members:
+
+| Field | Type | Meaning |
+|---|---|---|
+| `opus_id` | string (`opx_…`) | The professional's **canonical protocol identity** — the subject of every future fact (§4). Authoritative and permanent. |
+| `passport_id` | string (UUID) or `null` | The identifier of the professional's Passport, returned as a **cache hint** for the Issuer's local reliage (D-053). |
+| `link_status` | string enum | The state of the issuer–subject **authorization** established by *this* exchange: `linked` when it created the authorization for the couple `(subject, issuer)` for the first time; `relinked` when it refreshed an existing one. |
+| `issuer_authorization_id` | string (`iaz_…`) | The identifier of the authorization credential for the couple `(subject, issuer)` in `wsp_issuer_authorizations`. Lets the Issuer *reference* the authorization it holds; the `token` itself remains the secret. |
+| `token` | string | The link token, minted once and returned once (unchanged from before this amendment). |
+
+### 13.2 `passport_id` Is a Cache Hint, Never a Fact Anchor
+
+The Passport is a **generated view**, and facts anchor on **identity** (§4). `passport_id` is returned only so the Issuer may cache the reliage locally (D-053 — the Issuer's copy is *non-authoritative*). An Issuer MUST NOT use `passport_id` as the anchor of any emitted fact: `wsp_evidence.subject_id` references `profiles(opus_id)`, never a passport. Opus X remains authoritative over the reliage, both as the truth of `(issuer, external_subject) → opus_id` and as the owner of the Passport the fact is *computed* above.
+
+### 13.3 `link_status` Is Derived by Opus X, Never Asserted by the Issuer
+
+Consistent with D-051 and §6.1.1, the Issuer does not *tell* Opus X whether this is a first link or a re-link. Opus X **derives** `link_status` from the existence of the authorization for the couple at exchange time. The value is a **report, not an instruction** — the same discipline by which an Issuer never imposes a level.
+
+### 13.4 Non-Enumeration Is Preserved
+
+Every **failure** of the exchange still returns the single indifferentiated `401` (SPRINT-002, Lot O2a): unknown, expired, already-consumed, wrong-Issuer, invalid-HMAC, and revoked-consent remain indistinguishable. The enrichment adds fields **only to the success response**, returned to an already-authenticated Issuer, for a subject who has consented. No failure path is made distinguishable.
+
+### 13.5 The Response Is Not a WSP Fact
+
+This response belongs to the **authorization handshake**, not to the fact store. It carries no `canonical_hash`, it is not a member of any hashable object, and it is not append-only. Its integrity is the transport HMAC (§6.3); the integrity of the facts the Issuer later emits is their own `canonical_hash` (§6.3, §12). The two protections are not the same thing, and this amendment does not conflate them.
+
+---
+
+## 14. What This Profile Locks, and What It Leaves Open
 
 **Locked (for the Opus X implementation, Sprint 2):**
 
@@ -502,7 +538,7 @@ Every row of `wsp_evidence` MUST retain, permanently:
 
 ---
 
-## 14. Summary
+## 15. Summary
 
 ENG-002 is the first Implementation Profile of the corpus, and it exists to protect a governance rule: **a frozen normative document is never reopened to solve an implementation need.** The protocol requires a canonical form and deliberately declines to fix one; this profile fixes one — RFC 8785 (JCS), SHA-256, RFC 3339 UTC to the millisecond, `null` forbidden, the hashable object enumerated exhaustively — **for the reference implementation, and only for it.** It separates the identity of an emission from the integrity of its content, so that a retry is recognized and two genuine attestations are never merged. It consolidates the ingestion order without removing a single vigilance of the frozen specification, and it adds the Framework coherence check — which invents no rule, but makes it impossible for an implementation to bypass the rules the corpus already imposes: *an Issuer never sends a WSP level; the level correspondence belongs to the Framework; trust is never self-attributed.* It anchors facts on identity rather than on a generated view, and it declines to abstract a subject model that has only one case. Every fact it admits retains the rules under which it was admitted, so that the profile may change and history may not. It publishes the Framework's observation-to-level correspondence — versioned and dated — because *publishing a rule is the opposite of delegating it*: a rule kept private forces the Issuer to reinvent it unverifiably, while a rule published is a rule the Issuer applies and the publisher verifies. **No normative document was modified to write any of this.** That is the point of the document, and it is the property that will let the protocol be adopted by parties who did not write it.
 

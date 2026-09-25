@@ -35,14 +35,27 @@ const goodHeaders = {
 beforeEach(() => vi.clearAllMocks());
 
 describe('POST /link/token', () => {
-  it('succès → { opus_id, token } ; le HASH stocké = hash du jeton renvoyé', async () => {
-    const rpc = vi.fn().mockResolvedValue({ data: { opus_id: 'opx_ABC' }, error: null });
+  it('succès → retour ENRICHI (opus_id, passport_id, link_status, issuer_authorization_id, token) ; HASH stocké = hash du jeton renvoyé', async () => {
+    // Retour enrichi de la base (ENG-002 v0.4 §13, D-055).
+    const rpc = vi.fn().mockResolvedValue({
+      data: {
+        opus_id: 'opx_ABC',
+        passport_id: '11111111-1111-1111-1111-111111111111',
+        link_status: 'linked',
+        issuer_authorization_id: 'iaz_XYZ',
+      },
+      error: null,
+    });
     withRpc(rpc);
 
     const res = await POST(req(goodHeaders, { code: 'wspxc_abc' }));
     expect(res.status).toBe(200);
     const body = await res.json();
+    // Les 4 champs du contrat + le jeton passent bien à l'Issuer.
     expect(body.opus_id).toBe('opx_ABC');
+    expect(body.passport_id).toBe('11111111-1111-1111-1111-111111111111');
+    expect(body.link_status).toBe('linked');
+    expect(body.issuer_authorization_id).toBe('iaz_XYZ');
     expect(typeof body.token).toBe('string');
 
     const args = rpc.mock.calls[0];
