@@ -15,15 +15,13 @@ import { ShareSection } from './ShareSection';
 const t = fr.share;
 
 /** Client mocké : from() (état initial) + rpc() (generate/revoke). */
-function mockClient(opts: { initialActive?: boolean } = {}) {
-  const chain = {
-    select: () => chain,
-    is: () => chain,
-    maybeSingle: async () => ({
-      data: opts.initialActive ? { created_at: '2026-09-26T10:00:00Z' } : null,
-      error: null,
-    }),
-  };
+function mockClient(opts: { initialActive?: boolean; backendAbsent?: boolean } = {}) {
+  const maybeSingle = vi.fn(async () =>
+    opts.backendAbsent
+      ? { data: null, error: { code: 'PGRST205', message: 'Could not find the table public.passport_share_tokens in the schema cache' } }
+      : { data: opts.initialActive ? { created_at: '2026-09-26T10:00:00Z' } : null, error: null },
+  );
+  const chain = { select: () => chain, is: () => chain, maybeSingle };
   const rpc = vi.fn(async (name: string) => {
     if (name === 'generate_share_token') return { data: { share_token: 'wsps_deadbeef' }, error: null };
     if (name === 'revoke_share_token') return { data: { revoked: 1 }, error: null };
@@ -31,13 +29,29 @@ function mockClient(opts: { initialActive?: boolean } = {}) {
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (createClient as any).mockReturnValue({ from: () => chain, rpc });
-  return { rpc };
+  return { rpc, maybeSingle };
 }
 
 beforeEach(() => vi.clearAllMocks());
 afterEach(() => cleanup());
 
-describe('T-C — ShareSection', () => {
+describe('T-C — ShareSection (gate gracieux)', () => {
+  it('⭐ backend ABSENT (migrations token non déployées) → section MASQUÉE', async () => {
+    const { maybeSingle } = mockClient({ backendAbsent: true });
+    render(<ShareSection />);
+    await waitFor(() => expect(maybeSingle).toHaveBeenCalled());
+    // Rien ne s'affiche : ni titre, ni bouton qui échouerait.
+    expect(screen.queryByText(t.title)).toBeNull();
+    expect(screen.queryByRole('button', { name: t.generate })).toBeNull();
+  });
+
+  it('⭐ backend PRÉSENT sans token → section VISIBLE, état « aucun » + bouton', async () => {
+    mockClient(); // present, pas de token actif
+    render(<ShareSection />);
+    expect(await screen.findByText(t.none)).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.generate })).toBeTruthy();
+  });
+
   it('⭐ générer → affiche le lien /verify/{token} UNE fois (clair après un geste explicite)', async () => {
     mockClient();
     render(<ShareSection />);

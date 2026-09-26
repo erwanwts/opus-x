@@ -20,30 +20,57 @@ import { fr } from '@/lib/i18n/fr';
 const t = fr.share;
 
 type ActiveState = { active: boolean; createdAt: string | null };
+type Backend = 'checking' | 'present' | 'absent';
+
+/**
+ * Le backend token est-il ABSENT (table/RPC non déployée) ? On distingue ce cas
+ * — masquer la section — d'une simple absence de token actif (afficher « aucun »).
+ * En prod tant que les migrations token ne sont pas appliquées, PostgREST répond
+ * « relation introuvable » (schema cache) : la section disparaît, sans re-déploiement
+ * le jour où les migrations arrivent.
+ */
+function isBackendAbsent(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false;
+  if (error.code === 'PGRST205' || error.code === 'PGRST202' || error.code === '42P01' || error.code === '42883') {
+    return true; // table absente du cache / undefined_table / undefined_function
+  }
+  return /does not exist|schema cache|could not find the (table|function)/i.test(error.message ?? '');
+}
 
 export function ShareSection() {
   const [supabase] = useState(() => createClient());
+  const [backend, setBackend] = useState<Backend>('checking');
   const [state, setState] = useState<ActiveState>({ active: false, createdAt: null });
   const [link, setLink] = useState<string | null>(null); // clair, affiché UNE fois
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState(false);
 
-  // État initial : existe-t-il un lien actif ? (RLS owner — jamais le clair.)
+  // État initial : le backend token est-il là ? Si oui, un lien est-il actif ?
+  // (RLS owner — jamais le clair.) Backend absent → section masquée (gate gracieux).
   useEffect(() => {
     let alive = true;
     (async () => {
-      const { data } = await supabase
+      const { data, error: e } = await supabase
         .from('passport_share_tokens')
         .select('created_at')
         .is('revoked_at', null)
         .maybeSingle();
-      if (alive && data) setState({ active: true, createdAt: (data as { created_at: string }).created_at });
+      if (!alive) return;
+      if (isBackendAbsent(e)) {
+        setBackend('absent'); // migrations token non déployées → on masque tout
+        return;
+      }
+      setBackend('present');
+      if (data) setState({ active: true, createdAt: (data as { created_at: string }).created_at });
     })();
     return () => {
       alive = false;
     };
   }, [supabase]);
+
+  // Gate gracieux : rien tant qu'on vérifie, rien si le backend token est absent.
+  if (backend !== 'present') return null;
 
   async function onGenerate() {
     setBusy(true);
