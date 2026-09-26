@@ -38,6 +38,7 @@ export type RouteKind = 'intl' | 'app' | 'public';
 export const RESERVED = new Set([
   'dashboard', 'emission', 'establish', 'verify-email', 'passport', 'link',
   'me', 'p', 'passports', 'auth', 'api', 'frameworks', 'issuers',
+  'verify', // T-B : /verify/{token} — consultation par token (D-060), servie par l'app, jamais localisée
 ]);
 
 /**

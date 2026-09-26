@@ -23,6 +23,7 @@ import { routing } from '@/i18n/routing';
 const RESERVED_BEFORE = new Set([
   'dashboard', 'emission', 'establish', 'verify-email', 'passport', 'link',
   'me', 'p', 'passports', 'auth', 'api', 'frameworks', 'issuers',
+  'verify', // T-B (D-060) : ajout DÉLIBÉRÉ du segment /verify/{token} au régime app
 ]);
 function routeKindBefore(pathname: string): RouteKind {
   const first = pathname.split('/')[1] ?? '';
