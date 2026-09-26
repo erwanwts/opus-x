@@ -98,4 +98,25 @@ export const fr = {
     },
     footer: '© 2026 Opus X — Infrastructure d’identité professionnelle.',
   },
+  share: {
+    // Partage par lien tokenisé (capability URL) — le sujet est maître (D-058).
+    title: 'Partager mon passeport',
+    body: 'Créez un lien privé qui laisse un tiers consulter votre passeport — même s’il reste privé. Seules vos compétences publiées seront visibles.',
+    generate: 'Créer un lien de partage',
+    regenerate: 'Créer un nouveau lien',
+    generating: 'Création du lien…',
+    // Le lien n'est montré QU'UNE fois (le clair n'est jamais restocké — hash-only).
+    shownOnceTitle: 'Votre lien de partage',
+    shownOnceWarning: 'Copiez-le maintenant : par sécurité, il ne sera plus jamais affiché. Vous pourrez toujours en créer un nouveau (ce qui révoquera celui-ci).',
+    copy: 'Copier le lien',
+    copied: 'Lien copié',
+    activeTitle: 'Un lien de partage est actif',
+    activeSince: 'Actif depuis le {date}.',
+    activeNote: 'Le lien lui-même n’est plus affichable ; créez-en un nouveau si vous l’avez perdu.',
+    none: 'Aucun lien de partage actif.',
+    revoke: 'Révoquer le lien',
+    revoking: 'Révocation…',
+    revoked: 'Lien révoqué. Il ne donne plus accès à votre passeport.',
+    error: 'Action impossible pour le moment. Réessayez.',
+  },
 } as const;

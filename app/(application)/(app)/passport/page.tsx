@@ -20,6 +20,7 @@ import { createClient } from '@/lib/supabase/server';
 import { DashboardService } from '@/lib/dashboard/DashboardService';
 import { PassportDocument } from '@/components/PassportDocument';
 import { fr } from '@/lib/i18n/fr';
+import { ShareSection } from './ShareSection';
 
 export default async function PassportPage() {
   const supabase = await createClient();
@@ -52,6 +53,9 @@ export default async function PassportPage() {
             padded="lg"
           />
         </div>
+
+        {/* T-C — le sujet est maître de la divulgation : générer / révoquer un lien. */}
+        <ShareSection />
       </div>
     </main>
   );
