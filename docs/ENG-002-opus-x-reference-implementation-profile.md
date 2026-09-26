@@ -27,6 +27,7 @@
 | 0.1 | 2026-07-13 | Draft — Execution Phase | Initial publication. Founds the Implementation Profile document type. Binds the canonicalization profile (RFC 8785 / JCS), the hashable object, the identity-of-emission key, the consolidated ingestion order, the Framework coherence check, the `wsp_` naming convention, the subject anchor, and `is_declaration`. Recorded during Sprint 2, Lot O1 design. No normative document was modified. |
 | 0.2 | 2026-07-13 | Draft — Execution Phase | Adds Chapter 9 — **The Published Correspondence**: the Framework publishes its observation-to-level table, versioned and dated, so that an Issuer *applies* a public rule rather than inventing a private one (§5.3). Records the conceptual clarification that **a level is an interpretation, not a fact** — and that what the fact store records is the *act of claiming*, not the level itself (§6.1.1), which is why `claimed_level` is a **checksum** and why it will eventually leave the contract (§9.5). Clarifies §10.2.4: the two mappings run in opposite directions and only one is private to the Issuer. Adds the TRUNCATE guard to the locked list. Recorded during Sprint 2, Lot O1 closure. No normative document was modified. |
 | 0.3 | 2026-09-25 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §6.5 — **The Attached Credential**: the ingestion envelope gains a `credential` field, a compact **VC-JWT (JWS, EdDSA)** carrying the Issuer's signed Open Badges 3.0 credential, verified against the Issuer's **public** key in `wsp_issuer_keys` (D-048); **excluded from the hashable object** (§6.2 — it is a proof artifact). Requires a **cross-check** that the credential's signed claims equal the envelope's (D-049, `credential_envelope_mismatch`); binds the **strict verification order** HMAC → issuer → badge signature → cross-check → integrity → transform → write (D-050); reaffirms that the **level is DERIVED** from the observation and never imposed by the Issuer (D-051, consistent with §6.1.1 / §9). Commando (the Issuer) must now emit the `credential` (VC-JWT carrying an observation). No normative document was modified. |
+| 0.5 | 2026-09-26 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §6.6 — **The Phase-3 Signature Contract** (D-063): freezes the OB 3.0 **VC-JWT** the Issuer signs (EdDSA, `typ:"vc+jwt"`, `kid`→`wsp_issuer_keys`), `credentialSubject.id = opus_id` (D-047), and the **hybrid** binding (D) — the credential embeds a `canonical_hash` of the observation that Opus X **recomputes and compares constant-time** (the level stays derived, D-051). Pins the **canonicalization conformance**: `canonicalize@1.0.8` (Commando) and `@3.0.0` (Opus X) proven **byte-identical** (RFC 8785) on frozen conformance vectors. obVerify gains `kid`-resolution, a `typ` check, and the hash cross-check. Companion migration `20260926000007` (kid resolution on `wsp_issuer_keys`). No normative document was modified. |
 | 0.4 | 2026-09-26 | Draft — Execution Phase | **Contract amendment (versioned — not a silent patch).** Adds §13 — **The Link Exchange Response**: the server-to-server exchange response (POST `/link/token`) is enriched from `{opus_id, token}` to also carry `passport_id`, `link_status`, and `issuer_authorization_id` (D-055), so the Issuer (Commando) caches the reliage in one round trip while **Opus X stays authoritative** over it (D-053). `passport_id` is a **cache hint, never a fact anchor** (§4); `link_status` (`linked`/`relinked`) is **derived by Opus X, never asserted by the Issuer** (§6.1.1, D-051); the single indifferentiated 401 on every failure is unchanged (non-enumeration). Renumbers the former §13/§14 to §14/§15. Commando (the Issuer) consumes the enriched response at its link callback. No normative document was modified. |
 
 ---
@@ -295,6 +296,69 @@ Beyond the transport signature (HMAC, §6.3) and the content `canonical_hash`, a
 - **6.5.5 — Strict verification order (D-050).** Nothing is written before everything is verified, in this order: **(1)** HMAC transport → **(2)** Issuer resolution / authorization → **(3)** badge signature (`obVerify` + public key; `badge_signature_invalid` on failure, `issuer_key_missing` if the Issuer has no active key) → **(4)** credential↔envelope cross-check (`credential_envelope_mismatch`) → **(5)** canonicalization + integrity digest (§5–§6) → **(6)** WSP coherence / transform (§10) → **(7)** insert, or reject. Because the HMAC is verified in the database (constant-time, step 1 of the ingestion RPC), honouring (1)→(3) requires either a `SECURITY DEFINER` pre-check (HMAC + Issuer) callable before `obVerify`, or a route-side reordering — an implementation choice, not a contract change.
 
 **What Commando (the Issuer) MUST emit to conform to the amended contract:** the same WSP-native envelope as before, **plus** a `credential` field = a compact **VC-JWT (EdDSA)** signed with the Issuer's private key (whose public half is posted in `wsp_issuer_keys`), whose signed claims match the envelope (§6.5.3) and whose achievement carries an **observation** (not a level — §6.5.4). The HMAC transport signature is computed over the full raw body, `credential` included.
+
+### 6.6 The Phase-3 Signature Contract (Amendment v0.5 — D-063)
+
+Phase 3 freezes the exact shape of the signed credential, so the Issuer builds L1/L2 without guessing. The architect's decision D-063: **(A)** mechanism = VC-JWT / JOSE (JWS compact, EdDSA/Ed25519); **(B)** signer = the Issuer (Commando) with its private key — Opus X holds only the public half; **(C)** key = JWK, resolved by `kid`; **(D)** hybrid — an OB 3.0-compatible credential that **embeds the `canonical_hash` of the observation**, which Opus X recomputes and compares in constant time.
+
+- **6.6.1 — JOSE header.** `alg` MUST be `EdDSA` (§6.5.1). `typ` MUST be `vc+jwt`. `kid` MUST be present and MUST equal a `wsp_issuer_keys.id` of the form `{issuer_id}#{key_id}` (e.g. `issuer:wts-001#key-1`).
+
+- **6.6.2 — Payload = the VerifiableCredential object** (OB 3.0 `vc+jwt`: the JWS payload is the credential JSON itself). The field paths are normative — they are exactly what the cross-check reads:
+
+  ```json
+  {
+    "@context": ["https://www.w3.org/ns/credentials/v2",
+                 "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json"],
+    "type": ["VerifiableCredential", "OpenBadgeCredential"],
+    "issuer": "issuer:wts-001",
+    "validFrom": "2026-07-20T14:35:12.480Z",
+    "credentialSubject": {
+      "id": "opx_01K7QZ3M9V",
+      "type": ["AchievementSubject"],
+      "achievement": { "type": ["Achievement"],
+        "alignment": [{ "targetType": "ceasn:Competency",
+          "targetUrl": "https://opusx.world/wsp/frameworks/world-trader/v0.1/skills/S03" }] },
+      "observation": { "criteria": ["S03.C08"], "criterion_levels": { "S03.C08": 3 } },
+      "observationHash": { "canonicalization_algorithm": "RFC8785",
+        "hash_algorithm": "SHA-256", "value": "<sha256_hex>" }
+    },
+    "framework": { "id": "framework:wtr", "version": "0.1" }
+  }
+  ```
+
+- **6.6.3 — `credentialSubject.id` is the Opus ID** (`opx_…`), never a passport id, never a `did:` form in Phase 3 (D-047; a `did:opusx:…` form is a later evolution requiring a resolver). This is what L3/onboarding stores as the subject anchor (§4).
+
+- **6.6.4 — The embedded observation hash (decision D).** `observationHash.value` = `sha256_hex(UTF8(JCS(P)))` where the **preimage P** is exactly, and only:
+  ```json
+  { "canonicalization_algorithm": "RFC8785", "hash_algorithm": "SHA-256",
+    "observation": { "criteria": [...], "criterion_levels": {...} } }
+  ```
+  (the algorithm identifiers are covered by the hash, §5.1.4). Opus X **recomputes** this hash from the credential's `observation` and compares it, **constant-time**, to `observationHash.value`; any divergence is rejected. This binds the *signed* observation to a digest, over and above the structural cross-check (§6.5.3). The **level is never in the credential** and is **derived** by Opus X from the observation (D-051).
+
+- **6.6.5 — Canonicalization conformance (the freeze precondition, resolved).** The embedded hash only works if both parties canonicalize identically. Measured and **proven byte-identical**: `canonicalize@1.0.8` (Commando) and `canonicalize@3.0.0` (Opus X, the sole module on the trust path, §5) produce the same RFC 8785 output and thus the same SHA-256 on the frozen **conformance vectors** below. Any future change of the library on either side MUST reproduce these before shipping:
+
+  | Vector | JCS output | SHA-256 |
+  |---|---|---|
+  | Observation preimage P (§6.6.4) | `{"canonicalization_algorithm":"RFC8785","hash_algorithm":"SHA-256","observation":{"criteria":["S03.C08"],"criterion_levels":{"S03.C08":3}}}` | `4c3f68adc9f1153898a156a2dfdcae7bbede36f474e7364a00593784ba947ff8` |
+  | Covered evidence object (§6.1) | *(full §6.1 object, keys JCS-sorted)* | `08ae457cf3b814f8c3294ab328fc579b45ad0e70c9733dccbef69493fe398367` |
+
+- **6.6.6 — Key resolution and revocation.** `kid` → `wsp_issuer_keys` row by `id` where `status='active'` (helper `wsp_active_issuer_key(kid)`), returning the **public** JWK (kty=OKP, crv=Ed25519; a JWK with a private `d` is refused, §6.5.1). Rotation: insert `#key-2` active, set `#key-1` `revoked`. Public keys are world-readable (third-party verification); no client writes.
+
+- **6.6.7 — Field-level alignment — what the Issuer signs == what Opus X verifies.**
+
+  | Signed field | Verified by Opus X | Rule |
+  |---|---|---|
+  | header `kid` | `wsp_active_issuer_key(kid)` | resolves the active public key; else reject |
+  | header `alg` = `EdDSA`, `typ` = `vc+jwt` | obVerify (alg pinned; **typ check added Phase 3**) | else reject |
+  | JWS signature | obVerify (`compactVerify`) | EdDSA against the public key |
+  | `issuer` | == envelope `issuer.id` (= kid's issuer = HMAC issuer) | |
+  | `credentialSubject.id` (`opx_…`) | == envelope `subject.opus_id` | |
+  | `credentialSubject.achievement.alignment[0].targetUrl` | parse → resolve skill == envelope `demonstrates.skill_id` | |
+  | `framework.id` / `framework.version` | == envelope `framework.*` | |
+  | `credentialSubject.observation` | == envelope `observation` (structural) **and** hash == `observationHash.value` (recompute, constant-time) | |
+  | *level* | **not signed / not imposed** — derived by Opus X (D-051) | |
+
+- **6.6.8 — What obVerify gains for Phase 3.** The existing `verifyOpenBadgeCredential` (JWS-EdDSA verify against a given public JWK, private-key JWK refused, `alg:none`/confusion rejected) is reused unchanged. Three additions: **(a)** decode the protected header first to read `kid` and resolve the key from `wsp_issuer_keys` (today the route selects by `issuer_id`+active, not by `kid`); **(b)** enforce `typ === 'vc+jwt'`; **(c)** the constant-time observation-hash cross-check (§6.6.4), replacing structural-only observation equality as the strict barrier.
 
 ---
 
