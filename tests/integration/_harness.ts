@@ -257,6 +257,15 @@ export async function adminCreationConsents(userId: string) {
     .order('decision');
   return data ?? [];
 }
+/** T-A — les tokens de partage d'un Passeport (par passport_id). */
+export async function adminShareTokens(passportId: string) {
+  const { data } = await admin
+    .from('passport_share_tokens')
+    .select('*')
+    .eq('passport_id', passportId)
+    .order('created_at');
+  return data ?? [];
+}
 export async function adminTrustIndex(passportId: string) {
   const { data } = await admin
     .from('trust_index')
