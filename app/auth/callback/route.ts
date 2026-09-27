@@ -30,19 +30,7 @@ function safeNext(raw: string | null): string {
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-
-  // [wsp-diag] TEMPORAIRE — à RETIRER après diagnostic (bug state, flux magic link).
-  // On ne logue QUE présence/longueur/nb de « & » — JAMAIS les valeurs (state = secret CSRF).
-  const rawNext = searchParams.get('next');
-  const rawQuery = new URL(request.url).search;
-  console.log('[wsp-diag] auth/callback', {
-    nextPresent: rawNext != null,
-    nextLen: rawNext?.length ?? 0,
-    ampInNext: rawNext ? (rawNext.match(/&/g) ?? []).length : 0,
-    ampInRawQuery: (rawQuery.match(/&/g) ?? []).length,
-  });
-
-  const next = safeNext(rawNext);
+  const next = safeNext(searchParams.get('next'));
 
   // Sans code, rien à échanger : on renvoie dignement au seuil de vérification.
   if (!code) {

@@ -27,15 +27,6 @@ export default async function LinkPage({
   searchParams: Promise<{ issuer_id?: string; redirect_uri?: string; state?: string; error?: string }>;
 }) {
   const { issuer_id, redirect_uri, state, error } = await searchParams;
-
-  // [wsp-diag] TEMPORAIRE — à RETIRER après diagnostic. Présence/longueur seulement,
-  // jamais les valeurs (state = secret CSRF). Logs serveur (Vercel).
-  console.log('[wsp-diag] link', {
-    issuerPresent: issuer_id != null, issuerLen: issuer_id?.length ?? 0,
-    redirectPresent: redirect_uri != null, redirectLen: redirect_uri?.length ?? 0,
-    statePresent: state != null, stateLen: state?.length ?? 0,
-  });
-
   const supabase = await createClient();
 
   const {
