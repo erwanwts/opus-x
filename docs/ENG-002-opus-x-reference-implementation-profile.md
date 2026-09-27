@@ -382,6 +382,14 @@ Phase 3 freezes the exact shape of the signed credential, so the Issuer builds L
 
 - **6.7.3 — Validateur humain réel (D-073).** Le rôle de l'attestateur — `issuer.attested_by.role` dans l'enveloppe (§6.1), persisté en colonne `attested_by_role` (déjà couvert par le hash) — MUST être un **rôle de validateur humain réel** : `coach` ou `admin`. **UNIQUEMENT pour une preuve CERTIFICATIVE (`is_declaration = false`)** : un rôle d'IA/automate (`officer_ai`, `system`) n'est JAMAIS source de validation certificative → rejet **`validator_role_invalid`**, no write. Une **déclaration** (`is_declaration = true`, §11) n'est **pas** une validation et **n'est pas** soumise à cette garde. Opus X enregistre le rôle **tel quel** (jamais arrangé/masqué) ; le Passeport l'affiche tel quel (« Validé par : Coach WTS » / « Admin WTS »). L'Officier IA peut analyser/recommander/préparer, jamais valider.
 
+  **Correspondance côté émetteur (WTS / Commando OS)** — le mappage source → rôle d'enveloppe :
+  | `passport_updates.source` (Commando) | `issuer.attested_by.role` (enveloppe) |
+  |---|---|
+  | `coach` | `coach` |
+  | `admin` | `admin` |
+  | `officer_ai` | **jamais émis** (D-073) — la garde d'émission Commando n'émet que `source ∈ {coach, admin}` |
+  | `system` | **jamais émis** (idem) |
+
 - **6.7.4 — Garde temporelle (D-067) à l'ordre §8.** Voir §5.3.4 : `occurred_at ≤ attested_at ≤ recorded_at`, `occurred_at`/`attested_at` non postérieurs à `now()` (+300 s). Rejet **`temporal_incoherent`**, AVANT écriture.
 
 - **6.7.5 — Ordre d'ingestion §8 (ajouts).** Les rejets de cet amendement s'insèrent AVANT l'écriture, après la cohérence de contenu : **`partner_context_invalid`**, **`validator_role_invalid`**, **`temporal_incoherent`**. `partner_context` et `operator` sont **membres de l'objet haché** (§6.1) ; `recorded_at` reste exclu (§6.2). NOTE : l'application (gardes d'ingestion + vecteurs falsifiables) est livrée avec le build d'émission, pas avant cet amendement.
