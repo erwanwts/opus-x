@@ -165,10 +165,27 @@ export default function EmissionPage() {
     // consentement (/link…), sinon on découvre le Dashboard. Le `next` est lu
     // au clic (client) — pas de useSearchParams, donc pas de bascule dynamique
     // de la cérémonie — et validé interne-/link (jamais un open-redirect).
-    const back =
+    const raw =
       typeof window !== 'undefined'
-        ? safeLinkReturnPath(new URLSearchParams(window.location.search).get('next'))
+        ? new URLSearchParams(window.location.search).get('next')
         : null;
+
+    // [wsp-diag] TEMPORAIRE — à RETIRER après diagnostic. Présence/longueur/nb « & »
+    // uniquement, jamais les valeurs (state = secret CSRF). Console navigateur.
+    const inner = raw && raw.includes('?')
+      ? new URLSearchParams(raw.split('?').slice(1).join('?'))
+      : null;
+    // eslint-disable-next-line no-console
+    console.log('[wsp-diag] emission/handleDiscover', {
+      nextPresent: raw != null,
+      nextLen: raw?.length ?? 0,
+      ampInNext: raw ? (raw.match(/&/g) ?? []).length : 0,
+      issuerPresent: Boolean(inner?.get('issuer_id')), issuerLen: inner?.get('issuer_id')?.length ?? 0,
+      redirectPresent: Boolean(inner?.get('redirect_uri')), redirectLen: inner?.get('redirect_uri')?.length ?? 0,
+      statePresent: Boolean(inner?.get('state')), stateLen: inner?.get('state')?.length ?? 0,
+    });
+
+    const back = safeLinkReturnPath(raw);
     router.push(back ?? '/dashboard');
   };
 
