@@ -43,9 +43,23 @@ const REJECT: Record<string, { status: number; code: string }> = {
   credential_envelope_mismatch: { status: 422, code: 'credential_envelope_mismatch' },
 };
 
-function mapRejection(message: string) {
+function mapRejection(message: string): { status: number; code: string; fallback: boolean } {
   const tok = Object.keys(REJECT).find((t) => message.includes(t));
-  return tok ? REJECT[tok] : { status: 422, code: 'rejected' };
+  return tok ? { ...REJECT[tok], fallback: false } : { status: 422, code: 'rejected', fallback: true };
+}
+
+/**
+ * Journalise la SEULE ligne du chemin fallback (422 'rejected') : un message de
+ * rejet non tokenisé (violation de contrainte à l'écriture, erreur de cascade…)
+ * écrasé par le code opaque 'rejected'. On trace de quoi diagnostiquer — JAMAIS
+ * de donnée sensible : ni enveloppe, ni opus_id, ni signature. `error.message`
+ * nomme la colonne/contrainte, pas sa valeur (les valeurs vivent dans
+ * `error.details`, qui n'est PAS journalisé). Message tronqué à 200 caractères.
+ */
+function logIngestFallback(err: { code?: string; message?: string }) {
+  const message = (err.message ?? '').slice(0, 200);
+  const named = /(?:constraint|column) "([^"]+)"/.exec(err.message ?? '');
+  console.error('[ingest] fallback', err.code ?? '', named ? named[1] : '', message);
 }
 
 export async function POST(request: NextRequest) {
@@ -78,6 +92,7 @@ export async function POST(request: NextRequest) {
   });
   if (pre.error) {
     const mapped = mapRejection(pre.error.message);
+    if (mapped.fallback) logIngestFallback(pre.error);
     return apiError(mapped.code, 'Ingestion refusée.', mapped.status);
   }
 
@@ -155,6 +170,7 @@ export async function POST(request: NextRequest) {
 
   if (error) {
     const mapped = mapRejection(error.message);
+    if (mapped.fallback) logIngestFallback(error);
     return apiError(mapped.code, 'Ingestion refusée.', mapped.status);
   }
 
