@@ -119,6 +119,38 @@ describe('POST /issuers/evidence', () => {
     expect(ingestArgs(rpc)).toBeUndefined(); // rien n'atteint l'écriture
   });
 
+  it('fallback 422 : réponse INCHANGÉE (rejected / « Ingestion refusée. ») + 1 journal serveur ; aucun journal sur token reconnu', async () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    // (a) token RECONNU → mapping normal, AUCUN journal.
+    mockClient({ key: null, ingest: { data: null, error: { message: 'claimed_level_incoherent', code: 'P0001' } } });
+    let res = await POST(req(goodHeaders, JSON.stringify(PAYLOAD)));
+    expect(res.status).toBe(422);
+    expect((await res.json()).error.code).toBe('claimed_level_incoherent');
+    expect(spy).not.toHaveBeenCalled();
+
+    // (b) message NON reconnu (NOT NULL à l'écriture) → fallback : réponse identique + 1 journal.
+    mockClient({
+      key: null,
+      ingest: {
+        data: null,
+        error: {
+          message: 'null value in column "canonicalization_algorithm" of relation "wsp_evidence" violates not-null constraint',
+          code: '23502',
+        },
+      },
+    });
+    res = await POST(req(goodHeaders, JSON.stringify(PAYLOAD)));
+    expect(res.status).toBe(422);
+    const body = await res.json();
+    expect(body.error.code).toBe('rejected');
+    expect(body.error.message).toBe('Ingestion refusée.');
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith('[ingest] fallback', '23502', 'canonicalization_algorithm', expect.stringContaining('not-null'));
+
+    spy.mockRestore();
+  });
+
   it('mappe les rejets §8 (ingest) vers le bon code/status', async () => {
     const cases: [string, number, string][] = [
       ['rejected', 403, 'rejected'],
