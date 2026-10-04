@@ -24,3 +24,8 @@ build/
 
 # Config d'outillage locale (preview dev) — comme .claude/settings.local.json (ignore global).
 .claude/launch.json
+
+# D-077 — générateur de paire de clés de badge (affiche une clé PRIVÉE à l'exécution).
+# Jamais dans le dépôt. Sorti vers ../gen-ob-key.mjs.KEEP-OUT-OF-REPO ; clé privée
+# associée considérée comme perdue/compromise. Régénération propre au lot VC-JWT (D-063).
+gen-ob-key.mjs
